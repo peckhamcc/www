@@ -2,10 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const postcssUrl = require('postcss-url')
-const postcssImport = require('postcss-import')
-const postcssCssnext = require('postcss-cssnext')
-const postcssReporter = require('postcss-reporter')
 
 module.exports = {
   entry: {
@@ -17,7 +13,7 @@ module.exports = {
     publicPath: './'
   },
   plugins: [
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new ExtractTextPlugin('[name].css', { allChunks: true }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -28,44 +24,35 @@ module.exports = {
     loaders: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css!postcss')
+        loader: [
+          'style-loader',
+          'css-loader'
+        ]
       },
       {
-        test: /\.less$/,
-        loader: ExtractTextPlugin.extract('style', 'css!postcss!less')
-      },
-      {
-        test: /\.js$/,
-        loaders: ['babel'],
-        exclude: /(node_modules|bower_components)/
+        test: /\.jsx?$/,
+        loaders: ['babel-loader'],
+        exclude: /node_modules/
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
-          'file?digest=hex&name=[name].[ext]',
-          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          'file-loader?digest=hex&name=[name].[ext]',
+          'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false'
         ]
       },
       {
         test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file?name=fonts/[name]-[hash].[ext]'
+        loader: 'file-loader?name=fonts/[name]-[hash].[ext]'
       },
       {
         test: /\.(wav|mp3)$/i,
-        loader: 'file?name=[name]-bundle-[hash].[ext]'
+        loader: 'file-loader?name=[name]-bundle-[hash].[ext]'
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       }
-    ]
-  },
-  postcss: (wp) => {
-    return [
-      postcssImport({ addDependencyTo: wp }),
-      postcssUrl(),
-      postcssCssnext(),
-      postcssReporter()
     ]
   }
 }
