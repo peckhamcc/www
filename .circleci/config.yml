@@ -7,11 +7,22 @@ jobs:
     steps:
         - checkout
         - run:
-            name: npm-install
-            command: npm install
+            name: create-dependency-cache-manifest
+            command: cat cat package.json packages/*/package.json > dependency.manifest
+        - restore_cache:
+            key: dependency-cache-{{ checksum "dependency.manifest" }}
         - run:
-            name: lerna-bootstrap
-            command: npm run bootstrap
+            name: install-dependencies-if-necessary
+            command: |
+              if [ ! -d "node_modules" ]; then
+                npm install
+                npm run bootstrap
+              fi
+        - save_cache:
+            key: dependency-cache-{{ checksum "dependency.manifest" }}
+            paths:
+                - ./node_modules
+                - ./packages/*/node_modules
         - run:
             name: test
             command: npm test
