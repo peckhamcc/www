@@ -1,76 +1,27 @@
 {
-  "name": "www",
+  "name": "@peckhamcc/www",
   "version": "1.0.0",
-  "description": "The Peckham Cycle Club website",
-  "homepage": "https://peckhamcc.github.com/www",
-  "author": "Alex Potsides",
+  "description": "Demo: [https://peckhamcc.github.io/www/](https://peckhamcc.github.io/www/)",
+  "main": "index.js",
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "test": "lerna run --parallel test",
+    "build": "lerna run --parallel build",
+    "deploy": "lerna run --parallel deploy",
+    "start": "NODE_ENV=development lerna run --parallel start",
+    "clean": "lerna run --parallel clean && rm -rf packages/*/node_modules"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/peckhamcc/www"
+    "url": "git+https://github.com/peckhamcc/www.git"
   },
+  "author": "Alex Potsides <alex@achingbrain.net>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/peckhamcc/www/issues"
   },
-  "scripts": {
-    "clean": "rm -rf dist",
-    "build": "npm run clean && webpack --config webpack.config.demo.js",
-    "start": "DEBUG=pcc-www:* npm run clean && (webpack --progress --colors --watch & node server)",
-    "deploy": "NODE_ENV=production npm run build && NODE_DEBUG=gh-pages gh-pages -d dist",
-    "lint": "standard"
-  },
-  "pre-commit": [
-    "lint"
-  ],
-  "dependencies": {
-    "babel-runtime": "^6.11.6",
-    "express": "^4.16.2",
-    "prop-types": "^15.3.2",
-    "range-map": "^1.0.3",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-redux": "^5.0.5",
-    "react-router-dom": "^4.2.2",
-    "redux": "^3.7.1",
-    "shortid": "^2.2.8",
-    "styled-components": "^2.1.2"
-  },
+  "homepage": "https://peckham.cc",
   "devDependencies": {
-    "assets-webpack-plugin": "^3.4.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.1",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-react-transform": "^3.0.0",
-    "babel-plugin-transform-class-properties": "^6.11.5",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-polyfill": "^6.13.0",
-    "babel-preset-es2015": "^6.14.0",
-    "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-0": "^6.5.0",
-    "css-loader": "^0.28.9",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^1.1.6",
-    "firebase-tools": "^3.0.8",
-    "gh-pages": "^1.0.0",
-    "html-webpack-plugin": "^2.22.0",
-    "http-server": "^0.11.1",
-    "image-webpack-loader": "^3.4.2",
-    "json-loader": "^0.5.4",
-    "less": "^2.7.3",
-    "less-loader": "^4.0.5",
-    "normalize.css": "^7.0.0",
-    "npm-check-updates": "^2.8.0",
-    "react-transform-catch-errors": "^1.0.2",
-    "react-transform-hmr": "^1.0.4",
-    "redbox-react": "^1.3.1",
-    "serve-static": "^1.13.1",
-    "standard": "^10.0.3",
-    "style-loader": "^0.19.1",
-    "uglifyjs-webpack-plugin": "^1.1.6",
-    "watch-http-server": "^0.7.6",
-    "webpack": "^3.10.0",
-    "webpack-dev-middleware": "^2.0.4",
-    "webpack-hot-middleware": "^2.12.2",
-    "webpack-livereload-plugin": "^1.0.0"
+    "lerna": "^2.7.1"
   }
 }

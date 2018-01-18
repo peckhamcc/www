@@ -1,0 +1,74 @@
+{
+  "name": "@peckhamcc/website",
+  "version": "1.0.0",
+  "description": "The Peckham Cycle Club website",
+  "homepage": "https://peckhamcc.github.com/www",
+  "author": "Alex Potsides",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peckhamcc/www"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peckhamcc/www/issues"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "run-s clean bundle",
+    "build:dev": "run-s clean bundle:dev",
+    "bundle": "webpack",
+    "bundle:dev": "NODE_ENV=development webpack",
+    "lint": "standard",
+    "start": "webpack --progress --colors --watch",
+    "prepublish": "run-s build"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "dependencies": {
+    "babel-runtime": "^6.11.6",
+    "prop-types": "^15.3.2",
+    "range-map": "^1.0.3",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.1",
+    "shortid": "^2.2.8",
+    "styled-components": "^2.1.2"
+  },
+  "devDependencies": {
+    "assets-webpack-plugin": "^3.4.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-react-transform": "^3.0.0",
+    "babel-plugin-transform-class-properties": "^6.11.5",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.28.9",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.22.0",
+    "http-server": "^0.11.1",
+    "image-webpack-loader": "^3.4.2",
+    "json-loader": "^0.5.4",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "normalize.css": "^7.0.0",
+    "npm-run-all": "^4.1.2",
+    "react-transform-catch-errors": "^1.0.2",
+    "react-transform-hmr": "^1.0.4",
+    "redbox-react": "^1.3.1",
+    "standard": "^10.0.3",
+    "style-loader": "^0.19.1",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^2.0.4",
+    "webpack-hot-middleware": "^2.12.2",
+    "webpack-livereload-plugin": "^1.0.0"
+  }
+}

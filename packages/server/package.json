@@ -1,0 +1,22 @@
+{
+  "name": "@peckhamcc/server",
+  "version": "1.0.0",
+  "description": "The Peckham Cycle Club website",
+  "homepage": "https://peckhamcc.github.com/www",
+  "author": "Alex Potsides <alex@achingbrain.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peckhamcc/www/issues"
+  },
+  "scripts": {
+    "start": "node .",
+    "lint": "standard"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "dependencies": {
+    "express": "^4.16.2",
+    "@peckhamcc/website": "^1.0.0"
+  }
+}

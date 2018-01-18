@@ -2,8 +2,10 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const LiveReloadPlugin = require('webpack-livereload-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-module.exports = {
+const config = {
   entry: {
     app: './src/index'
   },
@@ -18,6 +20,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/index.template.html'
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': `"${process.env.NODE_ENV || 'production'}"`
+      }
     })
   ],
   module: {
@@ -54,5 +61,24 @@ module.exports = {
         loader: 'json-loader'
       }
     ]
-  }
+  },
+  devtool: 'source-map'
 }
+
+if (process.env.NODE_ENV === 'development') {
+  config.plugins.unshift(
+    new webpack.HotModuleReplacementPlugin(),
+    new LiveReloadPlugin({
+      port: 35831,
+      appendScriptTag: true
+    })
+  )
+
+  config.devtool = 'source-map'
+} else {
+  config.plugins.push(
+    new UglifyJsPlugin()
+  )
+}
+
+module.exports = config
