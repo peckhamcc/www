@@ -14,7 +14,7 @@ class RidesPage extends Component {
         <p>The 'standard' route is about 60km long and takes about three hours.  At the 30km point we usually decide whether to go further, sometimes splitting the group if people have to be back early.</p>
         <h3>Ladies Ride</h3>
         <p>Once a month there is a women-only ride aimed at</p>
-        <h3>Training Rides</h3>        
+        <h3>Training Rides</h3>
         <p>Depending on the time of year and people's training goals, there my be a faster group on Saturdays and sometimes Sundays too.</p>
         <p>These rides can be up to 200km in length.</p>
       </article>

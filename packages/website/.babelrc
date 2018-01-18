@@ -1,5 +1,22 @@
 {
-  "presets": ["es2015", "stage-0", "react"],
+  "plugins": [
+    "styled-components",
+    "transform-object-rest-spread"
+  ],
+  "presets": [
+    "react",
+    ["env", {
+      "targets": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      },
+      "exclude": [
+        "transform-regenerator"
+      ]
+    }]
+  ],
+
   "env": {
     "development": {
       "plugins": [
@@ -33,7 +50,8 @@
     "test": {
       "plugins": [
         ["transform-decorators-legacy"],
-        ["transform-class-properties"]
+        ["transform-class-properties"],
+        ["istanbul"]
       ]
     }
   }

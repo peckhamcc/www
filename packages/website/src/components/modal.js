@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import Card from 'material-ui/Card'
 import CloseButton from 'material-ui-icons/Close'
 
@@ -8,8 +8,8 @@ const ModalWrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -${props => props.height/2}px;
-  margin-left: -${props => props.width/2}px;
+  margin-top: -${props => props.height / 2}px;
+  margin-left: -${props => props.width / 2}px;
   height: ${props => props.height}px;
   width: ${props => props.width}px;
   background-color: #FFF;
@@ -31,11 +31,10 @@ class Modal extends Component {
     return (
       <Card rasied>
         <ModalWrapper width={this.props.width} height={this.props.height}>
-        <ModalHeader>{this.props.title} <CloseButton onClick={this.props.onClose} /></ModalHeader>
-        {this.props.children}
-      </ModalWrapper>
+          <ModalHeader>{this.props.title} <CloseButton onClick={this.props.onClose} /></ModalHeader>
+          {this.props.children}
+        </ModalWrapper>
       </Card>
-      
     )
   }
 }

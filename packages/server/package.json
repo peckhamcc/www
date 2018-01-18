@@ -18,5 +18,12 @@
   "dependencies": {
     "express": "^4.16.2",
     "@peckhamcc/website": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "standard": "^11.0.0-beta.0"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }
