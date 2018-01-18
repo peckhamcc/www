@@ -1,24 +1,7 @@
-# OS temp files
 .DS_Store
 thumb.db
-
-# node_modules
-node_modules/
-
-# Log files
-/*.log
-
-# Dist
-/dist
-
-# IDEA
+node_modules
+*.log
+dist
 .idea
-
-# Tests
-/coverage
-
-webpack-assets.json
-
-package-lock.json
-riders.json
-devices.json
+coverage
