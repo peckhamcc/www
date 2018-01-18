@@ -3,7 +3,9 @@ import React, { Component } from 'react'
 class ShopPage extends Component {
   render () {
     return (
-      <article>Shop page</article>
+      <article>
+        <h2>Shop</h2>
+      </article>
     )
   }
 }
