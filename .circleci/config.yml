@@ -17,16 +17,16 @@ jobs:
         - save_cache:
             key: dependency-cache-{{ checksum "package.json" }}
             paths:
-                - ./packages/**/node_modules
+                - ./packages/*/node_modules
         - restore_cache:
-            key: bootstrap-cache-{{ checksum "packages/**/package.json" }}
+            key: bootstrap-cache-{{ checksum "packages/*/package.json" }}
         - run:
             name: npm-install
             command: npm install
         - save_cache:
-            key: bootstrap-cache-{{ checksum "packages/**/package.json" }}
+            key: bootstrap-cache-{{ checksum "packages/*/package.json" }}
             paths:
-                - ./packages/**/node_modules
+                - ./packages/*/node_modules
         - run:
             name: test
             command: npm test
