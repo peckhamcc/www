@@ -9,21 +9,21 @@ jobs:
         - run:
             name: update-npm
             command: 'sudo npm install -g npm@latest'
-        - restore_dependency_cache:
+        - restore_cache:
             key: dependency-cache-{{ checksum "package.json" }}
         - run:
             name: npm-install
             command: npm install
-        - save_dependency_cache:
+        - save_cache:
             key: dependency-cache-{{ checksum "package.json" }}
             paths:
                 - ./packages/**/node_modules
-        - restore_bootstrap_cache:
+        - restore_cache:
             key: bootstrap-cache-{{ checksum "packages/**/package.json" }}
         - run:
             name: npm-install
             command: npm install
-        - save_bootstrap_cache:
+        - save_cache:
             key: bootstrap-cache-{{ checksum "packages/**/package.json" }}
             paths:
                 - ./packages/**/node_modules
