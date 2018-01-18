@@ -1,4 +1,4 @@
-import '../assets/pcc-avatar.png'
+import 'typeface-roboto'
 import './index.css'
 import React from 'react'
 import { render } from 'react-dom'

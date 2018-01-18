@@ -27,6 +27,8 @@
   ],
   "dependencies": {
     "babel-runtime": "^6.11.6",
+    "material-ui": "^1.0.0-beta.29",
+    "material-ui-icons": "^1.0.0-beta.17",
     "prop-types": "^15.3.2",
     "range-map": "^1.0.3",
     "react": "^15.3.2",
@@ -35,7 +37,8 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.1",
     "shortid": "^2.2.8",
-    "styled-components": "^2.1.2"
+    "styled-components": "^2.1.2",
+    "typeface-roboto": "0.0.50"
   },
   "devDependencies": {
     "assets-webpack-plugin": "^3.4.0",
