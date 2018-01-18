@@ -5,6 +5,9 @@ const TAGS = {
 }
 
 const config = {
+  aws: {
+    region: 'eu-west-2'
+  },
   store: {
     items: [{
       title: 'Peckham CC Club Jersey',
