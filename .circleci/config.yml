@@ -18,13 +18,16 @@ jobs:
             key: dependency-cache-{{ checksum "package.json" }}
             paths:
                 - ./packages/*/node_modules
-        - restore_cache:
-            key: bootstrap-cache-{{ checksum "packages/*/package.json" }}
         - run:
-            name: npm-install
-            command: npm install
+            name: create-bootstrap-cache-manifest
+            command: cat packages/**/package.json > bootstrap.json
+        - restore_cache:
+            key: bootstrap-cache-{{ checksum "bootstrap.json" }}
+        - run:
+            name: lerna-bootstrap
+            command: npm run bootstrap
         - save_cache:
-            key: bootstrap-cache-{{ checksum "packages/*/package.json" }}
+            key: bootstrap-cache-{{ checksum "bootstrap.json" }}
             paths:
                 - ./packages/*/node_modules
         - run:
