@@ -8,7 +8,7 @@ jobs:
         - checkout
         - run:
             name: create-dependency-cache-manifest
-            command: cat cat package.json packages/*/package.json > dependency.manifest
+            command: cat package.json packages/*/package.json > dependency.manifest
         - restore_cache:
             key: dependency-cache-{{ checksum "dependency.manifest" }}
         - run:
