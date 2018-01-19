@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const LiveReloadPlugin = require('webpack-livereload-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const config = {
   entry: {
@@ -15,30 +16,32 @@ const config = {
     publicPath: './'
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': `"${process.env.NODE_ENV || 'production'}"`
+      }
+    }),
     new webpack.NoEmitOnErrorsPlugin(),
     new ExtractTextPlugin('[name].css', { allChunks: true }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/index.template.html'
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': `"${process.env.NODE_ENV || 'production'}"`
-      }
     })
   ],
   module: {
     loaders: [
       {
         test: /\.css$/,
-        loader: [
+        loaders: [
           'style-loader',
           'css-loader'
         ]
       },
       {
         test: /\.jsx?$/,
-        loaders: ['babel-loader'],
+        loaders: [
+          'babel-loader'
+        ],
         exclude: /node_modules/
       },
       {
@@ -50,15 +53,21 @@ const config = {
       },
       {
         test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader?name=fonts/[name]-[hash].[ext]'
+        loaders: [
+          'file-loader?name=fonts/[name]-[hash].[ext]'
+        ]
       },
       {
         test: /\.(wav|mp3)$/i,
-        loader: 'file-loader?name=[name]-bundle-[hash].[ext]'
+        loaders: [
+          'file-loader?name=[name]-bundle-[hash].[ext]'
+        ]
       },
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        loaders: [
+          'json-loader'
+        ]
       }
     ]
   },
@@ -77,6 +86,11 @@ if (process.env.NODE_ENV === 'development') {
   config.devtool = 'source-map'
 } else {
   config.plugins.push(
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      reportFilename: path.join(__dirname, 'reports', 'bundle-size.html'),
+      openAnalyzer: false
+    }),
     new UglifyJsPlugin()
   )
 }

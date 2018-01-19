@@ -14,12 +14,10 @@
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "run-s clean bundle",
-    "build:dev": "run-s clean bundle:dev",
+    "build": "NODE_ENV=production run-s clean bundle",
     "bundle": "webpack",
-    "bundle:dev": "NODE_ENV=development webpack",
     "lint": "standard",
-    "start": "webpack --progress --colors --watch",
+    "start": "NODE_ENV=development webpack --progress --colors --watch",
     "prepublish": "run-s build"
   },
   "dependencies": {
@@ -70,6 +68,7 @@
     "style-loader": "^0.19.1",
     "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^3.10.0",
+    "webpack-bundle-analyzer": "^2.9.2",
     "webpack-dev-middleware": "^2.0.4",
     "webpack-hot-middleware": "^2.12.2",
     "webpack-livereload-plugin": "^1.0.0"

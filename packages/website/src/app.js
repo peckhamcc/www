@@ -10,6 +10,7 @@ import { grey, white } from 'material-ui/colors'
 import { Home, About, Rides, Shop, Equipment, Routes } from './pages'
 import configureStore from './store/configure-store'
 import '../assets/pcc-avatar.png'
+import Navigation from './navigation'
 
 const theme = createMuiTheme({
   palette: {
@@ -56,25 +57,13 @@ export default () => {
       <Provider store={configureStore()}>
         <Router>
           <Theme>
-            <div>
-              <ul>
-                <li><Link to='/'>Home</Link></li>
-                <li><Link to='/about'>About</Link></li>
-                <li><Link to='/rides'>Rides</Link></li>
-                <li><Link to='/equipment'>Equipment</Link></li>
-                <li><Link to='/routes'>Routes</Link></li>
-                <li><Link to='/shop'>Shop</Link></li>
-              </ul>
-
-              <hr />
-
-              <Route exact path='/' component={Home} />
-              <Route path='/about' component={About} />
-              <Route path='/rides' component={Rides} />
-              <Route path='/shop' component={Shop} />
-              <Route path='/equipment' component={Equipment} />
-              <Route path='/routes' component={Routes} />
-            </div>
+            <Navigation />
+            <Route exact path='/' component={Home} />
+            <Route path='/about' component={About} />
+            <Route path='/rides' component={Rides} />
+            <Route path='/shop' component={Shop} />
+            <Route path='/equipment' component={Equipment} />
+            <Route path='/routes' component={Routes} />
           </Theme>
         </Router>
       </Provider>

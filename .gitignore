@@ -4,6 +4,5 @@ node_modules
 *.log
 dist
 .idea
-coverage
 dependency.manifest
 package-lock.json
