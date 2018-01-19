@@ -4,7 +4,7 @@
   "description": "Demo: [https://peckhamcc.github.io/www/](https://peckhamcc.github.io/www/)",
   "main": "index.js",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "postinstall": "lerna bootstrap",
     "reset": "lerna run --parallel clean && rm -rf packages/*/node_modules && rm -rf node_modules",
     "test": "lerna run --parallel test",
     "build": "lerna run --parallel build",

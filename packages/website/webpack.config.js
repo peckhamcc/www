@@ -18,7 +18,7 @@ const config = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': `"${process.env.NODE_ENV || 'production'}"`
+        'NODE_ENV': `'${process.env.NODE_ENV || 'production'}'`
       }
     }),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -29,47 +29,92 @@ const config = {
     })
   ],
   module: {
-    loaders: [
-      {
-        test: /\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader'
-        ]
-      },
-      {
-        test: /\.jsx?$/,
-        loaders: [
-          'babel-loader'
-        ],
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        loaders: [
-          'file-loader?digest=hex&name=[name].[ext]',
-          'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false'
-        ]
-      },
-      {
-        test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loaders: [
-          'file-loader?name=fonts/[name]-[hash].[ext]'
-        ]
-      },
-      {
-        test: /\.(wav|mp3)$/i,
-        loaders: [
-          'file-loader?name=[name]-bundle-[hash].[ext]'
-        ]
-      },
-      {
-        test: /\.json$/,
-        loaders: [
-          'json-loader'
-        ]
-      }
-    ]
+    loaders: [{
+      test: /\.css$/,
+      loaders: [
+        'style-loader',
+        'css-loader'
+      ]
+    }, {
+      test: /\.jsx?$/,
+      loaders: [{
+        loader: 'babel-loader',
+        options: {
+          babelrc: false,
+          plugins: [
+            'transform-object-rest-spread',
+            'transform-class-properties',
+            ['direct-import', ['material-ui', 'material-ui-icons']]
+          ],
+          presets: [
+            'react',
+            ['env', {
+              targets: {
+                browsers: [
+                  'last 2 versions'
+                ]
+              },
+              exclude: [
+                'transform-regenerator'
+              ],
+              modules: false,
+              loose: true
+            }]
+          ],
+
+          env: {
+            development: {
+              plugins: [
+                [
+                  'react-transform', {
+                    transforms: [{
+                      'transform': 'react-transform-hmr',
+                      'imports': ['react'],
+                      'locals': ['module']
+                    }, {
+                      'transform': 'react-transform-catch-errors',
+                      'imports': [
+                        'react',
+                        'redbox-react'
+                      ]
+                    }]
+                  }]
+              ]
+            },
+            production: {
+
+            },
+            test: {
+              plugins: [
+                ['istanbul']
+              ]
+            }
+          }
+        }
+      }],
+      exclude: /node_modules/
+    }, {
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      loaders: [
+        'file-loader?digest=hex&name=[name].[ext]',
+        'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false'
+      ]
+    }, {
+      test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loaders: [
+        'file-loader?name=fonts/[name]-[hash].[ext]'
+      ]
+    }, {
+      test: /\.(wav|mp3)$/i,
+      loaders: [
+        'file-loader?name=[name]-bundle-[hash].[ext]'
+      ]
+    }, {
+      test: /\.json$/,
+      loaders: [
+        'json-loader'
+      ]
+    }]
   },
   devtool: 'source-map'
 }
