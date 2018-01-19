@@ -73,7 +73,7 @@ export default () => {
             <Route path='/shop/checkout' component={Checkout} />
             <Route path='/equipment' component={Equipment} />
             <Route exact path='/' component={Home} />
-            <Route path='/shop/orders' component={Orders} />
+            <Route path='/orders' component={Orders} />
             <Route path='/rides' component={Rides} />
             <Route path='/routes' component={Routes} />
             <Route exact path='/shop' component={Shop} />

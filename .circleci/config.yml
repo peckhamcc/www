@@ -16,7 +16,6 @@ jobs:
             command: |
               if [ ! -d "node_modules" ]; then
                 npm install
-                npm run bootstrap
               fi
         - save_cache:
             key: dependency-cache-{{ checksum "dependency.manifest" }}
