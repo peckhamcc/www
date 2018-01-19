@@ -96,10 +96,10 @@ class MenuAppBar extends Component {
             </Typography>
             {auth && (
               <Fragment>
-                <Link to='/shop/basket' style={{position: 'relative'}}>
+                <Button component={({...props}) => <Link to='/shop/basket' {...props} />} style={{position: 'relative'}}>
                   {cart.length ? <CartContentsCount>{cart.length}</CartContentsCount> : null}
                   <ShoppingBasket />
-                </Link>
+                </Button>
                 <NavigationMenu
                   id='menu-appbar-account'
                   icon={<AccountCircle />}

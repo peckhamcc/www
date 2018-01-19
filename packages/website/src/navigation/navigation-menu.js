@@ -52,7 +52,7 @@ class MenuIcon extends Component {
           open={open}
           onClose={this.closeMenu}
         >
-          {options.map((option, index) => <MenuItem key={index} onclick={this.closeMenu}>{option}</MenuItem>)}
+          {options.map((option, index) => <MenuItem key={index} onClick={this.closeMenu}>{option}</MenuItem>)}
         </Menu>
       </Fragment>
     )

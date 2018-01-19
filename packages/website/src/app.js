@@ -6,7 +6,7 @@ import {
   Link
 } from 'react-router-dom'
 import { withStyles, MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
-import { grey, white } from 'material-ui/colors'
+import { grey } from 'material-ui/colors'
 import {
   Account,
   Basket,
@@ -24,8 +24,15 @@ import Navigation from './navigation'
 
 const theme = createMuiTheme({
   palette: {
-    primary: white,
-    secondary: grey
+    contrastThreshold: 3,
+    tonalOffset: 0.2,
+    primary: {
+      main: grey[500]
+    },
+    secondary: {
+      main: grey[700]
+    },
+    type: 'dark'
   }
 })
 
