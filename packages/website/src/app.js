@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Provider } from 'react-redux'
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
-import { withStyles, MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
-import { grey } from 'material-ui/colors'
 import {
   Account,
   Basket,
@@ -20,60 +18,15 @@ import {
 } from './pages'
 import configureStore from './store/configure-store'
 import '../assets/pcc-avatar.png'
-import Navigation from './navigation'
-
-const theme = createMuiTheme({
-  palette: {
-    contrastThreshold: 3,
-    tonalOffset: 0.2,
-    primary: {
-      main: grey[500]
-    },
-    secondary: {
-      main: grey[700]
-    },
-    type: 'dark'
-  }
-})
-
-const styles = theme => ({
-  '@global': {
-    html: {
-      background: theme.palette.background.default,
-      WebkitFontSmoothing: 'antialiased', // Antialiasing.
-      MozOsxFontSmoothing: 'grayscale', // Antialiasing.
-      fontSize: 16
-    },
-    body: {
-      margin: 0
-    }
-  }
-})
-
-const context = {
-  theme
-}
-
-class ThemeWrapper extends Component {
-  render () {
-    return (
-      <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
-        <div>
-          {this.props.children}
-        </div>
-      </MuiThemeProvider>
-    )
-  }
-}
-
-const Theme = withStyles(styles)(ThemeWrapper)
+import Navigation from './components/nav-bar'
+import Footer from './components/footer'
 
 export default () => {
   return (
     <div>
       <Provider store={configureStore()}>
         <Router>
-          <Theme>
+          <Fragment>
             <Navigation />
             <Route path='/account' component={Account} />
             <Route path='/shop/basket' component={Basket} />
@@ -84,7 +37,8 @@ export default () => {
             <Route path='/rides' component={Rides} />
             <Route path='/routes' component={Routes} />
             <Route exact path='/shop' component={Shop} />
-          </Theme>
+            <Footer />
+          </Fragment>
         </Router>
       </Provider>
     </div>

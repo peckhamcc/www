@@ -1,7 +1,9 @@
-import { default as shop } from './shop'
+import shop from './shop'
+import user from './user'
 
 const reducers = {
-  shop
+  shop,
+  user
 }
 
 export default reducers

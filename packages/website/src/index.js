@@ -1,8 +1,16 @@
-import 'typeface-roboto'
 import './index.css'
 import React from 'react'
 import { render } from 'react-dom'
 import App from './app'
+
+/*window.fbAsyncInit = function() {
+  FB.init({
+    appId            : 169606027101581,
+    autoLogAppEvents : true,
+    xfbml            : true,
+    version          : 'v2.11'
+  })
+*/
 
 const root = document.getElementById('app')
 

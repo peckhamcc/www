@@ -1,4 +1,5 @@
 const path = require('path')
+const fs = require('fs')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -43,8 +44,7 @@ const config = {
           babelrc: false,
           plugins: [
             'transform-object-rest-spread',
-            'transform-class-properties',
-            ['direct-import', ['material-ui', 'material-ui-icons']]
+            'transform-class-properties'
           ],
           presets: [
             'react',
@@ -114,6 +114,11 @@ const config = {
       loaders: [
         'json-loader'
       ]
+    }, {
+      test: /\.(gpx|tcx)$/i,
+      loaders: [
+        'file-loader?name=[name]-bundle-[hash].[ext]'
+      ]
     }]
   },
   devtool: 'source-map'
@@ -124,7 +129,9 @@ if (process.env.NODE_ENV === 'development') {
     new webpack.HotModuleReplacementPlugin(),
     new LiveReloadPlugin({
       port: 35831,
-      appendScriptTag: true
+      appendScriptTag: true,
+      key: fs.readFileSync('/usr/local/etc/nginx/certs/dev.peckham.cc.key', 'utf8'),
+      cert: fs.readFileSync('/usr/local/etc/nginx/certs/dev.peckham.cc.crt', 'utf8')
     })
   )
 

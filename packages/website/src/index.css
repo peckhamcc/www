@@ -1,5 +1,5 @@
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Helvetica', sans-serif;
 }
 
 html, body, #root {
@@ -9,7 +9,9 @@ html, body, #root {
   margin: 0;
   padding: 0;
   color: black;
-  font-size: 3vw;
+  font-size: 24px;
+  -webkit-font-smoothing: 'antialiased';
+  -moz-osx-font-smoothing: 'grayscale';
 }
 
 * {
