@@ -11,11 +11,12 @@ import {
   FlexContentRight
 } from './panels'
 import Comment from './comment'
+import { spacing } from '../units'
 
 const Footer = styled.footer`
   clear: both;
-  padding: 50px 30px 10px 30px;
-  font-size: 12px;
+  padding: ${spacing(3)} ${spacing(2)} ${spacing(1)} ${spacing(2)};
+  font-size: 16px;
   color: ${darkAccent};
   background-color: ${darkLowlight};
 `

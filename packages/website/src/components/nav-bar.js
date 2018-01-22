@@ -14,18 +14,19 @@ import {
 } from './panels'
 import pccAvatar from '../../assets/pcc-logo-round.png'
 import { Break } from './panels'
+import { spacing } from '../units'
 
 const CartContentsCount = styled.div`
   color: #FFF;
   background-color: #F10;
-  border-radius: 15px;
-  font-size: 15px;
+  border-radius: ${spacing(1)};
+  font-size: ${spacing(1)};
   font-weight: bold;
   text-align: center;
   padding: 2px 5px;
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: -5px;
+  right: -10px;
 `
 
 const NavBar = styled.nav`
@@ -68,7 +69,7 @@ const NavLink = styled.li`
 `
 
 const SiteNav = FlexContentLeft.extend`
-  padding: 15px 0 0 30px;
+  padding: ${spacing(1)} 0 0 ${spacing(2)};
 `
 
 const SiteIcon = FlexContentCenter.extend`
@@ -76,7 +77,7 @@ const SiteIcon = FlexContentCenter.extend`
 `
 
 const AccountNav = FlexContentRight.extend`
-  padding: 15px 30px 0 0;
+  padding: ${spacing(1)} ${spacing(2)} 0 0;
 `
 
 const NavBarWrapper = ({ cart, user, signOut }) => {
@@ -103,7 +104,7 @@ const NavBarWrapper = ({ cart, user, signOut }) => {
           </SiteIcon>
 
           <AccountNav>
-              <Link to='/shop/basket' style={{position: 'relative'}}>
+              <Link to='/basket' style={{position: 'relative'}}>
               {cart.length ? <CartContentsCount>{cart.length}</CartContentsCount> : null}
               <ShoppingCartIcon />
             </Link>

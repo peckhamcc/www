@@ -1,7 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import stripesImage from '../../assets/stripes.png'
 import { main, light, lightAccent } from '../colours'
+import { spacing } from '../units'
 
 export const FlexContainerCentered = styled.div`
   display: flex;
@@ -29,11 +31,11 @@ export const FlexContentRight = FlexContent.extend`
 `
 
 export const Break = styled.hr`
-  background-image: url(${stripesImage});
+  background-image: url(${stripesImage.src});
   background-position: center;
   background-size: cover;
-  width: 100vw;
-  height: 10px;
+  width: 100%;
+  height: ${spacing(1)};
   border: 0;
   margin: 0;
 `
@@ -47,12 +49,12 @@ export const Panel = styled.div`
   border-radius: 2px;
   color: ${light};
   padding: 1px 20px 20px 20px;
-  margin: 20px;
+  margin: ${spacing(1)};
   font-size: 16px;
   line-height: 1.4;
 
   h2, h3, h4 {
-    margin: 20px 0;
+    margin: ${spacing(1)} 0;
     font-weight: normal;
     font-size: 24px;
     line-height: 2;
@@ -67,16 +69,101 @@ export const Panel = styled.div`
   }
 
   p {
-    margin: 10px 0 0 0;
+    margin: ${spacing(1)} 0 0 0;
   }
 
   li {
-    margin: 10px 0;
+    margin: ${spacing(1)} 0;
   }
 `
 
 export const InnerPanel = Panel.extend`
   background-color: ${lightAccent};
   color: ${light};
-  margin: 20px 0 0 0;
+  margin: ${spacing(2)} 0 0 0;
 `
+
+const ShopPanel = InnerPanel.extend`
+  width: 300px;
+  display: inline-block;
+  padding: 0;
+  margin: ${spacing(1)} ${spacing(1)} 0 0;
+
+  h4 {
+    padding: ${spacing(1)} ${spacing(1)} 0 ${spacing(1)};
+    margin: 0;
+  }
+
+  img {
+    width: 280px;
+    margin: 0 auto ${spacing(1)} auto;
+    display: block;
+  }
+
+  a {
+    color: ${light};
+    text-decoration: none;
+  }
+`
+
+export const ShopListItem = ({ item: { slug, title, description, images } }) => {
+  return (
+    <ShopPanel>
+       <h4>
+          <Link to={`/shop/${slug}`}>{title}</Link>
+        </h4>
+        <Link to={`/shop/${slug}`}>
+        <img srcSet={images[0].srcSet} src={images[0].src} width={300} /></Link>
+        {description && (
+          <p>
+            <Link to={`/shop/${slug}`}>{description}</Link>
+          </p>
+        )}
+        <Break />
+    </ShopPanel>
+  )
+}
+
+const BreadCrumbList = styled.ul`
+  padding: ${spacing(1)} 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    display: inline-block;
+    margin: 0 5px 0 0;
+
+    a {
+      color: ${light};
+    }
+  }
+`
+
+export const Breadcrumb = ({section, product}) => {
+  const links = [
+    <Link to='/shop'>Shop</Link>
+  ]
+
+  if (product) {
+    links.push(
+      <Link to={`/shop/${product.section.slug}`}>{product.section.title}</Link>,
+      product.title
+    )
+  } else {
+    links.push(
+      section.title
+    )
+  }
+
+  return (
+    <BreadCrumbList>
+      {links.map((link, index) => <li key={index}>{link} {index < links.length - 1 ? ' /' : ''}</li>)}
+    </BreadCrumbList>
+  )
+}
+
+export const Price = ({price}) => {
+  return (
+    <span>&pound;{price/100}</span>
+  )
+}

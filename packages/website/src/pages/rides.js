@@ -4,7 +4,7 @@ import ridesBackground from '../../assets/rides-bg.jpg'
 import styled from 'styled-components'
 
 const Hero = styled.div`
-  background-image: url(${ridesBackground});
+  background-image: url(${ridesBackground.src});
   background-size: cover;
   background-position: center center;
   height: 40vh;

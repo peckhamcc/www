@@ -25,7 +25,7 @@ const Slide = styled.li`
   width: 100%;
   background-image: ${props => 'url("' + props.background + '")' };
   background-size: cover;
-  background-position: center top;
+  background-position: center center;
   animation: 18s ${transition} linear infinite 0s; /* 6 second per slide, 3 slides, total 18s */
   animation-delay: ${props => props.order * 6 + 's'}; /* use the order prop as a multiplicator to have each slide appear/disappear successively */
 `;

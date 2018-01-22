@@ -14,7 +14,7 @@ const config = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: './'
+    publicPath: '/'
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -94,7 +94,13 @@ const config = {
       }],
       exclude: /node_modules/
     }, {
-      test: /\.(jpe?g|png|gif|svg)$/i,
+      test: /\.(jpe?g|png)$/i,
+      loader: 'responsive-loader',
+      options: {
+        adapter: require('responsive-loader/sharp')
+      }
+    }, {
+      test: /\.(gif|svg)$/i,
       loaders: [
         'file-loader?digest=hex&name=[name].[ext]',
         'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false'

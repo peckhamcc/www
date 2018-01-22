@@ -19,7 +19,7 @@ const Logo = styled.h1`
   width: 50vw;
   height: 0;
   overflow: hidden;
-  background: url(${logoImage}) no-repeat;
+  background: url(${logoImage.src}) no-repeat;
   background-size: 579px 373px;
   background-position: center;
   background-size: contain;
@@ -35,6 +35,16 @@ const HomePagePanel = Panel.extend`
   float: left;
 `
 
+const shuffle = (array) => {
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    let j = Math.floor(Math.random() * (i + 1))
+    let temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
+
+  return array
+}
 
 class HomePage extends Component {
 
@@ -42,14 +52,14 @@ class HomePage extends Component {
     return (
       <PageWrapper>
         <Logo>Peckham Cycle Club</Logo>
-        <SlideShow slides={[
+        <SlideShow slides={shuffle([
           backgroundImage1,
           backgroundImage2,
           backgroundImage3,
           backgroundImage4,
           backgroundImage5,
           backgroundImage6
-        ]} />
+        ])} />
         <Break />
         <HomePagePanel>
           <h2>About</h2>

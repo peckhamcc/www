@@ -9,7 +9,7 @@ import StravaIcon from 'react-icons/lib/fa/chevron-circle-up'
 import { light } from '../colours'
 
 const Hero = styled.div`
-  background-image: url(${routesBackground});
+  background-image: url(${routesBackground.src});
   background-size: cover;
   background-position: center center;
   height: 40vh;
