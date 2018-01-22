@@ -17,7 +17,7 @@
     "test": "echo \"Error: no test specified\"",
     "clean": "rm -rf build",
     "build": "node-lambda build",
-    "deploy_not": "node-lambda deploy -e develoment",
+    "deploy": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/send-payment-role --region eu-west-2",
     "run": "node-lambda run -j test/event.json -x test/context.json",
     "lint": "standard"
   },
