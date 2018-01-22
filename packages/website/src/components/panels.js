@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import stripesImage from '../../assets/stripes.png'
-import { main, light, lightAccent } from '../colours'
+import { main, light, lightAccent, dark } from '../colours'
 import { spacing } from '../units'
 
 export const FlexContainerCentered = styled.div`
@@ -167,3 +167,42 @@ export const Price = ({price}) => {
     <span>&pound;{price/100}</span>
   )
 }
+
+export const Button = styled.button`
+  border-radius: 2px;
+  border: 1px solid ${light};
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px 0 0;
+  padding: 3px ${spacing(1)};
+  min-width: 40px;
+  text-align: center;
+  color: ${light};
+  background-color: transparent;
+  font-size: 18px;
+
+  &:hover {
+    background-color: ${lightAccent};
+  }
+
+  &:active {
+    background-color: ${dark};
+  }
+
+  &:focus {
+    outline: none;
+  }
+`
+
+export const TextButton = Button.extend`
+  border: none;
+`
+
+export const SmallTextButton = TextButton.extend`
+  font-size: 12px;
+`
+
+export const Quantity = styled.span`
+  display: inline-block;
+  margin: 0 ${spacing(1)} 0 ${spacing(1)};
+`

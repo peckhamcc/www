@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Break, PageWrapper, Panel, ShopListItem, Breadcrumb, Price } from '../components/panels'
+import { Break, PageWrapper, Panel, ShopListItem, Breadcrumb, Price, Button, Quantity } from '../components/panels'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { light, lightAccent, dark } from '../colours';
@@ -46,27 +46,7 @@ const SelectableOption = styled.div`
   }
 `
 
-const Button = styled.button`
-  border-radius: 2px;
-  border: 1px solid ${light};
-  cursor: pointer;
-  display: inline-block;
-  margin: 0 5px 0 0;
-  padding: 3px ${spacing(1)};
-  min-width: 40px;
-  text-align: center;
-  color: ${light};
-  background-color: transparent;
-  font-size: 18px;
 
-  &:hover {
-    background-color: ${lightAccent};
-  }
-
-  &:active {
-    background-color: ${dark};
-  }
-`
 
 const ButtonWrapper = styled.div`
   margin-top: ${spacing(2)};
@@ -74,11 +54,6 @@ const ButtonWrapper = styled.div`
   button {
     padding: 10px ${spacing(1)};
   }
-`
-
-const Quantity = styled.span`
-  display: inline-block;
-  margin: 0 ${spacing(1)} 0 ${spacing(1)};
 `
 
 const OptionsArea = styled.div`
@@ -137,6 +112,7 @@ class ProductDetails extends Component {
 
   addToCart = () => {
     this.props.addToCart({
+      sku: this.props.product.sku,
       title: this.props.product.title,
       size: this.state.size,
       gender: this.state.gender,

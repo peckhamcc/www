@@ -9,7 +9,7 @@ import Modal from './modal'
 import { spacing } from '../units'
 
 const Thumbnails = styled.div`
-  
+  user-select: none;
 `
 
 const Thumbnail = styled.div`
@@ -17,13 +17,14 @@ const Thumbnail = styled.div`
   display: inline-block;
   border: 1px solid ${(props) => props.selected ? light : lightAccent};
   margin: 0 5px 0 0;
-  background: ${(props) => props.selected ? lightAccent : 'transparent'};
+  background: ${(props) => props.selected ? lightAccent : 'transparent'}
 `
 
 const ImageWrapper = styled.div`
   display: flex;
   margin-right: ${spacing(2)};
   margin-bottom: ${spacing(1)};
+  user-select: none;
 `
 
 const ImageNav = styled.div`

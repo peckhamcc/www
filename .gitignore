@@ -6,3 +6,6 @@ dist
 .idea
 dependency.manifest
 package-lock.json
+build
+.lambda
+.env

@@ -134,7 +134,7 @@ const NavBarWrapper = ({ cart, user, signOut }) => {
   )
 }
 
-NavBar.propTypes = {
+NavBarWrapper.propTypes = {
   cart: PropTypes.array.isRequired,
   user: PropTypes.object,
   signOut: PropTypes.func.isRequired

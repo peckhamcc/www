@@ -1,0 +1,29 @@
+{
+  "name": "send-payment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "homepage": "https://peckhamcc.github.com/www",
+  "author": "Alex Potsides",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peckhamcc/www"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peckhamcc/www/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf build",
+    "build": "node-lambda build",
+    "deploy": "node-lambda deploy",
+    "run": "node-lambda run"
+  },
+  "devDependencies": {
+    "node-lambda": "^0.11.6"
+  },
+  "dependencies": {
+    "stripe": "^5.4.0"
+  }
+}

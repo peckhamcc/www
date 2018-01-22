@@ -64,8 +64,22 @@ const config = {
   aws: {
     region: 'eu-west-2'
   },
+  stripe: {
+    key: 'pk_test_1234'
+  },
   store: {
+    shipping: [{
+      title: 'Pick up from Rat Race Cycles',
+      price: 0
+    }, {
+      title: 'UK Postage',
+      price: 7
+    }, {
+      title: 'Postage to rest of world',
+      price: 20
+    }],
     products: [{
+      sku: 'SS-JERSEY-2018',
       title: 'Short Sleeved Club Jersey',
       slug: 'short-sleeved-jersey',
       section: SECTIONS.JERSEYS,
@@ -84,6 +98,7 @@ const config = {
       sizes: JERSEY_SIZES,
       genders: GENDERS
     }, {
+      sku: 'LS-JERSEY-2018',
       title: 'Long Sleeved Club Jersey',
       slug: 'long-sleeved-jersey',
       section: SECTIONS.JERSEYS,
