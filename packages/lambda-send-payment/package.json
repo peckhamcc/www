@@ -1,7 +1,7 @@
 {
   "name": "send-payment",
   "version": "1.0.0",
-  "description": "",
+  "description": "Makes a Stripe charge to the passed token",
   "main": "index.js",
   "homepage": "https://peckhamcc.github.com/www",
   "author": "Alex Potsides",
@@ -14,14 +14,16 @@
     "url": "https://github.com/peckhamcc/www/issues"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "clean": "rm -rf build",
     "build": "node-lambda build",
-    "deploy": "node-lambda deploy",
-    "run": "node-lambda run"
+    "deploy": "node-lambda deploy -e develoment",
+    "run": "node-lambda run -j test/event.json -x test/context.json",
+    "lint": "standard"
   },
   "devDependencies": {
-    "node-lambda": "^0.11.6"
+    "node-lambda": "^0.11.6",
+    "standard": "^10.0.3"
   },
   "dependencies": {
     "stripe": "^5.4.0"
