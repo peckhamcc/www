@@ -17,7 +17,7 @@
     "test": "echo \"Error: no test specified\"",
     "clean": "rm -rf build",
     "build": "node-lambda build",
-    "deploy": "node-lambda deploy -e develoment",
+    "deploy_not": "node-lambda deploy -e develoment",
     "run": "node-lambda run -j test/event.json -x test/context.json",
     "lint": "standard"
   },
