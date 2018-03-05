@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { PageWrapper, Panel } from '../components/panels'
-import ridesBackground from '../../assets/rides-bg.jpg'
+import basketBackground from '../../assets/basket-bg.jpg'
 import Basket from '../components/basket'
 
 const Hero = styled.div`
-  background-image: url(${ridesBackground.src});
+  background-image: url(${basketBackground.src});
   background-size: cover;
-  background-position: center center;
-  height: 40vh;
+  background-position: center top;
+  height: 60vh;
 `
 
 class BasketPage extends Component {

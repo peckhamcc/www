@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Break, PageWrapper, Panel } from '../components/panels'
-import ridesBackground from '../../assets/rides-bg.jpg'
+import checkoutBackground from '../../assets/checkout-bg.jpg'
 import Checkout from '../components/checkout'
 
 const Hero = styled.div`
-  background-image: url(${ridesBackground.src});
+  background-image: url(${checkoutBackground.src});
   background-size: cover;
-  background-position: center center;
-  height: 40vh;
+  background-position: center top;
+  height: 60vh;
 `
 
 class CheckoutPage extends Component {

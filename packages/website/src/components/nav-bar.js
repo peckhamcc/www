@@ -31,26 +31,15 @@ const CartContentsCount = styled.div`
 `
 
 const NavBar = styled.nav`
-  padding: 10px 0 0 0;
+  padding: 0 0 0 0;
   height: 60px;
   margin: 0;
-  top: 0;
+  top: 8px;
   left: 0;
   right: 0;
   z-index: 500;
   position: fixed;
-`
-
-const NavBarUnderlay = styled.nav`
-  height: 100px;
-  top: 8px;
-  left: 0;
-  right: 0;
-  z-index: 400;
-  position: absolute;
-  background-image: url(${navBackground.src});
-  background-repeat: repeat;
-  background-position: left top;
+  background-color: #FFF;
 `
 
 const LongMenu = styled.div`
@@ -60,6 +49,8 @@ const LongMenu = styled.div`
 `
 
 const HamburgerMenu = styled.div`
+  margin: 15px 0 0 15px;
+
   @media (min-width: 641px) {
     display: none
   }
@@ -83,6 +74,7 @@ const NavLink = styled.li`
 
 const CartLink = NavLink.extend`
   font-size: 24px;
+  margin-right: 0;
 `
 
 const SiteNav = FlexContentLeft.extend`
@@ -92,13 +84,16 @@ const SiteNav = FlexContentLeft.extend`
 const SiteIcon = styled.div`
   padding: 5px 0 0 0;
   position: absolute;
-  top: 10px;
+  top: 0;
   left: 50vw;
   margin-left: -25px;
 `
 
-const AccountNav = FlexContentRight.extend`
+const AccountNav = styled.div`
   padding: ${spacing(1)} ${spacing(2)} 0 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 `
 
 class NavBarWrapper extends Component {
@@ -126,13 +121,13 @@ class NavBarWrapper extends Component {
 
     this.setState({
       bgOpacity: scrollTop < 100 ? scrollTop/100 : 1,
-      paddingTop: scrollTop > 10 ? 0 : 10 - scrollTop
+      top: scrollTop > 8 ? 0 : 8 - scrollTop
     })
   }
 
   render () {
     const { cart, user, signOut, location: { pathname } } = this.props
-    const { bgOpacity, paddingTop } = this.state
+    const { bgOpacity, paddingTop, top } = this.state
     let logoOpacity = 1
 
     if (pathname === '/') {
@@ -140,68 +135,63 @@ class NavBarWrapper extends Component {
     }
 
     return (
-      <div>
-        <NavBarUnderlay />
-        <NavBar style={{
-          backgroundColor: `rgba(255, 255, 255, ${bgOpacity})`,
-          paddingTop
-        }}>
-          <LongMenu>
-            <SiteIcon style={{
-              opacity: logoOpacity,
-              top: paddingTop
+      <NavBar style={{
+        top
+      }}>
+        <SiteIcon style={{
+              opacity: logoOpacity
             }}>
-              <Link to='/'>
-                <img src={pccAvatar} height="50" width="50" />
-              </Link>
-            </SiteIcon>
+          <Link to='/'>
+            <img src={pccAvatar} height="50" width="50" />
+          </Link>
+        </SiteIcon>
 
-            <FlexContainerCentered>
-              <SiteNav>
-                <NavLink>
-                  <Link to='/'>Home</Link>
-                </NavLink>
-                <NavLink>
-                  <Link to='/rides'>Rides</Link>
-                </NavLink>
-                <NavLink>
-                  <Link to='/routes'>Routes</Link>
-                </NavLink>
-                <NavLink>
-                  <Link to='/shop'>Shop</Link>
-                </NavLink>
-              </SiteNav>
-    
-              <AccountNav>
-                <CartLink>
-                  <Link to='/basket' style={{position: 'relative'}}>
-                    {cart.length ? <CartContentsCount>{cart.length}</CartContentsCount> : null}
-                    <ShoppingCartIcon />
-                  </Link>
-                </CartLink>
-                {user ? (
-                  <Fragment>
-                    <NavigationMenu
-                      id='menu-appbar-account'
-                      icon={<AccountCircle />}
-                      options={[
-                        <Button component={({...props}) => <Link to='/account' {...props} />}>My account</Button>,
-                        <Button component={({...props}) => <Link to='/orders' {...props} />}>My orders</Button>,
-                        <Button component={({...props}) => <Link to='/logout' {...props} />}>Log out</Button>
-                      ]}
-                    />
-                  </Fragment>
-                ) : null}
-              </AccountNav>
-            </FlexContainerCentered>
-          </LongMenu>
+        <LongMenu>
+          <FlexContainerCentered>
+            <SiteNav>
+              <NavLink>
+                <Link to='/'>Home</Link>
+              </NavLink>
+              <NavLink>
+                <Link to='/rides'>Rides</Link>
+              </NavLink>
+              <NavLink>
+                <Link to='/routes'>Routes</Link>
+              </NavLink>
+              <NavLink>
+                <Link to='/shop'>Shop</Link>
+              </NavLink>
+            </SiteNav>
+          </FlexContainerCentered>
+        </LongMenu>
 
-          <HamburgerMenu>
-            <HamburgerMeunIcon />
-          </HamburgerMenu>
+        <HamburgerMenu>
+          <HamburgerMeunIcon />
+        </HamburgerMenu>
 
-        </NavBar>
-      </div>
+        <AccountNav>
+          <CartLink>
+            <Link to='/basket' style={{position: 'relative'}}>
+              {cart.length ? <CartContentsCount>{cart.length}</CartContentsCount> : null}
+              <ShoppingCartIcon />
+            </Link>
+          </CartLink>
+          {user ? (
+            <Fragment>
+              <NavigationMenu
+                id='menu-appbar-account'
+                icon={<AccountCircle />}
+                options={[
+                  <Button component={({...props}) => <Link to='/account' {...props} />}>My account</Button>,
+                  <Button component={({...props}) => <Link to='/orders' {...props} />}>My orders</Button>,
+                  <Button component={({...props}) => <Link to='/logout' {...props} />}>Log out</Button>
+                ]}
+              />
+            </Fragment>
+          ) : null}
+        </AccountNav>
+
+      </NavBar>
     )
   }
 }

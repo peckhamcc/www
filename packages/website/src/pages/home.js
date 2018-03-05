@@ -26,7 +26,7 @@ const Logo = styled.h1`
   background-size: contain;
 
   position: absolute;
-  top: 50px;
+  top: 80px;
   left: 0;
   right: 0;
   z-index: 450;

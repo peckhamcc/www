@@ -41,7 +41,7 @@ export const Break = styled.hr`
 `
 
 export const PageWrapper = styled.article`
-  /*margin-top: 71px;*/
+  margin-top: 60px;
 `
 
 export const Panel = styled.div`

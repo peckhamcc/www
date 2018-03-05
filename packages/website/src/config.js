@@ -258,6 +258,22 @@ const config = {
       ],
       price: 1500,
       sizes: JERSEY_SIZES
+    }, {
+      sku: 'CAPS-2018',
+      title: 'Caps',
+      slug: 'caps',
+      section: SECTIONS.HEADWEAR,
+      images: [
+        capFrontImage,
+        capSidesImage
+      ],
+      description: '',
+      details: [
+        'Caps.',
+        'Such detail',
+        'Cotton head.'
+      ],
+      price: 1500
     }]
   }
 }
