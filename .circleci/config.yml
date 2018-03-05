@@ -7,24 +7,8 @@ jobs:
     steps:
         - checkout
         - run:
-            name: create-dependency-cache-manifest
-            command: cat package.json packages/*/package.json > dependency.manifest
-        - restore_cache:
-            key: dependency-cache-{{ checksum "dependency.manifest" }}
-        - run:
-            name: where-my-deps-at
-            command: ls -laR packages/*/node_modules/.bin
-        - run:
-            name: install-dependencies-if-necessary
-            command: |
-              if [ ! -d "node_modules" ]; then
-                npm install
-              fi
-        - save_cache:
-            key: dependency-cache-{{ checksum "dependency.manifest" }}
-            paths:
-                - ./node_modules
-                - ./packages/*/node_modules
+            name: install-dependencies
+            command: npm install
         - run:
             name: lint
             command: npm run lint
