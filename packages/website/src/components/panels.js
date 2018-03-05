@@ -35,13 +35,13 @@ export const Break = styled.hr`
   background-position: center;
   background-size: cover;
   width: 100%;
-  height: ${spacing(1)};
+  height: ${spacing(0.5)};
   border: 0;
-  margin: 0;
+  margin: ${spacing(4)} 0 0 0;
 `
 
 export const PageWrapper = styled.article`
-  margin-top: 71px;
+  /*margin-top: 71px;*/
 `
 
 export const Panel = styled.div`
@@ -119,7 +119,6 @@ export const ShopListItem = ({ item: { slug, title, description, images } }) => 
             <Link to={`/shop/${slug}`}>{description}</Link>
           </p>
         )}
-        <Break />
     </ShopPanel>
   )
 }

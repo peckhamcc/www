@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Break, PageWrapper, Panel } from '../components/panels'
 import ridesBackground from '../../assets/rides-bg.jpg'
 import Checkout from '../components/checkout'
-import { Elements } from 'react-stripe-elements'
 
 const Hero = styled.div`
   background-image: url(${ridesBackground.src});
@@ -17,12 +16,9 @@ class CheckoutPage extends Component {
     return (
       <PageWrapper>
         <Hero />
-        <Break />
-          <Panel>
+        <Panel>
           <h2>Checkout</h2>
-          <Elements>
-            <Checkout />
-          </Elements>
+          <Checkout />
         </Panel>
       </PageWrapper>
     )

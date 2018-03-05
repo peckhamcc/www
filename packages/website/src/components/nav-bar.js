@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart'
 import HamburgerMeunIcon from 'react-icons/lib/fa/bars'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { signOut } from '../store/actions'
@@ -13,6 +13,7 @@ import {
   FlexContentRight
 } from './panels'
 import pccAvatar from '../../assets/pcc-logo-round.png'
+import navBackground from '../../assets/nav-gradient.png'
 import { Break } from './panels'
 import { spacing } from '../units'
 
@@ -30,14 +31,26 @@ const CartContentsCount = styled.div`
 `
 
 const NavBar = styled.nav`
-  padding: 0;
+  padding: 10px 0 0 0;
+  height: 60px;
   margin: 0;
-  background-color: #FFF;
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 500;
+  position: fixed;
+`
+
+const NavBarUnderlay = styled.nav`
+  height: 100px;
+  top: 8px;
+  left: 0;
+  right: 0;
+  z-index: 400;
+  position: absolute;
+  background-image: url(${navBackground.src});
+  background-repeat: repeat;
+  background-position: left top;
 `
 
 const LongMenu = styled.div`
@@ -56,7 +69,7 @@ const NavLink = styled.li`
   list-style: none;
   display: inline-block;
   margin-right: 20px;
-  font-size: 16px;
+  font-size: 18px;
 
   a {
     text-decoration: none;
@@ -68,76 +81,129 @@ const NavLink = styled.li`
   }
 `
 
+const CartLink = NavLink.extend`
+  font-size: 24px;
+`
+
 const SiteNav = FlexContentLeft.extend`
   padding: ${spacing(1)} 0 0 ${spacing(2)};
 `
 
-const SiteIcon = FlexContentCenter.extend`
+const SiteIcon = styled.div`
   padding: 5px 0 0 0;
+  position: absolute;
+  top: 10px;
+  left: 50vw;
+  margin-left: -25px;
 `
 
 const AccountNav = FlexContentRight.extend`
   padding: ${spacing(1)} ${spacing(2)} 0 0;
 `
 
-const NavBarWrapper = ({ cart, user, signOut }) => {
-  return (
-    <NavBar>
-      <LongMenu>
-        <FlexContainerCentered>
-          <SiteNav>
-            <NavLink>
-              <Link to='/rides'>Rides</Link>
-            </NavLink>
-            <NavLink>
-              <Link to='/routes'>Routes</Link>
-            </NavLink>
-            <NavLink>
-              <Link to='/shop'>Shop</Link>
-            </NavLink>
-          </SiteNav>
+class NavBarWrapper extends Component {
+  static propTypes = {
+    cart: PropTypes.array.isRequired,
+    user: PropTypes.object,
+    signOut: PropTypes.func.isRequired,
+    location: PropTypes.object.isRequired
+  }
 
-          <SiteIcon>
-            <Link to='/'>
-              <img src={pccAvatar} height="50" width="50" />
-            </Link>
-          </SiteIcon>
+  state = {
+    bgOpacity: 0
+  }
 
-          <AccountNav>
-              <Link to='/basket' style={{position: 'relative'}}>
-              {cart.length ? <CartContentsCount>{cart.length}</CartContentsCount> : null}
-              <ShoppingCartIcon />
-            </Link>
-            {user ? (
-              <Fragment>
-                <NavigationMenu
-                  id='menu-appbar-account'
-                  icon={<AccountCircle />}
-                  options={[
-                    <Button component={({...props}) => <Link to='/account' {...props} />}>My account</Button>,
-                    <Button component={({...props}) => <Link to='/orders' {...props} />}>My orders</Button>,
-                    <Button component={({...props}) => <Link to='/logout' {...props} />}>Log out</Button>
-                  ]}
-                />
-              </Fragment>
-            ) : null}
-          </AccountNav>
-        </FlexContainerCentered>
-      </LongMenu>
+  componentDidMount () {
+    document.addEventListener('scroll', this.handleScroll)
+  }
 
-      <HamburgerMenu>
-        <HamburgerMeunIcon />
-      </HamburgerMenu>
+  componentWillUnmount () {
+    document.removeEventListener('scroll', this.handleScroll)
+  }
 
-      <Break />
-    </NavBar>
-  )
-}
+  handleScroll = () => {
+    const { documentElement: { scrollTop } } = document
 
-NavBarWrapper.propTypes = {
-  cart: PropTypes.array.isRequired,
-  user: PropTypes.object,
-  signOut: PropTypes.func.isRequired
+    this.setState({
+      bgOpacity: scrollTop < 100 ? scrollTop/100 : 1,
+      paddingTop: scrollTop > 10 ? 0 : 10 - scrollTop
+    })
+  }
+
+  render () {
+    const { cart, user, signOut, location: { pathname } } = this.props
+    const { bgOpacity, paddingTop } = this.state
+    let logoOpacity = 1
+
+    if (pathname === '/') {
+      logoOpacity = bgOpacity
+    }
+
+    return (
+      <div>
+        <NavBarUnderlay />
+        <NavBar style={{
+          backgroundColor: `rgba(255, 255, 255,${bgOpacity})`,
+          paddingTop
+        }}>
+          <LongMenu>
+            <SiteIcon style={{
+              opacity: logoOpacity,
+              top: paddingTop
+            }}>
+              <Link to='/'>
+                <img src={pccAvatar} height="50" width="50" />
+              </Link>
+            </SiteIcon>
+
+            <FlexContainerCentered>
+              <SiteNav>
+                <NavLink>
+                  <Link to='/'>Home</Link>
+                </NavLink>
+                <NavLink>
+                  <Link to='/rides'>Rides</Link>
+                </NavLink>
+                <NavLink>
+                  <Link to='/routes'>Routes</Link>
+                </NavLink>
+                <NavLink>
+                  <Link to='/shop'>Shop</Link>
+                </NavLink>
+              </SiteNav>
+    
+              <AccountNav>
+                <CartLink>
+                  <Link to='/basket' style={{position: 'relative'}}>
+                    {cart.length ? <CartContentsCount>{cart.length}</CartContentsCount> : null}
+                    <ShoppingCartIcon />
+                  </Link>
+                </CartLink>
+                {user ? (
+                  <Fragment>
+                    <NavigationMenu
+                      id='menu-appbar-account'
+                      icon={<AccountCircle />}
+                      options={[
+                        <Button component={({...props}) => <Link to='/account' {...props} />}>My account</Button>,
+                        <Button component={({...props}) => <Link to='/orders' {...props} />}>My orders</Button>,
+                        <Button component={({...props}) => <Link to='/logout' {...props} />}>Log out</Button>
+                      ]}
+                    />
+                  </Fragment>
+                ) : null}
+              </AccountNav>
+            </FlexContainerCentered>
+          </LongMenu>
+
+          <HamburgerMenu>
+            <HamburgerMeunIcon />
+          </HamburgerMenu>
+
+        </NavBar>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = ({ shop: { cart }, user: { user } }) => ({
@@ -149,4 +215,4 @@ const mapDispatchToProps = {
   signOut: signOut
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBarWrapper)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBarWrapper))

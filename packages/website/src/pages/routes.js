@@ -11,8 +11,8 @@ import { light } from '../colours'
 const Hero = styled.div`
   background-image: url(${routesBackground.src});
   background-size: cover;
-  background-position: center center;
-  height: 40vh;
+  background-position: center top;
+  height: 60vh;
 `
 
 const Map = styled.iframe`
@@ -61,7 +61,6 @@ class RoutesPage extends Component {
     return (
       <PageWrapper>
         <Hero />
-        <Break />
         <Panel>
           <h2>Club Routes</h2>
           <p>These are some routes that we commonly use.</p>

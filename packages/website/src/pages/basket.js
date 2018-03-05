@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Break, PageWrapper, Panel } from '../components/panels'
+import { PageWrapper, Panel } from '../components/panels'
 import ridesBackground from '../../assets/rides-bg.jpg'
 import Basket from '../components/basket'
 
@@ -16,8 +16,7 @@ class BasketPage extends Component {
     return (
       <PageWrapper>
         <Hero />
-        <Break />
-          <Panel>
+        <Panel>
           <h2>Basket</h2>
           <Basket />
         </Panel>

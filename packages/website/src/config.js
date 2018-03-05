@@ -64,8 +64,9 @@ const config = {
   aws: {
     region: 'eu-west-2'
   },
-  stripe: {
-    key: 'pk_test_1234'
+  lambda: {
+    clientToken: '/lambda/create-client-token',
+    sendPayment: '/lambda/send-payment'
   },
   store: {
     shipping: [{

@@ -1,7 +1,7 @@
 {
-  "name": "@peckhamcc/lambda-send-payment",
+  "name": "@peckhamcc/lambda-create-client-token",
   "version": "1.0.0",
-  "description": "Makes a Stripe charge to the passed token",
+  "description": "Creates a Braintree client token",
   "main": "index.js",
   "homepage": "https://peckhamcc.github.com/www",
   "author": "Alex Potsides",
@@ -17,7 +17,7 @@
     "test": "node-lambda run -j test/event.json -x test/context.json -f test/test.env",
     "clean": "rm -rf build",
     "build": "node-lambda build",
-    "deploy": "echo BT_ENVIRONMENT=$BT_ENVIRONMENT > deploy.env && echo BT_MERCHANT_ID=$BT_MERCHANT_ID > deploy.env && echo BT_PUBLIC_KEY=$BT_PUBLIC_KEY > deploy.env && echo BT_PRIVATE_KEY=$BT_PRIVATE_KEY > deploy.env && node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/send-payment-role --region eu-west-2",
+    "deploy": "echo BT_ENVIRONMENT=$BT_ENVIRONMENT > deploy.env && echo BT_MERCHANT_ID=$BT_MERCHANT_ID > deploy.env && echo BT_PUBLIC_KEY=$BT_PUBLIC_KEY > deploy.env && echo BT_PRIVATE_KEY=$BT_PRIVATE_KEY > deploy.env && node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/create-client-token-role --region eu-west-2",
     "lint": "standard"
   },
   "devDependencies": {

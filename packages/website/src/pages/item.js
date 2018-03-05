@@ -47,7 +47,6 @@ class ItemPage extends Component {
     return (
       <PageWrapper>
         <Hero />
-        <Break />
         <Panel>
           {section && <Section section={section} />}
           {product && <Product product={product} />}

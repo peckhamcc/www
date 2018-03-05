@@ -6,8 +6,8 @@ import styled from 'styled-components'
 const Hero = styled.div`
   background-image: url(${ridesBackground.src});
   background-size: cover;
-  background-position: center center;
-  height: 40vh;
+  background-position: center top;
+  height: 60vh;
 `
 
 class RidesPage extends Component {
@@ -15,7 +15,6 @@ class RidesPage extends Component {
     return (
       <PageWrapper>
         <Hero />
-        <Break />
         <Panel>
           <h2>Club Rides</h2>
           <p>All rides leave Peckham Library at 8am or 9am depending on the time of year.</p>

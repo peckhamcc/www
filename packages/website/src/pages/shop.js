@@ -23,7 +23,6 @@ class ShopPage extends Component {
     return (
       <PageWrapper>
         <Hero />
-        <Break />
         <Panel>
           <h2>Shop</h2>
           {

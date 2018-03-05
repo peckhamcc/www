@@ -1,26 +1,48 @@
-var stripe = require('stripe')(process.env.STRIPE_KEY)
+var braintree = require('braintree')
+var gateway = braintree.connect({
+  environment: braintree.Environment[process.env.BT_ENVIRONMENT],
+  merchantId: process.env.BT_MERCHANT_ID,
+  publicKey: process.env.BT_PUBLIC_KEY,
+  privateKey: process.env.BT_PRIVATE_KEY
+})
 
 exports.handler = (event, context, callback) => {
-  stripe.charges.create({
-    amount: event.amount,
-    currency: event.currency,
-    description: event.description,
-    source: event.token
+  // Work out total cost of items
+  const amount = event.items.reduce((total, item) => {
+    return total + 0
+  }, 0)
+
+  // n.b. need to contact braintree support for find our amount limit and enforce that here
+
+  // store in a vault?
+
+  gateway.transaction.sale({
+    amount: amount,
+    paymentMethodNonce: event.nonce,
+    options: {
+      submitForSettlement: true
+    }
   }, (error, result) => {
-    var statusCode = 200
-    var responseBody = {}
+    let statusCode = 500
+    let responseBody = {}
+
+    console.info(error, result)
 
     if (error) {
+      console.error(error)
       statusCode = 500
+    }
 
-      if (error.statusCode === 401) {
-        statusCode = 502
+    if (result.errors) {
+      statusCode = result.code
+      responseBody = {
+        errors: result.errors.deepErrors()
       }
-
-      responseBody.message = error.message
-      responseBody.stack = error.stack
-    } else {
-      responseBody.result = result
+    } else if (result.transaction) {
+      statusCode = 200
+      responseBody = {
+        transaction: result.transaction.id
+      }
     }
 
     var response = {

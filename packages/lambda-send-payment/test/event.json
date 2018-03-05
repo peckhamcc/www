@@ -1,5 +1,8 @@
 {
-  "amount": 6700,
-  "currency": "gbp",
-  "token": "32lkjdsflkdjsdo"
+  "items": [{
+    "line": "Short Sleeved Jersey",
+    "size": "Mens Medium",
+    "quantity": 1
+  }],
+  "nonce": "asdlfkj"
 }

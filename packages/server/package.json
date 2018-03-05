@@ -16,8 +16,12 @@
     "lint"
   ],
   "dependencies": {
-    "express": "^4.16.2",
-    "@peckhamcc/website": "^1.0.0"
+    "@peckhamcc/lambda-create-client-token": "^1.0.0",
+    "@peckhamcc/lambda-send-payment": "^1.0.0",
+    "@peckhamcc/website": "^1.0.0",
+    "body-parser": "^1.18.2",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
