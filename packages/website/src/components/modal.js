@@ -5,7 +5,7 @@ import CloseButton from 'react-icons/lib/fa/close'
 import { light, dark, darkAccent } from '../colours'
 
 const Blocker = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -21,7 +21,9 @@ const ModalWrapper = styled.div`
   margin-top: -${props => props.height / 2}px;
   margin-left: -${props => props.width / 2}px;
   height: ${props => props.height}px;
+  max-height: 100vh;
   width: ${props => props.width}px;
+  max-width: 100vw;
   background-color: ${darkAccent};
   color: ${light};
   padding: 0;

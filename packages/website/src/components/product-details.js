@@ -9,6 +9,8 @@ import { addToCart } from '../store/actions'
 import PlusIcon from 'react-icons/lib/fa/plus'
 import MinusIcon from 'react-icons/lib/fa/minus'
 import AddToBasketIcon from 'react-icons/lib/fa/cart-plus'
+import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart'
+import TickIcon from 'react-icons/lib/fa/check'
 import { spacing } from '../units'
 
 const ProductDetailsPanel = styled.div`
@@ -32,7 +34,7 @@ const SelectableOption = styled.div`
   background-color: ${props => props.selected ? lightAccent : 'transparent'};
   cursor: pointer;
   display: inline-block;
-  margin: 0 5px 0 0;
+  margin: 0 5px 5px 0;
   padding: 3px ${spacing(1)};
   min-width: 40px;
   text-align: center;
@@ -45,8 +47,6 @@ const SelectableOption = styled.div`
     background-color: ${lightAccent};
   }
 `
-
-
 
 const ButtonWrapper = styled.div`
   margin-top: ${spacing(2)};
@@ -144,12 +144,14 @@ class ProductDetails extends Component {
           <Modal
             title='Product added'
             width={500}
-            height={140}
+            height={180}
             onClose={this.dismissModal}
           >
             <p>{product.title} Added to basket</p>
-            <Button>Continue shopping</Button>
-            <Button onClick={this.goToCheckout}>Go to checkout</Button>
+            <ButtonWrapper>
+              <Button><TickIcon /> Continue shopping</Button>
+              <Button onClick={this.goToCheckout}><ShoppingCartIcon /> Go to checkout</Button>
+            </ButtonWrapper>
           </Modal>
         )}
         <h2>{product.title}</h2>

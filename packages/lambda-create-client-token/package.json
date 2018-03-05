@@ -26,6 +26,5 @@
   },
   "dependencies": {
     "braintree": "^2.8.0"
-    
   }
 }

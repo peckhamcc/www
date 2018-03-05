@@ -143,7 +143,7 @@ class NavBarWrapper extends Component {
       <div>
         <NavBarUnderlay />
         <NavBar style={{
-          backgroundColor: `rgba(255, 255, 255,${bgOpacity})`,
+          backgroundColor: `rgba(255, 255, 255, ${bgOpacity})`,
           paddingTop
         }}>
           <LongMenu>
