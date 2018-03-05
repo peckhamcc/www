@@ -81,6 +81,21 @@ const SiteNav = FlexContentLeft.extend`
   padding: ${spacing(1)} 0 0 ${spacing(2)};
 `
 
+const MobileNav = styled.ul`
+  background: #FFF;
+  margin: 0;
+  padding: 10px;
+
+  li {
+    display: block;
+    padding: 10px;
+  }
+
+  @media (min-width: 641px) {
+    display: none
+  }
+`
+
 const SiteIcon = styled.div`
   padding: 5px 0 0 0;
   position: absolute;
@@ -105,7 +120,9 @@ class NavBarWrapper extends Component {
   }
 
   state = {
-    bgOpacity: 0
+    bgOpacity: 0,
+    top: 8,
+    menuOpen: false
   }
 
   componentDidMount () {
@@ -125,9 +142,15 @@ class NavBarWrapper extends Component {
     })
   }
 
+  toggleDropDownMenu = () => {
+    this.setState(s => ({
+      menuOpen: !s.menuOpen
+    }))
+  }
+
   render () {
     const { cart, user, signOut, location: { pathname } } = this.props
-    const { bgOpacity, paddingTop, top } = this.state
+    const { bgOpacity, top, menuOpen } = this.state
     let logoOpacity = 1
 
     if (pathname === '/') {
@@ -165,7 +188,7 @@ class NavBarWrapper extends Component {
           </FlexContainerCentered>
         </LongMenu>
 
-        <HamburgerMenu>
+        <HamburgerMenu onClick={this.toggleDropDownMenu}>
           <HamburgerMeunIcon />
         </HamburgerMenu>
 
@@ -190,6 +213,23 @@ class NavBarWrapper extends Component {
             </Fragment>
           ) : null}
         </AccountNav>
+
+        {menuOpen && (
+          <MobileNav>
+            <NavLink>
+              <Link to='/' onClick={this.toggleDropDownMenu}>Home</Link>
+            </NavLink>
+            <NavLink>
+              <Link to='/rides' onClick={this.toggleDropDownMenu}>Rides</Link>
+            </NavLink>
+            <NavLink>
+              <Link to='/routes' onClick={this.toggleDropDownMenu}>Routes</Link>
+            </NavLink>
+            <NavLink>
+              <Link to='/shop' onClick={this.toggleDropDownMenu}>Shop</Link>
+            </NavLink>
+          </MobileNav>
+        )}
 
       </NavBar>
     )
