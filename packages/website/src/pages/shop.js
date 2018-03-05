@@ -18,6 +18,10 @@ const Section = styled.div`
 
 `
 
+const Items = styled.div`
+  text-align: center;
+`
+
 class ShopPage extends Component {
   render () {
     return (
@@ -25,13 +29,15 @@ class ShopPage extends Component {
         <Hero />
         <Panel>
           <h2>Shop</h2>
-          {
-            Object.keys(SECTIONS).map((key, index) => {
-              return (
-                <ShopListItem item={SECTIONS[key]} key={index} />
-              )
-            })
-          }
+          <Items>
+            {
+              Object.keys(SECTIONS).map((key, index) => {
+                return (
+                  <ShopListItem item={SECTIONS[key]} key={index} />
+                )
+              })
+            }
+          </Items>
         </Panel>
       </PageWrapper>
     )

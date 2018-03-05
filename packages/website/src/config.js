@@ -260,8 +260,8 @@ const config = {
       sizes: JERSEY_SIZES
     }, {
       sku: 'CAPS-2018',
-      title: 'Caps',
-      slug: 'caps',
+      title: 'Cap',
+      slug: 'cap',
       section: SECTIONS.HEADWEAR,
       images: [
         capFrontImage,
@@ -269,7 +269,7 @@ const config = {
       ],
       description: '',
       details: [
-        'Caps.',
+        'Cap.',
         'Such detail',
         'Cotton head.'
       ],

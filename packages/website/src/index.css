@@ -23,3 +23,8 @@ html, body, #root {
 * {
   box-sizing: border-box;
 }
+
+button a, button a:link, button a:visited, button a:hover {
+  color: #FFF;
+  text-decoration: none;
+}

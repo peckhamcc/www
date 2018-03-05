@@ -103,7 +103,8 @@ const Terms = styled.div`
 
 class Basket extends Component {
   state = {
-    acceptedTerms: false
+    acceptedTerms: false,
+    showTermsError: false
   }
 
   increaseQuantity = (item) => {
@@ -126,12 +127,24 @@ class Basket extends Component {
 
   acceptTerms = (event) => {
     this.setState({
-      acceptedTerms: event.target.checked
+      acceptedTerms: event.target.checked,
+      showTermsError: false
     })
+  }
+
+  showCheckout = (event) => {
+    event.preventDefault()
+
+    if (!this.state.acceptedTerms) {
+      return this.setState({
+        showTermsError: true
+      })
+    }
   }
 
   render () {
     const { cart } = this.props
+    const { acceptedTerms, showTermsError } = this.state
 
     if (!cart.length) {
       return (
@@ -213,15 +226,14 @@ class Basket extends Component {
           </TBody>
         </Table>
         <PlaceOrder>
-          <Terms>
+          <Terms error={showTermsError}>
             <p>All kit is made to order and cannot be cancelled, exchanged or returned once your order has been placed.</p>
-            <p>Delivery times are 4-6 weeks.</p>
-            <p>Please check the box to indicate you are happy to proceed with your order: <Checkbox type='checkbox' checked={this.state.acceptedTerms} onClick={this.acceptTerms} /></p>
+            <p>Kit orders are sent to the factory on a quarterly basis and take 4-6 weeks once ordered.</p>
+            <p>Please check the box to indicate you are happy to proceed with your order: <Checkbox type='checkbox' checked={acceptedTerms} onClick={this.acceptTerms} /></p>
+            {showTermsError && <p>Please accept the terms to place your order.</p>}
           </Terms>   
           <ButtonHolder>
-            <Button>
-              <Link to='/checkout'>Enter payment information</Link>
-            </Button>
+            <Button onClick={this.showCheckout}>Enter payment information</Button>
           </ButtonHolder>
         </PlaceOrder>
       </div>

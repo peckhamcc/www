@@ -88,10 +88,17 @@ const ShopPanel = InnerPanel.extend`
   display: inline-block;
   padding: 0;
   margin: ${spacing(1)} ${spacing(1)} 0 0;
+  text-align: left;
 
   h4 {
-    padding: ${spacing(1)} ${spacing(1)} 0 ${spacing(1)};
+    padding: ${spacing(0.5)} ${spacing(1)} 0 ${spacing(1)};
     margin: 0;
+  }
+
+  h5 {
+    padding: 0 ${spacing(1)} 0 ${spacing(1)};
+    margin: 0;
+    font-size: 16px;
   }
 
   img {
@@ -106,12 +113,13 @@ const ShopPanel = InnerPanel.extend`
   }
 `
 
-export const ShopListItem = ({ item: { slug, title, description, images } }) => {
+export const ShopListItem = ({ item: { slug, title, description, images, price } }) => {
   return (
     <ShopPanel>
        <h4>
           <Link to={`/shop/${slug}`}>{title}</Link>
         </h4>
+        {price && <h5><Price price={price} /></h5>}
         <Link to={`/shop/${slug}`}>
         <img srcSet={images[0].srcSet} src={images[0].src} width={300} /></Link>
         {description && (

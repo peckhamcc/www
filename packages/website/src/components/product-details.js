@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import { Break, PageWrapper, Panel, ShopListItem, Breadcrumb, Price, Button, Quantity } from '../components/panels'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
@@ -64,12 +65,27 @@ const OptionsArea = styled.div`
 `
 
 class ProductDetails extends Component {
-  state = {
-    size: 'M',
-    gender: 'Male',
-    variant: null,
-    quantity: 1,
-    confirmationModalOpen: false
+  constructor (props, context) {
+    super(props, context)
+
+    const { product } = props
+
+    this.state = {
+      quantity: 1,
+      confirmationModalOpen: false
+    }
+
+    if (product.genders) {
+      this.state.gender = product.genders[0]
+    }
+
+    if (product.sizes) {
+      this.state.size = product.sizes[0]
+    }
+
+    if (product.variants) {
+      this.state.variant = product.variants[0]
+    }
   }
 
   chooseSize = (size) => {
@@ -131,10 +147,6 @@ class ProductDetails extends Component {
     })
   }
 
-  goToCheckout = () => {
-    window.location = '/basket'
-  }
-
   render () {
     const { product } = this.props
 
@@ -150,7 +162,7 @@ class ProductDetails extends Component {
             <p>{product.title} Added to basket</p>
             <ButtonWrapper>
               <Button><TickIcon /> Continue shopping</Button>
-              <Button onClick={this.goToCheckout}><ShoppingCartIcon /> Go to checkout</Button>
+              <Button><Link to='/basket'><ShoppingCartIcon /> Go to checkout</Link></Button>
             </ButtonWrapper>
           </Modal>
         )}

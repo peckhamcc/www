@@ -158,6 +158,10 @@ class NavBarWrapper extends Component {
       logoOpacity = bgOpacity
     }
 
+    const cartContents = cart.reduce((acc, curr) => {
+      return acc + curr.quantity
+    }, 0)
+
     return (
       <NavBar style={{
         top
@@ -196,7 +200,7 @@ class NavBarWrapper extends Component {
         <AccountNav>
           <CartLink>
             <Link to='/basket' style={{position: 'relative'}}>
-              {cart.length ? <CartContentsCount>{cart.length}</CartContentsCount> : null}
+              {cartContents ? <CartContentsCount>{cartContents}</CartContentsCount> : null}
               <ShoppingCartIcon />
             </Link>
           </CartLink>
