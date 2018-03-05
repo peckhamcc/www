@@ -205,3 +205,13 @@ export const Quantity = styled.span`
   display: inline-block;
   margin: 0 ${spacing(1)} 0 ${spacing(1)};
 `
+
+export const ModalBlocker = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+`

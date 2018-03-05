@@ -14,7 +14,7 @@ import {
 } from './panels'
 import pccAvatar from '../../assets/pcc-logo-round.png'
 import navBackground from '../../assets/nav-gradient.png'
-import { Break } from './panels'
+import { Break, ModalBlocker } from './panels'
 import { spacing } from '../units'
 import onscrolling from 'onscrolling'
 
@@ -216,20 +216,22 @@ class NavBarWrapper extends Component {
         </AccountNav>
 
         {menuOpen && (
-          <MobileNav>
-            <NavLink>
-              <Link to='/' onClick={this.toggleDropDownMenu}>Home</Link>
-            </NavLink>
-            <NavLink>
-              <Link to='/rides' onClick={this.toggleDropDownMenu}>Rides</Link>
-            </NavLink>
-            <NavLink>
-              <Link to='/routes' onClick={this.toggleDropDownMenu}>Routes</Link>
-            </NavLink>
-            <NavLink>
-              <Link to='/shop' onClick={this.toggleDropDownMenu}>Shop</Link>
-            </NavLink>
-          </MobileNav>
+          <ModalBlocker onClick={this.toggleDropDownMenu} style={{top: 68}}>
+            <MobileNav>
+              <NavLink>
+                <Link to='/'>Home</Link>
+              </NavLink>
+              <NavLink>
+                <Link to='/rides'>Rides</Link>
+              </NavLink>
+              <NavLink>
+                <Link to='/routes'>Routes</Link>
+              </NavLink>
+              <NavLink>
+                <Link to='/shop'>Shop</Link>
+              </NavLink>
+            </MobileNav>
+          </ModalBlocker>
         )}
 
       </NavBar>

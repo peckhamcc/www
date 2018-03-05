@@ -3,16 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import CloseButton from 'react-icons/lib/fa/close'
 import { light, dark, darkAccent } from '../colours'
-
-const Blocker = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-`
+import { ModalBlocker } from './panels'
 
 const ModalWrapper = styled.div`
   position: absolute;
@@ -59,7 +50,7 @@ class Modal extends Component {
 
   render () {
     return (
-      <Blocker onClick={this.props.onClose}>
+      <ModalBlocker onClick={this.props.onClose}>
         <ModalWrapper width={this.props.width} height={this.props.height}>
           <ModalHeader>
             <ModalTitle>{this.props.title}</ModalTitle>
@@ -71,7 +62,7 @@ class Modal extends Component {
             {this.props.children}
           </ModalContent>
         </ModalWrapper>
-      </Blocker>
+      </ModalBlocker>
     )
   }
 }
