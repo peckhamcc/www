@@ -135,11 +135,11 @@ class NavBarWrapper extends Component {
   }
 
   handleScroll = () => {
-    const { documentElement: { scrollTop } } = document
+    const { pageYOffset } = window
 
     this.setState({
-      bgOpacity: scrollTop < 100 ? scrollTop/100 : 1,
-      top: scrollTop > 8 ? 0 : 8 - scrollTop
+      bgOpacity: pageYOffset < 100 ? pageYOffset/100 : 1,
+      top: pageYOffset > 8 ? 0 : 8 - pageYOffset
     })
   }
 
