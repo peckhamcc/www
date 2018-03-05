@@ -28,3 +28,11 @@ button a, button a:link, button a:visited, button a:hover {
   color: #FFF;
   text-decoration: none;
 }
+
+a, a:link {
+  color: #FFF;
+}
+
+a:hover {
+  color: #BBB;
+}

@@ -15,7 +15,9 @@ import {
   Rides,
   Routes,
   Shop,
-  Item
+  Item,
+  Membership,
+  About
 } from './pages'
 import configureStore from './store/configure-store'
 import '../assets/pcc-avatar.png'
@@ -71,6 +73,8 @@ export default () => {
             <Route path='/shop/:slug' component={Item} />
             <Route path='/basket' component={Basket} />
             <Route path='/checkout' component={Checkout} />
+            <Route path='/membership' component={Membership} />
+            <Route path='/about' component={About} />
           </FlexItem>
           <Break />
           <Footer />

@@ -223,3 +223,23 @@ export const ModalBlocker = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 `
+export const LinkPanel = styled.div`
+  width: calc(50vw - 30px);
+  display: inline-block;
+  margin: 0 0 20px 20px;
+  background-image: url(${props => props.background});
+  background-size: cover;
+  background-position: center center;
+
+  @media (max-width: 640px) {
+    width: calc(100vw - 40px);
+  }
+
+  a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 80px 0;
+    font-size: 48px;
+  }
+`

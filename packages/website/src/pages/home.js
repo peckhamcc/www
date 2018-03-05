@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import backgroundImage1 from '../../assets/bg-1.jpg'
 import backgroundImage2 from '../../assets/bg-2.jpg'
 import backgroundImage3 from '../../assets/bg-3.jpg'
@@ -10,11 +11,13 @@ import backgroundImage6 from '../../assets/bg-6.jpg'
 import backgroundImage7 from '../../assets/bg-7.jpg'
 import backgroundImage8 from '../../assets/bg-8.jpg'
 import backgroundImage9 from '../../assets/bg-9.jpg'
+import membershipBackground from '../../assets/membership-bg.jpg'
+import aboutBackground from '../../assets/about-bg.jpg'
 import stripesImage from '../../assets/stripes.png'
 import logoImage from '../../assets/pcc-logo@2x.png'
 import SlideShow from '../components/slide-show'
 import { light, lightAccent, main } from '../colours'
-import { Break, PageWrapper, Panel } from '../components/panels'
+import { Break, PageWrapper, Panel, LinkPanel } from '../components/panels'
 
 const Logo = styled.h1`
   margin: 0;
@@ -67,11 +70,12 @@ class HomePage extends Component {
           <p>Other rides are organised on an ad-hoc basis and the speed/distance depends on who's riding and what they are training for.</p>
           <p>Full details are posted on Facebook and Twitter towards the end of the week when we know what the weather is going to do, please check those pages for more information.</p>
         </Panel>
-        <Panel>
-          <h2>About</h2>
-          <p>We are a group of cyclists, meeting on weekends to ride together and catchup over coffee and climbs.</p>
-          <p>We love meeting new and exciting people and hope that you will join us some day soon!</p>
-        </Panel>
+        <LinkPanel background={membershipBackground.src}>
+          <Link to='/membership'>Membership</Link>
+        </LinkPanel>
+        <LinkPanel background={aboutBackground.src}>
+          <Link to='/about'>About</Link>
+        </LinkPanel>
       </PageWrapper>
     )
   }
