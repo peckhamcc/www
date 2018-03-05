@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.11.6",
+    "onscrolling": "^0.3.3",
     "prop-types": "^15.3.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

@@ -16,6 +16,7 @@ import pccAvatar from '../../assets/pcc-logo-round.png'
 import navBackground from '../../assets/nav-gradient.png'
 import { Break } from './panels'
 import { spacing } from '../units'
+import onscrolling from 'onscrolling'
 
 const CartContentsCount = styled.div`
   color: #FFF;
@@ -126,11 +127,11 @@ class NavBarWrapper extends Component {
   }
 
   componentDidMount () {
-    document.addEventListener('scroll', this.handleScroll)
+    onscrolling(this.handleScroll)
   }
 
   componentWillUnmount () {
-    document.removeEventListener('scroll', this.handleScroll)
+    onscrolling.remove(this.handleScroll)
   }
 
   handleScroll = () => {
