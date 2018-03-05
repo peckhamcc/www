@@ -26,26 +26,31 @@ exports.handler = (event, context, callback) => {
     let statusCode = 500
     let responseBody = {}
 
-    console.info(error, result)
-
     if (error) {
       console.error(error)
       statusCode = 500
     }
 
-    if (result.errors) {
-      statusCode = result.code
-      responseBody = {
-        errors: result.errors.deepErrors()
+    if (result) {
+      if (!result.success) {
+        statusCode = 400
       }
-    } else if (result.transaction) {
-      statusCode = 200
-      responseBody = {
-        transaction: result.transaction.id
+
+      if (result.errors) {
+        responseBody = {
+          errors: result.errors.deepErrors()
+        }
+      }
+
+      if (result.transaction) {
+        statusCode = 200
+        responseBody = {
+          transaction: result.transaction.id
+        }
       }
     }
 
-    var response = {
+    const response = {
       statusCode: statusCode,
       headers: {},
       body: JSON.stringify(responseBody),
