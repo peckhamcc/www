@@ -12,6 +12,9 @@ jobs:
         - restore_cache:
             key: dependency-cache-{{ checksum "dependency.manifest" }}
         - run:
+            name: where-my-deps-at
+            command: ls -laR packages/*/node_modules/.bin
+        - run:
             name: install-dependencies-if-necessary
             command: |
               if [ ! -d "node_modules" ]; then
