@@ -12,18 +12,32 @@ import {
   addToCart,
   removeFromCart,
   updateCartItem,
-  clearCart
+  clearCart,
+  acceptedTerms
 } from '../store/actions'
 import config from '../config'
 import { spacing } from '../units'
 
+const BasketWrapper = styled.div`
+  display: flex;
+
+  @media (max-width: 1000px) {
+    display: block;
+  }
+`
+
 const Table = styled.table`
   width: 100%;
+  max-width: 600px;
   border-collapse: collapse;
 `
 
 const THead = styled.thead`
   border-bottom: 1px solid ${lightAccent}
+`
+
+const TFoot = styled.tfoot`
+  border-top: 1px solid ${lightAccent};
 `
 
 const TBody = styled.tbody`
@@ -103,8 +117,18 @@ const Terms = styled.div`
   width: 100%;
   max-width: 600px;
   padding: 0;
+  border: 1px solid transparent;
 
-  ${props => props.error ? 'border: 1px solid #F10;' : 'border: 1px solid transparent;'}
+  ${props => props.error ? `
+    border: 1px solid #F10;
+    color: #F10;
+    background: #EC9590;
+  ` : ''}
+
+  h4 {
+    margin: 0 ${spacing(1)};
+    padding: 0;
+  }
 
   p {
     margin: ${spacing(1)};
@@ -122,7 +146,6 @@ const QuantityButton = Button.extend`
 
 class Basket extends Component {
   state = {
-    acceptedTerms: false,
     showTermsError: false
   }
 
@@ -146,15 +169,16 @@ class Basket extends Component {
 
   acceptTerms = (event) => {
     this.setState({
-      acceptedTerms: event.target.checked,
       showTermsError: false
     })
+
+    this.props.userAcceptedTerms(event.target.checked)
   }
 
   showCheckout = (event) => {
-    event.preventDefault()
+    if (!this.props.acceptedTerms) {
+      event.preventDefault()
 
-    if (!this.state.acceptedTerms) {
       return this.setState({
         showTermsError: true
       })
@@ -162,8 +186,8 @@ class Basket extends Component {
   }
 
   render () {
-    const { cart } = this.props
-    const { acceptedTerms, showTermsError } = this.state
+    const { cart, acceptedTerms } = this.props
+    const { showTermsError } = this.state
 
     if (!cart.length) {
       return (
@@ -172,7 +196,7 @@ class Basket extends Component {
     }
 
     return (
-      <div>
+      <BasketWrapper>
         <Table>
           <THead>
             <Row>
@@ -196,7 +220,7 @@ class Basket extends Component {
                         <DetailWrapper>
                           <p>{
                             [
-                              item.gender, item.size && item.size.name, item.variant
+                              item.gender && item.gender.name, item.size && item.size.name, item.variant
                             ].filter(Boolean).join(', ')
                           }</p>
                         </DetailWrapper>
@@ -215,18 +239,8 @@ class Basket extends Component {
                 )
               })
             }
-            <Row>
-              <RightAlignedCell>
-                Sub total
-              </RightAlignedCell>
-              <Cell>
-                <Price price={cart.reduce((acc, item) => {
-                  const product = config.store.products.find(product => product.sku === item.sku)
-
-                  return acc + (product.price * item.quantity)
-                }, 0)} />
-              </Cell>
-            </Row>
+          </TBody>
+          <TFoot>
             <Row>
               <RightAlignedCell>
                 Total
@@ -239,19 +253,24 @@ class Basket extends Component {
                 }, 0)} />
               </Cell>
             </Row>
-          </TBody>
+          </TFoot>
         </Table>
         <PlaceOrder>
           <Terms error={showTermsError}>
+            <h4>Terms &amp; Conditions</h4>
             <p>All kit is made to order and cannot be cancelled, exchanged or returned once your order has been placed.</p>
-            <p>Kit orders are sent to the factory on a quarterly basis and take 4-6 weeks once ordered.</p>
-            <p>Please check the box to indicate you are happy to proceed with your order: <Checkbox type='checkbox' checked={acceptedTerms} onClick={this.acceptTerms} /></p>
-          </Terms>   
+            <p>Kit orders are sent to the factory on a quarterly basis and take 4-6 weeks to be made &amp; shipped once ordered.</p>
+            <p>When complete your order will be available to be picked up from the most excellent <a href='https://ratracecycles.com/'>Rat Race Cycles</a> at 118 Evelina Road.</p>
+            <p>We will be in touch to let you know the delivery date as soon as it is available.</p>
+            <p>Please confirm you are happy to proceed with your order: <Checkbox type='checkbox' checked={acceptedTerms} onChange={this.acceptTerms} /></p>
+          </Terms>
           <ButtonHolder>
-            <Button onClick={this.showCheckout}>Enter payment information</Button>
+            <Button>
+              <Link to='/checkout' onClick={this.showCheckout}>Enter payment information</Link>
+            </Button>
           </ButtonHolder>
         </PlaceOrder>
-      </div>
+      </BasketWrapper>
     )
   }
 }
@@ -261,16 +280,18 @@ Basket.propTypes = {
   user: PropTypes.object
 }
 
-const mapStateToProps = ({ shop: { cart }, user: { user } }) => ({
+const mapStateToProps = ({ shop: { cart }, user: { user, acceptedTerms } }) => ({
   cart,
-  user
+  user,
+  acceptedTerms
 })
 
 const mapDispatchToProps = {
   addToCart,
   removeFromCart,
   updateCartItem,
-  clearCart
+  clearCart,
+  userAcceptedTerms: acceptedTerms
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Basket)

@@ -13,7 +13,6 @@ import {
   FlexContentRight
 } from './panels'
 import pccAvatar from '../../assets/pcc-logo-round.png'
-import navBackground from '../../assets/nav-gradient.png'
 import { Break, ModalBlocker } from './panels'
 import { spacing } from '../units'
 import onscrolling from 'onscrolling'

@@ -13,24 +13,12 @@ const Label = styled.label`
   margin: ${spacing(1)};
 `
 
-const createOptions = (fontSize) => {
-  return {
-    style: {
-      base: {
-        fontSize,
-        color: dark,
-        letterSpacing: '0.025em',
-        fontFamily: 'Source Code Pro, Menlo, monospace',
-        '::placeholder': {
-          color: '#aab7c4',
-        }
-      },
-      invalid: {
-        color: '#9e2146',
-      },
-    },
-  };
-};
+const CheckoutWrapper = styled.div`
+
+  .braintree-heading {
+    color: ${light};
+  }
+`
 
 class Checkout extends Component {
 
@@ -44,7 +32,8 @@ class Checkout extends Component {
     }, 0)
 
     this.state = {
-      canMakePayment: false
+      canMakePayment: false,
+      loadingToken: true
     }
   }
 
@@ -64,7 +53,11 @@ class Checkout extends Component {
           if (error) {
             return console.error(error)
           }
-    
+
+          this.setState({
+            loadingToken: false
+          })
+
           this.form.addEventListener('submit', (event) => {
             event.preventDefault()
     
@@ -85,6 +78,7 @@ class Checkout extends Component {
 
   render () {
     const { cart } = this.props
+    const { loadingToken } = this.state
 
     if (!cart.length) {
       return (
@@ -93,12 +87,13 @@ class Checkout extends Component {
     }
 
     return (
-      <div>
+      <CheckoutWrapper>
+        {loadingToken && <p>Loading payment methods...</p>}
         <form ref={ref => this.form = ref}>
         
         </form>
         <div ref={ref => this.payment = ref}></div>
-      </div>
+      </CheckoutWrapper>
       
     )
   }

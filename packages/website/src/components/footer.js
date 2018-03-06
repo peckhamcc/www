@@ -40,12 +40,8 @@ const FooterWrapper = () => {
     <Footer>
       <FlexContainerCentered>
         <FlexContentLeft>
-          &copy; Peckham Cycle Club {new Date().getFullYear()}
+        United we <Comment text='Sausage' /> roll
         </FlexContentLeft>
-
-        <FlexContentCenter>
-          United we <Comment text='Sausage' /> roll
-        </FlexContentCenter>
 
         <FlexContentRight>
           <SocialLink href="https://facebook.com/PeckhamCC"><FacebookIcon /></SocialLink>

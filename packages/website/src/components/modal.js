@@ -6,19 +6,22 @@ import { light, dark, darkAccent } from '../colours'
 import { ModalBlocker } from './panels'
 
 const ModalWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
-  margin-top: -${props => props.height / 2}px;
-  margin-left: -${props => props.width / 2}px;
-  height: ${props => props.height}px;
-  max-height: 100vh;
-  width: ${props => props.width}px;
-  max-width: 100vw;
+  transform: translate(-50%, -50%);
   background-color: ${darkAccent};
   color: ${light};
   padding: 0;
   border: 1px solid ${light};
+
+  @media (max-width: 940px) {
+    width: 80vw;
+  }
+
+  @media (max-width: 640px) {
+    width: 90vw;
+  }
 `
 
 const ModalHeader = styled.div`

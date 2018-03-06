@@ -87,10 +87,13 @@ const JERSEY_SIZES = [{
   }
 ]
 
-const GENDERS = [
-  'Male',
-  'Female'
-]
+const GENDERS = [{
+  code: 'M',
+  name: 'Male'
+}, {
+  code: 'F',
+  name: 'Female'
+}]
 
 const config = {
   aws: {

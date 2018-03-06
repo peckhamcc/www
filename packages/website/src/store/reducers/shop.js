@@ -8,13 +8,20 @@ const initialState = {
 const shopReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      const existingItem = state.cart.find(item => item.sku === action.payload.sku && item.gender === action.payload.gender && item.size === action.payload.size && item.variant === action.payload.variant)
+      const existingItem = state.cart.find(
+        item => item.sku === action.payload.sku && 
+          item.gender === action.payload.gender && 
+          item.size.code === action.payload.size.code && 
+          item.variant === action.payload.variant
+        )
 
       if (existingItem) {
         existingItem.quantity += action.payload.quantity
 
         return {
-          ...state
+          ...state,
+          // otherwise redux doesn't notice the state change as a deep comparison would be necessary
+          cart: state.cart.slice(0)
         }
       }
 

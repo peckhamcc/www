@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { light, lightAccent, dark } from '../colours';
 import Modal from './modal';
-import { addToCart } from '../store/actions'
+import { addToCart, selectedSize, selectedGender } from '../store/actions'
 import PlusIcon from 'react-icons/lib/fa/plus'
 import MinusIcon from 'react-icons/lib/fa/minus'
 import AddToBasketIcon from 'react-icons/lib/fa/cart-plus'
@@ -59,6 +59,7 @@ const ButtonWrapper = styled.div`
 
   button {
     padding: 10px ${spacing(1)};
+    margin-bottom: ${spacing(0.5)};
   }
 `
 
@@ -73,7 +74,7 @@ class ProductDetails extends Component {
   constructor (props, context) {
     super(props, context)
 
-    const { product } = props
+    const { product, gender, size } = props
 
     this.state = {
       quantity: 1,
@@ -81,11 +82,11 @@ class ProductDetails extends Component {
     }
 
     if (product.genders) {
-      this.state.gender = product.genders[0]
+      this.state.gender = gender || product.genders[0]
     }
 
     if (product.sizes) {
-      this.state.size = product.sizes[0]
+      this.state.size = size || product.sizes[0]
     }
 
     if (product.variants) {
@@ -97,12 +98,16 @@ class ProductDetails extends Component {
     this.setState({
       size
     })
+
+    this.props.selectedSize(size)
   }
 
   chooseGender = (gender) => {
     this.setState({
       gender
     })
+
+    this.props.selectedGender(gender)
   }
 
   chooseVariant = (variant) => {
@@ -180,13 +185,13 @@ class ProductDetails extends Component {
           {product.genders && (
             <Fragment>
               <h4>Gender</h4>
-              {product.genders.map((gender, index) => <SelectableOption selected={gender === this.state.gender} onClick={() => this.chooseGender(gender)} key={index}>{gender}</SelectableOption>)}
+              {product.genders.map((gender, index) => <SelectableOption selected={gender.code === this.state.gender.code} onClick={() => this.chooseGender(gender)} key={index}>{gender.name}</SelectableOption>)}
             </Fragment>
           )}
           {product.sizes && (
             <Fragment>
               <h4>Size</h4>
-              {product.sizes.map((size, index) => <SelectableOption selected={size === this.state.size} onClick={() => this.chooseSize(size)} key={index}>{size.code}</SelectableOption>)}
+              {product.sizes.map((size, index) => <SelectableOption selected={size.code === this.state.size.code} onClick={() => this.chooseSize(size)} key={index}>{size.code}</SelectableOption>)}
             </Fragment>
           )}
           {product.variants && (
@@ -215,13 +220,17 @@ ProductDetails.propTypes = {
   user: PropTypes.object
 }
 
-const mapStateToProps = ({ shop: { cart }, user: { user } }) => ({
+const mapStateToProps = ({ shop: { cart }, user: { user, size, gender } }) => ({
   cart,
-  user
+  user,
+  size,
+  gender
 })
 
 const mapDispatchToProps = {
-  addToCart: addToCart
+  addToCart,
+  selectedSize,
+  selectedGender
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails)

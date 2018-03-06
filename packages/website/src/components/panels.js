@@ -241,9 +241,7 @@ export const LinkPanel = styled.div`
   width: calc(50vw - 30px);
   display: inline-block;
   margin: 0 0 20px 20px;
-  background-image: url(${props => props.background});
-  background-size: cover;
-  background-position: center center;
+  position: relative;
 
   @media (max-width: 640px) {
     width: calc(100vw - 40px);
@@ -255,6 +253,20 @@ export const LinkPanel = styled.div`
     text-decoration: none;
     padding: 80px 0;
     font-size: 48px;
+  }
+
+  &::after {
+    content: "";
+    background-image: url(${props => props.background});
+    background-size: cover;
+    background-position: center center;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
   }
 `
 
