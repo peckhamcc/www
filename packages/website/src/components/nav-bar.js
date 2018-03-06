@@ -16,6 +16,8 @@ import pccAvatar from '../../assets/pcc-logo-round.png'
 import { Break, ModalBlocker } from './panels'
 import { spacing } from '../units'
 import onscrolling from 'onscrolling'
+import { config } from '@peckhamcc/config'
+import { Flag } from 'flag'
 
 const CartContentsCount = styled.div`
   color: #FFF;
@@ -185,9 +187,12 @@ class NavBarWrapper extends Component {
               <NavLink>
                 <Link to='/routes'>Routes</Link>
               </NavLink>
-              <NavLink>
-                <Link to='/shop'>Shop</Link>
-              </NavLink>
+
+              <Flag name='store'>
+                <NavLink>
+                  <Link to='/shop'>Shop</Link>
+                </NavLink>
+              </Flag>
             </SiteNav>
           </FlexContainerCentered>
         </LongMenu>
@@ -196,27 +201,29 @@ class NavBarWrapper extends Component {
           <HamburgerMeunIcon />
         </HamburgerMenu>
 
-        <AccountNav>
-          <CartLink>
-            <Link to='/basket' style={{position: 'relative'}}>
-              {cartContents ? <CartContentsCount>{cartContents}</CartContentsCount> : null}
-              <ShoppingCartIcon />
-            </Link>
-          </CartLink>
-          {user ? (
-            <Fragment>
-              <NavigationMenu
-                id='menu-appbar-account'
-                icon={<AccountCircle />}
-                options={[
-                  <Button component={({...props}) => <Link to='/account' {...props} />}>My account</Button>,
-                  <Button component={({...props}) => <Link to='/orders' {...props} />}>My orders</Button>,
-                  <Button component={({...props}) => <Link to='/logout' {...props} />}>Log out</Button>
-                ]}
-              />
-            </Fragment>
-          ) : null}
-        </AccountNav>
+        <Flag name='store'>
+          <AccountNav>
+            <CartLink>
+              <Link to='/basket' style={{position: 'relative'}}>
+                {cartContents ? <CartContentsCount>{cartContents}</CartContentsCount> : null}
+                <ShoppingCartIcon />
+              </Link>
+            </CartLink>
+            {user ? (
+              <Fragment>
+                <NavigationMenu
+                  id='menu-appbar-account'
+                  icon={<AccountCircle />}
+                  options={[
+                    <Button component={({...props}) => <Link to='/account' {...props} />}>My account</Button>,
+                    <Button component={({...props}) => <Link to='/orders' {...props} />}>My orders</Button>,
+                    <Button component={({...props}) => <Link to='/logout' {...props} />}>Log out</Button>
+                  ]}
+                />
+              </Fragment>
+            ) : null}
+          </AccountNav>
+        </Flag>
 
         {menuOpen && (
           <ModalBlocker onClick={this.toggleDropDownMenu} style={{top: 68}}>
@@ -230,9 +237,11 @@ class NavBarWrapper extends Component {
               <NavLink>
                 <Link to='/routes'>Routes</Link>
               </NavLink>
-              <NavLink>
-                <Link to='/shop'>Shop</Link>
-              </NavLink>
+              <Flag name='store'>
+                <NavLink>
+                  <Link to='/shop'>Shop</Link>
+                </NavLink>
+              </Flag>
             </MobileNav>
           </ModalBlocker>
         )}

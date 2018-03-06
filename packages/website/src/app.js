@@ -23,13 +23,14 @@ import configureStore from './store/configure-store'
 import '../assets/pcc-avatar.png'
 import Navigation from './components/nav-bar'
 import Footer from './components/footer'
-import config from '@peckhamcc/config'
+import { config } from '@peckhamcc/config'
 import styled from 'styled-components'
 import {
   Break
 } from './components/panels'
 import stripesImage from '../assets/stripes.png'
 import { spacing } from './units'
+import { FlagsProvider, Flag } from 'flag'
 
 const FlexContainer = styled.div`
   display: flex;
@@ -57,29 +58,36 @@ const TopBreak = Break.extend`
 
 export default () => {
   return (
-    <Provider store={configureStore()}>
-      <Router>
-        <AppWrapper vertical>
-          <TopBreak />
-          <FlexItem expand>
-            <Navigation />
-            <Route path='/account' component={Account} />
-            <Route path='/equipment' component={Equipment} />
-            <Route exact path='/' component={Home} />
-            <Route path='/orders' component={Orders} />
-            <Route path='/rides' component={Rides} />
-            <Route path='/routes' component={Routes} />
-            <Route exact path='/shop' component={Shop} />
-            <Route path='/shop/:slug' component={Item} />
-            <Route path='/basket' component={Basket} />
-            <Route path='/checkout' component={Checkout} />
-            <Route path='/membership' component={Membership} />
-            <Route path='/about' component={About} />
-          </FlexItem>
-          <Break />
-          <Footer />
-        </AppWrapper>
-      </Router>
-    </Provider>
+    <FlagsProvider flags={config.store}>
+      <Provider store={configureStore()}>
+        <Router>
+          <AppWrapper vertical>
+            <TopBreak />
+            <FlexItem expand>
+              <Navigation />
+              <Route path='/account' component={Account} />
+              <Route path='/equipment' component={Equipment} />
+              <Route exact path='/' component={Home} />
+              <Route path='/rides' component={Rides} />
+              <Route path='/routes' component={Routes} />
+              <Route path='/membership' component={Membership} />
+              <Route path='/about' component={About} />
+
+              <Flag name='store'>
+                <Fragment>
+                  <Route exact path='/shop' component={Shop} />
+                  <Route path='/shop/:slug' component={Item} />
+                  <Route path='/basket' component={Basket} />
+                  <Route path='/checkout' component={Checkout} />
+                  <Route path='/orders' component={Orders} />
+                </Fragment>
+              </Flag>
+            </FlexItem>
+            <Break />
+            <Footer />
+          </AppWrapper>
+        </Router>
+      </Provider>
+    </FlagsProvider>
   )
 }

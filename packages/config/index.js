@@ -65,6 +65,9 @@ const config = {
     clientToken: '/lambda/create-client-token',
     sendPayment: '/lambda/send-payment'
   },
+  flags: {
+    store: false
+  },
   store: {
     shipping: [{
       title: 'Pick up from Rat Race Cycles',

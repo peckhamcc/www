@@ -24,6 +24,7 @@
   "dependencies": {
     "@peckhamcc/config": "^1.0.0",
     "babel-runtime": "^6.11.6",
+    "flag": "^3.0.0-1",
     "isemail": "^3.1.1",
     "onscrolling": "^0.3.3",
     "prop-types": "^15.3.2",
