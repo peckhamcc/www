@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Break, PageWrapper, Panel, InnerPanel } from '../components/panels'
+import { Break, PageWrapper, Panel, InnerPanel, Hero } from '../components/panels'
 import routesBackground from '../../assets/routes-bg.jpg'
 import shortLoopGpx from '../../assets/peckham-cc-short-loop.gpx'
 import knattsValleyGpx from '../../assets/peckham-cc-knatts-valley.gpx'
@@ -7,13 +7,6 @@ import styled from 'styled-components'
 import GPXIcon from 'react-icons/lib/fa/map-o'
 import StravaIcon from 'react-icons/lib/fa/chevron-circle-up'
 import { light } from '../colours'
-
-const Hero = styled.div`
-  background-image: url(${routesBackground.src});
-  background-size: cover;
-  background-position: center top;
-  height: 60vh;
-`
 
 const Map = styled.iframe`
   width: 500px;
@@ -60,7 +53,7 @@ class RoutesPage extends Component {
   render () {
     return (
       <PageWrapper>
-        <Hero />
+        <Hero background={routesBackground.src} />
         <Panel>
           <h2>Club Routes</h2>
           <p>These are some routes that we commonly use.</p>

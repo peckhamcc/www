@@ -1,20 +1,13 @@
 import React, { Component } from 'react'
-import { Break, PageWrapper, Panel } from '../components/panels'
+import { Break, PageWrapper, Panel, Hero } from '../components/panels'
 import ridesBackground from '../../assets/rides-bg.jpg'
 import styled from 'styled-components'
-
-const Hero = styled.div`
-  background-image: url(${ridesBackground.src});
-  background-size: cover;
-  background-position: center top;
-  height: 60vh;
-`
 
 class RidesPage extends Component {
   render () {
     return (
       <PageWrapper>
-        <Hero />
+        <Hero background={ridesBackground.src} />
         <Panel>
           <h2>Club Rides</h2>
           <p>All rides leave Peckham Library at 8am or 9am depending on the time of year.</p>

@@ -63,13 +63,28 @@ export const SECTIONS = {
   }
 }
 
-const JERSEY_SIZES = [
-  'XS',
-  'S',
-  'M',
-  'L',
-  'XL',
-  'XXL'
+const JERSEY_SIZES = [{
+    code: 'XS',
+    name: 'Extra small'
+  }, {
+    code: 'S',
+    name: 'Small'
+  }, {
+    code: 'M',
+    name: 'Medium'
+  }, {
+    code: 'L',
+    name: 'Large'
+  }, {
+    code: 'XL',
+    name: 'Extra large'
+  }, {
+    code: 'XXL',
+    name: '2X Large'
+  }, {
+    code: 'XXXL',
+    name: '3X Large'
+  }
 ]
 
 const GENDERS = [

@@ -9,6 +9,10 @@ import ImageViewer from './product-images'
 const ProductHolder = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 940px) {
+    flex-direction: column;
+  }
 `
 
 const Product = ({ product }) => {

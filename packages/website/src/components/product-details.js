@@ -15,7 +15,7 @@ import TickIcon from 'react-icons/lib/fa/check'
 import { spacing } from '../units'
 
 const ProductDetailsPanel = styled.div`
-  padding: 0 ${spacing(1)};
+  padding: 0s;
   flex-grow: 1;
 
   h2 {
@@ -46,6 +46,11 @@ const SelectableOption = styled.div`
 
   &:hover {
     background-color: ${lightAccent};
+  }
+
+  @media (max-width: 940px) {
+    padding: 3px ${spacing(2)};
+    font-size: 22px;
   }
 `
 
@@ -181,7 +186,7 @@ class ProductDetails extends Component {
           {product.sizes && (
             <Fragment>
               <h4>Size</h4>
-              {product.sizes.map((size, index) => <SelectableOption selected={size === this.state.size} onClick={() => this.chooseSize(size)} key={index}>{size}</SelectableOption>)}
+              {product.sizes.map((size, index) => <SelectableOption selected={size === this.state.size} onClick={() => this.chooseSize(size)} key={index}>{size.code}</SelectableOption>)}
             </Fragment>
           )}
           {product.variants && (

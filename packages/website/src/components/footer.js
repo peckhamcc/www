@@ -19,6 +19,10 @@ const Footer = styled.footer`
   font-size: 16px;
   color: ${darkAccent};
   background-color: ${darkLowlight};
+
+  @media (max-width: 640px) {
+    font-size: 12px;
+  }
 `
 
 const SocialLink = styled.a`

@@ -1,17 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { Break, PageWrapper, Panel, ShopListItem, Breadcrumb } from '../components/panels'
+import { Break, PageWrapper, Panel, ShopListItem, Breadcrumb, Hero } from '../components/panels'
 import shopBackground from '../../assets/shop-bg.jpg'
 import styled from 'styled-components'
 import config, { SECTIONS } from '../config'
 import Product from '../components/product'
-
-const Hero = styled.div`
-  background-image: url(${shopBackground.src});
-  background-size: cover;
-  background-position: center top;
-  height: 60vh;
-`
 
 const Items = styled.div`
   text-align: center;
@@ -52,7 +45,7 @@ class ItemPage extends Component {
 
     return (
       <PageWrapper>
-        <Hero />
+        <Hero background={shopBackground.src} />
         <Panel>
           {section && <Section section={section} />}
           {product && <Product product={product} />}

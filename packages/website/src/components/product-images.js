@@ -16,8 +16,15 @@ const Thumbnail = styled.div`
   cursor: pointer;
   display: inline-block;
   border: 1px solid ${(props) => props.selected ? light : lightAccent};
-  margin: 0 5px 0 0;
+  margin: 0 5px 20px 0;
   background: ${(props) => props.selected ? lightAccent : 'transparent'}
+`
+
+const Image = styled.img`
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
 `
 
 const ImageWrapper = styled.div`
@@ -25,6 +32,10 @@ const ImageWrapper = styled.div`
   margin-right: ${spacing(2)};
   margin-bottom: ${spacing(1)};
   user-select: none;
+
+  @media (max-width: 940px) {
+    margin-right: 0;
+  }
 `
 
 const ImageNav = styled.div`
@@ -43,6 +54,16 @@ const ImageNav = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  @media (max-width: 940px) {
+    font-size: ${spacing(3)};
+    width: ${spacing(3)};
+  }
+
+  @media (max-width: 640px) {
+    font-size: ${spacing(2)};
+    width: ${spacing(2)};
   }
 `
 
@@ -111,7 +132,7 @@ class ImageViewer extends Component {
           )}
 
           <ProductImage>
-            <img srcSet={mainImage.srcSet} src={mainImage.src} width={500} />
+            <Image srcSet={mainImage.srcSet} src={mainImage.src} />
           </ProductImage>
 
           {images.length > 1 && (

@@ -44,12 +44,12 @@ const Cell = styled.td`
   padding: ${spacing(1)};
 `
 
-const SmallCell = Cell.extend`
-  width: 200px;
+const RightAlignedCell = Cell.extend`
+  text-align: right
 `
 
-const ReallySmallCell = Cell.extend`
-  width: 100px;
+const SmallCell = Cell.extend`
+  width: 200px;
 `
 
 const ImageCell = Cell.extend`
@@ -59,6 +59,14 @@ const ImageCell = Cell.extend`
 const ProductTitle = styled.h5`
   font-size: 20px;
   margin: 0;
+
+  @media (max-width: 940px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 640px) {
+    font-size: 16px;
+  }
 `
 
 const ProductImage = styled.div`
@@ -86,18 +94,29 @@ const ButtonHolder = styled.div`
   margin: ${spacing(1)};
 `
 
+const DetailWrapper = styled.div`
+  margin: ${spacing(1)} 0;
+`
+
 const Terms = styled.div`
   font-size: 16px;
   width: 100%;
   max-width: 600px;
   padding: 0;
 
-  ${props => props.error ? 'border: 1px solid #F10;' : ''}
+  ${props => props.error ? 'border: 1px solid #F10;' : 'border: 1px solid transparent;'}
 
   p {
     margin: ${spacing(1)};
     padding: 0;
     text-align: left;
+  }
+`
+
+const QuantityButton = Button.extend`
+  @media (max-width: 940px) {
+    padding: 3px ${spacing(1)};
+    font-size: 22px;
   }
 `
 
@@ -158,8 +177,6 @@ class Basket extends Component {
           <THead>
             <Row>
               <Header>Item</Header>
-              <Header>Quantity</Header>
-              <Header>Price</Header>
               <Header>Subtotal</Header>
             </Row>
           </THead>
@@ -171,37 +188,37 @@ class Basket extends Component {
                 return (
                   <Row key={index}>
                     <Cell>
-                    <ProductTitle>{item.title}</ProductTitle>
+                      <ProductTitle>{item.title}</ProductTitle>
                       <ProductImage>
                         <img srcSet={product.images[0].srcSet} src={product.images[0].src} width={100} />
                       </ProductImage>
                       <ProductDetails>
-                        <ul>
-                          {item.gender && <li>Gender: {item.gender}</li>}
-                          {item.size && <li>Size: {item.size}</li>}
-                          {item.variant && <li>Variant: {item.variant}</li>}
-                        </ul>
+                        <DetailWrapper>
+                          <p>{
+                            [
+                              item.gender, item.size && item.size.name, item.variant
+                            ].filter(Boolean).join(', ')
+                          }</p>
+                        </DetailWrapper>
+                        <DetailWrapper>
+                          <QuantityButton onClick={() => this.decreaseQuantity(item)}><MinusIcon /></QuantityButton>
+                          <Quantity>{item.quantity}</Quantity>
+                          <QuantityButton onClick={() => this.increaseQuantity(item)}><PlusIcon /></QuantityButton>
+                        </DetailWrapper>
+                        <DetailWrapper>
+                          <SmallTextButton onClick={() => this.removeFromBasket(item)}>Remove from basket</SmallTextButton>
+                        </DetailWrapper>
                       </ProductDetails>
                     </Cell>
-                    <SmallCell>
-                      <div>
-                        <Button onClick={() => this.decreaseQuantity(item)}><MinusIcon /></Button>
-                        <Quantity>{item.quantity}</Quantity>
-                        <Button onClick={() => this.increaseQuantity(item)}><PlusIcon /></Button>
-                      </div>
-                      <SmallTextButton onClick={() => this.removeFromBasket(item)}>Remove from basket</SmallTextButton>
-                    </SmallCell>
-                    <ReallySmallCell><Price price={product.price} /></ReallySmallCell>
-                    <ReallySmallCell><Price price={product.price * item.quantity} /></ReallySmallCell>
+                    <Cell><Price price={product.price * item.quantity} /></Cell>
                   </Row>
                 )
               })
             }
             <Row>
-              <Cell colSpan={2}></Cell>
-              <Cell>
+              <RightAlignedCell>
                 Sub total
-              </Cell>
+              </RightAlignedCell>
               <Cell>
                 <Price price={cart.reduce((acc, item) => {
                   const product = config.store.products.find(product => product.sku === item.sku)
@@ -211,10 +228,9 @@ class Basket extends Component {
               </Cell>
             </Row>
             <Row>
-              <Cell colSpan={2}></Cell>
-              <Cell>
+              <RightAlignedCell>
                 Total
-              </Cell>
+              </RightAlignedCell>
               <Cell>
                 <Price price={cart.reduce((acc, item) => {
                   const product = config.store.products.find(product => product.sku === item.sku)
@@ -230,7 +246,6 @@ class Basket extends Component {
             <p>All kit is made to order and cannot be cancelled, exchanged or returned once your order has been placed.</p>
             <p>Kit orders are sent to the factory on a quarterly basis and take 4-6 weeks once ordered.</p>
             <p>Please check the box to indicate you are happy to proceed with your order: <Checkbox type='checkbox' checked={acceptedTerms} onClick={this.acceptTerms} /></p>
-            {showTermsError && <p>Please accept the terms to place your order.</p>}
           </Terms>   
           <ButtonHolder>
             <Button onClick={this.showCheckout}>Enter payment information</Button>

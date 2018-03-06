@@ -131,7 +131,7 @@ export const ShopListItem = ({ item: { slug, title, description, images, price }
   )
 }
 
-const BreadCrumbList = styled.ul`
+export const BreadCrumbList = styled.ul`
   padding: ${spacing(1)} 0;
   margin: 0;
   list-style: none;
@@ -199,14 +199,28 @@ export const Button = styled.button`
   &:focus {
     outline: none;
   }
+
+  @media (max-width: 940px) {
+    padding: 3px ${spacing(2)};
+    font-size: 22px;
+  }
 `
 
 export const TextButton = Button.extend`
   border: none;
+  padding: 0;
+
+  @media (max-width: 940px) {
+    padding: 0;
+  }
 `
 
 export const SmallTextButton = TextButton.extend`
   font-size: 12px;
+
+  @media (max-width: 940px) {
+    font-size: 16px;
+  }
 `
 
 export const Quantity = styled.span`
@@ -241,5 +255,20 @@ export const LinkPanel = styled.div`
     text-decoration: none;
     padding: 80px 0;
     font-size: 48px;
+  }
+`
+
+export const Hero = styled.div`
+  background-image: url(${props => props.background});
+  background-size: cover;
+  background-position: center top;
+  height: 60vh;
+
+  @media (max-width: 940px) {
+    height: 40vh;
+  }
+
+  @media (max-width: 640px) {
+    height: 20vh;
   }
 `

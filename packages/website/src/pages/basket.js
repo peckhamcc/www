@@ -1,22 +1,16 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { PageWrapper, Panel } from '../components/panels'
+import { PageWrapper, Panel, Breadcrumb, Hero } from '../components/panels'
 import basketBackground from '../../assets/basket-bg.jpg'
 import Basket from '../components/basket'
-
-const Hero = styled.div`
-  background-image: url(${basketBackground.src});
-  background-size: cover;
-  background-position: center top;
-  height: 60vh;
-`
 
 class BasketPage extends Component {
   render () {
     return (
       <PageWrapper>
-        <Hero />
+        <Hero background={basketBackground.src} />
         <Panel>
+          <Breadcrumb section={{title: 'Basket'}} />
           <h2>Basket</h2>
           <Basket />
         </Panel>
