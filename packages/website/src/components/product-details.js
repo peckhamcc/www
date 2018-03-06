@@ -172,7 +172,9 @@ class ProductDetails extends Component {
             <p>{product.title} Added to basket</p>
             <ButtonWrapper>
               <Button><TickIcon /> Continue shopping</Button>
-              <Button><Link to='/basket'><ShoppingCartIcon /> Go to checkout</Link></Button>
+              <Link to='/basket'>
+                <Button><ShoppingCartIcon /> Go to checkout</Button>
+              </Link>
             </ButtonWrapper>
           </Modal>
         )}

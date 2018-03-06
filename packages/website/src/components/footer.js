@@ -30,6 +30,10 @@ const SocialLink = styled.a`
   font-size: 18px;
   margin-left: 10px;
 
+  &:link {
+    color: ${darkAccent};
+  }
+
   &:hover {
     color: ${light}
   }

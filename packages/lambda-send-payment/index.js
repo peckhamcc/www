@@ -1,24 +1,52 @@
-var braintree = require('braintree')
-var gateway = braintree.connect({
+const braintree = require('braintree')
+const gateway = braintree.connect({
   environment: braintree.Environment[process.env.BT_ENVIRONMENT],
   merchantId: process.env.BT_MERCHANT_ID,
   publicKey: process.env.BT_PUBLIC_KEY,
   privateKey: process.env.BT_PRIVATE_KEY
 })
+const {
+  config
+} = require('@peckhamcc/config')
+
+const toCurrencyString = (amount) => {
+  const asString = amount.toString()
+
+  return `${asString.substring(0, asString.length - 2)}.${asString.substring(asString.length - 2)}`
+}
 
 exports.handler = (event, context, callback) => {
-  // Work out total cost of items
-  const amount = event.items.reduce((total, item) => {
-    return total + 0
-  }, 0)
+  let amount = 0
 
-  // n.b. need to contact braintree support for find our amount limit and enforce that here
+  // What did they order
+  const lineItems = event.items.map(item => {
+    const lineItem = config.store.products.find(lineItem => lineItem.sku === item.sku)
 
-  // store in a vault?
+    // Work out total cost of items
+    amount += (lineItem.price * item.quantity)
+
+    return {
+      kind: 'debit',
+      name: item.sku,
+      quantity: item.quantity,
+      totalAmount: toCurrencyString(lineItem.price * item.quantity),
+      unitAmount: toCurrencyString(lineItem.price),
+      productCode: `${item.gender ? item.gender.name : ''} ${item.size ? item.size.code : ''}`.trim() || undefined
+    }
+  })
+
+  amount = toCurrencyString(amount)
 
   gateway.transaction.sale({
     amount: amount,
     paymentMethodNonce: event.nonce,
+    lineItems: lineItems,
+    merchantAccountId: process.env.BT_MERCHANT_ACCOUNT_ID,
+    customer: {
+      firstName: event.firstName,
+      lastName: event.lastName,
+      email: event.email
+    },
     options: {
       submitForSettlement: true
     }
@@ -37,6 +65,8 @@ exports.handler = (event, context, callback) => {
       }
 
       if (result.errors) {
+        console.error('Errors', result.errors.deepErrors())
+
         responseBody = {
           errors: result.errors.deepErrors()
         }

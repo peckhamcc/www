@@ -6,7 +6,13 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import PlusIcon from 'react-icons/lib/fa/plus'
 import MinusIcon from 'react-icons/lib/fa/minus'
-import { light, lightAccent, dark } from '../colours';
+import {
+  light,
+  lightAccent,
+  dark,
+  errorText,
+  errorBackground
+} from '../colours';
 import Modal from './modal';
 import { 
   addToCart,
@@ -120,9 +126,9 @@ const Terms = styled.div`
   border: 1px solid transparent;
 
   ${props => props.error ? `
-    border: 1px solid #F10;
-    color: #F10;
-    background: #EC9590;
+    border: 1px solid ${errorText};
+    color: ${errorText};
+    background: ${errorBackground};
   ` : ''}
 
   h4 {
@@ -265,9 +271,9 @@ class Basket extends Component {
             <p>Please confirm you are happy to proceed with your order: <Checkbox type='checkbox' checked={acceptedTerms} onChange={this.acceptTerms} /></p>
           </Terms>
           <ButtonHolder>
-            <Button>
-              <Link to='/checkout' onClick={this.showCheckout}>Enter payment information</Link>
-            </Button>
+            <Link to='/checkout' onClick={this.showCheckout}>
+              <Button>Enter payment information</Button>
+            </Link> 
           </ButtonHolder>
         </PlaceOrder>
       </BasketWrapper>

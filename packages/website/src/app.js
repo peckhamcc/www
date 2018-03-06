@@ -23,7 +23,7 @@ import configureStore from './store/configure-store'
 import '../assets/pcc-avatar.png'
 import Navigation from './components/nav-bar'
 import Footer from './components/footer'
-import config from './config'
+import config from '@peckhamcc/config'
 import styled from 'styled-components'
 import {
   Break

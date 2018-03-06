@@ -1,0 +1,26 @@
+{
+  "name": "@peckhamcc/config",
+  "version": "1.0.0",
+  "description": "The Peckham Cycle Club website",
+  "homepage": "https://peckhamcc.github.com/www",
+  "author": "Alex Potsides",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peckhamcc/www"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peckhamcc/www/issues"
+  },
+  "scripts": {
+    "lint": "standard"
+  },
+  "devDependencies": {
+    "babel-plugin-react-transform": "^3.0.0",
+    "babel-plugin-transform-class-properties": "^6.11.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.5.0",
+    "standard": "^11.0.0-beta.0"
+  }
+}

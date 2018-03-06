@@ -1,8 +1,19 @@
 {
   "items": [{
-    "line": "Short Sleeved Jersey",
-    "size": "Mens Medium",
+    "sku": "SS-JERSEY-2018",
+    "line": "Short Sleeved Club Jersey",
+    "gender": {
+      "name": "Mens",
+      "code": "M"
+    },
+    "size": {
+      "name": "Medium",
+      "code": "M"
+    },
     "quantity": 1
   }],
-  "nonce": "asdlfkj"
+  "nonce": "asdlfkj",
+  "firstName": "Dave",
+  "lastName": "Jones",
+  "email": "dave.jones@example.com"
 }

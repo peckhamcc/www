@@ -22,7 +22,9 @@
     "deploy": "run-s clean build && s3-deploy './dist/**' --cwd './dist/' --region eu-west-2 --bucket cc.peckham.www --deleteRemoved --etag"
   },
   "dependencies": {
+    "@peckhamcc/config": "^1.0.0",
     "babel-runtime": "^6.11.6",
+    "isemail": "^3.1.1",
     "onscrolling": "^0.3.3",
     "prop-types": "^15.3.2",
     "react": "^16.2.0",
