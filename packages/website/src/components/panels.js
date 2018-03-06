@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import stripesImage from '../../assets/stripes.png'
 import { main, light, lightAccent, dark } from '../colours'
-import { spacing } from '../units'
+import { spacing, MAX_PAGE_WIDTH } from '../units'
 
 export const FlexContainerCentered = styled.div`
   display: flex;
@@ -41,7 +41,8 @@ export const Break = styled.hr`
 `
 
 export const PageWrapper = styled.article`
-  margin-top: 60px;
+  margin: 60px auto 0 auto;
+  max-width: ${MAX_PAGE_WIDTH};
 `
 
 export const Panel = styled.div`
@@ -238,7 +239,7 @@ export const ModalBlocker = styled.div`
   z-index: 1000;
 `
 export const LinkPanel = styled.div`
-  width: calc(50vw - 30px);
+  width: calc(50% - 28px);
   display: inline-block;
   margin: 0 0 20px 20px;
   position: relative;

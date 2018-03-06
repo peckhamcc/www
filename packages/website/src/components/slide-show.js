@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
+import { MAX_PAGE_WIDTH } from '../units'
 
 const FADE_TIME = 50
 
@@ -39,6 +40,7 @@ const Slide = styled.li`
   opacity: 0;
   height: 100vh;
   width: 100%;
+  max-width: ${MAX_PAGE_WIDTH};
   z-index: ${props => 100 - props.order};
   background-image: ${props => 'url("' + props.background + '")' };
   background-size: cover;
