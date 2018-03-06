@@ -7,7 +7,7 @@ const gateway = braintree.connect({
 })
 const {
   config
-} = require('@peckhamcc/config')
+} = require('./config')
 
 const toCurrencyString = (amount) => {
   const asString = amount.toString()

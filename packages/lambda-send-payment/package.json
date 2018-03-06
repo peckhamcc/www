@@ -26,8 +26,5 @@
   },
   "dependencies": {
     "braintree": "^2.8.0"
-  },
-  "optionalDependencies": {
-    "@peckhamcc/config": "^1.0.0"
   }
 }
