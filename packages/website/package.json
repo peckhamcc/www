@@ -19,7 +19,7 @@
     "lint": "standard",
     "start": "NODE_ENV=development webpack --progress --colors --watch",
     "prepublish": "run-s build",
-    "deploy": "run-s clean build && s3-deploy './dist/**' --cwd './dist/' --region eu-west-2 --bucket cc.peckham.www --deleteRemoved --etag"
+    "deploy": "run-s clean build && s3-deploy './dist/**' --cwd './dist/' --region eu-west-2 --bucket cc.peckham --deleteRemoved --etag"
   },
   "dependencies": {
     "@peckhamcc/config": "^1.0.0",
