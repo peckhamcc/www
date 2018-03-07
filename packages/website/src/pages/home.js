@@ -12,7 +12,7 @@ import backgroundImage7 from '../../assets/bg-7.jpg'
 import backgroundImage8 from '../../assets/bg-8.jpg'
 import backgroundImage9 from '../../assets/bg-9.jpg'
 import membershipBackground from '../../assets/membership-bg.jpg'
-import aboutBackground from '../../assets/about-bg.jpg'
+import equipmentBackground from '../../assets/equipment-bg.jpg'
 import stripesImage from '../../assets/stripes.png'
 import logoImage from '../../assets/pcc-logo@2x.png'
 import SlideShow from '../components/slide-show'
@@ -73,8 +73,8 @@ class HomePage extends Component {
         <LinkPanel background={membershipBackground.src}>
           <Link to='/membership'>Membership</Link>
         </LinkPanel>
-        <LinkPanel background={aboutBackground.src}>
-          <Link to='/about'>About</Link>
+        <LinkPanel background={equipmentBackground.src}>
+          <Link to='/equipment'>Equipment</Link>
         </LinkPanel>
       </PageWrapper>
     )

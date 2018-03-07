@@ -31,6 +31,7 @@ import {
 import stripesImage from '../assets/stripes.png'
 import { spacing } from './units'
 import { FlagsProvider, Flag } from 'flag'
+import ScrollToTop from './components/scroll-to-top'
 
 const FlexContainer = styled.div`
   display: flex;
@@ -61,31 +62,33 @@ export default () => {
     <FlagsProvider flags={config.store}>
       <Provider store={configureStore()}>
         <Router>
-          <AppWrapper vertical>
-            <TopBreak />
-            <FlexItem expand>
-              <Navigation />
-              <Route path='/account' component={Account} />
-              <Route path='/equipment' component={Equipment} />
-              <Route exact path='/' component={Home} />
-              <Route path='/rides' component={Rides} />
-              <Route path='/routes' component={Routes} />
-              <Route path='/membership' component={Membership} />
-              <Route path='/about' component={About} />
+          <ScrollToTop>
+            <AppWrapper vertical>
+              <TopBreak />
+              <FlexItem expand>
+                <Navigation />
+                <Route path='/account' component={Account} />
+                <Route path='/equipment' component={Equipment} />
+                <Route exact path='/' component={Home} />
+                <Route path='/rides' component={Rides} />
+                <Route path='/routes' component={Routes} />
+                <Route path='/membership' component={Membership} />
+                <Route path='/about' component={About} />
 
-              <Flag name='store'>
-                <Fragment>
-                  <Route exact path='/shop' component={Shop} />
-                  <Route path='/shop/:slug' component={Item} />
-                  <Route path='/basket' component={Basket} />
-                  <Route path='/checkout' component={Checkout} />
-                  <Route path='/orders' component={Orders} />
-                </Fragment>
-              </Flag>
-            </FlexItem>
-            <Break />
-            <Footer />
-          </AppWrapper>
+                <Flag name='store'>
+                  <Fragment>
+                    <Route exact path='/shop' component={Shop} />
+                    <Route path='/shop/:slug' component={Item} />
+                    <Route path='/basket' component={Basket} />
+                    <Route path='/checkout' component={Checkout} />
+                    <Route path='/orders' component={Orders} />
+                  </Fragment>
+                </Flag>
+              </FlexItem>
+              <Break />
+              <Footer />
+            </AppWrapper>
+          </ScrollToTop>
         </Router>
       </Provider>
     </FlagsProvider>
