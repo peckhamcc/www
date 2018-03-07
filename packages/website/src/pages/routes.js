@@ -43,7 +43,7 @@ const routes = [{
   hash: 'knatts-valley',
   title: 'Knatts Valley',
   description: 'A touch short of 90km and with 1175m of climbing this is mostly quiet country lanes.',
-  gpx: shortLoopGpx,
+  gpx: knattsValleyGpx,
   strava: 'https://www.strava.com/routes/11036595',
   embed: 'https://www.plotaroute.com/embedmap/550078'
 }]
