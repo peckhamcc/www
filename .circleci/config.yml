@@ -10,9 +10,9 @@ jobs:
             name: install-apps
             working_directory: /
             command: |
-                apt-get -y -qq update
-                apt install python-pip python-dev
-                pip install awscli
+                sudo apt-get -y -qq update
+                sudo apt install python-pip python-dev
+                sudo pip install awscli
         - run:
             name: install-dependencies
             command: npm install
