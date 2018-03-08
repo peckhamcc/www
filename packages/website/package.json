@@ -21,7 +21,7 @@
     "prepublish": "run-s build",
     "deploy": "run-s clean build upload invalidate",
     "upload": "s3-deploy './dist/**' --cwd './dist/' --region eu-west-2 --bucket cc.peckham --deleteRemoved --etag",
-    "invalidate": "aws cloudfront create-invalidation --distribution-id E39LOZKFS19ZDJ --invalidation-batch \"{\"Paths\":{\"Quantity\":1,\"Items\":[\"/*\"]},\"CallerReference\":\"`date +\"%s\"`\"}\" --region eu-west-"
+    "invalidate": "aws cloudfront create-invalidation --distribution-id E39LOZKFS19ZDJ --invalidation-batch \"{\\\"Paths\\\":{\\\"Quantity\\\":1,\\\"Items\\\":[\\\"/*\\\"]},\\\"CallerReference\\\":\\\"`date +\"%s\"`\\\"}\" --region eu-west-"
   },
   "dependencies": {
     "@peckhamcc/config": "^1.0.0",
