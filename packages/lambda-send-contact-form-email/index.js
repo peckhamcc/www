@@ -3,9 +3,8 @@ const {
 } = require('./config')
 const AWS = require('aws-sdk')
 
-exports.handler = (event, context, callback) => {
-  console.info(event)
-  sendEmail(event.name, event.email, event.message, (error) => {
+exports.handler = ({name, email, message}, context, callback) => {
+  sendEmail(name, email, message, (error) => {
     let statusCode = 200
     let responseBody = {}
 

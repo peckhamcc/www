@@ -14,14 +14,18 @@
     "url": "https://github.com/peckhamcc/www/issues"
   },
   "scripts": {
-    "test": "npm run build && node-lambda run -j test/event.json -x test/context.json -f test/test.env",
+    "test": "npm run build && ava test.js",
     "clean": "rm -rf build",
     "build": "cp ../config/index.js config.js && node-lambda build",
     "deploy": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/send-contact-form-email-role --region eu-west-2",
     "lint": "standard"
   },
   "devDependencies": {
+    "ava": "^0.25.0",
+    "faker": "^4.1.0",
     "node-lambda": "^0.11.6",
+    "proxyquire": "^2.0.0",
+    "sinon": "^4.4.6",
     "standard": "^10.0.3"
   },
   "dependencies": {
