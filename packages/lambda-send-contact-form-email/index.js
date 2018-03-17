@@ -3,24 +3,24 @@ const {
 } = require('./config')
 const AWS = require('aws-sdk')
 
+const respond = (statusCode, callback) => {
+  callback(null, {
+    statusCode: statusCode,
+    headers: {},
+    body: '',
+    isBase64Encoded: false
+  })
+}
+
 exports.handler = ({name, email, message}, context, callback) => {
   sendEmail(name, email, message, (error) => {
-    let statusCode = 200
-    let responseBody = {}
-
     if (error) {
       console.error(error)
-      statusCode = 500
+
+      respond(500, callback)
     }
 
-    const response = {
-      statusCode: statusCode,
-      headers: {},
-      body: JSON.stringify(responseBody),
-      isBase64Encoded: false
-    }
-
-    callback(null, response)
+    respond(201, callback)
   })
 }
 
