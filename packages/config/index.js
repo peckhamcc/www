@@ -59,7 +59,13 @@ const GENDERS = [{
 
 const config = {
   aws: {
-    region: 'eu-west-2'
+    ses: {
+      region: 'eu-west-1',
+      version: '2010-12-01'
+    },
+    lambda: {
+      region: 'eu-west-2'
+    }
   },
   lambda: {
     clientToken: '/lambda/create-client-token',

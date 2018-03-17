@@ -4,7 +4,7 @@ const {
 const AWS = require('aws-sdk')
 
 exports.handler = ({name, email, message}, context, callback) => {
-  sendEmail({name, email, message}, (error) => {
+  sendEmail(name, email, message, (error) => {
     let statusCode = 200
     let responseBody = {}
 
@@ -24,8 +24,11 @@ exports.handler = ({name, email, message}, context, callback) => {
   })
 }
 
-const sendEmail = ({name, email, message}, callback) => {
-  new AWS.SES({apiVersion: '2010-12-01'})
+const sendEmail = (name, email, message, callback) => {
+  new AWS.SES({
+    apiVersion: config.aws.ses.version,
+    region: config.aws.ses.region
+  })
     .sendEmail({
       Destination: {
         CcAddresses: [],
@@ -37,11 +40,11 @@ const sendEmail = ({name, email, message}, callback) => {
         Body: {
           Html: {
             Charset: 'UTF-8',
-            Data: htmlTemplate({name, email, message})
+            Data: htmlTemplate(name, email, message)
           },
           Text: {
             Charset: 'UTF-8',
-            Data: textTemplate({name, email, message})
+            Data: textTemplate(name, email, message)
           }
         },
         Subject: {
@@ -59,7 +62,7 @@ const sendEmail = ({name, email, message}, callback) => {
     .catch((error) => callback(error))
 }
 
-const htmlTemplate = ({name, email, message}) => `
+const htmlTemplate = (name, email, message) => `
 <html>
   <head>
     <style type="text/css">
@@ -80,7 +83,7 @@ div {
 </html>
 `
 
-const textTemplate = ({name, email, message}) => `
+const textTemplate = (name, email, message) => `
 ${name} (${email}) submitted this message via the peckham.cc contact form:
 
 ${message.trim()}

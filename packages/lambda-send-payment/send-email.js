@@ -4,7 +4,10 @@ const {
 const AWS = require('aws-sdk')
 
 module.exports = (emailAddress, firstName, lastName, lineItems, amount, transactionId, callback) => {
-  new AWS.SES({apiVersion: '2010-12-01'})
+  new AWS.SES({
+    apiVersion: config.aws.ses.version,
+    region: config.aws.ses.region
+  })
     .sendEmail({
       Destination: {
         CcAddresses: [],
