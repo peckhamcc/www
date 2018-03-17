@@ -17,7 +17,8 @@ import {
   Shop,
   Item,
   Membership,
-  About
+  About,
+  Contact
 } from './pages'
 import configureStore from './store/configure-store'
 import '../assets/pcc-avatar.png'
@@ -83,6 +84,10 @@ export default () => {
                     <Route path='/checkout' component={Checkout} />
                     <Route path='/orders' component={Orders} />
                   </Fragment>
+                </Flag>
+
+                <Flag name='contact'>
+                  <Route path='/contact' component={Contact} />
                 </Flag>
               </FlexItem>
               <Break />

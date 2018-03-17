@@ -63,10 +63,16 @@ const config = {
   },
   lambda: {
     clientToken: '/lambda/create-client-token',
-    sendPayment: '/lambda/send-payment'
+    sendPayment: '/lambda/send-payment',
+    sendContactFormEmail: '/lambda/send-contact-form-email'
   },
   flags: {
-    store: false
+    store: false,
+    contact: false
+  },
+  email: {
+    to: 'peckhamcc@gmail.com',
+    from: 'contact@peckham.cc'
   },
   store: {
     shipping: [{

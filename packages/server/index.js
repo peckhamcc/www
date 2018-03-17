@@ -6,6 +6,7 @@ const serveStatic = require('serve-static')
 const path = require('path')
 const createClientTokenLambda = require('@peckhamcc/lambda-create-client-token')
 const sendPaymentLambda = require('@peckhamcc/lambda-send-payment')
+const sendContactFormEmail = require('@peckhamcc/lambda-send-contact-form-email')
 
 // simulate a lambda
 const serveLambda = (lambda) => {
@@ -34,6 +35,7 @@ app.use('/', serveStatic(path.resolve(path.join(__dirname, 'node_modules', '@pec
 // "lambdas"
 app.post('/lambda/create-client-token', serveLambda(createClientTokenLambda))
 app.post('/lambda/send-payment', serveLambda(sendPaymentLambda))
+app.post('/lambda/send-contact-form-email', serveLambda(sendContactFormEmail))
 
 app.use((request, response) => {
   response.sendFile(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist', 'index.html'))

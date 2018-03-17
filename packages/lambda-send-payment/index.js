@@ -1,10 +1,6 @@
-const braintree = require('braintree')
-const gateway = braintree.connect({
-  environment: braintree.Environment[process.env.BT_ENVIRONMENT],
-  merchantId: process.env.BT_MERCHANT_ID,
-  publicKey: process.env.BT_PUBLIC_KEY,
-  privateKey: process.env.BT_PRIVATE_KEY
-})
+const waterfall = require('./waterfall')
+const sendEmail = require('./send-email')
+const makePayment = require('./make-payment')
 const {
   config
 } = require('./config')
@@ -37,46 +33,31 @@ exports.handler = (event, context, callback) => {
 
   amount = toCurrencyString(amount)
 
-  gateway.transaction.sale({
-    amount: amount,
-    paymentMethodNonce: event.nonce,
-    lineItems: lineItems,
-    merchantAccountId: process.env.BT_MERCHANT_ACCOUNT_ID,
-    customer: {
-      firstName: event.firstName,
-      lastName: event.lastName,
-      email: event.email
-    },
-    options: {
-      submitForSettlement: true
-    }
-  }, (error, result) => {
+  waterfall([
+    (cb) => makePayment(amount, event.nonce, lineItems, event.firstName, event.lastName, event.email, cb),
+    (transactionId, cb) => sendEmail(event.email, event.firstName, event.lastName, lineItems, amount, transactionId, cb)
+  ], (error, [paymentResult, emaiResult]) => {
     let statusCode = 500
     let responseBody = {}
 
     if (error) {
       console.error(error)
       statusCode = 500
+
+      if (error.errors) {
+        console.error(error.errors)
+        statusCode = 400
+
+        responseBody = {
+          errors: paymentResult.errors.deepErrors()
+        }
+      }
     }
 
-    if (result) {
-      if (!result.success) {
-        statusCode = 400
-      }
-
-      if (result.errors) {
-        console.error('Errors', result.errors.deepErrors())
-
-        responseBody = {
-          errors: result.errors.deepErrors()
-        }
-      }
-
-      if (result.transaction) {
-        statusCode = 200
-        responseBody = {
-          transaction: result.transaction.id
-        }
+    if (paymentResult) {
+      statusCode = 200
+      responseBody = {
+        transaction: paymentResult
       }
     }
 
