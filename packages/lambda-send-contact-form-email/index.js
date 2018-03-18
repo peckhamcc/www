@@ -13,6 +13,8 @@ const respond = (statusCode, callback) => {
 }
 
 exports.handler = (event, context, callback) => {
+  console.info('event', event)
+
   if (!event || !event.body) {
     return respond(400, callback)
   }

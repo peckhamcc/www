@@ -45,7 +45,8 @@ class ContactPage extends Component {
     email: '',
     message: '',
     sent: false,
-    error: false
+    error: false,
+    sending: false
   }
 
   onInputChange = (name, event) => {
@@ -59,15 +60,23 @@ class ContactPage extends Component {
 
     if (!this.state.name || !this.state.email || !this.state.message) {
       return this.setState({
-        error: 'All fields are required'
+        error: 'All fields are required',
+        sending: false
       })
     }
 
     if (this.state.email.indexOf('@') === -1) {
       return this.setState({
-        error: 'Please enter a valid email address'
+        error: 'Please enter a valid email address',
+        sending: false
       })
     }
+
+    this.setState({
+      error: false,
+      sending: true,
+      sent: false
+    })
 
     fetch(config.lambda.sendContactFormEmail, {
       method: 'POST',
@@ -80,14 +89,16 @@ class ContactPage extends Component {
       .then(() => {
         this.setState({
           error: false,
-          sent: true
+          sent: true,
+          sending: false
         })
       })
       .catch(error => {
         console.error(error)
 
         this.setState({
-          error: 'There was an error sending your message, please try again later'
+          error: 'There was an error sending your message, please try again later',
+          sending: false
         })
       })
   }
@@ -104,12 +115,12 @@ class ContactPage extends Component {
           {!this.state.sent && (
             <form onSubmit={this.onFormSubmit}>
               <Label for="name">Name</Label>
-              <Input type="text" name="name" onChange={(event) => this.onInputChange('name', event)} value={this.state.name} />
+              <Input type="text" name="name" onChange={(event) => this.onInputChange('name', event)} value={this.state.name} disabled={this.state.sending} />
               <Label for="email">Email</Label>
-              <Input type="email" name="email" onChange={(event) => this.onInputChange('email', event)} value={this.state.email} />
+              <Input type="email" name="email" onChange={(event) => this.onInputChange('email', event)} value={this.state.email} disabled={this.state.sending} />
               <Label for="message">Message</Label>
-              <TextArea name="message" onChange={(event) => this.onInputChange('message', event)} value={this.state.message} />
-              <Submit type="submit" value="Send" />
+              <TextArea name="message" onChange={(event) => this.onInputChange('message', event)} value={this.state.message} disabled={this.state.sending} />
+              <Submit type="submit" value="Send" disabled={this.state.sending} />
             </form>
           )}
         </Panel>
