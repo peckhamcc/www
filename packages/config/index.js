@@ -237,7 +237,7 @@ const config = {
 }
 
 if (process.env.NODE_ENV !== 'development') {
-  config.lambda.sendContactFormEmail = 'https://lambda.eu-west-2.amazonaws.com/2015-03-31/functions/arn:aws:lambda:eu-west-2:614175028878:function:send-contact-form-email/invocations'
+  config.lambda.sendContactFormEmail = 'https://2vgzz1azxk.execute-api.eu-west-2.amazonaws.com/prod/contact'
 }
 
 module.exports = {

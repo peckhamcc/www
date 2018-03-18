@@ -1,0 +1,28 @@
+{
+  "name": "@peckhamcc/lambda-send-cors-headers",
+  "version": "1.0.0",
+  "description": "Sends CORS headers to the browser",
+  "main": "index.js",
+  "homepage": "https://peckhamcc.github.com/www",
+  "author": "Alex Potsides",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peckhamcc/www"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peckhamcc/www/issues"
+  },
+  "scripts": {
+    "test": "npm run build && ava test.js",
+    "clean": "rm -rf build",
+    "build": "cp ../config/index.js config.js && node-lambda build",
+    "deploy": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/send-cors-headers-role --region eu-west-2",
+    "lint": "standard"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "node-lambda": "^0.11.6",
+    "standard": "^10.0.3"
+  }
+}
