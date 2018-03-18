@@ -75,6 +75,7 @@ export default () => {
                 <Route path='/routes' component={Routes} />
                 <Route path='/membership' component={Membership} />
                 <Route path='/about' component={About} />
+                <Route path='/contact' component={Contact} />
 
                 <Flag name='store'>
                   <Fragment>
@@ -84,10 +85,6 @@ export default () => {
                     <Route path='/checkout' component={Checkout} />
                     <Route path='/orders' component={Orders} />
                   </Fragment>
-                </Flag>
-
-                <Flag name='contact'>
-                  <Route path='/contact' component={Contact} />
                 </Flag>
               </FlexItem>
               <Break />

@@ -73,8 +73,7 @@ const config = {
     sendContactFormEmail: '/lambda/send-contact-form-email'
   },
   flags: {
-    store: false,
-    contact: false
+    store: false
   },
   email: {
     to: 'peckhamcc@gmail.com',

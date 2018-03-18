@@ -34,9 +34,15 @@ const Submit = styled.input`
   font-size: ${spacing(1)};
 `
 
-const Error = styled.p`
+const Warning = styled.p`
   color: #F10;
 `
+
+const STATE = {
+  ERROR: 'error',
+  SENDING: 'sending',
+  SENT: 'sent'
+}
 
 class ContactPage extends Component {
 
@@ -44,9 +50,7 @@ class ContactPage extends Component {
     name: '',
     email: '',
     message: '',
-    sent: false,
-    error: false,
-    sending: false
+    state: null
   }
 
   onInputChange = (name, event) => {
@@ -61,21 +65,19 @@ class ContactPage extends Component {
     if (!this.state.name || !this.state.email || !this.state.message) {
       return this.setState({
         error: 'All fields are required',
-        sending: false
+        state: STATE.ERROR
       })
     }
 
     if (this.state.email.indexOf('@') === -1) {
       return this.setState({
         error: 'Please enter a valid email address',
-        sending: false
+        state: STATE.ERROR
       })
     }
 
     this.setState({
-      error: false,
-      sending: true,
-      sent: false
+      state: STATE.SENDING
     })
 
     fetch(config.lambda.sendContactFormEmail, {
@@ -86,19 +88,22 @@ class ContactPage extends Component {
         message: this.state.message
       })
     })
-      .then(() => {
+      .then((response) => {
+        if (response.status !== 201) {
+          throw new Error(response.statusText)
+        }
+
         this.setState({
-          error: false,
-          sent: true,
-          sending: false
+          state: STATE.SENT,
+          name: '',
+          email: '',
+          message: ''
         })
       })
       .catch(error => {
-        console.error(error)
-
         this.setState({
           error: 'There was an error sending your message, please try again later',
-          sending: false
+          state: STATE.ERROR
         })
       })
   }
@@ -109,20 +114,19 @@ class ContactPage extends Component {
         <Hero background={contactBackground.src} />
         <Panel>
           <h2>Contact</h2>
-          <p>Please get in touch via <a href="https://www.facebook.com/PeckhamCC">Facebook</a> or <a href="https://twitter.com/peckhamcc">Twitter</a>, or alternatively use the contact form below.</p>
-          {this.state.sent && <p>Your message has been sent!</p>}
-          {this.state.error && <Error>{this.state.error}</Error>}
-          {!this.state.sent && (
-            <form onSubmit={this.onFormSubmit}>
-              <Label for="name">Name</Label>
-              <Input type="text" name="name" onChange={(event) => this.onInputChange('name', event)} value={this.state.name} disabled={this.state.sending} />
-              <Label for="email">Email</Label>
-              <Input type="email" name="email" onChange={(event) => this.onInputChange('email', event)} value={this.state.email} disabled={this.state.sending} />
-              <Label for="message">Message</Label>
-              <TextArea name="message" onChange={(event) => this.onInputChange('message', event)} value={this.state.message} disabled={this.state.sending} />
-              <Submit type="submit" value="Send" disabled={this.state.sending} />
-            </form>
-          )}
+          <p>You can contact us via our <a href="https://www.facebook.com/PeckhamCC">Facebook</a> or <a href="https://twitter.com/peckhamcc">Twitter</a> pages, or alternatively use the contact form below.</p>
+          {this.state.state === STATE.SENDING && <p>Sending your message...</p>}
+          {this.state.state === STATE.SENT && <p>Your message has been sent!</p>}
+          {this.state.state === STATE.ERROR && <Warning>{this.state.error}</Warning>}
+          <form onSubmit={this.onFormSubmit}>
+            <Label for="name">Name</Label>
+            <Input type="text" name="name" onChange={(event) => this.onInputChange('name', event)} value={this.state.name} disabled={this.state.state === STATE.SENDING} />
+            <Label for="email">Email</Label>
+            <Input type="email" name="email" onChange={(event) => this.onInputChange('email', event)} value={this.state.email} disabled={this.state.state === STATE.SENDING} />
+            <Label for="message">Message</Label>
+            <TextArea name="message" onChange={(event) => this.onInputChange('message', event)} value={this.state.message} disabled={this.state.state === STATE.SENDING} />
+            <Submit type="submit" value="Send" disabled={this.state.state === STATE.SENDING} />
+          </form>
         </Panel>
       </PageWrapper>
     )
