@@ -188,6 +188,12 @@ class NavBarWrapper extends Component {
                 <Link to='/routes'>Routes</Link>
               </NavLink>
 
+              <Flag name='contact'>
+                <NavLink>
+                  <Link to='/contact'>Contact</Link>
+                </NavLink>
+              </Flag>
+
               <Flag name='store'>
                 <NavLink>
                   <Link to='/shop'>Shop</Link>
@@ -237,6 +243,11 @@ class NavBarWrapper extends Component {
               <NavLink>
                 <Link to='/routes'>Routes</Link>
               </NavLink>
+              <Flag name='contact'>
+                <NavLink>
+                  <Link to='/contact'>Contact</Link>
+                </NavLink>
+              </Flag>
               <Flag name='store'>
                 <NavLink>
                   <Link to='/shop'>Shop</Link>

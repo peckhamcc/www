@@ -60,7 +60,7 @@ const TopBreak = Break.extend`
 
 export default () => {
   return (
-    <FlagsProvider flags={config.store}>
+    <FlagsProvider flags={config.flags}>
       <Provider store={configureStore()}>
         <Router>
           <ScrollToTop>
