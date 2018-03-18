@@ -12,12 +12,28 @@ const respond = (statusCode, callback) => {
   })
 }
 
-exports.handler = ({name, email, message}, context, callback) => {
+exports.handler = (event, context, callback) => {
+  if (!event || !event.body) {
+    return respond(400, callback)
+  }
+
+  try {
+    var {name, email, message} = JSON.parse(event.body)
+  } catch (error) {
+    console.error(error)
+
+    return respond(400, callback)
+  }
+
+  if (!name || !email || !message) {
+    return respond(400, callback)
+  }
+
   sendEmail(name, email, message, (error) => {
     if (error) {
       console.error(error)
 
-      respond(500, callback)
+      return respond(500, callback)
     }
 
     respond(201, callback)
