@@ -3,20 +3,33 @@ const {
 } = require('./config')
 const AWS = require('aws-sdk')
 
-const respond = (statusCode, callback) => {
+const allowedOrigins = [
+  'https://dev.peckham.cc',
+  'https://www.peckham.cc',
+  'https://peckham.cc'
+]
+
+const respond = (statusCode, event, callback) => {
+  let allowOrigin = 'null'
+
+  if (event && event.headers && allowedOrigins.includes(event.headers.origin)) {
+    allowOrigin = event.headers.origin
+  }
+
   callback(null, {
     statusCode: statusCode,
-    headers: {},
+    headers: {
+      'Access-Control-Allow-Origin': allowOrigin,
+      'Access-Control-Allow-Credentials': true
+    },
     body: '',
     isBase64Encoded: false
   })
 }
 
 exports.handler = (event, context, callback) => {
-  console.info('event', event)
-
   if (!event || !event.body) {
-    return respond(400, callback)
+    return respond(400, event, callback)
   }
 
   try {
@@ -24,21 +37,21 @@ exports.handler = (event, context, callback) => {
   } catch (error) {
     console.error(error)
 
-    return respond(400, callback)
+    return respond(400, event, callback)
   }
 
   if (!name || !email || !message) {
-    return respond(400, callback)
+    return respond(400, event, callback)
   }
 
   sendEmail(name, email, message, (error) => {
     if (error) {
       console.error(error)
 
-      return respond(500, callback)
+      return respond(500, event, callback)
     }
 
-    respond(201, callback)
+    respond(201, event, callback)
   })
 }
 
