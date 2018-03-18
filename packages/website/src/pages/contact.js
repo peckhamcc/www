@@ -55,21 +55,25 @@ class ContactPage extends Component {
 
   onInputChange = (name, event) => {
     this.setState({
-      [name]: event.target.value.trim()
+      [name]: event.target.value
     })
   }
 
   onFormSubmit = (event) => {
     event.preventDefault()
 
-    if (!this.state.name || !this.state.email || !this.state.message) {
+    const name = this.state.name.trim()
+    const email = this.state.email.trim()
+    const message = this.state.message.trim()
+
+    if (!name || !email || !message) {
       return this.setState({
         error: 'All fields are required',
         state: STATE.ERROR
       })
     }
 
-    if (this.state.email.indexOf('@') === -1) {
+    if (email.indexOf('@') === -1) {
       return this.setState({
         error: 'Please enter a valid email address',
         state: STATE.ERROR
@@ -83,9 +87,9 @@ class ContactPage extends Component {
     fetch(config.lambda.sendContactFormEmail, {
       method: 'POST',
       body: JSON.stringify({
-        name: this.state.name,
-        email: this.state.email,
-        message: this.state.message
+        name,
+        email,
+        message
       })
     })
       .then((response) => {
