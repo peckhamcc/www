@@ -39,6 +39,9 @@ const toCurrencyString = (amount) => {
 }
 
 exports.handler = (event, context, callback) => {
+  console.info('event', JSON.stringify(event, null, 2))
+  console.info('context', JSON.stringify(context, null, 2))
+
   let amount = 0
 
   // What did they order
