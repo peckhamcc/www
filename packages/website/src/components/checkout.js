@@ -64,11 +64,258 @@ const FormInputWrapper = styled.div`
 
 const ErrorText = styled.p`
   color: ${errorText};
+  margin: ${spacing(1)} 0;
 `
 
 const PaymentHolder = styled.div`
   margin: ${spacing(1)} 0;
 `
+
+const PlaceHolder = styled.div`
+  margin: ${spacing(1)} 0;
+`
+
+const STEPS = {
+  'LOADING_TOKEN': 'LOADING_TOKEN',
+  'ENTER_DETAILS': 'ENTER_DETAILS',
+  'CHOOSE_PAYMENT_METHOD': 'CHOOSE_PAYMENT_METHOD',
+  'SUBMITTING_PAYMENT': 'SUBMITTING_PAYMENT',
+  'SUCCESS': 'SUCCESS',
+  'ERROR': 'ERROR'
+}
+
+class LoadingToken extends Component {
+  constructor (props) {
+    super(props)
+  }
+
+  componentDidMount () {
+    fetch(config.lambda.clientToken, {
+      method: 'POST'
+    })
+      .then(response => response.json())
+      .then(result => {
+        this.props.onToken(result.clientToken)
+      })
+      .catch(error => {
+        this.props.onError(error)
+      })
+  }
+
+  render () {
+    return (
+      <p>Loading payment methods...</p>
+    )
+  }
+}
+
+class DisplayError extends Component {
+  render () {
+    return (
+      <div>
+        <p>Something went wrong, please try again later</p>
+        <p>{this.props.error.message}</p>
+      </div>
+    )
+  }
+}
+
+class MakingPayment extends Component {
+  render () {
+    return (
+      <div>
+        <p>Making payment, hold on...</p>
+      </div>
+    )
+  }
+}
+
+class DisplaySuccess extends Component {
+  render () {
+    return (
+      <div data-result='payment-success'>
+        <h2>Payment complete</h2>
+        <p>The transaction was processed successfully.  A confirmation email should soon arrive in your inbox.</p>
+        <p>This is your transaction ID, please keep a note of it:</p>
+        <TransactionId data-transaction-id>{this.props.transactionId}</TransactionId>
+        <h3>What's next?</h3>
+        <p>Your order will be submitted to the factory soon. We'll be in touch with the delivery date once we have it.</p>
+      </div>
+    )
+  }
+}
+
+class EnterDetails extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      values: {
+        firstName: '',
+        lastName: '',
+        email: ''
+      },
+      errors: {}
+    }
+  }
+
+  formFieldChanged = (name) => {
+    return (event) => {
+      const state = {
+        values: Object.assign({}, this.state.values, {
+          [name]: event.target.value.trim()
+        }),
+        errors: this.state.errors
+      }
+
+      this.validate(state)
+    }
+  }
+
+  validate = (state) => {
+    Object.keys(state.values).forEach(key => {
+      delete state.errors[key]
+
+      if (!state.values[key]) {
+        state.errors[key] = true
+      }
+    })
+
+    if (!Isemail.validate(state.values.email)) {
+      state.errors.email = true
+    }
+
+    console.info('validated', state)
+
+    this.setState(state)
+  }
+
+  next = () => {
+    this.validate(this.state)
+
+    if (Object.keys(this.state.errors).length) {
+      return
+    }
+
+    this.props.onDetails({
+      firstName: this.state.values.firstName,
+      lastName: this.state.values.lastName,
+      email: this.state.values.email
+    })
+  }
+
+  render () {
+    console.info(this.state)
+    return (
+      <CheckoutWrapper>
+        <h3>Your details:</h3>
+        <FormInputWrapper error={this.state.errors.firstName}>
+          <Label for='firstName'>First name {this.state.errors.firstName && 'is required'}</Label>
+          <Input
+            name='firstName'
+            type='text'
+            onChange={this.formFieldChanged('firstName')} value={this.state.values.firstName}
+            data-input='first-name' />
+        </FormInputWrapper>
+        <FormInputWrapper error={this.state.errors.lastName}>
+          <Label for='lastName'>Last name {this.state.errors.lastName && 'is required'}</Label>
+          <Input
+            name='lastName'
+            type='text'
+            onChange={this.formFieldChanged('lastName')}
+            value={this.state.lastName}
+            data-input='last-name' />
+        </FormInputWrapper>
+        <FormInputWrapper error={this.state.errors.email}>
+          <Label for='email'>Email {this.state.errors.email && 'must be a valid email'}</Label>
+          <Input
+            name='email'
+            type='email' 
+            onChange={this.formFieldChanged('email')}
+            value={this.state.email}
+            data-input='email'/>
+        </FormInputWrapper>
+        <Button
+          onClick={this.next}
+          disabled={Object.keys(this.state.errors).length}
+          data-button='choose-payment-method'>Choose payment method</Button>
+      </CheckoutWrapper>
+    )
+  }
+}
+
+class ChoosePaymentMethod extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      loading: true
+    }
+  }
+
+  componentDidMount () {
+    braintree.dropin.create({
+      authorization: this.props.clientToken,
+      container: this.paymentHolder,
+      paypal: {
+        flow: 'checkout'
+      }
+    }, (error, instance) => {
+      if (error) {
+        this.props.onError(error)
+      }
+
+      this.paymentProvider = instance
+
+      this.setState({
+        loading: false
+      })
+    })
+  }
+
+  requestPaymentMethod = () => {
+    this.setState({
+      requestingPaymentMethod: true
+    })
+
+    this.paymentProvider.requestPaymentMethod((error, payload) => {
+      if (error) {
+        return this.setState({
+          requestingPaymentMethod: false,
+          error: error.message
+        })
+      }
+
+      this.setState({
+        requestingPaymentMethod: false
+      })
+
+      this.props.onPayment(payload.nonce)
+    })
+  }
+
+  render () {
+    const {
+      loading,
+      error,
+      requestingPaymentMethod
+    } = this.state
+
+    return (
+      <PaymentHolder>
+        {loading && <p>Loading payment methods...</p>}
+        {error && <ErrorText>{error}</ErrorText>}
+        <PlaceHolder>
+          <div ref={ref => this.paymentHolder = ref}></div>
+        </PlaceHolder>
+        {!loading && <Button
+          onClick={this.requestPaymentMethod}
+          disabled={requestingPaymentMethod}
+          data-button='submit-payment'>Submit payment</Button>}
+      </PaymentHolder>
+    )
+  }
+}
 
 class Checkout extends Component {
 
@@ -81,225 +328,115 @@ class Checkout extends Component {
       return acc + (product.price * item.quantity)
     }, 0)
 
-    this.state = {
-      canMakePayment: false,
-      loadingToken: true,
-      makingPayment: false,
-      transactionId: null,
-      paymentFailure: false,
-      firstName: '',
-      lastName: '',
-      email: '',
-      errors: {}
-    }
-  }
+    if (!global.braintree) {
+      this.state = {
+        step: STEPS.ERROR,
+        error: new Error('Could not load payment methods')
+      }
 
-  componentDidMount () {
-    if (!this.props.cart.length) {
       return
     }
 
-    fetch(config.lambda.clientToken, {
-      method: 'POST'
+    this.state = {
+      step: STEPS.LOADING_TOKEN,
+      error: null
+    }
+  }
+
+  onClientToken = (clientToken) => {
+    this.setState({
+      clientToken,
+      step: STEPS.ENTER_DETAILS
+    })
+  }
+
+  onCustomerDetails = (customerDetails) => {
+    this.setState({
+      customerDetails,
+      step: STEPS.CHOOSE_PAYMENT_METHOD
+    })
+  }
+
+  onPayment = (nonce) => {
+    this.setState({
+      step: STEPS.SUBMITTING_PAYMENT
+    })
+
+    fetch(config.lambda.sendPayment, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        firstName: this.state.customerDetails.firstName.trim(),
+        lastName: this.state.customerDetails.lastName.trim(),
+        email: this.state.customerDetails.email.trim(),
+        nonce: nonce,
+        items: this.props.cart
+      })
     })
       .then(response => response.json())
       .then(result => {
-        braintree.dropin.create({
-          authorization: result.clientToken,
-          container: this.paymentHolder,
-          paypal: {
-            flow: 'checkout'
-          }
-        }, (error, instance) => {
-          if (error) {
-            return console.error(error)
-          }
+        console.info('payment result', result)
 
-          this.paymentProvider = instance
-
+        if (result.errors) {
           this.setState({
-            loadingToken: false
+            step: STEPS.ERROR,
+            error: results.errors[0]
           })
-        })
-      })
-      .catch(error => console.error(error))
-  }
 
-  requestPaymentMethod = () => {
-    if (!this.paymentProvider) {
-      return
-    }
+          console.error(results.errors)
 
-    const errors = {}
+          return
+        }
 
-    if (!this.state.firstName.trim()) {
-      errors['firstName'] = true
-    }
-
-    if (!this.state.lastName.trim()) {
-      errors['lastName'] = true
-    }
-
-    if (!Isemail.validate(this.state.email)) {
-      errors['email'] = true
-    }
-
-    this.setState({
-      errors: errors
-    })
-
-    if (Object.keys(errors).length) {
-      return
-    }
-
-    this.setState({
-      makingPayment: true
-    })
-
-    this.paymentProvider.requestPaymentMethod((error, payload) => {
-      if (error) {
         this.setState({
-          errors: Object.assign({}, this.state.errors, {
-            payment: true
-          }),
-          makingPayment: false
+          step: STEPS.SUCCESS,
+          transactionId: result.transaction
         })
 
-        return console.error(error)
-      }
-
-      fetch(config.lambda.sendPayment, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          firstName: this.state.firstName.trim(),
-          lastName: this.state.lastName.trim(),
-          email: this.state.email.trim(),
-          nonce: payload.nonce,
-          items: this.props.cart
-        })
+        this.props.clearCart()
       })
-        .then(response => response.json())
-        .then(result => {
-          console.info('payment result', result)
-
-          if (result.errors) {
-            this.setState({
-              paymentFailure: true,
-              makingPayment: false
-            })
-
-            return
-          }
-
-          this.setState({
-            transactionId: result.transaction,
-            makingPayment: false
-          })
-
-          this.props.clearCart()
+      .catch(error => {
+        this.setState({
+          step: STEPS.ERROR,
+          error
         })
-        .catch(error => {
-          this.setState({
-            paymentFailure: true,
-            makingPayment: false
-          })
 
-          console.error('payment error', error)
-        })
-    })
+        console.error('payment error', error)
+      })
   }
 
-  formFieldChanged = (event) => {
+  onError = (error) => {
     this.setState({
-      [event.target.name]: event.target.value
+      error,
+      step: STEPS.ERROR
     })
-
-    if (event.target.name === 'firstName' && event.target.value.trim()) {
-      this.setState({
-        errors: Object.assign({}, this.state.errors, {
-          firstName: false
-        })
-      })
-    }
-
-    if (event.target.name === 'lastName' && event.target.value.trim()) {
-      this.setState({
-        errors: Object.assign({}, this.state.errors, {
-          lastName: false
-        })
-      })
-    }
-
-    if (event.target.name === 'email' && Isemail.validate(event.target.value)) {
-      this.setState({
-        errors: Object.assign({}, this.state.errors, {
-          email: false
-        })
-      })
-    }
   }
 
   render () {
-    const { cart } = this.props
-    const { loadingToken, makingPayment, transactionId, paymentFailure } = this.state
+    const {
+      step,
+      clientToken,
+      customerDetails,
+      error,
+      transactionId
+    } = this.state
 
-    if (transactionId) {
-      return (
-        <CheckoutWrapper>
-          <h2>Payment complete</h2>
-          <p>The transaction was processed successfully.  A confirmation email should soon arrive in your inbox.</p>
-          <p>This is your transaction ID, please keep a note of it:</p>
-          <TransactionId>{transactionId}</TransactionId>
-          <h3>What's next?</h3>
-          <p>Your order will be submitted to the factory soon.  We'll be in touch with the delivery date once we have it.</p>
-        </CheckoutWrapper>
-      )
+    const steps = {
+      [STEPS.LOADING_TOKEN]: <LoadingToken onToken={this.onClientToken} onError={this.onError} />,
+      [STEPS.ENTER_DETAILS]: <EnterDetails onDetails={this.onCustomerDetails} />,
+      [STEPS.CHOOSE_PAYMENT_METHOD]: <ChoosePaymentMethod clientToken={clientToken} onPayment={this.onPayment} onError={this.onError} />,
+      [STEPS.SUBMITTING_PAYMENT]: <MakingPayment />,
+      [STEPS.SUCCESS]: <DisplaySuccess transactionId={transactionId} />,
+      [STEPS.ERROR]: <DisplayError error={error} />
     }
 
-    if (paymentFailure) {
-      return (
-        <CheckoutWrapper>
-          <h2>Payment failure</h2>
-          <p>Your payment failed to go through.</p>
-          <p>It has been logged and will be investigated.</p>
-          <p>Sorry about that.</p>
-        </CheckoutWrapper>
-      )
+    if (steps[step]) {
+      return steps[step]
     }
 
-    if (!cart.length) {
-      return (
-        <p>There's nothing in your cart. Try visiting the <Link to='/shop'>shop</Link>?</p>
-      )
-    }
-
-    return (
-      <CheckoutWrapper>
-        <h3>Your details:</h3>
-        <FormInputWrapper error={this.state.errors['firstName']}>
-          <Label for='firstName'>First name {this.state.errors['firstName'] && 'is required'}</Label>
-          <Input name='firstName' type='text' onChange={this.formFieldChanged} value={this.state.firstName} />
-        </FormInputWrapper>
-        <FormInputWrapper error={this.state.errors['lastName']}>
-          <Label for='lastName'>Last name {this.state.errors['lastName'] && 'is required'}</Label>
-          <Input name='lastName' type='text' onChange={this.formFieldChanged} value={this.state.lastName} />
-        </FormInputWrapper>
-        <FormInputWrapper error={this.state.errors['email']}>
-          <Label for='email'>Email {this.state.errors['email'] && 'must be a valid email'}</Label>
-          <Input name='email' type='email' onChange={this.formFieldChanged} value={this.state.email} />
-        </FormInputWrapper>
-        <h3>Payment method:</h3>
-        {loadingToken && <p>Loading payment methods...</p>}
-        {this.state.errors['payment'] && <ErrorText>Your payment method was invalid, please try again.</ErrorText>}
-        <PaymentHolder>
-          <div ref={ref => this.paymentHolder = ref}></div>
-        </PaymentHolder>
-        {!loadingToken && <Button onClick={this.requestPaymentMethod} disabled={makingPayment}>Submit payment</Button>}
-      </CheckoutWrapper>
-    )
+    return steps[STEPS.ERROR]
   }
 }
 

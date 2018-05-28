@@ -9,15 +9,13 @@
     "url": "https://github.com/peckhamcc/www/issues"
   },
   "scripts": {
-    "start": "node .",
+    "start": "node start.js",
     "lint": "standard"
   },
-  "pre-commit": [
-    "lint"
-  ],
   "dependencies": {
     "@peckhamcc/lambda-create-client-token": "^1.0.0",
     "@peckhamcc/lambda-send-contact-form-email": "^1.0.0",
+    "@peckhamcc/lambda-send-cors-headers": "^1.0.0",
     "@peckhamcc/lambda-send-payment": "^1.0.0",
     "@peckhamcc/website": "^1.0.0",
     "body-parser": "^1.18.2",

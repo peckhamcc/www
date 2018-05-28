@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const serveStatic = require('serve-static')
@@ -25,28 +23,37 @@ const serveLambda = (lambda) => {
   })
 }
 
-const PORT = process.env.PORT || 9000
+module.exports = (port) => {
+  return new Promise((resolve, reject) => {
+    const app = express()
+    app.use(bodyParser.json())
 
-const app = express()
-app.use(bodyParser.json())
+    // main site
+    app.use('/', serveStatic(path.resolve(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist'))))
 
-// main site
-app.use('/', serveStatic(path.resolve(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist'))))
+    // "lambdas"
+    app.options('/lambda/create-client-token', serveLambda(sendCorsHeaders))
+    app.post('/lambda/create-client-token', serveLambda(createClientTokenLambda))
 
-// "lambdas"
-app.options('/lambda/create-client-token', serveLambda(sendCorsHeaders))
-app.post('/lambda/create-client-token', serveLambda(createClientTokenLambda))
+    app.options('/lambda/send-payment', serveLambda(sendCorsHeaders))
+    app.post('/lambda/send-payment', serveLambda(sendPaymentLambda))
 
-app.options('/lambda/send-payment', serveLambda(sendCorsHeaders))
-app.post('/lambda/send-payment', serveLambda(sendPaymentLambda))
+    app.options('/lambda/send-contact-form-email', serveLambda(sendCorsHeaders))
+    app.post('/lambda/send-contact-form-email', serveLambda(sendContactFormEmail))
 
-app.options('/lambda/send-contact-form-email', serveLambda(sendCorsHeaders))
-app.post('/lambda/send-contact-form-email', serveLambda(sendContactFormEmail))
+    app.use((request, response) => {
+      response.sendFile(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist', 'index.html'))
+    })
 
-app.use((request, response) => {
-  response.sendFile(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist', 'index.html'))
-})
-
-app.listen(PORT, () => {
-  console.info(`App listening on ${PORT}`)
-})
+    const listener = app.listen(port, () => {
+      resolve({
+        url: `http://localhost:${listener.address().port}`,
+        stop: () => {
+          return new Promise((resolve, reject) => {
+            listener.close(() => resolve())
+          })
+        }
+      })
+    })
+  })
+}

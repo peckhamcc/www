@@ -18,7 +18,8 @@ import {
   Item,
   Membership,
   About,
-  Contact
+  Contact,
+  Riding
 } from './pages'
 import configureStore from './store/configure-store'
 import '../assets/pcc-avatar.png'
@@ -76,6 +77,10 @@ export default () => {
                 <Route path='/membership' component={Membership} />
                 <Route path='/about' component={About} />
                 <Route path='/contact' component={Contact} />
+
+                <Flag name='riding'>
+                  <Route path='/riding' component={Riding} />
+                </Flag>
 
                 <Flag name='store'>
                   <Fragment>

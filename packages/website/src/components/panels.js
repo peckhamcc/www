@@ -118,7 +118,7 @@ export const ShopListItem = ({ item: { slug, title, description, images, price }
   return (
     <ShopPanel>
        <h4>
-          <Link to={`/shop/${slug}`}>{title}</Link>
+          <Link to={`/shop/${slug}`} data-section={slug}>{title}</Link>
         </h4>
         {price && <h5><Price price={price} /></h5>}
         <Link to={`/shop/${slug}`}>
@@ -283,5 +283,42 @@ export const Hero = styled.div`
 
   @media (max-width: 640px) {
     height: 20vh;
+  }
+`
+
+export const ShortHero = Hero.extend`
+  height: 20vh;
+
+  @media (max-width: 940px) {
+    height: 10vh;
+  }
+
+  @media (max-width: 640px) {
+    height: 5vh;
+  }
+`
+
+export const SelectableOption = styled.div`
+  border-radius: 2px;
+  border: 1px solid ${light};
+  background-color: ${props => props.selected ? lightAccent : 'transparent'};
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px 5px 0;
+  padding: 3px ${spacing(1)};
+  min-width: 40px;
+  text-align: center;
+
+  &:active {
+    background-color: ${dark};
+  }
+
+  &:hover {
+    background-color: ${lightAccent};
+  }
+
+  @media (max-width: 940px) {
+    padding: 3px ${spacing(2)};
+    font-size: 22px;
   }
 `

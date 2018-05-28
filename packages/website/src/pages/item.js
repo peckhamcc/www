@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { Break, PageWrapper, Panel, ShopListItem, Breadcrumb, Hero } from '../components/panels'
+import { Break, PageWrapper, Panel, ShopListItem, Breadcrumb, ShortHero } from '../components/panels'
 import shopBackground from '../../assets/shop-bg.jpg'
 import styled from 'styled-components'
 import config, { SECTIONS } from '../config'
@@ -45,7 +45,7 @@ class ItemPage extends Component {
 
     return (
       <PageWrapper>
-        <Hero background={shopBackground.src} />
+        <ShortHero background={shopBackground.src} />
         <Panel>
           {section && <Section section={section} />}
           {product && <Product product={product} />}

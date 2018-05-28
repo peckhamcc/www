@@ -4,12 +4,19 @@ const {
 const AWS = require('aws-sdk')
 
 module.exports = (emailAddress, firstName, lastName, lineItems, amount, transactionId, callback) => {
+  if (!config.flags.email) {
+    return callback()
+  }
+
   new AWS.SES({
     apiVersion: config.aws.ses.version,
     region: config.aws.ses.region
   })
     .sendEmail({
       Destination: {
+        BccAddresses: [
+          config.email.to
+        ],
         CcAddresses: [],
         ToAddresses: [
           emailAddress
@@ -28,7 +35,7 @@ module.exports = (emailAddress, firstName, lastName, lineItems, amount, transact
         },
         Subject: {
           Charset: 'UTF-8',
-          Data: `Peckham Cycle Club order number ${transactionId}`
+          Data: `Peckham Cycle Club order ${transactionId}`
         }
       },
       Source: config.email.from,
@@ -39,6 +46,19 @@ module.exports = (emailAddress, firstName, lastName, lineItems, amount, transact
     .promise()
     .then((data) => callback(null, data))
     .catch((error) => callback(error))
+}
+
+const displayItems = (lineItems, pound, delimiter) => {
+  return lineItems.map(lineItem => {
+    let output = `${lineItem.quantity}x ${lineItem.name} @ ${pound}${lineItem.unitAmount} = ${pound}${lineItem.totalAmount}`
+
+    if (lineItem.description && lineItem.description.trim()) {
+      output += `${delimiter}${lineItem.description.trim()}`
+    }
+
+    return output
+  })
+    .join(`${delimiter}${delimiter}`)
 }
 
 const htmlTemplate = (firstName, lineItems, amount, transactionId) => `
@@ -62,9 +82,7 @@ div {
       <p>Once we know the delivery date for your items we will be in touch to let you know.</p>
       <p>The items you have ordered are:</p>
       <p>
-        ${lineItems.map(lineItem => `
-          ${lineItem.quantity}x ${lineItem.name} @ &pound;${lineItem.unitAmount} = &pound;${lineItem.totalAmount}
-        `).join('<br />')}
+        ${displayItems(lineItems, '&pound;', '<br />')}
       </p>
       <p>Total value: &pound;${amount}</p>
       <p>Thank you,</p>
@@ -92,11 +110,9 @@ Once we know the delivery date for your items we will be in touch to let you kno
 
 The items you have ordered are:
 
-${lineItems.map(lineItem => `
-  ${lineItem.quantity}x ${lineItem.name} @ &pound;${lineItem.unitAmount} = &pound;${lineItem.totalAmount}
-`).join('/r/n')}
+${displayItems(lineItems, '£', '\r\n')}
 
-Total value: &pound;${amount}
+Total value: £${amount}
 
 Thank you,
 

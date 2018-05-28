@@ -19,6 +19,8 @@ import onscrolling from 'onscrolling'
 import { config } from '@peckhamcc/config'
 import { Flag } from 'flag'
 
+const HAMBUGER_BREAK = 800
+
 const CartContentsCount = styled.div`
   color: #FFF;
   background-color: #F10;
@@ -45,7 +47,7 @@ const NavBar = styled.nav`
 `
 
 const LongMenu = styled.div`
-  @media (max-width: 640px) {
+  @media (max-width: ${HAMBUGER_BREAK}px) {
     display: none
   }
 `
@@ -53,7 +55,7 @@ const LongMenu = styled.div`
 const HamburgerMenu = styled.div`
   margin: 15px 0 0 15px;
 
-  @media (min-width: 641px) {
+  @media (min-width: ${HAMBUGER_BREAK + 1}px) {
     display: none
   }
 `
@@ -93,7 +95,7 @@ const MobileNav = styled.ul`
     padding: 10px;
   }
 
-  @media (min-width: 641px) {
+  @media (min-width: ${HAMBUGER_BREAK + 1}px) {
     display: none
   }
 `
@@ -240,9 +242,17 @@ class NavBarWrapper extends Component {
               <NavLink>
                 <Link to='/routes'>Routes</Link>
               </NavLink>
+              
+              <Flag name='riding'>
+                <NavLink>
+                  <Link to='/riding'>On the road</Link>
+                </NavLink>
+              </Flag>
+              
               <NavLink>
                 <Link to='/contact'>Contact</Link>
               </NavLink>
+              
               <Flag name='store'>
                 <NavLink>
                   <Link to='/shop'>Shop</Link>

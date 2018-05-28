@@ -1,16 +1,27 @@
 {
   "items": [{
-    "sku": "SS-JERSEY-2018",
-    "line": "Short Sleeved Club Jersey",
-    "gender": {
-      "name": "Mens",
-      "code": "M"
-    },
+    "sku": "CLUB-JERSEY-2018",
+    "title": "Short Sleeved Club Jersey",
     "size": {
-      "name": "Medium",
-      "code": "M"
+      "code": "M",
+      "name": "Medium"
     },
-    "quantity": 1
+    "gender": {
+      "code": "M",
+      "name": "Male"
+    },
+    "quantity": 2,
+    "variants": {
+      "sleeve": {
+        "code": "REGULAR",
+        "name": "Regular"
+      },
+      "body": {
+        "code": "REGULAR",
+        "name": "Regular"
+      }
+    },
+    "id": "r18j6dF1X"
   }],
   "nonce": "asdlfkj",
   "firstName": "Dave",

@@ -1,0 +1,31 @@
+{
+  "name": "@peckhamcc/integration",
+  "version": "1.0.0",
+  "description": "Integration tests for the Peckham Cycle Club website",
+  "homepage": "https://peckhamcc.github.com/www",
+  "author": "Alex Potsides <alex@achingbrain.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peckhamcc/www/issues"
+  },
+  "scripts": {
+    "lint": "standard",
+    "test": "ava"
+  },
+  "devDependencies": {
+    "@peckhamcc/server": "^1.0.0",
+    "ava": "^0.25.0",
+    "babel-eslint": "^8.2.3",
+    "dotenv": "^5.0.1",
+    "faker": "^4.1.0",
+    "puppeteer": "^1.4.0",
+    "standard": "^11.0.1"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "ava": {
+    "files": "**/*.test.js",
+    "failWithoutAssertions": false
+  }
+}

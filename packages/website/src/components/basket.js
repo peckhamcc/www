@@ -126,9 +126,9 @@ const Terms = styled.div`
   border: 1px solid transparent;
 
   ${props => props.error ? `
-    border: 1px solid ${errorText};
+    /*border: 1px solid ${errorText};*/
     color: ${errorText};
-    background: ${errorBackground};
+    /*background: ${errorBackground};*/
   ` : ''}
 
   h4 {
@@ -226,9 +226,18 @@ class Basket extends Component {
                         <DetailWrapper>
                           <p>{
                             [
-                              item.gender && item.gender.name, item.size && item.size.name, item.variant
+                              item.gender && item.gender.name, item.size && item.size.name
                             ].filter(Boolean).join(', ')
                           }</p>
+                          {item.variants && (
+                            <p>
+                            {Object.keys(item.variants).map((variant, index) => {
+                              return (
+                                <Fragment key={index}>{variant.substring(0, 1).toUpperCase()}{variant.substring(1)}: {item.variants[variant].name}<br /></Fragment>
+                              )
+                            })}
+                            </p>
+                          )}
                         </DetailWrapper>
                         <DetailWrapper>
                           <QuantityButton onClick={() => this.decreaseQuantity(item)}><MinusIcon /></QuantityButton>
@@ -264,15 +273,19 @@ class Basket extends Component {
         <PlaceOrder>
           <Terms error={showTermsError}>
             <h4>Terms &amp; Conditions</h4>
-            <p>All kit is made to order and cannot be cancelled, exchanged or returned once your order has been placed.</p>
-            <p>Kit orders are sent to the factory on a quarterly basis and take 4-6 weeks to be made &amp; shipped once ordered.</p>
-            <p>When complete your order will be available to be picked up from the most excellent <a href='https://ratracecycles.com/'>Rat Race Cycles</a> at 118 Evelina Road.</p>
-            <p>We will be in touch to let you know the delivery date as soon as it is available.</p>
-            <p>Please confirm you are happy to proceed with your order: <Checkbox type='checkbox' checked={acceptedTerms} onChange={this.acceptTerms} /></p>
+            <p>All kit is made to order and cannot be cancelled, exchanged or refunded once your order has been placed.</p>
+            <p>Items from kit orders are sent to the factory when minimum quantities are reached and take 4-6 weeks to be made &amp; shipped.</p>
+            <p>When items are available, your order will be available to be picked up from the most excellent <a href='https://ratracecycles.com/'>Rat Race Cycles</a> at 118 Evelina Road, SE15 3HL.</p>
+            <p>We will be in touch to let you know the delivery date as soon as it is available and once items are ready for pick up.</p>
+            <p>Please confirm you understand the above and are happy to proceed with your order: <Checkbox
+              type='checkbox'
+              checked={acceptedTerms}
+              onChange={this.acceptTerms}
+              data-button='accept-terms' /></p>
           </Terms>
           <ButtonHolder>
             <Link to='/checkout' onClick={this.showCheckout}>
-              <Button>Enter payment information</Button>
+              <Button data-button='enter-payment-information'>Enter payment information</Button>
             </Link> 
           </ButtonHolder>
         </PlaceOrder>

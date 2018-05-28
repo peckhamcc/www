@@ -18,24 +18,38 @@ import lsJerseyRearImage from '../assets/shop/ls-jersey-rear.png?sizes[]=300,siz
 import shoeCoversImage from '../assets/shop/shoe-covers.png?sizes[]=300,sizes[]=500'
 import ssJerseyFrontImage from '../assets/shop/ss-jersey-front.png?sizes[]=300,sizes[]=500'
 import ssJerseyRearImage from '../assets/shop/ss-jersey-rear.png?sizes[]=300,sizes[]=500'
+import ssSummerJerseyFrontImage from '../assets/shop/ss-summer-jersey-front.png?sizes[]=300,sizes[]=500'
+import ssSummerJerseyRearImage from '../assets/shop/ss-summer-jersey-rear.png?sizes[]=300,sizes[]=500'
 import winterJacketFrontImage from '../assets/shop/winter-jacket-front.png?sizes[]=300,sizes[]=500'
 import winterJacketRearImage from '../assets/shop/winter-jacket-rear.png?sizes[]=300,sizes[]=500'
 import winterTightsFrontImage from '../assets/shop/winter-tights-front.png?sizes[]=300,sizes[]=500'
 import winterTightsRearImage from '../assets/shop/winter-tights-rear.png?sizes[]=300,sizes[]=500'
 import tripsImage from '../assets/shop/trips.png?sizes[]=300,sizes[]=500'
+import socksSideImage from '../assets/shop/socks-side.png?sizes[]=300,sizes[]=500'
+import socksTopImage from '../assets/shop/socks-top.png?sizes[]=300,sizes[]=500'
+import glovesImage from '../assets/shop/gloves.png?sizes[]=300,sizes[]=500'
+import multiTubeImage from '../assets/shop/multi-tube.png?sizes[]=300,sizes[]=500'
 
 const productImages = {
-  'SS-JERSEY-2018': [
+  'CLUB-JERSEY-2018': [
     ssJerseyFrontImage,
     ssJerseyRearImage
   ],
-  'LS-JERSEY-2018': [
+  'WINTER-JERSEY-2018': [
     lsJerseyFrontImage,
     lsJerseyRearImage
+  ],
+  'CLUB-SUMMER-JERSEY-2018': [
+    ssSummerJerseyFrontImage,
+    ssSummerJerseyRearImage
   ],
   'WINTER-JACKET-2018': [
     winterJacketFrontImage,
     winterJacketRearImage
+  ],
+  'RAIN-JACKET-2018': [
+    lsJerseyFrontImage,
+    lsJerseyRearImage
   ],
   'GILET-2018': [
     giletFrontImage,
@@ -52,21 +66,29 @@ const productImages = {
   'ARM-WARMERS-2018': [
     armWarmersImage
   ],
-  'KNEE-WARMERS-2018': [
-    kneeWarmersImage
-  ],
-  'LEG-WARMERS-2018': [
-    legWarmersImage
-  ],
-  'CAPS-2018': [
+  'CAP-2018': [
     capFrontImage,
     capSidesImage
+  ],
+  'NECK-WARMER-2018': [
+    multiTubeImage
+  ],
+  'SOCKS-2018': [
+    socksSideImage,
+    socksTopImage
+  ],
+  'GLOVES-2018': [
+    glovesImage
   ]
 }
 
 // Decorate config with product images
 Object.keys(productImages).forEach(sku => {
   const product = config.store.products.find(product => product.sku === sku)
+
+  if (!product) {
+    console.warn('Could not find product for', sku)
+  }
 
   product.images = productImages[sku]
 })
@@ -81,14 +103,8 @@ SECTIONS.OUTERWEAR.images = [
 SECTIONS.SHORTS.images = [
   bibsFrontImage
 ]
-SECTIONS.WARMERS.images = [
-  armWarmersImage
-]
-SECTIONS.HEADWEAR.images = [
+SECTIONS.ACCESSORIES.images = [
   capFrontImage
-]
-SECTIONS.TRIPS.images = [
-  tripsImage
 ]
 
 export default config

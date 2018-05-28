@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import Modal from './modal'
 import ProductDetails from './product-details'
 import ImageViewer from './product-images'
+import Sizing from './product-sizing'
 
 const ProductHolder = styled.div`
   display: flex;
@@ -15,12 +16,21 @@ const ProductHolder = styled.div`
   }
 `
 
+const ImageHolder = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 const Product = ({ product }) => {
   return (
     <Fragment>
       <Breadcrumb section={product.section} product={product} />
       <ProductHolder>
-        <ImageViewer images={product.images} />
+        <ImageHolder>
+          <ImageViewer images={product.images} />
+          <Sizing product={product} />
+        </ImageHolder>
+        
         <ProductDetails product={product} />
       </ProductHolder>
     </Fragment>

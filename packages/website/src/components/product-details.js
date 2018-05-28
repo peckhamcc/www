@@ -13,10 +13,18 @@ import AddToBasketIcon from 'react-icons/lib/fa/cart-plus'
 import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart'
 import TickIcon from 'react-icons/lib/fa/check'
 import { spacing } from '../units'
+import {
+  SelectableOption
+} from './panels'
 
 const ProductDetailsPanel = styled.div`
   padding: 0s;
   flex-grow: 1;
+
+  @media (min-width: 940px) {
+    max-width: 40vw;
+    min-width: 35vw;
+  }
 
   h2 {
     margin: 0;
@@ -26,31 +34,6 @@ const ProductDetailsPanel = styled.div`
   h4 {
     margin: ${spacing(1)} 0;
     line-height: 1;
-  }
-`
-
-const SelectableOption = styled.div`
-  border-radius: 2px;
-  border: 1px solid ${light};
-  background-color: ${props => props.selected ? lightAccent : 'transparent'};
-  cursor: pointer;
-  display: inline-block;
-  margin: 0 5px 5px 0;
-  padding: 3px ${spacing(1)};
-  min-width: 40px;
-  text-align: center;
-
-  &:active {
-    background-color: ${dark};
-  }
-
-  &:hover {
-    background-color: ${lightAccent};
-  }
-
-  @media (max-width: 940px) {
-    padding: 3px ${spacing(2)};
-    font-size: 22px;
   }
 `
 
@@ -74,23 +57,36 @@ class ProductDetails extends Component {
   constructor (props, context) {
     super(props, context)
 
-    const { product, gender, size } = props
+    const { product, gender, size, variants } = props
 
     this.state = {
       quantity: 1,
-      confirmationModalOpen: false
+      confirmationModalOpen: false,
+      variants: {}
     }
 
     if (product.genders) {
       this.state.gender = gender || product.genders[0]
+      this.state.gender = product.genders.find(gender => gender.code === this.state.gender.code) || product.genders[0]
     }
 
     if (product.sizes) {
-      this.state.size = size || product.sizes[0]
+      this.state.size = size || product.sizes.find(size => size.code === 'M') || product.sizes[0]
+      this.state.size = product.sizes.find(size => size.code === this.state.size.code) || product.sizes[0]
     }
 
     if (product.variants) {
-      this.state.variant = product.variants[0]
+      const defaultVariants = Object.keys(product.variants).reduce((output, key) => {
+        output[key] = product.variants[key].options[1]
+
+        return output
+      }, {})
+
+      this.state.variants= variants || defaultVariants
+
+      Object.keys(defaultVariants).forEach(key => {
+        this.state.variants[key] = product.variants[key].options.find(variant => variant.code === this.state.variants[key].code) || product.variants[key].options[1]
+      })
     }
   }
 
@@ -110,9 +106,11 @@ class ProductDetails extends Component {
     this.props.selectedGender(gender)
   }
 
-  chooseVariant = (variant) => {
-    this.setState({
-      variant
+  chooseVariant = (key, value) => {
+    this.setState(s => {
+      s.variants[key] = value
+
+      return s
     })
   }
 
@@ -143,7 +141,7 @@ class ProductDetails extends Component {
       size: this.state.size,
       gender: this.state.gender,
       quantity: this.state.quantity,
-      variant: this.state.variant
+      variants: this.state.variants
     })
 
     this.setState({
@@ -171,45 +169,82 @@ class ProductDetails extends Component {
           >
             <p>{product.title} Added to basket</p>
             <ButtonWrapper>
-              <Button><TickIcon /> Continue shopping</Button>
+              <Button
+                data-button='continue-shopping'
+                onClick={this.dismissModal}
+              ><TickIcon /> Continue shopping</Button>
               <Link to='/basket'>
-                <Button><ShoppingCartIcon /> Go to checkout</Button>
+                <Button
+                  data-button='go-to-checkout'
+                ><ShoppingCartIcon /> Go to checkout</Button>
               </Link>
             </ButtonWrapper>
           </Modal>
         )}
         <h2>{product.title}</h2>
         <h3><Price price={product.price} /></h3>
-        {
-          product.details.map((line, index) => <p key={index}>{line}</p>)
-        }
+        {product.details.map((line, index) => <p key={index}>{line}</p>)}
         <OptionsArea>
           {product.genders && (
             <Fragment>
               <h4>Gender</h4>
-              {product.genders.map((gender, index) => <SelectableOption selected={gender.code === this.state.gender.code} onClick={() => this.chooseGender(gender)} key={index}>{gender.name}</SelectableOption>)}
+              {product.genders.map((gender, index) => <SelectableOption
+                selected={gender.code === this.state.gender.code}
+                onClick={() => this.chooseGender(gender)}
+                key={index}
+                data-gender={gender.code}>{gender.name}</SelectableOption>)}
             </Fragment>
           )}
           {product.sizes && (
             <Fragment>
               <h4>Size</h4>
-              {product.sizes.map((size, index) => <SelectableOption selected={size.code === this.state.size.code} onClick={() => this.chooseSize(size)} key={index}>{size.code}</SelectableOption>)}
+              {product.sizes.map((size, index) => <SelectableOption
+                selected={size.code === this.state.size.code}
+                onClick={() => this.chooseSize({
+                  code: size.code,
+                  name: size.name
+                })}
+                key={index}
+                data-size={size.code}>{size.code}</SelectableOption>)}
             </Fragment>
           )}
           {product.variants && (
             <Fragment>
-              <h4>Variant</h4>
-              {product.variants.map((variant, index) => <SelectableOption selected={variant === this.state.variant} onClick={() => this.chooseSize(variant)} key={index}>{variant}</SelectableOption>)}
+              <h4>Options</h4>
+              {Object.keys(product.variants)
+                .map((key, index) => (
+                <div key={index}>
+                  <p>{product.variants[key].description}</p>
+                  {
+                    product.variants[key].options.map((variant, index) => (
+                    <SelectableOption
+                      selected={variant.code === this.state.variants[key].code}
+                      onClick={() => this.chooseVariant(key, variant)}
+                      key={index}
+                      data-variant={variant.code}>{variant.name}</SelectableOption>
+                    ))
+                  }
+                </div>
+              ))}
             </Fragment>
           )}
           <Fragment>
             <h4>Quantity</h4>
-            <Button onClick={this.decreaseQuantity}><MinusIcon /></Button>
+            <Button
+              onClick={this.decreaseQuantity}
+              data-button='decrease-quantity'
+            ><MinusIcon /></Button>
             <Quantity>{this.state.quantity}</Quantity>
-            <Button onClick={this.increaseQuantity}><PlusIcon /></Button>
+            <Button
+              onClick={this.increaseQuantity}
+              data-button='increase-quantity'
+            ><PlusIcon /></Button>
           </Fragment>
           <ButtonWrapper>
-            <Button onClick={this.addToCart}><AddToBasketIcon /> Add to basket</Button>
+            <Button
+              onClick={this.addToCart}
+              data-button='add-to-cart'
+              ><AddToBasketIcon /> Add to basket</Button>
           </ButtonWrapper>
         </OptionsArea>
       </ProductDetailsPanel>  

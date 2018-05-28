@@ -36,3 +36,8 @@ a, a:link {
 a:hover {
   color: #F10;
 }
+
+.braintree-placeholder {
+  font-size: 0;
+  margin: 0;
+}

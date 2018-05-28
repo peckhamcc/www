@@ -51,14 +51,18 @@ class Modal extends Component {
     onClose: PropTypes.func
   }
 
+  stopPropagation (event) {
+    event.stopPropagation()
+  }
+
   render () {
     return (
       <ModalBlocker onClick={this.props.onClose}>
-        <ModalWrapper width={this.props.width} height={this.props.height}>
+        <ModalWrapper width={this.props.width} height={this.props.height} onClick={this.stopPropagation}>
           <ModalHeader>
             <ModalTitle>{this.props.title}</ModalTitle>
             <ModalCloseButton>
-              <CloseButton onClick={this.props.onClose} />
+              <CloseButton onClick={this.props.onClose} style={{cursor: 'pointer'}} />
             </ModalCloseButton>
           </ModalHeader>
           <ModalContent>

@@ -1,4 +1,7 @@
-const waterfall = require('./waterfall')
+const {
+  waterfall,
+  capitalise
+} = require('./utils')
 const sendEmail = require('./send-email')
 const makePayment = require('./make-payment')
 const {
@@ -27,7 +30,15 @@ exports.handler = (event, context, callback) => {
       quantity: item.quantity,
       totalAmount: toCurrencyString(lineItem.price * item.quantity),
       unitAmount: toCurrencyString(lineItem.price),
-      productCode: `${item.gender ? item.gender.name : ''} ${item.size ? item.size.code : ''}`.trim() || undefined
+      // 127 char limit
+      description: [item.gender && `Gender: ${item.gender.name}`, item.size && `Size: ${item.size.name}`]
+        .concat(item.variants
+          ? Object.keys(item.variants)
+            .map(variant =>
+              `${capitalise(variant)}: ${item.variants[variant].name}`) : [])
+        .filter(Boolean)
+        .join(', ')
+        .trim()
     }
   })
 
@@ -36,9 +47,12 @@ exports.handler = (event, context, callback) => {
   waterfall([
     (cb) => makePayment(amount, event.nonce, lineItems, event.firstName, event.lastName, event.email, cb),
     (transactionId, cb) => sendEmail(event.email, event.firstName, event.lastName, lineItems, amount, transactionId, cb)
-  ], (error, [paymentResult, emaiResult]) => {
+  ], (error, results) => {
     let statusCode = 500
     let responseBody = {}
+    const [
+      paymentResult
+    ] = results || []
 
     if (error) {
       console.error(error)
@@ -49,7 +63,7 @@ exports.handler = (event, context, callback) => {
         statusCode = 400
 
         responseBody = {
-          errors: paymentResult.errors.deepErrors()
+          errors: paymentResult && paymentResult.errors && paymentResult.errors.deepErrors()
         }
       }
     }
