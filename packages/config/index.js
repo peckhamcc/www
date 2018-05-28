@@ -632,6 +632,8 @@ const config = {
 }
 
 if (process.env.NODE_ENV !== 'development') {
+  config.lambda.clientToken = 'https://2vgzz1azxk.execute-api.eu-west-2.amazonaws.com/prod/_peckhamcc_lambda-create-client-token'
+  config.lambda.sendPayment = 'https://2vgzz1azxk.execute-api.eu-west-2.amazonaws.com/prod/_peckhamcc_lambda-send-payment'
   config.lambda.sendContactFormEmail = 'https://2vgzz1azxk.execute-api.eu-west-2.amazonaws.com/prod/contact'
 }
 

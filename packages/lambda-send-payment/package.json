@@ -17,7 +17,7 @@
     "test": "npm run build && node-lambda run -j test/event.json -x test/context.json -f test/test.env",
     "clean": "rm -rf build",
     "build": "cp ../config/index.js config.js && node-lambda build",
-    "deploy": "echo BT_MERCHANT_ACCOUNT_ID=$BT_MERCHANT_ACCOUNT_ID > deploy.env && echo BT_ENVIRONMENT=$BT_ENVIRONMENT > deploy.env && echo BT_MERCHANT_ID=$BT_MERCHANT_ID > deploy.env && echo BT_PUBLIC_KEY=$BT_PUBLIC_KEY > deploy.env && echo BT_PRIVATE_KEY=$BT_PRIVATE_KEY > deploy.env && node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/send-payment-role --region eu-west-2",
+    "deploy": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/send-payment-role --region eu-west-2",
     "lint": "standard"
   },
   "devDependencies": {
