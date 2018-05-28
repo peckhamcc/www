@@ -8,6 +8,30 @@ const {
   config
 } = require('./config')
 
+const allowedOrigins = [
+  'https://dev.peckham.cc',
+  'https://www.peckham.cc',
+  'https://peckham.cc'
+]
+
+const respond = (statusCode, event, response, callback) => {
+  let allowOrigin = 'null'
+
+  if (event && event.headers && allowedOrigins.includes(event.headers.origin)) {
+    allowOrigin = event.headers.origin
+  }
+
+  callback(null, {
+    statusCode: statusCode,
+    headers: {
+      'Access-Control-Allow-Origin': allowOrigin,
+      'Access-Control-Allow-Credentials': true
+    },
+    body: JSON.stringify(response, null, 2),
+    isBase64Encoded: false
+  })
+}
+
 const toCurrencyString = (amount) => {
   const asString = amount.toString()
 
@@ -75,13 +99,6 @@ exports.handler = (event, context, callback) => {
       }
     }
 
-    const response = {
-      statusCode: statusCode,
-      headers: {},
-      body: JSON.stringify(responseBody),
-      isBase64Encoded: false
-    }
-
-    callback(null, response)
+    respond(statusCode, event, responseBody, callback)
   })
 }

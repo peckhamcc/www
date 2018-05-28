@@ -6,6 +6,30 @@ var gateway = braintree.connect({
   privateKey: process.env.BT_PRIVATE_KEY
 })
 
+const allowedOrigins = [
+  'https://dev.peckham.cc',
+  'https://www.peckham.cc',
+  'https://peckham.cc'
+]
+
+const respond = (statusCode, event, response, callback) => {
+  let allowOrigin = 'null'
+
+  if (event && event.headers && allowedOrigins.includes(event.headers.origin)) {
+    allowOrigin = event.headers.origin
+  }
+
+  callback(null, {
+    statusCode: statusCode,
+    headers: {
+      'Access-Control-Allow-Origin': allowOrigin,
+      'Access-Control-Allow-Credentials': true
+    },
+    body: JSON.stringify(response, null, 2),
+    isBase64Encoded: false
+  })
+}
+
 exports.handler = (event, context, callback) => {
   gateway.clientToken.generate({}, (error, result) => {
     var statusCode = 200
@@ -19,13 +43,6 @@ exports.handler = (event, context, callback) => {
       responseBody.clientToken = result.clientToken
     }
 
-    var response = {
-      statusCode: statusCode,
-      headers: {},
-      body: JSON.stringify(responseBody),
-      isBase64Encoded: false
-    }
-
-    callback(null, response)
+    respond(statusCode, event, responseBody, callback)
   })
 }
