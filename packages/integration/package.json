@@ -10,7 +10,7 @@
   },
   "scripts": {
     "lint": "standard",
-    "test": "ava"
+    "integration": "ava"
   },
   "devDependencies": {
     "@peckhamcc/server": "^1.0.0",
