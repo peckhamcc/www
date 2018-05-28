@@ -82,15 +82,14 @@ export default () => {
                   <Route path='/riding' component={Riding} />
                 </Flag>
 
-                <Flag name='store'>
-                  <Fragment>
-                    <Route exact path='/shop' component={Shop} />
-                    <Route path='/shop/:slug' component={Item} />
-                    <Route path='/basket' component={Basket} />
-                    <Route path='/checkout' component={Checkout} />
-                    <Route path='/orders' component={Orders} />
-                  </Fragment>
-                </Flag>
+                <Fragment>
+                  <Route exact path='/shop' component={Shop} />
+                  <Route path='/shop/:slug' component={Item} />
+                  <Route path='/basket' component={Basket} />
+                  <Route path='/checkout' component={Checkout} />
+                  <Route path='/orders' component={Orders} />
+                </Fragment>
+
               </FlexItem>
               <Break />
               <Footer />

@@ -360,7 +360,7 @@ const config = {
     sendContactFormEmail: '/lambda/send-contact-form-email'
   },
   flags: {
-    store: true,
+    store: false,
     riding: false,
     email: true
   },
