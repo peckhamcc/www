@@ -185,8 +185,6 @@ class EnterDetails extends Component {
       state.errors.email = true
     }
 
-    console.info('validated', state)
-
     this.setState(state)
   }
 
@@ -205,7 +203,6 @@ class EnterDetails extends Component {
   }
 
   render () {
-    console.info(this.state)
     return (
       <CheckoutWrapper>
         <h3>Your details:</h3>

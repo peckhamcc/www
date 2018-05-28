@@ -9,11 +9,26 @@ const shopReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       const existingItem = state.cart.find(
-        item => item.sku === action.payload.sku && 
-          item.gender === action.payload.gender && 
-          item.size.code === action.payload.size.code && 
-          item.variant === action.payload.variant
-        )
+        item => {
+          let result = item.sku === action.payload.sku
+
+          if (item.gender && item.gender.code && action.payload.gender && action.payload.gender.code) {
+            result = result && item.gender.code === action.payload.gender.code
+          }
+
+          if (item.size && item.size.code && action.payload.size && action.payload.size.code) {
+            result = result && item.size.code === action.payload.size.code
+          }
+
+          Object.keys(item.variants || []).forEach(name => {
+            if (item.variants[name] && item.variants[name].code && action.payload.variants && action.payload.variants[name] && action.payload.variants[name].code) {
+              result = result && item.variants[name].code === action.payload.variants[name].code
+            }
+          })
+
+          return result
+        }
+      )
 
       if (existingItem) {
         existingItem.quantity += action.payload.quantity
