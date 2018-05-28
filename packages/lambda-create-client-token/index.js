@@ -25,7 +25,7 @@ const respond = (statusCode, event, response, callback) => {
       'Access-Control-Allow-Origin': allowOrigin,
       'Access-Control-Allow-Credentials': true
     },
-    body: JSON.stringify(response, null, 2),
+    body: response ? JSON.stringify(response, null, 2) : '',
     isBase64Encoded: false
   })
 }

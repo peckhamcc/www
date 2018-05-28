@@ -27,7 +27,7 @@ const respond = (statusCode, event, response, callback) => {
       'Access-Control-Allow-Origin': allowOrigin,
       'Access-Control-Allow-Credentials': true
     },
-    body: JSON.stringify(response, null, 2),
+    body: response ? JSON.stringify(response, null, 2) : '',
     isBase64Encoded: false
   })
 }
@@ -39,8 +39,9 @@ const toCurrencyString = (amount) => {
 }
 
 exports.handler = (event, context, callback) => {
-  console.info('event', JSON.stringify(event, null, 2))
-  console.info('context', JSON.stringify(context, null, 2))
+  if (!event || !event.items || !event.nonce || !event.firstName || !event.lastName || !event.email) {
+    return respond(200, event, '', callback)
+  }
 
   let amount = 0
 
