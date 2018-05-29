@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.211.0",
-    "braintree": "^2.8.0"
+    "braintree": "^2.8.0",
+    "middy": "^0.14.0"
   }
 }
