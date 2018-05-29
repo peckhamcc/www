@@ -17,7 +17,6 @@
     "test": "npm run build && ava test.js",
     "clean": "rm -rf build",
     "build": "cp ../config/index.js config.js && node-lambda build",
-    "deploy": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/send-cors-headers-role --region eu-west-2",
     "lint": "standard"
   },
   "devDependencies": {
