@@ -11,46 +11,52 @@ const {
   config
 } = require('./config')
 
-const sendEmail = function (body, context, callback) {
-  const {
-    name, email, message
-  } = body
+const sendEmail = async (body, context, callback) => {
+  try {
+    const {
+      name, email, message
+    } = body
 
-  new AWS.SES({
-    apiVersion: config.aws.ses.version,
-    region: config.aws.ses.region
-  })
-    .sendEmail({
-      Destination: {
-        CcAddresses: [],
-        ToAddresses: [
-          config.email.to
-        ]
-      },
-      Message: {
-        Body: {
-          Html: {
-            Charset: 'UTF-8',
-            Data: htmlTemplate(name, email, message)
+    await new AWS.SES({
+      apiVersion: config.aws.ses.version,
+      region: config.aws.ses.region
+    })
+      .sendEmail({
+        Destination: {
+          CcAddresses: [],
+          ToAddresses: [
+            config.email.to
+          ]
+        },
+        Message: {
+          Body: {
+            Html: {
+              Charset: 'UTF-8',
+              Data: htmlTemplate(name, email, message)
+            },
+            Text: {
+              Charset: 'UTF-8',
+              Data: textTemplate(name, email, message)
+            }
           },
-          Text: {
+          Subject: {
             Charset: 'UTF-8',
-            Data: textTemplate(name, email, message)
+            Data: `Peckham Cycle Club contact form message`
           }
         },
-        Subject: {
-          Charset: 'UTF-8',
-          Data: `Peckham Cycle Club contact form message`
-        }
-      },
-      Source: config.email.from,
-      ReplyToAddresses: [
-        email
-      ]
-    })
-    .promise()
-    .then(() => callback())
-    .catch((error) => callback(error))
+        Source: config.email.from,
+        ReplyToAddresses: [
+          email
+        ]
+      })
+      .promise()
+
+    callback()
+  } catch (error) {
+    console.error(error)
+
+    callback(error)
+  }
 }
 
 const htmlTemplate = (name, email, message) => `
