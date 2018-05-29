@@ -93,7 +93,13 @@ class LoadingToken extends Component {
     fetch(config.lambda.clientToken, {
       method: 'POST'
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status !== 200) {
+          throw new Error(response.statusText)
+        }
+
+        return response.json()
+      })
       .then(result => {
         this.props.onToken(result.clientToken)
       })
