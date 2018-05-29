@@ -25,18 +25,24 @@ const toCurrencyString = (amount) => {
 }
 */
 
-const sendPayment = function (body, context, callback) {
+const sendPayment = function (event, context, callback) {
   console.info(Array.prototype.slice.call(arguments))
 
-  return callback()
-/*
+  return callback(null, {
+    statusCode: 200,
+    body: JSON.stringify({
+      transaction: '12345'
+    })
+  })
+
+  /*
   const {
     items,
     nonce,
     firstName,
     lastName,
     email
-  } = body
+  } = event.body
 
   let amount = 0
 
