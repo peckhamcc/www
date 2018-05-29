@@ -20,15 +20,7 @@ const createClientToken = function (body, context, callback) {
     console.error(error)
   }
 
-  gateway.clientToken.generate({}, (error, result) => {
-    if (error) {
-      return callback(error)
-    }
-
-    callback(null, {
-      clientToken: result.clientToken
-    })
-  })
+  return gateway.clientToken.generate()
 }
 
 const handler = middy(createClientToken)
