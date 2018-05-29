@@ -12,6 +12,8 @@ const {
 } = require('./config')
 
 const respond = (error, event, statusCode, callback, body) => {
+  console.info('Responding', error, event, statusCode, callback, body)
+
   if (error) {
     console.error(error)
   }
@@ -24,9 +26,13 @@ const respond = (error, event, statusCode, callback, body) => {
 }
 
 const sendEmail = (event, context, callback) => {
+  console.info('Sending email')
+
   const {
     name, email, message
   } = event.body
+
+  console.info(name, email, message)
 
   new AWS.SES({
     apiVersion: config.aws.ses.version,
@@ -61,7 +67,7 @@ const sendEmail = (event, context, callback) => {
       ]
     })
     .promise()
-    .then((data) => respond(null, event, 201, callback))
+    .then(() => respond(null, event, 201, callback))
     .catch((error) => respond(error, event, 500, callback))
 }
 
