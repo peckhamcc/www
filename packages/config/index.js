@@ -632,9 +632,9 @@ const config = {
 }
 
 if (process.env.NODE_ENV !== 'development') {
-  config.lambda.clientToken = 'https://2vgzz1azxk.execute-api.eu-west-2.amazonaws.com/prod/_peckhamcc_lambda-create-client-token'
-  config.lambda.sendPayment = 'https://2vgzz1azxk.execute-api.eu-west-2.amazonaws.com/prod/_peckhamcc_lambda-send-payment'
-  config.lambda.sendContactFormEmail = 'https://2vgzz1azxk.execute-api.eu-west-2.amazonaws.com/prod/-peckhamcc-lambda-send-contact-form-email'
+  config.lambda.clientToken = 'https://2vgzz1azxk.execute-api.eu-west-2.amazonaws.com/prod/create-client-token'
+  config.lambda.sendPayment = 'https://2vgzz1azxk.execute-api.eu-west-2.amazonaws.com/prod/send-payment'
+  config.lambda.sendContactFormEmail = 'https://2vgzz1azxk.execute-api.eu-west-2.amazonaws.com/prod/contact'
 }
 
 module.exports = {
