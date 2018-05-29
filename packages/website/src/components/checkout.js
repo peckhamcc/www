@@ -367,6 +367,9 @@ class Checkout extends Component {
 
     fetch(config.lambda.sendPayment, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         firstName: this.state.customerDetails.firstName.trim(),
         lastName: this.state.customerDetails.lastName.trim(),
