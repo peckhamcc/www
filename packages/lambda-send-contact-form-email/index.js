@@ -1,70 +1,27 @@
+const AWS = require('aws-sdk')
+const middy = require('middy')
+const {
+  jsonBodyParser,
+  validator,
+  httpErrorHandler,
+  httpHeaderNormalizer,
+  cors
+} = require('middy/middlewares')
 const {
   config
 } = require('./config')
-const AWS = require('aws-sdk')
 
-const middy = require('middy')
-const { jsonBodyParser, validator, httpErrorHandler, httpHeaderNormalizer, cors } = require('middy/middlewares')
-
-/*
-const allowedOrigins = [
-  'https://dev.peckham.cc',
-  'https://www.peckham.cc',
-  'https://peckham.cc'
-]
-*/
 const respond = (error, event, statusCode, callback, body) => {
-/*  let allowOrigin = 'null'
-
-  if (event && event.headers && allowedOrigins.includes(event.headers.origin)) {
-    allowOrigin = event.headers.origin
-  }
-*/
   if (error) {
     console.error(error)
   }
 
   callback(null, {
     statusCode: statusCode,
-    /*
-    headers: {
-      'Access-Control-Allow-Origin': allowOrigin,
-      'Access-Control-Allow-Credentials': true
-    },
-    */
-    body: body ? JSON.stringify(body) : '',
+    body: body ? JSON.stringify(body) : null,
     isBase64Encoded: false
   })
 }
-/*
-const sendEmail = (event, context, callback) => {
-  if (!event || !event.body) {
-    return respond(400, event, callback)
-  }
-
-  try {
-    var {name, email, message} = JSON.parse(event.body)
-  } catch (error) {
-    console.error(error)
-
-    return respond(400, event, callback)
-  }
-
-  if (!name || !email || !message) {
-    return respond(400, event, callback)
-  }
-
-  sendEmail(name, email, message, (error) => {
-    if (error) {
-      console.error(error)
-
-      return respond(500, event, callback)
-    }
-
-    respond(201, event, callback)
-  })
-}
-*/
 
 const sendEmail = (event, context, callback) => {
   const {
