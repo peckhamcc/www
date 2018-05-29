@@ -1,57 +1,42 @@
+// const AWS = require('aws-sdk')
+const middy = require('middy')
+const {
+  jsonBodyParser,
+  validator,
+  httpErrorHandler,
+  httpHeaderNormalizer,
+  cors
+} = require('middy/middlewares')
+/*
+const {
+  config
+} = require('./config')
 const {
   waterfall,
   capitalise
 } = require('./utils')
 const sendEmail = require('./send-email')
 const makePayment = require('./make-payment')
-const {
-  config
-} = require('./config')
-
-const allowedOrigins = [
-  'https://dev.peckham.cc',
-  'https://www.peckham.cc',
-  'https://peckham.cc'
-]
-
-const respond = (statusCode, event, response, callback) => {
-  let allowOrigin = 'null'
-
-  if (event && event.headers && allowedOrigins.includes(event.headers.origin)) {
-    allowOrigin = event.headers.origin
-  }
-
-  callback(null, {
-    statusCode: statusCode,
-    headers: {
-      'Access-Control-Allow-Origin': allowOrigin,
-      'Access-Control-Allow-Credentials': true
-    },
-    body: response ? JSON.stringify(response, null, 2) : '',
-    isBase64Encoded: false
-  })
-}
 
 const toCurrencyString = (amount) => {
   const asString = amount.toString()
 
   return `${asString.substring(0, asString.length - 2)}.${asString.substring(asString.length - 2)}`
 }
+*/
 
-exports.handler = (event, context, callback) => {
-  let request
+const sendPayment = function (body, context, callback) {
+  console.info(Array.prototype.slice.call(arguments))
 
-  try {
-    request = JSON.parse(event.body)
-  } catch (error) {
-    console.error(error)
-
-    return respond(400, event, '', callback)
-  }
-
-  if (!request || !request.items || !request.nonce || !request.firstName || !request.lastName || !request.email) {
-    return respond(200, event, '', callback)
-  }
+  return callback()
+/*
+  const {
+    items,
+    nonce,
+    firstName,
+    lastName,
+    email
+  } = body
 
   let amount = 0
 
@@ -115,4 +100,65 @@ exports.handler = (event, context, callback) => {
 
     respond(statusCode, event, responseBody, callback)
   })
+
+  */
+}
+
+const inputSchema = {
+  type: 'object',
+  properties: {
+    body: {
+      type: 'object',
+      properties: {
+        items: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              sku: { type: 'string', pattern: '.+' },
+              title: { type: 'string', pattern: '.+' },
+              quantity: { type: 'number', exclusiveMinimum: 0 },
+              size: {
+                type: 'object',
+                properties: {
+                  code: { type: 'string', pattern: '.+' },
+                  name: { type: 'string', pattern: '.+' }
+                }
+              },
+              gender: {
+                type: 'object',
+                properties: {
+                  code: { type: 'string', pattern: '.+' },
+                  name: { type: 'string', pattern: '.+' }
+                }
+              },
+              variants: {
+                type: 'object'
+              },
+              id: { type: 'string', pattern: '.+' }
+            },
+            required: ['sku', 'title', 'quantity']
+          }
+        },
+        nonce: { type: 'string', pattern: '.+' },
+        firstName: { type: 'string', pattern: '.+' },
+        lastName: { type: 'string', pattern: '.+' },
+        email: { type: 'string', pattern: '.+' }
+      },
+      required: ['items', 'nonce', 'firstName', 'lastName', 'email']
+    }
+  }
+}
+
+const handler = middy(sendPayment)
+  .use(cors({
+    origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
+  }))
+  .use(httpHeaderNormalizer())
+  .use(jsonBodyParser())
+  .use(validator({inputSchema}))
+  .use(httpErrorHandler())
+
+module.exports = {
+  handler
 }
