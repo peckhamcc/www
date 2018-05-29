@@ -39,17 +39,24 @@ const toCurrencyString = (amount) => {
 }
 
 exports.handler = (event, context, callback) => {
-  console.info('event', JSON.stringify(event, null, 2))
-  console.info('context', JSON.stringify(context, null, 2))
+  let request
 
-  if (!event || !event.items || !event.nonce || !event.firstName || !event.lastName || !event.email) {
+  try {
+    request = JSON.parse(event.body)
+  } catch (error) {
+    console.error(error)
+
+    return respond(400, event, '', callback)
+  }
+
+  if (!request || !request.items || !request.nonce || !request.firstName || !request.lastName || !request.email) {
     return respond(200, event, '', callback)
   }
 
   let amount = 0
 
   // What did they order
-  const lineItems = event.items.map(item => {
+  const lineItems = request.items.map(item => {
     const lineItem = config.store.products.find(lineItem => lineItem.sku === item.sku)
 
     // Work out total cost of items
@@ -76,8 +83,8 @@ exports.handler = (event, context, callback) => {
   amount = toCurrencyString(amount)
 
   waterfall([
-    (cb) => makePayment(amount, event.nonce, lineItems, event.firstName, event.lastName, event.email, cb),
-    (transactionId, cb) => sendEmail(event.email, event.firstName, event.lastName, lineItems, amount, transactionId, cb)
+    (cb) => makePayment(amount, request.nonce, lineItems, request.firstName, request.lastName, request.email, cb),
+    (transactionId, cb) => sendEmail(request.email, request.firstName, request.lastName, lineItems, amount, transactionId, cb)
   ], (error, results) => {
     let statusCode = 500
     let responseBody = {}
