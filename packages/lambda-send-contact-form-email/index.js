@@ -27,6 +27,8 @@ const respond = (error, event, statusCode, callback, body) => {
 
 const sendEmail = (event, context, callback) => {
   console.info('Sending email')
+  console.info(JSON.stringify(event, null, 2))
+  console.info(JSON.stringify(context, null, 2))
 
   const {
     name, email, message
