@@ -1,4 +1,3 @@
-// const AWS = require('aws-sdk')
 const middy = require('middy')
 const {
   jsonBodyParser,
@@ -7,7 +6,6 @@ const {
   httpHeaderNormalizer,
   cors
 } = require('middy/middlewares')
-/*
 const {
   config
 } = require('./config')
@@ -23,19 +21,8 @@ const toCurrencyString = (amount) => {
 
   return `${asString.substring(0, asString.length - 2)}.${asString.substring(asString.length - 2)}`
 }
-*/
 
 const sendPayment = function (event, context, callback) {
-  console.info(Array.prototype.slice.call(arguments))
-
-  return callback(null, {
-    statusCode: 200,
-    body: JSON.stringify({
-      transaction: '12345'
-    })
-  })
-
-  /*
   const {
     items,
     nonce,
@@ -47,7 +34,7 @@ const sendPayment = function (event, context, callback) {
   let amount = 0
 
   // What did they order
-  const lineItems = request.items.map(item => {
+  const lineItems = items.map(item => {
     const lineItem = config.store.products.find(lineItem => lineItem.sku === item.sku)
 
     // Work out total cost of items
@@ -74,8 +61,8 @@ const sendPayment = function (event, context, callback) {
   amount = toCurrencyString(amount)
 
   waterfall([
-    (cb) => makePayment(amount, request.nonce, lineItems, request.firstName, request.lastName, request.email, cb),
-    (transactionId, cb) => sendEmail(request.email, request.firstName, request.lastName, lineItems, amount, transactionId, cb)
+    (cb) => makePayment(amount, nonce, lineItems, firstName, lastName, email, cb),
+    (transactionId, cb) => sendEmail(email, firstName, lastName, lineItems, amount, transactionId, cb)
   ], (error, results) => {
     let statusCode = 500
     let responseBody = {}
@@ -104,10 +91,11 @@ const sendPayment = function (event, context, callback) {
       }
     }
 
-    respond(statusCode, event, responseBody, callback)
+    callback(null, {
+      statusCode,
+      body: responseBody
+    })
   })
-
-  */
 }
 
 const inputSchema = {
