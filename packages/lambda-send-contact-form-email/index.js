@@ -11,8 +11,8 @@ const {
   config
 } = require('./config')
 
-const respond = (error, event, statusCode, callback, body) => {
-  console.info('Responding', error, event, statusCode, callback, body)
+const respond = (error, statusCode, callback, body) => {
+  console.info('Responding', error, statusCode, callback, body)
 
   if (error) {
     console.error(error)
@@ -25,14 +25,11 @@ const respond = (error, event, statusCode, callback, body) => {
   })
 }
 
-const sendEmail = function (event, context, callback) {
+const sendEmail = function ({
+  name, email, message
+}, context, callback) {
   console.info('Sending email')
   console.info('Args', JSON.stringify(arguments, null, 2))
-
-  const {
-    name, email, message
-  } = event.body
-
   console.info('Details', name, email, message)
 
   new AWS.SES({
@@ -68,8 +65,8 @@ const sendEmail = function (event, context, callback) {
       ]
     })
     .promise()
-    .then(() => respond(null, event, 201, callback))
-    .catch((error) => respond(error, event, 500, callback))
+    .then(() => respond(null, 201, callback))
+    .catch((error) => respond(error, 500, callback))
 }
 
 const htmlTemplate = (name, email, message) => `
