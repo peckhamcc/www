@@ -12,9 +12,6 @@ const {
 } = require('./config')
 
 const sendEmail = function (body, context, callback) {
-  console.info('Sending email')
-  console.info('Args', JSON.stringify(Array.prototype.slice.call(arguments), null, 2))
-
   const {
     name, email, message
   } = body
