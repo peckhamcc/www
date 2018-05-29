@@ -12,7 +12,8 @@ const gateway = braintree.connect({
   privateKey: process.env.BT_PRIVATE_KEY
 })
 
-const createClientToken = (body, context, callback) => {
+const createClientToken = function (body, context, callback) {
+  console.info('Args', Array.slice.call(arguments))
   gateway.clientToken.generate({}, (error, result) => {
     if (error) {
       return callback(error)
