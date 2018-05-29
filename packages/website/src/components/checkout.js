@@ -378,7 +378,13 @@ class Checkout extends Component {
         items: this.props.cart
       })
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status !== 200) {
+          throw new Error(response.statusText)
+        }
+
+        response.json()
+      })
       .then(result => {
         console.info('payment result', result)
 
