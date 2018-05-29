@@ -13,6 +13,7 @@ const gateway = braintree.connect({
 })
 
 const createClientToken = function (body, context, callback) {
+  console.info('Creating client token')
   console.info('Args', Array.slice.call(arguments))
   gateway.clientToken.generate({}, (error, result) => {
     if (error) {
