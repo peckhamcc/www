@@ -39,6 +39,9 @@ const toCurrencyString = (amount) => {
 }
 
 exports.handler = (event, context, callback) => {
+  console.info('event', JSON.stringify(event, null, 2))
+  console.info('context', JSON.stringify(context, null, 2))
+
   if (!event || !event.items || !event.nonce || !event.firstName || !event.lastName || !event.email) {
     return respond(200, event, '', callback)
   }
