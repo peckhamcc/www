@@ -25,16 +25,15 @@ const respond = (error, event, statusCode, callback, body) => {
   })
 }
 
-const sendEmail = (event, context, callback) => {
+const sendEmail = function (event, context, callback) {
   console.info('Sending email')
-  console.info(JSON.stringify(event, null, 2))
-  console.info(JSON.stringify(context, null, 2))
+  console.info('Args', JSON.stringify(arguments, null, 2))
 
   const {
     name, email, message
   } = event.body
 
-  console.info(name, email, message)
+  console.info('Details', name, email, message)
 
   new AWS.SES({
     apiVersion: config.aws.ses.version,
@@ -116,7 +115,9 @@ const inputSchema = {
 }
 
 const handler = middy(sendEmail)
-  .use(cors())
+  .use(cors({
+    origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
+  }))
   .use(httpHeaderNormalizer())
   .use(jsonBodyParser())
   .use(validator({inputSchema}))
