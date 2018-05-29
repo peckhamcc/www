@@ -22,6 +22,9 @@ test.cb('Should send email', t => {
   })
 
   lambda.handler({
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       name: faker.name.findName(),
       email: faker.internet.email(),
@@ -42,6 +45,9 @@ test.cb('Should require email', t => {
   })
 
   lambda.handler({
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       name: faker.name.findName(),
       message: faker.lorem.paragraph()
@@ -61,6 +67,9 @@ test.cb('Should require name', t => {
   })
 
   lambda.handler({
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       email: faker.internet.email(),
       message: faker.lorem.paragraph()
@@ -80,6 +89,9 @@ test.cb('Should require message', t => {
   })
 
   lambda.handler({
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       name: faker.name.findName(),
       email: faker.internet.email()
@@ -99,11 +111,14 @@ test.cb('Should survive malformed body', t => {
   })
 
   lambda.handler({
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: 'nope!'
   }, {}, (error, response) => {
     t.falsy(error)
 
-    t.is(response.statusCode, 400)
+    t.is(response.statusCode, 422)
 
     t.end()
   })
@@ -114,24 +129,14 @@ test.cb('Should survive missing body', t => {
     promise: sinon.stub().returns(Promise.resolve({}))
   })
 
-  lambda.handler({}, {}, (error, response) => {
+  lambda.handler({
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }, {}, (error, response) => {
     t.falsy(error)
 
-    t.is(response.statusCode, 400)
-
-    t.end()
-  })
-})
-
-test.cb('Should survive missing event', t => {
-  aws.SES.prototype.sendEmail = sinon.stub().returns({
-    promise: sinon.stub().returns(Promise.resolve({}))
-  })
-
-  lambda.handler(null, {}, (error, response) => {
-    t.falsy(error)
-
-    t.is(response.statusCode, 400)
+    t.is(response.statusCode, 422)
 
     t.end()
   })
@@ -143,6 +148,9 @@ test.cb('Should fail to send email', t => {
   })
 
   lambda.handler({
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       name: faker.name.findName(),
       email: faker.internet.email(),

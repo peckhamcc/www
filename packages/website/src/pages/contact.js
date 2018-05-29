@@ -86,6 +86,9 @@ class ContactPage extends Component {
 
     fetch(config.lambda.sendContactFormEmail, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         name,
         email,

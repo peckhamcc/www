@@ -3,31 +3,41 @@ const {
 } = require('./config')
 const AWS = require('aws-sdk')
 
+const middy = require('middy')
+const { jsonBodyParser, validator, httpErrorHandler, httpHeaderNormalizer, cors } = require('middy/middlewares')
+
+/*
 const allowedOrigins = [
   'https://dev.peckham.cc',
   'https://www.peckham.cc',
   'https://peckham.cc'
 ]
-
-const respond = (statusCode, event, callback) => {
-  let allowOrigin = 'null'
+*/
+const respond = (error, event, statusCode, callback, body) => {
+/*  let allowOrigin = 'null'
 
   if (event && event.headers && allowedOrigins.includes(event.headers.origin)) {
     allowOrigin = event.headers.origin
   }
+*/
+  if (error) {
+    console.error(error)
+  }
 
   callback(null, {
     statusCode: statusCode,
+    /*
     headers: {
       'Access-Control-Allow-Origin': allowOrigin,
       'Access-Control-Allow-Credentials': true
     },
-    body: '',
+    */
+    body: body ? JSON.stringify(body) : '',
     isBase64Encoded: false
   })
 }
-
-exports.handler = (event, context, callback) => {
+/*
+const sendEmail = (event, context, callback) => {
   if (!event || !event.body) {
     return respond(400, event, callback)
   }
@@ -54,8 +64,13 @@ exports.handler = (event, context, callback) => {
     respond(201, event, callback)
   })
 }
+*/
 
-const sendEmail = (name, email, message, callback) => {
+const sendEmail = (event, context, callback) => {
+  const {
+    name, email, message
+  } = event.body
+
   new AWS.SES({
     apiVersion: config.aws.ses.version,
     region: config.aws.ses.region
@@ -89,8 +104,8 @@ const sendEmail = (name, email, message, callback) => {
       ]
     })
     .promise()
-    .then((data) => callback(null, data))
-    .catch((error) => callback(error))
+    .then((data) => respond(null, event, 201, callback))
+    .catch((error) => respond(error, event, 500, callback))
 }
 
 const htmlTemplate = (name, email, message) => `
@@ -119,3 +134,27 @@ ${name} (${email}) submitted this message via the peckham.cc contact form:
 
 ${message.trim()}
 `
+
+const inputSchema = {
+  type: 'object',
+  properties: {
+    body: {
+      type: 'object',
+      properties: {
+        name: { type: 'string', pattern: '.+' },
+        email: { type: 'string', pattern: '.+' },
+        message: { type: 'string', pattern: '.+' }
+      },
+      required: ['name', 'email', 'message']
+    }
+  }
+}
+
+const handler = middy(sendEmail)
+  .use(cors())
+  .use(httpHeaderNormalizer())
+  .use(jsonBodyParser())
+  .use(validator({inputSchema}))
+  .use(httpErrorHandler())
+
+module.exports = { handler }
