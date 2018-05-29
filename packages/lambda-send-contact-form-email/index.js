@@ -11,18 +11,6 @@ const {
   config
 } = require('./config')
 
-const respond = (error, statusCode, callback, body) => {
-  if (error) {
-    console.error(error)
-  }
-
-  callback(null, {
-    statusCode: statusCode,
-    body: body ? JSON.stringify(body) : null,
-    isBase64Encoded: false
-  })
-}
-
 const sendEmail = function (body, context, callback) {
   console.info('Sending email')
   console.info('Args', JSON.stringify(Array.prototype.slice.call(arguments), null, 2))
@@ -64,8 +52,8 @@ const sendEmail = function (body, context, callback) {
       ]
     })
     .promise()
-    .then(() => respond(null, 201, callback))
-    .catch((error) => respond(error, 500, callback))
+    .then(() => callback())
+    .catch((error) => callback(error))
 }
 
 const htmlTemplate = (name, email, message) => `
