@@ -12,8 +12,6 @@ const {
 } = require('./config')
 
 const respond = (error, statusCode, callback, body) => {
-  console.info('Responding', error, statusCode, callback, body)
-
   if (error) {
     console.error(error)
   }
@@ -25,12 +23,13 @@ const respond = (error, statusCode, callback, body) => {
   })
 }
 
-const sendEmail = function ({
-  name, email, message
-}, context, callback) {
+const sendEmail = function (body, context, callback) {
   console.info('Sending email')
-  console.info('Args', JSON.stringify(arguments, null, 2))
-  console.info('Details', name, email, message)
+  console.info('Args', JSON.stringify(Array.prototype.slice.call(arguments), null, 2))
+
+  const {
+    name, email, message
+  } = body
 
   new AWS.SES({
     apiVersion: config.aws.ses.version,
@@ -120,4 +119,6 @@ const handler = middy(sendEmail)
   .use(validator({inputSchema}))
   .use(httpErrorHandler())
 
-module.exports = { handler }
+module.exports = {
+  handler
+}
