@@ -13,14 +13,18 @@ const gateway = braintree.connect({
 })
 
 const createClientToken = function (body, context, callback) {
-  console.info('Creating client token')
-  try {
-    console.info('Args', Array.prototype.slice.call(arguments))
-  } catch (error) {
-    console.error(error)
-  }
+  gateway.clientToken.generate({}, (error, result) => {
+    if (error) {
+      return callback(error)
+    }
 
-  return gateway.clientToken.generate()
+    callback(null, {
+      statusCode: 200,
+      body: JSON.stringify({
+        clientToken: result.clientToken
+      }, null, 2)
+    })
+  })
 }
 
 const handler = middy(createClientToken)
