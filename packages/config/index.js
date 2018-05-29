@@ -390,7 +390,7 @@ const config = {
         'It comes with a full-length YKK zip, silicone grippers on the arms & waist and is available in various lengths and sizes and is handmade in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 8200,
+      price: 8100,
       sizes: JERSEY_SIZES,
       variants: {
         sleeve: {
@@ -418,7 +418,7 @@ const config = {
         'It comes with a full-length YKK zip, silicone grippers on the arms & waist and is available in various lengths and sizes and is handmade in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 8700,
+      price: 8500,
       sizes: JERSEY_SIZES,
       variants: {
         sleeve: {
@@ -446,7 +446,7 @@ const config = {
         'It comes with a full-length YKK zip, silicone grippers on the cuffs & waist and is handmade in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 9400,
+      price: 9300,
       sizes: JERSEY_SIZES,
       genders: GENDERS,
       fs260: {
@@ -496,7 +496,7 @@ const config = {
         'It has a deep neck for increased wind protection, comes with a full-length YKK zip, three rear pockets and packs down to easily fit in a jersey pocket.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 6600,
+      price: 6500,
       sizes: JERSEY_SIZES,
       genders: GENDERS,
       fs260: {
@@ -541,7 +541,7 @@ const config = {
         'Thermal winter tights made from Roubaix high stretch insulation (e.g. nylon/lycra construction with a brushed inner to retain heat).',
         'Handmade in Scotland, it is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 12300,
+      price: 12200,
       sizes: JERSEY_SIZES,
       variants: {
         pad: {
@@ -565,7 +565,7 @@ const config = {
         'They have minimal seams for comfort and have silicone grippers at the bicep to ensure they stay in place.',
         'Handmade in Scotland, this is a unisex item.'
       ],
-      price: 2400,
+      price: 2300,
       sizes: ARM_WARMER_SIZES,
       fs260: {
         link: 'https://www.endurasport.com/product/thermolite-arm-warmer/',
