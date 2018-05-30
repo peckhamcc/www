@@ -14,7 +14,7 @@ const {
   capitalise
 } = require('./utils')
 const sendEmail = require('./send-email')
-const makePayment = require('./make-payment')
+// const makePayment = require('./make-payment')
 
 const toCurrencyString = (amount) => {
   const asString = amount.toString()
@@ -25,7 +25,7 @@ const toCurrencyString = (amount) => {
 const sendPayment = function (event, context, callback) {
   const {
     items,
-    nonce,
+    // nonce,
     firstName,
     lastName,
     email
@@ -61,8 +61,9 @@ const sendPayment = function (event, context, callback) {
   amount = toCurrencyString(amount)
 
   waterfall([
-    (cb) => makePayment(amount, nonce, lineItems, firstName, lastName, email, cb),
-    (transactionId, cb) => sendEmail(email, firstName, lastName, lineItems, amount, transactionId, cb)
+    // (cb) => makePayment(amount, nonce, lineItems, firstName, lastName, email, cb),
+    // (transactionId, cb) => sendEmail(email, firstName, lastName, lineItems, amount, transactionId, cb),
+    (cb) => sendEmail(email, firstName, lastName, lineItems, amount, '12345', cb)
   ], (error, results) => {
     let statusCode = 500
     let responseBody = {}
