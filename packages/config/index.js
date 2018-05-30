@@ -627,6 +627,16 @@ const config = {
       ],
       sizes: SOCK_SIZES,
       price: 1200
+    }, {
+      sku: 'HEADSET-CAP-2018',
+      title: 'Headset Cap',
+      slug: 'headset-cap',
+      section: SECTIONS.ACCESSORIES,
+      details: [
+        'Laser etched headset cap',
+        '1 1/8th" (32mm) diameter aluminium headset cap with the club logo, should fit all modern bikes.'
+      ],
+      price: 2500
     }]
   }
 }

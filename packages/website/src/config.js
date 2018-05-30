@@ -29,6 +29,7 @@ import socksSideImage from '../assets/shop/socks-side.png?sizes[]=300,sizes[]=50
 import socksTopImage from '../assets/shop/socks-top.png?sizes[]=300,sizes[]=500'
 import glovesImage from '../assets/shop/gloves.png?sizes[]=300,sizes[]=500'
 import multiTubeImage from '../assets/shop/multi-tube.png?sizes[]=300,sizes[]=500'
+import headsetCapImage from '../assets/shop/headset-cap.png?sizes[]=300,sizes[]=500'
 
 const productImages = {
   'CLUB-JERSEY-2018': [
@@ -79,6 +80,9 @@ const productImages = {
   ],
   'GLOVES-2018': [
     glovesImage
+  ],
+  'HEADSET-CAP-2018': [
+    headsetCapImage
   ]
 }
 
