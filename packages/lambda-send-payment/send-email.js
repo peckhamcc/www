@@ -75,16 +75,15 @@ div {
   </head>
   <body>
     <div>
-      <img src="https://peckham.cc/assets/" />
       <p>Hi ${firstName},</p>
       <p>Thanks for your order, it will be submitted to the factory once we have enough orders to hit the minimums.</p>
       <p>Your order ID is <strong>${transactionId}</strong>, please keep this safe and mention it in any correspondence with us about your order.</p>
-      <p>Once we know the delivery date for your items we will be in touch to let you know.</p>
       <p>The items you have ordered are:</p>
       <p>
         ${displayItems(lineItems, '&pound;', '<br />')}
       </p>
       <p>Total value: &pound;${amount}</p>
+      <p>Once we know the delivery date for your items we will be in touch to let you know.</p>
       <p>Thank you,</p>
       <p>Peckham Cycle Club</p>
       <p>
