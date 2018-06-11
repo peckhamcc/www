@@ -81,7 +81,7 @@ const sendPayment = function (event, _, callback) {
 
   amount = toCurrencyString(amount)
 
-  sendEmail(email, firstName, lastName, address1, address2, address3, postCode, lineItems, amount, (error, results) => {
+  sendEmail(email, firstName, lastName, address1, address2, address3, postCode, lineItems, amount, (error) => {
     let statusCode = 200
     let responseBody = {}
 

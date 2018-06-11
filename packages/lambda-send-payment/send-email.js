@@ -44,7 +44,7 @@ module.exports = (emailAddress, firstName, lastName, address1, address2, address
       ]
     })
     .promise()
-    .then((data) => callback(null, data))
+    .then(() => callback())
     .catch((error) => callback(error))
 }
 
@@ -90,9 +90,8 @@ div {
       </p>
       <p>Total value: &pound;${amount}</p>
       <p>The address you submitted was:</p>
-      <p>${firstName} ${lastName}</p>
       <p>${
-        [address1, address2, address3, postCode].filter(Boolean).join('<br />')
+        [(`${firstName} ${lastName}`).trim(), address1, address2, address3, postCode].filter(Boolean).join('<br />')
       }</p>
       <p>Your order will be submitted to the factory once we hit the minimums for production.</p>
       <p>Once we know the delivery date for your items we will be in touch to let you know.</p>
@@ -132,9 +131,8 @@ Total value: £${amount}
 
 The address you submitted was:
 
-${firstName} ${lastName}
 ${
-  [address1, address2, address3, postCode].filter(Boolean).join('\r\n')
+  [(`${firstName} ${lastName}`).trim(), address1, address2, address3, postCode].filter(Boolean).join('\r\n')
 }
 
 Your order will be submitted to the factory once we hit the minimums for production.  Once we know the delivery date for your items we will be in touch to let you know.
