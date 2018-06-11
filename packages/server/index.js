@@ -2,7 +2,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const serveStatic = require('serve-static')
 const path = require('path')
-const createClientTokenLambda = require('@peckhamcc/lambda-create-client-token')
 const sendPaymentLambda = require('@peckhamcc/lambda-send-payment')
 const sendContactFormEmail = require('@peckhamcc/lambda-send-contact-form-email')
 const sendCorsHeaders = require('@peckhamcc/lambda-send-cors-headers')
@@ -36,8 +35,6 @@ module.exports = (port) => {
     app.use('/', serveStatic(path.resolve(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist'))))
 
     // "lambdas"
-    app.options('/lambda/create-client-token', serveLambda(sendCorsHeaders))
-    app.post('/lambda/create-client-token', serveLambda(createClientTokenLambda))
 
     app.options('/lambda/send-payment', serveLambda(sendCorsHeaders))
     app.post('/lambda/send-payment', serveLambda(sendPaymentLambda))
