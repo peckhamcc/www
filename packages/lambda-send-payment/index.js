@@ -30,19 +30,8 @@ const sendPayment = function (event) {
     address1,
     address2,
     address3,
-    postCode,
-    shopCode
+    postCode
   } = event.body
-
-  if (shopCode !== process.env.PCC_SHOP_CODE) {
-    console.info('Shop code was invalid')
-    return Promise.reject(new Error('Shop code was invalid'))
-  }
-
-  if (!items.length) {
-    console.info('Cart was empty')
-    return Promise.reject(new Error('Cart was empty'))
-  }
 
   let amount = 0
 
@@ -82,6 +71,7 @@ const inputSchema = {
       properties: {
         items: {
           type: 'array',
+          minItems: 1,
           items: {
             type: 'object',
             properties: {
@@ -117,7 +107,7 @@ const inputSchema = {
         address2: { type: 'string', pattern: '.*' },
         address3: { type: 'string', pattern: '.*' },
         postCode: { type: 'string', pattern: '.+' },
-        shopCode: { type: 'string', pattern: '.+' }
+        shopCode: { type: 'string', pattern: process.env.PCC_SHOP_CODE }
       },
       required: ['items', 'firstName', 'lastName', 'email', 'address1', 'postCode', 'shopCode']
     }
