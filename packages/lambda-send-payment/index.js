@@ -35,20 +35,18 @@ const sendPayment = function (event, _, callback) {
   } = event.body
 
   if (shopCode !== process.env.PCC_SHOP_CODE) {
+    console.info('Shop code was invalid')
     return callback(null, {
-      statusCode: 400,
-      body: {
-        message: 'Invalid shop code'
-      }
+      success: false,
+      message: 'Invalid shop code'
     })
   }
 
   if (!items.length) {
+    console.info('Cart was empty')
     return callback(null, {
-      statusCode: 400,
-      body: {
-        message: 'Empty cart'
-      }
+      success: false,
+      message: 'Empty cart'
     })
   }
 
@@ -82,20 +80,17 @@ const sendPayment = function (event, _, callback) {
   amount = toCurrencyString(amount)
 
   sendEmail(email, firstName, lastName, address1, address2, address3, postCode, lineItems, amount, (error) => {
-    let statusCode = 200
     let success = true
 
     if (error) {
       console.error(error)
-      statusCode = 500
       success = false
+    } else {
+      console.info('Order successful')
     }
 
-    callback(null, {
-      statusCode,
-      body: {
-        success: success
-      }
+    callback(error, {
+      success
     })
   })
 }
