@@ -136,7 +136,12 @@ const inputSchema = {
         nonce: { type: 'string', pattern: '.+' },
         firstName: { type: 'string', pattern: '.+' },
         lastName: { type: 'string', pattern: '.+' },
-        email: { type: 'string', pattern: '.+' }
+        email: { type: 'string', pattern: '.+' },
+        address1: { type: 'string', pattern: '.+' },
+        address2: { type: 'string', pattern: '.+' },
+        address3: { type: 'string', pattern: '.+' },
+        postCode: { type: 'string', pattern: '.+' },
+        shopCode: { type: 'string', pattern: '.+' }
       },
       required: ['items', 'nonce', 'firstName', 'lastName', 'email', 'address1', 'postCode', 'shopCode']
     }
