@@ -3,12 +3,12 @@ const {
 } = require('./config')
 const AWS = require('aws-sdk')
 
-module.exports = (emailAddress, firstName, lastName, address1, address2, address3, postCode, lineItems, amount, callback) => {
+module.exports = (emailAddress, firstName, lastName, address1, address2, address3, postCode, lineItems, amount) => {
   if (!config.flags.email) {
-    return callback()
+    return Promise.resolve()
   }
 
-  new AWS.SES({
+  return new AWS.SES({
     apiVersion: config.aws.ses.version,
     region: config.aws.ses.region
   })
@@ -44,8 +44,6 @@ module.exports = (emailAddress, firstName, lastName, address1, address2, address
       ]
     })
     .promise()
-    .then(() => callback())
-    .catch((error) => callback(error))
 }
 
 const displayItems = (lineItems, pound, delimiter) => {

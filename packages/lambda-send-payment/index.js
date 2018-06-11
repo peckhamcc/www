@@ -21,7 +21,7 @@ const toCurrencyString = (amount) => {
   return `${asString.substring(0, asString.length - 2)}.${asString.substring(asString.length - 2)}`
 }
 
-const sendPayment = function (event, _, callback) {
+const sendPayment = function (event) {
   const {
     items,
     firstName,
@@ -36,18 +36,12 @@ const sendPayment = function (event, _, callback) {
 
   if (shopCode !== process.env.PCC_SHOP_CODE) {
     console.info('Shop code was invalid')
-    return callback(null, {
-      success: false,
-      message: 'Invalid shop code'
-    })
+    return Promise.reject(new Error('Shop code was invalid'))
   }
 
   if (!items.length) {
     console.info('Cart was empty')
-    return callback(null, {
-      success: false,
-      message: 'Empty cart'
-    })
+    return Promise.reject(new Error('Cart was empty'))
   }
 
   let amount = 0
@@ -77,22 +71,7 @@ const sendPayment = function (event, _, callback) {
     }
   })
 
-  amount = toCurrencyString(amount)
-
-  sendEmail(email, firstName, lastName, address1, address2, address3, postCode, lineItems, amount, (error) => {
-    let success = true
-
-    if (error) {
-      console.error(error)
-      success = false
-    } else {
-      console.info('Order successful')
-    }
-
-    callback(error, {
-      success
-    })
-  })
+  return sendEmail(email, firstName, lastName, address1, address2, address3, postCode, lineItems, toCurrencyString(amount))
 }
 
 const inputSchema = {
@@ -145,15 +124,13 @@ const inputSchema = {
   }
 }
 
-const handler = middy(sendPayment)
-  .use(cors({
-    origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
-  }))
-  .use(httpHeaderNormalizer())
-  .use(jsonBodyParser())
-  .use(validator({inputSchema}))
-  .use(httpErrorHandler())
-
 module.exports = {
-  handler
+  handler: middy(sendPayment)
+    .use(cors({
+      origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
+    }))
+    .use(httpHeaderNormalizer())
+    .use(jsonBodyParser())
+    .use(validator({inputSchema}))
+    .use(httpErrorHandler())
 }

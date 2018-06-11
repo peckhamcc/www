@@ -11,7 +11,7 @@ const {
   config
 } = require('./config')
 
-const sendEmail = (body, context) => {
+const sendEmail = (body) => {
   const {
     name, email, message
   } = body
@@ -93,15 +93,13 @@ const inputSchema = {
   }
 }
 
-const handler = middy(sendEmail)
-  .use(cors({
-    origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
-  }))
-  .use(httpHeaderNormalizer())
-  .use(jsonBodyParser())
-  .use(validator({inputSchema}))
-  .use(httpErrorHandler())
-
 module.exports = {
-  handler
+  handler: middy(sendEmail)
+    .use(cors({
+      origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
+    }))
+    .use(httpHeaderNormalizer())
+    .use(jsonBodyParser())
+    .use(validator({inputSchema}))
+    .use(httpErrorHandler())
 }
