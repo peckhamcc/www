@@ -90,6 +90,12 @@ const sendPayment = function (event, _, callback) {
       statusCode = 500
     }
 
+    console.info('order complete')
+    console.info('returning', {
+      statusCode,
+      body: responseBody
+    })
+
     callback(null, {
       statusCode,
       body: responseBody
