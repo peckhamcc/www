@@ -83,22 +83,19 @@ const sendPayment = function (event, _, callback) {
 
   sendEmail(email, firstName, lastName, address1, address2, address3, postCode, lineItems, amount, (error) => {
     let statusCode = 200
-    let responseBody = {}
+    let success = true
 
     if (error) {
       console.error(error)
       statusCode = 500
+      success = false
     }
-
-    console.info('order complete')
-    console.info('returning', {
-      statusCode,
-      body: responseBody
-    })
 
     callback(null, {
       statusCode,
-      body: responseBody
+      body: {
+        success: success
+      }
     })
   })
 }
