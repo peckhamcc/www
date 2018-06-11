@@ -133,7 +133,6 @@ const inputSchema = {
             required: ['sku', 'title', 'quantity']
           }
         },
-        nonce: { type: 'string', pattern: '.+' },
         firstName: { type: 'string', pattern: '.+' },
         lastName: { type: 'string', pattern: '.+' },
         email: { type: 'string', pattern: '.+' },
@@ -143,7 +142,7 @@ const inputSchema = {
         postCode: { type: 'string', pattern: '.+' },
         shopCode: { type: 'string', pattern: '.+' }
       },
-      required: ['items', 'nonce', 'firstName', 'lastName', 'email', 'address1', 'postCode', 'shopCode']
+      required: ['items', 'firstName', 'lastName', 'email', 'address1', 'postCode', 'shopCode']
     }
   }
 }
