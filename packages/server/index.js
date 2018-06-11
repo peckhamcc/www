@@ -9,11 +9,15 @@ const sendCorsHeaders = require('@peckhamcc/lambda-send-cors-headers')
 
 // simulate a lambda
 const serveLambda = (lambda) => {
-  return (request, response) => lambda.handler(request.body, {}, (error, result) => {
+  return (request, response) => lambda.handler(request, {}, (error, result) => {
     if (error) {
       console.error(error)
 
       return response.status(500).send(error)
+    }
+
+    if (!result) {
+      return response.status(500).send()
     }
 
     response
@@ -24,7 +28,7 @@ const serveLambda = (lambda) => {
 }
 
 module.exports = (port) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const app = express()
     app.use(bodyParser.json())
 
@@ -41,7 +45,7 @@ module.exports = (port) => {
     app.options('/lambda/send-contact-form-email', serveLambda(sendCorsHeaders))
     app.post('/lambda/send-contact-form-email', serveLambda(sendContactFormEmail))
 
-    app.use((request, response) => {
+    app.use((_, response) => {
       response.sendFile(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist', 'index.html'))
     })
 
@@ -49,7 +53,7 @@ module.exports = (port) => {
       resolve({
         url: `http://localhost:${listener.address().port}`,
         stop: () => {
-          return new Promise((resolve, reject) => {
+          return new Promise((resolve) => {
             listener.close(() => resolve())
           })
         }

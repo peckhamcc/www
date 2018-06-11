@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { Break, PageWrapper, Panel, ShopListItem, Breadcrumb, SmallTextButton, Button, Quantity, Price } from '../components/panels'
+import { Button } from '../components/panels'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import {
@@ -34,9 +33,6 @@ const Input = styled.input`
 
 const CheckoutWrapper = styled.div`
 
-  .braintree-heading {
-    color: ${light};
-  }
 `
 
 const TransactionId = styled.p`
@@ -62,57 +58,57 @@ const FormInputWrapper = styled.div`
   ` : ''}
 `
 
+const DetailsWrapper = styled.div`
+  @media (min-width: 800px) {
+    display: flex;
+    flex-direction: 'row';
+  }
+`
+
+const CustomerDetailsWrapper = styled.div`
+  @media (min-width: 800px) {
+    width: 50%;
+  }
+
+  background: ${dark};
+  padding: ${spacing(1)};
+  margin-top: ${spacing(1)};
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: ${spacing(2)};
+  }
+`
+
+const NameWrapper = CustomerDetailsWrapper.extend`
+  @media (min-width: 800px) {
+    margin-right: ${spacing(1)};
+  }
+`
+
+const AddressWrapper = CustomerDetailsWrapper.extend`
+`
+
 const ErrorText = styled.p`
   color: ${errorText};
-  margin: ${spacing(1)} 0;
 `
 
-const PaymentHolder = styled.div`
-  margin: ${spacing(1)} 0;
+const ShopCodeWrapper = styled.div`
+  background: ${dark};
+  padding: ${spacing(1)};
+  margin-top: ${spacing(1)};
+  margin-bottom: ${spacing(1)};
 `
 
-const PlaceHolder = styled.div`
-  margin: ${spacing(1)} 0;
+const HelpText = styled.p`
+  color: ${lightAccent};
 `
 
 const STEPS = {
-  'LOADING_TOKEN': 'LOADING_TOKEN',
   'ENTER_DETAILS': 'ENTER_DETAILS',
-  'CHOOSE_PAYMENT_METHOD': 'CHOOSE_PAYMENT_METHOD',
   'SUBMITTING_PAYMENT': 'SUBMITTING_PAYMENT',
   'SUCCESS': 'SUCCESS',
   'ERROR': 'ERROR'
-}
-
-class LoadingToken extends Component {
-  constructor (props) {
-    super(props)
-  }
-
-  componentDidMount () {
-    fetch(config.lambda.clientToken, {
-      method: 'POST'
-    })
-      .then(response => {
-        if (response.status !== 200) {
-          throw new Error(response.statusText)
-        }
-
-        return response.json()
-      })
-      .then(result => {
-        this.props.onToken(result.clientToken)
-      })
-      .catch(error => {
-        this.props.onError(error)
-      })
-  }
-
-  render () {
-    return (
-      <p>Loading payment methods...</p>
-    )
-  }
 }
 
 class DisplayError extends Component {
@@ -130,7 +126,7 @@ class MakingPayment extends Component {
   render () {
     return (
       <div>
-        <p>Making payment, hold on...</p>
+        <p>Submitting details, hold on...</p>
       </div>
     )
   }
@@ -140,8 +136,9 @@ class DisplaySuccess extends Component {
   render () {
     return (
       <div data-result='payment-success'>
-        <h2>Payment complete</h2>
-        <p>The transaction was processed successfully.  A confirmation email should soon arrive in your inbox.</p>
+        <h2>Order submitted</h2>
+        <p>You have been sent an email with details of how to pay for your order.</p>
+        <p>Your order is not complete until you submit</p>
         <p>This is your transaction ID, please keep a note of it:</p>
         <TransactionId data-transaction-id>{this.props.transactionId}</TransactionId>
         <h3>What's next?</h3>
@@ -155,11 +152,27 @@ class EnterDetails extends Component {
   constructor (props) {
     super(props)
 
+    const {
+      firstName,
+      lastName,
+      email,
+      address1,
+      address2,
+      address3,
+      postCode,
+      shopCode
+    } = props.customerDetails || {}
+
     this.state = {
       values: {
-        firstName: '',
-        lastName: '',
-        email: ''
+        firstName: firstName || '',
+        lastName: lastName || '',
+        email: email || '',
+        address1: address1 || '',
+        address2: address2 || '',
+        address3: address3 || '',
+        postCode: postCode || '',
+        shopCode: shopCode || ''
       },
       errors: {}
     }
@@ -179,7 +192,16 @@ class EnterDetails extends Component {
   }
 
   validate = (state) => {
-    Object.keys(state.values).forEach(key => {
+    const required = [
+      'firstName',
+      'lastName',
+      'email',
+      'address1',
+      'postCode',
+      'shopCode' 
+    ]
+
+    required.forEach(key => {
       delete state.errors[key]
 
       if (!state.values[key]) {
@@ -204,118 +226,109 @@ class EnterDetails extends Component {
     this.props.onDetails({
       firstName: this.state.values.firstName,
       lastName: this.state.values.lastName,
-      email: this.state.values.email
-    })
-  }
-
-  render () {
-    return (
-      <CheckoutWrapper>
-        <h3>Your details:</h3>
-        <FormInputWrapper error={this.state.errors.firstName}>
-          <Label for='firstName'>First name {this.state.errors.firstName && 'is required'}</Label>
-          <Input
-            name='firstName'
-            type='text'
-            onChange={this.formFieldChanged('firstName')} value={this.state.values.firstName}
-            data-input='first-name' />
-        </FormInputWrapper>
-        <FormInputWrapper error={this.state.errors.lastName}>
-          <Label for='lastName'>Last name {this.state.errors.lastName && 'is required'}</Label>
-          <Input
-            name='lastName'
-            type='text'
-            onChange={this.formFieldChanged('lastName')}
-            value={this.state.lastName}
-            data-input='last-name' />
-        </FormInputWrapper>
-        <FormInputWrapper error={this.state.errors.email}>
-          <Label for='email'>Email {this.state.errors.email && 'must be a valid email'}</Label>
-          <Input
-            name='email'
-            type='email' 
-            onChange={this.formFieldChanged('email')}
-            value={this.state.email}
-            data-input='email'/>
-        </FormInputWrapper>
-        <Button
-          onClick={this.next}
-          disabled={Object.keys(this.state.errors).length}
-          data-button='choose-payment-method'>Choose payment method</Button>
-      </CheckoutWrapper>
-    )
-  }
-}
-
-class ChoosePaymentMethod extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      loading: true
-    }
-  }
-
-  componentDidMount () {
-    braintree.dropin.create({
-      authorization: this.props.clientToken,
-      container: this.paymentHolder,
-      paypal: {
-        flow: 'checkout'
-      }
-    }, (error, instance) => {
-      if (error) {
-        this.props.onError(error)
-      }
-
-      this.paymentProvider = instance
-
-      this.setState({
-        loading: false
-      })
-    })
-  }
-
-  requestPaymentMethod = () => {
-    this.setState({
-      requestingPaymentMethod: true
-    })
-
-    this.paymentProvider.requestPaymentMethod((error, payload) => {
-      if (error) {
-        return this.setState({
-          requestingPaymentMethod: false,
-          error: error.message
-        })
-      }
-
-      this.setState({
-        requestingPaymentMethod: false
-      })
-
-      this.props.onPayment(payload.nonce)
+      email: this.state.values.email,
+      address1: this.state.values.address1,
+      address2: this.state.values.address2,
+      address3: this.state.values.address3,
+      postCode: this.state.values.postCode,
+      shopCode: this.state.values.shopCode
     })
   }
 
   render () {
     const {
-      loading,
-      error,
-      requestingPaymentMethod
-    } = this.state
+      error
+    } = this.props
 
     return (
-      <PaymentHolder>
-        {loading && <p>Loading payment methods...</p>}
+      <CheckoutWrapper>
+        <DetailsWrapper>
+          <NameWrapper>
+            <h3>Name</h3>
+            <FormInputWrapper error={this.state.errors.firstName}>
+              <Label for='firstName'>First name {this.state.errors.firstName && 'is required'}</Label>
+              <Input
+                name='firstName'
+                type='text'
+                onChange={this.formFieldChanged('firstName')} value={this.state.values.firstName}
+                data-input='first-name' />
+            </FormInputWrapper>
+            <FormInputWrapper error={this.state.errors.lastName}>
+              <Label for='lastName'>Last name {this.state.errors.lastName && 'is required'}</Label>
+              <Input
+                name='lastName'
+                type='text'
+                onChange={this.formFieldChanged('lastName')}
+                value={this.state.lastName}
+                data-input='last-name' />
+            </FormInputWrapper>
+            <FormInputWrapper error={this.state.errors.email}>
+              <Label for='email'>Email {this.state.errors.email && 'must be a valid email'}</Label>
+              <Input
+                name='email'
+                type='email' 
+                onChange={this.formFieldChanged('email')}
+                value={this.state.email}
+                data-input='email'/>
+            </FormInputWrapper>
+            <HelpText>We only store your details for transactional purposes. You will not receive any marketing emails from us.</HelpText>
+          </NameWrapper>
+          <AddressWrapper>
+            <h3>Address</h3>
+            <FormInputWrapper error={this.state.errors.address1}>
+              <Label for='address1'>Street {this.state.errors.address1 && 'is required'}</Label>
+              <Input
+                name='address1'
+                type='text'
+                onChange={this.formFieldChanged('address1')} value={this.state.values.address1}
+                data-input='address1' />
+            </FormInputWrapper>
+            <FormInputWrapper>
+              <Label for='address2'>Town</Label>
+              <Input
+                name='address2'
+                type='text'
+                onChange={this.formFieldChanged('address2')} value={this.state.values.address2}
+                data-input='address2' />
+            </FormInputWrapper>
+            <FormInputWrapper>
+              <Label for='address3'>County</Label>
+              <Input
+                name='address3'
+                type='text'
+                onChange={this.formFieldChanged('address3')} value={this.state.values.address3}
+                data-input='address3' />
+            </FormInputWrapper>
+            <FormInputWrapper error={this.state.errors.postCode}>
+              <Label for='postCode'>Post code {this.state.errors.postCode && 'is required'}</Label>
+              <Input
+                name='postCode'
+                type='text'
+                onChange={this.formFieldChanged('postCode')} value={this.state.values.postCode}
+                data-input='postCode' />
+            </FormInputWrapper>
+          </AddressWrapper>
+        </DetailsWrapper>
+
+        <ShopCodeWrapper>
+          <FormInputWrapper error={this.state.errors.shopCode}>
+            <Label for='shopCode'>Shop code {this.state.errors.postCode && 'is required'}</Label>
+            <Input
+              name='shopCode'
+              type='text'
+              onChange={this.formFieldChanged('shopCode')} value={this.state.values.shopCode}
+              data-input='shopCode' />
+            <HelpText>If you do not know what the shop code is, please ask in the WhatsApp group.</HelpText>
+          </FormInputWrapper>
+        </ShopCodeWrapper>
+
         {error && <ErrorText>{error}</ErrorText>}
-        <PlaceHolder>
-          <div ref={ref => this.paymentHolder = ref}></div>
-        </PlaceHolder>
-        {!loading && <Button
-          onClick={this.requestPaymentMethod}
-          disabled={requestingPaymentMethod}
-          data-button='submit-payment'>Submit payment</Button>}
-      </PaymentHolder>
+
+        <Button
+          onClick={this.next}
+          disabled={Object.keys(this.state.errors).length}
+          data-button='submit-order'>Submit order</Button>
+      </CheckoutWrapper>
     )
   }
 }
@@ -331,37 +344,15 @@ class Checkout extends Component {
       return acc + (product.price * item.quantity)
     }, 0)
 
-    if (!global.braintree) {
-      this.state = {
-        step: STEPS.ERROR,
-        error: new Error('Could not load payment methods')
-      }
-
-      return
-    }
-
     this.state = {
-      step: STEPS.LOADING_TOKEN,
+      step: STEPS.ENTER_DETAILS,
       error: null
     }
-  }
-
-  onClientToken = (clientToken) => {
-    this.setState({
-      clientToken,
-      step: STEPS.ENTER_DETAILS
-    })
   }
 
   onCustomerDetails = (customerDetails) => {
     this.setState({
       customerDetails,
-      step: STEPS.CHOOSE_PAYMENT_METHOD
-    })
-  }
-
-  onPayment = (nonce) => {
-    this.setState({
       step: STEPS.SUBMITTING_PAYMENT
     })
 
@@ -371,34 +362,36 @@ class Checkout extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        firstName: this.state.customerDetails.firstName.trim(),
-        lastName: this.state.customerDetails.lastName.trim(),
-        email: this.state.customerDetails.email.trim(),
-        nonce: nonce,
+        firstName: customerDetails.firstName.trim(),
+        lastName: customerDetails.lastName.trim(),
+        email: customerDetails.email.trim(),
+        address1: customerDetails.address1.trim(),
+        address2: customerDetails.address2.trim(),
+        address3: customerDetails.address3.trim(),
+        postCode: customerDetails.postCode.trim(),
+        shopCode: customerDetails.shopCode.trim(),
         items: this.props.cart
       })
     })
       .then(response => {
+        if (response.status === 400) {
+          return response.json()
+            .then(error => {
+              this.setState({
+                step: STEPS.SUCCESS,
+                transactionId: result.transaction,
+                error: error.message
+              })
+            })
+        }
+
         if (response.status !== 200) {
           throw new Error(response.statusText)
         }
 
-        response.json()
+        return response.json()
       })
       .then(result => {
-        console.info('payment result', result)
-
-        if (result.errors) {
-          this.setState({
-            step: STEPS.ERROR,
-            error: results.errors[0]
-          })
-
-          console.error(results.errors)
-
-          return
-        }
-
         this.setState({
           step: STEPS.SUCCESS,
           transactionId: result.transaction
@@ -426,16 +419,16 @@ class Checkout extends Component {
   render () {
     const {
       step,
-      clientToken,
-      customerDetails,
       error,
-      transactionId
+      transactionId,
+      customerDetails
     } = this.state
 
     const steps = {
-      [STEPS.LOADING_TOKEN]: <LoadingToken onToken={this.onClientToken} onError={this.onError} />,
-      [STEPS.ENTER_DETAILS]: <EnterDetails onDetails={this.onCustomerDetails} />,
-      [STEPS.CHOOSE_PAYMENT_METHOD]: <ChoosePaymentMethod clientToken={clientToken} onPayment={this.onPayment} onError={this.onError} />,
+      [STEPS.ENTER_DETAILS]: <EnterDetails
+        onDetails={this.onCustomerDetails}
+        customerDetails={customerDetails}
+        error={error} />,
       [STEPS.SUBMITTING_PAYMENT]: <MakingPayment />,
       [STEPS.SUCCESS]: <DisplaySuccess transactionId={transactionId} />,
       [STEPS.ERROR]: <DisplayError error={error} />

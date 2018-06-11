@@ -285,7 +285,7 @@ class Basket extends Component {
           </Terms>
           <ButtonHolder>
             <Link to='/checkout' onClick={this.showCheckout}>
-              <Button data-button='enter-payment-information'>Enter payment information</Button>
+              <Button data-button='enter-payment-information'>Enter your details</Button>
             </Link> 
           </ButtonHolder>
         </PlaceOrder>

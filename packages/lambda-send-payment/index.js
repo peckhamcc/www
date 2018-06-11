@@ -10,11 +10,10 @@ const {
   config
 } = require('./config')
 const {
-  waterfall,
   capitalise
 } = require('./utils')
 const sendEmail = require('./send-email')
-const makePayment = require('./make-payment')
+// const makePayment = require('./make-payment')
 
 const toCurrencyString = (amount) => {
   const asString = amount.toString()
@@ -22,14 +21,36 @@ const toCurrencyString = (amount) => {
   return `${asString.substring(0, asString.length - 2)}.${asString.substring(asString.length - 2)}`
 }
 
-const sendPayment = function (event, context, callback) {
+const sendPayment = function (event, _, callback) {
   const {
     items,
-    nonce,
     firstName,
     lastName,
-    email
+    email,
+    address1,
+    address2,
+    address3,
+    postCode,
+    shopCode
   } = event.body
+
+  if (shopCode !== process.env.PCC_SHOP_CODE) {
+    return callback(null, {
+      statusCode: 400,
+      body: {
+        message: 'Invalid shop code'
+      }
+    })
+  }
+
+  if (!items.length) {
+    return callback(null, {
+      statusCode: 400,
+      body: {
+        message: 'Empty cart'
+      }
+    })
+  }
 
   let amount = 0
 
@@ -60,35 +81,13 @@ const sendPayment = function (event, context, callback) {
 
   amount = toCurrencyString(amount)
 
-  waterfall([
-    (cb) => makePayment(amount, nonce, lineItems, firstName, lastName, email, cb),
-    (transactionId, cb) => sendEmail(email, firstName, lastName, lineItems, amount, transactionId, cb)
-  ], (error, results) => {
-    let statusCode = 500
+  sendEmail(email, firstName, lastName, address1, address2, address3, postCode, lineItems, amount, (error, results) => {
+    let statusCode = 200
     let responseBody = {}
-    const [
-      paymentResult
-    ] = results || []
 
     if (error) {
       console.error(error)
       statusCode = 500
-
-      if (error.errors) {
-        console.error(error.errors)
-        statusCode = 400
-
-        responseBody = {
-          errors: paymentResult && paymentResult.errors && paymentResult.errors.deepErrors()
-        }
-      }
-    }
-
-    if (paymentResult) {
-      statusCode = 200
-      responseBody = {
-        transaction: paymentResult
-      }
     }
 
     callback(null, {
@@ -139,7 +138,7 @@ const inputSchema = {
         lastName: { type: 'string', pattern: '.+' },
         email: { type: 'string', pattern: '.+' }
       },
-      required: ['items', 'nonce', 'firstName', 'lastName', 'email']
+      required: ['items', 'nonce', 'firstName', 'lastName', 'email', 'address1', 'postCode', 'shopCode']
     }
   }
 }
