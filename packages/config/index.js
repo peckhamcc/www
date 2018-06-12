@@ -359,7 +359,7 @@ const config = {
     sendContactFormEmail: '/lambda/send-contact-form-email'
   },
   flags: {
-    store: false,
+    store: true,
     riding: false,
     email: true
   },
@@ -389,7 +389,7 @@ const config = {
         'It comes with a full-length YKK zip, silicone grippers on the arms & waist and is available in various lengths and sizes and is handmade in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 8100,
+      price: 8000,
       sizes: JERSEY_SIZES,
       variants: {
         sleeve: {
@@ -445,7 +445,7 @@ const config = {
         'It comes with a full-length YKK zip, silicone grippers on the cuffs & waist and is handmade in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 9300,
+      price: 9200,
       sizes: JERSEY_SIZES,
       genders: GENDERS,
       fs260: {
@@ -463,7 +463,7 @@ const config = {
         'It comes with a full-length YKK zip, three large pockets on the back and is handmade in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 10200,
+      price: 10000,
       sizes: JERSEY_SIZES,
       genders: GENDERS
     }, {
@@ -477,7 +477,7 @@ const config = {
         'It comes with a fleece collar, a full-length YKK zip, three large pockets on the back and is hand made in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 12400,
+      price: 12200,
       sizes: JERSEY_SIZES,
       genders: GENDERS,
       fs260: {
@@ -495,7 +495,7 @@ const config = {
         'It has a deep neck for increased wind protection, comes with a full-length YKK zip, three rear pockets and packs down to easily fit in a jersey pocket.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 6500,
+      price: 6400,
       sizes: JERSEY_SIZES,
       genders: GENDERS,
       fs260: {
@@ -513,7 +513,7 @@ const config = {
         'There\'s a discrete rear pocket for your valuables and raw edge silicone hem grips to make sure the legs stay put.',
         'Handmade in Scotland, it is available in male and female specific versions and there are options for varying leg lengths.'
       ],
-      price: 10700,
+      price: 10500,
       sizes: JERSEY_SIZES,
       variants: {
         leg: {
@@ -540,7 +540,7 @@ const config = {
         'Thermal winter tights made from Roubaix high stretch insulation (e.g. nylon/lycra construction with a brushed inner to retain heat).',
         'Handmade in Scotland, it is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 12200,
+      price: 12100,
       sizes: JERSEY_SIZES,
       variants: {
         pad: {
@@ -593,7 +593,7 @@ const config = {
         'Versatile fabric tube that can be worn as a neck tube, mask, bandana, skull cap etc.',
         'Handmade in Scotland, this is a unisex item.'
       ],
-      price: 1500,
+      price: 1400,
       fs260: {
         link: 'https://www.endurasport.com/product/fs260-pro-multitube/',
         name: 'FS260-Pro Multitube'
@@ -625,7 +625,7 @@ const config = {
         'Instagram-friendly orientation of the club name & motto on the top of the socks reminds you we roll united!'
       ],
       sizes: SOCK_SIZES,
-      price: 1200
+      price: 1100
     }, {
       sku: 'HEADSET-CAP-2018',
       title: 'Headset Cap',
