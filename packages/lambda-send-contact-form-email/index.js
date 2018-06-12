@@ -95,11 +95,11 @@ const inputSchema = {
 
 module.exports = {
   handler: middy(sendEmail)
-    .use(cors({
-      origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
-    }))
     .use(httpHeaderNormalizer())
     .use(jsonBodyParser())
     .use(validator({inputSchema}))
     .use(httpErrorHandler())
+    .use(cors({
+      origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
+    }))
 }

@@ -13,7 +13,6 @@ const {
   capitalise
 } = require('./utils')
 const sendEmail = require('./send-email')
-// const makePayment = require('./make-payment')
 
 const toCurrencyString = (amount) => {
   const asString = amount.toString()
@@ -139,11 +138,11 @@ const errorHandler = () => ({
 
 module.exports = {
   handler: middy(sendPayment)
-    .use(cors({
-      origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
-    }))
     .use(httpHeaderNormalizer())
     .use(jsonBodyParser())
     .use(validator({inputSchema}))
     .use(errorHandler())
+    .use(cors({
+      origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
+    }))
 }
