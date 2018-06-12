@@ -1,8 +1,8 @@
 const middy = require('middy')
+const { HttpError } = require('http-errors')
 const {
   jsonBodyParser,
   validator,
-  httpErrorHandler,
   httpHeaderNormalizer,
   cors
 } = require('middy/middlewares')
@@ -107,12 +107,35 @@ const inputSchema = {
         address2: { type: 'string', pattern: '.*' },
         address3: { type: 'string', pattern: '.*' },
         postCode: { type: 'string', pattern: '.+' },
-        shopCode: { type: 'string', pattern: process.env.PCC_SHOP_CODE }
+        shopCode: { type: 'string', const: process.env.PCC_SHOP_CODE }
       },
       required: ['items', 'firstName', 'lastName', 'email', 'address1', 'postCode', 'shopCode']
     }
   }
 }
+
+const errorHandler = () => ({
+  onError: (handler, next) => {
+    if (handler.error instanceof HttpError) {
+      if (handler.error.message.includes('failed validation')) {
+        const details = handler.error.details[0]
+
+        handler.response = {
+          statusCode: 422,
+          body: JSON.stringify({
+            field: details.dataPath.replace('.body.', '')
+          })
+        }
+
+        next()
+      } else {
+        next(handler.error)
+      }
+    } else {
+      next(handler.error)
+    }
+  }
+})
 
 module.exports = {
   handler: middy(sendPayment)
@@ -122,5 +145,5 @@ module.exports = {
     .use(httpHeaderNormalizer())
     .use(jsonBodyParser())
     .use(validator({inputSchema}))
-    .use(httpErrorHandler())
+    .use(errorHandler())
 }

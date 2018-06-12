@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Button } from '../components/panels'
 import styled from 'styled-components'
@@ -91,6 +92,7 @@ const AddressWrapper = CustomerDetailsWrapper.extend`
 
 const ErrorText = styled.p`
   color: ${errorText};
+  padding-bottom: ${spacing(1)};
 `
 
 const ShopCodeWrapper = styled.div`
@@ -136,13 +138,10 @@ class DisplaySuccess extends Component {
   render () {
     return (
       <div data-result='payment-success'>
-        <h2>Order submitted</h2>
-        <p>You have been sent an email with details of how to pay for your order.</p>
-        <p>Your order is not complete until you submit</p>
-        <p>This is your transaction ID, please keep a note of it:</p>
-        <TransactionId data-transaction-id>{this.props.transactionId}</TransactionId>
-        <h3>What's next?</h3>
-        <p>Your order will be submitted to the factory soon. We'll be in touch with the delivery date once we have it.</p>
+        <h2>Almost there</h2>
+        <p>You have been sent an email with details of how to pay for your order, it should arrive shortly.</p>
+        <p>Your order is not complete until payment is received.</p>
+        <p>Please <Link to='/contact'>contact us</Link> if you have any questions.</p>
       </div>
     )
   }
@@ -175,6 +174,10 @@ class EnterDetails extends Component {
         shopCode: shopCode || ''
       },
       errors: {}
+    }
+
+    if (props.error) {
+      this.state[props.error] = true
     }
   }
 
@@ -240,6 +243,16 @@ class EnterDetails extends Component {
       error
     } = this.props
 
+    const errors = {
+      firstName: 'First name is required',
+      lastName: 'Last name is required',
+      email: 'Email is invalid',
+      address1: 'Address is required',
+      postCode: 'Post code is required',
+      shopCode: 'Shop code is invalid',
+      items: 'Your basket is empty'
+    }
+
     return (
       <CheckoutWrapper>
         <DetailsWrapper>
@@ -250,7 +263,8 @@ class EnterDetails extends Component {
               <Input
                 name='firstName'
                 type='text'
-                onChange={this.formFieldChanged('firstName')} value={this.state.values.firstName}
+                onChange={this.formFieldChanged('firstName')}
+                value={this.state.values.firstName}
                 data-input='first-name' />
             </FormInputWrapper>
             <FormInputWrapper error={this.state.errors.lastName}>
@@ -259,7 +273,7 @@ class EnterDetails extends Component {
                 name='lastName'
                 type='text'
                 onChange={this.formFieldChanged('lastName')}
-                value={this.state.lastName}
+                value={this.state.values.lastName}
                 data-input='last-name' />
             </FormInputWrapper>
             <FormInputWrapper error={this.state.errors.email}>
@@ -268,10 +282,10 @@ class EnterDetails extends Component {
                 name='email'
                 type='email' 
                 onChange={this.formFieldChanged('email')}
-                value={this.state.email}
+                value={this.state.values.email}
                 data-input='email'/>
             </FormInputWrapper>
-            <HelpText>We only store your details for transactional purposes. You will not receive any marketing emails from us.</HelpText>
+            <HelpText>We ask for your details for transactional purposes only.</HelpText>
           </NameWrapper>
           <AddressWrapper>
             <h3>Address</h3>
@@ -280,7 +294,8 @@ class EnterDetails extends Component {
               <Input
                 name='address1'
                 type='text'
-                onChange={this.formFieldChanged('address1')} value={this.state.values.address1}
+                onChange={this.formFieldChanged('address1')}
+                value={this.state.values.address1}
                 data-input='address1' />
             </FormInputWrapper>
             <FormInputWrapper>
@@ -288,7 +303,8 @@ class EnterDetails extends Component {
               <Input
                 name='address2'
                 type='text'
-                onChange={this.formFieldChanged('address2')} value={this.state.values.address2}
+                onChange={this.formFieldChanged('address2')}
+                value={this.state.values.address2}
                 data-input='address2' />
             </FormInputWrapper>
             <FormInputWrapper>
@@ -296,7 +312,8 @@ class EnterDetails extends Component {
               <Input
                 name='address3'
                 type='text'
-                onChange={this.formFieldChanged('address3')} value={this.state.values.address3}
+                onChange={this.formFieldChanged('address3')}
+                value={this.state.values.address3}
                 data-input='address3' />
             </FormInputWrapper>
             <FormInputWrapper error={this.state.errors.postCode}>
@@ -304,7 +321,8 @@ class EnterDetails extends Component {
               <Input
                 name='postCode'
                 type='text'
-                onChange={this.formFieldChanged('postCode')} value={this.state.values.postCode}
+                onChange={this.formFieldChanged('postCode')}
+                value={this.state.values.postCode}
                 data-input='postCode' />
             </FormInputWrapper>
           </AddressWrapper>
@@ -316,13 +334,14 @@ class EnterDetails extends Component {
             <Input
               name='shopCode'
               type='text'
-              onChange={this.formFieldChanged('shopCode')} value={this.state.values.shopCode}
+              onChange={this.formFieldChanged('shopCode')}
+              value={this.state.values.shopCode}
               data-input='shopCode' />
-            <HelpText>If you do not know what the shop code is, please ask in the WhatsApp group.</HelpText>
+            <HelpText>If you do not know what the shop code is, please <Link to='/contact'>contact us</Link> or ask in the WhatsApp group.</HelpText>
           </FormInputWrapper>
         </ShopCodeWrapper>
 
-        {error && <ErrorText>{error}</ErrorText>}
+        {error && <ErrorText>{errors[error]}</ErrorText>}
 
         <Button
           onClick={this.next}
@@ -374,30 +393,25 @@ class Checkout extends Component {
       })
     })
       .then(response => {
-        if (response.status === 400) {
+        if (response.status === 204) {
+          this.setState({
+            step: STEPS.SUCCESS
+          })
+
+          return
+        }
+
+        if (response.status === 422) {
           return response.json()
-            .then(error => {
+            .then(body => {
               this.setState({
-                step: STEPS.SUCCESS,
-                transactionId: result.transaction,
-                error: error.message
+                step: STEPS.ENTER_DETAILS,
+                error: body.field
               })
             })
         }
 
-        if (response.status !== 200) {
-          throw new Error(response.statusText)
-        }
-
-        return response.json()
-      })
-      .then(result => {
-        this.setState({
-          step: STEPS.SUCCESS,
-          transactionId: result.transaction
-        })
-
-        this.props.clearCart()
+        throw new Error(response.statusText)
       })
       .catch(error => {
         this.setState({

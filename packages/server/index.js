@@ -8,33 +8,35 @@ const sendCorsHeaders = require('@peckhamcc/lambda-send-cors-headers')
 
 // simulate a lambda
 const serveLambda = (lambda) => {
-  return (request, response) => lambda.handler(request, {}, (error, result) => {
-    if (error) {
-      console.error(error)
+  return (request, response) => {
+    return lambda.handler(request, {}, (error, result) => {
+      if (error) {
+        console.error(error)
 
-      return response.status(500).send(error)
-    }
+        return response.status(500).send(error)
+      }
 
-    if (!result) {
-      return response.status(500).send()
-    }
+      if (!result) {
+        return response.status(204).send()
+      }
 
-    response
-      .status(result.statusCode)
-      .set(result.headers)
-      .send(result.body)
-  })
+      response
+        .status(result.statusCode)
+        .set(result.headers)
+        .send(result.body)
+    })
+  }
 }
 
 module.exports = (port) => {
   return new Promise((resolve) => {
     const app = express()
-    app.use(bodyParser.json())
 
     // main site
     app.use('/', serveStatic(path.resolve(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist'))))
 
     // "lambdas"
+    app.use(bodyParser.text({ type: '*/*' }))
 
     app.options('/lambda/send-payment', serveLambda(sendCorsHeaders))
     app.post('/lambda/send-payment', serveLambda(sendPaymentLambda))
