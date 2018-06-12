@@ -60,6 +60,14 @@ const sendPayment = function (event) {
   })
 
   return sendEmail(email, firstName, lastName, address1, address2, address3, postCode, lineItems, toCurrencyString(amount))
+    .then(() => {
+      return {
+        isBase64Encoded: false,
+        statusCode: 204,
+        headers: {},
+        body: ''
+      }
+    })
 }
 
 const inputSchema = {
