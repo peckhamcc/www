@@ -185,7 +185,7 @@ class EnterDetails extends Component {
     return (event) => {
       const state = {
         values: Object.assign({}, this.state.values, {
-          [name]: event.target.value.trim()
+          [name]: event.target.value
         }),
         errors: this.state.errors
       }
@@ -207,7 +207,7 @@ class EnterDetails extends Component {
     required.forEach(key => {
       delete state.errors[key]
 
-      if (!state.values[key]) {
+      if (!state.values[key] || !state.values[key].trim()) {
         state.errors[key] = true
       }
     })
