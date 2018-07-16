@@ -295,26 +295,26 @@ const GLOVE_SIZES = [{
   }
 }]
 
-const VARIANTS_5CM = [{
+const VARIANTS_SHORT_SLEEVED_JERSEY = [{
   code: 'LONG',
-  name: 'Long (+5cm)'
+  name: 'Long (+5cm body, +2.5cm sleeves)'
 }, {
   code: 'REGULAR',
   name: 'Regular'
 }, {
   code: 'SHORT',
-  name: 'Short (-5cm)'
+  name: 'Short (-5cm body, -2.5cm sleeves)'
 }]
 
-const VARIANTS_2_5CM = [{
+const VARIANTS_LEG = [{
   code: 'LONG',
-  name: 'Long (+2.5cm)'
+  name: 'Long (+5cm leg length)'
 }, {
   code: 'REGULAR',
   name: 'Regular'
 }, {
   code: 'SHORT',
-  name: 'Short (-2.5cm)'
+  name: 'Short (-5cm leg length)'
 }]
 
 const VARIANTS_PAD = [{
@@ -392,13 +392,9 @@ const config = {
       price: 8000,
       sizes: JERSEY_SIZES,
       variants: {
-        sleeve: {
-          description: 'Custom sleeve length',
-          options: VARIANTS_2_5CM
-        },
-        body: {
-          description: 'Custom body length',
-          options: VARIANTS_5CM
+        length: {
+          description: 'Custom length',
+          options: VARIANTS_SHORT_SLEEVED_JERSEY
         }
       },
       genders: GENDERS,
@@ -420,13 +416,9 @@ const config = {
       price: 8500,
       sizes: JERSEY_SIZES,
       variants: {
-        sleeve: {
-          description: 'Custom sleeve length',
-          options: VARIANTS_2_5CM
-        },
-        body: {
-          description: 'Custom body length',
-          options: VARIANTS_5CM
+        length: {
+          description: 'Custom length',
+          options: VARIANTS_SHORT_SLEEVED_JERSEY
         }
       },
       genders: GENDERS,
@@ -518,7 +510,7 @@ const config = {
       variants: {
         leg: {
           description: 'Custom leg length',
-          options: VARIANTS_5CM
+          options: VARIANTS_LEG
         },
         pad: {
           description: 'Custom pad width (based on saddle width)',
