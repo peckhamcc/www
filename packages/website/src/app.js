@@ -6,6 +6,7 @@ import {
   Link
 } from 'react-router-dom'
 import {
+  About,
   Account,
   Basket,
   Checkout,
@@ -17,9 +18,9 @@ import {
   Shop,
   Item,
   Membership,
-  About,
   Contact,
-  Riding
+  Riding,
+  Leading
 } from './pages'
 import configureStore from './store/configure-store'
 import '../assets/pcc-avatar.png'
@@ -75,11 +76,15 @@ export default () => {
                 <Route path='/rides' component={Rides} />
                 <Route path='/routes' component={Routes} />
                 <Route path='/membership' component={Membership} />
-                <Route path='/about' component={About} />
+                <Route path='/club' component={About} />
                 <Route path='/contact' component={Contact} />
 
                 <Flag name='riding'>
                   <Route path='/riding' component={Riding} />
+                </Flag>
+
+                <Flag name='leading'>
+                  <Route path='/leading' component={Leading} />
                 </Flag>
 
                 <Fragment>

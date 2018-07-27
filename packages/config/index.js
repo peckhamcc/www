@@ -360,7 +360,8 @@ const config = {
   },
   flags: {
     store: true,
-    riding: false,
+    riding: true,
+    leading: true,
     email: true
   },
   email: {

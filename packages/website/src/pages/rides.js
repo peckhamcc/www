@@ -24,7 +24,7 @@ class RidesPage extends Component {
           <p>On the third Sunday of every month there is a women-only ride aimed at riders of all abilities.  The route varies month to month but is about 50km in length and the group leaves the library at 9am.</p>
           <h3>Training Rides</h3>
           <p>Depending on the time of year and people's training goals, there my be a faster group on Saturdays and sometimes Sundays too.</p>
-          <p>These rides are around 150-200km in length.</p>
+          <p>These rides are 100-200km in length.</p>
         </Panel>
         <LinkPanel background={equipmentBackground.src}>
           <Link to='/equipment'>Equipment</Link>

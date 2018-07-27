@@ -3,6 +3,7 @@ import { Break, PageWrapper, Panel, InnerPanel, Hero } from '../components/panel
 import routesBackground from '../../assets/routes-bg.jpg'
 import shortLoopGpx from '../../assets/peckham-cc-short-loop.gpx'
 import knattsValleyGpx from '../../assets/peckham-cc-knatts-valley.gpx'
+import surreyHillsGpx from '../../assets/peckham-cc-surrey-hills.gpx'
 import styled from 'styled-components'
 import GPXIcon from 'react-icons/lib/fa/map-o'
 import StravaIcon from 'react-icons/lib/fa/chevron-circle-up'
@@ -21,7 +22,7 @@ const SharingList = styled.ul`
 
 const Sharing = styled.li`
   list-style: none;
-  
+
   a {
     text-decoration: none;
     color: ${light};
@@ -46,6 +47,13 @@ const routes = [{
   gpx: knattsValleyGpx,
   strava: 'https://www.strava.com/routes/11036595',
   embed: 'https://www.plotaroute.com/embedmap/550078'
+}, {
+  hash: 'surrey-hills',
+  title: 'Surrey Hills',
+  description: 'A tougher training ride, this 145km/1800m route takes in the major climbs of the Ride London 100 mile sportive.',
+  gpx: surreyHillsGpx,
+  strava: 'https://www.strava.com/routes/14040879',
+  embed: 'https://www.plotaroute.com/embedmap/655505'
 }]
 
 class RoutesPage extends Component {

@@ -33,7 +33,7 @@ class EquipmentPage extends Component {
           <Link to='/rides'>Rides</Link>
         </LinkPanel>
         <LinkPanel background={membershipBackground.src}>
-          <Link to='/membership'>Membership</Link>
+          <Link to='/riding'>On the road</Link>
         </LinkPanel>
       </PageWrapper>
     )

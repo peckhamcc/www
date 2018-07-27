@@ -76,6 +76,58 @@ const NavLink = styled.li`
   }
 `
 
+const NavMenu = styled.li`
+  list-style: none;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+
+  > a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #333;
+    padding: 0;
+    margin: 0 20px 0 0;
+  }
+  a:hover {
+    text-decoration: underline;
+    color: #F10;
+  }
+
+  ul {
+    display: none;
+  }
+
+  :hover {
+    ul {
+      background-color: #FFF;
+      display: block;
+      margin: 0 0 0 -15px;
+      padding: 20px 10px 5px 10px;
+      min-width: 100px;
+      position: absolute;
+
+      li {
+        display: block;
+        margin: 5px 5px 15px 5px;
+      }
+    }
+  }
+`
+
+const HamburgerNavMenu = styled.li`
+  a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #333;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    color: #F10;
+  }
+`
+
 const CartLink = NavLink.extend`
   font-size: 24px;
   margin-right: 0;
@@ -183,12 +235,33 @@ class NavBarWrapper extends Component {
               <NavLink>
                 <Link to='/'>Home</Link>
               </NavLink>
-              <NavLink>
-                <Link to='/rides'>Rides</Link>
-              </NavLink>
-              <NavLink>
-                <Link to='/routes'>Routes</Link>
-              </NavLink>
+              <NavMenu>
+                <Link to='/club'>Club</Link>
+                <ul>
+                  <NavLink>
+                    <Link to='/membership'>Membership</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/rides'>Rides</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/routes'>Routes</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/equipment'>Equipment</Link>
+                  </NavLink>
+                  <Flag name='riding'>
+                    <NavLink>
+                      <Link to='/riding'>On the road</Link>
+                    </NavLink>
+                  </Flag>
+                  <Flag name='leading'>
+                    <NavLink>
+                      <Link to='/leading'>Leading a ride</Link>
+                    </NavLink>
+                  </Flag>
+                </ul>
+              </NavMenu>
               <NavLink>
                 <Link to='/contact'>Contact</Link>
               </NavLink>
@@ -231,28 +304,42 @@ class NavBarWrapper extends Component {
         </Flag>
 
         {menuOpen && (
-          <ModalBlocker onClick={this.toggleDropDownMenu} style={{top: 68}}>
+          <ModalBlocker onClick={this.toggleDropDownMenu} style={{top: top + 60}}>
             <MobileNav>
               <NavLink>
                 <Link to='/'>Home</Link>
               </NavLink>
-              <NavLink>
-                <Link to='/rides'>Rides</Link>
-              </NavLink>
-              <NavLink>
-                <Link to='/routes'>Routes</Link>
-              </NavLink>
-              
-              <Flag name='riding'>
-                <NavLink>
-                  <Link to='/riding'>On the road</Link>
-                </NavLink>
-              </Flag>
-              
+              <HamburgerNavMenu>
+                <Link to='/club'>Club</Link>
+                <ul>
+                  <NavLink>
+                    <Link to='/membership'>Membership</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/rides'>Rides</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/routes'>Routes</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/equipment'>Equipment</Link>
+                  </NavLink>
+                  <Flag name='riding'>
+                    <NavLink>
+                      <Link to='/riding'>On the road</Link>
+                    </NavLink>
+                  </Flag>
+                  <Flag name='leading'>
+                    <NavLink>
+                      <Link to='/leading'>Leading a ride</Link>
+                    </NavLink>
+                  </Flag>
+                </ul>
+              </HamburgerNavMenu>
               <NavLink>
                 <Link to='/contact'>Contact</Link>
               </NavLink>
-              
+
               <Flag name='store'>
                 <NavLink>
                   <Link to='/shop'>Shop</Link>
