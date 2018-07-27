@@ -387,7 +387,7 @@ const config = {
       details: [
         'Lightweight Short Sleeved Club Jersey in black.',
         'Based on the jerseys used by the Movistar professional team, the Peckham CC Club Jersey is made from Italian wicking fabrics with Coldblack Technology and has three large rear pockets with an extra zip compartment for your valuables.',
-        'It comes with a full-length YKK zip, silicone grippers on the arms & waist and is available in various lengths and sizes and is handmade in Scotland.',
+        'It comes with a full-length YKK zip, silicone grippers on the arms &amp; waist and is available in various lengths and sizes and is handmade in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
       price: 8000,
@@ -411,7 +411,7 @@ const config = {
       details: [
         'Lightweight Short Sleeved Club Jersey in white.',
         'Based on the jerseys used by the Movistar professional team, the Peckham CC Club Jersey is made from Italian wicking fabrics with Coldblack Technology and has three large rear pockets with an extra zip compartment for your valuables.',
-        'It comes with a full-length YKK zip, silicone grippers on the arms & waist and is available in various lengths and sizes and is handmade in Scotland.',
+        'It comes with a full-length YKK zip, silicone grippers on the arms &amp; waist and is available in various lengths and sizes and is handmade in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
       price: 8500,
@@ -435,7 +435,7 @@ const config = {
       details: [
         'Long Sleeved Winter Jersey in black.',
         'Made from a high performing Hydrophilic and Hydrophobic fabric and has three large rear pockets with an extra zip compartment for your valuables.',
-        'It comes with a full-length YKK zip, silicone grippers on the cuffs & waist and is handmade in Scotland.',
+        'It comes with a full-length YKK zip, silicone grippers on the cuffs &amp; waist and is handmade in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
       price: 9200,
@@ -452,7 +452,7 @@ const config = {
       section: SECTIONS.OUTERWEAR,
       details: [
         'Club Winter Jacket in black',
-        'Made from an Italian Roubaix high stretch fabric (e.g. nylon/lycra construction with a brushed inner to retain heat), the Winter Jacket has windproof front, sides & yoke.',
+        'Made from an Italian Roubaix high stretch fabric (e.g. nylon/lycra construction with a brushed inner to retain heat), the Winter Jacket has windproof front, sides &amp; yoke.',
         'It comes with a full-length YKK zip, three large pockets on the back and is handmade in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
@@ -484,7 +484,7 @@ const config = {
       section: SECTIONS.OUTERWEAR,
       details: [
         'Lightweight packable Club Gilet in black',
-        'The Club Gilet has a windproof front & shoulders and is made of a high stretch fine denier material.',
+        'The Club Gilet has a windproof front &amp; shoulders and is made of a high stretch fine denier material.',
         'It has a deep neck for increased wind protection, comes with a full-length YKK zip, three rear pockets and packs down to easily fit in a jersey pocket.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
@@ -569,13 +569,14 @@ const config = {
       slug: 'cap',
       section: SECTIONS.ACCESSORIES,
       details: [
-        'Cotton cap with stitched ribbon.',
+        '£5 from every purchase will be donated to <a href="http://ch1889.org/">Cambridge House</a>.',
+        'Black cotton cap with stitched ribbon and white screen print.',
         'Cycling caps keep the sun out of your eyes when it\'s sunny and the rain out of your eyes when it\'s wet.',
-        'An essential piece of kit, don\'t leave home without one. Unless you are going to the pub, in which case observe rule #22 and leave it at home.',
+        'An essential piece of kit, don\'t leave home without one. Unless you are going to the pub, in which case observe <a href="http://www.velominati.com/the-rules/#22">rule #22</a> and leave it at home.',
         'Our caps are made in Italy from black cotton with a stiff peak and the Peckham logos are screen printed in white. A stitched ribbon in club colours runs over the top.',
         'Hand wash only. We mean it.'
       ],
-      price: 1000
+      price: 1500
     }, {
       sku: 'NECK-WARMER-2018',
       title: 'Neck warmer',
@@ -598,7 +599,7 @@ const config = {
       section: SECTIONS.ACCESSORIES,
       details: [
         'Club Gloves in black',
-        'Four-way stretch fabric with gel padding & ventilation for your palms, our Club Gloves have an aerodynamic streamlined design with a strapless cuff that will save you at least half a watt.',
+        'Four-way stretch fabric with gel padding &amp; ventilation for your palms, our Club Gloves have an aerodynamic streamlined design with a strapless cuff that will save you at least half a watt.',
         'Handmade in Scotland, this is a unisex item.'
       ],
       sizes: GLOVE_SIZES,
@@ -615,7 +616,7 @@ const config = {
       details: [
         'Club Socks',
         'Black Club Socks in CoolMax fabric with a six-inch cuff culminating in the club stripes at the top.',
-        'Instagram-friendly orientation of the club name & motto on the top of the socks reminds you we roll united!'
+        'Instagram-friendly orientation of the club name &amp; motto on the top of the socks reminds you we roll united!'
       ],
       sizes: SOCK_SIZES,
       price: 1100

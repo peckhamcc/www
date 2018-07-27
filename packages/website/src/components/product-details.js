@@ -183,7 +183,7 @@ class ProductDetails extends Component {
         )}
         <h2>{product.title}</h2>
         <h3><Price price={product.price} /></h3>
-        {product.details.map((line, index) => <p key={index}>{line}</p>)}
+        {product.details.map((line, index) => <p key={index} dangerouslySetInnerHTML={{__html: line}}></p>)}
         <OptionsArea>
           {product.genders && (
             <Fragment>
@@ -247,7 +247,7 @@ class ProductDetails extends Component {
               ><AddToBasketIcon /> Add to basket</Button>
           </ButtonWrapper>
         </OptionsArea>
-      </ProductDetailsPanel>  
+      </ProductDetailsPanel>
     )
   }
 }
