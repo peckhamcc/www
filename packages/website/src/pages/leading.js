@@ -17,11 +17,11 @@ class LeadingPage extends Component {
         <Hero background={leadingBackground.src} />
         <Panel>
         <h2>Leading a social ride</h2>
-          <p>Our weekly social and monthly women's rides are a key part of the club's appeal and should be welcoming to beginners regardless of their cycling ability (to a degree).  The responsibility of the ride leaders are to make sure everyone makes it round and has a good time.</p>
+          <p>Our weekly social and monthly women's rides are a key part of the club's appeal and should be welcoming to beginners regardless of their cycling ability (to a degree).  The responsibility of the ride leaders is to make sure everyone makes it round and has a good time.</p>
           <p>There should be a minimum of two leaders on a ride, one at the front and one at the back.  Additional club regulars can help out where they can but should defer to the ride leaders on pace &amp; route.</p>
 
           <h3>Who can lead a ride</h3>
-          <p>There is no exacting criteria for who can lead a ride. If you’ve done the ride enough times to consider yourself a regular and know the route, you can volunteer to help lead the ride.  Regulars should try to lead a ride at least every couple of months to spread the workload around.</p>
+          <p>There are no exacting criteria for who can lead a ride. If you’ve done the ride enough times to consider yourself a regular and know the route, you can volunteer to help lead the ride.  Regulars should try to lead a ride at least every couple of months to spread the workload around.</p>
 
           <h3>Before the ride</h3>
           <p>Before setting off ensure:</p>
@@ -33,7 +33,7 @@ class LeadingPage extends Component {
               <SubList>
                 <li>Water (at least one bottle)</li>
                 <li>Food (at least two bars)</li>
-                <li>Tyre levers and spare tube and/or patch kit</li>
+                <li>Tyre levers and spare tubes</li>
               </SubList>
             </li>
             <li>
