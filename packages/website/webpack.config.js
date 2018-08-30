@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const LiveReloadPlugin = require('webpack-livereload-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 const config = {
   entry: {
@@ -27,7 +28,8 @@ const config = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/index.template.html'
-    })
+    }),
+    new FaviconsWebpackPlugin('./assets/pcc-avatar.png')
   ],
   module: {
     loaders: [{
