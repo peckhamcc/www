@@ -362,7 +362,8 @@ const config = {
     store: true,
     riding: true,
     leading: true,
-    email: true
+    email: true,
+    payments: false
   },
   email: {
     to: 'peckhamcc@gmail.com',
@@ -386,7 +387,7 @@ const config = {
       section: SECTIONS.JERSEYS,
       details: [
         'Lightweight Short Sleeved Club Jersey in black.',
-        'Based on the jerseys used by the Movistar professional team, the Peckham CC Club Jersey is made from Italian wicking fabrics with Coldblack Technology and has three large rear pockets with an extra zip compartment for your valuables.',
+        'Based on the jerseys used by the Movistar professional team, the Peckham CC Club Jersey is made from Italian wicking fabrics with Coldblack Technology and has three large rear pockets.',
         'It comes with a full-length YKK zip, silicone grippers on the arms &amp; waist and is available in various lengths and sizes and is handmade in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
@@ -410,11 +411,11 @@ const config = {
       section: SECTIONS.JERSEYS,
       details: [
         'Lightweight Short Sleeved Club Jersey in white.',
-        'Based on the jerseys used by the Movistar professional team, the Peckham CC Club Jersey is made from Italian wicking fabrics with Coldblack Technology and has three large rear pockets with an extra zip compartment for your valuables.',
+        'Based on the jerseys used by the Movistar professional team, the Peckham CC Club Jersey is made from Italian wicking fabrics with Coldblack Technology and has three large rear pockets.',
         'It comes with a full-length YKK zip, silicone grippers on the arms &amp; waist and is available in various lengths and sizes and is handmade in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 8500,
+      price: 8000,
       sizes: JERSEY_SIZES,
       variants: {
         length: {
@@ -434,7 +435,7 @@ const config = {
       section: SECTIONS.JERSEYS,
       details: [
         'Long Sleeved Winter Jersey in black.',
-        'Made from a high performing Hydrophilic and Hydrophobic fabric and has three large rear pockets with an extra zip compartment for your valuables.',
+        'Made from a high performing Hydrophilic and Hydrophobic fabric and has three large rear pockets.',
         'It comes with a full-length YKK zip, silicone grippers on the cuffs &amp; waist and is handmade in Scotland.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
@@ -630,6 +631,16 @@ const config = {
         '1 1/8th" (32mm) diameter aluminium headset cap with the club logo, should fit all modern bikes.'
       ],
       price: 2500
+    }, {
+      sku: 'CLUB-BIDON-2018',
+      title: 'Club Bidon',
+      slug: 'club-bidon-2018',
+      section: SECTIONS.ACCESSORIES,
+      details: [
+        'The club bidon has a <a href="http://www.velominati.com/the-rules/#52">500ml capacity</a>, features a lockable lid with a leak-proof membrane cap and is dishwasher safe.',
+        'It\'s made from 20% post-industrial recycled plastics and is biodegradable so once retired should not murder anything in the ocean.'
+      ],
+      price: 800
     }]
   }
 }

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { PageWrapper, Panel, Hero, Breadcrumb } from '../components/panels'
 import checkoutBackground from '../../assets/checkout-bg.jpg'
-import Checkout from '../components/checkout'
+import CheckoutTransfer from '../components/checkout-transfer'
+import CheckoutPayment from '../components/checkout-payments'
+import { Flag } from 'flag'
 
 class CheckoutPage extends Component {
   render () {
@@ -11,7 +13,11 @@ class CheckoutPage extends Component {
         <Panel>
           <Breadcrumb section={{title: 'Checkout'}} />
           <h2>Checkout</h2>
-          <Checkout />
+          <Flag
+            name='payments'
+            component={CheckoutPayment}
+            fallbackComponent={CheckoutTransfer}
+          />
         </Panel>
       </PageWrapper>
     )

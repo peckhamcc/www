@@ -30,6 +30,7 @@ import socksTopImage from '../assets/shop/socks-top.png?sizes[]=300,sizes[]=500'
 import glovesImage from '../assets/shop/gloves.png?sizes[]=300,sizes[]=500'
 import multiTubeImage from '../assets/shop/multi-tube.png?sizes[]=300,sizes[]=500'
 import headsetCapImage from '../assets/shop/headset-cap.png?sizes[]=300,sizes[]=500'
+import bidonImage from '../assets/shop/bidon.png?sizes[]=300,sizes[]=500'
 
 const productImages = {
   'CLUB-JERSEY-2018': [
@@ -83,6 +84,9 @@ const productImages = {
   ],
   'HEADSET-CAP-2018': [
     headsetCapImage
+  ],
+  'CLUB-BIDON-2018': [
+    bidonImage
   ]
 }
 
