@@ -18,62 +18,22 @@ import {
   clearCart
 } from '../store/actions'
 import Isemail from 'isemail'
-
-const Label = styled.label`
-  display: block;
-  margin-bottom: ${spacing(1)};
-`
-
-const Input = styled.input`
-  display: block;
-  padding: 5px;
-  margin-bottom: ${spacing(1)};
-  width: 300px;
-  font-size: 18px;
-`
-
-const CheckoutWrapper = styled.div`
-
-  .braintree-heading {
-    color: ${light};
-  }
-`
-
-const TransactionId = styled.p`
-  display: inline-block;
-  background-color: ${light};
-  color: ${darkLowlight};
-  border: 5px solid ${darkLowlight};
-  padding: ${spacing(1)};
-  font-size: 24px;
-`
-
-const FormInputWrapper = styled.div`
-  ${props => props.error ? `
-    label {
-      color: ${errorText};
-    }
-
-    input {
-      border: 1px solid ${errorText};
-      color: ${errorText};
-      background: ${errorBackground};
-    }
-  ` : ''}
-`
-
-const ErrorText = styled.p`
-  color: ${errorText};
-  margin: ${spacing(1)} 0;
-`
-
-const PaymentHolder = styled.div`
-  margin: ${spacing(1)} 0;
-`
-
-const PlaceHolder = styled.div`
-  margin: ${spacing(1)} 0;
-`
+import {
+  Label,
+  Input,
+  CheckoutWrapper,
+  TransactionId,
+  FormInputWrapper,
+  DetailsWrapper,
+  CustomerDetailsWrapper,
+  NameWrapper,
+  AddressWrapper,
+  ErrorText,
+  ShopCodeWrapper,
+  HelpText,
+  PaymentHolder,
+  PlaceHolder
+} from './forms'
 
 const STEPS = {
   'LOADING_TOKEN': 'LOADING_TOKEN',

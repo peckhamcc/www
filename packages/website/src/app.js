@@ -17,6 +17,7 @@ import {
   Routes,
   Shop,
   Item,
+  MailingList,
   Membership,
   Contact,
   Riding,
@@ -78,22 +79,18 @@ export default () => {
                 <Route path='/membership' component={Membership} />
                 <Route path='/club' component={About} />
                 <Route path='/contact' component={Contact} />
+                <Route path='/mailing-list' component={MailingList} />
+                <Route path='/riding' component={Riding} />
 
-                <Flag name='riding'>
-                  <Route path='/riding' component={Riding} />
+                <Flag name='store'>
+                  <Fragment>
+                    <Route exact path='/shop' component={Shop} />
+                    <Route path='/shop/:slug' component={Item} />
+                    <Route path='/basket' component={Basket} />
+                    <Route path='/checkout' component={Checkout} />
+                    <Route path='/orders' component={Orders} />
+                  </Fragment>
                 </Flag>
-
-                <Flag name='leading'>
-                  <Route path='/leading' component={Leading} />
-                </Flag>
-
-                <Fragment>
-                  <Route exact path='/shop' component={Shop} />
-                  <Route path='/shop/:slug' component={Item} />
-                  <Route path='/basket' component={Basket} />
-                  <Route path='/checkout' component={Checkout} />
-                  <Route path='/orders' component={Orders} />
-                </Fragment>
 
               </FlexItem>
               <Break />

@@ -360,8 +360,6 @@ const config = {
   },
   flags: {
     store: true,
-    riding: true,
-    leading: true,
     email: true,
     payments: false
   },
@@ -575,7 +573,8 @@ const config = {
         'Cycling caps keep the sun out of your eyes when it\'s sunny and the rain out of your eyes when it\'s wet.',
         'An essential piece of kit, don\'t leave home without one. Unless you are going to the pub, in which case observe <a href="http://www.velominati.com/the-rules/#22">rule #22</a> and leave it at home.',
         'Our caps are made in Italy from black cotton with a stiff peak and the Peckham logos are screen printed in white. A stitched ribbon in club colours runs over the top.',
-        'Hand wash only. We mean it.'
+        'Hand wash only. We mean it.',
+        'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
       ],
       price: 1500
     }, {
@@ -638,7 +637,8 @@ const config = {
       section: SECTIONS.ACCESSORIES,
       details: [
         'The club bidon has a <a href="http://www.velominati.com/the-rules/#52">500ml capacity</a>, features a lockable lid with a leak-proof membrane cap and is dishwasher safe.',
-        'It\'s made from 20% post-industrial recycled plastics and is biodegradable so once retired should not murder anything in the ocean.'
+        'It\'s made from 20% post-industrial recycled plastics and is recyclable and biodegradable itself so once retired should not murder anything in the ocean.',
+        'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
       ],
       price: 800
     }]

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Button } from '../components/panels'
+import { Button } from './panels'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import {
@@ -14,97 +14,24 @@ import {
 } from '../colours'
 import config from '../config'
 import { spacing } from '../units'
-import { 
+import {
   clearCart
 } from '../store/actions'
 import Isemail from 'isemail'
-
-const Label = styled.label`
-  display: block;
-  margin-bottom: ${spacing(1)};
-`
-
-const Input = styled.input`
-  display: block;
-  padding: 5px;
-  margin-bottom: ${spacing(1)};
-  width: 300px;
-  font-size: 18px;
-`
-
-const CheckoutWrapper = styled.div`
-
-`
-
-const TransactionId = styled.p`
-  display: inline-block;
-  background-color: ${light};
-  color: ${darkLowlight};
-  border: 5px solid ${darkLowlight};
-  padding: ${spacing(1)};
-  font-size: 24px;
-`
-
-const FormInputWrapper = styled.div`
-  ${props => props.error ? `
-    label {
-      color: ${errorText};
-    }
-
-    input {
-      border: 1px solid ${errorText};
-      color: ${errorText};
-      background: ${errorBackground};
-    }
-  ` : ''}
-`
-
-const DetailsWrapper = styled.div`
-  @media (min-width: 800px) {
-    display: flex;
-    flex-direction: 'row';
-  }
-`
-
-const CustomerDetailsWrapper = styled.div`
-  @media (min-width: 800px) {
-    width: 50%;
-  }
-
-  background: ${dark};
-  padding: ${spacing(1)};
-  margin-top: ${spacing(1)};
-
-  h3 {
-    margin-top: 0;
-    margin-bottom: ${spacing(2)};
-  }
-`
-
-const NameWrapper = CustomerDetailsWrapper.extend`
-  @media (min-width: 800px) {
-    margin-right: ${spacing(1)};
-  }
-`
-
-const AddressWrapper = CustomerDetailsWrapper.extend`
-`
-
-const ErrorText = styled.p`
-  color: ${errorText};
-  padding-bottom: ${spacing(1)};
-`
-
-const ShopCodeWrapper = styled.div`
-  background: ${dark};
-  padding: ${spacing(1)};
-  margin-top: ${spacing(1)};
-  margin-bottom: ${spacing(1)};
-`
-
-const HelpText = styled.p`
-  color: ${lightAccent};
-`
+import {
+  Label,
+  Input,
+  CheckoutWrapper,
+  TransactionId,
+  FormInputWrapper,
+  DetailsWrapper,
+  CustomerDetailsWrapper,
+  NameWrapper,
+  AddressWrapper,
+  ErrorText,
+  ShopCodeWrapper,
+  HelpText
+} from './forms'
 
 const STEPS = {
   'ENTER_DETAILS': 'ENTER_DETAILS',
@@ -201,7 +128,7 @@ class EnterDetails extends Component {
       'email',
       'address1',
       'postCode',
-      'shopCode' 
+      'shopCode'
     ]
 
     required.forEach(key => {
@@ -280,7 +207,7 @@ class EnterDetails extends Component {
               <Label for='email'>Email {this.state.errors.email && 'must be a valid email'}</Label>
               <Input
                 name='email'
-                type='email' 
+                type='email'
                 onChange={this.formFieldChanged('email')}
                 value={this.state.values.email}
                 data-input='email'/>

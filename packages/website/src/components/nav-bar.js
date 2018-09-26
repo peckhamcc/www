@@ -250,16 +250,15 @@ class NavBarWrapper extends Component {
                   <NavLink>
                     <Link to='/equipment'>Equipment</Link>
                   </NavLink>
-                  <Flag name='riding'>
-                    <NavLink>
-                      <Link to='/riding'>On the road</Link>
-                    </NavLink>
-                  </Flag>
-                  <Flag name='leading'>
-                    <NavLink>
-                      <Link to='/leading'>Leading a ride</Link>
-                    </NavLink>
-                  </Flag>
+                  <NavLink>
+                    <Link to='/riding'>On the road</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/leading'>Leading a ride</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/mailing-list'>Mailing list</Link>
+                  </NavLink>
                 </ul>
               </NavMenu>
               <NavLink>
@@ -324,16 +323,15 @@ class NavBarWrapper extends Component {
                   <NavLink>
                     <Link to='/equipment'>Equipment</Link>
                   </NavLink>
-                  <Flag name='riding'>
-                    <NavLink>
-                      <Link to='/riding'>On the road</Link>
-                    </NavLink>
-                  </Flag>
-                  <Flag name='leading'>
-                    <NavLink>
-                      <Link to='/leading'>Leading a ride</Link>
-                    </NavLink>
-                  </Flag>
+                  <NavLink>
+                    <Link to='/riding'>On the road</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/leading'>Leading a ride</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/mailing-list'>Mailing list</Link>
+                  </NavLink>
                 </ul>
               </HamburgerNavMenu>
               <NavLink>
