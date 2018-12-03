@@ -15,6 +15,10 @@ const SECTIONS = {
   ACCESSORIES: {
     title: 'Accessories',
     slug: 'accessories'
+  },
+  CASUAL: {
+    title: 'Casualwear',
+    slug: 'casualwear'
   }
 }
 
@@ -290,6 +294,83 @@ const GLOVE_SIZES = [{
       unisex: {
         metric: '12cm',
         imperial: '5.1"'
+      }
+    }
+  }
+}]
+
+const TSHIRT_SIZES = [{
+  code: 'S',
+  name: 'Small',
+  measurements: {
+    chest: {
+      male: {
+        metric: '86-91cm',
+        imperial: '34-36"'
+      },
+      female: {
+        metric: '86-89cm',
+        imperial: '34-35"'
+      }
+    }
+  }
+}, {
+  code: 'M',
+  name: 'Medium',
+  measurements: {
+    chest: {
+      male: {
+        metric: '96-101cm',
+        imperial: '38-40"'
+      },
+      female: {
+        metric: '91-94cm',
+        imperial: '36-37"'
+      }
+    }
+  }
+}, {
+  code: 'L',
+  name: 'Large',
+  measurements: {
+    chest: {
+      male: {
+        metric: '106-111cm',
+        imperial: '42-44"'
+      },
+      female: {
+        metric: '99-101cm',
+        imperial: '39-40"'
+      }
+    }
+  }
+}, {
+  code: 'XL',
+  name: 'Extra large',
+  measurements: {
+    chest: {
+      male: {
+        metric: '117-122cm',
+        imperial: '46-48"'
+      },
+      female: {
+        metric: '106-112cm',
+        imperial: '42-44"'
+      }
+    }
+  }
+}, {
+  code: 'XXL',
+  name: 'XX Large',
+  measurements: {
+    chest: {
+      male: {
+        metric: '127-132cm',
+        imperial: '50-52"'
+      },
+      female: {
+        metric: '117-122cm',
+        imperial: '46-48"'
       }
     }
   }
@@ -641,6 +722,58 @@ const config = {
         'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
       ],
       price: 800
+    },
+    {
+      sku: 'CLUB-TSHIRT-2019',
+      title: 'Club t-shirt',
+      slug: 'club-tshirt-2019',
+      section: SECTIONS.CASUAL,
+      details: [
+        'N.b. £5 pre-production discount!',
+        'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
+        'Club t-shirt printed on 100% cotton Fruit of the Loom shirt in black'
+      ],
+      sizes: TSHIRT_SIZES,
+      price: 1500
+    },
+    {
+      sku: 'CLUB-LS-TSHIRT-2019',
+      title: 'Club long sleeved t-shirt',
+      slug: 'club-ls-tshirt-2019',
+      section: SECTIONS.CASUAL,
+      details: [
+        'N.b. £5 pre-production discount!',
+        'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
+        'Club long sleeved t-shirt printed on 100% cotton Fruit of the Loom shirt in black'
+      ],
+      sizes: TSHIRT_SIZES,
+      price: 2000
+    },
+    {
+      sku: 'CLUB-HOODIE-2019',
+      title: 'Club hoodie',
+      slug: 'club-hoodie-2019',
+      section: SECTIONS.CASUAL,
+      details: [
+        'N.b. £5 pre-production discount!',
+        'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
+        'Club hoodie printed on black Fruit of the Loom hoodie'
+      ],
+      sizes: TSHIRT_SIZES,
+      price: 3000
+    },
+    {
+      sku: 'CLUB-ZIP-HOODIE-2019',
+      title: 'Club zip hoodie',
+      slug: 'club-zip-hoodie-2019',
+      section: SECTIONS.CASUAL,
+      details: [
+        'N.b. £5 pre-production discount!',
+        'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
+        'Club hoodie printed on black Fruit of the Loom hoodie with zip'
+      ],
+      sizes: TSHIRT_SIZES,
+      price: 3500
     }]
   }
 }

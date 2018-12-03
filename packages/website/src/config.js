@@ -11,11 +11,8 @@ import capFrontImage from '../assets/shop/cap-front.png?sizes[]=300,sizes[]=500'
 import capSidesImage from '../assets/shop/cap-sides.png?sizes[]=300,sizes[]=500'
 import giletFrontImage from '../assets/shop/gilet-front.png?sizes[]=300,sizes[]=500'
 import giletRearImage from '../assets/shop/gilet-rear.png?sizes[]=300,sizes[]=500'
-import kneeWarmersImage from '../assets/shop/knee-warmers.png?sizes[]=300,sizes[]=500'
-import legWarmersImage from '../assets/shop/leg-warmers.png?sizes[]=300,sizes[]=500'
 import lsJerseyFrontImage from '../assets/shop/ls-jersey-front.png?sizes[]=300,sizes[]=500'
 import lsJerseyRearImage from '../assets/shop/ls-jersey-rear.png?sizes[]=300,sizes[]=500'
-import shoeCoversImage from '../assets/shop/shoe-covers.png?sizes[]=300,sizes[]=500'
 import ssJerseyFrontImage from '../assets/shop/ss-jersey-front.png?sizes[]=300,sizes[]=500'
 import ssJerseyRearImage from '../assets/shop/ss-jersey-rear.png?sizes[]=300,sizes[]=500'
 import ssSummerJerseyFrontImage from '../assets/shop/ss-summer-jersey-front.png?sizes[]=300,sizes[]=500'
@@ -24,13 +21,19 @@ import winterJacketFrontImage from '../assets/shop/winter-jacket-front.png?sizes
 import winterJacketRearImage from '../assets/shop/winter-jacket-rear.png?sizes[]=300,sizes[]=500'
 import winterTightsFrontImage from '../assets/shop/winter-tights-front.png?sizes[]=300,sizes[]=500'
 import winterTightsRearImage from '../assets/shop/winter-tights-rear.png?sizes[]=300,sizes[]=500'
-import tripsImage from '../assets/shop/trips.png?sizes[]=300,sizes[]=500'
 import socksSideImage from '../assets/shop/socks-side.png?sizes[]=300,sizes[]=500'
 import socksTopImage from '../assets/shop/socks-top.png?sizes[]=300,sizes[]=500'
 import glovesImage from '../assets/shop/gloves.png?sizes[]=300,sizes[]=500'
 import multiTubeImage from '../assets/shop/multi-tube.png?sizes[]=300,sizes[]=500'
 import headsetCapImage from '../assets/shop/headset-cap.png?sizes[]=300,sizes[]=500'
 import bidonImage from '../assets/shop/bidon.png?sizes[]=300,sizes[]=500'
+import tshirtFrontImage from '../assets/shop/tshirt-front.png?sizes[]=300,sizes[]=500'
+import tshirtRearImage from '../assets/shop/tshirt-rear.png?sizes[]=300,sizes[]=500'
+import lsTshirtFrontImage from '../assets/shop/ls-tshirt-front.png?sizes[]=300,sizes[]=500'
+import lsTshirtRearImage from '../assets/shop/ls-tshirt-rear.png?sizes[]=300,sizes[]=500'
+import hoodieFrontImage from '../assets/shop/hoodie-front.png?sizes[]=300,sizes[]=500'
+import hoodieRearImage from '../assets/shop/hoodie-rear.png?sizes[]=300,sizes[]=500'
+import zipHoodieFrontImage from '../assets/shop/zip-hoodie-front.png?sizes[]=300,sizes[]=500'
 
 const productImages = {
   'CLUB-JERSEY-2018': [
@@ -87,6 +90,22 @@ const productImages = {
   ],
   'CLUB-BIDON-2018': [
     bidonImage
+  ],
+  'CLUB-TSHIRT-2019': [
+    tshirtFrontImage,
+    tshirtRearImage
+  ],
+  'CLUB-LS-TSHIRT-2019': [
+    lsTshirtFrontImage,
+    lsTshirtRearImage
+  ],
+  'CLUB-HOODIE-2019': [
+    hoodieFrontImage,
+    hoodieRearImage
+  ],
+  'CLUB-ZIP-HOODIE-2019': [
+    zipHoodieFrontImage,
+    hoodieRearImage
   ]
 }
 
@@ -113,6 +132,9 @@ SECTIONS.SHORTS.images = [
 ]
 SECTIONS.ACCESSORIES.images = [
   capFrontImage
+]
+SECTIONS.CASUAL.images = [
+  tshirtFrontImage
 ]
 
 export default config
