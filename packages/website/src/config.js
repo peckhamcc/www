@@ -53,8 +53,8 @@ const productImages = {
     winterJacketRearImage
   ],
   'RAIN-JACKET-2018': [
-    lsJerseyFrontImage,
-    lsJerseyRearImage
+    winterJacketFrontImage,
+    winterJacketRearImage
   ],
   'GILET-2018': [
     giletFrontImage,
