@@ -733,8 +733,9 @@ const config = {
         'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
         'Club t-shirt printed on 100% cotton Fruit of the Loom shirt in black'
       ],
+      price: 1500,
       sizes: TSHIRT_SIZES,
-      price: 1500
+      genders: GENDERS
     },
     {
       sku: 'CLUB-LS-TSHIRT-2019',
@@ -746,8 +747,9 @@ const config = {
         'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
         'Club long sleeved t-shirt printed on 100% cotton Fruit of the Loom shirt in black'
       ],
+      price: 2000,
       sizes: TSHIRT_SIZES,
-      price: 2000
+      genders: GENDERS
     },
     {
       sku: 'CLUB-HOODIE-2019',
@@ -759,8 +761,9 @@ const config = {
         'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
         'Club hoodie printed on black Fruit of the Loom hoodie'
       ],
+      price: 3000,
       sizes: TSHIRT_SIZES,
-      price: 3000
+      genders: GENDERS
     },
     {
       sku: 'CLUB-ZIP-HOODIE-2019',
@@ -772,8 +775,9 @@ const config = {
         'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
         'Club hoodie printed on black Fruit of the Loom hoodie with zip'
       ],
+      price: 3500,
       sizes: TSHIRT_SIZES,
-      price: 3500
+      genders: GENDERS
     }]
   }
 }
