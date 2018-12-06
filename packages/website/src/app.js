@@ -81,6 +81,7 @@ export default () => {
                 <Route path='/contact' component={Contact} />
                 <Route path='/mailing-list' component={MailingList} />
                 <Route path='/riding' component={Riding} />
+                <Route path='/leading' component={Leading} />
 
                 <Flag name='store'>
                   <Fragment>
