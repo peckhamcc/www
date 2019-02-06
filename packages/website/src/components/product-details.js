@@ -1,21 +1,40 @@
-import React, { Component, Fragment } from 'react'
+import React, {
+  Component,
+  Fragment
+} from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { Break, PageWrapper, Panel, ShopListItem, Breadcrumb, Price, Button, Quantity } from '../components/panels'
-import styled from 'styled-components'
-import { connect } from 'react-redux'
-import { light, lightAccent, dark } from '../colours';
-import Modal from './modal';
-import { addToCart, selectedSize, selectedGender } from '../store/actions'
-import PlusIcon from 'react-icons/lib/fa/plus'
-import MinusIcon from 'react-icons/lib/fa/minus'
-import AddToBasketIcon from 'react-icons/lib/fa/cart-plus'
-import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart'
-import TickIcon from 'react-icons/lib/fa/check'
-import { spacing } from '../units'
 import {
+  Link
+} from 'react-router-dom'
+import {
+  Price,
+  Button,
+  Quantity,
   SelectableOption
 } from './panels'
+import styled from 'styled-components'
+import {
+  connect
+} from 'react-redux'
+import {
+  lightAccent
+} from '../colours'
+import Modal from './modal'
+import {
+  addToCart,
+  selectedSize,
+  selectedGender
+} from '../store/actions'
+import {
+  FaPlus,
+  FaMinus,
+  FaCartPlus,
+  FaShoppingCart,
+  FaCheck
+} from 'react-icons/fa'
+import {
+  spacing
+} from '../units'
 
 const ProductDetailsPanel = styled.div`
   padding: 0s;
@@ -82,7 +101,7 @@ class ProductDetails extends Component {
         return output
       }, {})
 
-      this.state.variants= variants || defaultVariants
+      this.state.variants = variants || defaultVariants
 
       Object.keys(defaultVariants).forEach(key => {
         this.state.variants[key] = product.variants[key].options.find(variant => variant.code === this.state.variants[key].code) || product.variants[key].options[1]
@@ -172,18 +191,18 @@ class ProductDetails extends Component {
               <Button
                 data-button='continue-shopping'
                 onClick={this.dismissModal}
-              ><TickIcon /> Continue shopping</Button>
+              ><FaCheck /> Continue shopping</Button>
               <Link to='/basket'>
                 <Button
                   data-button='go-to-checkout'
-                ><ShoppingCartIcon /> Go to checkout</Button>
+                ><FaShoppingCart /> Go to checkout</Button>
               </Link>
             </ButtonWrapper>
           </Modal>
         )}
         <h2>{product.title}</h2>
         <h3><Price price={product.price} /></h3>
-        {product.details.map((line, index) => <p key={index} dangerouslySetInnerHTML={{__html: line}}></p>)}
+        {product.details.map((line, index) => <p key={index} dangerouslySetInnerHTML={{ __html: line }} />)}
         <OptionsArea>
           {product.genders && (
             <Fragment>
@@ -213,19 +232,19 @@ class ProductDetails extends Component {
               <h4>Options</h4>
               {Object.keys(product.variants)
                 .map((key, index) => (
-                <div key={index}>
-                  <p>{product.variants[key].description}</p>
-                  {
-                    product.variants[key].options.map((variant, index) => (
-                    <SelectableOption
-                      selected={variant.code === this.state.variants[key].code}
-                      onClick={() => this.chooseVariant(key, variant)}
-                      key={index}
-                      data-variant={variant.code}>{variant.name}</SelectableOption>
-                    ))
-                  }
-                </div>
-              ))}
+                  <div key={index}>
+                    <p>{product.variants[key].description}</p>
+                    {
+                      product.variants[key].options.map((variant, index) => (
+                        <SelectableOption
+                          selected={variant.code === this.state.variants[key].code}
+                          onClick={() => this.chooseVariant(key, variant)}
+                          key={index}
+                          data-variant={variant.code}>{variant.name}</SelectableOption>
+                      ))
+                    }
+                  </div>
+                ))}
             </Fragment>
           )}
           <Fragment>
@@ -233,18 +252,18 @@ class ProductDetails extends Component {
             <Button
               onClick={this.decreaseQuantity}
               data-button='decrease-quantity'
-            ><MinusIcon /></Button>
+            ><FaMinus /></Button>
             <Quantity>{this.state.quantity}</Quantity>
             <Button
               onClick={this.increaseQuantity}
               data-button='increase-quantity'
-            ><PlusIcon /></Button>
+            ><FaPlus /></Button>
           </Fragment>
           <ButtonWrapper>
             <Button
               onClick={this.addToCart}
               data-button='add-to-cart'
-              ><AddToBasketIcon /> Add to basket</Button>
+            ><FaCartPlus /> Add to basket</Button>
           </ButtonWrapper>
         </OptionsArea>
       </ProductDetailsPanel>

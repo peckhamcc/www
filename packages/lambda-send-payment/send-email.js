@@ -89,8 +89,8 @@ div {
       <p>Total value: &pound;${amount}</p>
       <p>The address you submitted was:</p>
       <p>${
-        [(`${firstName} ${lastName}`).trim(), address1, address2, address3, postCode].filter(Boolean).join('<br />')
-      }</p>
+  [(`${firstName} ${lastName}`).trim(), address1, address2, address3, postCode].filter(Boolean).join('<br />')
+}</p>
       <p>Your order will be submitted to the factory once we hit the minimums for production.</p>
       <p>Once we know the delivery date for your items we will be in touch to let you know.</p>
       <p>Please get in touch if you'd like any updates.</p>

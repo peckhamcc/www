@@ -1,10 +1,18 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Break, PageWrapper, Panel, Hero, LinkPanel } from '../components/panels'
+import React, {
+  Component
+} from 'react'
+import {
+  Link
+} from 'react-router-dom'
+import {
+  PageWrapper,
+  Panel,
+  Hero,
+  LinkPanel
+} from '../components/panels'
 import ridesBackground from '../../assets/rides-bg.jpg'
 import membershipBackground from '../../assets/membership-bg.jpg'
 import equipmentBackground from '../../assets/equipment-bg.jpg'
-import styled from 'styled-components'
 
 class RidesPage extends Component {
   render () {
@@ -13,8 +21,8 @@ class RidesPage extends Component {
         <Hero background={ridesBackground.src} />
         <Panel>
           <h2>Club Rides</h2>
-          <p>All rides leave <a href="http://www.southwark.gov.uk/libraries/find-a-library?chapter=13">Peckham Library</a> at 8am in the summer or 8:30am in the winter.</p>
-          <p>Details of weekend rides are usually posted to <a href="https://www.facebook.com/PeckhamCC">Facebook</a> and <a href="https://twitter.com/peckhamcc">Twitter</a> towards the end of the week.</p>
+          <p>All rides leave <a href='http://www.southwark.gov.uk/libraries/find-a-library?chapter=13'>Peckham Library</a> at 8am in the summer or 8:30am in the winter.</p>
+          <p>Details of weekend rides are usually posted to <a href='https://www.facebook.com/PeckhamCC'>Facebook</a> and <a href='https://twitter.com/peckhamcc'>Twitter</a> towards the end of the week.</p>
           <p>First time riders are more than welcome but if you are thinking of joining us for the first time, please get in touch first so we know to look out for you!</p>
           <h3>Social Spin</h3>
           <p>There is a club social ride on most Saturdays throughout the year and is the ideal introduction to riding with Peckham CC.</p>

@@ -1,7 +1,10 @@
-import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
+import React, {
+  Component
+} from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import {
+  Link
+} from 'react-router-dom'
 import backgroundImage1 from '../../assets/bg-1.jpg'
 import backgroundImage2 from '../../assets/bg-2.jpg'
 import backgroundImage3 from '../../assets/bg-3.jpg'
@@ -13,11 +16,13 @@ import backgroundImage8 from '../../assets/bg-8.jpg'
 import backgroundImage9 from '../../assets/bg-9.jpg'
 import membershipBackground from '../../assets/membership-bg.jpg'
 import equipmentBackground from '../../assets/equipment-bg.jpg'
-import stripesImage from '../../assets/stripes.png'
 import logoImage from '../../assets/pcc-logo@2x.png'
 import SlideShow from '../components/slide-show'
-import { light, lightAccent, main } from '../colours'
-import { Break, PageWrapper, Panel, LinkPanel } from '../components/panels'
+import {
+  PageWrapper,
+  Panel,
+  LinkPanel
+} from '../components/panels'
 
 const Logo = styled.h1`
   margin: 0;
@@ -47,7 +52,6 @@ const shuffle = (array) => {
 }
 
 class HomePage extends Component {
-
   render () {
     return (
       <PageWrapper>

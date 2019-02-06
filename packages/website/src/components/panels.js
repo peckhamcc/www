@@ -15,18 +15,18 @@ export const FlexContainerCentered = styled.div`
 `
 
 export const FlexContent = styled.div`
-  
+
 `
 
-export const FlexContentLeft = FlexContent.extend`
+export const FlexContentLeft = styled(FlexContent)`
   text-align: left;
 `
 
-export const FlexContentCenter = FlexContent.extend`
+export const FlexContentCenter = styled(FlexContent)`
   text-align: center;
 `
 
-export const FlexContentRight = FlexContent.extend`
+export const FlexContentRight = styled(FlexContent)`
   text-align: right;
 `
 
@@ -78,13 +78,13 @@ export const Panel = styled.div`
   }
 `
 
-export const InnerPanel = Panel.extend`
+export const InnerPanel = styled(Panel)`
   background-color: ${lightAccent};
   color: ${light};
   margin: ${spacing(2)} 0 0 0;
 `
 
-const ShopPanel = InnerPanel.extend`
+const ShopPanel = styled(InnerPanel)`
   width: 300px;
   display: inline-block;
   padding: 0;
@@ -117,17 +117,17 @@ const ShopPanel = InnerPanel.extend`
 export const ShopListItem = ({ item: { slug, title, description, images, price } }) => {
   return (
     <ShopPanel>
-       <h4>
-          <Link to={`/shop/${slug}`} data-section={slug}>{title}</Link>
-        </h4>
-        {price && <h5><Price price={price} /></h5>}
-        <Link to={`/shop/${slug}`}>
+      <h4>
+        <Link to={`/shop/${slug}`} data-section={slug}>{title}</Link>
+      </h4>
+      {price && <h5><Price price={price} /></h5>}
+      <Link to={`/shop/${slug}`}>
         <img srcSet={images[0].srcSet} src={images[0].src} width={300} /></Link>
-        {description && (
-          <p>
-            <Link to={`/shop/${slug}`}>{description}</Link>
-          </p>
-        )}
+      {description && (
+        <p>
+          <Link to={`/shop/${slug}`}>{description}</Link>
+        </p>
+      )}
     </ShopPanel>
   )
 }
@@ -147,7 +147,7 @@ export const BreadCrumbList = styled.ul`
   }
 `
 
-export const Breadcrumb = ({section, product}) => {
+export const Breadcrumb = ({ section, product }) => {
   const links = [
     <Link to='/shop'>Shop</Link>
   ]
@@ -170,9 +170,9 @@ export const Breadcrumb = ({section, product}) => {
   )
 }
 
-export const Price = ({price}) => {
+export const Price = ({ price }) => {
   return (
-    <span>&pound;{price/100}</span>
+    <span>&pound;{price / 100}</span>
   )
 }
 
@@ -207,7 +207,7 @@ export const Button = styled.button`
   }
 `
 
-export const TextButton = Button.extend`
+export const TextButton = styled(Button)`
   border: none;
   padding: 0;
 
@@ -216,7 +216,7 @@ export const TextButton = Button.extend`
   }
 `
 
-export const SmallTextButton = TextButton.extend`
+export const SmallTextButton = styled(TextButton)`
   font-size: 12px;
 
   @media (max-width: 940px) {
@@ -286,7 +286,7 @@ export const Hero = styled.div`
   }
 `
 
-export const ShortHero = Hero.extend`
+export const ShortHero = styled(Hero)`
   height: 20vh;
 
   @media (max-width: 940px) {

@@ -1,12 +1,19 @@
-import React, { Component, Fragment } from 'react'
+import React, {
+  Component
+} from 'react'
 import PropTypes from 'prop-types'
-import { Break, PageWrapper, Panel, ShopListItem, Breadcrumb } from '../components/panels'
 import styled from 'styled-components'
-import ChevronLeftIcon from 'react-icons/lib/fa/chevron-left'
-import ChevronRightIcon from 'react-icons/lib/fa/chevron-right'
-import { light, lightAccent, dark } from '../colours'
-import Modal from './modal'
-import { spacing } from '../units'
+import {
+  FaChevronLeft,
+  FaChevronRight
+} from 'react-icons/fa'
+import {
+  light,
+  lightAccent
+} from '../colours'
+import {
+  spacing
+} from '../units'
 
 const Thumbnails = styled.div`
   user-select: none;
@@ -113,7 +120,7 @@ class ImageViewer extends Component {
   }
 
   viewImage = (index) => {
-    this.setState({index})
+    this.setState({ index })
   }
 
   render () {
@@ -126,7 +133,7 @@ class ImageViewer extends Component {
           {images.length > 1 && (
             <ImageNav onClick={this.previousImage}>
               <div>
-                <ChevronLeftIcon />
+                <FaChevronLeft />
               </div>
             </ImageNav>
           )}
@@ -138,7 +145,7 @@ class ImageViewer extends Component {
           {images.length > 1 && (
             <ImageNav onClick={this.nextImage}>
               <div>
-                <ChevronRightIcon />
+                <FaChevronRight />
               </div>
             </ImageNav>
           )}

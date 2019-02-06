@@ -1,10 +1,15 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { PageWrapper, Panel } from '../components/panels'
-import membershipBackground from '../../assets/membership-bg.jpg'
+import React, {
+  Component
+} from 'react'
+import {
+  Link
+} from 'react-router-dom'
+import {
+  PageWrapper,
+  Panel,
+  Hero
+} from '../components/panels'
 import aboutBackground from '../../assets/about-bg.jpg'
-import styled from 'styled-components'
-import { Hero } from '../components/panels'
 
 class AboutPage extends Component {
   render () {

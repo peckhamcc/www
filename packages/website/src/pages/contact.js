@@ -1,12 +1,19 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { PageWrapper, Panel } from '../components/panels'
-import membershipBackground from '../../assets/membership-bg.jpg'
+import React, {
+  Component
+} from 'react'
+import {
+  PageWrapper,
+  Panel,
+  Hero
+} from '../components/panels'
 import contactBackground from '../../assets/about-bg.jpg'
 import styled from 'styled-components'
-import { Hero } from '../components/panels'
-import { spacing } from '../units'
-import { config } from '@peckhamcc/config'
+import {
+  spacing
+} from '../units'
+import {
+  config
+} from '@peckhamcc/config'
 
 const Label = styled.label`
   display: block;
@@ -45,7 +52,6 @@ const STATE = {
 }
 
 class ContactPage extends Component {
-
   state = {
     name: '',
     email: '',
@@ -84,7 +90,7 @@ class ContactPage extends Component {
       state: STATE.SENDING
     })
 
-    fetch(config.lambda.sendContactFormEmail, {
+    global.fetch(config.lambda.sendContactFormEmail, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -108,6 +114,8 @@ class ContactPage extends Component {
         })
       })
       .catch(error => {
+        console.error(error)
+
         this.setState({
           error: 'There was an error sending your message, please try again later',
           state: STATE.ERROR
@@ -121,18 +129,18 @@ class ContactPage extends Component {
         <Hero background={contactBackground.src} />
         <Panel>
           <h2>Contact</h2>
-          <p>You can contact us via our <a href="https://www.facebook.com/PeckhamCC">Facebook</a> or <a href="https://twitter.com/peckhamcc">Twitter</a> pages, or alternatively use the contact form below.</p>
+          <p>You can contact us via our <a href='https://www.facebook.com/PeckhamCC'>Facebook</a> or <a href='https://twitter.com/peckhamcc'>Twitter</a> pages, or alternatively use the contact form below.</p>
           {this.state.state === STATE.SENDING && <p>Sending your message...</p>}
           {this.state.state === STATE.SENT && <p>Your message has been sent!</p>}
           {this.state.state === STATE.ERROR && <Warning>{this.state.error}</Warning>}
           <form onSubmit={this.onFormSubmit}>
-            <Label for="name">Name</Label>
-            <Input type="text" name="name" onChange={(event) => this.onInputChange('name', event)} value={this.state.name} disabled={this.state.state === STATE.SENDING} />
-            <Label for="email">Email</Label>
-            <Input type="email" name="email" onChange={(event) => this.onInputChange('email', event)} value={this.state.email} disabled={this.state.state === STATE.SENDING} />
-            <Label for="message">Message</Label>
-            <TextArea name="message" onChange={(event) => this.onInputChange('message', event)} value={this.state.message} disabled={this.state.state === STATE.SENDING} />
-            <Submit type="submit" value="Send" disabled={this.state.state === STATE.SENDING} />
+            <Label htmlFor='name'>Name</Label>
+            <Input type='text' name='name' onChange={(event) => this.onInputChange('name', event)} value={this.state.name} disabled={this.state.state === STATE.SENDING} />
+            <Label htmlFor='email'>Email</Label>
+            <Input type='email' name='email' onChange={(event) => this.onInputChange('email', event)} value={this.state.email} disabled={this.state.state === STATE.SENDING} />
+            <Label htmlFor='message'>Message</Label>
+            <TextArea name='message' onChange={(event) => this.onInputChange('message', event)} value={this.state.message} disabled={this.state.state === STATE.SENDING} />
+            <Submit type='submit' value='Send' disabled={this.state.state === STATE.SENDING} />
           </form>
         </Panel>
       </PageWrapper>

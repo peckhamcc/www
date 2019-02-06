@@ -148,7 +148,7 @@ module.exports = {
   handler: middy(sendPayment)
     .use(httpHeaderNormalizer())
     .use(jsonBodyParser())
-    .use(validator({inputSchema}))
+    .use(validator({ inputSchema }))
     .use(errorHandler())
     .use(cors({
       origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'

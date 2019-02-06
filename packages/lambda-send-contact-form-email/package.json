@@ -21,15 +21,15 @@
     "lint": "standard"
   },
   "devDependencies": {
-    "ava": "^0.25.0",
+    "ava": "^1.2.1",
     "faker": "^4.1.0",
-    "node-lambda": "^0.11.6",
+    "node-lambda": "^0.13.0",
     "proxyquire": "^2.0.0",
-    "sinon": "^4.4.6",
-    "standard": "^10.0.3"
+    "sinon": "^7.2.3",
+    "standard": "^12.0.1"
   },
   "dependencies": {
     "aws-sdk": "^2.211.0",
-    "middy": "^0.14.0"
+    "middy": "^0.22.0"
   }
 }

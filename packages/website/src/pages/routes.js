@@ -1,13 +1,24 @@
-import React, { Component } from 'react'
-import { Break, PageWrapper, Panel, InnerPanel, Hero } from '../components/panels'
+import React, {
+  Component
+} from 'react'
+import {
+  PageWrapper,
+  Panel,
+  InnerPanel,
+  Hero
+} from '../components/panels'
 import routesBackground from '../../assets/routes-bg.jpg'
 import shortLoopGpx from '../../assets/peckham-cc-short-loop.gpx'
 import knattsValleyGpx from '../../assets/peckham-cc-knatts-valley.gpx'
 import surreyHillsGpx from '../../assets/peckham-cc-surrey-hills.gpx'
 import styled from 'styled-components'
-import GPXIcon from 'react-icons/lib/fa/map-o'
-import StravaIcon from 'react-icons/lib/fa/chevron-circle-up'
-import { light } from '../colours'
+import {
+  FaRegMap,
+  FaChevronCircleUp
+} from 'react-icons/fa'
+import {
+  light
+} from '../colours'
 
 const Map = styled.iframe`
   width: 500px;
@@ -57,7 +68,6 @@ const routes = [{
 }]
 
 class RoutesPage extends Component {
-
   render () {
     return (
       <PageWrapper>
@@ -71,21 +81,21 @@ class RoutesPage extends Component {
                 <InnerPanel key={index}>
                   <h3 id={route.hash}>{route.title}</h3>
                   <SharingList>
-                    <Sharing><a href={route.gpx}><GPXIcon /> Download .gpx</a></Sharing>
-                    <Sharing><a href={route.strava}><StravaIcon /> View on Strava</a></Sharing>
+                    <Sharing><a href={route.gpx}><FaRegMap /> Download .gpx</a></Sharing>
+                    <Sharing><a href={route.strava}><FaChevronCircleUp /> View on Strava</a></Sharing>
                   </SharingList>
                   <p>{route.description}</p>
                   <Map
                     name={route.title}
                     src={route.embed}
-                    frameborder="0"
-                    scrolling="no"
-                      allowfullscreen
-                      webkitallowfullscreen
-                      mozallowfullscreen
-                      oallowfullscreen
-                      msallowfullscreen
-                  ></Map>
+                    frameborder='0'
+                    scrolling='no'
+                    allowfullscreen
+                    webkitallowfullscreen
+                    mozallowfullscreen
+                    oallowfullscreen
+                    msallowfullscreen
+                  />
                 </InnerPanel>
               )
             })

@@ -1,7 +1,11 @@
-import React, { Component, Fragment } from 'react'
+import React, {
+  Component
+} from 'react'
 import PropTypes from 'prop-types'
-import ShoppingCartIcon from 'react-icons/lib/fa/shopping-cart'
-import HamburgerMeunIcon from 'react-icons/lib/fa/bars'
+import {
+  FaShoppingCart,
+  FaBars
+} from 'react-icons/fa'
 import { Link, withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
@@ -9,15 +13,16 @@ import { signOut } from '../store/actions'
 import {
   FlexContainerCentered,
   FlexContentLeft,
-  FlexContentCenter,
-  FlexContentRight
+  ModalBlocker
 } from './panels'
 import pccAvatar from '../../assets/pcc-logo-round.png'
-import { Break, ModalBlocker } from './panels'
-import { spacing } from '../units'
+import {
+  spacing
+} from '../units'
 import onscrolling from 'onscrolling'
-import { config } from '@peckhamcc/config'
-import { Flag } from 'flag'
+import {
+  Flag
+} from 'flag'
 
 const HAMBUGER_BREAK = 800
 
@@ -128,12 +133,12 @@ const HamburgerNavMenu = styled.li`
   }
 `
 
-const CartLink = NavLink.extend`
+const CartLink = styled(NavLink)`
   font-size: 24px;
   margin-right: 0;
 `
 
-const SiteNav = FlexContentLeft.extend`
+const SiteNav = styled(FlexContentLeft)`
   padding: ${spacing(1)} 0 0 ${spacing(2)};
 `
 
@@ -193,7 +198,7 @@ class NavBarWrapper extends Component {
     const { pageYOffset } = window
 
     this.setState({
-      bgOpacity: pageYOffset < 100 ? pageYOffset/100 : 1,
+      bgOpacity: pageYOffset < 100 ? pageYOffset / 100 : 1,
       top: pageYOffset > 8 ? 0 : 8 - pageYOffset
     })
   }
@@ -205,7 +210,12 @@ class NavBarWrapper extends Component {
   }
 
   render () {
-    const { cart, user, signOut, location: { pathname } } = this.props
+    const {
+      cart,
+      location: {
+        pathname
+      }
+    } = this.props
     const { bgOpacity, top, menuOpen } = this.state
     let logoOpacity = 1
 
@@ -222,10 +232,10 @@ class NavBarWrapper extends Component {
         top
       }}>
         <SiteIcon style={{
-              opacity: logoOpacity
-            }}>
+          opacity: logoOpacity
+        }}>
           <Link to='/'>
-            <img src={pccAvatar} height="50" width="50" />
+            <img src={pccAvatar} height='50' width='50' />
           </Link>
         </SiteIcon>
 
@@ -275,35 +285,22 @@ class NavBarWrapper extends Component {
         </LongMenu>
 
         <HamburgerMenu onClick={this.toggleDropDownMenu}>
-          <HamburgerMeunIcon />
+          <FaBars />
         </HamburgerMenu>
 
         <Flag name='store'>
           <AccountNav>
             <CartLink>
-              <Link to='/basket' style={{position: 'relative'}}>
+              <Link to='/basket' style={{ position: 'relative' }}>
                 {cartContents ? <CartContentsCount>{cartContents}</CartContentsCount> : null}
-                <ShoppingCartIcon />
+                <FaShoppingCart />
               </Link>
             </CartLink>
-            {user ? (
-              <Fragment>
-                <NavigationMenu
-                  id='menu-appbar-account'
-                  icon={<AccountCircle />}
-                  options={[
-                    <Button component={({...props}) => <Link to='/account' {...props} />}>My account</Button>,
-                    <Button component={({...props}) => <Link to='/orders' {...props} />}>My orders</Button>,
-                    <Button component={({...props}) => <Link to='/logout' {...props} />}>Log out</Button>
-                  ]}
-                />
-              </Fragment>
-            ) : null}
           </AccountNav>
         </Flag>
 
         {menuOpen && (
-          <ModalBlocker onClick={this.toggleDropDownMenu} style={{top: top + 60}}>
+          <ModalBlocker onClick={this.toggleDropDownMenu} style={{ top: top + 60 }}>
             <MobileNav>
               <NavLink>
                 <Link to='/'>Home</Link>

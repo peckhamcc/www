@@ -4,11 +4,13 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const LiveReloadPlugin = require('webpack-livereload-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 
 const config = {
+  mode: process.env.NODE_ENV || 'production',
   entry: {
     app: './src/index'
   },
@@ -18,6 +20,7 @@ const config = {
     publicPath: '/'
   },
   plugins: [
+    new CaseSensitivePathsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': `'${process.env.NODE_ENV || 'production'}'`
@@ -32,7 +35,7 @@ const config = {
     new FaviconsWebpackPlugin('./assets/pcc-avatar.png')
   ],
   module: {
-    loaders: [{
+    rules: [{
       test: /\.css$/,
       loaders: [
         'style-loader',
@@ -45,12 +48,12 @@ const config = {
         options: {
           babelrc: false,
           plugins: [
-            'transform-object-rest-spread',
-            'transform-class-properties'
+            '@babel/plugin-proposal-object-rest-spread',
+            '@babel/plugin-proposal-class-properties',
+            'react-hot-loader/babel'
           ],
           presets: [
-            'react',
-            ['env', {
+            ['@babel/preset-env', {
               targets: {
                 browsers: [
                   'last 2 versions'
@@ -61,26 +64,14 @@ const config = {
               ],
               modules: false,
               loose: true
-            }]
+            }],
+            '@babel/preset-react'
           ],
 
           env: {
             development: {
               plugins: [
-                [
-                  'react-transform', {
-                    transforms: [{
-                      'transform': 'react-transform-hmr',
-                      'imports': ['react'],
-                      'locals': ['module']
-                    }, {
-                      'transform': 'react-transform-catch-errors',
-                      'imports': [
-                        'react',
-                        'redbox-react'
-                      ]
-                    }]
-                  }]
+
               ]
             },
             production: {
@@ -95,6 +86,10 @@ const config = {
         }
       }],
       exclude: /node_modules/
+    }, {
+      test: /\.jsx?$/,
+      include: /node_modules/,
+      use: ['react-hot-loader/webpack']
     }, {
       test: /\.(jpe?g|png)$/i,
       loader: 'responsive-loader',
@@ -128,31 +123,88 @@ const config = {
         'file-loader?name=[name]-bundle-[hash].[ext]'
       ]
     }]
-  },
-  devtool: 'source-map'
+  }
 }
 
 if (process.env.NODE_ENV === 'development') {
+  let key
+  let cert
+
+  try {
+    key = fs.readFileSync('/usr/local/etc/nginx/certs/dev.peckham.cc.key', 'utf8')
+    cert = fs.readFileSync('/usr/local/etc/nginx/certs/dev.peckham.cc.crt', 'utf8')
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      console.warn('No certificates found')
+      console.warn('Try creating dev.peckham.cc.key and dev.peckham.cc.crt under /usr/local/etc/nginx')
+    } else {
+      console.warn(error)
+    }
+  }
+
   config.plugins.unshift(
     new webpack.HotModuleReplacementPlugin(),
     new LiveReloadPlugin({
-      port: 35831,
+      port: 0,
       appendScriptTag: true,
-      key: fs.readFileSync('/usr/local/etc/nginx/certs/dev.peckham.cc.key', 'utf8'),
-      cert: fs.readFileSync('/usr/local/etc/nginx/certs/dev.peckham.cc.crt', 'utf8')
+      key,
+      cert
     })
   )
 
   config.devtool = 'source-map'
 } else {
+  config.output.filename = '[name]-[chunkhash].js'
   config.plugins.push(
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       reportFilename: path.join(__dirname, 'reports', 'bundle-size.html'),
       openAnalyzer: false
-    }),
-    new UglifyJsPlugin()
+    })
   )
+  config.optimization = {
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      minSize: 0,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name (module) {
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+
+            return `npm.${packageName.replace('@', '')}`
+          }
+        }
+      }
+    },
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          keep_classnames: true,
+          keep_fnames: true,
+          parse: {
+            ecma: 8
+          },
+          compress: {
+            ecma: 5,
+            warnings: false
+          },
+          mangle: {
+            safari10: true
+          },
+          output: {
+            ecma: 5,
+            comments: false
+          }
+        },
+        parallel: true,
+        cache: true,
+        sourceMap: true
+      })
+    ]
+  }
 }
 
 module.exports = config

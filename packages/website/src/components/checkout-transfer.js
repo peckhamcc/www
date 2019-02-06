@@ -1,19 +1,17 @@
-import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { Button } from './panels'
-import styled from 'styled-components'
-import { connect } from 'react-redux'
+import React, {
+  Component
+} from 'react'
 import {
-  light,
-  lightAccent,
-  dark,
-  darkLowlight,
-  errorBackground,
-  errorText
-} from '../colours'
+  Link
+} from 'react-router-dom'
+import PropTypes from 'prop-types'
+import {
+  Button
+} from './panels'
+import {
+  connect
+} from 'react-redux'
 import config from '../config'
-import { spacing } from '../units'
 import {
   clearCart
 } from '../store/actions'
@@ -22,10 +20,8 @@ import {
   Label,
   Input,
   CheckoutWrapper,
-  TransactionId,
   FormInputWrapper,
   DetailsWrapper,
-  CustomerDetailsWrapper,
   NameWrapper,
   AddressWrapper,
   ErrorText,
@@ -210,7 +206,7 @@ class EnterDetails extends Component {
                 type='email'
                 onChange={this.formFieldChanged('email')}
                 value={this.state.values.email}
-                data-input='email'/>
+                data-input='email' />
             </FormInputWrapper>
             <HelpText>We ask for your details for transactional purposes only.</HelpText>
           </NameWrapper>
@@ -280,15 +276,8 @@ class EnterDetails extends Component {
 }
 
 class Checkout extends Component {
-
   constructor (props) {
     super(props)
-
-    const amount = props.cart.reduce((acc, item) => {
-      const product = config.store.products.find(product => product.sku === item.sku)
-
-      return acc + (product.price * item.quantity)
-    }, 0)
 
     this.state = {
       step: STEPS.ENTER_DETAILS,
@@ -302,7 +291,7 @@ class Checkout extends Component {
       step: STEPS.SUBMITTING_PAYMENT
     })
 
-    fetch(config.lambda.sendPayment, {
+    global.fetch(config.lambda.sendPayment, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
