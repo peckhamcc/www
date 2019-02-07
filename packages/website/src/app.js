@@ -1,9 +1,12 @@
-import React, { Component, Fragment } from 'react'
-import { Provider } from 'react-redux'
+import React, {
+  Fragment
+} from 'react'
+import {
+  Provider
+} from 'react-redux'
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom'
 import {
   About,
@@ -32,8 +35,6 @@ import styled from 'styled-components'
 import {
   Break
 } from './components/panels'
-import stripesImage from '../assets/stripes.png'
-import { spacing } from './units'
 import { FlagsProvider, Flag } from 'flag'
 import ScrollToTop from './components/scroll-to-top'
 
@@ -50,14 +51,14 @@ const FlexContainer = styled.div`
 const FlexItem = styled.div`
   ${props => props.expand ? `
   flex-grow: 1;
-  `: ''};
+  ` : ''};
 `
 
-const AppWrapper = FlexContainer.extend`
+const AppWrapper = styled(FlexContainer)`
   min-height: 100vh;
 `
 
-const TopBreak = Break.extend`
+const TopBreak = styled(Break)`
   margin-top: 0;
 `
 

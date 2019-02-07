@@ -1,20 +1,31 @@
-import React, { Component, Fragment } from 'react'
+import React, {
+  Component,
+  Fragment
+} from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { Break, PageWrapper, Panel, ShopListItem, Breadcrumb, SmallTextButton, Button, Quantity, Price } from '../components/panels'
-import styled from 'styled-components'
-import { connect } from 'react-redux'
-import PlusIcon from 'react-icons/lib/fa/plus'
-import MinusIcon from 'react-icons/lib/fa/minus'
 import {
-  light,
+  Link
+} from 'react-router-dom'
+import {
+  SmallTextButton,
+  Button,
+  Quantity,
+  Price
+} from '../components/panels'
+import styled from 'styled-components'
+import {
+  connect
+} from 'react-redux'
+import {
+  FaPlus,
+  FaMinus
+} from 'react-icons/fa'
+import {
   lightAccent,
-  dark,
   errorText,
   errorBackground
-} from '../colours';
-import Modal from './modal';
-import { 
+} from '../colours'
+import {
   addToCart,
   removeFromCart,
   updateCartItem,
@@ -22,7 +33,9 @@ import {
   acceptedTerms
 } from '../store/actions'
 import config from '../config'
-import { spacing } from '../units'
+import {
+  spacing
+} from '../units'
 
 const BasketWrapper = styled.div`
   display: flex;
@@ -50,7 +63,7 @@ const TBody = styled.tbody`
 `
 
 const Row = styled.tr`
-  
+
 `
 
 const Header = styled.th`
@@ -64,16 +77,8 @@ const Cell = styled.td`
   padding: ${spacing(1)};
 `
 
-const RightAlignedCell = Cell.extend`
+const RightAlignedCell = styled(Cell)`
   text-align: right
-`
-
-const SmallCell = Cell.extend`
-  width: 200px;
-`
-
-const ImageCell = Cell.extend`
-  width: 100px;
 `
 
 const ProductTitle = styled.h5`
@@ -107,7 +112,7 @@ const Checkbox = styled.input`
 `
 
 const PlaceOrder = styled.div`
-  
+
 `
 
 const ButtonHolder = styled.div`
@@ -143,7 +148,7 @@ const Terms = styled.div`
   }
 `
 
-const QuantityButton = Button.extend`
+const QuantityButton = styled(Button)`
   @media (max-width: 940px) {
     padding: 3px ${spacing(1)};
     font-size: 22px;
@@ -231,18 +236,18 @@ class Basket extends Component {
                           }</p>
                           {item.variants && (
                             <p>
-                            {Object.keys(item.variants).map((variant, index) => {
-                              return (
-                                <Fragment key={index}>{variant.substring(0, 1).toUpperCase()}{variant.substring(1)}: {item.variants[variant].name}<br /></Fragment>
-                              )
-                            })}
+                              {Object.keys(item.variants).map((variant, index) => {
+                                return (
+                                  <Fragment key={index}>{variant.substring(0, 1).toUpperCase()}{variant.substring(1)}: {item.variants[variant].name}<br /></Fragment>
+                                )
+                              })}
                             </p>
                           )}
                         </DetailWrapper>
                         <DetailWrapper>
-                          <QuantityButton onClick={() => this.decreaseQuantity(item)}><MinusIcon /></QuantityButton>
+                          <QuantityButton onClick={() => this.decreaseQuantity(item)}><FaMinus /></QuantityButton>
                           <Quantity>{item.quantity}</Quantity>
-                          <QuantityButton onClick={() => this.increaseQuantity(item)}><PlusIcon /></QuantityButton>
+                          <QuantityButton onClick={() => this.increaseQuantity(item)}><FaPlus /></QuantityButton>
                         </DetailWrapper>
                         <DetailWrapper>
                           <SmallTextButton onClick={() => this.removeFromBasket(item)}>Remove from basket</SmallTextButton>
@@ -286,7 +291,7 @@ class Basket extends Component {
           <ButtonHolder>
             <Link to='/checkout' onClick={this.showCheckout}>
               <Button data-button='enter-payment-information'>Enter your details</Button>
-            </Link> 
+            </Link>
           </ButtonHolder>
         </PlaceOrder>
       </BasketWrapper>

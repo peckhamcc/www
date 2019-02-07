@@ -1,8 +1,11 @@
-import React, { Component, Fragment } from 'react'
+import React, {
+  Fragment
+} from 'react'
 import PropTypes from 'prop-types'
-import { Breadcrumb } from '../components/panels'
+import {
+  Breadcrumb
+} from '../components/panels'
 import styled from 'styled-components'
-import Modal from './modal'
 import ProductDetails from './product-details'
 import ImageViewer from './product-images'
 import Sizing from './product-sizing'
@@ -30,7 +33,7 @@ const Product = ({ product }) => {
           <ImageViewer images={product.images} />
           <Sizing product={product} />
         </ImageHolder>
-        
+
         <ProductDetails product={product} />
       </ProductHolder>
     </Fragment>

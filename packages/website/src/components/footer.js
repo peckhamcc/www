@@ -1,13 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import TwitterIcon from 'react-icons/lib/fa/twitter'
-import FacebookIcon from 'react-icons/lib/fa/facebook'
-import InstagramIcon from 'react-icons/lib/fa/instagram'
-import { dark, darkAccent, darkLowlight, light } from '../colours'
+import {
+  FaTwitter,
+  FaFacebook,
+  FaInstagram
+} from 'react-icons/fa'
+import {
+  darkAccent,
+  darkLowlight,
+  light
+} from '../colours'
 import {
   FlexContainerCentered,
   FlexContentLeft,
-  FlexContentCenter,
   FlexContentRight
 } from './panels'
 import Comment from './comment'
@@ -48,9 +53,9 @@ const FooterWrapper = () => {
         </FlexContentLeft>
 
         <FlexContentRight>
-          <SocialLink href="https://facebook.com/PeckhamCC"><FacebookIcon /></SocialLink>
-          <SocialLink href="https://instagram.com/PeckhamCC"><InstagramIcon /></SocialLink>
-          <SocialLink href="https://twitter.com/PeckhamCC"><TwitterIcon /></SocialLink>
+          <SocialLink href='https://facebook.com/PeckhamCC'><FaFacebook /></SocialLink>
+          <SocialLink href='https://instagram.com/PeckhamCC'><FaInstagram /></SocialLink>
+          <SocialLink href='https://twitter.com/PeckhamCC'><FaTwitter /></SocialLink>
         </FlexContentRight>
       </FlexContainerCentered>
     </Footer>

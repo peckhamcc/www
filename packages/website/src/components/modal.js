@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import CloseButton from 'react-icons/lib/fa/close'
+import {
+  FaTimes
+} from 'react-icons/fa'
 import { light, dark, darkAccent } from '../colours'
 import { ModalBlocker } from './panels'
 
@@ -32,11 +34,11 @@ const ModalHeader = styled.div`
 `
 
 const ModalTitle = styled.div`
-  flex-grow: 1; 
+  flex-grow: 1;
 `
 
-const ModalCloseButton = styled.div`
-  
+const ModalFaTimes = styled.div`
+
 `
 
 const ModalContent = styled.div`
@@ -61,9 +63,9 @@ class Modal extends Component {
         <ModalWrapper width={this.props.width} height={this.props.height} onClick={this.stopPropagation}>
           <ModalHeader>
             <ModalTitle>{this.props.title}</ModalTitle>
-            <ModalCloseButton>
-              <CloseButton onClick={this.props.onClose} style={{cursor: 'pointer'}} />
-            </ModalCloseButton>
+            <ModalFaTimes>
+              <FaTimes onClick={this.props.onClose} style={{ cursor: 'pointer' }} />
+            </ModalFaTimes>
           </ModalHeader>
           <ModalContent>
             {this.props.children}

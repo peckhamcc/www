@@ -1,15 +1,17 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Break, PageWrapper, Panel, ShopListItem, Hero } from '../components/panels'
+import React, {
+  Component
+} from 'react'
+import {
+  PageWrapper,
+  Panel,
+  ShopListItem,
+  Hero
+} from '../components/panels'
 import shopBackground from '../../assets/shop-bg.jpg'
 import styled from 'styled-components'
-import config, { SECTIONS } from '../config'
-
-const Section = styled.div`
-  width: 23%;
-  display: inline-block;
-
-`
+import {
+  SECTIONS
+} from '../config'
 
 const Items = styled.div`
   text-align: center;

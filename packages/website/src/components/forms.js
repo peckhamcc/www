@@ -1,4 +1,3 @@
-import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import {
   light,
@@ -8,8 +7,9 @@ import {
   errorBackground,
   errorText
 } from '../colours'
-import config from '../config'
-import { spacing } from '../units'
+import {
+  spacing
+} from '../units'
 
 export const Label = styled.label`
   display: block;
@@ -73,13 +73,13 @@ export const CustomerDetailsWrapper = styled.div`
   }
 `
 
-export const NameWrapper = CustomerDetailsWrapper.extend`
+export const NameWrapper = styled(CustomerDetailsWrapper)`
   @media (min-width: 800px) {
     margin-right: ${spacing(1)};
   }
 `
 
-export const AddressWrapper = CustomerDetailsWrapper.extend`
+export const AddressWrapper = styled(CustomerDetailsWrapper)`
 `
 
 export const ErrorText = styled.p`

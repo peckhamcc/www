@@ -1,19 +1,14 @@
-import React, { Component, Fragment } from 'react'
+import React, {
+  Component
+} from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { Break, PageWrapper, Panel, ShopListItem, Breadcrumb, SmallTextButton, Button, Quantity, Price } from '../components/panels'
-import styled from 'styled-components'
-import { connect } from 'react-redux'
 import {
-  light,
-  lightAccent,
-  dark,
-  darkLowlight,
-  errorBackground,
-  errorText
-} from '../colours'
+  Button
+} from '../components/panels'
+import {
+  connect
+} from 'react-redux'
 import config from '../config'
-import { spacing } from '../units'
 import {
   clearCart
 } from '../store/actions'
@@ -24,13 +19,7 @@ import {
   CheckoutWrapper,
   TransactionId,
   FormInputWrapper,
-  DetailsWrapper,
-  CustomerDetailsWrapper,
-  NameWrapper,
-  AddressWrapper,
   ErrorText,
-  ShopCodeWrapper,
-  HelpText,
   PaymentHolder,
   PlaceHolder
 } from './forms'
@@ -45,12 +34,8 @@ const STEPS = {
 }
 
 class LoadingToken extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   componentDidMount () {
-    fetch(config.lambda.clientToken, {
+    global.fetch(config.lambda.clientToken, {
       method: 'POST'
     })
       .then(response => {
@@ -196,7 +181,7 @@ class EnterDetails extends Component {
             type='email'
             onChange={this.formFieldChanged('email')}
             value={this.state.email}
-            data-input='email'/>
+            data-input='email' />
         </FormInputWrapper>
         <Button
           onClick={this.next}
@@ -217,7 +202,7 @@ class ChoosePaymentMethod extends Component {
   }
 
   componentDidMount () {
-    braintree.dropin.create({
+    global.braintree.dropin.create({
       authorization: this.props.clientToken,
       container: this.paymentHolder,
       paypal: {
@@ -269,7 +254,7 @@ class ChoosePaymentMethod extends Component {
         {loading && <p>Loading payment methods...</p>}
         {error && <ErrorText>{error}</ErrorText>}
         <PlaceHolder>
-          <div ref={ref => this.paymentHolder = ref}></div>
+          <div ref={ref => { this.paymentHolder = ref }} />
         </PlaceHolder>
         {!loading && <Button
           onClick={this.requestPaymentMethod}
@@ -281,15 +266,8 @@ class ChoosePaymentMethod extends Component {
 }
 
 class Checkout extends Component {
-
   constructor (props) {
     super(props)
-
-    const amount = props.cart.reduce((acc, item) => {
-      const product = config.store.products.find(product => product.sku === item.sku)
-
-      return acc + (product.price * item.quantity)
-    }, 0)
 
     if (!global.braintree) {
       this.state = {
@@ -325,7 +303,7 @@ class Checkout extends Component {
       step: STEPS.SUBMITTING_PAYMENT
     })
 
-    fetch(config.lambda.sendPayment, {
+    global.fetch(config.lambda.sendPayment, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -351,10 +329,10 @@ class Checkout extends Component {
         if (result.errors) {
           this.setState({
             step: STEPS.ERROR,
-            error: results.errors[0]
+            error: result.errors[0]
           })
 
-          console.error(results.errors)
+          console.error(result.errors)
 
           return
         }
@@ -387,7 +365,6 @@ class Checkout extends Component {
     const {
       step,
       clientToken,
-      customerDetails,
       error,
       transactionId
     } = this.state

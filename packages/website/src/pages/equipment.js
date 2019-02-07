@@ -1,10 +1,18 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Break, PageWrapper, Panel, Hero, LinkPanel } from '../components/panels'
+import React, {
+  Component
+} from 'react'
+import {
+  Link
+} from 'react-router-dom'
+import {
+  PageWrapper,
+  Panel,
+  Hero,
+  LinkPanel
+} from '../components/panels'
 import ridesBackground from '../../assets/rides-bg.jpg'
 import membershipBackground from '../../assets/membership-bg.jpg'
 import equipmentBackground from '../../assets/equipment-bg.jpg'
-import styled from 'styled-components'
 
 class EquipmentPage extends Component {
   render () {

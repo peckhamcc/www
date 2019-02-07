@@ -1,9 +1,19 @@
-import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom'
-import { Break, PageWrapper, Panel, ShopListItem, Breadcrumb, ShortHero } from '../components/panels'
+import React, {
+  Component,
+  Fragment
+} from 'react'
+import {
+  PageWrapper,
+  Panel,
+  ShopListItem,
+  Breadcrumb,
+  ShortHero
+} from '../components/panels'
 import shopBackground from '../../assets/shop-bg.jpg'
 import styled from 'styled-components'
-import config, { SECTIONS } from '../config'
+import config, {
+  SECTIONS
+} from '../config'
 import Product from '../components/product'
 
 const Items = styled.div`

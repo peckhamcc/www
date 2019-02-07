@@ -1,10 +1,21 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Break, PageWrapper, Panel, Hero, LinkPanel } from '../components/panels'
+import React, {
+  Component
+} from 'react'
+import {
+  Link
+} from 'react-router-dom'
+import {
+  PageWrapper,
+  Panel,
+  Hero,
+  LinkPanel
+} from '../components/panels'
 import ridingBackground from '../../assets/riding-bg.jpg'
 import membershipBackground from '../../assets/membership-bg.jpg'
 import equipmentBackground from '../../assets/equipment-bg.jpg'
-import { spacing } from '../units'
+import {
+  spacing
+} from '../units'
 import styled from 'styled-components'
 
 const Video = styled.iframe`
@@ -35,10 +46,10 @@ class RidesPage extends Component {
             <li>Hole/Glass/Gravel! - someone spotted something too late or was travelling too fast for hand signals</li>
           </ul>
           <p>This video is a useful run-down of the most common hand signals.</p>
-          <Video src='https://www.youtube.com/embed/YyiBuqziEoo' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen></Video>
+          <Video src='https://www.youtube.com/embed/YyiBuqziEoo' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen />
 
           <h3>Riding in a group</h3>
-          <Video src="https://www.youtube.com/embed/lK5MPtMrMqU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></Video>
+          <Video src='https://www.youtube.com/embed/lK5MPtMrMqU' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen />
 
         </Panel>
         <LinkPanel background={equipmentBackground.src}>

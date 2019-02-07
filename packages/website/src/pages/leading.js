@@ -16,7 +16,7 @@ class LeadingPage extends Component {
       <PageWrapper>
         <Hero background={leadingBackground.src} />
         <Panel>
-        <h2>Leading a social ride</h2>
+          <h2>Leading a social ride</h2>
           <p>Our weekly social and monthly women's rides are a key part of the club's appeal and should be welcoming to beginners regardless of their cycling ability (to a degree).  The responsibility of the ride leaders is to make sure everyone makes it round and has a good time.</p>
           <p>There should be a minimum of two leaders on a ride, one at the front and one at the back.  Additional club regulars can help out where they can but should defer to the ride leaders on pace &amp; route.</p>
 

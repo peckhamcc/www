@@ -11,7 +11,7 @@ class CheckoutPage extends Component {
       <PageWrapper>
         <Hero background={checkoutBackground.src} />
         <Panel>
-          <Breadcrumb section={{title: 'Checkout'}} />
+          <Breadcrumb section={{ title: 'Checkout' }} />
           <h2>Checkout</h2>
           <Flag
             name='payments'
