@@ -8,8 +8,12 @@ import {
   PageWrapper,
   Panel,
   Hero,
-  LinkPanel
+  LinkPanel,
+  Button
 } from '../components/panels'
+import {
+  HelpText
+} from '../components/forms'
 import membershipBackground from '../../assets/membership-bg.jpg'
 import ridesBackground from '../../assets/rides-bg.jpg'
 import equipmentBackground from '../../assets/equipment-bg.jpg'
@@ -20,12 +24,25 @@ class MembershipPage extends Component {
       <PageWrapper>
         <Hero background={membershipBackground.src} />
         <Panel>
-          <h2>Membership</h2>
-          <p>Our weekly social rides are free to join and will be forever.</p>
-          <p>If you've been a couple of times and you like the club and wish to continue riding with us, there is a yearly fee currently set at £25 (with a £1 admin fee).</p>
-          <p>Paying this fee will allow you to purchase club kit and join us on training events and trips abroad. It is payable once a year and is non-refundable.</p>
-          <p>You can pay the membership fee online via our profile page on the <a href='https://www.britishcycling.org.uk/club/profile/8092/peckham-cycle-club'>British Cycling website</a>.</p>
-          <p>British Cycling membership is advised but is not a requirement.</p>
+          <h2>Friends of PCC</h2>
+          <p>Friends of PCC is a voluntary membership scheme intended to support the activities of the club.</p>
+          <p>Joining the scheme costs &pound;25 per year and entitles members to perks exclusive to Friends of PCC. These include 10% off parts at <a href='https://ratracecycles.com'>Rat Race Cycles</a>, access to our club kit, invitations to club events and participation on club trips abroad and in the UK.</p>
+          <p>The scheme is managed via the British Cycling website. You do not have to join British Cycling be part of Friends of PCC but we do recommend it.</p>
+          <form
+            style={{
+              marginTop: 20,
+              marginBottom: 20
+            }}
+            action='https://www.britishcycling.org.uk/club/subscriptions/buy'
+            method='get'
+          >
+            <input type='hidden' name='club_id' value='8092' />
+            <input type='hidden' name='subscription_id' value='2760' />
+            <Button>Join Friends of PCC</Button>
+          </form>
+          <HelpText>The fee is due anually and is non-refundable. Fees go towards the club's running costs such as our continued affiliation to British Cycling, kit design fees, venue hire and other projects to benefit members.</HelpText>
+          <h2>Social Rides</h2>
+          <p>Our weekend Social Rides are free to join - we welcome all comers whether they choose to become Friends of PCC or not.</p>
         </Panel>
         <LinkPanel background={ridesBackground.src}>
           <Link to='/rides'>Rides</Link>
