@@ -48,7 +48,7 @@ class MailingListPage extends Component {
             <input type='hidden' value='1' name='embed' />
             <Button>Subscribe</Button>
           </form>
-          <HelpText>You can unsubscribe at any time. Your email will only be used to contact you and will not be shared with anyone.</HelpText>
+          <HelpText>You can unsubscribe at any time. Your email will only be used to contact you and will not be shared with anyone without your permission.</HelpText>
         </Panel>
       </PageWrapper>
     )
