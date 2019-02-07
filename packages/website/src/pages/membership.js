@@ -66,7 +66,7 @@ class MembershipPage extends Component {
             <input type='hidden' name='subscription_id' value='2760' />
             <Button>Join Friends of PCC</Button>
           </JoinForm>
-          <HelpText>The fee is due annually and is non-refundable. Fees go towards the club's running costs such as our continued affiliation to British Cycling, kit design fees, venue hire and other projects to benefit members.</HelpText>
+          <HelpText>The fee is due annually and is non-refundable. Fees go towards the club's running costs such as our continued affiliation to British Cycling, kit design fees, venue hire and other projects designed to benefit members.</HelpText>
           <h2>Social Rides</h2>
           <p>Our weekend Social Rides are free to join - we welcome all comers whether they choose to become Friends of PCC or not.</p>
         </Panel>
