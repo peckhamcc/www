@@ -121,6 +121,8 @@ Object.keys(productImages).forEach(sku => {
 
   if (!product) {
     console.warn('Could not find product for', sku)
+
+    return
   }
 
   product.images = productImages[sku]
