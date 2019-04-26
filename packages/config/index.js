@@ -173,7 +173,7 @@ const JERSEY_SIZES = [{
     }
   }
 }]
-
+/*
 const ARM_WARMER_SIZES = [{
   code: 'S',
   name: 'Small',
@@ -208,7 +208,7 @@ const ARM_WARMER_SIZES = [{
     }
   }
 }]
-
+*/
 const SOCK_SIZES = [{
   code: 'S/M',
   name: 'Small/Medium',
@@ -230,7 +230,7 @@ const SOCK_SIZES = [{
     }
   }
 }]
-
+/*
 const GLOVE_SIZES = [{
   code: 'XS',
   name: 'Extra small',
@@ -298,7 +298,7 @@ const GLOVE_SIZES = [{
     }
   }
 }]
-
+*/
 const TSHIRT_SIZES = [{
   code: 'S',
   name: 'Small',
@@ -375,7 +375,7 @@ const TSHIRT_SIZES = [{
     }
   }
 }]
-
+/*
 const VARIANTS_SHORT_SLEEVED_JERSEY = [{
   code: 'LONG',
   name: 'Long (+5cm body, +2.5cm sleeves)'
@@ -408,7 +408,7 @@ const VARIANTS_PAD = [{
   code: 'WIDE',
   name: 'Wide (145mm+)'
 }]
-
+*/
 const GENDERS = [{
   code: 'M',
   name: 'Male'
@@ -459,7 +459,9 @@ const config = {
       title: 'Postage to rest of world',
       price: 20
     }],
-    products: [{
+    products: [
+      /*
+    {
       sku: 'CLUB-JERSEY-2018',
       title: 'Short Sleeved Club Jersey',
       slug: 'short-sleeved-jersey',
@@ -643,22 +645,24 @@ const config = {
         link: 'https://www.endurasport.com/product/thermolite-arm-warmer/',
         name: 'Thermo Arm Warmer'
       }
-    }, {
-      sku: 'CAP-2018',
-      title: 'Cap',
-      slug: 'cap',
-      section: SECTIONS.ACCESSORIES,
-      details: [
-        '£5 from every purchase will be donated to <a href="http://ch1889.org/">Cambridge House</a>.',
-        'Black cotton cap with stitched ribbon and white screen print.',
-        'Cycling caps keep the sun out of your eyes when it\'s sunny and the rain out of your eyes when it\'s wet.',
-        'An essential piece of kit, don\'t leave home without one. Unless you are going to the pub, in which case observe <a href="http://www.velominati.com/the-rules/#22">rule #22</a> and leave it at home.',
-        'Our caps are made in Italy from black cotton with a stiff peak and the Peckham logos are screen printed in white. A stitched ribbon in club colours runs over the top.',
-        'Hand wash only. We mean it.',
-        'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
-      ],
-      price: 1500
-    }, {
+    },
+    */ {
+        sku: 'CAP-2018',
+        title: 'Cap',
+        slug: 'cap',
+        section: SECTIONS.ACCESSORIES,
+        details: [
+          '£5 from every purchase will be donated to <a href="http://ch1889.org/">Cambridge House</a>.',
+          'Black cotton cap with stitched ribbon and white screen print.',
+          'Cycling caps keep the sun out of your eyes when it\'s sunny and the rain out of your eyes when it\'s wet.',
+          'An essential piece of kit, don\'t leave home without one. Unless you are going to the pub, in which case observe <a href="http://www.velominati.com/the-rules/#22">rule #22</a> and leave it at home.',
+          'Our caps are made in Italy from black cotton with a stiff peak and the Peckham logos are screen printed in white. A stitched ribbon in club colours runs over the top.',
+          'Hand wash only. We mean it.',
+          'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
+        ],
+        price: 1500
+      },
+      /* {
       sku: 'NECK-WARMER-2018',
       title: 'Neck warmer',
       slug: 'neck-warmer',
@@ -689,96 +693,109 @@ const config = {
         link: 'https://www.endurasport.com/product/fs260-pro-print-mitt/',
         name: 'FS260 Pro Print Mitt'
       }
-    }, {
-      sku: 'SOCKS-2018',
-      title: 'Socks',
-      slug: 'socks',
-      section: SECTIONS.ACCESSORIES,
-      details: [
-        'Club Socks',
-        'Black Club Socks in CoolMax fabric with a six-inch cuff culminating in the club stripes at the top.',
-        'Instagram-friendly orientation of the club name &amp; motto on the top of the socks reminds you we roll united!'
-      ],
-      sizes: SOCK_SIZES,
-      price: 1100
-    }, {
-      sku: 'HEADSET-CAP-2018',
-      title: 'Headset Cap',
-      slug: 'headset-cap',
-      section: SECTIONS.ACCESSORIES,
-      details: [
-        'Laser etched headset cap',
-        '1 1/8th" (32mm) diameter aluminium headset cap with the club logo, should fit all modern bikes.'
-      ],
-      price: 2500
-    }, {
-      sku: 'CLUB-BIDON-2018',
-      title: 'Club Bidon',
-      slug: 'club-bidon-2018',
-      section: SECTIONS.ACCESSORIES,
-      details: [
-        'The club bidon has a <a href="http://www.velominati.com/the-rules/#52">500ml capacity</a>, features a lockable lid with a leak-proof membrane cap and is dishwasher safe.',
-        'It\'s made from 20% post-industrial recycled plastics and is recyclable and biodegradable itself so once retired should not murder anything in the ocean.',
-        'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
-      ],
-      price: 800
-    },
-    {
-      sku: 'CLUB-TSHIRT-2019',
-      title: 'Club t-shirt',
-      slug: 'club-tshirt-2019',
-      section: SECTIONS.CASUAL,
-      details: [
-        'N.b. £5 pre-production discount!',
-        'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
-        'Club t-shirt printed on 100% cotton Fruit of the Loom shirt in black'
-      ],
-      price: 1500,
-      sizes: TSHIRT_SIZES,
-      genders: GENDERS
-    },
-    {
-      sku: 'CLUB-LS-TSHIRT-2019',
-      title: 'Club long sleeved t-shirt',
-      slug: 'club-ls-tshirt-2019',
-      section: SECTIONS.CASUAL,
-      details: [
-        'N.b. £5 pre-production discount!',
-        'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
-        'Club long sleeved t-shirt printed on 100% cotton Fruit of the Loom shirt in black'
-      ],
-      price: 2000,
-      sizes: TSHIRT_SIZES,
-      genders: GENDERS
-    },
-    {
-      sku: 'CLUB-HOODIE-2019',
-      title: 'Club hoodie',
-      slug: 'club-hoodie-2019',
-      section: SECTIONS.CASUAL,
-      details: [
-        'N.b. £5 pre-production discount!',
-        'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
-        'Club hoodie printed on black Fruit of the Loom hoodie'
-      ],
-      price: 3000,
-      sizes: TSHIRT_SIZES,
-      genders: GENDERS
-    },
-    {
-      sku: 'CLUB-ZIP-HOODIE-2019',
-      title: 'Club zip hoodie',
-      slug: 'club-zip-hoodie-2019',
-      section: SECTIONS.CASUAL,
-      details: [
-        'N.b. £5 pre-production discount!',
-        'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
-        'Club hoodie printed on black Fruit of the Loom hoodie with zip'
-      ],
-      price: 3500,
-      sizes: TSHIRT_SIZES,
-      genders: GENDERS
-    }]
+    }, */
+      {
+        sku: 'SOCKS-WINTER-2019',
+        title: 'Winter Club Socks',
+        slug: 'winter-socks',
+        section: SECTIONS.ACCESSORIES,
+        details: [
+          'Black Club Socks with a merino foot & nylon leg culminating in the club stripes at the top.',
+          'Cuff size is a Rule #27 friendly 7.5-inches for large, 6.5-inches for medium.',
+          'The Instagram-friendly orientation of the club motto on the top of the socks will remind you we roll united!'
+        ],
+        sizes: SOCK_SIZES,
+        price: 1300
+      }, {
+        sku: 'SOCKS-SUMMER-2019',
+        title: 'Summer Club Socks',
+        slug: 'summer-socks',
+        section: SECTIONS.ACCESSORIES,
+        details: [
+          'White Club Socks in CoolMax foot & nylon leg culminating in the club stripes at the top.',
+          'Cuff size is a Rule #27 friendly 7.5-inches for large, 6.5-inches for medium.',
+          'The Instagram-friendly orientation of the club motto on the top of the socks will remind you we roll united!'
+        ],
+        sizes: SOCK_SIZES,
+        price: 900
+      }, {
+        sku: 'HEADSET-CAP-2018',
+        title: 'Headset Cap',
+        slug: 'headset-cap',
+        section: SECTIONS.ACCESSORIES,
+        details: [
+          'Laser etched headset cap',
+          '1 1/8th" (32mm) diameter aluminium headset cap with the club logo, should fit all modern bikes.'
+        ],
+        price: 2500
+      }, {
+        sku: 'CLUB-BIDON-2018',
+        title: 'Club Bidon',
+        slug: 'club-bidon-2018',
+        section: SECTIONS.ACCESSORIES,
+        details: [
+          'The club bidon has a <a href="http://www.velominati.com/the-rules/#52">500ml capacity</a>, features a lockable lid with a leak-proof membrane cap and is dishwasher safe.',
+          'It\'s made from 20% post-industrial recycled plastics and is recyclable and biodegradable itself so once retired should not murder anything in the ocean.',
+          'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
+        ],
+        price: 800
+      },
+      {
+        sku: 'CLUB-TSHIRT-2019',
+        title: 'Club t-shirt',
+        slug: 'club-tshirt-2019',
+        section: SECTIONS.CASUAL,
+        details: [
+          'N.b. £5 pre-production discount!',
+          'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
+          'Club t-shirt printed on 100% cotton Fruit of the Loom shirt in black'
+        ],
+        price: 1500,
+        sizes: TSHIRT_SIZES,
+        genders: GENDERS
+      },
+      {
+        sku: 'CLUB-LS-TSHIRT-2019',
+        title: 'Club long sleeved t-shirt',
+        slug: 'club-ls-tshirt-2019',
+        section: SECTIONS.CASUAL,
+        details: [
+          'N.b. £5 pre-production discount!',
+          'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
+          'Club long sleeved t-shirt printed on 100% cotton Fruit of the Loom shirt in black'
+        ],
+        price: 2000,
+        sizes: TSHIRT_SIZES,
+        genders: GENDERS
+      },
+      {
+        sku: 'CLUB-HOODIE-2019',
+        title: 'Club hoodie',
+        slug: 'club-hoodie-2019',
+        section: SECTIONS.CASUAL,
+        details: [
+          'N.b. £5 pre-production discount!',
+          'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
+          'Club hoodie printed on black Fruit of the Loom hoodie'
+        ],
+        price: 3000,
+        sizes: TSHIRT_SIZES,
+        genders: GENDERS
+      },
+      {
+        sku: 'CLUB-ZIP-HOODIE-2019',
+        title: 'Club zip hoodie',
+        slug: 'club-zip-hoodie-2019',
+        section: SECTIONS.CASUAL,
+        details: [
+          'N.b. £5 pre-production discount!',
+          'We are doing a run of printed shirts/hoodies hopefully in time for the Christmas party',
+          'Club hoodie printed on black Fruit of the Loom hoodie with zip'
+        ],
+        price: 3500,
+        sizes: TSHIRT_SIZES,
+        genders: GENDERS
+      }]
   }
 }
 
