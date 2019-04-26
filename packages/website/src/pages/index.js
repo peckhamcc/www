@@ -1,6 +1,7 @@
 export { default as About } from './about'
 export { default as Account } from './account'
 export { default as Basket } from './basket'
+export { default as Calendar } from './calendar'
 export { default as Checkout } from './checkout'
 export { default as Contact } from './contact'
 export { default as Equipment } from './equipment'

@@ -24,7 +24,8 @@ import {
   Membership,
   Contact,
   Riding,
-  Leading
+  Leading,
+  Calendar
 } from './pages'
 import configureStore from './store/configure-store'
 import '../assets/pcc-avatar.png'
@@ -83,6 +84,10 @@ export default () => {
                 <Route path='/mailing-list' component={MailingList} />
                 <Route path='/riding' component={Riding} />
                 <Route path='/leading' component={Leading} />
+
+                <Flag name='calendar'>
+                  <Route path='/calendar' component={Calendar} />
+                </Flag>
 
                 <Flag name='store'>
                   <Fragment>

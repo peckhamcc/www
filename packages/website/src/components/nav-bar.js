@@ -269,6 +269,11 @@ class NavBarWrapper extends Component {
                   <NavLink>
                     <Link to='/mailing-list'>Mailing list</Link>
                   </NavLink>
+                  <Flag name='calendar'>
+                    <NavLink>
+                      <Link to='/calendar'>Calendar</Link>
+                    </NavLink>
+                  </Flag>
                 </ul>
               </NavMenu>
               <NavLink>
@@ -329,6 +334,11 @@ class NavBarWrapper extends Component {
                   <NavLink>
                     <Link to='/mailing-list'>Mailing list</Link>
                   </NavLink>
+                  <Flag name='calendar'>
+                    <NavLink>
+                      <Link to='/calendar'>Calendar</Link>
+                    </NavLink>
+                  </Flag>
                 </ul>
               </HamburgerNavMenu>
               <NavLink>

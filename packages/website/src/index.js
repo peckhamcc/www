@@ -1,4 +1,5 @@
 import 'whatwg-fetch'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './index.css'
 import React from 'react'
 import { render } from 'react-dom'

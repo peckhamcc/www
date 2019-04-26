@@ -36,3 +36,17 @@ a, a:link {
 a:hover {
   color: #F10;
 }
+
+/* Calendar styles */
+
+.rbc-toolbar button {
+  background-color: #FFF;
+}
+
+.rbc-off-range-bg {
+  background-color: #262A2C;
+}
+
+.rbc-today {
+  background-color: #6E737B;
+}

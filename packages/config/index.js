@@ -442,7 +442,8 @@ const config = {
   flags: {
     store: true,
     email: true,
-    payments: false
+    payments: false,
+    calendar: false
   },
   email: {
     to: 'peckhamcc@gmail.com',
