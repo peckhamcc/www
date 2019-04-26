@@ -250,28 +250,31 @@ class NavBarWrapper extends Component {
                 <Link to='/club'>Club</Link>
                 <ul>
                   <NavLink>
-                    <Link to='/membership'>Membership</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/rides'>Rides</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/racing'>Racing</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/routes'>Routes</Link>
+                    <Link to='/calendar'>Calendar</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/equipment'>Equipment</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/riding'>On the road</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/leading'>Leading a ride</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/mailing-list'>Mailing list</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/membership'>Membership</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/riding'>On the road</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/racing'>Racing</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/rides'>Rides</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/routes'>Routes</Link>
                   </NavLink>
                 </ul>
               </NavMenu>
@@ -316,25 +319,31 @@ class NavBarWrapper extends Component {
                 <Link to='/club'>Club</Link>
                 <ul>
                   <NavLink>
-                    <Link to='/membership'>Membership</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/rides'>Rides</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/routes'>Routes</Link>
+                    <Link to='/calendar'>Calendar</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/equipment'>Equipment</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/riding'>On the road</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/leading'>Leading a ride</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/mailing-list'>Mailing list</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/membership'>Membership</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/riding'>On the road</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/racing'>Racing</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/rides'>Rides</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/routes'>Routes</Link>
                   </NavLink>
                 </ul>
               </HamburgerNavMenu>
