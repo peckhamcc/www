@@ -59,10 +59,10 @@ class Sizing extends Component {
       const size = props.product.sizes[0]
       const measurment = Object.keys(size.measurements).pop()
       const genders = Object.keys(size.measurements[measurment])
-      const units = Object.keys(size.measurements[measurment][genders[0]])
+      const sizeTypes = size.measurements[measurment][genders[0]]
 
       defaultGender = genders[0]
-      defaultUnit = units[0]
+      defaultUnit = typeof sizeTypes === 'string' ? null : 'metric'
     }
 
     this.state = {
@@ -98,7 +98,24 @@ class Sizing extends Component {
       const size = product.sizes[0]
       const measurment = Object.keys(size.measurements).pop()
       const genders = Object.keys(size.measurements[measurment])
-      const units = Object.keys(size.measurements[measurment][genders[0]])
+      const sizes = size.measurements[measurment][genders[0]]
+
+      if (typeof sizes !== 'string') {
+        // do imperial/metric conversion
+        unitControls = (
+          <UnitControls>
+            {
+              ['metric', 'imperial'].map((u, index) => (
+                <SelectableOption
+                  selected={u === unit}
+                  onClick={() => this.setUnit(u)}
+                  key={index}
+                  data-gender={u}>{capitalise(u)}</SelectableOption>
+              ))
+            }
+          </UnitControls>
+        )
+      }
 
       if (genders.length > 1) {
         genderControls = (
@@ -113,22 +130,6 @@ class Sizing extends Component {
               ))
             }
           </GenderControls>
-        )
-      }
-
-      if (units.length > 1) {
-        unitControls = (
-          <UnitControls>
-            {
-              units.map((u, index) => (
-                <SelectableOption
-                  selected={u === unit}
-                  onClick={() => this.setUnit(u)}
-                  key={index}
-                  data-gender={u}>{capitalise(u)}</SelectableOption>
-              ))
-            }
-          </UnitControls>
         )
       }
     }
@@ -151,19 +152,32 @@ class Sizing extends Component {
               </thead>
               <tbody>
                 {
-                  Object.keys(product.sizes[0].measurements).map((attribute, index) => (
-                    <tr key={index}>
-                      <TableHeader>{capitalise(attribute)}</TableHeader>
-                      {product.sizes.map((size, index) => (
-                        <TableCell key={index}>{size.measurements[attribute][gender][unit]}</TableCell>
-                      ))}
-                    </tr>
-                  ))
+                  Object.keys(product.sizes[0].measurements).map((attribute, index) => {
+                    return (
+                      <tr key={index}>
+                        <TableHeader>{capitalise(attribute)}</TableHeader>
+                        {product.sizes.map((size, index) => {
+                          let sizeDisplay = size.measurements[attribute][gender]
+
+                          if (typeof sizeDisplay !== 'string') {
+                            // min/max based on unit type
+                            if (unit === 'metric') {
+                              sizeDisplay = `${sizeDisplay.min}-${sizeDisplay.max}cm`
+                            } else {
+                              sizeDisplay = `${parseInt(sizeDisplay.min * 0.39)}-${parseInt(sizeDisplay.max * 0.39)}"`
+                            }
+                          }
+
+                          return (
+                            <TableCell key={index}>{sizeDisplay}</TableCell>
+                          )
+                        })}
+                      </tr>
+                    )
+                  })
                 }
               </tbody>
             </Table>
-            {product.fs260 && <p>Endura sell non-custom versions through large chain stores such as Evans. If you'd like to try items on for size before ordering, until the club has ordered enough kit so that someone has the size you want to try, you can probably do so there.</p>}
-            {product.fs260 && <p>This product is most similar to the <a href={product.fs260.link}>{product.fs260.name}</a>.</p>}
           </Fragment>
         ) : (
           <p>One size fits all</p>

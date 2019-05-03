@@ -28,22 +28,22 @@ const JERSEY_SIZES = [{
   measurements: {
     chest: {
       male: {
-        metric: '89-94cm',
-        imperial: '35-37"'
+        min: 78,
+        max: 82
       },
       female: {
-        metric: '77-80cm',
-        imperial: '30-31"'
+        min: 77,
+        max: 80
       }
     },
     waist: {
       male: {
-        metric: '74-79cm',
-        imperial: '29-31"'
+        min: 71,
+        max: 72
       },
       female: {
-        metric: '64-67cm',
-        imperial: '25-26"'
+        min: 61,
+        max: 64
       }
     }
   }
@@ -53,22 +53,22 @@ const JERSEY_SIZES = [{
   measurements: {
     chest: {
       male: {
-        metric: '94-99cm',
-        imperial: '37-39"'
+        min: 83,
+        max: 88
       },
       female: {
-        metric: '81-86cm',
-        imperial: '32-33"'
+        min: 81,
+        max: 84
       }
     },
     waist: {
       male: {
-        metric: '79-84cm',
-        imperial: '31-33"'
+        min: 73,
+        max: 78
       },
       female: {
-        metric: '68-72cm',
-        imperial: '27-28"'
+        min: 65,
+        max: 68
       }
     }
   }
@@ -78,22 +78,22 @@ const JERSEY_SIZES = [{
   measurements: {
     chest: {
       male: {
-        metric: '99-104cm',
-        imperial: '39-41"'
+        min: 89,
+        max: 94
       },
       female: {
-        metric: '87-90cm',
-        imperial: '34-35"'
+        min: 85,
+        max: 88
       }
     },
     waist: {
       male: {
-        metric: '84-89cm',
-        imperial: '33-35"'
+        min: 79,
+        max: 84
       },
       female: {
-        metric: '73-78cm',
-        imperial: '29-30"'
+        min: 85,
+        max: 88
       }
     }
   }
@@ -103,22 +103,22 @@ const JERSEY_SIZES = [{
   measurements: {
     chest: {
       male: {
-        metric: '104-109cm',
-        imperial: '41-43"'
+        min: 95,
+        max: 100
       },
       female: {
-        metric: '91-95cm',
-        imperial: '36-37"'
+        min: 89,
+        max: 92
       }
     },
     waist: {
       male: {
-        metric: '89-94cm',
-        imperial: '35-37"'
+        min: 85,
+        max: 90
       },
       female: {
-        metric: '79-83cm',
-        imperial: '31-32"'
+        min: 73,
+        max: 76
       }
     }
   }
@@ -128,22 +128,22 @@ const JERSEY_SIZES = [{
   measurements: {
     chest: {
       male: {
-        metric: '109-114cm',
-        imperial: '43-45"'
+        min: 101,
+        max: 106
       },
       female: {
-        metric: '96-100cm',
-        imperial: '38-39"'
+        min: 93,
+        max: 96
       }
     },
     waist: {
       male: {
-        metric: '94-99cm',
-        imperial: '37-39"'
+        min: 91,
+        max: 96
       },
       female: {
-        metric: '84-87cm',
-        imperial: '33-34"'
+        min: 77,
+        max: 80
       }
     }
   }
@@ -153,22 +153,22 @@ const JERSEY_SIZES = [{
   measurements: {
     chest: {
       male: {
-        metric: '114-119cm',
-        imperial: '45-47"'
+        min: 107,
+        max: 112
       },
       female: {
-        metric: '101-105cm',
-        imperial: '40-41"'
+        min: 97,
+        max: 100
       }
     },
     waist: {
       male: {
-        metric: '99-104cm',
-        imperial: '39-41"'
+        min: 97,
+        max: 102
       },
       female: {
-        metric: '88-92cm',
-        imperial: '35-36"'
+        min: 81,
+        max: 84
       }
     }
   }
@@ -180,8 +180,8 @@ const ARM_WARMER_SIZES = [{
   measurements: {
     bicep: {
       unisex: {
-        metric: 'Up to 30cm',
-        imperial: 'Up to 12"'
+        min: 25,
+        max: 30
       }
     }
   }
@@ -191,8 +191,8 @@ const ARM_WARMER_SIZES = [{
   measurements: {
     bicep: {
       unisex: {
-        metric: '30-35cm',
-        imperial: '12-14"'
+        min: 30,
+        max: 35
       }
     }
   }
@@ -202,8 +202,8 @@ const ARM_WARMER_SIZES = [{
   measurements: {
     bicep: {
       unisex: {
-        metric: 'Over 35cm',
-        imperial: 'Over 14"'
+        min: 35,
+        max: 40
       }
     }
   }
@@ -214,9 +214,7 @@ const SOCK_SIZES = [{
   name: 'Small/Medium',
   measurements: {
     shoe: {
-      unisex: {
-        imperial: 'UK 3-6'
-      }
+      unisex: 'UK 3-6'
     }
   }
 }, {
@@ -224,9 +222,7 @@ const SOCK_SIZES = [{
   name: 'Large/Extra Large',
   measurements: {
     shoe: {
-      unisex: {
-        imperial: 'UK 7-11+'
-      }
+      unisex: 'UK 7-11+'
     }
   }
 }]
@@ -305,12 +301,12 @@ const TSHIRT_SIZES = [{
   measurements: {
     chest: {
       male: {
-        metric: '86-91cm',
-        imperial: '34-36"'
+        min: 86,
+        max: 91
       },
       female: {
-        metric: '86-89cm',
-        imperial: '34-35"'
+        min: 86,
+        max: 89
       }
     }
   }
@@ -320,12 +316,12 @@ const TSHIRT_SIZES = [{
   measurements: {
     chest: {
       male: {
-        metric: '96-101cm',
-        imperial: '38-40"'
+        min: 96,
+        max: 101
       },
       female: {
-        metric: '91-94cm',
-        imperial: '36-37"'
+        min: 91,
+        max: 94
       }
     }
   }
@@ -335,12 +331,12 @@ const TSHIRT_SIZES = [{
   measurements: {
     chest: {
       male: {
-        metric: '106-111cm',
-        imperial: '42-44"'
+        min: 106,
+        max: 111
       },
       female: {
-        metric: '99-101cm',
-        imperial: '39-40"'
+        min: 99,
+        max: 101
       }
     }
   }
@@ -350,12 +346,12 @@ const TSHIRT_SIZES = [{
   measurements: {
     chest: {
       male: {
-        metric: '117-122cm',
-        imperial: '46-48"'
+        min: 117,
+        max: 122
       },
       female: {
-        metric: '106-112cm',
-        imperial: '42-44"'
+        min: 106,
+        max: 112
       }
     }
   }
@@ -365,12 +361,12 @@ const TSHIRT_SIZES = [{
   measurements: {
     chest: {
       male: {
-        metric: '127-132cm',
-        imperial: '50-52"'
+        min: 127,
+        max: 132
       },
       female: {
-        metric: '117-122cm',
-        imperial: '46-48"'
+        min: 117,
+        max: 122
       }
     }
   }
@@ -460,6 +456,21 @@ const config = {
       price: 20
     }],
     products: [
+      {
+        sku: 'CTS-JERSEY-2019',
+        title: 'Chase The Sun Event Jersey',
+        slug: 'cts-jersey',
+        section: SECTIONS.JERSEYS,
+        details: [
+          'Lightweight Short Sleeved Jersey in white.',
+          'An anatomically cut jersey with a smooth Asteria Lycra front for maximum aero and a lightly meshed back and under-arms for breathability.',
+          'It comes with a full-length zip, silicone grippers on the arms &amp; waist, three rear pockets along with a zip pocket for your valuables.',
+          'It is available in male and female specific versions and has an athletic fit yet the material is stretchy enough to accommodate most body shapes.'
+        ],
+        price: 6500,
+        sizes: JERSEY_SIZES,
+        genders: GENDERS
+      },
       /*
     {
       sku: 'CLUB-JERSEY-2018',
