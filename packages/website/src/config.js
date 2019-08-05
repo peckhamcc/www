@@ -16,8 +16,8 @@ import capSidesImage from '../assets/shop/cap-sides.png?sizes[]=300,sizes[]=500'
 // import ssJerseyFrontImage from '../assets/shop/ss-jersey-front.png?sizes[]=300,sizes[]=500'
 // import ssJerseyRearImage from '../assets/shop/ss-jersey-rear.png?sizes[]=300,sizes[]=500'
 // import ssSummerJerseyFrontImage from '../assets/shop/ss-summer-jersey-front.png?sizes[]=300,sizes[]=500'
-import ctsJerseyFrontImage from '../assets/shop/cts-jersey-front.png?sizes[]=300,sizes[]=500'
-import ssSummerJerseyRearImage from '../assets/shop/ss-summer-jersey-rear.png?sizes[]=300,sizes[]=500'
+// import ctsJerseyFrontImage from '../assets/shop/cts-jersey-front.png?sizes[]=300,sizes[]=500'
+// import ssSummerJerseyRearImage from '../assets/shop/ss-summer-jersey-rear.png?sizes[]=300,sizes[]=500'
 // import winterJacketFrontImage from '../assets/shop/winter-jacket-front.png?sizes[]=300,sizes[]=500'
 // import winterJacketRearImage from '../assets/shop/winter-jacket-rear.png?sizes[]=300,sizes[]=500'
 // import winterTightsFrontImage from '../assets/shop/winter-tights-front.png?sizes[]=300,sizes[]=500'
@@ -37,13 +37,15 @@ import lsTshirtRearImage from '../assets/shop/ls-tshirt-rear.png?sizes[]=300,siz
 import hoodieFrontImage from '../assets/shop/hoodie-front.png?sizes[]=300,sizes[]=500'
 import hoodieRearImage from '../assets/shop/hoodie-rear.png?sizes[]=300,sizes[]=500'
 import zipHoodieFrontImage from '../assets/shop/zip-hoodie-front.png?sizes[]=300,sizes[]=500'
+import musetteImage from '../assets/shop/musette.png?sizes[]=300,sizes[]=500'
 
 const productImages = {
+  /*
   'CTS-JERSEY-2019': [
     ctsJerseyFrontImage,
     ssSummerJerseyRearImage
   ],
-  /*  'CLUB-JERSEY-2018': [
+    'CLUB-JERSEY-2018': [
     ssJerseyFrontImage,
     ssJerseyRearImage
   ],
@@ -117,6 +119,9 @@ const productImages = {
   'CLUB-ZIP-HOODIE-2019': [
     zipHoodieFrontImage,
     hoodieRearImage
+  ],
+  'MUSETTE-2019': [
+    musetteImage
   ]
 }
 

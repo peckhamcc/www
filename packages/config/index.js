@@ -456,22 +456,22 @@ const config = {
       price: 20
     }],
     products: [
-      {
-        sku: 'CTS-JERSEY-2019',
-        title: 'Chase The Sun Event Jersey',
-        slug: 'cts-jersey',
-        section: SECTIONS.JERSEYS,
-        details: [
-          'Lightweight Short Sleeved Jersey in white.',
-          'An anatomically cut jersey with a smooth Asteria Lycra front for maximum aero and a lightly meshed back and under-arms for breathability.',
-          'It comes with a full-length zip, silicone grippers on the arms &amp; waist, three rear pockets along with a zip pocket for your valuables.',
-          'It is available in male and female specific versions and has an athletic fit yet the material is stretchy enough to accommodate most body shapes.'
-        ],
-        price: 6500,
-        sizes: JERSEY_SIZES,
-        genders: GENDERS
-      },
       /*
+    {
+      sku: 'CTS-JERSEY-2019',
+      title: 'Chase The Sun Event Jersey',
+      slug: 'cts-jersey',
+      section: SECTIONS.JERSEYS,
+      details: [
+        'Lightweight Short Sleeved Jersey in white.',
+        'An anatomically cut jersey with a smooth Asteria Lycra front for maximum aero and a lightly meshed back and under-arms for breathability.',
+        'It comes with a full-length zip, silicone grippers on the arms &amp; waist, three rear pockets along with a zip pocket for your valuables.',
+        'It is available in male and female specific versions and has an athletic fit yet the material is stretchy enough to accommodate most body shapes.'
+      ],
+      price: 6500,
+      sizes: JERSEY_SIZES,
+      genders: GENDERS
+    },
     {
       sku: 'CLUB-JERSEY-2018',
       title: 'Short Sleeved Club Jersey',
@@ -663,7 +663,6 @@ const config = {
         slug: 'cap',
         section: SECTIONS.ACCESSORIES,
         details: [
-          '£5 from every purchase will be donated to <a href="http://ch1889.org/">Cambridge House</a>.',
           'Black cotton cap with stitched ribbon and white screen print.',
           'Cycling caps keep the sun out of your eyes when it\'s sunny and the rain out of your eyes when it\'s wet.',
           'An essential piece of kit, don\'t leave home without one. Unless you are going to the pub, in which case observe <a href="http://www.velominati.com/the-rules/#22">rule #22</a> and leave it at home.',
@@ -750,6 +749,17 @@ const config = {
           'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
         ],
         price: 800
+      },
+      {
+        sku: 'MUSETTE-2019',
+        title: 'Musette',
+        slug: 'musette',
+        section: SECTIONS.ACCESSORIES,
+        details: [
+          'Black cotton musette with screen printed club logo.',
+          'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
+        ],
+        price: 1000
       },
       {
         sku: 'CLUB-TSHIRT-2019',
