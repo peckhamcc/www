@@ -25,7 +25,7 @@ class EquipmentPage extends Component {
           <ol>
             <li>Helmet - saftey first</li>
             <li>Road Bike - it doesn't have to be expensive but it should have drop handlebars and gears</li>
-            <li>Pedals - clip-in (or clipless) pedals and road-specific shoes are a must - they are more efficient than flats &amp; trainers and safter than toe-clips</li>
+            <li>Pedals - clip-in (or clipless) pedals and cycling specific shoes are a must - they are more efficient than flats &amp; trainers and safter than toe-clips</li>
             <li>2x spare inner tubes, tyre levers and a small pump or CO<sub>2</sub> cannister</li>
             <li>Multi-tool - these are usually small and have the basic tools for fixing common bike problems</li>
             <li>Lights - when riding in darker months it's good to see and be seen</li>
