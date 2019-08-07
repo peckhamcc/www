@@ -30,7 +30,11 @@ class KitPage extends Component {
           <p>Peckham Cycle Club kit is provided by Pro Vision clothing and is available exclusively to <Link to='/membership'>Friends of PCC</Link></p>
           <p>Please visit the kit portal to place an order:</p>
           <p>
-            <Button>Pro Vision kit portal</Button>
+            <Button>
+              <a href='https://portal.provisionclothing.com/'>
+                Pro Vision kit portal
+              </a>
+            </Button>
           </p>
           <p>Samples of jerseys &amp; bibs are available to try on before ordering, please <Link to='/contact'>contact us</Link> to arrange a time.</p>
           <p>Everyting is made to order - we aim to put orders in every couple of months and manufacturing takes about six weeks.</p>
