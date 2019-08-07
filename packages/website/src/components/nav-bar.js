@@ -274,6 +274,9 @@ class NavBarWrapper extends Component {
               <NavLink>
                 <Link to='/contact'>Contact</Link>
               </NavLink>
+              <NavLink>
+                <Link to='/kit'>Kit</Link>
+              </NavLink>
 
               <Flag name='store'>
                 <NavLink>
@@ -333,6 +336,9 @@ class NavBarWrapper extends Component {
               </HamburgerNavMenu>
               <NavLink>
                 <Link to='/contact'>Contact</Link>
+              </NavLink>
+              <NavLink>
+                <Link to='/kit'>Kit</Link>
               </NavLink>
 
               <Flag name='store'>

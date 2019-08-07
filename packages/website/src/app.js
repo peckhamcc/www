@@ -19,6 +19,7 @@ import {
   Rides,
   Routes,
   Shop,
+  Kit,
   Item,
   MailingList,
   Membership,
@@ -83,6 +84,7 @@ export default () => {
                 <Route path='/mailing-list' component={MailingList} />
                 <Route path='/riding' component={Riding} />
                 <Route path='/leading' component={Leading} />
+                <Route path='/kit' component={Kit} />
 
                 <Flag name='store'>
                   <Fragment>
