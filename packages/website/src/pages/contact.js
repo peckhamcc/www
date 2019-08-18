@@ -6,7 +6,7 @@ import {
   Panel,
   Hero
 } from '../components/panels'
-import contactBackground from '../../assets/about-bg.jpg'
+import contactBackground from '../../assets/contact-bg.jpg'
 import styled from 'styled-components'
 import {
   spacing

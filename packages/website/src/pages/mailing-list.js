@@ -7,7 +7,7 @@ import {
   Button,
   Hero
 } from '../components/panels'
-import background from '../../assets/routes-bg.jpg'
+import background from '../../assets/mailing-list-bg.jpg'
 import {
   Label,
   Input,
