@@ -9,7 +9,7 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
 }
 */
 html, body, #root {
-  background: #262a2c;
+  background: #fff;
   height: 100%;
   width: 100%;
   margin: 0;

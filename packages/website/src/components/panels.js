@@ -2,8 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import stripesImage from '../../assets/stripes.png'
-import { main, light, lightAccent, dark } from '../colours'
-import { spacing, MAX_PAGE_WIDTH } from '../units'
+import {
+  main,
+  light,
+  lightAccent,
+  dark,
+  darkAccent,
+  errorText
+} from '../colours'
+import {
+  spacing,
+  MAX_PAGE_WIDTH
+} from '../units'
 
 export const FlexContainerCentered = styled.div`
   display: flex;
@@ -254,6 +264,11 @@ export const LinkPanel = styled.div`
     text-decoration: none;
     padding: 80px 0;
     font-size: 48px;
+    color: ${darkAccent};
+  }
+
+  a:hover {
+    color: ${errorText}
   }
 
   &::after {

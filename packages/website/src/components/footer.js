@@ -6,9 +6,9 @@ import {
   FaInstagram
 } from 'react-icons/fa'
 import {
-  darkAccent,
-  darkLowlight,
-  light
+  dark,
+  light,
+  lightAccent
 } from '../colours'
 import {
   FlexContainerCentered,
@@ -22,8 +22,8 @@ const Footer = styled.footer`
   clear: both;
   padding: ${spacing(3)} ${spacing(2)} ${spacing(1)} ${spacing(2)};
   font-size: 16px;
-  color: ${darkAccent};
-  background-color: ${darkLowlight};
+  color: ${lightAccent};
+  background-color: ${dark};
 
   @media (max-width: 640px) {
     font-size: 12px;
@@ -31,12 +31,12 @@ const Footer = styled.footer`
 `
 
 const SocialLink = styled.a`
-  color: ${darkAccent};
+  color: ${lightAccent};
   font-size: 18px;
   margin-left: 10px;
 
   &:link {
-    color: ${darkAccent};
+    color: ${lightAccent};
   }
 
   &:hover {

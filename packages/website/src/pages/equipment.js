@@ -11,7 +11,7 @@ import {
   LinkPanel
 } from '../components/panels'
 import ridesBackground from '../../assets/rides-bg.jpg'
-import membershipBackground from '../../assets/membership-bg.jpg'
+import ridingBackground from '../../assets/riding-bg.jpg'
 import equipmentBackground from '../../assets/equipment-bg.jpg'
 
 class EquipmentPage extends Component {
@@ -40,7 +40,7 @@ class EquipmentPage extends Component {
         <LinkPanel background={ridesBackground.src}>
           <Link to='/rides'>Rides</Link>
         </LinkPanel>
-        <LinkPanel background={membershipBackground.src}>
+        <LinkPanel background={ridingBackground.src}>
           <Link to='/riding'>On the road</Link>
         </LinkPanel>
       </PageWrapper>

@@ -13,7 +13,8 @@ import { signOut } from '../store/actions'
 import {
   FlexContainerCentered,
   FlexContentLeft,
-  ModalBlocker
+  ModalBlocker,
+  Break
 } from './panels'
 import pccAvatar from '../../assets/pcc-logo-round.png'
 import {
@@ -41,9 +42,9 @@ const CartContentsCount = styled.div`
 
 const NavBar = styled.nav`
   padding: 0 0 0 0;
-  height: 60px;
+  height: 67px;
   margin: 0;
-  top: 8px;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 500;
@@ -172,6 +173,10 @@ const AccountNav = styled.div`
   right: 0;
 `
 
+const TopBreak = styled(Break)`
+  margin-top: 15px;
+`
+
 class NavBarWrapper extends Component {
   static propTypes = {
     cart: PropTypes.array.isRequired,
@@ -182,7 +187,6 @@ class NavBarWrapper extends Component {
 
   state = {
     bgOpacity: 0,
-    top: 8,
     menuOpen: false
   }
 
@@ -198,8 +202,7 @@ class NavBarWrapper extends Component {
     const { pageYOffset } = window
 
     this.setState({
-      bgOpacity: pageYOffset < 100 ? pageYOffset / 100 : 1,
-      top: pageYOffset > 8 ? 0 : 8 - pageYOffset
+      bgOpacity: pageYOffset < 100 ? pageYOffset / 100 : 1
     })
   }
 
@@ -216,7 +219,7 @@ class NavBarWrapper extends Component {
         pathname
       }
     } = this.props
-    const { bgOpacity, top, menuOpen } = this.state
+    const { bgOpacity, menuOpen } = this.state
     let logoOpacity = 1
 
     if (pathname === '/') {
@@ -228,9 +231,7 @@ class NavBarWrapper extends Component {
     }, 0)
 
     return (
-      <NavBar style={{
-        top
-      }}>
+      <NavBar>
         <SiteIcon style={{
           opacity: logoOpacity
         }}>
@@ -253,6 +254,9 @@ class NavBarWrapper extends Component {
                   </NavLink>
                   <NavLink>
                     <Link to='/rides'>Rides</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/racing'>Racing</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/routes'>Routes</Link>
@@ -303,7 +307,7 @@ class NavBarWrapper extends Component {
         </Flag>
 
         {menuOpen && (
-          <ModalBlocker onClick={this.toggleDropDownMenu} style={{ top: top + 60 }}>
+          <ModalBlocker onClick={this.toggleDropDownMenu} style={{ top: 60 }}>
             <MobileNav>
               <NavLink>
                 <Link to='/'>Home</Link>
@@ -350,6 +354,7 @@ class NavBarWrapper extends Component {
           </ModalBlocker>
         )}
 
+        <TopBreak />
       </NavBar>
     )
   }

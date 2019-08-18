@@ -16,6 +16,7 @@ import {
   Equipment,
   Home,
   Orders,
+  Racing,
   Rides,
   Routes,
   Shop,
@@ -59,10 +60,6 @@ const AppWrapper = styled(FlexContainer)`
   min-height: 100vh;
 `
 
-const TopBreak = styled(Break)`
-  margin-top: 0;
-`
-
 export default () => {
   return (
     <FlagsProvider flags={config.flags}>
@@ -70,7 +67,6 @@ export default () => {
         <Router>
           <ScrollToTop>
             <AppWrapper vertical>
-              <TopBreak />
               <FlexItem expand>
                 <Navigation />
                 <Route path='/account' component={Account} />
@@ -82,6 +78,7 @@ export default () => {
                 <Route path='/club' component={About} />
                 <Route path='/contact' component={Contact} />
                 <Route path='/mailing-list' component={MailingList} />
+                <Route path='/racing' component={Racing} />
                 <Route path='/riding' component={Riding} />
                 <Route path='/leading' component={Leading} />
                 <Route path='/kit' component={Kit} />
