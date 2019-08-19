@@ -22,10 +22,10 @@ class CalendarPage extends Component {
         'cGczYzY3YTdlOHViNWdxbG8xNmVzN2lrMmNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ'
       ],
       color: [
-        '#039BE5',
-        '#D81B60',
-        '#009688',
-        '#F6BF26'
+        '#d7db3c',
+        '#f5222c',
+        '#3c5cb4',
+        '#39cbd6'
       ],
       showTitle: 0,
       showNav: 1,
