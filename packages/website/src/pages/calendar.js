@@ -11,7 +11,7 @@ import qs from 'querystring'
 class CalendarPage extends Component {
   render () {
     const url = `https://calendar.google.com/calendar/b/2/embed?${qs.stringify({
-      wkst: 1,
+      wkst: 2,
       bgcolor: '#ffffff',
       ctz: 'Europe/London',
       hl: 'en_GB',
