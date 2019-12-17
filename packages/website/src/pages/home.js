@@ -42,8 +42,8 @@ const Logo = styled.h1`
 
 const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i -= 1) {
-    let j = Math.floor(Math.random() * (i + 1))
-    let temp = array[i]
+    const j = Math.floor(Math.random() * (i + 1))
+    const temp = array[i]
     array[i] = array[j]
     array[j] = temp
   }
@@ -66,7 +66,8 @@ class HomePage extends Component {
           backgroundImage7,
           backgroundImage8,
           backgroundImage9
-        ])} />
+        ])}
+        />
         <Panel>
           <h2>Upcoming rides</h2>
           <p>There are rides every Saturday and sometimes Sundays too.</p>

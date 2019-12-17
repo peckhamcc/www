@@ -30,7 +30,7 @@ const sendPayment = function (event) {
     address2,
     address3,
     postCode
-  } = event.body
+  } = event
 
   let amount = 0
 

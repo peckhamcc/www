@@ -1,6 +1,5 @@
 import React, {
-  Component,
-  Fragment
+  Component
 } from 'react'
 import styled from 'styled-components'
 import {
@@ -91,8 +90,8 @@ class Sizing extends Component {
       product
     } = this.props
 
-    let genderControls = <Fragment />
-    let unitControls = <Fragment />
+    let genderControls = <></>
+    let unitControls = <></>
 
     if (product.sizes) {
       const size = product.sizes[0]
@@ -110,7 +109,9 @@ class Sizing extends Component {
                   selected={u === unit}
                   onClick={() => this.setUnit(u)}
                   key={index}
-                  data-gender={u}>{capitalise(u)}</SelectableOption>
+                  data-gender={u}
+                >{capitalise(u)}
+                </SelectableOption>
               ))
             }
           </UnitControls>
@@ -126,7 +127,9 @@ class Sizing extends Component {
                   selected={g === gender}
                   onClick={() => this.setGender(g)}
                   key={index}
-                  data-gender={g}>{capitalise(g)}</SelectableOption>
+                  data-gender={g}
+                >{capitalise(g)}
+                </SelectableOption>
               ))
             }
           </GenderControls>
@@ -138,7 +141,7 @@ class Sizing extends Component {
       <SizingContainer>
         <h3>Sizing</h3>
         {product.sizes ? (
-          <Fragment>
+          <>
             <SizeControls>
               {genderControls}
               {unitControls}
@@ -178,7 +181,7 @@ class Sizing extends Component {
                 }
               </tbody>
             </Table>
-          </Fragment>
+          </>
         ) : (
           <p>One size fits all</p>
         )}

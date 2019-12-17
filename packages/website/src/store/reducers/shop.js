@@ -7,7 +7,7 @@ const initialState = {
 
 const shopReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_TO_CART:
+    case ADD_TO_CART: {
       const existingItem = state.cart.find(
         item => {
           let result = item.sku === action.payload.sku
@@ -46,6 +46,7 @@ const shopReducer = (state = initialState, action) => {
         ...state,
         cart: state.cart.concat(action.payload)
       }
+    }
     case REMOVE_FROM_CART:
       return {
         ...state,

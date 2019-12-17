@@ -132,7 +132,8 @@ export const ShopListItem = ({ item: { slug, title, description, images, price }
       </h4>
       {price && <h5><Price price={price} /></h5>}
       <Link to={`/shop/${slug}`}>
-        <img srcSet={images[0].srcSet} src={images[0].src} width={300} /></Link>
+        <img srcSet={images[0].srcSet} src={images[0].src} width={300} />
+      </Link>
       {description && (
         <p>
           <Link to={`/shop/${slug}`}>{description}</Link>
@@ -159,12 +160,12 @@ export const BreadCrumbList = styled.ul`
 
 export const Breadcrumb = ({ section, product }) => {
   const links = [
-    <Link to='/shop'>Shop</Link>
+    <Link to='/shop' key='shop'>Shop</Link>
   ]
 
   if (product) {
     links.push(
-      <Link to={`/shop/${product.section.slug}`}>{product.section.title}</Link>,
+      <Link to={`/shop/${product.section.slug}`} key='slug'>{product.section.title}</Link>,
       product.title
     )
   } else {

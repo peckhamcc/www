@@ -4,7 +4,7 @@ const {
 const AWS = require('aws-sdk')
 
 module.exports = (emailAddress, firstName, lastName, address1, address2, address3, postCode, lineItems, amount) => {
-  if (!config.flags.email) {
+  if (!config.flags.email || process.env.NODE_ENV === 'test') {
     return Promise.resolve()
   }
 

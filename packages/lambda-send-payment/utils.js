@@ -5,7 +5,7 @@ const capitalise = (string) => {
 
 const waterfall = (funcs, cb) => {
   let index = 0
-  let results = []
+  const results = []
 
   const execute = () => {
     const args = []

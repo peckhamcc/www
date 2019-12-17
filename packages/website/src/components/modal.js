@@ -53,14 +53,14 @@ class Modal extends Component {
     onClose: PropTypes.func
   }
 
-  stopPropagation (event) {
+  handleStopPropagation (event) {
     event.stopPropagation()
   }
 
   render () {
     return (
       <ModalBlocker onClick={this.props.onClose}>
-        <ModalWrapper width={this.props.width} height={this.props.height} onClick={this.stopPropagation}>
+        <ModalWrapper width={this.props.width} height={this.props.height} onClick={this.handleStopPropagation}>
           <ModalHeader>
             <ModalTitle>{this.props.title}</ModalTitle>
             <ModalFaTimes>

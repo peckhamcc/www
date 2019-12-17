@@ -3,7 +3,7 @@ import { PageWrapper, Panel, Hero, Breadcrumb } from '../components/panels'
 import checkoutBackground from '../../assets/checkout-bg.jpg'
 import CheckoutTransfer from '../components/checkout-transfer'
 import CheckoutPayment from '../components/checkout-payments'
-import { Flag } from 'flag'
+import { Flag } from '../lib/flags'
 
 class CheckoutPage extends Component {
   render () {

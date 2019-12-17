@@ -25,12 +25,12 @@ import {
 } from './forms'
 
 const STEPS = {
-  'LOADING_TOKEN': 'LOADING_TOKEN',
-  'ENTER_DETAILS': 'ENTER_DETAILS',
-  'CHOOSE_PAYMENT_METHOD': 'CHOOSE_PAYMENT_METHOD',
-  'SUBMITTING_PAYMENT': 'SUBMITTING_PAYMENT',
-  'SUCCESS': 'SUCCESS',
-  'ERROR': 'ERROR'
+  LOADING_TOKEN: 'LOADING_TOKEN',
+  ENTER_DETAILS: 'ENTER_DETAILS',
+  CHOOSE_PAYMENT_METHOD: 'CHOOSE_PAYMENT_METHOD',
+  SUBMITTING_PAYMENT: 'SUBMITTING_PAYMENT',
+  SUCCESS: 'SUCCESS',
+  ERROR: 'ERROR'
 }
 
 class LoadingToken extends Component {
@@ -139,7 +139,7 @@ class EnterDetails extends Component {
     this.setState(state)
   }
 
-  next = () => {
+  handleNext = () => {
     this.validate(this.state)
 
     if (Object.keys(this.state.errors).length) {
@@ -163,7 +163,8 @@ class EnterDetails extends Component {
             name='firstName'
             type='text'
             onChange={this.formFieldChanged('firstName')} value={this.state.values.firstName}
-            data-input='first-name' />
+            data-input='first-name'
+          />
         </FormInputWrapper>
         <FormInputWrapper error={this.state.errors.lastName}>
           <Label for='lastName'>Last name {this.state.errors.lastName && 'is required'}</Label>
@@ -172,7 +173,8 @@ class EnterDetails extends Component {
             type='text'
             onChange={this.formFieldChanged('lastName')}
             value={this.state.lastName}
-            data-input='last-name' />
+            data-input='last-name'
+          />
         </FormInputWrapper>
         <FormInputWrapper error={this.state.errors.email}>
           <Label for='email'>Email {this.state.errors.email && 'must be a valid email'}</Label>
@@ -181,12 +183,15 @@ class EnterDetails extends Component {
             type='email'
             onChange={this.formFieldChanged('email')}
             value={this.state.email}
-            data-input='email' />
+            data-input='email'
+          />
         </FormInputWrapper>
         <Button
-          onClick={this.next}
+          onClick={this.handleNext}
           disabled={Object.keys(this.state.errors).length}
-          data-button='choose-payment-method'>Choose payment method</Button>
+          data-button='choose-payment-method'
+        >Choose payment method
+        </Button>
       </CheckoutWrapper>
     )
   }
@@ -221,7 +226,7 @@ class ChoosePaymentMethod extends Component {
     })
   }
 
-  requestPaymentMethod = () => {
+  handleRequestPaymentMethod = () => {
     this.setState({
       requestingPaymentMethod: true
     })
@@ -249,6 +254,19 @@ class ChoosePaymentMethod extends Component {
       requestingPaymentMethod
     } = this.state
 
+    let button = ''
+
+    if (!loading) {
+      button = (
+        <Button
+          onClick={this.handleRequestPaymentMethod}
+          disabled={requestingPaymentMethod}
+          data-button='submit-payment'
+        >Submit payment
+        </Button>
+      )
+    }
+
     return (
       <PaymentHolder>
         {loading && <p>Loading payment methods...</p>}
@@ -256,10 +274,7 @@ class ChoosePaymentMethod extends Component {
         <PlaceHolder>
           <div ref={ref => { this.paymentHolder = ref }} />
         </PlaceHolder>
-        {!loading && <Button
-          onClick={this.requestPaymentMethod}
-          disabled={requestingPaymentMethod}
-          data-button='submit-payment'>Submit payment</Button>}
+        {button}
       </PaymentHolder>
     )
   }
@@ -284,21 +299,21 @@ class Checkout extends Component {
     }
   }
 
-  onClientToken = (clientToken) => {
+  handleClientToken = (clientToken) => {
     this.setState({
       clientToken,
       step: STEPS.ENTER_DETAILS
     })
   }
 
-  onCustomerDetails = (customerDetails) => {
+  handleCustomerDetails = (customerDetails) => {
     this.setState({
       customerDetails,
       step: STEPS.CHOOSE_PAYMENT_METHOD
     })
   }
 
-  onPayment = (nonce) => {
+  handlePayment = (nonce) => {
     this.setState({
       step: STEPS.SUBMITTING_PAYMENT
     })
@@ -354,7 +369,7 @@ class Checkout extends Component {
       })
   }
 
-  onError = (error) => {
+  handleError = (error) => {
     this.setState({
       error,
       step: STEPS.ERROR
@@ -370,9 +385,9 @@ class Checkout extends Component {
     } = this.state
 
     const steps = {
-      [STEPS.LOADING_TOKEN]: <LoadingToken onToken={this.onClientToken} onError={this.onError} />,
-      [STEPS.ENTER_DETAILS]: <EnterDetails onDetails={this.onCustomerDetails} />,
-      [STEPS.CHOOSE_PAYMENT_METHOD]: <ChoosePaymentMethod clientToken={clientToken} onPayment={this.onPayment} onError={this.onError} />,
+      [STEPS.LOADING_TOKEN]: <LoadingToken onToken={this.handleClientToken} onError={this.handleError} />,
+      [STEPS.ENTER_DETAILS]: <EnterDetails onDetails={this.handleCustomerDetails} />,
+      [STEPS.CHOOSE_PAYMENT_METHOD]: <ChoosePaymentMethod clientToken={clientToken} onPayment={this.handlePayment} onError={this.handleError} />,
       [STEPS.SUBMITTING_PAYMENT]: <MakingPayment />,
       [STEPS.SUCCESS]: <DisplaySuccess transactionId={transactionId} />,
       [STEPS.ERROR]: <DisplayError error={error} />

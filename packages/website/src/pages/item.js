@@ -1,6 +1,5 @@
 import React, {
-  Component,
-  Fragment
+  Component
 } from 'react'
 import {
   PageWrapper,
@@ -24,7 +23,7 @@ const Section = ({ section }) => {
   const products = config.store.products.filter(product => product.section.slug === section.slug)
 
   return (
-    <Fragment>
+    <>
       <Breadcrumb section={section} />
       <h2>{section.title}</h2>
       <Items>
@@ -32,7 +31,7 @@ const Section = ({ section }) => {
           products.length ? products.map(product => <ShopListItem item={product} key={product.slug} />) : <p>Sorry this section does not have any products at the moment, please check back soon!</p>
         }
       </Items>
-    </Fragment>
+    </>
   )
 }
 

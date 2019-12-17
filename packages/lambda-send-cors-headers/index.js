@@ -18,7 +18,7 @@ exports.handler = (event, context, callback) => {
       'Access-Control-Allow-Credentials': true
     },
     body: JSON.stringify({
-      'message': 'OPTIONS'
+      message: 'OPTIONS'
     })
   }
 

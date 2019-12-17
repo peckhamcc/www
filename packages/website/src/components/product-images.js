@@ -91,7 +91,7 @@ class ImageViewer extends Component {
     index: 0
   }
 
-  nextImage = () => {
+  handleNextImage = () => {
     this.setState(s => {
       let index = s.index - 1
 
@@ -105,7 +105,7 @@ class ImageViewer extends Component {
     })
   }
 
-  previousImage = () => {
+  handlePreviousImage = () => {
     this.setState(s => {
       let index = s.index + 1
 
@@ -131,7 +131,7 @@ class ImageViewer extends Component {
       <div>
         <ImageWrapper>
           {images.length > 1 && (
-            <ImageNav onClick={this.previousImage}>
+            <ImageNav onClick={this.handlePreviousImage}>
               <div>
                 <FaChevronLeft />
               </div>
@@ -143,7 +143,7 @@ class ImageViewer extends Component {
           </ProductImage>
 
           {images.length > 1 && (
-            <ImageNav onClick={this.nextImage}>
+            <ImageNav onClick={this.handleNextImage}>
               <div>
                 <FaChevronRight />
               </div>

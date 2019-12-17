@@ -1,6 +1,4 @@
-import React, {
-  Fragment
-} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {
   Breadcrumb
@@ -26,7 +24,7 @@ const ImageHolder = styled.div`
 
 const Product = ({ product }) => {
   return (
-    <Fragment>
+    <>
       <Breadcrumb section={product.section} product={product} />
       <ProductHolder>
         <ImageHolder>
@@ -36,7 +34,7 @@ const Product = ({ product }) => {
 
         <ProductDetails product={product} />
       </ProductHolder>
-    </Fragment>
+    </>
   )
 }
 

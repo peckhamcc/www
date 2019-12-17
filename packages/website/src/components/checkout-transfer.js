@@ -30,10 +30,10 @@ import {
 } from './forms'
 
 const STEPS = {
-  'ENTER_DETAILS': 'ENTER_DETAILS',
-  'SUBMITTING_PAYMENT': 'SUBMITTING_PAYMENT',
-  'SUCCESS': 'SUCCESS',
-  'ERROR': 'ERROR'
+  ENTER_DETAILS: 'ENTER_DETAILS',
+  SUBMITTING_PAYMENT: 'SUBMITTING_PAYMENT',
+  SUCCESS: 'SUCCESS',
+  ERROR: 'ERROR'
 }
 
 class DisplayError extends Component {
@@ -142,7 +142,7 @@ class EnterDetails extends Component {
     this.setState(state)
   }
 
-  next = () => {
+  handleNext = () => {
     this.validate(this.state)
 
     if (Object.keys(this.state.errors).length) {
@@ -188,7 +188,8 @@ class EnterDetails extends Component {
                 type='text'
                 onChange={this.formFieldChanged('firstName')}
                 value={this.state.values.firstName}
-                data-input='first-name' />
+                data-input='first-name'
+              />
             </FormInputWrapper>
             <FormInputWrapper error={this.state.errors.lastName}>
               <Label for='lastName'>Last name {this.state.errors.lastName && 'is required'}</Label>
@@ -197,7 +198,8 @@ class EnterDetails extends Component {
                 type='text'
                 onChange={this.formFieldChanged('lastName')}
                 value={this.state.values.lastName}
-                data-input='last-name' />
+                data-input='last-name'
+              />
             </FormInputWrapper>
             <FormInputWrapper error={this.state.errors.email}>
               <Label for='email'>Email {this.state.errors.email && 'must be a valid email'}</Label>
@@ -206,7 +208,8 @@ class EnterDetails extends Component {
                 type='email'
                 onChange={this.formFieldChanged('email')}
                 value={this.state.values.email}
-                data-input='email' />
+                data-input='email'
+              />
             </FormInputWrapper>
             <HelpText>We ask for your details for transactional purposes only.</HelpText>
           </NameWrapper>
@@ -219,7 +222,8 @@ class EnterDetails extends Component {
                 type='text'
                 onChange={this.formFieldChanged('address1')}
                 value={this.state.values.address1}
-                data-input='address1' />
+                data-input='address1'
+              />
             </FormInputWrapper>
             <FormInputWrapper>
               <Label for='address2'>Town</Label>
@@ -228,7 +232,8 @@ class EnterDetails extends Component {
                 type='text'
                 onChange={this.formFieldChanged('address2')}
                 value={this.state.values.address2}
-                data-input='address2' />
+                data-input='address2'
+              />
             </FormInputWrapper>
             <FormInputWrapper>
               <Label for='address3'>County</Label>
@@ -237,7 +242,8 @@ class EnterDetails extends Component {
                 type='text'
                 onChange={this.formFieldChanged('address3')}
                 value={this.state.values.address3}
-                data-input='address3' />
+                data-input='address3'
+              />
             </FormInputWrapper>
             <FormInputWrapper error={this.state.errors.postCode}>
               <Label for='postCode'>Post code {this.state.errors.postCode && 'is required'}</Label>
@@ -246,7 +252,8 @@ class EnterDetails extends Component {
                 type='text'
                 onChange={this.formFieldChanged('postCode')}
                 value={this.state.values.postCode}
-                data-input='postCode' />
+                data-input='postCode'
+              />
             </FormInputWrapper>
           </AddressWrapper>
         </DetailsWrapper>
@@ -259,7 +266,8 @@ class EnterDetails extends Component {
               type='text'
               onChange={this.formFieldChanged('shopCode')}
               value={this.state.values.shopCode}
-              data-input='shopCode' />
+              data-input='shopCode'
+            />
             <HelpText>If you do not know what the shop code is, please <Link to='/contact'>contact us</Link> or ask in the WhatsApp group.</HelpText>
           </FormInputWrapper>
         </ShopCodeWrapper>
@@ -267,9 +275,11 @@ class EnterDetails extends Component {
         {error && <ErrorText>{errors[error]}</ErrorText>}
 
         <Button
-          onClick={this.next}
+          onClick={this.handleNext}
           disabled={Object.keys(this.state.errors).length}
-          data-button='submit-order'>Submit order</Button>
+          data-button='submit-order'
+        >Submit order
+        </Button>
       </CheckoutWrapper>
     )
   }
@@ -285,7 +295,7 @@ class Checkout extends Component {
     }
   }
 
-  onCustomerDetails = (customerDetails) => {
+  handleCustomerDetails = (customerDetails) => {
     this.setState({
       customerDetails,
       step: STEPS.SUBMITTING_PAYMENT
@@ -355,10 +365,13 @@ class Checkout extends Component {
     } = this.state
 
     const steps = {
-      [STEPS.ENTER_DETAILS]: <EnterDetails
-        onDetails={this.onCustomerDetails}
-        customerDetails={customerDetails}
-        error={error} />,
+      [STEPS.ENTER_DETAILS]: (
+        <EnterDetails
+          onDetails={this.handleCustomerDetails}
+          customerDetails={customerDetails}
+          error={error}
+        />
+      ),
       [STEPS.SUBMITTING_PAYMENT]: <MakingPayment />,
       [STEPS.SUCCESS]: <DisplaySuccess transactionId={transactionId} />,
       [STEPS.ERROR]: <DisplayError error={error} />

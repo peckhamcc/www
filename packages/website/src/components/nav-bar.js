@@ -23,7 +23,7 @@ import {
 import onscrolling from 'onscrolling'
 import {
   Flag
-} from 'flag'
+} from '../lib/flags'
 
 const HAMBUGER_BREAK = 800
 
@@ -206,7 +206,7 @@ class NavBarWrapper extends Component {
     })
   }
 
-  toggleDropDownMenu = () => {
+  handleToggleDropDownMenu = () => {
     this.setState(s => ({
       menuOpen: !s.menuOpen
     }))
@@ -234,7 +234,8 @@ class NavBarWrapper extends Component {
       <NavBar>
         <SiteIcon style={{
           opacity: logoOpacity
-        }}>
+        }}
+        >
           <Link to='/'>
             <img src={pccAvatar} height='50' width='50' />
           </Link>
@@ -294,7 +295,7 @@ class NavBarWrapper extends Component {
           </FlexContainerCentered>
         </LongMenu>
 
-        <HamburgerMenu onClick={this.toggleDropDownMenu}>
+        <HamburgerMenu onClick={this.handleToggleDropDownMenu}>
           <FaBars />
         </HamburgerMenu>
 
@@ -310,7 +311,7 @@ class NavBarWrapper extends Component {
         </Flag>
 
         {menuOpen && (
-          <ModalBlocker onClick={this.toggleDropDownMenu} style={{ top: 60 }}>
+          <ModalBlocker onClick={this.handleToggleDropDownMenu} style={{ top: 60 }}>
             <MobileNav>
               <NavLink>
                 <Link to='/'>Home</Link>

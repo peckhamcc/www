@@ -178,7 +178,7 @@ class Basket extends Component {
     this.props.removeFromCart(item)
   }
 
-  acceptTerms = (event) => {
+  handleAcceptTerms = (event) => {
     this.setState({
       showTermsError: false
     })
@@ -186,7 +186,7 @@ class Basket extends Component {
     this.props.userAcceptedTerms(event.target.checked)
   }
 
-  showCheckout = (event) => {
+  handleShowCheckout = (event) => {
     if (!this.props.acceptedTerms) {
       event.preventDefault()
 
@@ -233,7 +233,8 @@ class Basket extends Component {
                             [
                               item.gender && item.gender.name, item.size && item.size.name
                             ].filter(Boolean).join(', ')
-                          }</p>
+                          }
+                          </p>
                           {item.variants && (
                             <p>
                               {Object.keys(item.variants).map((variant, index) => {
@@ -270,7 +271,8 @@ class Basket extends Component {
                   const product = config.store.products.find(product => product.sku === item.sku)
 
                   return acc + (product.price * item.quantity)
-                }, 0)} />
+                }, 0)}
+                />
               </Cell>
             </Row>
           </TFoot>
@@ -282,14 +284,17 @@ class Basket extends Component {
             <p>Items from kit orders are sent to the factory when minimum quantities are reached and take 4-6 weeks to be made &amp; shipped.</p>
             <p>When items are available, your order will be available to be picked up from the most excellent <a href='https://ratracecycles.com/'>Rat Race Cycles</a> at 118 Evelina Road, SE15 3HL.</p>
             <p>We will be in touch to let you know the delivery date as soon as it is available and once items are ready for pick up.</p>
-            <p>Please confirm you understand the above and are happy to proceed with your order: <Checkbox
-              type='checkbox'
-              checked={acceptedTerms}
-              onChange={this.acceptTerms}
-              data-button='accept-terms' /></p>
+            <p>Please confirm you understand the above and are happy to proceed with your order:
+              <Checkbox
+                type='checkbox'
+                checked={acceptedTerms}
+                onChange={this.handleAcceptTerms}
+                data-button='accept-terms'
+              />
+            </p>
           </Terms>
           <ButtonHolder>
-            <Link to='/checkout' onClick={this.showCheckout}>
+            <Link to='/checkout' onClick={this.handleShowCheckout}>
               <Button data-button='enter-payment-information'>Enter your details</Button>
             </Link>
           </ButtonHolder>

@@ -59,13 +59,13 @@ class ContactPage extends Component {
     state: null
   }
 
-  onInputChange = (name, event) => {
+  handleInputChange = (name, event) => {
     this.setState({
       [name]: event.target.value
     })
   }
 
-  onFormSubmit = (event) => {
+  handleFormSubmit = (event) => {
     event.preventDefault()
 
     const name = this.state.name.trim()
@@ -133,13 +133,13 @@ class ContactPage extends Component {
           {this.state.state === STATE.SENDING && <p>Sending your message...</p>}
           {this.state.state === STATE.SENT && <p>Your message has been sent!</p>}
           {this.state.state === STATE.ERROR && <Warning>{this.state.error}</Warning>}
-          <form onSubmit={this.onFormSubmit}>
+          <form onSubmit={this.handleFormSubmit}>
             <Label htmlFor='name'>Name</Label>
-            <Input type='text' name='name' onChange={(event) => this.onInputChange('name', event)} value={this.state.name} disabled={this.state.state === STATE.SENDING} />
+            <Input type='text' name='name' onChange={(event) => this.handleInputChange('name', event)} value={this.state.name} disabled={this.state.state === STATE.SENDING} />
             <Label htmlFor='email'>Email</Label>
-            <Input type='email' name='email' onChange={(event) => this.onInputChange('email', event)} value={this.state.email} disabled={this.state.state === STATE.SENDING} />
+            <Input type='email' name='email' onChange={(event) => this.handleInputChange('email', event)} value={this.state.email} disabled={this.state.state === STATE.SENDING} />
             <Label htmlFor='message'>Message</Label>
-            <TextArea name='message' onChange={(event) => this.onInputChange('message', event)} value={this.state.message} disabled={this.state.state === STATE.SENDING} />
+            <TextArea name='message' onChange={(event) => this.handleInputChange('message', event)} value={this.state.message} disabled={this.state.state === STATE.SENDING} />
             <Submit type='submit' value='Send' disabled={this.state.state === STATE.SENDING} />
           </form>
         </Panel>

@@ -1,6 +1,4 @@
-import React, {
-  Fragment
-} from 'react'
+import React from 'react'
 import {
   Provider
 } from 'react-redux'
@@ -38,7 +36,7 @@ import styled from 'styled-components'
 import {
   Break
 } from './components/panels'
-import { FlagsProvider, Flag } from 'flag'
+import { FlagsProvider, Flag } from './lib/flags'
 import ScrollToTop from './components/scroll-to-top'
 
 const FlexContainer = styled.div`
@@ -70,9 +68,9 @@ export default () => {
             <AppWrapper vertical>
               <FlexItem expand>
                 <Navigation />
+                <Route exact path='/' component={Home} />
                 <Route path='/account' component={Account} />
                 <Route path='/equipment' component={Equipment} />
-                <Route exact path='/' component={Home} />
                 <Route path='/rides' component={Rides} />
                 <Route path='/routes' component={Routes} />
                 <Route path='/membership' component={Membership} />
@@ -86,13 +84,13 @@ export default () => {
                 <Route path='/calendar' component={Calendar} />
 
                 <Flag name='store'>
-                  <Fragment>
+                  <>
                     <Route exact path='/shop' component={Shop} />
                     <Route path='/shop/:slug' component={Item} />
                     <Route path='/basket' component={Basket} />
                     <Route path='/checkout' component={Checkout} />
                     <Route path='/orders' component={Orders} />
-                  </Fragment>
+                  </>
                 </Flag>
 
               </FlexItem>

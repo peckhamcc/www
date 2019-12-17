@@ -40,7 +40,7 @@ const sendEmail = (body) => {
         },
         Subject: {
           Charset: 'UTF-8',
-          Data: `Peckham Cycle Club contact form message`
+          Data: 'Peckham Cycle Club contact form message'
         }
       },
       Source: config.email.from,

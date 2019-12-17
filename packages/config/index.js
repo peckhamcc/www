@@ -23,27 +23,52 @@ const SECTIONS = {
 }
 
 const JERSEY_SIZES = [{
+  code: 'XXS',
+  name: 'Extra extra small',
+  measurements: {
+    chest: {
+      male: {
+        min: 85,
+        max: 88
+      },
+      female: {
+        min: 82,
+        max: 85
+      }
+    },
+    waist: {
+      male: {
+        min: 73,
+        max: 76
+      },
+      female: {
+        min: 66,
+        max: 69
+      }
+    }
+  }
+}, {
   code: 'XS',
   name: 'Extra small',
   measurements: {
     chest: {
       male: {
-        min: 78,
-        max: 82
+        min: 88,
+        max: 92
       },
       female: {
-        min: 77,
-        max: 80
+        min: 85,
+        max: 88
       }
     },
     waist: {
       male: {
-        min: 71,
-        max: 72
+        min: 76,
+        max: 80
       },
       female: {
-        min: 61,
-        max: 64
+        min: 69,
+        max: 72
       }
     }
   }
@@ -53,22 +78,22 @@ const JERSEY_SIZES = [{
   measurements: {
     chest: {
       male: {
-        min: 83,
-        max: 88
+        min: 92,
+        max: 96
       },
       female: {
-        min: 81,
-        max: 84
+        min: 88,
+        max: 92
       }
     },
     waist: {
       male: {
-        min: 73,
-        max: 78
+        min: 80,
+        max: 84
       },
       female: {
-        min: 65,
-        max: 68
+        min: 72,
+        max: 76
       }
     }
   }
@@ -78,22 +103,22 @@ const JERSEY_SIZES = [{
   measurements: {
     chest: {
       male: {
-        min: 89,
-        max: 94
+        min: 96,
+        max: 100
       },
       female: {
-        min: 85,
-        max: 88
+        min: 92,
+        max: 96
       }
     },
     waist: {
       male: {
-        min: 79,
-        max: 84
+        min: 84,
+        max: 88
       },
       female: {
-        min: 85,
-        max: 88
+        min: 76,
+        max: 80
       }
     }
   }
@@ -103,22 +128,22 @@ const JERSEY_SIZES = [{
   measurements: {
     chest: {
       male: {
-        min: 95,
-        max: 100
+        min: 100,
+        max: 104
       },
       female: {
-        min: 89,
-        max: 92
+        min: 96,
+        max: 100
       }
     },
     waist: {
       male: {
-        min: 85,
-        max: 90
+        min: 88,
+        max: 92
       },
       female: {
-        min: 73,
-        max: 76
+        min: 80,
+        max: 84
       }
     }
   }
@@ -128,26 +153,26 @@ const JERSEY_SIZES = [{
   measurements: {
     chest: {
       male: {
-        min: 101,
-        max: 106
+        min: 104,
+        max: 110
       },
       female: {
-        min: 93,
-        max: 96
+        min: 100,
+        max: 106
       }
     },
     waist: {
       male: {
-        min: 91,
-        max: 96
+        min: 92,
+        max: 98
       },
       female: {
-        min: 77,
-        max: 80
+        min: 84,
+        max: 90
       }
     }
   }
-}, {
+}/*, {
   code: 'XXL',
   name: 'XX Large',
   measurements: {
@@ -172,7 +197,9 @@ const JERSEY_SIZES = [{
       }
     }
   }
-}]
+} */
+]
+
 /*
 const ARM_WARMER_SIZES = [{
   code: 'S',
@@ -208,7 +235,7 @@ const ARM_WARMER_SIZES = [{
     }
   }
 }]
-*/
+
 const SOCK_SIZES = [{
   code: 'S/M',
   name: 'Small/Medium',
@@ -226,7 +253,7 @@ const SOCK_SIZES = [{
     }
   }
 }]
-/*
+
 const GLOVE_SIZES = [{
   code: 'XS',
   name: 'Extra small',
@@ -294,7 +321,7 @@ const GLOVE_SIZES = [{
     }
   }
 }]
-*/
+
 const TSHIRT_SIZES = [{
   code: 'S',
   name: 'Small',
@@ -371,7 +398,7 @@ const TSHIRT_SIZES = [{
     }
   }
 }]
-/*
+
 const VARIANTS_SHORT_SLEEVED_JERSEY = [{
   code: 'LONG',
   name: 'Long (+5cm body, +2.5cm sleeves)'
@@ -455,72 +482,35 @@ const config = {
       title: 'Postage to rest of world',
       price: 20
     }],
-    products: [
-      /*
-    {
-      sku: 'CTS-JERSEY-2019',
-      title: 'Chase The Sun Event Jersey',
-      slug: 'cts-jersey',
-      section: SECTIONS.JERSEYS,
-      details: [
-        'Lightweight Short Sleeved Jersey in white.',
-        'An anatomically cut jersey with a smooth Asteria Lycra front for maximum aero and a lightly meshed back and under-arms for breathability.',
-        'It comes with a full-length zip, silicone grippers on the arms &amp; waist, three rear pockets along with a zip pocket for your valuables.',
-        'It is available in male and female specific versions and has an athletic fit yet the material is stretchy enough to accommodate most body shapes.'
-      ],
-      price: 6500,
-      sizes: JERSEY_SIZES,
-      genders: GENDERS
-    },
-    {
-      sku: 'CLUB-JERSEY-2018',
+    products: [{
+      sku: 'CLUB-JERSEY-2020',
       title: 'Short Sleeved Club Jersey',
       slug: 'short-sleeved-jersey',
       section: SECTIONS.JERSEYS,
       details: [
         'Lightweight Short Sleeved Club Jersey in black.',
-        'Based on the jerseys used by the Movistar professional team, the Peckham CC Club Jersey is made from Italian wicking fabrics with Coldblack Technology and has three large rear pockets.',
-        'It comes with a full-length YKK zip, silicone grippers on the arms &amp; waist and is available in various lengths and sizes and is handmade in Scotland.',
+        'Made from a combination of Coolmax and Mondrian fabric, the PCC club jersey has flatlock seams, silicone grippers, three large rear pockets and a fourth with a zip for your valuables.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 8000,
+      price: 5100,
       sizes: JERSEY_SIZES,
-      variants: {
-        length: {
-          description: 'Custom length',
-          options: VARIANTS_SHORT_SLEEVED_JERSEY
-        }
-      },
-      genders: GENDERS,
-      fs260: {
-        link: 'https://www.endurasport.com/product/pro-sl-jersey-e3132/',
-        name: 'Pro SL Jersey'
-      }
+      genders: GENDERS
     }, {
-      sku: 'CLUB-SUMMER-JERSEY-2018',
+      sku: 'CLUB-SUMMER-JERSEY-2020',
       title: 'Short Sleeved Summer Jersey',
       slug: 'short-sleeved-summer-jersey',
       section: SECTIONS.JERSEYS,
       details: [
         'Lightweight Short Sleeved Club Jersey in white.',
-        'Based on the jerseys used by the Movistar professional team, the Peckham CC Club Jersey is made from Italian wicking fabrics with Coldblack Technology and has three large rear pockets.',
-        'It comes with a full-length YKK zip, silicone grippers on the arms &amp; waist and is available in various lengths and sizes and is handmade in Scotland.',
+        'Made from a combination of Coolmax and Mondrian fabric, the PCC club jersey has flatlock seams, silicone grippers, three large rear pockets and a fourth with a zip for your valuables.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 8000,
+      price: 5100,
       sizes: JERSEY_SIZES,
-      variants: {
-        length: {
-          description: 'Custom length',
-          options: VARIANTS_SHORT_SLEEVED_JERSEY
-        }
-      },
-      genders: GENDERS,
-      fs260: {
-        link: 'https://www.endurasport.com/product/pro-sl-jersey-e3132/',
-        name: 'Pro SL Jersey'
-      }
-    }, {
+      genders: GENDERS
+    },
+
+    /* {
       sku: 'WINTER-JERSEY-2018',
       title: 'Long Sleeved Winter Jersey',
       slug: 'long-sleeved-jersey',
@@ -570,8 +560,9 @@ const config = {
         link: 'https://www.endurasport.com/product/pro-sl-shell-jacket/',
         name: 'Pro SL Shell Jacket'
       }
-    }, {
-      sku: 'GILET-2018',
+    }, */
+    {
+      sku: 'GILET-2020',
       title: 'Gilet',
       slug: 'gilet',
       section: SECTIONS.OUTERWEAR,
@@ -581,15 +572,11 @@ const config = {
         'It has a deep neck for increased wind protection, comes with a full-length YKK zip, three rear pockets and packs down to easily fit in a jersey pocket.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 6400,
+      price: 5100,
       sizes: JERSEY_SIZES,
-      genders: GENDERS,
-      fs260: {
-        link: 'https://www.endurasport.com/product/pro-sl-lite-gilet/',
-        name: 'Pro SL Lite Gilet'
-      }
+      genders: GENDERS
     }, {
-      sku: 'BIB-SHORTS-2018',
+      sku: 'BIB-SHORTS-2020',
       title: 'Bib shorts',
       slug: 'bib-shorts',
       section: SECTIONS.SHORTS,
@@ -599,24 +586,11 @@ const config = {
         'There\'s a discrete rear pocket for your valuables and raw edge silicone hem grips to make sure the legs stay put.',
         'Handmade in Scotland, it is available in male and female specific versions and there are options for varying leg lengths.'
       ],
-      price: 10500,
+      price: 5040,
       sizes: JERSEY_SIZES,
-      variants: {
-        leg: {
-          description: 'Custom leg length',
-          options: VARIANTS_LEG
-        },
-        pad: {
-          description: 'Custom pad width (based on saddle width)',
-          options: VARIANTS_PAD
-        }
-      },
-      genders: GENDERS,
-      fs260: {
-        link: 'https://www.endurasport.com/product/pro-sl-bibshort-ii-medium-pad/',
-        name: 'Pro SL Bib Short II'
-      }
-    }, {
+      genders: GENDERS
+    },
+    /* {
       sku: 'WINTER-TIGHTS-2018',
       title: 'Winter tights',
       slug: 'winter-tights',
@@ -626,19 +600,9 @@ const config = {
         'Thermal winter tights made from Roubaix high stretch insulation (e.g. nylon/lycra construction with a brushed inner to retain heat).',
         'Handmade in Scotland, it is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 12100,
+      price: 6240,
       sizes: JERSEY_SIZES,
-      variants: {
-        pad: {
-          description: 'Custom pad width (based on saddle width)',
-          options: VARIANTS_PAD
-        }
-      },
-      genders: GENDERS,
-      fs260: {
-        link: 'https://www.endurasport.com/product/pro-sl-biblong-medium-pad/',
-        name: 'Pro SL Bib Long'
-      }
+      genders: GENDERS
     }, {
       sku: 'ARM-WARMERS-2018',
       title: 'Arm warmers',
@@ -658,21 +622,21 @@ const config = {
       }
     },
     */ {
-        sku: 'CAP-2018',
-        title: 'Cap',
-        slug: 'cap',
-        section: SECTIONS.ACCESSORIES,
-        details: [
-          'Black cotton cap with stitched ribbon and white screen print.',
-          'Cycling caps keep the sun out of your eyes when it\'s sunny and the rain out of your eyes when it\'s wet.',
-          'An essential piece of kit, don\'t leave home without one. Unless you are going to the pub, in which case observe <a href="http://www.velominati.com/the-rules/#22">rule #22</a> and leave it at home.',
-          'Our caps are made in Italy from black cotton with a stiff peak and the Peckham logos are screen printed in white. A stitched ribbon in club colours runs over the top.',
-          'Hand wash only. We mean it.',
-          'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
-        ],
-        price: 1500
-      },
-      /* {
+      sku: 'CAP-2018',
+      title: 'Cap',
+      slug: 'cap',
+      section: SECTIONS.ACCESSORIES,
+      details: [
+        'Black cotton cap with stitched ribbon and white screen print.',
+        'Cycling caps keep the sun out of your eyes when it\'s sunny and the rain out of your eyes when it\'s wet.',
+        'An essential piece of kit, don\'t leave home without one. Unless you are going to the pub, in which case observe <a href="http://www.velominati.com/the-rules/#22">rule #22</a> and leave it at home.',
+        'Our caps are made in Italy from black cotton with a stiff peak and the Peckham logos are screen printed in white. A stitched ribbon in club colours runs over the top.',
+        'Hand wash only. We mean it.',
+        'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
+      ],
+      price: 1500
+    },
+    /* {
       sku: 'NECK-WARMER-2018',
       title: 'Neck warmer',
       slug: 'neck-warmer',
@@ -703,7 +667,7 @@ const config = {
         link: 'https://www.endurasport.com/product/fs260-pro-print-mitt/',
         name: 'FS260 Pro Print Mitt'
       }
-    }, */
+    },
       {
         sku: 'SOCKS-WINTER-2019',
         title: 'Winter Club Socks',
@@ -738,30 +702,30 @@ const config = {
           '1 1/8th" (32mm) diameter aluminium headset cap with the club logo, should fit all modern bikes.'
         ],
         price: 2500
-      }, {
-        sku: 'CLUB-BIDON-2018',
-        title: 'Club Bidon',
-        slug: 'club-bidon-2018',
-        section: SECTIONS.ACCESSORIES,
-        details: [
-          'The club bidon has a <a href="http://www.velominati.com/the-rules/#52">500ml capacity</a>, features a lockable lid with a leak-proof membrane cap and is dishwasher safe.',
-          'It\'s made from 20% post-industrial recycled plastics and is recyclable and biodegradable itself so once retired should not murder anything in the ocean.',
-          'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
-        ],
-        price: 800
-      },
-      {
-        sku: 'MUSETTE-2019',
-        title: 'Musette',
-        slug: 'musette',
-        section: SECTIONS.ACCESSORIES,
-        details: [
-          'Black cotton musette with screen printed club logo.',
-          'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
-        ],
-        price: 1000
-      },
-      {
+      }, */ {
+      sku: 'CLUB-BIDON-2018',
+      title: 'Club Bidon',
+      slug: 'club-bidon-2018',
+      section: SECTIONS.ACCESSORIES,
+      details: [
+        'The club bidon has a <a href="http://www.velominati.com/the-rules/#52">500ml capacity</a>, features a lockable lid with a leak-proof membrane cap and is dishwasher safe.',
+        'It\'s made from 20% post-industrial recycled plastics and is recyclable and biodegradable itself so once retired should not murder anything in the ocean.',
+        'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
+      ],
+      price: 800
+    },
+    {
+      sku: 'MUSETTE-2019',
+      title: 'Musette',
+      slug: 'musette',
+      section: SECTIONS.ACCESSORIES,
+      details: [
+        'Black cotton musette with screen printed club logo.',
+        'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
+      ],
+      price: 1000
+    }
+      /* {
         sku: 'CLUB-TSHIRT-2019',
         title: 'Club t-shirt',
         slug: 'club-tshirt-2019',
@@ -816,7 +780,8 @@ const config = {
         price: 3500,
         sizes: TSHIRT_SIZES,
         genders: GENDERS
-      }]
+      }
+    */]
   }
 }
 

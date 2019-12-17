@@ -29,7 +29,7 @@ const storeConfig = {
 
 const makeStore = (rootReducer, initialState, enhancers = []) => {
   const composeEnhancers = (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
-  const store = createStore(rootReducer, initialState, composeEnhancers(...[ persistState(null, storeConfig), ...enhancers ]))
+  const store = createStore(rootReducer, initialState, composeEnhancers(...[persistState(null, storeConfig), ...enhancers]))
 
   return store
 }

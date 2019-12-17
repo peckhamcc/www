@@ -13,7 +13,7 @@ class ReactComment extends Component {
   }
 
   componentDidMount () {
-    let el = ReactDOM.findDOMNode(this)
+    const el = ReactDOM.findDOMNode(this)
     ReactDOM.unmountComponentAtNode(el)
     el.outerHTML = this.createComment()
   }

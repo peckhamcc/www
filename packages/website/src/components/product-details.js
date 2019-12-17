@@ -1,6 +1,5 @@
 import React, {
-  Component,
-  Fragment
+  Component
 } from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -21,7 +20,7 @@ import {
 } from '../colours'
 import Modal from './modal'
 import {
-  addToCart,
+  handleAddToCart,
   selectedSize,
   selectedGender
 } from '../store/actions'
@@ -109,7 +108,7 @@ class ProductDetails extends Component {
     }
   }
 
-  chooseSize = (size) => {
+  handleChooseSize = (size) => {
     this.setState({
       size
     })
@@ -117,7 +116,7 @@ class ProductDetails extends Component {
     this.props.selectedSize(size)
   }
 
-  chooseGender = (gender) => {
+  handleChooseGender = (gender) => {
     this.setState({
       gender
     })
@@ -125,7 +124,7 @@ class ProductDetails extends Component {
     this.props.selectedGender(gender)
   }
 
-  chooseVariant = (key, value) => {
+  handleChooseVariant = (key, value) => {
     this.setState(s => {
       s.variants[key] = value
 
@@ -133,7 +132,7 @@ class ProductDetails extends Component {
     })
   }
 
-  decreaseQuantity = () => {
+  handleDecreaseQuantity = () => {
     this.setState(s => {
       if (s.quantity === 0) {
         return s
@@ -145,7 +144,7 @@ class ProductDetails extends Component {
     })
   }
 
-  increaseQuantity = () => {
+  handleIncreaseQuantity = () => {
     this.setState(s => {
       return {
         quantity: s.quantity + 1
@@ -153,8 +152,8 @@ class ProductDetails extends Component {
     })
   }
 
-  addToCart = () => {
-    this.props.addToCart({
+  handleAddToCart = () => {
+    this.props.handleAddToCart({
       sku: this.props.product.sku,
       title: this.props.product.title,
       size: this.state.size,
@@ -168,7 +167,7 @@ class ProductDetails extends Component {
     })
   }
 
-  dismissModal = () => {
+  handleDismissModal = () => {
     this.setState({
       confirmationModalOpen: false
     })
@@ -184,18 +183,20 @@ class ProductDetails extends Component {
             title='Product added'
             width={500}
             height={180}
-            onClose={this.dismissModal}
+            onClose={this.handleDismissModal}
           >
             <p>{product.title} Added to basket</p>
             <ButtonWrapper>
               <Button
                 data-button='continue-shopping'
-                onClick={this.dismissModal}
-              ><FaCheck /> Continue shopping</Button>
+                onClick={this.handleDismissModal}
+              ><FaCheck /> Continue shopping
+              </Button>
               <Link to='/basket'>
                 <Button
                   data-button='go-to-checkout'
-                ><FaShoppingCart /> Go to checkout</Button>
+                ><FaShoppingCart /> Go to checkout
+                </Button>
               </Link>
             </ButtonWrapper>
           </Modal>
@@ -205,30 +206,38 @@ class ProductDetails extends Component {
         {product.details.map((line, index) => <p key={index} dangerouslySetInnerHTML={{ __html: line }} />)}
         <OptionsArea>
           {product.genders && (
-            <Fragment>
+            <>
               <h4>Gender</h4>
-              {product.genders.map((gender, index) => <SelectableOption
-                selected={gender.code === this.state.gender.code}
-                onClick={() => this.chooseGender(gender)}
-                key={index}
-                data-gender={gender.code}>{gender.name}</SelectableOption>)}
-            </Fragment>
+              {product.genders.map((gender, index) => (
+                <SelectableOption
+                  selected={gender.code === this.state.gender.code}
+                  onClick={() => this.handleChooseGender(gender)}
+                  key={index}
+                  data-gender={gender.code}
+                >{gender.name}
+                </SelectableOption>
+              ))}
+            </>
           )}
           {product.sizes && (
-            <Fragment>
+            <>
               <h4>Size</h4>
-              {product.sizes.map((size, index) => <SelectableOption
-                selected={size.code === this.state.size.code}
-                onClick={() => this.chooseSize({
-                  code: size.code,
-                  name: size.name
-                })}
-                key={index}
-                data-size={size.code}>{size.code}</SelectableOption>)}
-            </Fragment>
+              {product.sizes.map((size, index) => (
+                <SelectableOption
+                  selected={size.code === this.state.size.code}
+                  onClick={() => this.handleChooseSize({
+                    code: size.code,
+                    name: size.name
+                  })}
+                  key={index}
+                  data-size={size.code}
+                >{size.code}
+                </SelectableOption>
+              ))}
+            </>
           )}
           {product.variants && (
-            <Fragment>
+            <>
               <h4>Options</h4>
               {Object.keys(product.variants)
                 .map((key, index) => (
@@ -238,32 +247,37 @@ class ProductDetails extends Component {
                       product.variants[key].options.map((variant, index) => (
                         <SelectableOption
                           selected={variant.code === this.state.variants[key].code}
-                          onClick={() => this.chooseVariant(key, variant)}
+                          onClick={() => this.handleChooseVariant(key, variant)}
                           key={index}
-                          data-variant={variant.code}>{variant.name}</SelectableOption>
+                          data-variant={variant.code}
+                        >{variant.name}
+                        </SelectableOption>
                       ))
                     }
                   </div>
                 ))}
-            </Fragment>
+            </>
           )}
-          <Fragment>
+          <>
             <h4>Quantity</h4>
             <Button
-              onClick={this.decreaseQuantity}
+              onClick={this.handleDecreaseQuantity}
               data-button='decrease-quantity'
-            ><FaMinus /></Button>
+            ><FaMinus />
+            </Button>
             <Quantity>{this.state.quantity}</Quantity>
             <Button
-              onClick={this.increaseQuantity}
+              onClick={this.handleIncreaseQuantity}
               data-button='increase-quantity'
-            ><FaPlus /></Button>
-          </Fragment>
+            ><FaPlus />
+            </Button>
+          </>
           <ButtonWrapper>
             <Button
-              onClick={this.addToCart}
+              onClick={this.handleAddToCart}
               data-button='add-to-cart'
-            ><FaCartPlus /> Add to basket</Button>
+            ><FaCartPlus /> Add to basket
+            </Button>
           </ButtonWrapper>
         </OptionsArea>
       </ProductDetailsPanel>
@@ -284,7 +298,7 @@ const mapStateToProps = ({ shop: { cart }, user: { user, size, gender } }) => ({
 })
 
 const mapDispatchToProps = {
-  addToCart,
+  handleAddToCart,
   selectedSize,
   selectedGender
 }
