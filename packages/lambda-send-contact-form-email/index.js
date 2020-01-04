@@ -11,10 +11,10 @@ const {
   config
 } = require('./config')
 
-const sendEmail = ({ body }) => {
+const sendEmail = (event) => {
   const {
     name, email, message
-  } = body
+  } = event
 
   return new AWS.SES({
     apiVersion: config.aws.ses.version,
