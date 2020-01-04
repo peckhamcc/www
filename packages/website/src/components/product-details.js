@@ -263,6 +263,7 @@ class ProductDetails extends Component {
             <Button
               onClick={this.handleDecreaseQuantity}
               data-button='decrease-quantity'
+              disabled={this.state.quantity === 1}
             ><FaMinus />
             </Button>
             <Quantity>{this.state.quantity}</Quantity>

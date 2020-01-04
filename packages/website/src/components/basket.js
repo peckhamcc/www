@@ -246,7 +246,7 @@ class Basket extends Component {
                           )}
                         </DetailWrapper>
                         <DetailWrapper>
-                          <QuantityButton onClick={() => this.decreaseQuantity(item)}><FaMinus /></QuantityButton>
+                          <QuantityButton onClick={() => this.decreaseQuantity(item)} disabled={item.quantity === 1}><FaMinus /></QuantityButton>
                           <Quantity>{item.quantity}</Quantity>
                           <QuantityButton onClick={() => this.increaseQuantity(item)}><FaPlus /></QuantityButton>
                         </DetailWrapper>
