@@ -324,6 +324,8 @@ class Checkout extends Component {
             step: STEPS.SUCCESS
           })
 
+          this.props.clearCart()
+
           return
         }
 
