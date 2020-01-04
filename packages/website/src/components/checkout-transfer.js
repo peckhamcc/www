@@ -182,7 +182,7 @@ class EnterDetails extends Component {
           <NameWrapper>
             <h3>Name</h3>
             <FormInputWrapper error={this.state.errors.firstName}>
-              <Label for='firstName'>First name {this.state.errors.firstName && 'is required'}</Label>
+              <Label htmlFor='firstName'>First name {this.state.errors.firstName && 'is required'}</Label>
               <Input
                 name='firstName'
                 type='text'
@@ -192,7 +192,7 @@ class EnterDetails extends Component {
               />
             </FormInputWrapper>
             <FormInputWrapper error={this.state.errors.lastName}>
-              <Label for='lastName'>Last name {this.state.errors.lastName && 'is required'}</Label>
+              <Label htmlFor='lastName'>Last name {this.state.errors.lastName && 'is required'}</Label>
               <Input
                 name='lastName'
                 type='text'
@@ -202,7 +202,7 @@ class EnterDetails extends Component {
               />
             </FormInputWrapper>
             <FormInputWrapper error={this.state.errors.email}>
-              <Label for='email'>Email {this.state.errors.email && 'must be a valid email'}</Label>
+              <Label htmlFor='email'>Email {this.state.errors.email && 'must be a valid email'}</Label>
               <Input
                 name='email'
                 type='email'
@@ -216,7 +216,7 @@ class EnterDetails extends Component {
           <AddressWrapper>
             <h3>Address</h3>
             <FormInputWrapper error={this.state.errors.address1}>
-              <Label for='address1'>Street {this.state.errors.address1 && 'is required'}</Label>
+              <Label htmlFor='address1'>Street {this.state.errors.address1 && 'is required'}</Label>
               <Input
                 name='address1'
                 type='text'
@@ -226,7 +226,7 @@ class EnterDetails extends Component {
               />
             </FormInputWrapper>
             <FormInputWrapper>
-              <Label for='address2'>Town</Label>
+              <Label htmlFor='address2'>Town</Label>
               <Input
                 name='address2'
                 type='text'
@@ -236,7 +236,7 @@ class EnterDetails extends Component {
               />
             </FormInputWrapper>
             <FormInputWrapper>
-              <Label for='address3'>County</Label>
+              <Label htmlFor='address3'>County</Label>
               <Input
                 name='address3'
                 type='text'
@@ -246,7 +246,7 @@ class EnterDetails extends Component {
               />
             </FormInputWrapper>
             <FormInputWrapper error={this.state.errors.postCode}>
-              <Label for='postCode'>Post code {this.state.errors.postCode && 'is required'}</Label>
+              <Label htmlFor='postCode'>Post code {this.state.errors.postCode && 'is required'}</Label>
               <Input
                 name='postCode'
                 type='text'
@@ -260,7 +260,7 @@ class EnterDetails extends Component {
 
         <ShopCodeWrapper>
           <FormInputWrapper error={this.state.errors.shopCode}>
-            <Label for='shopCode'>Shop code {this.state.errors.postCode && 'is required'}</Label>
+            <Label htmlFor='shopCode'>Shop code {this.state.errors.postCode && 'is required'}</Label>
             <Input
               name='shopCode'
               type='text'

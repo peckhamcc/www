@@ -282,11 +282,8 @@ class NavBarWrapper extends Component {
               <NavLink>
                 <Link to='/contact'>Contact</Link>
               </NavLink>
-              <NavLink>
-                <Link to='/kit'>Kit</Link>
-              </NavLink>
 
-              <Flag name='store'>
+              <Flag name={['store']}>
                 <NavLink>
                   <Link to='/shop'>Shop</Link>
                 </NavLink>
@@ -299,7 +296,7 @@ class NavBarWrapper extends Component {
           <FaBars />
         </HamburgerMenu>
 
-        <Flag name='store'>
+        <Flag name={['store']}>
           <AccountNav>
             <CartLink>
               <Link to='/basket' style={{ position: 'relative' }}>
@@ -351,11 +348,8 @@ class NavBarWrapper extends Component {
               <NavLink>
                 <Link to='/contact'>Contact</Link>
               </NavLink>
-              <NavLink>
-                <Link to='/kit'>Kit</Link>
-              </NavLink>
 
-              <Flag name='store'>
+              <Flag name={['store']}>
                 <NavLink>
                   <Link to='/shop'>Shop</Link>
                 </NavLink>

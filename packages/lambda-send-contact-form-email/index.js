@@ -11,7 +11,7 @@ const {
   config
 } = require('./config')
 
-const sendEmail = (body) => {
+const sendEmail = ({ body }) => {
   const {
     name, email, message
   } = body

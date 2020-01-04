@@ -20,7 +20,7 @@ const toCurrencyString = (amount) => {
   return `${asString.substring(0, asString.length - 2)}.${asString.substring(asString.length - 2)}`
 }
 
-const sendPayment = function (event) {
+const sendPayment = function ({ body }) {
   const {
     items,
     firstName,
@@ -30,7 +30,7 @@ const sendPayment = function (event) {
     address2,
     address3,
     postCode
-  } = event
+  } = body
 
   let amount = 0
 

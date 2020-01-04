@@ -158,7 +158,7 @@ class EnterDetails extends Component {
       <CheckoutWrapper>
         <h3>Your details:</h3>
         <FormInputWrapper error={this.state.errors.firstName}>
-          <Label for='firstName'>First name {this.state.errors.firstName && 'is required'}</Label>
+          <Label htmlFor='firstName'>First name {this.state.errors.firstName && 'is required'}</Label>
           <Input
             name='firstName'
             type='text'
@@ -167,7 +167,7 @@ class EnterDetails extends Component {
           />
         </FormInputWrapper>
         <FormInputWrapper error={this.state.errors.lastName}>
-          <Label for='lastName'>Last name {this.state.errors.lastName && 'is required'}</Label>
+          <Label htmlFor='lastName'>Last name {this.state.errors.lastName && 'is required'}</Label>
           <Input
             name='lastName'
             type='text'
@@ -177,7 +177,7 @@ class EnterDetails extends Component {
           />
         </FormInputWrapper>
         <FormInputWrapper error={this.state.errors.email}>
-          <Label for='email'>Email {this.state.errors.email && 'must be a valid email'}</Label>
+          <Label htmlFor='email'>Email {this.state.errors.email && 'must be a valid email'}</Label>
           <Input
             name='email'
             type='email'

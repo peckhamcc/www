@@ -1,30 +1,32 @@
 {
-  "items": [{
-    "sku": "CLUB-JERSEY-2020",
-    "title": "Short Sleeved Club Jersey",
-    "size": {
-      "code": "M",
-      "name": "Medium"
-    },
-    "gender": {
-      "code": "M",
-      "name": "Male"
-    },
-    "quantity": 2,
-    "variants": {
-      "sleeve": {
-        "code": "REGULAR",
-        "name": "Regular"
+  "body": {
+    "items": [{
+      "sku": "CLUB-JERSEY-2020",
+      "title": "Short Sleeved Club Jersey",
+      "size": {
+        "code": "M",
+        "name": "Medium"
       },
-      "body": {
-        "code": "REGULAR",
-        "name": "Regular"
-      }
-    },
-    "id": "r18j6dF1X"
-  }],
-  "nonce": "asdlfkj",
-  "firstName": "Dave",
-  "lastName": "Jones",
-  "email": "dave.jones@example.com"
+      "gender": {
+        "code": "M",
+        "name": "Male"
+      },
+      "quantity": 2,
+      "variants": {
+        "sleeve": {
+          "code": "REGULAR",
+          "name": "Regular"
+        },
+        "body": {
+          "code": "REGULAR",
+          "name": "Regular"
+        }
+      },
+      "id": "r18j6dF1X"
+    }],
+    "nonce": "asdlfkj",
+    "firstName": "Dave",
+    "lastName": "Jones",
+    "email": "dave.jones@example.com"
+  }
 }

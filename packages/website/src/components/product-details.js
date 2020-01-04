@@ -20,7 +20,7 @@ import {
 } from '../colours'
 import Modal from './modal'
 import {
-  handleAddToCart,
+  addToCart,
   selectedSize,
   selectedGender
 } from '../store/actions'
@@ -153,7 +153,7 @@ class ProductDetails extends Component {
   }
 
   handleAddToCart = () => {
-    this.props.handleAddToCart({
+    this.props.addToCart({
       sku: this.props.product.sku,
       title: this.props.product.title,
       size: this.state.size,
@@ -298,7 +298,7 @@ const mapStateToProps = ({ shop: { cart }, user: { user, size, gender } }) => ({
 })
 
 const mapDispatchToProps = {
-  handleAddToCart,
+  addToCart,
   selectedSize,
   selectedGender
 }

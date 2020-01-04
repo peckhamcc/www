@@ -4,22 +4,22 @@ import {
   JERSEY_SIZES,
   GENDERS
 } from '@peckhamcc/config'
-// import armWarmersImage from '../assets/shop/arm-warmers.png?sizes[]=300,sizes[]=500'
+import armWarmersImage from '../assets/shop/arm-warmers.png?sizes[]=300,sizes[]=500'
 import bibsFrontImage from '../assets/shop/bibs-front.png?sizes[]=300,sizes[]=500'
 import bibsRearImage from '../assets/shop/bibs-rear.png?sizes[]=300,sizes[]=500'
 import capFrontImage from '../assets/shop/cap-front.png?sizes[]=300,sizes[]=500'
 import capSidesImage from '../assets/shop/cap-sides.png?sizes[]=300,sizes[]=500'
 import giletFrontImage from '../assets/shop/gilet-front.png?sizes[]=300,sizes[]=500'
 import giletRearImage from '../assets/shop/gilet-rear.png?sizes[]=300,sizes[]=500'
-// import lsJerseyFrontImage from '../assets/shop/ls-jersey-front.png?sizes[]=300,sizes[]=500'
-// import lsJerseyRearImage from '../assets/shop/ls-jersey-rear.png?sizes[]=300,sizes[]=500'
+import lsJerseyFrontImage from '../assets/shop/ls-jersey-front.png?sizes[]=300,sizes[]=500'
+import lsJerseyRearImage from '../assets/shop/ls-jersey-rear.png?sizes[]=300,sizes[]=500'
 import ssJerseyFrontImage from '../assets/shop/ss-jersey-front.png?sizes[]=300,sizes[]=500'
 import ssJerseyRearImage from '../assets/shop/ss-jersey-rear.png?sizes[]=300,sizes[]=500'
 import ssSummerJerseyFrontImage from '../assets/shop/ss-summer-jersey-front.png?sizes[]=300,sizes[]=500'
 import ssSummerJerseyRearImage from '../assets/shop/ss-summer-jersey-rear.png?sizes[]=300,sizes[]=500'
 // import ctsJerseyFrontImage from '../assets/shop/cts-jersey-front.png?sizes[]=300,sizes[]=500'
-// import winterJacketFrontImage from '../assets/shop/winter-jacket-front.png?sizes[]=300,sizes[]=500'
-// import winterJacketRearImage from '../assets/shop/winter-jacket-rear.png?sizes[]=300,sizes[]=500'
+import winterJacketFrontImage from '../assets/shop/winter-jacket-front.png?sizes[]=300,sizes[]=500'
+import winterJacketRearImage from '../assets/shop/winter-jacket-rear.png?sizes[]=300,sizes[]=500'
 // import winterTightsFrontImage from '../assets/shop/winter-tights-front.png?sizes[]=300,sizes[]=500'
 // import winterTightsRearImage from '../assets/shop/winter-tights-rear.png?sizes[]=300,sizes[]=500'
 // import socksSummerSideImage from '../assets/shop/socks-summer-side.png?sizes[]=300,sizes[]=500'
@@ -27,7 +27,7 @@ import ssSummerJerseyRearImage from '../assets/shop/ss-summer-jersey-rear.png?si
 // import socksWinterSideImage from '../assets/shop/socks-winter-side.png?sizes[]=300,sizes[]=500'
 // import socksWinterTopImage from '../assets/shop/socks-winter-top.png?sizes[]=300,sizes[]=500'
 // import glovesImage from '../assets/shop/gloves.png?sizes[]=300,sizes[]=500'
-// import multiTubeImage from '../assets/shop/multi-tube.png?sizes[]=300,sizes[]=500'
+import multiTubeImage from '../assets/shop/multi-tube.png?sizes[]=300,sizes[]=500'
 // import headsetCapImage from '../assets/shop/headset-cap.png?sizes[]=300,sizes[]=500'
 import bidonImage from '../assets/shop/bidon.png?sizes[]=300,sizes[]=500'
 // import tshirtFrontImage from '../assets/shop/tshirt-front.png?sizes[]=300,sizes[]=500'
@@ -38,6 +38,8 @@ import bidonImage from '../assets/shop/bidon.png?sizes[]=300,sizes[]=500'
 // import hoodieRearImage from '../assets/shop/hoodie-rear.png?sizes[]=300,sizes[]=500'
 // import zipHoodieFrontImage from '../assets/shop/zip-hoodie-front.png?sizes[]=300,sizes[]=500'
 import musetteImage from '../assets/shop/musette.png?sizes[]=300,sizes[]=500'
+import skinSuitFrontImage from '../assets/shop/skin-suit-front.png?sizes[]=300,sizes[]=500'
+import skinSuitRearImage from '../assets/shop/skin-suit-rear.png?sizes[]=300,sizes[]=500'
 
 const productImages = {
   /*
@@ -50,12 +52,10 @@ const productImages = {
     ssJerseyFrontImage,
     ssJerseyRearImage
   ],
-  /*
-  'WINTER-JERSEY-2018': [
+  'WINTER-JERSEY-2020': [
     lsJerseyFrontImage,
     lsJerseyRearImage
   ],
-  */
   'CLUB-SUMMER-JERSEY-2020': [
     ssSummerJerseyFrontImage,
     ssSummerJerseyRearImage
@@ -65,11 +65,11 @@ const productImages = {
     winterJacketFrontImage,
     winterJacketRearImage
   ],
-  'RAIN-JACKET-2018': [
+  */
+  'SHELL-JACKET-2020': [
     winterJacketFrontImage,
     winterJacketRearImage
   ],
-  */
   'GILET-2020': [
     giletFrontImage,
     giletRearImage
@@ -83,16 +83,17 @@ const productImages = {
     winterTightsFrontImage,
     winterTightsRearImage
   ],
-  'ARM-WARMERS-2018': [
+  */
+  'ARM-WARMERS-2020': [
     armWarmersImage
-  ], */
+  ],
   'CAP-2018': [
     capFrontImage,
     capSidesImage
   ],
-  /*  'NECK-WARMER-2018': [
+  'NECK-WARMER-2018': [
     multiTubeImage
-  ], */
+  ],
   /*
   'SOCKS-SUMMER-2019': [
     socksSummerSideImage,
@@ -102,8 +103,7 @@ const productImages = {
     socksWinterSideImage,
     socksWinterTopImage
   ],
-  */
-  /*  'GLOVES-2018': [
+  'GLOVES-2018': [
     glovesImage
   ],
   'HEADSET-CAP-2018': [
@@ -133,6 +133,10 @@ const productImages = {
   */
   'MUSETTE-2019': [
     musetteImage
+  ],
+  'SKIN-SUIT-2020': [
+    skinSuitFrontImage,
+    skinSuitRearImage
   ]
 }
 

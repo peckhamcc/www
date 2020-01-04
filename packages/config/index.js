@@ -200,7 +200,6 @@ const JERSEY_SIZES = [{
 } */
 ]
 
-/*
 const ARM_WARMER_SIZES = [{
   code: 'S',
   name: 'Small',
@@ -235,7 +234,7 @@ const ARM_WARMER_SIZES = [{
     }
   }
 }]
-
+/*
 const SOCK_SIZES = [{
   code: 'S/M',
   name: 'Small/Medium',
@@ -463,7 +462,7 @@ const config = {
     sendContactFormEmail: '/lambda/send-contact-form-email'
   },
   flags: {
-    store: false,
+    store: true,
     email: true,
     payments: false
   },
@@ -508,27 +507,44 @@ const config = {
       price: 5100,
       sizes: JERSEY_SIZES,
       genders: GENDERS
-    },
-
-    /* {
-      sku: 'WINTER-JERSEY-2018',
+    }, {
+      sku: 'WINTER-JERSEY-2020',
       title: 'Long Sleeved Winter Jersey',
       slug: 'long-sleeved-jersey',
       section: SECTIONS.JERSEYS,
       details: [
         'Long Sleeved Winter Jersey in black.',
         'Made from a high performing Hydrophilic and Hydrophobic fabric and has three large rear pockets.',
-        'It comes with a full-length YKK zip, silicone grippers on the cuffs &amp; waist and is handmade in Scotland.',
+        'It comes with a full-length YKK zip and silicone grippers on the cuffs &amp; waist.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
-      price: 9200,
+      price: 5100,
       sizes: JERSEY_SIZES,
-      genders: GENDERS,
-      fs260: {
-        link: 'https://www.endurasport.com/product/pro-sl-ls-jersey/',
-        name: 'Pro SL L/S Jersey'
-      }
+      genders: GENDERS
     }, {
+      sku: 'SKIN-SUIT-2020',
+      title: 'Skin suit',
+      slug: 'skin-suit',
+      section: SECTIONS.JERSEYS,
+      details: [
+        'Equally at home on the track or at the Christmas Party, a skin suit is for when only the fastest will do.'
+      ],
+      price: 9600,
+      sizes: JERSEY_SIZES
+    }, {
+      sku: 'SHELL-JACKET-2020',
+      title: 'Shell Jacket',
+      slug: 'shell-jacket',
+      section: SECTIONS.OUTERWEAR,
+      details: [
+        'Club Shell Jacket in black',
+        'It is available in male and female specific versions and has an athletic fit.'
+      ],
+      price: 6300,
+      sizes: JERSEY_SIZES,
+      genders: GENDERS
+    },
+    /* {
       sku: 'WINTER-JACKET-2018',
       title: 'Winter Jacket',
       slug: 'winter-jacket',
@@ -536,7 +552,7 @@ const config = {
       details: [
         'Club Winter Jacket in black',
         'Made from an Italian Roubaix high stretch fabric (e.g. nylon/lycra construction with a brushed inner to retain heat), the Winter Jacket has windproof front, sides &amp; yoke.',
-        'It comes with a full-length YKK zip, three large pockets on the back and is handmade in Scotland.',
+        'It comes with a full-length YKK zip and three large pockets on the back.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
       price: 10000,
@@ -550,16 +566,12 @@ const config = {
       details: [
         'Club Rain Jacket in black',
         'Waterproof jacket featuring a 2.5L bonded outer/inner with a waterproof layer between and full taped seams for complete protection from the elements.',
-        'It comes with a fleece collar, a full-length YKK zip, three large pockets on the back and is hand made in Scotland.',
+        'It comes with a fleece collar, a full-length YKK zip and three large pockets on the back.',
         'It is available in male and female specific versions and has an athletic fit.'
       ],
       price: 12200,
       sizes: JERSEY_SIZES,
-      genders: GENDERS,
-      fs260: {
-        link: 'https://www.endurasport.com/product/pro-sl-shell-jacket/',
-        name: 'Pro SL Shell Jacket'
-      }
+      genders: GENDERS
     }, */
     {
       sku: 'GILET-2020',
@@ -584,9 +596,9 @@ const config = {
         'Club Bib Shorts in black',
         'Made from Italian Power Lycra fabric with Coldblack Technology, our Club Bibshort has a wicking upper mesh and flat-lock stitching and overlocked seams throughout for comfort.',
         'There\'s a discrete rear pocket for your valuables and raw edge silicone hem grips to make sure the legs stay put.',
-        'Handmade in Scotland, it is available in male and female specific versions and there are options for varying leg lengths.'
+        'They are available in male and female specific versions and there are options for varying leg lengths.'
       ],
-      price: 5040,
+      price: 5100,
       sizes: JERSEY_SIZES,
       genders: GENDERS
     },
@@ -598,30 +610,24 @@ const config = {
       details: [
         'Winter Tights in black',
         'Thermal winter tights made from Roubaix high stretch insulation (e.g. nylon/lycra construction with a brushed inner to retain heat).',
-        'Handmade in Scotland, it is available in male and female specific versions and has an athletic fit.'
+        'They are available in male and female specific versions and has an athletic fit.'
       ],
       price: 6240,
       sizes: JERSEY_SIZES,
       genders: GENDERS
-    }, {
-      sku: 'ARM-WARMERS-2018',
+    }, */
+    {
+      sku: 'ARM-WARMERS-2020',
       title: 'Arm warmers',
       slug: 'arm-warmers',
       section: SECTIONS.ACCESSORIES,
       details: [
-        'Jazzy Arm Warmers',
         'Our Thermal Arm Warmers are made from Roubaix high stretch insulation (e.g. nylon/lycra construction with a brushed inner to retain heat).',
-        'They have minimal seams for comfort and have silicone grippers at the bicep to ensure they stay in place.',
-        'Handmade in Scotland, this is a unisex item.'
+        'They have minimal seams for comfort and have silicone grippers at the bicep to ensure they stay in place.'
       ],
-      price: 2300,
-      sizes: ARM_WARMER_SIZES,
-      fs260: {
-        link: 'https://www.endurasport.com/product/thermolite-arm-warmer/',
-        name: 'Thermo Arm Warmer'
-      }
-    },
-    */ {
+      price: 1500,
+      sizes: ARM_WARMER_SIZES
+    }, {
       sku: 'CAP-2018',
       title: 'Cap',
       slug: 'cap',
@@ -635,38 +641,28 @@ const config = {
         'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
       ],
       price: 1500
-    },
-    /* {
+    }, {
       sku: 'NECK-WARMER-2018',
       title: 'Neck warmer',
       slug: 'neck-warmer',
       section: SECTIONS.ACCESSORIES,
       details: [
         'Club Neck Warmer',
-        'Versatile fabric tube that can be worn as a neck tube, mask, bandana, skull cap etc.',
-        'Handmade in Scotland, this is a unisex item.'
+        'Versatile fabric tube that can be worn as a neck tube, mask, bandana, skull cap etc.'
       ],
-      price: 1400,
-      fs260: {
-        link: 'https://www.endurasport.com/product/fs260-pro-multitube/',
-        name: 'FS260-Pro Multitube'
-      }
-    }, {
+      price: 1000
+    },
+    /* {
       sku: 'GLOVES-2018',
       title: 'Gloves',
       slug: 'gloves',
       section: SECTIONS.ACCESSORIES,
       details: [
         'Club Gloves in black',
-        'Four-way stretch fabric with gel padding &amp; ventilation for your palms, our Club Gloves have an aerodynamic streamlined design with a strapless cuff that will save you at least half a watt.',
-        'Handmade in Scotland, this is a unisex item.'
+        'Four-way stretch fabric with gel padding &amp; ventilation for your palms, our Club Gloves have an aerodynamic streamlined design with a strapless cuff that will save you at least half a watt.'
       ],
       sizes: GLOVE_SIZES,
-      price: 2800,
-      fs260: {
-        link: 'https://www.endurasport.com/product/fs260-pro-print-mitt/',
-        name: 'FS260 Pro Print Mitt'
-      }
+      price: 2800
     },
       {
         sku: 'SOCKS-WINTER-2019',
@@ -702,7 +698,8 @@ const config = {
           '1 1/8th" (32mm) diameter aluminium headset cap with the club logo, should fit all modern bikes.'
         ],
         price: 2500
-      }, */ {
+      }, */
+    {
       sku: 'CLUB-BIDON-2018',
       title: 'Club Bidon',
       slug: 'club-bidon-2018',
@@ -725,7 +722,7 @@ const config = {
       ],
       price: 1000
     }
-      /* {
+    /* {
         sku: 'CLUB-TSHIRT-2019',
         title: 'Club t-shirt',
         slug: 'club-tshirt-2019',
