@@ -493,7 +493,8 @@ const config = {
       details: [
         'Lightweight Short Sleeved Club Jersey in black.',
         'Made from a combination of Coolmax and Mondrian fabric, the PCC club jersey has flatlock seams, silicone grippers, three large rear pockets and a fourth with a zip for your valuables.',
-        'It is available in male and female specific versions and has an athletic fit.'
+        'It is available in male and female specific versions and has an athletic fit.',
+        'British Cycling approved club colours for racing.'
       ],
       price: 5100,
       sizes: JERSEY_SIZES,
@@ -520,7 +521,8 @@ const config = {
         'Long Sleeved Winter Jersey in black.',
         'Made from a high performing Hydrophilic and Hydrophobic fabric and has three large rear pockets.',
         'It comes with a full-length YKK zip and silicone grippers on the cuffs &amp; waist.',
-        'It is available in male and female specific versions and has an athletic fit.'
+        'It is available in male and female specific versions and has an athletic fit.',
+        'British Cycling approved club colours for racing.'
       ],
       price: 5100,
       sizes: JERSEY_SIZES,
@@ -531,7 +533,8 @@ const config = {
       slug: 'speedsuit',
       section: SECTIONS.SKINSUITS,
       details: [
-        'Equally at home on the track or at the Christmas Party, a speedsuit is for when only the fastest will do.'
+        'Equally at home on the track or at the Christmas Party, a speedsuit is for when only the fastest will do.',
+        'British Cycling approved club colours for racing.'
       ],
       price: 9600,
       sizes: JERSEY_SIZES,
