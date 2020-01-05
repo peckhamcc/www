@@ -20,8 +20,8 @@ import ssSummerJerseyRearImage from '../assets/shop/ss-summer-jersey-rear.png?si
 // import ctsJerseyFrontImage from '../assets/shop/cts-jersey-front.png?sizes[]=300,sizes[]=500'
 import winterJacketFrontImage from '../assets/shop/winter-jacket-front.png?sizes[]=300,sizes[]=500'
 import winterJacketRearImage from '../assets/shop/winter-jacket-rear.png?sizes[]=300,sizes[]=500'
-// import winterTightsFrontImage from '../assets/shop/winter-tights-front.png?sizes[]=300,sizes[]=500'
-// import winterTightsRearImage from '../assets/shop/winter-tights-rear.png?sizes[]=300,sizes[]=500'
+import winterTightsFrontImage from '../assets/shop/winter-tights-front.png?sizes[]=300,sizes[]=500'
+import winterTightsRearImage from '../assets/shop/winter-tights-rear.png?sizes[]=300,sizes[]=500'
 // import socksSummerSideImage from '../assets/shop/socks-summer-side.png?sizes[]=300,sizes[]=500'
 // import socksSummerTopImage from '../assets/shop/socks-summer-top.png?sizes[]=300,sizes[]=500'
 // import socksWinterSideImage from '../assets/shop/socks-winter-side.png?sizes[]=300,sizes[]=500'
@@ -38,8 +38,10 @@ import bidonImage from '../assets/shop/bidon.png?sizes[]=300,sizes[]=500'
 // import hoodieRearImage from '../assets/shop/hoodie-rear.png?sizes[]=300,sizes[]=500'
 // import zipHoodieFrontImage from '../assets/shop/zip-hoodie-front.png?sizes[]=300,sizes[]=500'
 import musetteImage from '../assets/shop/musette.png?sizes[]=300,sizes[]=500'
-import skinSuitFrontImage from '../assets/shop/skin-suit-front.png?sizes[]=300,sizes[]=500'
-import skinSuitRearImage from '../assets/shop/skin-suit-rear.png?sizes[]=300,sizes[]=500'
+import speedSuitFrontImage from '../assets/shop/skin-suit-front.png?sizes[]=300,sizes[]=500'
+import speedSuitRearImage from '../assets/shop/skin-suit-rear.png?sizes[]=300,sizes[]=500'
+import triSuitFrontImage from '../assets/shop/tri-suit-front.png?sizes[]=300,sizes[]=500'
+import triSuitRearImage from '../assets/shop/tri-suit-rear.png?sizes[]=300,sizes[]=500'
 
 const productImages = {
   /*
@@ -78,12 +80,10 @@ const productImages = {
     bibsFrontImage,
     bibsRearImage
   ],
-  /*
-  'WINTER-TIGHTS-2018': [
+  'WINTER-TIGHTS-2020': [
     winterTightsFrontImage,
     winterTightsRearImage
   ],
-  */
   'ARM-WARMERS-2020': [
     armWarmersImage
   ],
@@ -134,9 +134,13 @@ const productImages = {
   'MUSETTE-2019': [
     musetteImage
   ],
-  'SKIN-SUIT-2020': [
-    skinSuitFrontImage,
-    skinSuitRearImage
+  'SPEED-SUIT-2020': [
+    speedSuitFrontImage,
+    speedSuitRearImage
+  ],
+  'TRI-SUIT-2020': [
+    triSuitFrontImage,
+    triSuitRearImage
   ]
 }
 

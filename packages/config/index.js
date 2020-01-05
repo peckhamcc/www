@@ -19,6 +19,10 @@ const SECTIONS = {
   CASUAL: {
     title: 'Casualwear',
     slug: 'casualwear'
+  },
+  SKINSUITS: {
+    title: 'Skinsuits',
+    slug: 'skinsuits'
   }
 }
 
@@ -522,15 +526,27 @@ const config = {
       sizes: JERSEY_SIZES,
       genders: GENDERS
     }, {
-      sku: 'SKIN-SUIT-2020',
-      title: 'Skin suit',
-      slug: 'skin-suit',
-      section: SECTIONS.JERSEYS,
+      sku: 'SPEED-SUIT-2020',
+      title: 'Speedsuit',
+      slug: 'speedsuit',
+      section: SECTIONS.SKINSUITS,
       details: [
-        'Equally at home on the track or at the Christmas Party, a skin suit is for when only the fastest will do.'
+        'Equally at home on the track or at the Christmas Party, a speedsuit is for when only the fastest will do.'
       ],
       price: 9600,
-      sizes: JERSEY_SIZES
+      sizes: JERSEY_SIZES,
+      genders: GENDERS
+    }, {
+      sku: 'TRI-SUIT-2020',
+      title: 'Trisuit',
+      slug: 'trisuit',
+      section: SECTIONS.SKINSUITS,
+      details: [
+        'The aquatic cousin of the speedsuit, a trisuit worn under a wetsuit will save a few minutes during the transition from swim to cycle.  And you won\'t have to strip in a field.'
+      ],
+      price: 7200,
+      sizes: JERSEY_SIZES,
+      genders: GENDERS
     }, {
       sku: 'SHELL-JACKET-2020',
       title: 'Shell Jacket',
@@ -601,9 +617,8 @@ const config = {
       price: 5100,
       sizes: JERSEY_SIZES,
       genders: GENDERS
-    },
-    /* {
-      sku: 'WINTER-TIGHTS-2018',
+    }, {
+      sku: 'WINTER-TIGHTS-2020',
       title: 'Winter tights',
       slug: 'winter-tights',
       section: SECTIONS.SHORTS,
@@ -612,10 +627,10 @@ const config = {
         'Thermal winter tights made from Roubaix high stretch insulation (e.g. nylon/lycra construction with a brushed inner to retain heat).',
         'They are available in male and female specific versions and has an athletic fit.'
       ],
-      price: 6240,
+      price: 6300,
       sizes: JERSEY_SIZES,
       genders: GENDERS
-    }, */
+    },
     {
       sku: 'ARM-WARMERS-2020',
       title: 'Arm warmers',
