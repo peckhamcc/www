@@ -91,9 +91,9 @@ div {
       <p>${
   [(`${firstName} ${lastName}`).trim(), address1, address2, address3, postCode].filter(Boolean).join('<br />')
 }</p>
-      <p>Your order will be submitted to the factory once we hit the minimums for production.</p>
-      <p>Once we know the delivery date for your items we will be in touch to let you know.</p>
-      <p>Please get in touch if you'd like any updates.</p>
+      <p>Your order will be submitted to the factory at the end of the month.</p>
+      <p>Once we know the delivery date for your items we'll let you know.</p>
+      <p>Please get in touch if you'd like any updates in the interim.</p>
       <p>Thank you,</p>
       <p>Peckham Cycle Club</p>
       <p>
@@ -133,9 +133,11 @@ ${
   [(`${firstName} ${lastName}`).trim(), address1, address2, address3, postCode].filter(Boolean).join('\r\n')
 }
 
-Your order will be submitted to the factory once we hit the minimums for production.  Once we know the delivery date for your items we will be in touch to let you know.
+Your order will be submitted to the factory at the end of the month.
 
-Please get in touch if you'd like any updates.
+Once we know the delivery date for your items we'll let you know.
+
+Please get in touch if you'd like any updates in the interim.
 
 Thank you,
 
