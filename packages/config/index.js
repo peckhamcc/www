@@ -435,6 +435,23 @@ const VARIANTS_PAD = [{
   name: 'Wide (145mm+)'
 }]
 */
+
+const VARIANTS_SLEEVES = [{
+  code: 'LONG',
+  name: 'Long sleeves'
+}, {
+  code: 'SHORT',
+  name: 'Short sleeves'
+}]
+
+const VARIANTS_POCKETS = [{
+  code: 'POCKETS',
+  name: 'Pockets'
+}, {
+  code: 'NO_POCKETS',
+  name: 'No pockets'
+}]
+
 const GENDERS = [{
   code: 'M',
   name: 'Male'
@@ -538,7 +555,17 @@ const config = {
       ],
       price: 9600,
       sizes: JERSEY_SIZES,
-      genders: GENDERS
+      genders: GENDERS,
+      variants: {
+        sleeves: {
+          description: 'Sleeves',
+          options: VARIANTS_SLEEVES
+        },
+        pockets: {
+          description: 'Pockets',
+          options: VARIANTS_POCKETS
+        }
+      }
     }, {
       sku: 'TRI-SUIT-2020',
       title: 'Trisuit',
