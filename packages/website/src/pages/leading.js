@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { PageWrapper, Panel, Hero, LinkPanel } from '../components/panels'
 import leadingBackground from '../../assets/leading-bg.jpg'
 import membershipBackground from '../../assets/membership-bg.jpg'
-import equipmentBackground from '../../assets/equipment-bg.jpg'
+import ethosBackground from '../../assets/ethos-bg.png'
 
 const SubList = styled.ol`
   list-style-type: lower-alpha;
@@ -66,8 +66,8 @@ class LeadingPage extends Component {
           <h3>After the ride</h3>
           <p>There is a large cable and combination padlock to keep bikes secure at Aneto. Ask regulars or check on WhatsApp if you don't know the combination.</p>
         </Panel>
-        <LinkPanel background={equipmentBackground.src}>
-          <Link to='/equipment'>Equipment</Link>
+        <LinkPanel background={ethosBackground.src}>
+          <Link to='/ethos'>Ethos</Link>
         </LinkPanel>
         <LinkPanel background={membershipBackground.src}>
           <Link to='/membership'>Membership</Link>
