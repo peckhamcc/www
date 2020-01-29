@@ -177,7 +177,7 @@ const JERSEY_SIZES = [{
     }
   }
 }, {
-  code: 'XXL',
+  code: '2XL',
   name: 'XX Large',
   measurements: {
     chest: {
