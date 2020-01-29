@@ -176,33 +176,57 @@ const JERSEY_SIZES = [{
       }
     }
   }
-}/*, {
+}, {
   code: 'XXL',
   name: 'XX Large',
   measurements: {
     chest: {
       male: {
-        min: 107,
-        max: 112
+        min: 110,
+        max: 116
       },
       female: {
-        min: 97,
-        max: 100
+        min: 106,
+        max: 114
       }
     },
     waist: {
       male: {
-        min: 97,
-        max: 102
+        min: 98,
+        max: 104
       },
       female: {
-        min: 81,
-        max: 84
+        min: 90,
+        max: 98
       }
     }
   }
-} */
-]
+}, {
+  code: '3XL',
+  name: 'XXX Large',
+  measurements: {
+    chest: {
+      male: {
+        min: 116,
+        max: 122
+      },
+      female: {
+        min: 114,
+        max: 122
+      }
+    },
+    waist: {
+      male: {
+        min: 104,
+        max: 110
+      },
+      female: {
+        min: 98,
+        max: 116
+      }
+    }
+  }
+}]
 
 const ARM_WARMER_SIZES = [{
   code: 'S',
