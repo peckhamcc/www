@@ -257,6 +257,9 @@ class NavBarWrapper extends Component {
                     <Link to='/equipment'>Equipment</Link>
                   </NavLink>
                   <NavLink>
+                    <Link to='/ethos'>Club Ethos</Link>
+                  </NavLink>
+                  <NavLink>
                     <Link to='/leading'>Leading a ride</Link>
                   </NavLink>
                   <NavLink>
@@ -321,6 +324,9 @@ class NavBarWrapper extends Component {
                   </NavLink>
                   <NavLink>
                     <Link to='/equipment'>Equipment</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/ethos'>Club Ethos</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/leading'>Leading a ride</Link>

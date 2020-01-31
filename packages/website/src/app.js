@@ -24,6 +24,7 @@ import {
   Contact,
   Riding,
   Leading,
+  Ethos,
   Calendar
 } from './pages'
 import configureStore from './store/configure-store'
@@ -79,6 +80,7 @@ export default () => {
                 <Route path='/racing' component={Racing} />
                 <Route path='/riding' component={Riding} />
                 <Route path='/leading' component={Leading} />
+                <Route path='/ethos' component={Ethos} />
                 <Route path='/calendar' component={Calendar} />
 
                 <Flag name={['store']}>

@@ -49,8 +49,8 @@ const routes = [{
   title: 'The Short Loop',
   description: 'A staple of our club Social Spin this 60km/770m route takes is a great introduction to the club.',
   gpx: shortLoopGpx,
-  strava: 'https://www.strava.com/routes/11050305',
-  embed: 'https://www.plotaroute.com/embedmap/550065'
+  strava: 'https://www.strava.com/routes/23414432',
+  embed: 'https://www.plotaroute.com/embedmap/1016515'
 }, {
   hash: 'knatts-valley',
   title: 'Knatts Valley',

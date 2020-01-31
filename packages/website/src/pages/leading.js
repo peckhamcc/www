@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { PageWrapper, Panel, Hero, LinkPanel } from '../components/panels'
 import leadingBackground from '../../assets/leading-bg.jpg'
 import membershipBackground from '../../assets/membership-bg.jpg'
-import equipmentBackground from '../../assets/equipment-bg.jpg'
+import ethosBackground from '../../assets/ethos-bg.png'
 
 const SubList = styled.ol`
   list-style-type: lower-alpha;
@@ -26,6 +26,7 @@ class LeadingPage extends Component {
           <h3>Before the ride</h3>
           <p>Before setting off ensure:</p>
           <ol>
+            <li>No group is larger than ~12 people. If it is, make sure the group splits in to two.</li>
             <li>Eyeball everyone’s bike to make sure it’s suitable for the ride</li>
             <li>Everyone understands and is comfortable with the distance that will be travelled</li>
             <li>
@@ -52,8 +53,8 @@ class LeadingPage extends Component {
             <li>Remind people to ride within their limits, stop at red lights, don’t cross into the opposite lane on blind bends, etc</li>
             <li>Announce any other business - upcoming sportives, socials, kit orders, etc</li>
           </ol>
-          <p>If people turn up without the right equipment, plan a stop at <a href='http://cadenceperformance.com'>Cadence</a>, <a href='https://www.paulscustomcycles.com'>Paul’s</a> or <a href='https://ratracecycles.com'>Rat Race Cycles</a> to they can buy the missing parts.  At the time of writing <a href='https://www.seabasscycles.co.uk'>Seabass</a> opens at 9am on Saturdays so is closed when the ride starts.</p>
-          <p>If people turn up with bags, they can leave them at <a href='https://ratracecycles.com'>Rat Race Cycles</a> and bike locks can be left locked to something sturdy near the finishing point (bike stands near <a href='https://www.seabasscycles.co.uk'>Seabass</a> for example).</p>
+          <p>If people turn up without the right equipment, plan a stop at <a href='http://cadenceperformance.com'>Cadence</a> so they can buy the missing parts.</p>
+          <p>If people turn up with bags, they can leave them at <a href='https://ratracecycles.com'>Rat Race Cycles</a> and bike locks can be left locked to something sturdy near the finishing point (bike stands near <a href='https://goo.gl/maps/DVVZS3YC3JxpnYi27'>Aneto</a> for example).</p>
 
           <h3>During the ride</h3>
           <p>The leader at the head of the ride should keep a steady pace, no more than 24kp/h average.  A bike computer is essential for this.  If people overtake you, tell them where the next stopping point is and that they should consider joining our training rides but do not chase them otherwise the group will get too strung out.</p>
@@ -63,10 +64,10 @@ class LeadingPage extends Component {
           <p>If there are punctures, stop the ride while the rider changes their tube.  Offer assistance if they are in need but all riders should be able to fix their own punctures.</p>
 
           <h3>After the ride</h3>
-          <p>Nothing specific here, have a coffee and some cake, maybe go for a beer afterwards.</p>
+          <p>There is a large cable and combination padlock to keep bikes secure at Aneto. Ask regulars or check on WhatsApp if you don't know the combination.</p>
         </Panel>
-        <LinkPanel background={equipmentBackground.src}>
-          <Link to='/equipment'>Equipment</Link>
+        <LinkPanel background={ethosBackground.src}>
+          <Link to='/ethos'>Ethos</Link>
         </LinkPanel>
         <LinkPanel background={membershipBackground.src}>
           <Link to='/membership'>Membership</Link>
