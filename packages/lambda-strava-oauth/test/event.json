@@ -1,5 +1,3 @@
 {
-  "query": {
-    "code": "1234abcd"
-  }
+  "querystring": "code=12345abcd&scope=foo,bar&state="
 }

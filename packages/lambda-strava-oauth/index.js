@@ -51,7 +51,7 @@ async function sendCode (code) {
   })
 }
 
-async function exchangeCode (event, context) {
+async function exchangeCode (event) {
   const {
     code
   } = querystring.parse(event.querystring)
@@ -66,16 +66,16 @@ async function exchangeCode (event, context) {
     TableName: process.env.AWS_DB_TABLE,
     Item: {
       id: {
-        N: result.athlete.id
+        S: result.athlete.id
       },
       token_type: {
         S: result.token_type
       },
       expires_at: {
-        N: result.expires_at
+        S: result.expires_at
       },
       expires_in: {
-        N: result.expires_in
+        S: result.expires_in
       },
       refresh_token: {
         S: result.refresh_token
@@ -85,9 +85,6 @@ async function exchangeCode (event, context) {
       },
       athlete: {
         M: {
-          id: {
-            N: result.athlete.id
-          },
           username: {
             S: result.athlete.username
           },
@@ -122,7 +119,7 @@ async function exchangeCode (event, context) {
             S: result.athlete.updated_at
           },
           badge_type_id: {
-            N: result.athlete.badge_type_id
+            S: result.athlete.badge_type_id
           },
           profile_medium: {
             S: result.athlete.profile_medium
