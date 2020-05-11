@@ -64,6 +64,9 @@ async function exchangeCode (event) {
       throw new Error('Unexpected result')
     }
 
+    console.info('got')
+    console.info(result)
+
     const db = new AWS.DynamoDB({
       region: config.aws.dynamodb.region
     })
