@@ -11,7 +11,9 @@ const { config } = require('./config')
 
 async function readTokens (event) {
   if (event.token !== process.env.TOKEN) {
-    throw new Error('Denied')
+    return {
+      statusCode: 403
+    }
   }
 
   const db = new AWS.DynamoDB({
