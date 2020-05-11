@@ -1,7 +1,7 @@
 {
-  "name": "@peckhamcc/lambda-read-strava-tokens",
+  "name": "@peckhamcc/lambda-strava-list-users",
   "version": "1.0.0",
-  "description": "Read tokens for Strava oauth",
+  "description": "List tokens for users who have linked their Strava accounts",
   "main": "index.js",
   "homepage": "https://peckhamcc.github.com/www",
   "author": "Alex Potsides",
@@ -17,7 +17,7 @@
     "test": "echo 0",
     "clean": "rm -rf build",
     "build": "cp ../config/index.js config.js && node-lambda build",
-    "deploy": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-read-strava-tokens-role-fgsbd4l7 --region eu-west-2",
+    "deploy": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-strava-list-users-role-8xkvfobl --region eu-west-2",
     "lint": "standard"
   },
   "devDependencies": {
