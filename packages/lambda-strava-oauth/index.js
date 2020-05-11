@@ -52,22 +52,25 @@ async function sendCode (code) {
 }
 
 async function exchangeCode (event) {
-  console.info(event)
-  const { query: { code } } = event
-  const result = await sendCode(code)
+  try {
+    const { query: { code } } = event
+    const result = await sendCode(code)
 
-  const db = new AWS.DynamoDB({
-    region: config.aws.dynamodb.region
-  })
+    const db = new AWS.DynamoDB({
+      region: config.aws.dynamodb.region
+    })
 
-  await db.putItem({
-    TableName: process.env.AWS_DB_TABLE,
-    Item: {
-      id: result.athlete.id,
-      ...result
-    }
-  })
-    .promise()
+    await db.putItem({
+      TableName: process.env.AWS_DB_TABLE,
+      Item: {
+        id: result.athlete.id,
+        ...result
+      }
+    })
+      .promise()
+  } catch (err) {
+    return event
+  }
 }
 
 const inputSchema = {
