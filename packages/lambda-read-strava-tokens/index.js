@@ -10,7 +10,7 @@ const AWS = require('aws-sdk')
 const { config } = require('./config')
 
 async function readTokens (event) {
-  if (event.body.token !== process.env.TOKEN) {
+  if (event.token !== process.env.TOKEN) {
     throw new Error('Denied')
   }
 
