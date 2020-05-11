@@ -51,13 +51,11 @@ async function sendCode (code) {
   })
 }
 
-async function exchangeCode (event) {
-  console.info('hello world')
+async function exchangeCode (event, context) {
+  const {
+    code
+  } = querystring.parse(event.querystring)
 
-  console.info('received event')
-  console.info(JSON.stringify(event, null, 2))
-  // const { query: { code } } = event
-  const code = 5
   const result = await sendCode(code)
   console.info('got result')
   console.info(JSON.stringify(result, null, 2))
@@ -79,14 +77,13 @@ async function exchangeCode (event) {
 const inputSchema = {
   type: 'object',
   properties: {
-    query: {
+    body: {
       type: 'object',
       properties: {
-        code: {
-          type: 'string'
-        }
+        querystring: { type: 'string', pattern: '.+' },
+        body: { type: 'object' }
       },
-      required: ['code']
+      required: ['querystring']
     }
   }
 }
