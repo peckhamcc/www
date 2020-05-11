@@ -10,7 +10,7 @@ const AWS = require('aws-sdk')
 const { config } = require('./config')
 
 async function updateUser (event) {
-  if (event.headers.Authorization !== process.env.AUTH_TOKEN) {
+  if (event.header.Authorization !== process.env.AUTH_TOKEN) {
     return {
       statusCode: 403
     }

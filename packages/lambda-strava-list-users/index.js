@@ -10,7 +10,7 @@ const AWS = require('aws-sdk')
 const { config } = require('./config')
 
 async function readTokens (event) {
-  if (event.headers.Authorization !== process.env.AUTH_TOKEN) {
+  if (event.header.Authorization !== process.env.AUTH_TOKEN) {
     return {
       statusCode: 403
     }
@@ -42,7 +42,7 @@ async function readTokens (event) {
 const inputSchema = {
   type: 'object',
   properties: {
-    headers: {
+    header: {
       type: 'object',
       properties: {
         Authorization: { type: 'string', pattern: '.+' }
