@@ -59,9 +59,9 @@ async function exchangeCode (event) {
 
     const result = await sendCode(code)
 
-    if (!result.id) {
+    if (!result.access_token) {
       console.error(result)
-      throw new Error(`Unexpected result ${result}`)
+      throw new Error('Unexpected result')
     }
 
     const db = new AWS.DynamoDB({
