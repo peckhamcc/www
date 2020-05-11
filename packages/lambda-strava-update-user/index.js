@@ -20,6 +20,25 @@ async function updateUser (event) {
     region: config.aws.dynamodb.region
   })
 
+  const item = await db.getItem({
+    Key: {
+      id: {
+        S: `${event.path.id}`
+      }
+    },
+    TableName: process.env.AWS_DB_TABLE
+  })
+
+  console.info('result')
+  console.info(item)
+}
+/*
+  if (!item || !item.Item) {
+    return {
+      statusCode: 404
+    }
+  }
+
   await db.updateItem({
     TableName: process.env.AWS_DB_TABLE,
     Key: {
@@ -51,7 +70,7 @@ async function updateUser (event) {
     ReturnValues: 'UPDATED_NEW'
   }).promise()
 }
-
+*/
 const inputSchema = {
   type: 'object',
   properties: {
