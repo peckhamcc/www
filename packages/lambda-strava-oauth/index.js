@@ -57,8 +57,6 @@ async function exchangeCode (event, context) {
   } = querystring.parse(event.querystring)
 
   const result = await sendCode(code)
-  console.info('got result')
-  console.info(JSON.stringify(result, null, 2))
 
   const db = new AWS.DynamoDB({
     region: config.aws.dynamodb.region
@@ -67,8 +65,73 @@ async function exchangeCode (event, context) {
   await db.putItem({
     TableName: process.env.AWS_DB_TABLE,
     Item: {
-      id: result.athlete.id,
-      ...result
+      id: {
+        N: result.athlete.id
+      },
+      token_type: {
+        S: result.token_type
+      },
+      expires_at: {
+        N: result.expires_at
+      },
+      expires_in: {
+        N: result.expires_in
+      },
+      refresh_token: {
+        S: result.refresh_token
+      },
+      access_token: {
+        S: result.access_token
+      },
+      athlete: {
+        M: {
+          id: {
+            N: result.athlete.id
+          },
+          username: {
+            S: result.athlete.username
+          },
+          firstname: {
+            S: result.athlete.firstname
+          },
+          lastname: {
+            S: result.athlete.lastname
+          },
+          city: {
+            S: result.athlete.city
+          },
+          state: {
+            S: result.athlete.state
+          },
+          country: {
+            S: result.athlete.country
+          },
+          sex: {
+            S: result.athlete.sex
+          },
+          premium: {
+            BOOL: result.athlete.premium
+          },
+          summit: {
+            BOOL: result.athlete.summit
+          },
+          created_at: {
+            S: result.athlete.created_at
+          },
+          updated_at: {
+            S: result.athlete.updated_at
+          },
+          badge_type_id: {
+            N: result.athlete.badge_type_id
+          },
+          profile_medium: {
+            S: result.athlete.profile_medium
+          },
+          profile: {
+            S: result.athlete.profile
+          }
+        }
+      }
     }
   })
     .promise()
