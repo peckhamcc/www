@@ -27,7 +27,7 @@ async function updateUser (event) {
         S: `${event.path.id}`
       }
     },
-    UpdateExpression: 'SET #A=:a, #R=:r, #E=:e, #I:i',
+    UpdateExpression: 'SET #A=:a, #R=:r, #E=:e, #I=:i',
     ExpressionAttributeNames: {
       '#A': 'access_token',
       '#R': 'refresh_token',
