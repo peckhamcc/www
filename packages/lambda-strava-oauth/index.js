@@ -80,8 +80,7 @@ const inputSchema = {
     body: {
       type: 'object',
       properties: {
-        querystring: { type: 'string', pattern: '.+' },
-        body: { type: 'object' }
+        querystring: { type: 'string', pattern: '.+' }
       },
       required: ['querystring']
     }
