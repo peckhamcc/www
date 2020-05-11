@@ -29,10 +29,6 @@ async function updateUser (event) {
     TableName: process.env.AWS_DB_TABLE
   }).promise()
 
-  console.info('result')
-  console.info(item)
-}
-/*
   if (!item || !item.Item) {
     return {
       statusCode: 404
@@ -70,7 +66,7 @@ async function updateUser (event) {
     ReturnValues: 'UPDATED_NEW'
   }).promise()
 }
-*/
+
 const inputSchema = {
   type: 'object',
   properties: {
