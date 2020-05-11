@@ -60,6 +60,7 @@ async function exchangeCode (event) {
     const result = await sendCode(code)
 
     if (!result.id) {
+      console.error(result)
       throw new Error(`Unexpected result ${result}`)
     }
 

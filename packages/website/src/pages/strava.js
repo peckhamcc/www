@@ -2,6 +2,9 @@ import React, {
   Component
 } from 'react'
 import {
+  Link
+} from 'react-router-dom'
+import {
   PageWrapper,
   Panel,
   ShortHero,
@@ -40,7 +43,7 @@ class StravaPage extends Component {
             <input type='hidden' name='approval_prompt' value='force' />
             <Button>Link your Strava account</Button>
           </ButtonForm>
-          <HelpText>You can revoke permission at any time from the "My Apps" section of your Strava settings page.</HelpText>
+          <HelpText>You can revoke permission at any time from the <Link to='https://www.strava.com/settings/apps'>"My Apps"</Link> section of your Strava settings page.</HelpText>
         </Panel>
       </PageWrapper>
     )

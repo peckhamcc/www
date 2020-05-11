@@ -85,9 +85,9 @@ export default () => {
                 <Route path='/leading' component={Leading} />
                 <Route path='/ethos' component={Ethos} />
                 <Route path='/calendar' component={Calendar} />
-                <Route path='/strava' component={Strava} />
-                <Route path='/strava/error' component={StravaError} />
-                <Route path='/strava/success' component={StravaSuccess} />
+                <Route exact path='/strava/error' component={StravaError} />
+                <Route exact path='/strava/success' component={StravaSuccess} />
+                <Route exact path='/strava' component={Strava} />
 
                 <Flag name={['store']}>
                   <>
