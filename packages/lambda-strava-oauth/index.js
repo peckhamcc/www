@@ -9,6 +9,7 @@ const {
 const https = require('https')
 const querystring = require('querystring')
 const AWS = require('aws-sdk')
+const config = require('./config')
 
 async function sendCode (code) {
   return new Promise((resolve, reject) => {
@@ -54,19 +55,17 @@ async function exchangeCode ({ query: { code } }) {
   const result = await sendCode(code)
 
   const db = new AWS.DynamoDB({
-    apiVersion: config.aws.ses.version,
-    region: config.aws.ses.region
+    region: config.aws.dynamodb.region
   })
-  const docClient = new AWS.DynamoDB.DocumentClient()
 
-  await docClient.put({
+  await db.putItem({
     TableName: process.env.AWS_DB_TABLE,
     Item: {
       id: result.athlete.id,
       ...result
     }
   })
-  .promise()
+    .promise()
 }
 
 const inputSchema = {

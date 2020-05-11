@@ -498,6 +498,9 @@ const config = {
       region: 'eu-west-1',
       version: '2010-12-01'
     },
+    dynamodb: {
+      region: 'eu-west-2'
+    },
     lambda: {
       region: 'eu-west-2'
     }
