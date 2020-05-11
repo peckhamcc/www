@@ -20,7 +20,7 @@ async function updateUser (event) {
     region: config.aws.dynamodb.region
   })
 
-  await db.update({
+  await db.updateItem({
     TableName: process.env.AWS_DB_TABLE,
     Key: {
       id: `${event.path.id}`
