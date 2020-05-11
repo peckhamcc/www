@@ -2,20 +2,15 @@ const middy = require('middy')
 const { HttpError } = require('http-errors')
 const {
   jsonBodyParser,
-  // validator,
+  validator,
   httpHeaderNormalizer,
   cors
 } = require('middy/middlewares')
-// const AWS = require('aws-sdk')
-// const { config } = require('./config')
+const AWS = require('aws-sdk')
+const { config } = require('./config')
 
 async function readTokens (event) {
-  console.info(event)
-}
-
-/*
-async function readTokens (event) {
-  if (event.headers['Authorization-Token'] !== process.env.AUTH_TOKEN) {
+  if (event.headers.Authorization !== process.env.AUTH_TOKEN) {
     return {
       statusCode: 403
     }
@@ -50,13 +45,13 @@ const inputSchema = {
     headers: {
       type: 'object',
       properties: {
-        token: { type: 'string', pattern: '.+' }
+        Authorization: { type: 'string', pattern: '.+' }
       },
-      required: ['token']
+      required: ['Authorization']
     }
   }
 }
-*/
+
 const errorHandler = () => ({
   onError: (handler, next) => {
     if (handler.error instanceof HttpError) {
@@ -84,7 +79,7 @@ module.exports = {
   handler: middy(readTokens)
     .use(httpHeaderNormalizer())
     .use(jsonBodyParser())
-    // .use(validator({ inputSchema }))
+    .use(validator({ inputSchema }))
     .use(errorHandler())
     .use(cors({
       origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
