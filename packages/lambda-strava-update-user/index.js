@@ -2,7 +2,7 @@ const middy = require('middy')
 const { HttpError } = require('http-errors')
 const {
   jsonBodyParser,
-  // validator,
+  validator,
   httpHeaderNormalizer,
   cors
 } = require('middy/middlewares')
@@ -14,7 +14,7 @@ async function updateUser (event) {
 }
 /*
 async function updateUser (event) {
-  if (event.headers['Authorization-Token'] !== process.env.AUTH_TOKEN) {
+  if (event.headers.Authorization !== process.env.AUTH_TOKEN) {
     return {
       statusCode: 403
     }
@@ -42,20 +42,37 @@ async function updateUser (event) {
 
   return scanResults
 }
-
+*/
 const inputSchema = {
   type: 'object',
   properties: {
+    headers: {
+      type: 'object',
+      properties: {
+        Authorization: { type: 'string', pattern: '.+' }
+      },
+      required: ['Authorization']
+    },
+    path: {
+      type: 'object',
+      properties: {
+        id: { type: 'number', pattern: '.+' }
+      },
+      required: ['id']
+    },
     body: {
       type: 'object',
       properties: {
-        token: { type: 'string', pattern: '.+' }
+        access_token: { type: 'string', pattern: '.+' },
+        refresh_token: { type: 'string', pattern: '.+' },
+        expires_at: { type: 'number', pattern: '.+' },
+        expires_in: { type: 'number', pattern: '.+' }
       },
-      required: ['token']
+      required: ['access_token', 'refresh_token', 'expires_at', 'expires_in']
     }
   }
 }
-*/
+
 const errorHandler = () => ({
   onError: (handler, next) => {
     if (handler.error instanceof HttpError) {
@@ -83,7 +100,7 @@ module.exports = {
   handler: middy(updateUser)
     .use(httpHeaderNormalizer())
     .use(jsonBodyParser())
-    // .use(validator({ inputSchema }))
+    .use(validator({ inputSchema }))
     .use(errorHandler())
     .use(cors({
       origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
