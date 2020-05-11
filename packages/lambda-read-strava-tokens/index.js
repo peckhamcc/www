@@ -28,7 +28,11 @@ async function readTokens (event) {
 
   do {
     items = await db.scan(params).promise()
-    items.Items.forEach((item) => scanResults.push(item))
+    items.Items.forEach((item) => scanResults.push({
+      id: parseInt(item.id.S),
+      refresh_token: item.refresh_token.S,
+      access_token: item.access_token.S
+    }))
     params.ExclusiveStartKey = items.LastEvaluatedKey
   } while (items.LastEvaluatedKey)
 
