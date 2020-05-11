@@ -6,13 +6,9 @@ const {
   httpHeaderNormalizer,
   cors
 } = require('middy/middlewares')
-// const AWS = require('aws-sdk')
-// const { config } = require('./config')
+const AWS = require('aws-sdk')
+const { config } = require('./config')
 
-async function updateUser (event) {
-  console.info(event)
-}
-/*
 async function updateUser (event) {
   if (event.headers.Authorization !== process.env.AUTH_TOKEN) {
     return {
@@ -24,25 +20,22 @@ async function updateUser (event) {
     region: config.aws.dynamodb.region
   })
 
-  const scanResults = []
-  const params = { TableName: process.env.AWS_DB_TABLE }
-  let items = {
-    LastEvaluatedKey: true
-  }
-
-  do {
-    items = await db.scan(params).promise()
-    items.Items.forEach((item) => scanResults.push({
-      id: parseInt(item.id.S),
-      refresh_token: item.refresh_token.S,
-      access_token: item.access_token.S
-    }))
-    params.ExclusiveStartKey = items.LastEvaluatedKey
-  } while (items.LastEvaluatedKey)
-
-  return scanResults
+  await db.update({
+    TableName: process.env.AWS_DB_TABLE,
+    Key: {
+      id: `${event.path.id}`
+    },
+    UpdateExpression: 'set access_token=:a, refresh_token=:r, expires_at=:e, expires_in:i',
+    ExpressionAttributeValues: {
+      ':a': event.body.access_token,
+      ':r': event.body.refresh_token,
+      ':e': `${event.body.expires_at}`,
+      ':i': `${event.body.expires_in}`
+    },
+    ReturnValues: 'UPDATED_NEW'
+  }).promise()
 }
-*/
+
 const inputSchema = {
   type: 'object',
   properties: {
