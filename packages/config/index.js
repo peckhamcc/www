@@ -855,8 +855,8 @@ const config = {
 }
 
 if (process.env.NODE_ENV !== 'development') {
-  config.lambda.sendPayment = 'https://2vgzz1azxk.execute-api.eu-west-2.amazonaws.com/prod/send-payment'
-  config.lambda.sendContactFormEmail = 'https://2vgzz1azxk.execute-api.eu-west-2.amazonaws.com/prod/contact'
+  config.lambda.sendPayment = 'https://api.peckham.cc/send-payment'
+  config.lambda.sendContactFormEmail = 'https://api.peckham.cc/contact'
 }
 
 module.exports = {
