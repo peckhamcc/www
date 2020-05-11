@@ -51,7 +51,9 @@ async function sendCode (code) {
   })
 }
 
-async function exchangeCode ({ query: { code } }) {
+async function exchangeCode (event) {
+  console.info(event)
+  const { query: { code }} = event
   const result = await sendCode(code)
 
   const db = new AWS.DynamoDB({

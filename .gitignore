@@ -10,4 +10,3 @@ build
 .lambda
 .env
 deploy.env
-event.json
