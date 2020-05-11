@@ -26,7 +26,9 @@ import {
   Leading,
   Ethos,
   Calendar,
-  Strava
+  Strava,
+  StravaError,
+  StravaSuccess
 } from './pages'
 import configureStore from './store/configure-store'
 import '../assets/pcc-avatar.png'
@@ -84,6 +86,8 @@ export default () => {
                 <Route path='/ethos' component={Ethos} />
                 <Route path='/calendar' component={Calendar} />
                 <Route path='/strava' component={Strava} />
+                <Route path='/strava/error' component={StravaError} />
+                <Route path='/strava/success' component={StravaSuccess} />
 
                 <Flag name={['store']}>
                   <>

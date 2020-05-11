@@ -52,93 +52,105 @@ async function sendCode (code) {
 }
 
 async function exchangeCode (event) {
-  const {
-    code
-  } = querystring.parse(event.querystring)
+  try {
+    const {
+      code
+    } = querystring.parse(event.querystring)
 
-  const result = await sendCode(code)
+    const result = await sendCode(code)
 
-  if (!result.id) {
-    throw new Error(`Unexpected result ${result}`)
-  }
+    if (!result.id) {
+      throw new Error(`Unexpected result ${result}`)
+    }
 
-  const db = new AWS.DynamoDB({
-    region: config.aws.dynamodb.region
-  })
+    const db = new AWS.DynamoDB({
+      region: config.aws.dynamodb.region
+    })
 
-  await db.putItem({
-    TableName: process.env.AWS_DB_TABLE,
-    Item: {
-      id: {
-        S: `${result.athlete.id}`
-      },
-      token_type: {
-        S: result.token_type
-      },
-      expires_at: {
-        S: `${result.expires_at}`
-      },
-      expires_in: {
-        S: `${result.expires_in}`
-      },
-      refresh_token: {
-        S: result.refresh_token
-      },
-      access_token: {
-        S: result.access_token
-      },
-      athlete: {
-        M: {
-          id: {
-            S: `${result.athlete.id}`
-          },
-          username: {
-            S: result.athlete.username
-          },
-          firstname: {
-            S: result.athlete.firstname
-          },
-          lastname: {
-            S: result.athlete.lastname
-          },
-          city: {
-            S: result.athlete.city
-          },
-          state: {
-            S: result.athlete.state
-          },
-          country: {
-            S: result.athlete.country
-          },
-          sex: {
-            S: result.athlete.sex
-          },
-          premium: {
-            BOOL: result.athlete.premium
-          },
-          summit: {
-            BOOL: result.athlete.summit
-          },
-          created_at: {
-            S: result.athlete.created_at
-          },
-          updated_at: {
-            S: result.athlete.updated_at
-          },
-          badge_type_id: {
-            S: `${result.athlete.badge_type_id}`
-          },
-          profile_medium: {
-            S: result.athlete.profile_medium
-          },
-          profile: {
-            S: result.athlete.profile
+    await db.putItem({
+      TableName: process.env.AWS_DB_TABLE,
+      Item: {
+        id: {
+          S: `${result.athlete.id}`
+        },
+        token_type: {
+          S: result.token_type
+        },
+        expires_at: {
+          S: `${result.expires_at}`
+        },
+        expires_in: {
+          S: `${result.expires_in}`
+        },
+        refresh_token: {
+          S: result.refresh_token
+        },
+        access_token: {
+          S: result.access_token
+        },
+        athlete: {
+          M: {
+            id: {
+              S: `${result.athlete.id}`
+            },
+            username: {
+              S: result.athlete.username
+            },
+            firstname: {
+              S: result.athlete.firstname
+            },
+            lastname: {
+              S: result.athlete.lastname
+            },
+            city: {
+              S: result.athlete.city
+            },
+            state: {
+              S: result.athlete.state
+            },
+            country: {
+              S: result.athlete.country
+            },
+            sex: {
+              S: result.athlete.sex
+            },
+            premium: {
+              BOOL: result.athlete.premium
+            },
+            summit: {
+              BOOL: result.athlete.summit
+            },
+            created_at: {
+              S: result.athlete.created_at
+            },
+            updated_at: {
+              S: result.athlete.updated_at
+            },
+            badge_type_id: {
+              S: `${result.athlete.badge_type_id}`
+            },
+            profile_medium: {
+              S: result.athlete.profile_medium
+            },
+            profile: {
+              S: result.athlete.profile
+            }
           }
         }
       }
+    })
+      .promise()
+
+    return {
+      location: 'https://peckham.cc/strava/success'
     }
-  })
-    .promise()
+  } catch (err) {
+    console.error(err)
+
+    return {
+      location: 'https://peckham.cc/strava/error'
+    }
+  }
 }
 
 const inputSchema = {
