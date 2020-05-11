@@ -66,16 +66,16 @@ async function exchangeCode (event) {
     TableName: process.env.AWS_DB_TABLE,
     Item: {
       id: {
-        S: result.athlete.id
+        S: `${result.athlete.id}`
       },
       token_type: {
         S: result.token_type
       },
       expires_at: {
-        S: result.expires_at
+        S: `${result.expires_at}`
       },
       expires_in: {
-        S: result.expires_in
+        S: `${result.expires_in}`
       },
       refresh_token: {
         S: result.refresh_token
@@ -85,6 +85,9 @@ async function exchangeCode (event) {
       },
       athlete: {
         M: {
+          id: {
+            S: `${result.athlete.id}`
+          },
           username: {
             S: result.athlete.username
           },
@@ -119,7 +122,7 @@ async function exchangeCode (event) {
             S: result.athlete.updated_at
           },
           badge_type_id: {
-            S: result.athlete.badge_type_id
+            S: `${result.athlete.badge_type_id}`
           },
           profile_medium: {
             S: result.athlete.profile_medium
