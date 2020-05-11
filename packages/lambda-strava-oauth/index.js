@@ -9,7 +9,7 @@ const {
 const https = require('https')
 const querystring = require('querystring')
 const AWS = require('aws-sdk')
-const config = require('./config')
+const { config } = require('./config')
 
 async function sendCode (code) {
   return new Promise((resolve, reject) => {
@@ -53,7 +53,7 @@ async function sendCode (code) {
 
 async function exchangeCode (event) {
   console.info(event)
-  const { query: { code }} = event
+  const { query: { code } } = event
   const result = await sendCode(code)
 
   const db = new AWS.DynamoDB({
