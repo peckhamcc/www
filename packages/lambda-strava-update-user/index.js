@@ -23,14 +23,30 @@ async function updateUser (event) {
   await db.updateItem({
     TableName: process.env.AWS_DB_TABLE,
     Key: {
-      id: `${event.path.id}`
+      id: {
+        S: `${event.path.id}`
+      }
     },
-    UpdateExpression: 'set access_token=:a, refresh_token=:r, expires_at=:e, expires_in:i',
+    UpdateExpression: 'SET #A=:a, #R=:r, #E=:e, #I:i',
+    ExpressionAttributeNames: {
+      '#A': 'access_token',
+      '#R': 'refresh_token',
+      '#E': 'expires_at',
+      '#I': 'expires_in'
+    },
     ExpressionAttributeValues: {
-      ':a': event.body.access_token,
-      ':r': event.body.refresh_token,
-      ':e': `${event.body.expires_at}`,
-      ':i': `${event.body.expires_in}`
+      ':a': {
+        S: event.body.access_token
+      },
+      ':r': {
+        S: event.body.refresh_token
+      },
+      ':e': {
+        S: `${event.body.expires_at}`
+      },
+      ':i': {
+        S: `${event.body.expires_in}`
+      }
     },
     ReturnValues: 'UPDATED_NEW'
   }).promise()
