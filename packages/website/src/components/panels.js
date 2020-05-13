@@ -15,6 +15,40 @@ import {
   MAX_PAGE_WIDTH
 } from '../units'
 
+export const ResultTable = styled.table`
+  width: 100%;
+  margin: ${spacing(1)} 0;
+
+  td {
+    padding: 5px;
+  }
+`
+export const ResultHeader = styled.th`
+  background: ${darkAccent};
+  padding: 5px;
+`
+export const ResultRow = styled.tr`
+
+`
+export const ResultOddRow = styled.tr`
+  background: ${lightAccent};
+`
+
+export const ResultAvatar = styled.img`
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+`
+
+export const ResultRiderName = styled.p`
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+`
+
 export const FlexContainerCentered = styled.div`
   display: flex;
   justify-content: space-between;
