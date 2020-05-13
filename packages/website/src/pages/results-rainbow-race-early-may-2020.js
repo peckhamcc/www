@@ -96,15 +96,20 @@ export default () => {
           </thead>
           <tbody>
             <ResultRow>
-              <td width='100' align='center'>-</td>
-              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
-              <td width='100' align='center'>DNF</td>
+              <td width='100' align='center'>1</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'>2:19:09</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>-</td>
-              <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
+              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
               <td width='100' align='center'>DNF</td>
             </ResultOddRow>
+            <ResultRow>
+              <td width='100' align='center'>-</td>
+              <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
+              <td width='100' align='center'>DNF</td>
+            </ResultRow>
           </tbody>
         </ResultTable>
         <h2>Points (Men)</h2>
@@ -176,14 +181,19 @@ export default () => {
           <tbody>
             <ResultRow>
               <td width='100' align='center'>1</td>
-              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
-              <td width='100' align='center'>40</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'>57</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>2</td>
+              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
+              <td width='100' align='center'>40</td>
+            </ResultOddRow>
+            <ResultRow>
+              <td width='100' align='center'>3</td>
               <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
               <td width='100' align='center'>20</td>
-            </ResultOddRow>
+            </ResultRow>
           </tbody>
         </ResultTable>
         <h2>Climbs (Men)</h2>
@@ -239,10 +249,15 @@ export default () => {
               <td width='100' align='center'>2</td>
             </ResultRow>
             <ResultOddRow>
+              <td width='100' align='center'>1</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
               <td width='100' align='center'>2</td>
+            </ResultOddRow>
+            <ResultRow>
+              <td width='100' align='center'>3</td>
               <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
               <td width='100' align='center'>1</td>
-            </ResultOddRow>
+            </ResultRow>
           </tbody>
         </ResultTable>
         <hr />
@@ -300,9 +315,14 @@ export default () => {
           <tbody>
             <ResultRow>
               <td width='100' align='center'>1</td>
-              <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
-              <td width='100' align='center'>26:56</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'>26:50</td>
             </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>2</td>
+              <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
+              <td width='100' align='center'>+0:06</td>
+            </ResultOddRow>
           </tbody>
         </ResultTable>
         <h4>⚡ "Zwift W Broad St Sprint" (Men)</h4>
@@ -361,6 +381,12 @@ export default () => {
               <td width='100' align='center'>0:20</td>
               <td width='100' align='center'>20</td>
             </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>2</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'>0:21</td>
+              <td width='100' align='center'>17</td>
+            </ResultOddRow>
           </tbody>
         </ResultTable>
         <h4>⛰️ "Richmond KOM." (Men)</h4>
@@ -419,6 +445,12 @@ export default () => {
               <td width='100' align='center'>2:04</td>
               <td width='100' align='center'>1</td>
             </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>2</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'>2:08</td>
+              <td width='100' align='center'>-</td>
+            </ResultOddRow>
           </tbody>
         </ResultTable>
         <hr />
@@ -481,9 +513,14 @@ export default () => {
           <tbody>
             <ResultRow>
               <td width='100' align='center'>1</td>
-              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
-              <td width='100' align='center'>1:20:03</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'>1:19:55</td>
             </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>2</td>
+              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
+              <td width='100' align='center'>+0:08</td>
+            </ResultOddRow>
           </tbody>
         </ResultTable>
         <h4>⚡ "The Mall Sprint Forward (Zwift Insider verified)" (Men)</h4>
@@ -542,6 +579,12 @@ export default () => {
               <td width='100' align='center'>0:15</td>
               <td width='100' align='center'>20</td>
             </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>1</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'>0:15</td>
+              <td width='100' align='center'>20</td>
+            </ResultOddRow>
           </tbody>
         </ResultTable>
         <h4>⛰️ "Leith Hill Full - VeloViewer" (Men)</h4>
@@ -600,6 +643,12 @@ export default () => {
               <td width='100' align='center'>17:24</td>
               <td width='100' align='center'>2</td>
             </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>1</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'>17:24</td>
+              <td width='100' align='center'>2</td>
+            </ResultOddRow>
           </tbody>
         </ResultTable>
         <hr />
@@ -677,9 +726,14 @@ export default () => {
           <tbody>
             <ResultRow>
               <td width='100' align='center'>1</td>
-              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
-              <td width='100' align='center'>26:18</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'>26:16</td>
             </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>2</td>
+              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
+              <td width='100' align='center'>+0:02</td>
+            </ResultOddRow>
           </tbody>
         </ResultTable>
         <h4>⚡ "Innsbruck Sprint Forward" (Men)</h4>
@@ -762,6 +816,12 @@ export default () => {
               <td width='100' align='center'>0:28</td>
               <td width='100' align='center'>20</td>
             </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>1</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'>0:28</td>
+              <td width='100' align='center'>20</td>
+            </ResultOddRow>
           </tbody>
         </ResultTable>
         <hr />
@@ -829,9 +889,14 @@ export default () => {
           <tbody>
             <ResultRow>
               <td width='100' align='center'>1</td>
-              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
-              <td width='100' align='center'>6:18</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'>6:08</td>
             </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>2</td>
+              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
+              <td width='100' align='center'>+0:10</td>
+            </ResultOddRow>
           </tbody>
         </ResultTable>
       </Panel>

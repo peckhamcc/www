@@ -1,6 +1,47 @@
 const format = require('format-duration')
 const createProfile = require('./profile')
 
+const POINTS = [
+  20, 18, 16, 14, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+]
+
+function calculateSeriesPoints (comps, riders, filterRiders = () => Boolean) {
+  const scores = {}
+
+  comps.forEach(comp =>{
+    const positions = calculatePositions(comp.times, filterRiders)
+
+    positions.forEach(({ group }, index) => {
+      group.forEach(id => {
+        scores[id] = (scores[id] || 0) + (POINTS[index] || 0)
+      })
+    })
+  })
+
+  const positions = calculatePositions(scores, filterRiders = () => Boolean, (a, b) => b - a)
+  const output = []
+
+  positions.forEach(({ value, group }, index) => {
+    group.forEach(id => {
+      const rider = riders[id]
+
+      let avatar = `'${rider.profile_medium}'`
+
+      if (!avatar.startsWith('\'http')) {
+        avatar = '{pccAvatar}'
+      }
+
+      output.push([
+        index + 1,
+        `<a href='https://www.strava.com/athletes/${rider.id}'><ResultAvatar src=${avatar} /></a><ResultRiderName>${rider.firstname} ${rider.lastname}</ResultRiderName>`,
+        value
+      ])
+    })
+  })
+
+  return output
+}
+
 function calculatePositions (times, filterRiders, sort = (a, b) => a - b) {
   const positions = []
   const sorted = Object.keys(times)
@@ -81,12 +122,21 @@ module.exports = function critSeries (race, riders) {
   const output = {
     name: race.name,
     description: race.description,
+    results: [{
+      name: 'Points (General)',
+      headers: ['Position', 'Name', 'Points'],
+      rows: calculateSeriesPoints(race.stages, riders)
+    }, {
+      name: 'Points (Women)',
+      headers: ['Position', 'Name', 'Points'],
+      rows: calculateSeriesPoints(race.stages, riders, women)
+    }],
     stages: []
   }
 
   race.stages.forEach(stage => {
     const results = [{
-      name: '⏱️ Men',
+      name: '⏱️ General',
       headers: ['Position', 'Name', 'Time'],
       rows: calculateStageTime(stage, riders, men)
     }, {
