@@ -450,7 +450,7 @@ export default () => {
             <ResultOddRow>
               <td width='100' align='center'>5</td>
               <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
-              <td width='100' align='center'>+NaN:NaN</td>
+              <td width='100' align='center'>+2:15</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>7</td>

@@ -87,11 +87,12 @@ function calculateStageTime (stage, riders, filterRiders) {
     group.forEach(id => {
       const rider = riders[id]
       const position = index + 1
+      let formatted = value
 
       if (position === 1) {
-        value = format(value)
+        formatted = format(value)
       } else if (value !== 'DNF') {
-        value = `+${format(value - fastest)}`
+        formatted = `+${format(value - fastest)}`
       }
 
       let avatar = `'${rider.profile_medium}'`
@@ -103,7 +104,7 @@ function calculateStageTime (stage, riders, filterRiders) {
       output.push([
         position,
         `<a href='https://www.strava.com/athletes/${rider.id}'><ResultAvatar src=${avatar} /></a><ResultRiderName>${rider.firstname} ${rider.lastname}</ResultRiderName>`,
-        value
+        formatted
       ])
     })
   })
