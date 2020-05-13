@@ -44,17 +44,17 @@ export default () => {
             <ResultOddRow>
               <td width='100' align='center'>2</td>
               <td ><a href='https://www.strava.com/athletes/33356430'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/33356430/9918290/16/medium.jpg' /></a><ResultRiderName>Matt W. (Peckham CC/DIRT)</ResultRiderName></td>
-              <td width='100' align='center'>69</td>
+              <td width='100' align='center'>67</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>3</td>
-              <td ><a href='https://www.strava.com/athletes/104169'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/104169/104387/2/medium.jpg' /></a><ResultRiderName>stef r</ResultRiderName></td>
-              <td width='100' align='center'>58</td>
+              <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
+              <td width='100' align='center'>66</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>4</td>
-              <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
-              <td width='100' align='center'>52</td>
+              <td ><a href='https://www.strava.com/athletes/104169'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/104169/104387/2/medium.jpg' /></a><ResultRiderName>stef r</ResultRiderName></td>
+              <td width='100' align='center'>58</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>5</td>
@@ -64,10 +64,10 @@ export default () => {
             <ResultOddRow>
               <td width='100' align='center'>6</td>
               <td ><a href='https://www.strava.com/athletes/870759'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/870759/6038555/3/medium.jpg' /></a><ResultRiderName>Lawrence Jenkin</ResultRiderName></td>
-              <td width='100' align='center'>41</td>
+              <td width='100' align='center'>39</td>
             </ResultOddRow>
             <ResultRow>
-              <td width='100' align='center'>7</td>
+              <td width='100' align='center'>6</td>
               <td ><a href='https://www.strava.com/athletes/20456040'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/20456040/5949621/2/medium.jpg' /></a><ResultRiderName>Ben Mort</ResultRiderName></td>
               <td width='100' align='center'>39</td>
             </ResultRow>
@@ -84,7 +84,7 @@ export default () => {
             <ResultOddRow>
               <td width='100' align='center'>10</td>
               <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
-              <td width='100' align='center'>25</td>
+              <td width='100' align='center'>24</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>11</td>
@@ -93,16 +93,16 @@ export default () => {
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>12</td>
-              <td ><a href='https://www.strava.com/athletes/3873678'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/3873678/2143920/1/medium.jpg' /></a><ResultRiderName>James Russell</ResultRiderName></td>
-              <td width='100' align='center'>21</td>
+              <td ><a href='https://www.strava.com/athletes/1737575'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/1737575/2581397/2/medium.jpg' /></a><ResultRiderName>Robert Whitworth</ResultRiderName></td>
+              <td width='100' align='center'>20</td>
             </ResultOddRow>
             <ResultRow>
-              <td width='100' align='center'>13</td>
-              <td ><a href='https://www.strava.com/athletes/1737575'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/1737575/2581397/2/medium.jpg' /></a><ResultRiderName>Robert Whitworth</ResultRiderName></td>
+              <td width='100' align='center'>12</td>
+              <td ><a href='https://www.strava.com/athletes/3873678'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/3873678/2143920/1/medium.jpg' /></a><ResultRiderName>James Russell</ResultRiderName></td>
               <td width='100' align='center'>20</td>
             </ResultRow>
             <ResultOddRow>
-              <td width='100' align='center'>13</td>
+              <td width='100' align='center'>12</td>
               <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
               <td width='100' align='center'>20</td>
             </ResultOddRow>
@@ -113,9 +113,14 @@ export default () => {
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>16</td>
-              <td ><a href='https://www.strava.com/athletes/7408043'><ResultAvatar src={pccAvatar} /></a><ResultRiderName>Suf Sav</ResultRiderName></td>
-              <td width='100' align='center'>8</td>
+              <td ><a href='https://www.strava.com/athletes/30080876'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/30080876/12666634/1/medium.jpg' /></a><ResultRiderName>Joe Howley</ResultRiderName></td>
+              <td width='100' align='center'>7</td>
             </ResultOddRow>
+            <ResultRow>
+              <td width='100' align='center'>17</td>
+              <td ><a href='https://www.strava.com/athletes/7408043'><ResultAvatar src={pccAvatar} /></a><ResultRiderName>Suf Sav</ResultRiderName></td>
+              <td width='100' align='center'>6</td>
+            </ResultRow>
           </tbody>
         </ResultTable>
         <h2>Points (Women)</h2>
@@ -345,26 +350,36 @@ export default () => {
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>4</td>
-              <td ><a href='https://www.strava.com/athletes/718104'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/718104/962882/4/medium.jpg' /></a><ResultRiderName>Andy Marsden</ResultRiderName></td>
-              <td width='100' align='center'>+1:22</td>
+              <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
+              <td width='100' align='center'>+1:16</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>5</td>
-              <td ><a href='https://www.strava.com/athletes/870759'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/870759/6038555/3/medium.jpg' /></a><ResultRiderName>Lawrence Jenkin</ResultRiderName></td>
-              <td width='100' align='center'>+1:37</td>
+              <td ><a href='https://www.strava.com/athletes/718104'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/718104/962882/4/medium.jpg' /></a><ResultRiderName>Andy Marsden</ResultRiderName></td>
+              <td width='100' align='center'>+1:22</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>6</td>
-              <td ><a href='https://www.strava.com/athletes/3873678'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/3873678/2143920/1/medium.jpg' /></a><ResultRiderName>James Russell</ResultRiderName></td>
-              <td width='100' align='center'>+2:46</td>
+              <td ><a href='https://www.strava.com/athletes/870759'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/870759/6038555/3/medium.jpg' /></a><ResultRiderName>Lawrence Jenkin</ResultRiderName></td>
+              <td width='100' align='center'>+1:37</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>7</td>
+              <td ><a href='https://www.strava.com/athletes/3873678'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/3873678/2143920/1/medium.jpg' /></a><ResultRiderName>James Russell</ResultRiderName></td>
+              <td width='100' align='center'>+2:46</td>
+            </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>8</td>
+              <td ><a href='https://www.strava.com/athletes/30080876'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/30080876/12666634/1/medium.jpg' /></a><ResultRiderName>Joe Howley</ResultRiderName></td>
+              <td width='100' align='center'>+2:52</td>
+            </ResultOddRow>
+            <ResultRow>
+              <td width='100' align='center'>9</td>
               <td ><a href='https://www.strava.com/athletes/7408043'><ResultAvatar src={pccAvatar} /></a><ResultRiderName>Suf Sav</ResultRiderName></td>
               <td width='100' align='center'>+7:55</td>
             </ResultRow>
             <ResultOddRow>
-              <td width='100' align='center'>8</td>
+              <td width='100' align='center'>10</td>
               <td ><a href='https://www.strava.com/athletes/33356430'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/33356430/9918290/16/medium.jpg' /></a><ResultRiderName>Matt W. (Peckham CC/DIRT)</ResultRiderName></td>
               <td width='100' align='center'>DNF</td>
             </ResultOddRow>
@@ -393,8 +408,8 @@ export default () => {
 <svg viewBox='0 0 1000 100' xmlns='http://www.w3.org/2000/svg'>
   
   
-  <polyline points='8,93 17,93 27,93 36,93 47,93 58,93 69,93 80,93 91,93 101,92 112,93 124,93 136,95 149,95 160,95 171,95 181,95 190,94 198,93 205,93 213,93 222,93 230,92 238,92 247,92 257,93 267,93 276,93 286,93 296,93 305,93 315,93 324,93 334,93 343,93 352,93 361,93 370,92 379,93 389,93 400,94 412,95 423,95 433,95 444,95 454,95 463,94 470,93 477,93 485,93 495,93 503,92 510,92 519,92 529,93 539,93 549,93 559,93 569,93 578,93 587,93 596,93 606,93 615,93 625,93 635,93 644,92 653,93 663,93 673,94 685,95 696,95 706,95 716,95 725,95 734,95 742,93 747,93 755,93 763,93 772,92 781,92 790,92 800,92 810,93 820,93 830,93 840,93 849,93 858,93 868,93 877,93 887,93 896,93 906,93 915,92 923,93 933,93 943,93 954,95 966,95 976,95 986,95 995,95' fill='none' stroke='#333' strokeWidth='5' />
-  <path d='M8,93 17,93 27,93 36,93 47,93 58,93 69,93 80,93 91,93 101,92 112,93 124,93 136,95 149,95 160,95 171,95 181,95 190,94 198,93 205,93 213,93 222,93 230,92 238,92 247,92 257,93 267,93 276,93 286,93 296,93 305,93 315,93 324,93 334,93 343,93 352,93 361,93 370,92 379,93 389,93 400,94 412,95 423,95 433,95 444,95 454,95 463,94 470,93 477,93 485,93 495,93 503,92 510,92 519,92 529,93 539,93 549,93 559,93 569,93 578,93 587,93 596,93 606,93 615,93 625,93 635,93 644,92 653,93 663,93 673,94 685,95 696,95 706,95 716,95 725,95 734,95 742,93 747,93 755,93 763,93 772,92 781,92 790,92 800,92 810,93 820,93 830,93 840,93 849,93 858,93 868,93 877,93 887,93 896,93 906,93 915,92 923,93 933,93 943,93 954,95 966,95 976,95 986,95 995,95 995,100 5,100' fill='#9ea1ad' />
+  <polyline points='8,93 18,93 28,93 39,93 51,93 62,93 74,93 86,93 97,92 109,93 121,93 134,95 148,95 160,95 171,95 182,95 191,94 199,93 207,93 216,93 225,92 234,92 243,92 253,93 264,93 274,93 285,93 295,93 305,93 315,93 325,93 336,93 346,93 355,93 365,92 374,92 385,93 396,93 409,95 421,95 432,95 443,95 454,95 463,94 470,93 478,93 487,93 497,92 505,92 514,92 524,93 535,93 546,93 557,93 567,93 576,93 586,93 596,93 607,93 617,93 627,93 637,92 647,93 658,93 669,94 681,95 693,95 704,95 714,95 724,95 733,94 740,93 747,93 755,93 765,92 774,92 784,92 794,92 805,93 816,93 826,93 836,93 846,93 856,93 867,93 877,93 887,93 897,93 907,93 916,92 926,93 937,93 949,95 961,95 972,95 983,95 995,95' fill='none' stroke='#333' strokeWidth='5' />
+  <path d='M8,93 18,93 28,93 39,93 51,93 62,93 74,93 86,93 97,92 109,93 121,93 134,95 148,95 160,95 171,95 182,95 191,94 199,93 207,93 216,93 225,92 234,92 243,92 253,93 264,93 274,93 285,93 295,93 305,93 315,93 325,93 336,93 346,93 355,93 365,92 374,92 385,93 396,93 409,95 421,95 432,95 443,95 454,95 463,94 470,93 478,93 487,93 497,92 505,92 514,92 524,93 535,93 546,93 557,93 567,93 576,93 586,93 596,93 607,93 617,93 627,93 637,92 647,93 658,93 669,94 681,95 693,95 704,95 714,95 724,95 733,94 740,93 747,93 755,93 765,92 774,92 784,92 794,92 805,93 816,93 826,93 836,93 846,93 856,93 867,93 877,93 887,93 897,93 907,93 916,92 926,93 937,93 949,95 961,95 972,95 983,95 995,95 995,100 5,100' fill='#9ea1ad' />
 </svg>
 
         <h4>⏱️ General</h4>
@@ -410,17 +425,17 @@ export default () => {
             <ResultRow>
               <td width='100' align='center'>1</td>
               <td ><a href='https://www.strava.com/athletes/104169'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/104169/104387/2/medium.jpg' /></a><ResultRiderName>stef r</ResultRiderName></td>
-              <td width='100' align='center'>19:41</td>
+              <td width='100' align='center'>19:48</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>2</td>
               <td ><a href='https://www.strava.com/athletes/33356430'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/33356430/9918290/16/medium.jpg' /></a><ResultRiderName>Matt W. (Peckham CC/DIRT)</ResultRiderName></td>
-              <td width='100' align='center'>+1:44</td>
+              <td width='100' align='center'>+1:46</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>3</td>
               <td ><a href='https://www.strava.com/athletes/23246312'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/23246312/9895114/1/medium.jpg' /></a><ResultRiderName>Will Bennett</ResultRiderName></td>
-              <td width='100' align='center'>+2:05</td>
+              <td width='100' align='center'>+2:06</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>4</td>
@@ -429,28 +444,28 @@ export default () => {
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>5</td>
-              <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
-              <td width='100' align='center'>+2:13</td>
+              <td ><a href='https://www.strava.com/athletes/718104'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/718104/962882/4/medium.jpg' /></a><ResultRiderName>Andy Marsden</ResultRiderName></td>
+              <td width='100' align='center'>+2:15</td>
             </ResultRow>
             <ResultOddRow>
-              <td width='100' align='center'>6</td>
-              <td ><a href='https://www.strava.com/athletes/718104'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/718104/962882/4/medium.jpg' /></a><ResultRiderName>Andy Marsden</ResultRiderName></td>
-              <td width='100' align='center'>+2:14</td>
+              <td width='100' align='center'>5</td>
+              <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
+              <td width='100' align='center'>+NaN:NaN</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>7</td>
               <td ><a href='https://www.strava.com/athletes/41594275'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/41594275/11962456/1/medium.jpg' /></a><ResultRiderName>nick renny</ResultRiderName></td>
-              <td width='100' align='center'>+2:19</td>
+              <td width='100' align='center'>+2:20</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>8</td>
               <td ><a href='https://www.strava.com/athletes/20456040'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/20456040/5949621/2/medium.jpg' /></a><ResultRiderName>Ben Mort</ResultRiderName></td>
-              <td width='100' align='center'>+2:42</td>
+              <td width='100' align='center'>+2:43</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>9</td>
               <td ><a href='https://www.strava.com/athletes/3873678'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/3873678/2143920/1/medium.jpg' /></a><ResultRiderName>James Russell</ResultRiderName></td>
-              <td width='100' align='center'>+4:14</td>
+              <td width='100' align='center'>+4:16</td>
             </ResultRow>
           </tbody>
         </ResultTable>
@@ -467,7 +482,7 @@ export default () => {
             <ResultRow>
               <td width='100' align='center'>1</td>
               <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
-              <td width='100' align='center'>22:16</td>
+              <td width='100' align='center'>22:24</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>2</td>

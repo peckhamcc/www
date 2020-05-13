@@ -31,7 +31,7 @@ module.exports = {
   }, {
     name: '#2 - Volcano Circuit CCW',
     start: new Date('Wed April 15 2020 19:00:00 GMT+0100'),
-    distance: 15000,
+    distance: 15100,
     firstSegment: 'Da Tube',
     times: {},
     sprints: [],
