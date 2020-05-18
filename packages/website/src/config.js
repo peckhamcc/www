@@ -5,12 +5,17 @@ import {
   GENDERS
 } from '@peckhamcc/config'
 import armWarmersImage from '../assets/shop/arm-warmers.png?sizes[]=300,sizes[]=500'
+import armWarmersWhiteImage from '../assets/shop/arm-warmers-white.png?sizes[]=300,sizes[]=500'
 import bibsFrontImage from '../assets/shop/bibs-front.png?sizes[]=300,sizes[]=500'
 import bibsRearImage from '../assets/shop/bibs-rear.png?sizes[]=300,sizes[]=500'
 import capFrontImage from '../assets/shop/cap-front.png?sizes[]=300,sizes[]=500'
+import capWhiteSidesImage from '../assets/shop/cap-white-sides.png?sizes[]=300,sizes[]=500'
+import capWhiteFrontImage from '../assets/shop/cap-white-front.png?sizes[]=300,sizes[]=500'
 import capSidesImage from '../assets/shop/cap-sides.png?sizes[]=300,sizes[]=500'
 import giletFrontImage from '../assets/shop/gilet-front.png?sizes[]=300,sizes[]=500'
 import giletRearImage from '../assets/shop/gilet-rear.png?sizes[]=300,sizes[]=500'
+import giletWhiteFrontImage from '../assets/shop/gilet-white-front.png?sizes[]=300,sizes[]=500'
+import giletWhiteRearImage from '../assets/shop/gilet-white-rear.png?sizes[]=300,sizes[]=500'
 import lsJerseyFrontImage from '../assets/shop/ls-jersey-front.png?sizes[]=300,sizes[]=500'
 import lsJerseyRearImage from '../assets/shop/ls-jersey-rear.png?sizes[]=300,sizes[]=500'
 import ssJerseyFrontImage from '../assets/shop/ss-jersey-front.png?sizes[]=300,sizes[]=500'
@@ -22,10 +27,10 @@ import winterJacketFrontImage from '../assets/shop/winter-jacket-front.png?sizes
 import winterJacketRearImage from '../assets/shop/winter-jacket-rear.png?sizes[]=300,sizes[]=500'
 import winterTightsFrontImage from '../assets/shop/winter-tights-front.png?sizes[]=300,sizes[]=500'
 import winterTightsRearImage from '../assets/shop/winter-tights-rear.png?sizes[]=300,sizes[]=500'
-// import socksSummerSideImage from '../assets/shop/socks-summer-side.png?sizes[]=300,sizes[]=500'
-// import socksSummerTopImage from '../assets/shop/socks-summer-top.png?sizes[]=300,sizes[]=500'
-// import socksWinterSideImage from '../assets/shop/socks-winter-side.png?sizes[]=300,sizes[]=500'
-// import socksWinterTopImage from '../assets/shop/socks-winter-top.png?sizes[]=300,sizes[]=500'
+import socksSummerSideImage from '../assets/shop/socks-summer-side.png?sizes[]=300,sizes[]=500'
+import socksSummerTopImage from '../assets/shop/socks-summer-top.png?sizes[]=300,sizes[]=500'
+import socksWinterSideImage from '../assets/shop/socks-winter-side.png?sizes[]=300,sizes[]=500'
+import socksWinterTopImage from '../assets/shop/socks-winter-top.png?sizes[]=300,sizes[]=500'
 // import glovesImage from '../assets/shop/gloves.png?sizes[]=300,sizes[]=500'
 import multiTubeImage from '../assets/shop/multi-tube.png?sizes[]=300,sizes[]=500'
 // import headsetCapImage from '../assets/shop/headset-cap.png?sizes[]=300,sizes[]=500'
@@ -76,6 +81,10 @@ const productImages = {
     giletFrontImage,
     giletRearImage
   ],
+  'GILET-WHITE-2020': [
+    giletWhiteFrontImage,
+    giletWhiteRearImage
+  ],
   'BIB-SHORTS-2020': [
     bibsFrontImage,
     bibsRearImage
@@ -87,14 +96,20 @@ const productImages = {
   'ARM-WARMERS-2020': [
     armWarmersImage
   ],
+  'ARM-WARMERS-WHITE-2020': [
+    armWarmersWhiteImage
+  ],
   'CAP-2018': [
     capFrontImage,
     capSidesImage
   ],
+  'CAP-WHITE-2020': [
+    capWhiteFrontImage,
+    capWhiteSidesImage
+  ],
   'NECK-WARMER-2018': [
     multiTubeImage
   ],
-  /*
   'SOCKS-SUMMER-2019': [
     socksSummerSideImage,
     socksSummerTopImage
@@ -103,7 +118,7 @@ const productImages = {
     socksWinterSideImage,
     socksWinterTopImage
   ],
-  'GLOVES-2018': [
+  /*  'GLOVES-2018': [
     glovesImage
   ],
   'HEADSET-CAP-2018': [

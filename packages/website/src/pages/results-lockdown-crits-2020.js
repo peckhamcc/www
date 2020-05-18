@@ -14,11 +14,13 @@ import {
   ResultRow,
   ResultOddRow,
   ResultAvatar,
-  ResultRiderName
+  ResultRiderName,
+  ResultIcon
 } from '../components/panels'
 import membershipBackground from '../../assets/membership-bg.jpg'
 import equipmentBackground from '../../assets/equipment-bg.jpg'
 import pccAvatar from '../../assets/pcc-logo-round.png'
+import stravaIcon from '../../assets/strava.png'
 
 export default () => {
   return (
@@ -38,73 +40,73 @@ export default () => {
           <tbody>
             <ResultRow>
               <td width='100' align='center'>1</td>
-              <td ><a href='https://www.strava.com/athletes/718104'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/718104/962882/4/medium.jpg' /></a><ResultRiderName>Andy Marsden</ResultRiderName></td>
-              <td width='100' align='center'>76</td>
+              <td ><a href='https://www.strava.com/athletes/33356430'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/33356430/9918290/16/medium.jpg' /></a><ResultRiderName>Matt W. (Peckham CC/DIRT)</ResultRiderName></td>
+              <td width='100' align='center'>81</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>2</td>
-              <td ><a href='https://www.strava.com/athletes/33356430'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/33356430/9918290/16/medium.jpg' /></a><ResultRiderName>Matt W. (Peckham CC/DIRT)</ResultRiderName></td>
-              <td width='100' align='center'>67</td>
+              <td ><a href='https://www.strava.com/athletes/718104'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/718104/962882/4/medium.jpg' /></a><ResultRiderName>Andy Marsden</ResultRiderName></td>
+              <td width='100' align='center'>74</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>3</td>
               <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
-              <td width='100' align='center'>66</td>
+              <td width='100' align='center'>60</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>4</td>
               <td ><a href='https://www.strava.com/athletes/104169'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/104169/104387/2/medium.jpg' /></a><ResultRiderName>stef r</ResultRiderName></td>
-              <td width='100' align='center'>58</td>
+              <td width='100' align='center'>56</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>5</td>
               <td ><a href='https://www.strava.com/athletes/23246312'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/23246312/9895114/1/medium.jpg' /></a><ResultRiderName>Will Bennett</ResultRiderName></td>
-              <td width='100' align='center'>50</td>
+              <td width='100' align='center'>48</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>6</td>
               <td ><a href='https://www.strava.com/athletes/870759'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/870759/6038555/3/medium.jpg' /></a><ResultRiderName>Lawrence Jenkin</ResultRiderName></td>
-              <td width='100' align='center'>39</td>
+              <td width='100' align='center'>38</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>6</td>
               <td ><a href='https://www.strava.com/athletes/20456040'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/20456040/5949621/2/medium.jpg' /></a><ResultRiderName>Ben Mort</ResultRiderName></td>
-              <td width='100' align='center'>39</td>
+              <td width='100' align='center'>38</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>8</td>
               <td ><a href='https://www.strava.com/athletes/4312734'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/4312734/2268752/2/medium.jpg' /></a><ResultRiderName>Will Johnson</ResultRiderName></td>
-              <td width='100' align='center'>38</td>
+              <td width='100' align='center'>36</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>9</td>
               <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
-              <td width='100' align='center'>33</td>
+              <td width='100' align='center'>34</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>10</td>
-              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
+              <td ><a href='https://www.strava.com/athletes/41594275'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/41594275/11962456/1/medium.jpg' /></a><ResultRiderName>nick renny</ResultRiderName></td>
               <td width='100' align='center'>24</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>11</td>
-              <td ><a href='https://www.strava.com/athletes/41594275'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/41594275/11962456/1/medium.jpg' /></a><ResultRiderName>nick renny</ResultRiderName></td>
+              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
               <td width='100' align='center'>23</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>12</td>
-              <td ><a href='https://www.strava.com/athletes/1737575'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/1737575/2581397/2/medium.jpg' /></a><ResultRiderName>Robert Whitworth</ResultRiderName></td>
-              <td width='100' align='center'>20</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'>22</td>
             </ResultOddRow>
             <ResultRow>
-              <td width='100' align='center'>12</td>
-              <td ><a href='https://www.strava.com/athletes/3873678'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/3873678/2143920/1/medium.jpg' /></a><ResultRiderName>James Russell</ResultRiderName></td>
+              <td width='100' align='center'>13</td>
+              <td ><a href='https://www.strava.com/athletes/1737575'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/1737575/2581397/2/medium.jpg' /></a><ResultRiderName>Robert Whitworth</ResultRiderName></td>
               <td width='100' align='center'>20</td>
             </ResultRow>
             <ResultOddRow>
-              <td width='100' align='center'>12</td>
-              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
-              <td width='100' align='center'>20</td>
+              <td width='100' align='center'>14</td>
+              <td ><a href='https://www.strava.com/athletes/3873678'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/3873678/2143920/1/medium.jpg' /></a><ResultRiderName>James Russell</ResultRiderName></td>
+              <td width='100' align='center'>18</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>15</td>
@@ -119,7 +121,7 @@ export default () => {
             <ResultRow>
               <td width='100' align='center'>17</td>
               <td ><a href='https://www.strava.com/athletes/7408043'><ResultAvatar src={pccAvatar} /></a><ResultRiderName>Suf Sav</ResultRiderName></td>
-              <td width='100' align='center'>6</td>
+              <td width='100' align='center'>5</td>
             </ResultRow>
           </tbody>
         </ResultTable>
@@ -156,8 +158,8 @@ export default () => {
 <svg viewBox='0 0 1000 100' xmlns='http://www.w3.org/2000/svg'>
   
   
-  <polyline points='9,94 21,94 31,94 43,94 54,93 60,91 65,90 74,89 80,87 86,85 91,83 97,82 108,81 114,79 119,78 124,76 131,75 139,74 143,72 148,70 154,69 158,67 162,65 168,64 178,65 196,70 214,73 236,82 258,87 280,92 299,94 314,94 327,95 340,94 351,94 363,93 374,93 389,94 403,95 415,93 423,92 435,94 450,94 463,94 476,94 484,92 490,90 496,89 503,88 508,86 513,84 518,83 526,82 535,81 540,79 544,78 549,76 555,75 564,74 568,72 573,70 579,69 583,67 587,65 593,64 605,66 624,70 644,75 667,83 690,89 711,94 729,94 743,94 757,95 768,94 779,94 791,93 803,94 817,94 831,95 842,93 851,92 864,94 879,94 892,94 905,93 911,91 916,90 923,89 929,87 933,86 938,84 943,83 950,82 959,81 964,79 969,78 973,76 979,75 987,75 993,73 995,97' fill='none' stroke='#333' strokeWidth='5' />
-  <path d='M9,94 21,94 31,94 43,94 54,93 60,91 65,90 74,89 80,87 86,85 91,83 97,82 108,81 114,79 119,78 124,76 131,75 139,74 143,72 148,70 154,69 158,67 162,65 168,64 178,65 196,70 214,73 236,82 258,87 280,92 299,94 314,94 327,95 340,94 351,94 363,93 374,93 389,94 403,95 415,93 423,92 435,94 450,94 463,94 476,94 484,92 490,90 496,89 503,88 508,86 513,84 518,83 526,82 535,81 540,79 544,78 549,76 555,75 564,74 568,72 573,70 579,69 583,67 587,65 593,64 605,66 624,70 644,75 667,83 690,89 711,94 729,94 743,94 757,95 768,94 779,94 791,93 803,94 817,94 831,95 842,93 851,92 864,94 879,94 892,94 905,93 911,91 916,90 923,89 929,87 933,86 938,84 943,83 950,82 959,81 964,79 969,78 973,76 979,75 987,75 993,73 995,97 995,100 5,100' fill='#9ea1ad' />
+  <polyline points='9,94 21,94 31,94 43,94 54,93 60,91 65,90 74,89 80,87 85,85 91,83 97,82 107,81 114,79 119,78 124,76 131,75 139,74 143,72 148,70 154,69 158,67 161,65 167,64 178,65 195,70 214,73 236,82 258,87 279,92 298,94 313,94 327,95 339,94 350,94 362,93 373,93 388,94 402,95 414,93 422,92 435,94 449,94 462,94 475,94 483,92 489,90 495,89 502,88 507,86 512,84 517,83 525,82 534,81 539,79 543,78 548,76 554,75 563,74 567,72 572,70 578,69 582,67 586,65 592,64 603,66 623,70 642,75 666,83 688,89 710,94 728,94 742,94 755,95 767,94 778,94 789,93 801,94 816,94 830,95 841,93 849,92 862,94 877,94 890,94 903,93 909,91 914,90 921,89 927,87 931,86 937,84 941,83 948,82 957,81 962,79 967,78 971,76 977,75 985,75 990,73 995,85' fill='none' stroke='#333' strokeWidth='5' />
+  <path d='M9,94 21,94 31,94 43,94 54,93 60,91 65,90 74,89 80,87 85,85 91,83 97,82 107,81 114,79 119,78 124,76 131,75 139,74 143,72 148,70 154,69 158,67 161,65 167,64 178,65 195,70 214,73 236,82 258,87 279,92 298,94 313,94 327,95 339,94 350,94 362,93 373,93 388,94 402,95 414,93 422,92 435,94 449,94 462,94 475,94 483,92 489,90 495,89 502,88 507,86 512,84 517,83 525,82 534,81 539,79 543,78 548,76 554,75 563,74 567,72 572,70 578,69 582,67 586,65 592,64 603,66 623,70 642,75 666,83 688,89 710,94 728,94 742,94 755,95 767,94 778,94 789,93 801,94 816,94 830,95 841,93 849,92 862,94 877,94 890,94 903,93 909,91 914,90 921,89 927,87 931,86 937,84 941,83 948,82 957,81 962,79 967,78 971,76 977,75 985,75 990,73 995,85 995,100 5,100' fill='#9ea1ad' />
 </svg>
 
         <h4>⏱️ General</h4>
@@ -166,6 +168,7 @@ export default () => {
             <tr>
               <ResultHeader width='100' align='center'>Position</ResultHeader>
               <ResultHeader >Name</ResultHeader>
+              <ResultHeader width='100' align='center'>Activity</ResultHeader>
               <ResultHeader width='100' align='center'>Time</ResultHeader>
             </tr>
           </thead>
@@ -173,42 +176,62 @@ export default () => {
             <ResultRow>
               <td width='100' align='center'>1</td>
               <td ><a href='https://www.strava.com/athletes/718104'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/718104/962882/4/medium.jpg' /></a><ResultRiderName>Andy Marsden</ResultRiderName></td>
-              <td width='100' align='center'>29:44</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3409394170'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>29:52</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>2</td>
               <td ><a href='https://www.strava.com/athletes/104169'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/104169/104387/2/medium.jpg' /></a><ResultRiderName>stef r</ResultRiderName></td>
-              <td width='100' align='center'>+0:01</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3409517881'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+0:06</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>3</td>
               <td ><a href='https://www.strava.com/athletes/33356430'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/33356430/9918290/16/medium.jpg' /></a><ResultRiderName>Matt W. (Peckham CC/DIRT)</ResultRiderName></td>
-              <td width='100' align='center'>+1:31</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3409481163'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+1:29</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>4</td>
               <td ><a href='https://www.strava.com/athletes/2505569'><ResultAvatar src='https://graph.facebook.com/568910174/picture?height=256&width=256' /></a><ResultRiderName>Alex Potsides</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3409403370'><ResultIcon src={stravaIcon} /></a></td>
               <td width='100' align='center'>+1:33</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>5</td>
               <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
-              <td width='100' align='center'>+1:56</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3409475732'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:05</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>6</td>
               <td ><a href='https://www.strava.com/athletes/20456040'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/20456040/5949621/2/medium.jpg' /></a><ResultRiderName>Ben Mort</ResultRiderName></td>
-              <td width='100' align='center'>+2:16</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3409407450'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:20</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>7</td>
-              <td ><a href='https://www.strava.com/athletes/870759'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/870759/6038555/3/medium.jpg' /></a><ResultRiderName>Lawrence Jenkin</ResultRiderName></td>
-              <td width='100' align='center'>+3:08</td>
+              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3409435807'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+3:05</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>8</td>
+              <td ><a href='https://www.strava.com/athletes/870759'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/870759/6038555/3/medium.jpg' /></a><ResultRiderName>Lawrence Jenkin</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3409428657'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+3:07</td>
+            </ResultOddRow>
+            <ResultRow>
+              <td width='100' align='center'>9</td>
               <td ><a href='https://www.strava.com/athletes/41594275'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/41594275/11962456/1/medium.jpg' /></a><ResultRiderName>nick renny</ResultRiderName></td>
-              <td width='100' align='center'>+3:20</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3409443265'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+3:15</td>
+            </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>10</td>
+              <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3409412603'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+3:18</td>
             </ResultOddRow>
           </tbody>
         </ResultTable>
@@ -218,6 +241,7 @@ export default () => {
             <tr>
               <ResultHeader width='100' align='center'>Position</ResultHeader>
               <ResultHeader >Name</ResultHeader>
+              <ResultHeader width='100' align='center'>Activity</ResultHeader>
               <ResultHeader width='100' align='center'>Time</ResultHeader>
             </tr>
           </thead>
@@ -225,12 +249,14 @@ export default () => {
             <ResultRow>
               <td width='100' align='center'>1</td>
               <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
-              <td width='100' align='center'>32:42</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3409435807'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>32:57</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>2</td>
               <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
-              <td width='100' align='center'>+0:17</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3409412603'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+0:13</td>
             </ResultOddRow>
           </tbody>
         </ResultTable>
@@ -240,8 +266,8 @@ export default () => {
 <svg viewBox='0 0 1000 100' xmlns='http://www.w3.org/2000/svg'>
   
   
-  <polyline points='7,86 14,87 22,87 33,88 45,89 58,93 70,93 80,90 88,88 96,87 105,85 114,84 124,84 135,85 148,87 161,88 175,90 189,92 203,94 216,92 225,91 236,92 248,93 260,92 267,89 272,88 278,87 286,86 293,85 301,84 310,84 321,85 333,87 346,88 359,90 373,92 387,94 399,93 407,91 416,92 427,93 439,93 448,91 454,89 459,87 466,87 473,86 481,85 490,85 499,84 510,85 523,87 536,89 550,91 564,93 577,94 587,92 594,91 604,92 616,93 628,92 636,90 641,88 647,87 654,86 661,85 669,85 678,85 688,84 700,87 712,87 726,89 739,92 753,93 766,94 774,91 781,91 792,92 804,93 815,92 823,89 828,88 834,87 842,86 850,85 858,84 868,84 878,85 891,87 903,88 916,90 930,92 945,94 956,92 964,91 973,92 985,93 995,119' fill='none' stroke='#333' strokeWidth='5' />
-  <path d='M7,86 14,87 22,87 33,88 45,89 58,93 70,93 80,90 88,88 96,87 105,85 114,84 124,84 135,85 148,87 161,88 175,90 189,92 203,94 216,92 225,91 236,92 248,93 260,92 267,89 272,88 278,87 286,86 293,85 301,84 310,84 321,85 333,87 346,88 359,90 373,92 387,94 399,93 407,91 416,92 427,93 439,93 448,91 454,89 459,87 466,87 473,86 481,85 490,85 499,84 510,85 523,87 536,89 550,91 564,93 577,94 587,92 594,91 604,92 616,93 628,92 636,90 641,88 647,87 654,86 661,85 669,85 678,85 688,84 700,87 712,87 726,89 739,92 753,93 766,94 774,91 781,91 792,92 804,93 815,92 823,89 828,88 834,87 842,86 850,85 858,84 868,84 878,85 891,87 903,88 916,90 930,92 945,94 956,92 964,91 973,92 985,93 995,119 995,100 5,100' fill='#9ea1ad' />
+  <polyline points='7,86 14,87 22,87 33,88 45,89 58,93 70,93 79,90 87,88 95,87 104,85 113,84 124,84 134,85 147,87 160,88 174,90 188,92 202,94 215,92 224,91 235,92 247,93 258,92 265,89 271,88 277,87 284,86 292,85 299,84 309,84 319,85 331,87 344,88 357,90 372,92 385,94 397,93 405,91 414,92 425,93 437,93 446,91 452,89 457,87 463,87 471,86 479,85 487,85 497,84 507,85 520,87 534,89 547,91 561,93 575,94 584,92 591,91 601,92 613,93 625,92 633,90 638,88 644,87 650,86 658,85 666,85 675,85 684,84 696,87 709,87 722,89 736,92 749,93 762,94 770,91 777,91 788,92 800,93 811,92 818,89 824,88 830,87 838,86 846,85 854,84 864,84 874,85 886,87 899,88 912,90 926,92 940,94 951,92 959,91 968,92 980,93 995,101' fill='none' stroke='#333' strokeWidth='5' />
+  <path d='M7,86 14,87 22,87 33,88 45,89 58,93 70,93 79,90 87,88 95,87 104,85 113,84 124,84 134,85 147,87 160,88 174,90 188,92 202,94 215,92 224,91 235,92 247,93 258,92 265,89 271,88 277,87 284,86 292,85 299,84 309,84 319,85 331,87 344,88 357,90 372,92 385,94 397,93 405,91 414,92 425,93 437,93 446,91 452,89 457,87 463,87 471,86 479,85 487,85 497,84 507,85 520,87 534,89 547,91 561,93 575,94 584,92 591,91 601,92 613,93 625,92 633,90 638,88 644,87 650,86 658,85 666,85 675,85 684,84 696,87 709,87 722,89 736,92 749,93 762,94 770,91 777,91 788,92 800,93 811,92 818,89 824,88 830,87 838,86 846,85 854,84 864,84 874,85 886,87 899,88 912,90 926,92 940,94 951,92 959,91 968,92 980,93 995,101 995,100 5,100' fill='#9ea1ad' />
 </svg>
 
         <h4>⏱️ General</h4>
@@ -250,6 +276,7 @@ export default () => {
             <tr>
               <ResultHeader width='100' align='center'>Position</ResultHeader>
               <ResultHeader >Name</ResultHeader>
+              <ResultHeader width='100' align='center'>Activity</ResultHeader>
               <ResultHeader width='100' align='center'>Time</ResultHeader>
             </tr>
           </thead>
@@ -257,37 +284,56 @@ export default () => {
             <ResultRow>
               <td width='100' align='center'>1</td>
               <td ><a href='https://www.strava.com/athletes/1737575'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/1737575/2581397/2/medium.jpg' /></a><ResultRiderName>Robert Whitworth</ResultRiderName></td>
-              <td width='100' align='center'>23:40</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3372055331'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>23:47</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>2</td>
               <td ><a href='https://www.strava.com/athletes/23246312'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/23246312/9895114/1/medium.jpg' /></a><ResultRiderName>Will Bennett</ResultRiderName></td>
-              <td width='100' align='center'>+0:01</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3372086144'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+0:02</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>3</td>
               <td ><a href='https://www.strava.com/athletes/718104'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/718104/962882/4/medium.jpg' /></a><ResultRiderName>Andy Marsden</ResultRiderName></td>
-              <td width='100' align='center'>+0:26</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3372056515'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+0:27</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>4</td>
               <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
-              <td width='100' align='center'>+0:31</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3372083467'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+0:35</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>5</td>
               <td ><a href='https://www.strava.com/athletes/20456040'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/20456040/5949621/2/medium.jpg' /></a><ResultRiderName>Ben Mort</ResultRiderName></td>
-              <td width='100' align='center'>+0:39</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3372054271'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+0:38</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>6</td>
-              <td ><a href='https://www.strava.com/athletes/33356430'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/33356430/9918290/16/medium.jpg' /></a><ResultRiderName>Matt W. (Peckham CC/DIRT)</ResultRiderName></td>
-              <td width='100' align='center'>+1:08</td>
+              <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3372056914'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+1:19</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>7</td>
+              <td ><a href='https://www.strava.com/athletes/33356430'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/33356430/9918290/16/medium.jpg' /></a><ResultRiderName>Matt W. (Peckham CC/DIRT)</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3372138218'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+1:36</td>
+            </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>8</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3372088761'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:19</td>
+            </ResultOddRow>
+            <ResultRow>
+              <td width='100' align='center'>9</td>
               <td ><a href='https://www.strava.com/athletes/870759'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/870759/6038555/3/medium.jpg' /></a><ResultRiderName>Lawrence Jenkin</ResultRiderName></td>
-              <td width='100' align='center'>+3:13</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3372073835'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+3:17</td>
             </ResultRow>
           </tbody>
         </ResultTable>
@@ -297,6 +343,7 @@ export default () => {
             <tr>
               <ResultHeader width='100' align='center'>Position</ResultHeader>
               <ResultHeader >Name</ResultHeader>
+              <ResultHeader width='100' align='center'>Activity</ResultHeader>
               <ResultHeader width='100' align='center'>Time</ResultHeader>
             </tr>
           </thead>
@@ -304,12 +351,14 @@ export default () => {
             <ResultRow>
               <td width='100' align='center'>1</td>
               <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
-              <td width='100' align='center'>24:58</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3372056914'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>25:06</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>2</td>
               <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
-              <td width='100' align='center'>+0:59</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3372088761'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+1:00</td>
             </ResultOddRow>
           </tbody>
         </ResultTable>
@@ -319,8 +368,8 @@ export default () => {
 <svg viewBox='0 0 1000 100' xmlns='http://www.w3.org/2000/svg'>
   
   
-  <polyline points='7,93 12,94 20,94 28,94 38,95 47,95 56,95 64,95 71,94 80,94 89,94 100,94 112,95 124,95 135,95 145,95 156,95 166,95 176,94 186,94 196,94 205,93 215,93 225,93 233,92 240,91 250,91 260,92 270,91 280,91 291,91 301,91 311,92 321,92 332,91 342,92 354,93 366,93 378,94 390,94 402,95 414,95 425,95 435,94 445,94 453,94 463,95 474,95 485,95 496,95 506,95 517,95 528,95 537,94 547,94 557,94 568,93 578,93 588,93 596,91 603,91 613,92 623,92 633,91 643,91 653,91 663,91 672,92 682,92 692,91 702,92 713,93 724,93 736,94 749,94 761,95 773,95 784,95 794,94 803,94 812,94 822,94 832,95 843,95 854,95 865,95 876,95 887,95 897,94 908,94 919,94 929,93 940,94 950,92 958,91 968,91 980,92 995,93' fill='none' stroke='#333' strokeWidth='5' />
-  <path d='M7,93 12,94 20,94 28,94 38,95 47,95 56,95 64,95 71,94 80,94 89,94 100,94 112,95 124,95 135,95 145,95 156,95 166,95 176,94 186,94 196,94 205,93 215,93 225,93 233,92 240,91 250,91 260,92 270,91 280,91 291,91 301,91 311,92 321,92 332,91 342,92 354,93 366,93 378,94 390,94 402,95 414,95 425,95 435,94 445,94 453,94 463,95 474,95 485,95 496,95 506,95 517,95 528,95 537,94 547,94 557,94 568,93 578,93 588,93 596,91 603,91 613,92 623,92 633,91 643,91 653,91 663,91 672,92 682,92 692,91 702,92 713,93 724,93 736,94 749,94 761,95 773,95 784,95 794,94 803,94 812,94 822,94 832,95 843,95 854,95 865,95 876,95 887,95 897,94 908,94 919,94 929,93 940,94 950,92 958,91 968,91 980,92 995,93 995,100 5,100' fill='#9ea1ad' />
+  <polyline points='7,93 12,94 19,94 28,94 38,95 47,95 55,95 63,95 71,94 79,94 88,94 99,94 111,95 122,95 134,95 144,95 155,95 165,95 174,94 184,94 194,94 204,93 213,93 223,93 231,92 238,91 247,91 258,92 268,91 278,91 288,91 298,91 308,92 318,92 329,91 339,92 351,93 363,93 375,94 387,94 399,95 410,95 421,95 431,94 441,94 450,94 459,95 470,95 481,95 492,95 502,95 513,95 523,95 533,94 542,94 553,94 563,93 573,93 583,93 590,91 598,91 607,92 617,92 627,91 637,91 647,91 657,91 666,92 676,92 686,91 696,92 706,93 718,93 730,94 743,94 755,95 766,95 777,95 787,94 797,94 805,94 814,94 825,95 835,95 846,95 857,95 868,95 879,95 890,94 900,94 911,94 921,93 931,94 942,92 950,91 960,91 972,92 983,91 995,94' fill='none' stroke='#333' strokeWidth='5' />
+  <path d='M7,93 12,94 19,94 28,94 38,95 47,95 55,95 63,95 71,94 79,94 88,94 99,94 111,95 122,95 134,95 144,95 155,95 165,95 174,94 184,94 194,94 204,93 213,93 223,93 231,92 238,91 247,91 258,92 268,91 278,91 288,91 298,91 308,92 318,92 329,91 339,92 351,93 363,93 375,94 387,94 399,95 410,95 421,95 431,94 441,94 450,94 459,95 470,95 481,95 492,95 502,95 513,95 523,95 533,94 542,94 553,94 563,93 573,93 583,93 590,91 598,91 607,92 617,92 627,91 637,91 647,91 657,91 666,92 676,92 686,91 696,92 706,93 718,93 730,94 743,94 755,95 766,95 777,95 787,94 797,94 805,94 814,94 825,95 835,95 846,95 857,95 868,95 879,95 890,94 900,94 911,94 921,93 931,94 942,92 950,91 960,91 972,92 983,91 995,94 995,100 5,100' fill='#9ea1ad' />
 </svg>
 
         <h4>⏱️ General</h4>
@@ -329,60 +378,77 @@ export default () => {
             <tr>
               <ResultHeader width='100' align='center'>Position</ResultHeader>
               <ResultHeader >Name</ResultHeader>
+              <ResultHeader width='100' align='center'>Activity</ResultHeader>
               <ResultHeader width='100' align='center'>Time</ResultHeader>
             </tr>
           </thead>
           <tbody>
             <ResultRow>
               <td width='100' align='center'>1</td>
-              <td ><a href='https://www.strava.com/athletes/104169'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/104169/104387/2/medium.jpg' /></a><ResultRiderName>stef r</ResultRiderName></td>
-              <td width='100' align='center'>21:09</td>
+              <td ><a href='https://www.strava.com/athletes/33356430'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/33356430/9918290/16/medium.jpg' /></a><ResultRiderName>Matt W. (Peckham CC/DIRT)</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3337438220'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>18:34</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>2</td>
-              <td ><a href='https://www.strava.com/athletes/4312734'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/4312734/2268752/2/medium.jpg' /></a><ResultRiderName>Will Johnson</ResultRiderName></td>
-              <td width='100' align='center'>+0:02</td>
+              <td ><a href='https://www.strava.com/athletes/104169'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/104169/104387/2/medium.jpg' /></a><ResultRiderName>stef r</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3337493483'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:44</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>3</td>
-              <td ><a href='https://www.strava.com/athletes/23246312'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/23246312/9895114/1/medium.jpg' /></a><ResultRiderName>Will Bennett</ResultRiderName></td>
-              <td width='100' align='center'>+0:10</td>
-            </ResultRow>
-            <ResultOddRow>
-              <td width='100' align='center'>4</td>
-              <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
-              <td width='100' align='center'>+1:16</td>
-            </ResultOddRow>
-            <ResultRow>
-              <td width='100' align='center'>5</td>
-              <td ><a href='https://www.strava.com/athletes/718104'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/718104/962882/4/medium.jpg' /></a><ResultRiderName>Andy Marsden</ResultRiderName></td>
-              <td width='100' align='center'>+1:22</td>
-            </ResultRow>
-            <ResultOddRow>
-              <td width='100' align='center'>6</td>
-              <td ><a href='https://www.strava.com/athletes/870759'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/870759/6038555/3/medium.jpg' /></a><ResultRiderName>Lawrence Jenkin</ResultRiderName></td>
-              <td width='100' align='center'>+1:37</td>
-            </ResultOddRow>
-            <ResultRow>
-              <td width='100' align='center'>7</td>
-              <td ><a href='https://www.strava.com/athletes/3873678'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/3873678/2143920/1/medium.jpg' /></a><ResultRiderName>James Russell</ResultRiderName></td>
+              <td ><a href='https://www.strava.com/athletes/4312734'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/4312734/2268752/2/medium.jpg' /></a><ResultRiderName>Will Johnson</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3337496460'><ResultIcon src={stravaIcon} /></a></td>
               <td width='100' align='center'>+2:46</td>
             </ResultRow>
             <ResultOddRow>
+              <td width='100' align='center'>4</td>
+              <td ><a href='https://www.strava.com/athletes/23246312'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/23246312/9895114/1/medium.jpg' /></a><ResultRiderName>Will Bennett</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3337477643'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:58</td>
+            </ResultOddRow>
+            <ResultRow>
+              <td width='100' align='center'>5</td>
+              <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3337519702'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+3:59</td>
+            </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>6</td>
+              <td ><a href='https://www.strava.com/athletes/718104'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/718104/962882/4/medium.jpg' /></a><ResultRiderName>Andy Marsden</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3337476135'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+4:06</td>
+            </ResultOddRow>
+            <ResultRow>
+              <td width='100' align='center'>7</td>
+              <td ><a href='https://www.strava.com/athletes/870759'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/870759/6038555/3/medium.jpg' /></a><ResultRiderName>Lawrence Jenkin</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3337525656'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+4:21</td>
+            </ResultRow>
+            <ResultOddRow>
               <td width='100' align='center'>8</td>
-              <td ><a href='https://www.strava.com/athletes/30080876'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/30080876/12666634/1/medium.jpg' /></a><ResultRiderName>Joe Howley</ResultRiderName></td>
-              <td width='100' align='center'>+2:52</td>
+              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3337535219'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+4:48</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>9</td>
-              <td ><a href='https://www.strava.com/athletes/7408043'><ResultAvatar src={pccAvatar} /></a><ResultRiderName>Suf Sav</ResultRiderName></td>
-              <td width='100' align='center'>+7:55</td>
+              <td ><a href='https://www.strava.com/athletes/30080876'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/30080876/12666634/1/medium.jpg' /></a><ResultRiderName>Joe Howley</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3337486549'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+5:28</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>10</td>
-              <td ><a href='https://www.strava.com/athletes/33356430'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/33356430/9918290/16/medium.jpg' /></a><ResultRiderName>Matt W. (Peckham CC/DIRT)</ResultRiderName></td>
-              <td width='100' align='center'>DNF</td>
+              <td ><a href='https://www.strava.com/athletes/3873678'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/3873678/2143920/1/medium.jpg' /></a><ResultRiderName>James Russell</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3337533399'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+5:31</td>
             </ResultOddRow>
+            <ResultRow>
+              <td width='100' align='center'>11</td>
+              <td ><a href='https://www.strava.com/athletes/7408043'><ResultAvatar src={pccAvatar} /></a><ResultRiderName>Suf Sav</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3337553367'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+10:37</td>
+            </ResultRow>
           </tbody>
         </ResultTable>
         <h4>⏱️ Women</h4>
@@ -391,6 +457,7 @@ export default () => {
             <tr>
               <ResultHeader width='100' align='center'>Position</ResultHeader>
               <ResultHeader >Name</ResultHeader>
+              <ResultHeader width='100' align='center'>Activity</ResultHeader>
               <ResultHeader width='100' align='center'>Time</ResultHeader>
             </tr>
           </thead>
@@ -398,7 +465,8 @@ export default () => {
             <ResultRow>
               <td width='100' align='center'>1</td>
               <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
-              <td width='100' align='center'>23:13</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3337535219'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>23:22</td>
             </ResultRow>
           </tbody>
         </ResultTable>
@@ -408,8 +476,8 @@ export default () => {
 <svg viewBox='0 0 1000 100' xmlns='http://www.w3.org/2000/svg'>
   
   
-  <polyline points='8,93 18,93 28,93 39,93 51,93 62,93 74,93 86,93 97,92 109,93 121,93 134,95 148,95 160,95 171,95 182,95 191,94 199,93 207,93 216,93 225,92 234,92 243,92 253,93 264,93 274,93 285,93 295,93 305,93 315,93 325,93 336,93 346,93 355,93 365,92 374,92 385,93 396,93 409,95 421,95 432,95 443,95 454,95 463,94 470,93 478,93 487,93 497,92 505,92 514,92 524,93 535,93 546,93 557,93 567,93 576,93 586,93 596,93 607,93 617,93 627,93 637,92 647,93 658,93 669,94 681,95 693,95 704,95 714,95 724,95 733,94 740,93 747,93 755,93 765,92 774,92 784,92 794,92 805,93 816,93 826,93 836,93 846,93 856,93 867,93 877,93 887,93 897,93 907,93 916,92 926,93 937,93 949,95 961,95 972,95 983,95 995,95' fill='none' stroke='#333' strokeWidth='5' />
-  <path d='M8,93 18,93 28,93 39,93 51,93 62,93 74,93 86,93 97,92 109,93 121,93 134,95 148,95 160,95 171,95 182,95 191,94 199,93 207,93 216,93 225,92 234,92 243,92 253,93 264,93 274,93 285,93 295,93 305,93 315,93 325,93 336,93 346,93 355,93 365,92 374,92 385,93 396,93 409,95 421,95 432,95 443,95 454,95 463,94 470,93 478,93 487,93 497,92 505,92 514,92 524,93 535,93 546,93 557,93 567,93 576,93 586,93 596,93 607,93 617,93 627,93 637,92 647,93 658,93 669,94 681,95 693,95 704,95 714,95 724,95 733,94 740,93 747,93 755,93 765,92 774,92 784,92 794,92 805,93 816,93 826,93 836,93 846,93 856,93 867,93 877,93 887,93 897,93 907,93 916,92 926,93 937,93 949,95 961,95 972,95 983,95 995,95 995,100 5,100' fill='#9ea1ad' />
+  <polyline points='8,93 18,93 28,93 39,93 50,93 62,93 74,93 86,93 97,92 108,93 120,93 133,95 147,95 159,95 170,95 181,95 190,94 198,93 206,93 215,93 225,92 233,92 242,92 252,93 263,93 273,93 284,93 294,93 304,93 314,93 324,93 334,93 344,93 354,93 363,92 372,92 383,93 394,93 407,95 419,95 430,95 441,95 452,95 461,94 468,93 476,93 486,93 495,92 503,92 512,92 522,93 533,93 544,93 554,93 564,93 574,93 584,93 594,93 604,93 614,93 624,93 635,92 644,93 655,93 666,94 678,95 690,95 701,95 711,95 721,95 730,94 737,93 744,93 752,93 762,92 771,92 781,92 791,92 802,93 812,93 823,93 833,93 843,93 853,93 863,93 873,93 883,93 894,93 903,93 912,92 923,93 934,93 946,95 957,95 968,95 979,95 995,95' fill='none' stroke='#333' strokeWidth='5' />
+  <path d='M8,93 18,93 28,93 39,93 50,93 62,93 74,93 86,93 97,92 108,93 120,93 133,95 147,95 159,95 170,95 181,95 190,94 198,93 206,93 215,93 225,92 233,92 242,92 252,93 263,93 273,93 284,93 294,93 304,93 314,93 324,93 334,93 344,93 354,93 363,92 372,92 383,93 394,93 407,95 419,95 430,95 441,95 452,95 461,94 468,93 476,93 486,93 495,92 503,92 512,92 522,93 533,93 544,93 554,93 564,93 574,93 584,93 594,93 604,93 614,93 624,93 635,92 644,93 655,93 666,94 678,95 690,95 701,95 711,95 721,95 730,94 737,93 744,93 752,93 762,92 771,92 781,92 791,92 802,93 812,93 823,93 833,93 843,93 853,93 863,93 873,93 883,93 894,93 903,93 912,92 923,93 934,93 946,95 957,95 968,95 979,95 995,95 995,100 5,100' fill='#9ea1ad' />
 </svg>
 
         <h4>⏱️ General</h4>
@@ -418,6 +486,7 @@ export default () => {
             <tr>
               <ResultHeader width='100' align='center'>Position</ResultHeader>
               <ResultHeader >Name</ResultHeader>
+              <ResultHeader width='100' align='center'>Activity</ResultHeader>
               <ResultHeader width='100' align='center'>Time</ResultHeader>
             </tr>
           </thead>
@@ -425,47 +494,68 @@ export default () => {
             <ResultRow>
               <td width='100' align='center'>1</td>
               <td ><a href='https://www.strava.com/athletes/104169'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/104169/104387/2/medium.jpg' /></a><ResultRiderName>stef r</ResultRiderName></td>
-              <td width='100' align='center'>19:48</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3303968880'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>19:51</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>2</td>
               <td ><a href='https://www.strava.com/athletes/33356430'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/33356430/9918290/16/medium.jpg' /></a><ResultRiderName>Matt W. (Peckham CC/DIRT)</ResultRiderName></td>
-              <td width='100' align='center'>+1:46</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3303910843'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+1:45</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>3</td>
               <td ><a href='https://www.strava.com/athletes/23246312'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/23246312/9895114/1/medium.jpg' /></a><ResultRiderName>Will Bennett</ResultRiderName></td>
-              <td width='100' align='center'>+2:06</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3303971968'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:10</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>4</td>
               <td ><a href='https://www.strava.com/athletes/870759'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/870759/6038555/3/medium.jpg' /></a><ResultRiderName>Lawrence Jenkin</ResultRiderName></td>
-              <td width='100' align='center'>+2:09</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3303960205'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:15</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>5</td>
               <td ><a href='https://www.strava.com/athletes/718104'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/718104/962882/4/medium.jpg' /></a><ResultRiderName>Andy Marsden</ResultRiderName></td>
-              <td width='100' align='center'>+2:15</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3303919911'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:16</td>
             </ResultRow>
             <ResultOddRow>
-              <td width='100' align='center'>5</td>
+              <td width='100' align='center'>6</td>
               <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
-              <td width='100' align='center'>+2:15</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3303857808'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:21</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>7</td>
               <td ><a href='https://www.strava.com/athletes/41594275'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/41594275/11962456/1/medium.jpg' /></a><ResultRiderName>nick renny</ResultRiderName></td>
-              <td width='100' align='center'>+2:20</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3303926426'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:23</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>8</td>
-              <td ><a href='https://www.strava.com/athletes/20456040'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/20456040/5949621/2/medium.jpg' /></a><ResultRiderName>Ben Mort</ResultRiderName></td>
-              <td width='100' align='center'>+2:43</td>
+              <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3303933677'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:41</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>9</td>
+              <td ><a href='https://www.strava.com/athletes/20456040'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/20456040/5949621/2/medium.jpg' /></a><ResultRiderName>Ben Mort</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3303911716'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:47</td>
+            </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>10</td>
+              <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3303947563'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:51</td>
+            </ResultOddRow>
+            <ResultRow>
+              <td width='100' align='center'>11</td>
               <td ><a href='https://www.strava.com/athletes/3873678'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/3873678/2143920/1/medium.jpg' /></a><ResultRiderName>James Russell</ResultRiderName></td>
-              <td width='100' align='center'>+4:16</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3303958903'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+4:17</td>
             </ResultRow>
           </tbody>
         </ResultTable>
@@ -475,6 +565,7 @@ export default () => {
             <tr>
               <ResultHeader width='100' align='center'>Position</ResultHeader>
               <ResultHeader >Name</ResultHeader>
+              <ResultHeader width='100' align='center'>Activity</ResultHeader>
               <ResultHeader width='100' align='center'>Time</ResultHeader>
             </tr>
           </thead>
@@ -482,12 +573,14 @@ export default () => {
             <ResultRow>
               <td width='100' align='center'>1</td>
               <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
-              <td width='100' align='center'>22:24</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3303933677'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>22:32</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>2</td>
               <td ><a href='https://www.strava.com/athletes/2505487'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/2505487/871496/1/medium.jpg' /></a><ResultRiderName>Katherine Potsides</ResultRiderName></td>
-              <td width='100' align='center'>+0:08</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3303947563'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+0:10</td>
             </ResultOddRow>
           </tbody>
         </ResultTable>
@@ -497,8 +590,8 @@ export default () => {
 <svg viewBox='0 0 1000 100' xmlns='http://www.w3.org/2000/svg'>
   
   
-  <polyline points='8,94 17,94 28,94 40,95 52,95 64,95 74,94 83,94 92,94 102,95 113,95 124,95 135,95 146,95 156,95 166,95 176,94 185,94 196,94 206,93 216,93 226,93 234,91 243,91 253,92 263,92 273,91 283,91 293,91 303,92 313,92 323,92 333,92 344,92 356,93 369,94 381,94 394,95 406,95 418,95 428,94 438,94 446,94 456,94 467,95 478,95 488,95 499,95 509,95 519,95 529,95 537,94 547,94 557,94 566,93 575,93 585,93 593,91 600,91 609,92 619,92 630,91 640,91 650,91 659,91 669,92 679,92 688,91 698,92 708,93 719,93 731,94 742,94 754,95 765,95 777,95 787,94 796,94 805,94 814,94 824,95 835,95 845,95 856,95 866,95 877,95 888,95 898,94 909,94 919,94 930,93 941,93 950,92 959,91 970,92 981,92 995,93' fill='none' stroke='#333' strokeWidth='5' />
-  <path d='M8,94 17,94 28,94 40,95 52,95 64,95 74,94 83,94 92,94 102,95 113,95 124,95 135,95 146,95 156,95 166,95 176,94 185,94 196,94 206,93 216,93 226,93 234,91 243,91 253,92 263,92 273,91 283,91 293,91 303,92 313,92 323,92 333,92 344,92 356,93 369,94 381,94 394,95 406,95 418,95 428,94 438,94 446,94 456,94 467,95 478,95 488,95 499,95 509,95 519,95 529,95 537,94 547,94 557,94 566,93 575,93 585,93 593,91 600,91 609,92 619,92 630,91 640,91 650,91 659,91 669,92 679,92 688,91 698,92 708,93 719,93 731,94 742,94 754,95 765,95 777,95 787,94 796,94 805,94 814,94 824,95 835,95 845,95 856,95 866,95 877,95 888,95 898,94 909,94 919,94 930,93 941,93 950,92 959,91 970,92 981,92 995,93 995,100 5,100' fill='#9ea1ad' />
+  <polyline points='8,94 17,94 27,94 40,95 52,95 63,95 73,94 82,94 91,94 101,95 112,95 123,95 134,95 145,95 155,95 165,95 174,94 184,94 194,94 204,93 214,93 225,93 233,91 241,91 251,92 261,92 271,91 281,91 291,91 301,92 311,92 321,92 331,92 342,92 353,93 366,94 378,94 391,95 403,95 414,95 425,94 435,94 443,94 452,94 463,95 475,95 485,95 495,95 505,95 515,95 525,95 533,94 543,94 553,94 562,93 571,93 581,93 588,91 596,91 605,92 615,92 625,91 635,91 645,91 655,91 664,92 674,92 683,91 693,92 703,93 714,93 725,94 737,94 749,95 760,95 771,95 781,94 790,94 799,94 808,94 818,95 829,95 839,95 850,95 860,95 871,95 881,95 892,94 902,94 913,94 923,93 934,93 943,92 952,91 963,92 974,92 984,91 995,95' fill='none' stroke='#333' strokeWidth='5' />
+  <path d='M8,94 17,94 27,94 40,95 52,95 63,95 73,94 82,94 91,94 101,95 112,95 123,95 134,95 145,95 155,95 165,95 174,94 184,94 194,94 204,93 214,93 225,93 233,91 241,91 251,92 261,92 271,91 281,91 291,91 301,92 311,92 321,92 331,92 342,92 353,93 366,94 378,94 391,95 403,95 414,95 425,94 435,94 443,94 452,94 463,95 475,95 485,95 495,95 505,95 515,95 525,95 533,94 543,94 553,94 562,93 571,93 581,93 588,91 596,91 605,92 615,92 625,91 635,91 645,91 655,91 664,92 674,92 683,91 693,92 703,93 714,93 725,94 737,94 749,95 760,95 771,95 781,94 790,94 799,94 808,94 818,95 829,95 839,95 850,95 860,95 871,95 881,95 892,94 902,94 913,94 923,93 934,93 943,92 952,91 963,92 974,92 984,91 995,95 995,100 5,100' fill='#9ea1ad' />
 </svg>
 
         <h4>⏱️ General</h4>
@@ -507,6 +600,7 @@ export default () => {
             <tr>
               <ResultHeader width='100' align='center'>Position</ResultHeader>
               <ResultHeader >Name</ResultHeader>
+              <ResultHeader width='100' align='center'>Activity</ResultHeader>
               <ResultHeader width='100' align='center'>Time</ResultHeader>
             </tr>
           </thead>
@@ -514,37 +608,56 @@ export default () => {
             <ResultRow>
               <td width='100' align='center'>1</td>
               <td ><a href='https://www.strava.com/athletes/4312734'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/4312734/2268752/2/medium.jpg' /></a><ResultRiderName>Will Johnson</ResultRiderName></td>
-              <td width='100' align='center'>20:58</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3272484375'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>21:05</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>2</td>
               <td ><a href='https://www.strava.com/athletes/33356430'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/33356430/9918290/16/medium.jpg' /></a><ResultRiderName>Matt W. (Peckham CC/DIRT)</ResultRiderName></td>
-              <td width='100' align='center'>+0:07</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3272487329'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+0:08</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>3</td>
               <td ><a href='https://www.strava.com/athletes/718104'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/718104/962882/4/medium.jpg' /></a><ResultRiderName>Andy Marsden</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3272451647'><ResultIcon src={stravaIcon} /></a></td>
               <td width='100' align='center'>+1:17</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>4</td>
-              <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
-              <td width='100' align='center'>+1:34</td>
+              <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3272460525'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+1:41</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>5</td>
-              <td ><a href='https://www.strava.com/athletes/20456040'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/20456040/5949621/2/medium.jpg' /></a><ResultRiderName>Ben Mort</ResultRiderName></td>
-              <td width='100' align='center'>+2:11</td>
+              <td ><a href='https://www.strava.com/athletes/14118007'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/14118007/7293533/4/medium.jpg' /></a><ResultRiderName>Leo Hemsted</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3272514484'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+1:48</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>6</td>
-              <td ><a href='https://www.strava.com/athletes/41594275'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/41594275/11962456/1/medium.jpg' /></a><ResultRiderName>nick renny</ResultRiderName></td>
-              <td width='100' align='center'>+2:21</td>
+              <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3272457894'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:14</td>
             </ResultOddRow>
             <ResultRow>
               <td width='100' align='center'>7</td>
+              <td ><a href='https://www.strava.com/athletes/20456040'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/20456040/5949621/2/medium.jpg' /></a><ResultRiderName>Ben Mort</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3272449481'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:20</td>
+            </ResultRow>
+            <ResultOddRow>
+              <td width='100' align='center'>8</td>
+              <td ><a href='https://www.strava.com/athletes/41594275'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/41594275/11962456/1/medium.jpg' /></a><ResultRiderName>nick renny</ResultRiderName></td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3272461104'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+2:24</td>
+            </ResultOddRow>
+            <ResultRow>
+              <td width='100' align='center'>9</td>
               <td ><a href='https://www.strava.com/athletes/3873678'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/3873678/2143920/1/medium.jpg' /></a><ResultRiderName>James Russell</ResultRiderName></td>
-              <td width='100' align='center'>+5:49</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3272498553'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+5:57</td>
             </ResultRow>
           </tbody>
         </ResultTable>
@@ -554,6 +667,7 @@ export default () => {
             <tr>
               <ResultHeader width='100' align='center'>Position</ResultHeader>
               <ResultHeader >Name</ResultHeader>
+              <ResultHeader width='100' align='center'>Activity</ResultHeader>
               <ResultHeader width='100' align='center'>Time</ResultHeader>
             </tr>
           </thead>
@@ -561,12 +675,14 @@ export default () => {
             <ResultRow>
               <td width='100' align='center'>1</td>
               <td ><a href='https://www.strava.com/athletes/11496118'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/11496118/9922909/1/medium.jpg' /></a><ResultRiderName>Liz M  Ⓥ </ResultRiderName></td>
-              <td width='100' align='center'>22:35</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3272460525'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>22:46</td>
             </ResultRow>
             <ResultOddRow>
               <td width='100' align='center'>2</td>
               <td ><a href='https://www.strava.com/athletes/16378742'><ResultAvatar src='https://dgalywyr863hv.cloudfront.net/pictures/athletes/16378742/6053522/2/medium.jpg' /></a><ResultRiderName>Jemma Adams</ResultRiderName></td>
-              <td width='100' align='center'>+0:36</td>
+              <td width='100' align='center'><a href='https://www.strava.com/activities/3272457894'><ResultIcon src={stravaIcon} /></a></td>
+              <td width='100' align='center'>+0:33</td>
             </ResultOddRow>
           </tbody>
         </ResultTable>

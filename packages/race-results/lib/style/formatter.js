@@ -87,11 +87,13 @@ import {
   ResultRow,
   ResultOddRow,
   ResultAvatar,
-  ResultRiderName
+  ResultRiderName,
+  ResultIcon
 } from '../components/panels'
 import membershipBackground from '../../assets/membership-bg.jpg'
 import equipmentBackground from '../../assets/equipment-bg.jpg'
 import pccAvatar from '../../assets/pcc-logo-round.png'
+import stravaIcon from '../../assets/strava.png'
 
 export default () => {
   return (

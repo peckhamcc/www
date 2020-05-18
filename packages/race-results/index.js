@@ -25,6 +25,11 @@ async function main () {
     console.error('Processing', athlete.firstname, athlete.lastname)
 
     for (const stage of race.stages) {
+      stage.activities = stage.activities || {}
+      stage.times = stage.times || {}
+      stage.sprints = stage.sprints || []
+      stage.climbs = stage.climbs || []
+
       // find the activity in their stream
       const activity = await findActivity(stage, api)
 
@@ -43,14 +48,17 @@ async function main () {
       }
 
       stage.sprints.forEach(sprint => {
+        sprint.times = sprint.times || {}
         sprint.times[athlete.id] = findFastestSegmentTime(activity, sprint.name)
       })
 
       stage.climbs.forEach(climb => {
+        climb.times = climb.times || {}
         climb.times[athlete.id] = findFastestSegmentTime(activity, climb.name)
       })
 
       stage.times[athlete.id] = activity.stage_time
+      stage.activities[athlete.id] = activity
     }
   }
 

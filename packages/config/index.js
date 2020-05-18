@@ -262,7 +262,7 @@ const ARM_WARMER_SIZES = [{
     }
   }
 }]
-/*
+
 const SOCK_SIZES = [{
   code: 'S/M',
   name: 'Small/Medium',
@@ -281,6 +281,7 @@ const SOCK_SIZES = [{
   }
 }]
 
+/*
 const GLOVE_SIZES = [{
   code: 'XS',
   name: 'Extra small',
@@ -661,6 +662,21 @@ const config = {
       sizes: JERSEY_SIZES,
       genders: GENDERS
     }, {
+      sku: 'GILET-WHITE-2020',
+      title: 'Summer gilet',
+      slug: 'gilet-white',
+      section: SECTIONS.OUTERWEAR,
+      details: [
+        'Lightweight packable Club Gilet in white',
+        'The Club Gilet has a windproof front &amp; shoulders and is made of a high stretch fine denier material.',
+        'It has a deep neck for increased wind protection, comes with a full-length YKK zip, three rear pockets and packs down to easily fit in a jersey pocket.',
+        'It is available in male and female specific versions and has an athletic fit.',
+        'Exactly the same as the black gilet, only it will match your summer jersey, socks & cap'
+      ],
+      price: 5100,
+      sizes: JERSEY_SIZES,
+      genders: GENDERS
+    }, {
       sku: 'BIB-SHORTS-2020',
       title: 'Bib shorts',
       slug: 'bib-shorts',
@@ -700,6 +716,18 @@ const config = {
       price: 1500,
       sizes: ARM_WARMER_SIZES
     }, {
+      sku: 'ARM-WARMERS-WHITE-2020',
+      title: 'Arm warmers in White',
+      slug: 'arm-warmers-white',
+      section: SECTIONS.ACCESSORIES,
+      details: [
+        'Our Thermal Arm Warmers are made from Roubaix high stretch insulation (e.g. nylon/lycra construction with a brushed inner to retain heat).',
+        'They have minimal seams for comfort and have silicone grippers at the bicep to ensure they stay in place.',
+        'In white to match your summer jersey, cap, socks, etc'
+      ],
+      price: 1500,
+      sizes: ARM_WARMER_SIZES
+    }, {
       sku: 'CAP-2018',
       title: 'Cap',
       slug: 'cap',
@@ -709,6 +737,20 @@ const config = {
         'Cycling caps keep the sun out of your eyes when it\'s sunny and the rain out of your eyes when it\'s wet.',
         'An essential piece of kit, don\'t leave home without one. Unless you are going to the pub, in which case observe <a href="http://www.velominati.com/the-rules/#22">rule #22</a> and leave it at home.',
         'Our caps are made in Italy from black cotton with a stiff peak and the Peckham logos are screen printed in white. A stitched ribbon in club colours runs over the top.',
+        'Hand wash only. We mean it.',
+        'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
+      ],
+      price: 1500
+    }, {
+      sku: 'CAP-WHITE-2020',
+      title: 'White cap',
+      slug: 'cap-white',
+      section: SECTIONS.ACCESSORIES,
+      details: [
+        'White cotton cap with stitched ribbon and white screen print.',
+        'Cycling caps keep the sun out of your eyes when it\'s sunny and the rain out of your eyes when it\'s wet.',
+        'An essential piece of kit, don\'t leave home without one. Unless you are going to the pub, in which case observe <a href="http://www.velominati.com/the-rules/#22">rule #22</a> and leave it at home.',
+        'Our caps are made in Italy from white cotton with a stiff peak and the Peckham logos are screen printed in black. A stitched ribbon in club colours runs over the top.',
         'Hand wash only. We mean it.',
         'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
       ],
@@ -735,32 +777,34 @@ const config = {
       ],
       sizes: GLOVE_SIZES,
       price: 2800
-    },
-      {
-        sku: 'SOCKS-WINTER-2019',
-        title: 'Winter Club Socks',
-        slug: 'winter-socks',
-        section: SECTIONS.ACCESSORIES,
-        details: [
-          'Black Club Socks with a merino foot & nylon leg culminating in the club stripes at the top.',
-          'Cuff size is a Rule #27 friendly 7.5-inches for large, 6.5-inches for medium.',
-          'The Instagram-friendly orientation of the club motto on the top of the socks will remind you we roll united!'
-        ],
-        sizes: SOCK_SIZES,
-        price: 1300
-      }, {
-        sku: 'SOCKS-SUMMER-2019',
-        title: 'Summer Club Socks',
-        slug: 'summer-socks',
-        section: SECTIONS.ACCESSORIES,
-        details: [
-          'White Club Socks in CoolMax foot & nylon leg culminating in the club stripes at the top.',
-          'Cuff size is a Rule #27 friendly 7.5-inches for large, 6.5-inches for medium.',
-          'The Instagram-friendly orientation of the club motto on the top of the socks will remind you we roll united!'
-        ],
-        sizes: SOCK_SIZES,
-        price: 900
-      }, {
+    }, */
+    {
+      sku: 'SOCKS-WINTER-2019',
+      title: 'Winter Club Socks',
+      slug: 'winter-socks',
+      section: SECTIONS.ACCESSORIES,
+      details: [
+        'Black Club Socks CoolMax foot & nylon leg culminating in the club stripes at the top.',
+        'Cuff size is a Rule #27 friendly 7.5-inches for large, 6.5-inches for medium.',
+        'The Instagram-friendly orientation of the club motto on the top of the socks will remind you we roll united!',
+        'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
+      ],
+      sizes: SOCK_SIZES,
+      price: 1100
+    }, {
+      sku: 'SOCKS-SUMMER-2019',
+      title: 'Summer Club Socks',
+      slug: 'summer-socks',
+      section: SECTIONS.ACCESSORIES,
+      details: [
+        'White Club Socks in CoolMax foot & nylon leg culminating in the club stripes at the top.',
+        'Cuff size is a Rule #27 friendly 7.5-inches for large, 6.5-inches for medium.',
+        'The Instagram-friendly orientation of the club motto on the top of the socks will remind you we roll united!',
+        'N.b. there is stock of this item available to buy at <a href="https://ratracecycles.com/">Rat Race Cycles</a>'
+      ],
+      sizes: SOCK_SIZES,
+      price: 1100
+    }, /* {
         sku: 'HEADSET-CAP-2018',
         title: 'Headset Cap',
         slug: 'headset-cap',

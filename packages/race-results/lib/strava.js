@@ -48,7 +48,10 @@ function strava ({ athleteId, accessToken, refreshToken }) {
       if (err.isBoom && err.output.statusCode === 401) {
         const body = JSON.parse(err.data.payload.toString('utf8'))
 
-        if (body.errors.find(e => e.field === 'access_token' && e.code === 'invalid')) {
+        if (
+          body.errors.find(e => e.field === 'access_token' && e.code === 'invalid') ||
+          body.errors.find(e => e.field === '' && e.code === 'invalid')
+        ) {
           // access token has expired
           const response = await Wreck.post(`https://www.strava.com/api/v3/oauth/token?${querystring.stringify({
             client_id: config.client_id,

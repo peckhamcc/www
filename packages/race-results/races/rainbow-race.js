@@ -13,23 +13,19 @@ module.exports = {
     ],
     start: new Date('Sun May 10 2020 09:30:00 GMT+0100'),
     distance: 16000,
-    firstSegment: 'LAST 500 METERS TO THE FINISH (AFTER THE TURN)',
-    times: {},
     sprints: [{
       name: 'Zwift W Broad St Sprint',
       description: [
         'Intermediate sprint 200m 0%'
       ],
-      type: 'intermediate',
-      times: {}
+      type: 'intermediate'
     }],
     climbs: [{
       name: 'Richmond KOM.',
       description: [
         '600m long cat 4 "climb" rising a whopping 39m'
       ],
-      category: 4,
-      times: {}
+      category: 4
     }]
   }, {
     name: 'Stage #3 - Triple Loops - Road Race',
@@ -38,23 +34,19 @@ module.exports = {
     ],
     start: new Date('Sat May 9 2020 08:35:00 GMT+0100'),
     distance: 41000,
-    firstSegment: 'End Of Bridge To Finish',
-    times: {},
     sprints: [{
       name: 'The Mall Sprint Forward (Zwift Insider verified)',
       description: [
         '180m intermediate sprint, -1% gradient'
       ],
-      type: 'intermediate',
-      times: {}
+      type: 'intermediate'
     }],
     climbs: [{
       name: 'Leith Hill Full - VeloViewer',
       description: [
         '5.24km cat 3 climb rising 238m'
       ],
-      category: 3,
-      times: {}
+      category: 3
     }]
   }, {
     name: 'Stage #2 - Innsbruckring - Crit',
@@ -63,29 +55,19 @@ module.exports = {
     ],
     start: new Date('Fri May 8 2020 10:05:00 GMT+0100'),
     distance: 16000,
-    firstSegment: 'UCI Finish Line Sprint Forward',
-    times: {},
     sprints: [{
       name: 'Innsbruck Sprint Forward',
       description: [
         '300m intermediate sprint'
       ],
-      type: 'intermediate',
-      times: {}
-    }],
-    climbs: [],
-    times: []
+      type: 'intermediate'
+    }]
   }, {
     name: 'Stage #1 - Duchy Estate - Prologue',
     description: [
       'A 4k TT through Yorkshire'
     ],
     start: new Date('Fri May 8 2020 09:05:00 GMT+0100'),
-    distance: 4000,
-    firstSegment: 'Start to Sprint Banner Lead In (Zwift Insider verified)',
-    times: {},
-    sprints: [],
-    climbs: [],
-    times: []
+    distance: 4000
   }]
 }

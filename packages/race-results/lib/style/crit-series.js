@@ -73,7 +73,7 @@ function calculatePositions (times, filterRiders, sort = (a, b) => a - b) {
   return positions
 }
 
-function calculateStageTime (stage, riders, filterRiders) {
+function calculateStageTime (stage, riders, filterRiders = () => Boolean) {
   const positions = calculatePositions(stage.times, filterRiders)
   const output = []
 
@@ -101,9 +101,17 @@ function calculateStageTime (stage, riders, filterRiders) {
         avatar = '{pccAvatar}'
       }
 
+      const activity = stage.activities[id]
+      let activityLink = ''
+
+      if (activity) {
+        activityLink = `<a href='https://www.strava.com/activities/${activity.id}'><ResultIcon src={stravaIcon} /></a>`
+      }
+
       output.push([
         position,
         `<a href='https://www.strava.com/athletes/${rider.id}'><ResultAvatar src=${avatar} /></a><ResultRiderName>${rider.firstname} ${rider.lastname}</ResultRiderName>`,
+        activityLink,
         formatted
       ])
     })
@@ -117,7 +125,6 @@ module.exports = function critSeries (race, riders) {
   // GC for overall
   // Points for sprints
   // Mountain points for climbs
-  const men = id => riders[id].sex === 'M'
   const women = id => riders[id].sex === 'F'
 
   const output = {
@@ -138,11 +145,11 @@ module.exports = function critSeries (race, riders) {
   race.stages.forEach(stage => {
     const results = [{
       name: '⏱️ General',
-      headers: ['Position', 'Name', 'Time'],
-      rows: calculateStageTime(stage, riders, men)
+      headers: ['Position', 'Name', 'Activity', 'Time'],
+      rows: calculateStageTime(stage, riders)
     }, {
       name: '⏱️ Women',
-      headers: ['Position', 'Name', 'Time'],
+      headers: ['Position', 'Name', 'Activity', 'Time'],
       rows: calculateStageTime(stage, riders, women)
     }]
 

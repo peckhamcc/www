@@ -49,6 +49,11 @@ export const ResultRiderName = styled.p`
   padding: 0;
 `
 
+export const ResultIcon = styled.img`
+  height: 40px;
+  width: 40px;
+`
+
 export const FlexContainerCentered = styled.div`
   display: flex;
   justify-content: space-between;
