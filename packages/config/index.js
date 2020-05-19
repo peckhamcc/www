@@ -685,7 +685,7 @@ const config = {
         'Club Bib Shorts in black',
         'Made from Italian Power Lycra fabric with Coldblack Technology, our Club Bibshort has a wicking upper mesh and flat-lock stitching and overlocked seams throughout for comfort.',
         'There\'s a discrete rear pocket for your valuables and raw edge silicone hem grips to make sure the legs stay put.',
-        'They are available in male and female specific versions and there are options for varying leg lengths.'
+        'They are available in male and female specific versions.'
       ],
       price: 5100,
       sizes: JERSEY_SIZES,
@@ -698,7 +698,7 @@ const config = {
       details: [
         'Winter Tights in black',
         'Thermal winter tights made from Roubaix high stretch insulation (e.g. nylon/lycra construction with a brushed inner to retain heat).',
-        'They are available in male and female specific versions and has an athletic fit.'
+        'They are available in male and female specific versions and have an athletic fit.'
       ],
       price: 6300,
       sizes: JERSEY_SIZES,
