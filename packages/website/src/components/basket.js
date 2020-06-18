@@ -281,7 +281,7 @@ class Basket extends Component {
           <Terms error={showTermsError}>
             <h4>Terms &amp; Conditions</h4>
             <p>All kit is made to order and cannot be cancelled, exchanged or refunded once your order has been placed.</p>
-            <p>Items from kit orders are sent to the factory when minimum quantities are reached and take 4-6 weeks to be made &amp; shipped.</p>
+            <p>We aim to send kit orders to the factory every two months, then it will take approximately 6 weeks to be made &amp; shipped.</p>
             <p>When items are available, your order will be available to be picked up from the most excellent <a href='https://ratracecycles.com/'>Rat Race Cycles</a> at 118 Evelina Road, SE15 3HL.</p>
             <p>We will be in touch to let you know the delivery date as soon as it is available and once items are ready for pick up.</p>
             <p>Please confirm you understand the above and are happy to proceed with your order:
