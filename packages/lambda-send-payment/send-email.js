@@ -87,12 +87,12 @@ div {
         ${displayItems(lineItems, '&pound;', '<br />')}
       </p>
       <p>Total value: &pound;${amount}</p>
-      <p>The address you submitted was:</p>
-      <p>${
-  [(`${firstName} ${lastName}`).trim(), address1, address2, address3, postCode].filter(Boolean).join('<br />')
-}</p>
-      <p>Your order will be submitted to the factory at the end of the month.</p>
-      <p>Once we know the delivery date for your items we'll let you know.</p>
+      <p>We aim to submit orders to the factory every two months.</p>
+      <p>
+        It then typically takes a further six weeks to print, after which your items will be held at
+        <a href="https://ratracecycles.com">Rat Race Cycles</a> for you to pick up.
+      </p>
+      <p>Once we know the delivery date for your items we'll send you an email to let you know.</p>
       <p>Please get in touch if you'd like any updates in the interim.</p>
       <p>Thank you,</p>
       <p>Peckham Cycle Club</p>
@@ -127,15 +127,11 @@ ${displayItems(lineItems, '£', '\r\n')}
 
 Total value: £${amount}
 
-The address you submitted was:
+We aim to submit orders to the factory every two months.
 
-${
-  [(`${firstName} ${lastName}`).trim(), address1, address2, address3, postCode].filter(Boolean).join('\r\n')
-}
+It then typically takes about six weeks to print, after which your items will be held at Rat Race Cycles for you to pick up.
 
-Your order will be submitted to the factory at the end of the month.
-
-Once we know the delivery date for your items we'll let you know.
+Once we know the delivery date for your items we'll send you an email to let you know.
 
 Please get in touch if you'd like any updates in the interim.
 
