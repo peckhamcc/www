@@ -27,7 +27,7 @@ class ShopPage extends Component {
         <Hero background={shopBackground.src} />
         <Panel>
           <p>
-            Our Kit is made to order, and is only availabe to <Link to='/membership'>friends of Peckham CC</Link>, our
+            Our kit is made to order, and is only available to <Link to='/membership'>friends of Peckham CC</Link>, our
             voluntary membership scheme.
           </p>
           <p>
