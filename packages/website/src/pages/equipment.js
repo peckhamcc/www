@@ -35,6 +35,7 @@ class EquipmentPage extends Component {
             <li>Mobile phone - in case of emergency.  Selfie emergencies.</li>
             <li>A small amount of cash. Cards are good too but some coffee stops in the countryside only take cash.</li>
             <li>Glasses - these will keep sun/wind/rain &amp; road grit out of your eyes</li>
+            <li>Face mask/buff - in case of catastrophe, you may need to get a train or cab home. And in case of cake, you may need to walk inside a shop to order!</li>
           </ol>
         </Panel>
         <LinkPanel background={ridesBackground.src}>
