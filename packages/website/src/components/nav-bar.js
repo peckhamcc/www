@@ -260,6 +260,9 @@ class NavBarWrapper extends Component {
                     <Link to='/ethos'>Club Ethos</Link>
                   </NavLink>
                   <NavLink>
+                    <Link to='/diversity'>Diversity &amp; Inclusion</Link>
+                  </NavLink>
+                  <NavLink>
                     <Link to='/leading'>Leading a ride</Link>
                   </NavLink>
                   <NavLink>
@@ -327,6 +330,9 @@ class NavBarWrapper extends Component {
                   </NavLink>
                   <NavLink>
                     <Link to='/ethos'>Club Ethos</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/diversity'>Diversity &amp; Inclusion</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/leading'>Leading a ride</Link>

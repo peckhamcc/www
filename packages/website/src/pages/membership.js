@@ -23,7 +23,7 @@ import {
 } from '../components/forms'
 import membershipBackground from '../../assets/membership-bg.jpg'
 import ridesBackground from '../../assets/rides-bg.jpg'
-import equipmentBackground from '../../assets/equipment-bg.jpg'
+import diversityBackground from '../../assets/diversity-bg.jpg'
 
 const PerksList = styled.ul`
   li {
@@ -73,8 +73,8 @@ class MembershipPage extends Component {
         <LinkPanel background={ridesBackground.src}>
           <Link to='/rides'>Rides</Link>
         </LinkPanel>
-        <LinkPanel background={equipmentBackground.src}>
-          <Link to='/equipment'>Equipment</Link>
+        <LinkPanel background={diversityBackground.src}>
+          <Link to='/diversity'>Diversity</Link>
         </LinkPanel>
       </PageWrapper>
     )
