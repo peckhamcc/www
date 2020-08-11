@@ -87,7 +87,7 @@ class HomePage extends Component {
             just come along and introduce yourself.
           </p>
           <p>
-            For the latest updates on this and more please sign up to our <Link to='/mailing-list'>mailing list</Link>
+            For the latest updates on this and more please sign up to our <Link to='/mailing-list'>mailing list</Link>.
           </p>
           <p>We hope our riders, friends, family and loved ones remain safe and well - United we Roll!</p>
         </Panel>

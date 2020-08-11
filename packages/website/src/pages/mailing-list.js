@@ -21,7 +21,7 @@ class MailingListPage extends Component {
         <Hero background={background.src} />
         <Panel>
           <h2>Mailing list</h2>
-          <p>Sign up to our infrequent mailing list for club updates, including rides, trips, training, kit, etc</p>
+          <p>Sign up to our mailing list for club updates, including rides, trips, training, kit, etc</p>
           <form
             style={{
               padding: 3
