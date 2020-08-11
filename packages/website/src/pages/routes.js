@@ -8,7 +8,7 @@ import {
   Hero
 } from '../components/panels'
 import routesBackground from '../../assets/routes-bg.jpg'
-import shortLoopGpx from '../../assets/peckham-cc-short-loop.gpx'
+import socialLoopGpx from '../../assets/peckham-cc-social-loop.gpx'
 import knattsValleyGpx from '../../assets/peckham-cc-knatts-valley.gpx'
 import surreyHillsGpx from '../../assets/peckham-cc-surrey-hills.gpx'
 import styled from 'styled-components'
@@ -45,10 +45,10 @@ const Sharing = styled.li`
 `
 
 const routes = [{
-  hash: 'the-short-loop',
-  title: 'The Short Loop',
+  hash: 'the-social-loop',
+  title: 'The Social Loop',
   description: 'A staple of our club Social Spin this 60km/770m route takes is a great introduction to the club.',
-  gpx: shortLoopGpx,
+  gpx: socialLoopGpx,
   strava: 'https://www.strava.com/routes/23414432',
   embed: 'https://www.plotaroute.com/embedmap/1016515'
 }, {
