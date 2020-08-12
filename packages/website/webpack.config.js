@@ -122,6 +122,11 @@ const config = {
       loaders: [
         'file-loader?name=[name]-bundle-[hash].[ext]'
       ]
+    }, {
+      test: /\.pdf$/i,
+      loaders: [
+        'file-loader?name=[name]-bundle-[hash].[ext]'
+      ]
     }]
   }
 }

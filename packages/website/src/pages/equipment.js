@@ -23,10 +23,10 @@ class EquipmentPage extends Component {
           <h2>Equipment checklist</h2>
           <p>It's important to have the right equipment for a ride, you'll be faster, happier and more comfortable if you are well prepared!</p>
           <ol>
-            <li>Helmet - saftey first</li>
+            <li>Helmet - safety first</li>
             <li>Road Bike - it doesn't have to be expensive but it should have drop handlebars and gears</li>
-            <li>Pedals - clip-in (or clipless) pedals and cycling specific shoes are a must - they are more efficient than flats &amp; trainers and safter than toe-clips</li>
-            <li>2x spare inner tubes, tyre levers and a small pump or CO<sub>2</sub> cannister</li>
+            <li>Pedals - clip-in (or clipless) pedals and cycling specific shoes are a must - they are more efficient than flats &amp; trainers and safer than toe-clips</li>
+            <li>2x spare inner tubes, tyre levers and a small pump or CO<sub>2</sub> inflator and canister</li>
             <li>Multi-tool - these are usually small and have the basic tools for fixing common bike problems</li>
             <li>Lights - when riding in darker months it's good to see and be seen</li>
             <li>Water bottle &amp; bottle cages - it's important to stay hydrated especially in warmer weather</li>
@@ -35,6 +35,7 @@ class EquipmentPage extends Component {
             <li>Mobile phone - in case of emergency.  Selfie emergencies.</li>
             <li>A small amount of cash. Cards are good too but some coffee stops in the countryside only take cash.</li>
             <li>Glasses - these will keep sun/wind/rain &amp; road grit out of your eyes</li>
+            <li>Face mask/buff - in case of catastrophe, you may need to get a train or cab home. And in case of cake, you may need to walk inside a shop to order!</li>
           </ol>
         </Panel>
         <LinkPanel background={ridesBackground.src}>

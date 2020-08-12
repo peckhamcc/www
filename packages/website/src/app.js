@@ -25,6 +25,7 @@ import {
   Riding,
   Leading,
   Ethos,
+  Diversity,
   Calendar,
   Strava,
   StravaError,
@@ -87,6 +88,7 @@ export default () => {
                 <Route path='/riding' component={Riding} />
                 <Route path='/leading' component={Leading} />
                 <Route path='/ethos' component={Ethos} />
+                <Route path='/diversity' component={Diversity} />
                 <Route path='/calendar' component={Calendar} />
                 <Route exact path='/strava/error' component={StravaError} />
                 <Route exact path='/strava/success' component={StravaSuccess} />

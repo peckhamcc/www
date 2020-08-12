@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { PageWrapper, Panel, Hero, LinkPanel } from '../components/panels'
 import ethosBackground from '../../assets/ethos-bg.png'
-import membershipBackground from '../../assets/membership-bg.jpg'
-import equipmentBackground from '../../assets/equipment-bg.jpg'
+import leadingBackground from '../../assets/leading-bg.jpg'
+import diversityBackground from '../../assets/diversity-bg.jpg'
 
 class EthosPage extends Component {
   render () {
@@ -43,11 +43,11 @@ class EthosPage extends Component {
             grow and flourish.
           </p>
         </Panel>
-        <LinkPanel background={equipmentBackground.src}>
-          <Link to='/equipment'>Equipment</Link>
+        <LinkPanel background={diversityBackground.src}>
+          <Link to='/diversity'>Diversity and Inclusion</Link>
         </LinkPanel>
-        <LinkPanel background={membershipBackground.src}>
-          <Link to='/membership'>Membership</Link>
+        <LinkPanel background={leadingBackground.src}>
+          <Link to='/Leading'>Leading</Link>
         </LinkPanel>
       </PageWrapper>
     )

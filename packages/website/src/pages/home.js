@@ -76,32 +76,20 @@ class HomePage extends Component {
           <p>Full details are posted on Facebook and Twitter towards the end of the week when we know what the weather is going to do, please check those pages for more information.</p>
         </Panel> */}
         <Panel>
-          <h2>Coronavirus update</h2>
-          <p>Dear riders,</p>
+          <h2>Aug 11th update: Saturday Social Returns!</h2>
           <p>
-            With great sadness and with heavy hearts Peckham CC will no longer be running Saturday Social rides or
-            arranging group events and rides until further notice. Given recent news and due to the rapid spread of the
-            Coronavirus around London we can’t continue to organise activities and meet ups until the risk of
-            inadvertent transmission to our riders’ friends, family and loved ones has passed. This decision is
-            following advice from British Cycling and the government and it reflects the decision of most other local
-            clubs. The current advice is that cyclists can go out on their own (unless self-isolating) and for your
-            mental and physical health we encourage you to continue with exercise if you can - please do so in a
-            sensible manner taking care to follow hygiene guidelines, avoiding social contact and please ride safely.
+            Following the recently updated guidance from British Cycling, and a great response to our call out for ride
+            leader volunteers, we are delighted that we can run our regular Saturday Social ride from Saturday 15th
+            August.  We’ll be meeting from 8am at the library this week and going forward every Saturday, to set off on
+            some usual, and maybe new routes, taking about 3 hours to ride around the lanes before returning to Peckham
+            Rye.  Groups will be limited to 6 riders per group and will set off at 5 min spaces.  Those new to the club
+            are welcome and encouraged to join on any Saturday ride: there’s no requirement to become a member, please
+            just come along and introduce yourself.
           </p>
           <p>
-            Please also note that Rat Race is still open and plan to stay open until any point they are legally
-            required to close. They are keen to keep everyone on their bikes so please continue to support them and pop
-            round for any mechanical needs.
+            For the latest updates on this and more please sign up to our <Link to='/mailing-list'>mailing list</Link>.
           </p>
-          <p>
-            For the latest updates on when we'll ride again, <Link to='/mailing-list'>sign up to our mailing list</Link>.
-          </p>
-          <p>
-            We hope our riders, friends, family and loved ones remain healthy - look out for each other and your
-            neighbours within our Peckham community and beyond.
-          </p>
-          <p>United we Roll!</p>
-          <p>Jemma, Leo, Katherine and Jonny</p>
+          <p>We hope our riders, friends, family and loved ones remain safe and well - United we Roll!</p>
         </Panel>
         <LinkPanel background={membershipBackground.src}>
           <Link to='/membership'>Membership</Link>
