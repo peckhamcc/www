@@ -86,6 +86,7 @@ class HomePage extends Component {
             are welcome and encouraged to join on any Saturday ride: there’s no requirement to become a member, please
             just come along and introduce yourself.
           </p>
+          <p>Once you've found your group at the library you'll need make sure you use <Link to='/track-trace'>the linked form to fill out your contact details for track and trace</Link>.</p>
           <p>
             For the latest updates on this and more please sign up to our <Link to='/mailing-list'>mailing list</Link>.
           </p>
