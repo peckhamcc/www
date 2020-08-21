@@ -107,6 +107,8 @@ export default () => {
                   </>
                 </Flag>
 
+                <Route path='/track-trace' component={() => window.location.replace('https://docs.google.com/forms/d/e/1FAIpQLSc9AFF9oQI2bDKWf9heplIi3hPQE6Ok2v-zGObByD9T0EjlbQ/viewform')} />
+
               </FlexItem>
               <Break />
               <Footer />
