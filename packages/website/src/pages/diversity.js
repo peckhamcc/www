@@ -35,18 +35,15 @@ class DiversityPage extends Component {
             actions.
           </p>
 
-          <p>Actions July-September 2020:</p>
+          <h3>Actions July-September 2020:</h3>
+          <h4>Completed</h4>
           <ul>
-            <li>To share this diversity and inclusion report with the club to get initial feedback.</li>
-            <li>
-              To share this report with other local SE cycling clubs with an aim to prompt discussion and share good
-              practice.
-            </li>
-            <li>
-              Convene a meeting of local club representatives to discuss diversity in our clubs and to create a joint
-              letter to British Cycling to ask them to take a more transparent and strategic approach to improving
-              diversity in cycling and supporting clubs to improve their diversity and inclusion.
-            </li>
+            <li>Diversity and Inclusion report shared with the club for initial feedback and discussion.</li>
+            <li>Report shared with other local SE clubs with the aim to prompt discussion and share good practice.</li>
+            <li>Convened a meeting of local clubs to discuss Diversity &amp; Inclusion and draft a joint letter to British Cycling (see below).</li>
+          </ul>
+          <h4>Outstanding</h4>
+          <ul>
             <li>Review and improve our diverse imagery on our website and social media channels.</li>
             <li>
               Add a blog page to the PCC website to provide a space for club members to talk about their experiences of
@@ -54,9 +51,30 @@ class DiversityPage extends Component {
             </li>
           </ul>
 
+          <h3>South East London Diversity &amp; Inclusion Network</h3>
+
           <p>
-            If you want to get in touch about our diversity and inclusion work in the club please get in touch via our
-            <Link to='/contact'>contact form</Link>.
+            In August we convened a virtual meeting with representatives from other local cycling and triathlon clubs.
+            The aim of this meeting was to discuss diversity in our clubs, the barriers to inclusion we each face and to
+            share ideas and good practice for improving Diversity &amp; Inclusion.
+          </p>
+          <p>
+            As a group we also discussed and redrafted a letter we are going to send to British Cycling asking them to
+            take a more transparent and strategic approach to improving diversity in cycling and supporting clubs to
+            improve our Diversity &amp; Inclusion.
+          </p>
+          <p>
+            The group agreed that continued collaboration across our clubs would be positive for all of us and we are
+            going to continue to work together to share ideas, help each other and develop initiatives to improve
+            Diversity &amp; Inclusion.
+          </p>
+          <p>
+            In line with our commitment to transparency you are welcome to view the <a href='https://drive.google.com/drive/folders/1YgGuhpbsFx8FnGMAS-zvR-07Sx2VR0mg'>network meeting notes.</a>
+          </p>
+
+          <p>
+            If you want to get in touch about our diversity and inclusion work in the club please get in touch via
+            our <Link to='/contact'>contact form</Link>.
           </p>
         </Panel>
         <LinkPanel background={ethosBackground.src}>
