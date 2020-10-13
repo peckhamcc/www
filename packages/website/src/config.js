@@ -67,6 +67,10 @@ const productImages = {
     ssSummerJerseyFrontImage,
     ssSummerJerseyRearImage
   ],
+  'RACE-JERSEY-2020': [
+    ssJerseyFrontImage,
+    ssJerseyRearImage
+  ],
   /*
   'WINTER-JACKET-2018': [
     winterJacketFrontImage,

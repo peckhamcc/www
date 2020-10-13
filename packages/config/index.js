@@ -26,6 +26,144 @@ const SECTIONS = {
   }
 }
 
+const UNISEX_SIZES = [{
+  code: 'XXS',
+  name: 'Extra extra small',
+  measurements: {
+    chest: {
+      unisex: {
+        min: 85,
+        max: 88
+      }
+    },
+    waist: {
+      unisex: {
+        min: 73,
+        max: 76
+      }
+    }
+  }
+}, {
+  code: 'XS',
+  name: 'Extra small',
+  measurements: {
+    chest: {
+      unisex: {
+        min: 88,
+        max: 92
+      }
+    },
+    waist: {
+      unisex: {
+        min: 76,
+        max: 80
+      }
+    }
+  }
+}, {
+  code: 'S',
+  name: 'Small',
+  measurements: {
+    chest: {
+      unisex: {
+        min: 92,
+        max: 96
+      }
+    },
+    waist: {
+      unisex: {
+        min: 80,
+        max: 84
+      }
+    }
+  }
+}, {
+  code: 'M',
+  name: 'Medium',
+  measurements: {
+    chest: {
+      unisex: {
+        min: 96,
+        max: 100
+      }
+    },
+    waist: {
+      unisex: {
+        min: 84,
+        max: 88
+      }
+    }
+  }
+}, {
+  code: 'L',
+  name: 'Large',
+  measurements: {
+    chest: {
+      unisex: {
+        min: 100,
+        max: 104
+      }
+    },
+    waist: {
+      unisex: {
+        min: 88,
+        max: 92
+      }
+    }
+  }
+}, {
+  code: 'XL',
+  name: 'Extra large',
+  measurements: {
+    chest: {
+      unisex: {
+        min: 104,
+        max: 110
+      }
+    },
+    waist: {
+      unisex: {
+        min: 92,
+        max: 98
+      }
+    }
+  }
+}, {
+  code: '2XL',
+  name: 'XX Large',
+  measurements: {
+    chest: {
+      unisex: {
+        min: 110,
+        max: 116
+      }
+    },
+    waist: {
+      unisex: {
+        min: 98,
+        max: 104
+      }
+    }
+  }
+}, {
+  code: '3XL',
+  name: 'XXX Large',
+  measurements: {
+    chest: {
+      unisex: {
+        min: 116,
+        max: 122
+      }
+    },
+    waist: {
+      unisex: {
+        min: 104,
+        max: 110
+      }
+    }
+  }
+}]
+
 const JERSEY_SIZES = [{
   code: 'XXS',
   name: 'Extra extra small',
@@ -573,6 +711,21 @@ const config = {
       sizes: JERSEY_SIZES,
       genders: GENDERS
     }, {
+      sku: 'RACE-JERSEY-2020',
+      title: 'Short Sleeved Race Jersey',
+      slug: 'short-sleeved-race-jersey',
+      section: SECTIONS.JERSEYS,
+      details: [
+        'Lightweight Short Sleeved Race Jersey in black.',
+        'This is the same design as our club jersey but in a slim fit with longer sleeves for better aerodynamics.',
+        'Made from a combination of Coolmax and Mondrian fabric, the PCC club jersey has flatlock seams, silicone grippers, three large rear pockets and a fourth with a zip for your valuables.',
+        'It is available in male and female specific versions and has a race fit.',
+        'British Cycling approved club colours for racing.'
+      ],
+      price: 7200,
+      sizes: JERSEY_SIZES,
+      genders: GENDERS
+    }, {
       sku: 'SPEED-SUIT-2020',
       title: 'Speedsuit',
       slug: 'speedsuit',
@@ -612,11 +765,10 @@ const config = {
       section: SECTIONS.OUTERWEAR,
       details: [
         'Club Shell Jacket in black',
-        'It is available in male and female specific versions and has an athletic fit.'
+        'Lightweight packable outer layer in an athletic fit.'
       ],
       price: 6300,
-      sizes: JERSEY_SIZES,
-      genders: GENDERS
+      sizes: UNISEX_SIZES
     },
     /* {
       sku: 'WINTER-JACKET-2018',
