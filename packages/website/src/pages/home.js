@@ -76,20 +76,9 @@ class HomePage extends Component {
           <p>Full details are posted on Facebook and Twitter towards the end of the week when we know what the weather is going to do, please check those pages for more information.</p>
         </Panel> */}
         <Panel>
-          <h2>Aug 11th update: Saturday Social Returns!</h2>
-          <p>
-            Following the recently updated guidance from British Cycling, and a great response to our call out for ride
-            leader volunteers, we are delighted that we can run our regular Saturday Social ride from Saturday 15th
-            August.  We’ll be meeting from 8am at the library this week and going forward every Saturday, to set off on
-            some usual, and maybe new routes, taking about 3 hours to ride around the lanes before returning to Peckham
-            Rye.  Groups will be limited to 6 riders per group and will set off at 5 min spaces.  Those new to the club
-            are welcome and encouraged to join on any Saturday ride: there’s no requirement to become a member, please
-            just come along and introduce yourself.
-          </p>
-          <p>Once you've found your group at the library you'll need make sure you use <Link to='/track-trace'>the linked form to fill out your contact details for track and trace</Link>.</p>
-          <p>
-            For the latest updates on this and more please sign up to our <Link to='/mailing-list'>mailing list</Link>.
-          </p>
+          <h2>Nov 5th update: Coronavirus update</h2>
+          <p>Sadly, in light of the nationwide lockdown starting today and <a href='https://www.britishcycling.org.uk/article/20201104-about-bc-news-British-Cycling-activities-and-events-to-be-suspended-as-new-national-measures-come-into-force-0'>updated guidance from British Cycling</a> we are pausing all Peckham CC club and social rides until further notice.  You may still ride with one other person from another household, but if you are out riding, stay safe and take care on the roads as they get colder and wetter.</p>
+          <p>For the latest updates on this and more please sign up to our <Link to='/mailing-list'>mailing list</Link>.</p>
           <p>We hope our riders, friends, family and loved ones remain safe and well - United we Roll!</p>
         </Panel>
         <LinkPanel background={membershipBackground.src}>
