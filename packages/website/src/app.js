@@ -32,7 +32,8 @@ import {
   StravaSuccess,
   Results,
   ResultsLockdownCrits,
-  ResultsRainbowRace
+  ResultsRainbowRace,
+  RideRoulette
 } from './pages'
 import configureStore from './store/configure-store'
 import '../assets/pcc-avatar.png'
@@ -96,6 +97,7 @@ export default () => {
                 <Route exact path='/results' component={Results} />
                 <Route exact path='/results/lockdown-crits-2020' component={ResultsLockdownCrits} />
                 <Route exact path='/results/rainbow-race-early-may-2020' component={ResultsRainbowRace} />
+                <Route path='/ride-roulette' component={RideRoulette} />
 
                 <Flag name={['store']}>
                   <>

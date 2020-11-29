@@ -1,0 +1,32 @@
+{
+  "name": "@peckhamcc/lambda-ride-roulette-rides-get",
+  "version": "1.0.0",
+  "description": "Get rides for Ride Roulette",
+  "main": "index.js",
+  "homepage": "https://peckhamcc.github.com/www",
+  "author": "Alex Potsides",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peckhamcc/www"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peckhamcc/www/issues"
+  },
+  "scripts": {
+    "test": "echo 0",
+    "clean": "rm -rf build",
+    "build": "cp ../config/index.js config.js && node-lambda build",
+    "deploy": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-ride-roulette-rides-get-role-g5rd9vgw --region eu-west-2",
+    "lint": "standard"
+  },
+  "devDependencies": {
+    "node-lambda": "^0.14.0",
+    "standard": "^14.3.1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.211.0",
+    "http-errors": "^1.6.3",
+    "middy": "^0.33.0"
+  }
+}
