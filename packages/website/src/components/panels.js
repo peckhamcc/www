@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import stripesImage from '../../assets/stripes.png'
 import {
-  main,
+  panelLevel1Background,
+  panelLevel1Header,
+  panelLevel1Text,
+  panelLevel2Background,
+  panelLevel2Header,
+  panelLevel2Text,
   light,
   lightAccent,
   dark,
@@ -95,15 +100,16 @@ export const PageWrapper = styled.article`
 `
 
 export const Panel = styled.div`
-  background-color: ${main};
+  background-color: ${panelLevel1Background};
   border-radius: 2px;
-  color: ${light};
+  color: ${panelLevel1Text};
   padding: 1px 20px 20px 20px;
   margin: ${spacing(1)};
   font-size: 16px;
   line-height: 1.4;
 
   h2, h3, h4 {
+    color: ${panelLevel1Header};
     margin: ${spacing(1)} 0;
     font-weight: normal;
     font-size: 24px;
@@ -128,9 +134,13 @@ export const Panel = styled.div`
 `
 
 export const InnerPanel = styled(Panel)`
-  background-color: ${lightAccent};
-  color: ${light};
+  background-color: ${panelLevel2Background};
+  color: ${panelLevel2Text};
   margin: ${spacing(2)} 0 0 0;
+
+  h2, h3, h4 {
+    color: ${panelLevel2Header};
+  }
 `
 
 const ShopPanel = styled(InnerPanel)`

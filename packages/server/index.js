@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const serveStatic = require('serve-static')
 const path = require('path')
 const { nanoid } = require('nanoid')
+const { config } = require('@peckhamcc/config')
 const sendPaymentLambda = require('@peckhamcc/lambda-send-payment')
 const sendContactFormEmail = require('@peckhamcc/lambda-send-contact-form-email')
 const sendCorsHeaders = require('@peckhamcc/lambda-send-cors-headers')
@@ -35,7 +36,7 @@ const serveLambda = (name, lambda) => {
       const value = request.rawHeaders[i + 1]
 
       headers[key] = value
-      multiValueHeaders[key] = [ value ]
+      multiValueHeaders[key] = [value]
     }
 
     // an AWS Proxy event https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway-tutorial.html
@@ -75,9 +76,9 @@ const serveLambda = (name, lambda) => {
           userArn: null,
           userAgent: headers['user-agent'],
           user: null
-      },
-      domainName: 'localhost',
-      apiId: API_ID
+        },
+        domainName: 'localhost',
+        apiId: API_ID
       },
       body,
       rawHeaders: headers,
@@ -126,23 +127,23 @@ module.exports = (port) => {
     // "lambdas"
     app.use(bodyParser.text({ type: '*/*' }))
 
-    app.options('/lambda/send-payment', serveLambda('_peckhamcc_lambda-send-payment', sendCorsHeaders))
-    app.post('/lambda/send-payment', serveLambda('_peckhamcc_lambda-send-payment', sendPaymentLambda))
+    app.options(config.lambda.sendPayment, serveLambda('_peckhamcc_lambda-send-payment', sendCorsHeaders))
+    app.post(config.lambda.sendPayment, serveLambda('_peckhamcc_lambda-send-payment', sendPaymentLambda))
 
-    app.options('/lambda/send-contact-form-email', serveLambda('_peckhamcc_lambda-contact-form-email', sendCorsHeaders))
-    app.post('/lambda/send-contact-form-email', serveLambda('_peckhamcc_lambda-contact-form-email', sendContactFormEmail))
+    app.options(config.lambda.sendContactFormEmail, serveLambda('_peckhamcc_lambda-contact-form-email', sendCorsHeaders))
+    app.post(config.lambda.sendContactFormEmail, serveLambda('_peckhamcc_lambda-contact-form-email', sendContactFormEmail))
 
-    app.options('/lambda/ride-roulette-preferences-set', serveLambda('_peckhamcc_lambda-ride-roulette-preferences-set', sendCorsHeaders))
-    app.put('/lambda/ride-roulette-preferences-set', serveLambda('_peckhamcc_lambda-ride-roulette-preferences-set', rideRoulettePreferencesSet))
+    app.options(config.lambda.rideRoulettePreferencesSet, serveLambda('_peckhamcc_lambda-ride-roulette-preferences-set', sendCorsHeaders))
+    app.put(config.lambda.rideRoulettePreferencesSet, serveLambda('_peckhamcc_lambda-ride-roulette-preferences-set', rideRoulettePreferencesSet))
 
     app.options('/lambda/ride-roulette-rides-generate', serveLambda('_peckhamcc_lambda-ride-roulette-rides-generate', sendCorsHeaders))
     app.post('/lambda/ride-roulette-rides-generate', serveLambda('_peckhamcc_lambda-ride-roulette-rides-generate', rideRouletteRidesGenerate))
 
-    app.options('/lambda/ride-roulette-rides-get', serveLambda('_peckhamcc_lambda-ride-roulette-rides-get', sendCorsHeaders))
-    app.get('/lambda/ride-roulette-rides-get', serveLambda('_peckhamcc_lambda-ride-roulette-rides-get', rideRouletteRidesGet))
+    app.options(config.lambda.rideRouletteRidesGet, serveLambda('_peckhamcc_lambda-ride-roulette-rides-get', sendCorsHeaders))
+    app.get(config.lambda.rideRouletteRidesGet, serveLambda('_peckhamcc_lambda-ride-roulette-rides-get', rideRouletteRidesGet))
 
-    app.options('/lambda/ride-roulette-token-generate', serveLambda('_peckhamcc_lambda-ride-roulette-token-generate', sendCorsHeaders))
-    app.post('/lambda/ride-roulette-token-generate', serveLambda('_peckhamcc_lambda-ride-roulette-token-generate', rideRouletteTokenGenerate))
+    app.options(config.lambda.rideRouletteTokenGenerate, serveLambda('_peckhamcc_lambda-ride-roulette-token-generate', sendCorsHeaders))
+    app.post(config.lambda.rideRouletteTokenGenerate, serveLambda('_peckhamcc_lambda-ride-roulette-token-generate', rideRouletteTokenGenerate))
 
     app.use((_, response) => {
       response.sendFile(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist', 'index.html'))

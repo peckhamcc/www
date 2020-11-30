@@ -1,5 +1,4 @@
 const middy = require('middy')
-const { HttpError } = require('http-errors')
 const {
   jsonBodyParser,
   validator,

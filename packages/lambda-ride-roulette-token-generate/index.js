@@ -16,10 +16,8 @@ const {
   sendEmail
 } = require('./email')
 
-async function generateTokenAndSendEmail (event, context) {
-  const {
-    email
-  } = event.body ? event.body : event
+async function generateTokenAndSendEmail ({ body: { email } }) {
+  email = email.toLowerCase()
 
   const token = await generateToken(email)
   const url = `${process.env.NODE_ENV === 'development' ? 'http://localhost:9000' : 'https://peckham.cc'}/ride-roulette?token=${token}`

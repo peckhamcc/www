@@ -163,7 +163,7 @@ class LogInForm extends Component {
       )
     }
 
-    let content = (
+    const content = (
       <>
         {message}
         <Form onSubmit={this.handleCreateToken}>

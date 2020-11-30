@@ -22,8 +22,7 @@ import {
 } from 'react-icons/fa'
 import {
   lightAccent,
-  errorText,
-  errorBackground
+  errorText
 } from '../colours'
 import {
   addToCart,
@@ -133,7 +132,6 @@ const Terms = styled.div`
   ${props => props.error ? `
     /*border: 1px solid ${errorText};*/
     color: ${errorText};
-    /*background: ${errorBackground};*/
   ` : ''}
 
   h4 {

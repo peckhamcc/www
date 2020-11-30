@@ -13,7 +13,7 @@
     "lint": "standard"
   },
   "dependencies": {
-    "@peckhamcc/lambda-ride-roulette-preferences-get": "^1.0.0",
+    "@peckhamcc/config": "^1.0.0",
     "@peckhamcc/lambda-ride-roulette-preferences-set": "^1.0.0",
     "@peckhamcc/lambda-ride-roulette-rides-generate": "^1.0.0",
     "@peckhamcc/lambda-ride-roulette-rides-get": "^1.0.0",

@@ -9,7 +9,8 @@ import {
   spacing
 } from '../units'
 import {
-  dark
+  lightAccent,
+  pccDarkBlue
 } from '../colours'
 
 const capitalise = (string) => {
@@ -27,7 +28,9 @@ const Table = styled.table`
 `
 
 const TableHeader = styled.th`
-  background-color: ${dark};
+  background-color: ${pccDarkBlue};
+  color: ${lightAccent};
+  padding: 3px 5px;
 `
 
 const TableCell = styled.td`

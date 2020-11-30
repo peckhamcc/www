@@ -1,9 +1,11 @@
 const httpErrors = require('http-errors')
+const {
+  validateToken,
+  extendToken
+} = require('./token')
 
 const errorHandler = () => ({
   onError: (handler, next) => {
-    console.info('error handler', handler, next)
-
     if (handler.error instanceof httpErrors.HttpError) {
       if (handler.error.message.includes('failed validation')) {
         const details = handler.error.details[0]
@@ -43,16 +45,25 @@ const tokenValidator = (opts) => ({
       throw new httpErrors.Unauthorized('Missing or invalid credentials')
     }
 
-    const {
+    let {
       email,
       token
     } = JSON.parse(Buffer.from(auth, 'base64'))
 
+    email = email.toLowerCase()
+
     console.info('received email', email, token)
 
     try {
-      await validateToken(email, token)
+      if (!await validateToken(email, token)) {
+        throw new Error('Invalid token')
+      }
+
       await extendToken(email)
+
+      handler.event.user = {
+        email
+      }
     } catch (err) {
       console.info('token was invalid', err)
 

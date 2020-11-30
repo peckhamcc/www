@@ -9,14 +9,48 @@ const {
   errorHandler,
   tokenValidator
 } = require('./middleware')
+const {
+  // getRides,
+  getPreferences
+} = require('./db')
 
-async function getRides (event) {
+function nextDate (dayIndex) {
+  var day = new Date()
+  day.setDate(day.getDate() + (dayIndex - 1 - day.getDay() + 7) % 7 + 1)
+
+  return `${day.getFullYear()}-${day.getMonth() + 1}-${day.getDate()}`
+}
+
+async function getRidesHandler (event) {
+  // const assigned = await getRides()
+  const prefs = await getPreferences(event.user.email)
+
+  const ridingDays = [
+    nextDate(6),
+    nextDate(7)
+  ]
+
+  const rides = ridingDays.map(date => {
+    if (prefs[date]) {
+      return {
+        date,
+        riding: true,
+        ...prefs[date]
+      }
+    } else {
+      return {
+        date,
+        riding: false
+      }
+    }
+  })
+
   return {
     statusCode: 200,
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify([])
+    body: JSON.stringify(rides)
   }
 }
 
@@ -26,7 +60,7 @@ const inputSchema = {
 }
 
 module.exports = {
-  handler: middy(getRides)
+  handler: middy(getRidesHandler)
     .use(httpHeaderNormalizer())
     .use(tokenValidator())
     .use(jsonBodyParser())

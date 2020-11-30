@@ -1,5 +1,4 @@
 const middy = require('middy')
-const { HttpError } = require('http-errors')
 const {
   jsonBodyParser,
   validator,
@@ -10,8 +9,18 @@ const {
   errorHandler,
   tokenValidator
 } = require('./middleware')
+const {
+  setPreferences
+} = require('./db')
 
-async function setPreferences (event) {
+function nextDate (dayIndex) {
+  var day = new Date()
+  day.setDate(day.getDate() + (dayIndex - 1 - day.getDay() + 7) % 7 + 1)
+
+  return `${day.getFullYear()}-${day.getMonth() + 1}-${day.getDate()}`
+}
+
+async function setPreferencesHandler (event) {
   // DynamoDB schema - pcc-ride-roulette-preferences
 
   // email: S
@@ -23,23 +32,79 @@ async function setPreferences (event) {
   //    'type': 'road'
   //  }
   // }
+
+  const ridingDays = [
+    nextDate(6),
+    nextDate(7)
+  ]
+
+  const prefs = event.body
+    .filter(event => ridingDays.includes(event.date) && event.riding)
+    .reduce((acc, event) => {
+      acc[event.date] = {
+        speed: event.speed,
+        distance: event.distance,
+        type: event.type
+      }
+
+      return acc
+    }, {})
+
+  await setPreferences(event.user.email, prefs)
+
+  return {
+    statusCode: 204
+  }
 }
 
 const inputSchema = {
   type: 'object',
   properties: {
     body: {
-      type: 'object',
-      properties: {
-        token: { type: 'string', pattern: '.+' }
-      },
-      required: ['token']
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          date: {
+            type: 'string'
+          },
+          riding: {
+            type: 'boolean'
+          },
+          type: {
+            type: 'string',
+            enum: [
+              'road',
+              'mud',
+              'mtb'
+            ]
+          },
+          speed: {
+            type: 'string',
+            enum: [
+              'social',
+              'social-plus',
+              'antisocial',
+              'pain-train'
+            ]
+          },
+          distance: {
+            type: 'string',
+            enum: [
+              'short',
+              'medium',
+              'long',
+              'epic'
+            ]
+          }
+        }
+      }
     }
   }
 }
 
 module.exports = {
-  handler: middy(setPreferences)
+  handler: middy(setPreferencesHandler)
     .use(httpHeaderNormalizer())
     .use(tokenValidator())
     .use(jsonBodyParser())

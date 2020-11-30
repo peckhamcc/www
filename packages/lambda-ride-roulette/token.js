@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk')
-const { config } = require('./config')
+const { config } = require('../lambda-ride-roulette-token-generate/config')
 const { nanoid } = require('nanoid')
 
 AWS.config.update({
@@ -13,6 +13,8 @@ function tokenExpiry () {
 }
 
 async function extendToken (email) {
+  email = email.toLowerCase()
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   await client.update({
@@ -29,6 +31,8 @@ async function extendToken (email) {
 }
 
 async function generateToken (email) {
+  email = email.toLowerCase()
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   const existingToken = await client.get({
@@ -65,6 +69,8 @@ async function generateToken (email) {
 }
 
 async function validateToken (email, token) {
+  email = email.toLowerCase()
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   const existingToken = await client.get({

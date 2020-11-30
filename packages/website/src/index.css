@@ -14,7 +14,6 @@ html, body, #root {
   width: 100%;
   margin: 0;
   padding: 0;
-  color: #777;
   font-size: 24px;
   -webkit-font-smoothing: 'antialiased';
   -moz-osx-font-smoothing: 'grayscale';
@@ -25,16 +24,16 @@ html, body, #root {
 }
 
 button a, button a:link, button a:visited, button a:hover {
-  color: #FFF;
+  color: #222;
   text-decoration: none;
 }
 
 a, a:link {
-  color: #FFF;
+  color: #222;
 }
 
 a:hover {
-  color: #F10;
+  color: #5874bf;
 }
 
 h1, h2, h3, h4, h5, h6 {

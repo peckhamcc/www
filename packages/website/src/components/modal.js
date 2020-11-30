@@ -4,7 +4,13 @@ import styled from 'styled-components'
 import {
   FaTimes
 } from 'react-icons/fa'
-import { light, dark, darkAccent } from '../colours'
+import {
+  panelLevel3Background,
+  panelLevel3Header,
+  panelLevel3Text,
+  panelLevel3Border,
+  panelLevel3HoverBackground
+} from '../colours'
 import { ModalBlocker } from './panels'
 
 const ModalWrapper = styled.div`
@@ -12,10 +18,10 @@ const ModalWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${darkAccent};
-  color: ${light};
+  background-color: ${panelLevel3Background};
+  color: ${panelLevel3Text};
   padding: 0;
-  border: 1px solid ${light};
+  border: 1px solid ${panelLevel3Border};
 
   @media (max-width: 940px) {
     width: 80vw;
@@ -24,17 +30,29 @@ const ModalWrapper = styled.div`
   @media (max-width: 640px) {
     width: 90vw;
   }
+
+  button {
+    color: ${panelLevel3Text};
+    border: 1px solid ${panelLevel3Border};
+  }
+
+  button:hover {
+    color: ${panelLevel3Text};
+    border: 1px solid ${panelLevel3Border};
+    background-color: ${panelLevel3HoverBackground};
+  }
 `
 
 const ModalHeader = styled.div`
   display: flex;
-  background-color: ${dark};
+  background-color: ${panelLevel3Background};
   padding: 10px;
-  border-bottom: 1px solid ${light};
+  border-bottom: 1px solid ${panelLevel3Border};
 `
 
 const ModalTitle = styled.div`
   flex-grow: 1;
+  color: ${panelLevel3Header}
 `
 
 const ModalFaTimes = styled.div`
