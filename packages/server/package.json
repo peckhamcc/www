@@ -9,10 +9,15 @@
     "url": "https://github.com/peckhamcc/www/issues"
   },
   "scripts": {
-    "start": "node start.js",
+    "start": "NODE_ENV=development node start.js",
     "lint": "standard"
   },
   "dependencies": {
+    "@peckhamcc/lambda-ride-roulette-preferences-get": "^1.0.0",
+    "@peckhamcc/lambda-ride-roulette-preferences-set": "^1.0.0",
+    "@peckhamcc/lambda-ride-roulette-rides-generate": "^1.0.0",
+    "@peckhamcc/lambda-ride-roulette-rides-get": "^1.0.0",
+    "@peckhamcc/lambda-ride-roulette-token-generate": "^1.0.0",
     "@peckhamcc/lambda-send-contact-form-email": "^1.0.0",
     "@peckhamcc/lambda-send-cors-headers": "^1.0.0",
     "@peckhamcc/lambda-send-payment": "^1.0.0",

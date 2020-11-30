@@ -4,12 +4,13 @@ import React, {
 import {
   PageWrapper
 } from '../components/panels'
+import LogInForm from '../components/ride-roulette/log-in-form'
 
 class RideRoulettePage extends Component {
   render () {
     return (
       <PageWrapper>
-        <h1>Ride Roulette</h1>
+        <LogInForm />
       </PageWrapper>
     )
   }

@@ -6,54 +6,26 @@ const {
   httpHeaderNormalizer,
   cors
 } = require('middy/middlewares')
-const AWS = require('aws-sdk')
 const { config } = require('./config')
 const {
   generateToken
-} = require('./token')
+} = require(process.env.NODE_ENV === 'development' ? './test/token' : './token')
+const {
+  sendEmail
+} = require(process.env.NODE_ENV === 'development' ? './test/email' : './email')
 
 async function generateTokenAndSendEmail (event) {
+  console.info(JSON.stringify(event, null, 2))
+
   const {
-    email
+    body: {
+      email
+    }
   } = event
   const token = await generateToken(email)
-  const url = `https://peckham.cc/ride-roulette?token=${token}`
+  const url = `${process.env.NODE_ENV === 'development' ? 'http://localhost:9000' : 'https://peckham.cc'}/ride-roulette?token=${token}`
 
-  const ses = new AWS.SES({
-    apiVersion: config.aws.ses.version,
-    region: config.aws.ses.region
-  })
-
-  await ses
-    .sendEmail({
-      Destination: {
-        CcAddresses: [],
-        ToAddresses: [
-          email
-        ]
-      },
-      Message: {
-        Body: {
-          Html: {
-            Charset: 'UTF-8',
-            Data: htmlTemplate(url)
-          },
-          Text: {
-            Charset: 'UTF-8',
-            Data: textTemplate(url)
-          }
-        },
-        Subject: {
-          Charset: 'UTF-8',
-          Data: 'PCC Ride Roulette Log In'
-        }
-      },
-      Source: config.email.from,
-      ReplyToAddresses: [
-        email
-      ]
-    })
-    .promise()
+  await sendEmail(email, config.email.from, 'PCC Ride Roulette Log In', htmlTemplate(url), textTemplate(url))
 }
 
 const htmlTemplate = (url) => `
