@@ -14,14 +14,14 @@ const {
   sendEmail
 } = require(process.env.NODE_ENV === 'development' ? './test/email' : './email')
 
-async function generateTokenAndSendEmail (event) {
-  console.info(JSON.stringify(event, null, 2))
+async function generateTokenAndSendEmail (event, context) {
+  console.info('event', JSON.stringify(event, null, 2))
+  console.info('context', JSON.stringify(context, null, 2))
 
   const {
-    body: {
-      email
-    }
-  } = event
+    email
+  } = event.body ? event.body : event
+
   const token = await generateToken(email)
   const url = `${process.env.NODE_ENV === 'development' ? 'http://localhost:9000' : 'https://peckham.cc'}/ride-roulette?token=${token}`
 
@@ -61,7 +61,7 @@ const inputSchema = {
     body: {
       type: 'object',
       properties: {
-        email: { type: 'string', pattern: '.+' }
+        email: { type: 'string', format: 'email' }
       },
       required: ['email']
     }
