@@ -7,7 +7,9 @@ export const SIGN_OUT = 'USER/SIGN_OUT'
 export const ACCEPTED_TERMS = 'USER/ACCEPTED_TERMS'
 export const SELECTED_SIZE = 'USER/SELECTED_SIZE'
 export const SELECTED_GENDER = 'USER/SELECTED_GENDER'
-export const VERIFIED_ROULETTE_TOKEN = 'ROULETTE/VERIFIED_TOKEN'
+export const SET_USER_NAME = 'USER/SET_NAME'
+export const SET_USER_EMAIL = 'USER/SET_EMAIL'
+export const STORE_ROULETTE_TOKEN = 'ROULETTE/STORE_TOKEN'
 export const CLEAR_ROULETTE_TOKEN = 'ROULETTE/CLEAR_TOKEN'
 
 const action = (type) => (payload) => ({
@@ -24,5 +26,7 @@ export const signOut = action(SIGN_OUT)
 export const acceptedTerms = action(ACCEPTED_TERMS)
 export const selectedSize = action(SELECTED_SIZE)
 export const selectedGender = action(SELECTED_GENDER)
-export const verifiedRouletteToken = action(VERIFIED_ROULETTE_TOKEN)
+export const setUserName = action(SET_USER_NAME)
+export const setUserEmail = action(SET_USER_EMAIL)
+export const storeRouletteToken = action(STORE_ROULETTE_TOKEN)
 export const clearRouletteToken = action(CLEAR_ROULETTE_TOKEN)

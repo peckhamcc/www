@@ -1,23 +1,22 @@
 const middy = require('middy')
-const { HttpError } = require('http-errors')
 const {
   jsonBodyParser,
   validator,
   httpHeaderNormalizer,
   cors
 } = require('middy/middlewares')
+const {
+  errorHandler
+} = require('./middleware')
 const { config } = require('./config')
 const {
   generateToken
-} = require(process.env.NODE_ENV === 'development' ? './test/token' : './token')
+} = require('./token')
 const {
   sendEmail
-} = require(process.env.NODE_ENV === 'development' ? './test/email' : './email')
+} = require('./email')
 
 async function generateTokenAndSendEmail (event, context) {
-  console.info('event', JSON.stringify(event, null, 2))
-  console.info('context', JSON.stringify(context, null, 2))
-
   const {
     email
   } = event.body ? event.body : event
@@ -26,6 +25,10 @@ async function generateTokenAndSendEmail (event, context) {
   const url = `${process.env.NODE_ENV === 'development' ? 'http://localhost:9000' : 'https://peckham.cc'}/ride-roulette?token=${token}`
 
   await sendEmail(email, config.email.from, 'PCC Ride Roulette Log In', htmlTemplate(url), textTemplate(url))
+
+  return {
+    statusCode: 204
+  }
 }
 
 const htmlTemplate = (url) => `
@@ -67,29 +70,6 @@ const inputSchema = {
     }
   }
 }
-
-const errorHandler = () => ({
-  onError: (handler, next) => {
-    if (handler.error instanceof HttpError) {
-      if (handler.error.message.includes('failed validation')) {
-        const details = handler.error.details[0]
-
-        handler.response = {
-          statusCode: 422,
-          body: JSON.stringify({
-            field: details.dataPath.replace('.body.', '')
-          })
-        }
-
-        next()
-      } else {
-        next(handler.error)
-      }
-    } else {
-      next(handler.error)
-    }
-  }
-})
 
 module.exports = {
   handler: middy(generateTokenAndSendEmail)

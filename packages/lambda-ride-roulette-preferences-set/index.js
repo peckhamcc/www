@@ -6,12 +6,10 @@ const {
   httpHeaderNormalizer,
   cors
 } = require('middy/middlewares')
-const { config } = require('./config')
-const AWS = require('aws-sdk')
-
-AWS.config.update({
-  region: config.aws.dynamodb.region
-})
+const {
+  errorHandler,
+  tokenValidator
+} = require('./middleware')
 
 async function setPreferences (event) {
   // DynamoDB schema - pcc-ride-roulette-preferences
@@ -40,32 +38,10 @@ const inputSchema = {
   }
 }
 
-const errorHandler = () => ({
-  onError: (handler, next) => {
-    if (handler.error instanceof HttpError) {
-      if (handler.error.message.includes('failed validation')) {
-        const details = handler.error.details[0]
-
-        handler.response = {
-          statusCode: 422,
-          body: JSON.stringify({
-            field: details.dataPath.replace('.body.', '')
-          })
-        }
-
-        next()
-      } else {
-        next(handler.error)
-      }
-    } else {
-      next(handler.error)
-    }
-  }
-})
-
 module.exports = {
   handler: middy(setPreferences)
     .use(httpHeaderNormalizer())
+    .use(tokenValidator())
     .use(jsonBodyParser())
     .use(validator({ inputSchema }))
     .use(errorHandler())

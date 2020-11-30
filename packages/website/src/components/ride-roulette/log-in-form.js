@@ -12,8 +12,7 @@ import {
   connect
 } from 'react-redux'
 import {
-  verifiedRouletteToken,
-  clearRouletteToken
+  setUserEmail
 } from '../../store/actions'
 import config from '../../config'
 import {
@@ -47,16 +46,25 @@ const STEPS = {
   ERROR: 'ERROR'
 }
 
-class LogInFom extends Component {
+class LogInForm extends Component {
   state = {
     step: STEPS.ENTER_DETAILS,
     tokenSent: false,
-    email: null,
+    email: '',
     token: null,
     creatingToken: false,
     verifyingToken: false,
     errors: {
 
+    }
+  }
+
+  componentDidMount () {
+    console.info(this.props.user)
+    if (this.props.user && this.props.user.email) {
+      this.setState({
+        email: this.props.user.email
+      })
     }
   }
 
@@ -82,6 +90,9 @@ class LogInFom extends Component {
         this.setState({
           step: STEPS.SUCCESS
         })
+        this.props.setUserEmail(this.state.email)
+
+        return
       }
 
       if (response.status === 422) {
@@ -93,6 +104,8 @@ class LogInFom extends Component {
           step: STEPS.ENTER_DETAILS,
           error: body.field
         })
+
+        return
       }
 
       throw new Error(response.statusText)
@@ -102,7 +115,8 @@ class LogInFom extends Component {
         error
       })
 
-      console.error('payment error', error)
+      console.error('generate token error')
+      console.error(error)
     }
   }
 
@@ -130,26 +144,35 @@ class LogInFom extends Component {
 
   render () {
     if (this.props.token) {
-      return
+      return null
     }
 
     const {
       step
     } = this.state
 
-    const { user } = this.props
     const { email } = this.state
+
+    let message = (
+      <p>Choose the type of ride you'd like to do at the weekend and get matched up with club members who want to ride at a similar pace and distance</p>
+    )
+
+    if (step === STEPS.SUCCESS) {
+      message = (
+        <p>A log in link has been emailed to you, please check your inbox and/or spam folder</p>
+      )
+    }
 
     let content = (
       <>
-        <p>Choose the type of ride you'd like to do at the weekend and get matched up with club members who want to ride at a similar pace and distance</p>
+        {message}
         <Form onSubmit={this.handleCreateToken}>
           <FormInputWrapper error={this.state.errors.firstName}>
             <Input
               name='email'
               type='email'
               onChange={this.handleEmailChange}
-              value={email || (user && user.email) || ''}
+              value={email}
               data-input='email'
               placeholder='your-email@example.com'
               required
@@ -166,14 +189,6 @@ class LogInFom extends Component {
       </>
     )
 
-    if (step === STEPS.SUCCESS) {
-      content = (
-        <>
-          <p>A log in link has been emailed to you, please check your inbox and/or spam folder</p>
-        </>
-      )
-    }
-
     return (
       <PageWrapper>
         <CenteredPanel>
@@ -186,19 +201,18 @@ class LogInFom extends Component {
   }
 }
 
-LogInFom.propTypes = {
+LogInForm.propTypes = {
   token: PropTypes.string,
   user: PropTypes.object
 }
 
-const mapStateToProps = ({ roulette: { token }, user: { user, acceptedTerms } }) => ({
+const mapStateToProps = ({ roulette: { token }, user }) => ({
   token,
   user
 })
 
 const mapDispatchToProps = {
-  verifiedRouletteToken,
-  clearRouletteToken
+  setUserEmail
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogInFom)
+export default connect(mapStateToProps, mapDispatchToProps)(LogInForm)

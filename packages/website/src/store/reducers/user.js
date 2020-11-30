@@ -1,10 +1,20 @@
-import { SIGN_IN, SIGN_OUT, SELECTED_GENDER, SELECTED_SIZE, ACCEPTED_TERMS } from '../actions'
+import {
+  SIGN_IN,
+  SIGN_OUT,
+  SELECTED_GENDER,
+  SELECTED_SIZE,
+  ACCEPTED_TERMS,
+  SET_USER_NAME,
+  SET_USER_EMAIL
+} from '../actions'
 
 const initialState = {
   user: null,
   size: null,
   gender: null,
-  acceptedTerms: false
+  acceptedTerms: false,
+  name: null,
+  email: null
 }
 
 const userReducer = (state = initialState, action) => {
@@ -33,6 +43,16 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         acceptedTerms: action.payload
+      }
+    case SET_USER_NAME:
+      return {
+        ...state,
+        name: action.payload
+      }
+    case SET_USER_EMAIL:
+      return {
+        ...state,
+        email: action.payload
       }
     default:
       return state

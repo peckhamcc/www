@@ -647,7 +647,6 @@ const config = {
   lambda: {
     sendPayment: '/lambda/send-payment',
     sendContactFormEmail: '/lambda/send-contact-form-email',
-    rideRoulettePreferencesGet: '/lambda/ride-roulette-preferences-get',
     rideRoulettePreferencesSet: '/lambda/ride-roulette-preferences-set',
     rideRouletteRidesGet: '/lambda/ride-roulette-rides-get',
     rideRouletteTokenGenerate: '/lambda/ride-roulette-token-generate'
@@ -1057,7 +1056,6 @@ const config = {
 if (process.env.NODE_ENV !== 'development') {
   config.lambda.sendPayment = 'https://api.peckham.cc/send-payment'
   config.lambda.sendContactFormEmail = 'https://api.peckham.cc/contact'
-  config.lambda.rideRoulettePreferencesGet = 'https://api.peckham.cc/ride-roulette/preferences'
   config.lambda.rideRoulettePreferencesSet = 'https://api.peckham.cc/ride-roulette/preferences'
   config.lambda.rideRouletteRidesGet = 'https://api.peckham.cc/ride-roulette/rides'
   config.lambda.rideRouletteTokenGenerate = 'https://api.peckham.cc/ride-roulette/token'

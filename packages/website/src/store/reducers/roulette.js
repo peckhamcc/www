@@ -1,17 +1,18 @@
-import { VERIFIED_ROULETTE_TOKEN, CLEAR_ROULETTE_TOKEN } from '../actions'
+import { STORE_ROULETTE_TOKEN, CLEAR_ROULETTE_TOKEN } from '../actions'
 
 const initialState = {
   token: null
 }
 
-const userReducer = (state = initialState, action) => {
+const rouletteReducer = (state = initialState, action) => {
   switch (action.type) {
-    case VERIFIED_ROULETTE_TOKEN:
+    case STORE_ROULETTE_TOKEN:
       return {
         ...state,
         token: action.payload
       }
     case CLEAR_ROULETTE_TOKEN:
+      console.info('clear token')
       return {
         ...state,
         token: null
@@ -21,4 +22,4 @@ const userReducer = (state = initialState, action) => {
   }
 }
 
-export default userReducer
+export default rouletteReducer
