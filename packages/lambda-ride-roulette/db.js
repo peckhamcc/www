@@ -58,7 +58,7 @@ const setPreferences = async (email, { name, preferences }) => {
     Key: {
       email
     },
-    UpdateExpression: 'set name = :n, preferences = :p, expires = :e',
+    UpdateExpression: 'set rider = :n, preferences = :p, expires = :e',
     ExpressionAttributeValues: {
       ':n': name,
       ':p': preferences,
