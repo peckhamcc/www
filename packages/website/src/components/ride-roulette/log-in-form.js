@@ -142,9 +142,10 @@ class LogInForm extends Component {
 
     const { email } = this.state
 
-    let message = (
-      <p>Choose the type of ride you'd like to do at the weekend and get matched up with club members who want to ride at a similar pace and distance</p>
-    )
+    let message = [
+      <p key='para1'>Be matched up with club members who want to ride at a similar pace and distance to you this weekend</p>,
+      <p key='para2'>Enter your email address to log in:</p>
+    ]
 
     if (step === STEPS.SUCCESS) {
       message = (

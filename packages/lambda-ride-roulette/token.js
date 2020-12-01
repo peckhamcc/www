@@ -22,9 +22,9 @@ async function extendToken (email) {
     Key: {
       email
     },
-    UpdateExpression: 'set expires = :expires',
+    UpdateExpression: 'set expires = :e',
     ExpressionAttributeValues: {
-      ':expires': tokenExpiry()
+      ':e': tokenExpiry()
     },
     ReturnValues: 'UPDATED_NEW'
   }).promise()

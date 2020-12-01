@@ -58,11 +58,11 @@ const setPreferences = async (email, { name, preferences }) => {
     Key: {
       email
     },
-    UpdateExpression: 'set name = :name, preferences = :prefs, expires = :expires',
+    UpdateExpression: 'set name = :n, preferences = :p, expires = :e',
     ExpressionAttributeValues: {
-      ':name': name,
-      ':prefs': preferences,
-      ':expires': Math.round(new Date(Date.now() + ONE_MONTH).getTime() / 1000)
+      ':n': name,
+      ':p': preferences,
+      ':e': Math.round(new Date(Date.now() + ONE_MONTH).getTime() / 1000)
     },
     ReturnValues: 'UPDATED_NEW'
   }).promise()
