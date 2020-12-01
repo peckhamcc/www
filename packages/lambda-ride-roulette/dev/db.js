@@ -6,6 +6,10 @@ const getRides = async () => {
   return ridesDb
 }
 
+const getAllPreferences = async () => {
+  return preferencesDb
+}
+
 const getPreferences = async (email) => {
   return preferencesDb[email] || {
     preferences: {}
@@ -21,6 +25,7 @@ const setPreferences = async (email, prefs) => {
 
 module.exports = {
   getRides,
+  getAllPreferences,
   getPreferences,
   setPreferences
 }

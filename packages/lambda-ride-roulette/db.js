@@ -12,6 +12,31 @@ const getRides = async () => {
   return []
 }
 
+const getAllPreferences = async () => {
+  const client = new AWS.DynamoDB.DocumentClient()
+
+  const scanResults = {}
+  const params = { TableName: process.env.AWS_PREFERENCES_DB_TABLE }
+  let items = {
+    LastEvaluatedKey: true
+  }
+
+  do {
+    items = await client.scan(params).promise()
+    items.Items.forEach((item) => {
+      console.info('found item', item)
+
+      scanResults[item.email] = {
+        name: item.name,
+        preferences: item.preferences
+      }
+    })
+    params.ExclusiveStartKey = items.LastEvaluatedKey
+  } while (items.LastEvaluatedKey)
+
+  return scanResults
+}
+
 const getPreferences = async (email) => {
   const client = new AWS.DynamoDB.DocumentClient()
 
@@ -45,6 +70,7 @@ const setPreferences = async (email, { name, preferences }) => {
 
 module.exports = {
   getRides,
+  getAllPreferences,
   getPreferences,
   setPreferences
 }

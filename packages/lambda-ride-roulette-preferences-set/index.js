@@ -12,13 +12,9 @@ const {
 const {
   setPreferences
 } = require('./db')
-
-function nextDate (dayIndex) {
-  var day = new Date()
-  day.setDate(day.getDate() + (dayIndex - 1 - day.getDay() + 7) % 7 + 1)
-
-  return `${day.getFullYear()}-${day.getMonth() + 1}-${day.getDate()}`
-}
+const {
+  getNextRidingDays
+} = require('./lib')
 
 async function setPreferencesHandler (event) {
   // DynamoDB schema - pcc-ride-roulette-preferences
@@ -34,10 +30,7 @@ async function setPreferencesHandler (event) {
   //  }
   // }
 
-  const ridingDays = [
-    nextDate(6),
-    nextDate(7)
-  ]
+  const ridingDays = getNextRidingDays()
 
   const prefs = event.body
     .filter(event => ridingDays.includes(event.date) && event.riding)

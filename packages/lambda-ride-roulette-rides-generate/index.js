@@ -9,6 +9,12 @@ const {
   errorHandler,
   tokenValidator
 } = require('./middleware')
+const {
+  getNextRidingDays
+} = require('./lib')
+const {
+  getAllPreferences
+} = require('./db')
 
 async function generateRides (event) {
   // DynamoDB schema
@@ -16,6 +22,12 @@ async function generateRides (event) {
   // id: S
   // expires: N - epoch timestamp
   // ??
+
+  const ridingDays = getNextRidingDays()
+  const riderPrefs = getAllPreferences()
+
+  console.info('ridingDays', ridingDays)
+  console.info('riderPrefs', riderPrefs)
 }
 
 const inputSchema = {
