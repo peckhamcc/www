@@ -3,7 +3,8 @@ import React, {
 } from 'react'
 import PropTypes from 'prop-types'
 import {
-  Button
+  Button,
+  Spinner
 } from '../panels'
 import styled from 'styled-components'
 import {
@@ -132,6 +133,12 @@ class LogInForm extends Component {
     const {
       step
     } = this.state
+
+    if (step === STEPS.CREATING_TOKEN) {
+      return (
+        <Spinner />
+      )
+    }
 
     const { email } = this.state
 
