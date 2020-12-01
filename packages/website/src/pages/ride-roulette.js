@@ -26,6 +26,10 @@ const CenteredPanel = styled(Panel)`
   }
 `
 
+const RideRouletteHeader = styled.h2`
+  text-align: center;
+`
+
 class RideRoulettePage extends Component {
   render () {
     return (
@@ -33,7 +37,7 @@ class RideRoulettePage extends Component {
         <StoreToken />
         <CenteredPanel>
           <img src={rouletteLogo.src} width='300' height='300' />
-          <h2>Ride Roulette</h2>
+          <RideRouletteHeader>Ride Roulette</RideRouletteHeader>
           <LogInForm />
           <SaveNameForm />
           <Rides />

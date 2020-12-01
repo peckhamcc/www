@@ -418,6 +418,11 @@ export const Spinner = styled.div`
 `
 
 export const SmallSpinner = styled(Spinner)`
-  height: ${spacing(2)};
-  width: ${spacing(2)};
+  height: 39px;
+  width: 39px;
+
+  @media (max-width: 940px) {
+    height: 33px;
+    width: 33px;
+  }
 `
