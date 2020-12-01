@@ -39,7 +39,7 @@ const tokenValidator = (opts) => ({
       throw new httpErrors.Unauthorized('Missing or invalid credentials')
     }
 
-    const auth = headers.Auth || headers.auth
+    const auth = headers.Authorization || headers.authorization
 
     if (!auth) {
       throw new httpErrors.Unauthorized('Missing or invalid credentials')

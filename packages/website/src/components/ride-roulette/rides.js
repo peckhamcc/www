@@ -152,7 +152,7 @@ class Rides extends Component {
       const response = await global.fetch(config.lambda.rideRouletteRidesGet, {
         method: 'GET',
         headers: {
-          Auth: global.btoa(JSON.stringify({ token: this.props.token, email: this.props.user.email, name: this.props.user.name }))
+          Authorization: global.btoa(JSON.stringify({ token: this.props.token, email: this.props.user.email, name: this.props.user.name }))
         }
       })
 
@@ -260,7 +260,7 @@ class Rides extends Component {
       const response = await global.fetch(config.lambda.rideRoulettePreferencesSet, {
         method: 'PUT',
         headers: {
-          Auth: global.btoa(JSON.stringify({ token: this.props.token, email: this.props.user.email, name: this.props.user.name })),
+          Authorization: global.btoa(JSON.stringify({ token: this.props.token, email: this.props.user.email, name: this.props.user.name })),
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(rides.map(ride => ({
