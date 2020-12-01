@@ -8,8 +8,34 @@ AWS.config.update({
 const ONE_DAY = 3600000 * 24
 const ONE_MONTH = ONE_DAY * 30
 
-const getRides = async () => {
-  return []
+const getRides = async (date) => {
+  const client = new AWS.DynamoDB.DocumentClient()
+
+  const result = await client.get({
+    TableName: process.env.AWS_RIDES_DB_TABLE,
+    Key: {
+      date
+    }
+  }).promise()
+
+  return (result.Item && result.Item.rides) || []
+}
+
+const setRides = async (date, rides) => {
+  const client = new AWS.DynamoDB.DocumentClient()
+
+  await client.update({
+    TableName: process.env.AWS_PREFERENCES_DB_TABLE,
+    Key: {
+      date
+    },
+    UpdateExpression: 'set rides = :r, expiry = :e',
+    ExpressionAttributeValues: {
+      ':r': rides,
+      ':e': Math.round(new Date(Date.now() + ONE_MONTH).getTime() / 1000)
+    },
+    ReturnValues: 'UPDATED_NEW'
+  }).promise()
 }
 
 const getAllPreferences = async () => {
@@ -70,6 +96,7 @@ const setPreferences = async (email, { name, preferences }) => {
 
 module.exports = {
   getRides,
+  setRides,
   getAllPreferences,
   getPreferences,
   setPreferences

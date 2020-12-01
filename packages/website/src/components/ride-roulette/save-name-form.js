@@ -47,6 +47,11 @@ class SaveNameForm extends Component {
           value={this.state.name}
           onChange={this.handleNameChange}
         />
+        {
+          this.state.name ? null : (
+            <p>Please enter your name so the other riders in your group will know who you are</p>
+          )
+        }
       </>
     )
   }

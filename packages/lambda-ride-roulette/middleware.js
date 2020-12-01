@@ -56,6 +56,10 @@ const tokenValidator = (opts) => ({
       name
     } = JSON.parse(Buffer.from(auth, 'base64'))
 
+    if (!token || !email) {
+      throw new httpErrors.Unauthorized('Missing or invalid credentials')
+    }
+
     email = email.toLowerCase()
 
     console.info('received email', email, token, name)

@@ -10,57 +10,31 @@ const {
   tokenValidator
 } = require('./middleware')
 const {
-  getNextRidingDays
+  getNextRidingDays,
+  generateRides
 } = require('./lib')
 const {
-  getAllPreferences
+  getAllPreferences,
+  setRides
 } = require('./db')
 
-async function generateRides (event) {
-  // DynamoDB schema
-
-  // id: S
-  // expires: N - epoch timestamp
-  // ??
-
+async function generateRidesHandler (event) {
   const ridingDays = getNextRidingDays()
-
-  // { 'foo@bar.com': { rider: 'Dave', preferences: { 'yyyy-mm-dd': { speed: 'social', type: 'road' ... }}}}
   const riderPrefs = getAllPreferences()
 
-  console.info('ridingDays', ridingDays)
-  console.info('riderPrefs', riderPrefs)
+  const rides = generateRides(ridingDays, riderPrefs)
 
-  const rides = {}
+  for (let i = 0; i < ridingDays.length; i++) {
+    const date = ridingDays[i]
 
-  Object.keys(riderPrefs).forEach(email => {
-    const result = riderPrefs[email]
+    if (rides[date]) {
+      await setRides(date, rides[date])
+    }
+  }
 
-    Object.keys(result.preferences)
-      .filter(date => ridingDays.includes(date))
-      .forEach(date => {
-        const prefs = result.preferences[date]
-
-        if (!rides[date]) {
-          rides[date] = {}
-        }
-
-        if (!rides[date][prefs.type]) {
-          rides[date][prefs.type] = []
-        }
-
-        rides[date][prefs.type].push({
-          name: result.rider,
-          speed: prefs.speed,
-          distance: prefs.distance,
-          route: prefs.route
-        })
-      })
-  })
-
-  // rides = { road: [{ name: 'dave', speed: 'social': distance: 'social'}]}
-
-  console.info(rides)
+  return {
+    statusCode: 204
+  }
 }
 
 const inputSchema = {
@@ -69,7 +43,7 @@ const inputSchema = {
 }
 
 module.exports = {
-  handler: middy(generateRides)
+  handler: middy(generateRidesHandler)
     .use(httpHeaderNormalizer())
     .use(tokenValidator())
     .use(jsonBodyParser())

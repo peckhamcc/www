@@ -136,12 +136,16 @@ class Rides extends Component {
   }
 
   componentDidMount () {
+    if (!this.props.user.email) {
+      this.props.clearRouletteToken()
+    }
+
     this._loadRides()
       .catch(() => {})
   }
 
   async _loadRides () {
-    if (!this.props.token || !this.props.user.email) {
+    if (!this.props.token) {
       return
     }
 

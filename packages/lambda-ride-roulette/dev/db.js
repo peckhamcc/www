@@ -1,9 +1,13 @@
 
-const ridesDb = []
+const ridesDb = {}
 const preferencesDb = {}
 
-const getRides = async () => {
-  return ridesDb
+const getRides = async (date) => {
+  return ridesDb[date] || []
+}
+
+const setRides = async (date, rides) => {
+  ridesDb[date] = rides
 }
 
 const getAllPreferences = async () => {
@@ -25,6 +29,7 @@ const setPreferences = async (email, prefs) => {
 
 module.exports = {
   getRides,
+  setRides,
   getAllPreferences,
   getPreferences,
   setPreferences
