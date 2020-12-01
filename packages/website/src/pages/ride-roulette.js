@@ -10,7 +10,7 @@ import StoreToken from '../components/ride-roulette/store-token'
 import LogInForm from '../components/ride-roulette/log-in-form'
 import SaveNameForm from '../components/ride-roulette/save-name-form'
 import Rides from '../components/ride-roulette/rides'
-import pccLogo from '../../assets/pcc-logo-round.png'
+import rouletteLogo from '../../assets/roulette/logo.png'
 
 const CenteredPanel = styled(Panel)`
   max-width: 376px;
@@ -32,7 +32,7 @@ class RideRoulettePage extends Component {
       <PageWrapper>
         <StoreToken />
         <CenteredPanel>
-          <img src={pccLogo.src} width='300' height='300' />
+          <img src={rouletteLogo.src} width='300' height='300' />
           <h2>Ride Roulette</h2>
           <LogInForm />
           <SaveNameForm />

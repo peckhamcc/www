@@ -19,7 +19,12 @@ const errorHandler = () => ({
 
         next()
       } else {
-        handler.response = handler.error
+        handler.response = {
+          statusCode: handler.error.statusCode,
+          body: {
+            message: handler.error.message
+          }
+        }
 
         next()
       }
