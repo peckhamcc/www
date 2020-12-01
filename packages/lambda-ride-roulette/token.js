@@ -9,7 +9,7 @@ AWS.config.update({
 const ONE_HOUR = (60 * 60) * 1000
 
 function tokenExpiry () {
-  return new Date(Date.now() + ONE_HOUR).getTime() / 1000
+  return Math.round(new Date(Date.now() + ONE_HOUR).getTime() / 1000)
 }
 
 async function extendToken (email) {
@@ -80,7 +80,7 @@ async function validateToken (email, token) {
     }
   }).promise()
 
-  if (existingToken && existingToken.token === token) {
+  if (existingToken && existingToken.Item && existingToken.Item.token === token) {
     // extend token TTL
     await extendToken(email)
 
