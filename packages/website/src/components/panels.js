@@ -13,7 +13,11 @@ import {
   lightAccent,
   dark,
   darkAccent,
-  errorText
+  errorText,
+  pccLightBlue,
+  pccDarkBlue,
+  pccRed,
+  pccYellow
 } from '../colours'
 import {
   spacing,
@@ -106,7 +110,7 @@ export const Panel = styled.div`
   padding: 1px 20px 20px 20px;
   margin: ${spacing(1)};
   font-size: 16px;
-  line-height: 1.4;
+  line-height: 1.6;
 
   h2, h3, h4 {
     color: ${panelLevel1Header};
@@ -125,7 +129,7 @@ export const Panel = styled.div`
   }
 
   p {
-    margin: ${spacing(1)} 0 0 0;
+    margin: ${spacing(1)} 0 ${spacing(1)} 0;
   }
 
   li {
@@ -297,6 +301,7 @@ export const ModalBlocker = styled.div`
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  overflow: scroll;
 `
 export const LinkPanel = styled.div`
   width: calc(50% - 28px);
@@ -385,5 +390,29 @@ export const SelectableOption = styled.div`
   @media (max-width: 940px) {
     padding: 3px ${spacing(2)};
     font-size: 22px;
+  }
+`
+
+export const Spinner = styled.div`
+  height: 100px;
+  width: 100px;
+  margin: auto;
+  border: 6px solid;
+  border-top-color: ${pccLightBlue};
+  border-right-color: ${pccDarkBlue};
+  border-bottom-color: ${pccRed};
+  border-left-color: ${pccYellow};
+
+  border-radius: 50%;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.1));
+  animation: rotate 1s linear infinite;
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 `

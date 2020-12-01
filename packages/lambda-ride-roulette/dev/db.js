@@ -7,13 +7,16 @@ const getRides = async () => {
 }
 
 const getPreferences = async (email) => {
-  console.info('getting prefs', email, preferencesDb)
-  return preferencesDb[email] || {}
+  return preferencesDb[email] || {
+    preferences: {}
+  }
 }
 
 const setPreferences = async (email, prefs) => {
-  console.info('setting prefs', email, prefs)
   preferencesDb[email] = prefs
+
+  console.info('PreferencesDB')
+  console.info(JSON.stringify(preferencesDb, null, 2))
 }
 
 module.exports = {

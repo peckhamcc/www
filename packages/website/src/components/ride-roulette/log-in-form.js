@@ -3,9 +3,7 @@ import React, {
 } from 'react'
 import PropTypes from 'prop-types'
 import {
-  Button,
-  PageWrapper,
-  Panel
+  Button
 } from '../panels'
 import styled from 'styled-components'
 import {
@@ -19,21 +17,6 @@ import {
   Input,
   FormInputWrapper
 } from '../forms'
-import pccLogo from '../../../assets/pcc-logo-round.png'
-
-const CenteredPanel = styled(Panel)`
-  max-width: 376px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 80px;
-  padding-top: 20px;
-
-  img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-`
 
 const Form = styled.form`
   margin-top: 20px;
@@ -60,7 +43,6 @@ class LogInForm extends Component {
   }
 
   componentDidMount () {
-    console.info(this.props.user)
     if (this.props.user && this.props.user.email) {
       this.setState({
         email: this.props.user.email
@@ -189,15 +171,7 @@ class LogInForm extends Component {
       </>
     )
 
-    return (
-      <PageWrapper>
-        <CenteredPanel>
-          <img src={pccLogo.src} width='300' height='300' />
-          <h2>Ride Roulette</h2>
-          {content}
-        </CenteredPanel>
-      </PageWrapper>
-    )
+    return content
   }
 }
 

@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk')
-const { config } = require('../lambda-ride-roulette-token-generate/config')
+const { config } = require('./config')
 const { nanoid } = require('nanoid')
 
 AWS.config.update({

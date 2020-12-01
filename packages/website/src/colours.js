@@ -1,8 +1,8 @@
 
-function lightenDarkenColor (colour, amount) {
-  const usePound = colour.startsWith('#')
+export function adjustColour (colour, amount) {
+  const useHash = colour.startsWith('#')
 
-  if (usePound) {
+  if (useHash) {
     colour = colour.substring(1)
   }
 
@@ -32,7 +32,7 @@ function lightenDarkenColor (colour, amount) {
     g = 0
   }
 
-  return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16)
+  return (useHash ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16)
 }
 
 export const dark = '#6E737B'
@@ -43,20 +43,20 @@ export const lightAccent = '#f3f3f3'
 export const lightLowlight = '#969696'
 
 export const panelLevel1Background = '#FFFFFF'
-export const panelLevel1Header = lightenDarkenColor(panelLevel1Background, -180)
-export const panelLevel1Text = lightenDarkenColor(panelLevel1Background, -120)
+export const panelLevel1Header = adjustColour(panelLevel1Background, -180)
+export const panelLevel1Text = adjustColour(panelLevel1Background, -120)
 
 export const panelLevel2Background = '#f3f3f3'
-export const panelLevel2Header = lightenDarkenColor(panelLevel2Background, -180)
-export const panelLevel2Text = lightenDarkenColor(panelLevel2Background, -120)
-export const panelLevel2Notes = lightenDarkenColor(panelLevel2Background, -100)
-export const panelLevel2Border = lightenDarkenColor(panelLevel2Background, -30)
+export const panelLevel2Header = adjustColour(panelLevel2Background, -180)
+export const panelLevel2Text = adjustColour(panelLevel2Background, -120)
+export const panelLevel2Notes = adjustColour(panelLevel2Background, -100)
+export const panelLevel2Border = adjustColour(panelLevel2Background, -30)
 
 export const panelLevel3Background = '#6E737B'
-export const panelLevel3Header = lightenDarkenColor(panelLevel3Background, 180)
-export const panelLevel3Text = lightenDarkenColor(panelLevel3Background, 120)
-export const panelLevel3Border = lightenDarkenColor(panelLevel3Background, 100)
-export const panelLevel3HoverBackground = lightenDarkenColor(panelLevel3Background, -80)
+export const panelLevel3Header = adjustColour(panelLevel3Background, 180)
+export const panelLevel3Text = adjustColour(panelLevel3Background, 120)
+export const panelLevel3Border = adjustColour(panelLevel3Background, 100)
+export const panelLevel3HoverBackground = adjustColour(panelLevel3Background, -80)
 
 export const errorText = '#ff6459'
 export const errorBackground = '#EC9590'

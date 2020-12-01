@@ -7,7 +7,8 @@ import {
   panelLevel2Border,
   panelLevel2Header,
   panelLevel2Text,
-  panelLevel2Notes
+  panelLevel2Notes,
+  adjustColour
 } from '../colours'
 import {
   spacing
@@ -138,6 +139,10 @@ const ToggleLabel = styled.label`
     background-color: ${pccDarkBlue};
   }
 
+  input:disabled ~ .control {
+    background-color: grey;
+  }
+
   input:checked ~ .control:after {
     left: 55px;
   }
@@ -194,6 +199,10 @@ const SelectedButton = styled(MultipleChoiceButton)`
   &:hover {
     background-color: ${pccDarkBlue};
   }
+
+  &:disabled {
+    background-color: grey;
+  }
 `
 
 export const MultipleChoice = ({ choices, descriptions, value, onChoose, ...props }) => {
@@ -222,3 +231,45 @@ export const MultipleChoice = ({ choices, descriptions, value, onChoose, ...prop
     })
   )
 }
+
+export const GreenButton = styled(Button)`
+  display: block;
+  margin: 10px auto;
+  padding: 8px ${spacing(4)};
+  background-color: #098c0b;
+  color: #FFF;
+  border: 1px solid ${adjustColour('#098c0b', -1)};
+
+  &:hover {
+    background-color: ${adjustColour('#098c0b', 20)};
+  }
+
+  &:active {
+    background-color: ${adjustColour('#098c0b', 60)};
+  }
+
+  &:disabled {
+    background-color: grey;
+  }
+`
+
+export const BlueButton = styled(Button)`
+  display: block;
+  margin: 10px auto;
+  padding: 8px ${spacing(4)};
+  background-color: ${pccDarkBlue};
+  color: #FFF;
+  border: 1px solid ${adjustColour(pccDarkBlue, -20)};
+
+  &:hover {
+    background-color: ${adjustColour(pccDarkBlue, -20)};
+  }
+
+  &:active {
+    background-color: ${adjustColour(pccDarkBlue, 20)};
+  }
+
+  &:disabled {
+    background-color: grey;
+  }
+`

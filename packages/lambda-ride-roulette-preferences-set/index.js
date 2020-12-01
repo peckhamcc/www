@@ -29,7 +29,8 @@ async function setPreferencesHandler (event) {
   //  '2020-02-10': {
   //    'distance': 'short'
   //    'speed': 'social'
-  //    'type': 'road'
+  //    'type': 'road',
+  //    'route': 'no-route'
   //  }
   // }
 
@@ -44,13 +45,17 @@ async function setPreferencesHandler (event) {
       acc[event.date] = {
         speed: event.speed,
         distance: event.distance,
-        type: event.type
+        type: event.type,
+        route: event.route
       }
 
       return acc
     }, {})
 
-  await setPreferences(event.user.email, prefs)
+  await setPreferences(event.user.email, {
+    name: event.user.name,
+    preferences: prefs
+  })
 
   return {
     statusCode: 204
@@ -95,6 +100,13 @@ const inputSchema = {
               'medium',
               'long',
               'epic'
+            ]
+          },
+          route: {
+            type: 'string',
+            enum: [
+              'no-route',
+              'has-route'
             ]
           }
         }

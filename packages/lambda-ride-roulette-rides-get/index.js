@@ -23,7 +23,9 @@ function nextDate (dayIndex) {
 
 async function getRidesHandler (event) {
   // const assigned = await getRides()
-  const prefs = await getPreferences(event.user.email)
+  const {
+    preferences
+  } = await getPreferences(event.user.email)
 
   const ridingDays = [
     nextDate(6),
@@ -31,11 +33,11 @@ async function getRidesHandler (event) {
   ]
 
   const rides = ridingDays.map(date => {
-    if (prefs[date]) {
+    if (preferences[date]) {
       return {
         date,
         riding: true,
-        ...prefs[date]
+        ...preferences[date]
       }
     } else {
       return {

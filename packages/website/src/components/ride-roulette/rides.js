@@ -3,9 +3,8 @@ import React, {
 } from 'react'
 import PropTypes from 'prop-types'
 import {
-  PageWrapper,
-  Panel
-} from '../panels'
+  Link
+} from 'react-router-dom'
 import styled from 'styled-components'
 import {
   connect
@@ -14,11 +13,16 @@ import config from '../../config'
 import {
   clearRouletteToken
 } from '../../store/actions'
-import pccLogo from '../../../assets/pcc-logo-round.png'
 import {
   Toggle,
-  MultipleChoice
+  MultipleChoice,
+  GreenButton,
+  BlueButton,
+  HelpText
 } from '../forms'
+import {
+  Spinner
+} from '../panels'
 
 const DAYS = [
   'Sun',
@@ -65,6 +69,11 @@ const Type = Object.freeze({
   MountainBiking: 'mtb'
 })
 
+const Route = Object.freeze({
+  NoRoute: 'no-route',
+  HasRoute: 'has-route'
+})
+
 const DISTANCE_DESCRIPTIONS = {
   [Distance.Short]: 'Short - 60km',
   [Distance.Medium]: 'Medium - 80-110km',
@@ -85,19 +94,10 @@ const TYPE_DESCRIPTIONS = {
   [Type.MountainBiking]: 'Mountain Biking'
 }
 
-const CenteredPanel = styled(Panel)`
-  max-width: 376px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 80px;
-  padding-top: 20px;
-
-  img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-`
+const ROUTE_DESCRIPTIONS = {
+  [Route.NoRoute]: 'No route in mind',
+  [Route.HasRoute]: 'I have a route in mind'
+}
 
 const ToggleHeader = styled.div`
   display: flex;
@@ -122,6 +122,11 @@ const RidePreferences = styled.div`
   margin-bottom: 20px;
 `
 
+const RidesPageLink = styled(HelpText)`
+  margin-bottom: 20px;
+  text-align: center;
+`
+
 class Rides extends Component {
   state = {
     loading: false,
@@ -135,7 +140,7 @@ class Rides extends Component {
   }
 
   async _loadRides () {
-    if (!this.props.token || !this.props.email) {
+    if (!this.props.token || !this.props.user.email) {
       return
     }
 
@@ -147,7 +152,7 @@ class Rides extends Component {
       const response = await global.fetch(config.lambda.rideRouletteRidesGet, {
         method: 'GET',
         headers: {
-          Auth: global.btoa(JSON.stringify({ token: this.props.token, email: this.props.email }))
+          Auth: global.btoa(JSON.stringify({ token: this.props.token, email: this.props.user.email, name: this.props.user.name }))
         }
       })
 
@@ -178,57 +183,73 @@ class Rides extends Component {
     }
   }
 
-  handleWantToRideChange (event, timestamp) {
-    event.preventDefault()
-    const rides = this.state.rides
+  handleWantToRideChange (ride) {
+    let removedPreference = false
 
-    rides.forEach(ride => {
-      if (ride.date === timestamp) {
-        if (ride.riding) {
-          ride.riding = false
-        } else {
-          ride.riding = true
-          ride.distance = 'short'
-          ride.speed = 'social'
-          ride.type = 'road'
-        }
-      }
-    })
-
-    if (rides[timestamp]) {
-      rides[timestamp] = false
+    if (ride.riding) {
+      ride.riding = false
+      removedPreference = true
     } else {
-      rides[timestamp] = {
-        distance: 'short',
-        speed: 'social',
-        type: 'road'
-      }
+      ride.riding = true
+      ride.distance = 'short'
+      ride.speed = 'social'
+      ride.type = 'road'
+      ride.route = 'no-route'
     }
 
     this.setState({
-      rides
+      rides: this.state.rides
     })
 
-    this._saveRidePreferences().catch(err => console.error(err))
+    if (removedPreference) {
+      this.handleSaveRidePreferences().catch(err => console.error(err))
+    }
   }
 
-  handleChoice (timestamp, type, value) {
-    const rides = this.state.rides
-
-    rides.forEach(ride => {
-      if (ride.date === timestamp) {
-        ride[type] = value
-      }
-    })
+  handleChoice (ride, type, value) {
+    ride[type] = value
 
     this.setState({
-      rides
+      rides: this.state.rides
     })
-
-    this._saveRidePreferences().catch(err => console.error(err))
   }
 
-  _saveRidePreferences = async () => {
+  handleSaveRidePreference = async (ride) => {
+    await this.handleSaveRidePreferences()
+    ride.saved = true
+
+    const {
+      rides
+    } = this.state
+
+    this.setState({
+      rides: rides.map(r => {
+        if (r.date === ride.date) {
+          r.saved = true
+        }
+
+        return r
+      })
+    })
+  }
+
+  handleUpdateRidePreference = (ride) => {
+    const {
+      rides
+    } = this.state
+
+    this.setState({
+      rides: rides.map(r => {
+        if (r.date === ride.date) {
+          delete r.saved
+        }
+
+        return r
+      })
+    })
+  }
+
+  handleSaveRidePreferences = async () => {
     const rides = this.state.rides
 
     this.setState({
@@ -239,10 +260,13 @@ class Rides extends Component {
       const response = await global.fetch(config.lambda.rideRoulettePreferencesSet, {
         method: 'PUT',
         headers: {
-          Auth: global.btoa(JSON.stringify({ token: this.props.token, email: this.props.email })),
+          Auth: global.btoa(JSON.stringify({ token: this.props.token, email: this.props.user.email, name: this.props.user.name })),
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(rides)
+        body: JSON.stringify(rides.map(ride => ({
+          ...ride,
+          saved: undefined
+        })))
       })
 
       this.setState({
@@ -273,7 +297,7 @@ class Rides extends Component {
   }
 
   render () {
-    if (!this.props.token) {
+    if (!this.props.token || !this.props.user.name) {
       return null
     }
 
@@ -281,6 +305,12 @@ class Rides extends Component {
       loading,
       rides
     } = this.state
+
+    if (loading && !rides.length) {
+      return (
+        <Spinner />
+      )
+    }
 
     const content = rides
       .map(ride => {
@@ -295,6 +325,26 @@ class Rides extends Component {
               <p>Ride {ride.ride}</p>
             </RidePreferences>
           )
+        } else if (ride.saved) {
+          // just saved this one
+          return (
+            <RidePreferences key={timestamp}>
+              <ToggleHeader>
+                <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
+                <Toggle
+                  onChange={() => this.handleWantToRideChange(ride)}
+                  state
+                  disabled={loading}
+                />
+              </ToggleHeader>
+              <p>Your preferences have been saved, check back before the ride to see which group you are in!</p>
+              <BlueButton
+                onClick={() => this.handleUpdateRidePreference(ride)}
+                disabled={loading}
+              >Update
+              </BlueButton>
+            </RidePreferences>
+          )
         } else if (ride.riding) {
           // want to ride on this day
           return (
@@ -302,7 +352,7 @@ class Rides extends Component {
               <ToggleHeader>
                 <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
                 <Toggle
-                  onChange={(event) => this.handleWantToRideChange(event, timestamp)}
+                  onChange={() => this.handleWantToRideChange(ride)}
                   state
                   disabled={loading}
                 />
@@ -312,25 +362,39 @@ class Rides extends Component {
                 choices={Object.values(Type)}
                 descriptions={TYPE_DESCRIPTIONS}
                 value={ride.type}
-                onChoose={(value) => this.handleChoice(timestamp, 'type', value)}
+                onChoose={(value) => this.handleChoice(ride, 'type', value)}
                 disabled={loading}
               />
-              <ChoiceHeader className='pa0 ma0 mt4 f6 fw7 tracked gray ttu'>Distance</ChoiceHeader>
+              <ChoiceHeader>Distance</ChoiceHeader>
               <MultipleChoice
                 choices={Object.values(Distance)}
                 descriptions={DISTANCE_DESCRIPTIONS}
                 value={ride.distance}
-                onChoose={(value) => this.handleChoice(timestamp, 'distance', value)}
+                onChoose={(value) => this.handleChoice(ride, 'distance', value)}
                 disabled={loading}
               />
-              <ChoiceHeader className='pa0 ma0 mt4 f6 fw7 tracked gray ttu'>Speed</ChoiceHeader>
+              <ChoiceHeader>Speed</ChoiceHeader>
               <MultipleChoice
                 choices={Object.values(Speed)}
                 descriptions={SPEED_DESCRIPTIONS}
                 value={ride.speed}
-                onChoose={(value) => this.handleChoice(timestamp, 'speed', value)}
+                onChoose={(value) => this.handleChoice(ride, 'speed', value)}
                 disabled={loading}
               />
+              <ChoiceHeader>Route</ChoiceHeader>
+              <MultipleChoice
+                choices={Object.values(Route)}
+                descriptions={ROUTE_DESCRIPTIONS}
+                value={ride.route}
+                onChoose={(value) => this.handleChoice(ride, 'route', value)}
+                disabled={loading}
+              />
+              <RidesPageLink>Checkout the <Link to='/routes'>routes page</Link> for inspiration!</RidesPageLink>
+              <GreenButton
+                onClick={() => this.handleSaveRidePreference(ride)}
+                disabled={loading}
+              >Save
+              </GreenButton>
             </RidePreferences>
           )
         }
@@ -341,7 +405,7 @@ class Rides extends Component {
             <ToggleHeader>
               <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
               <Toggle
-                onChange={(event) => this.handleWantToRideChange(event, timestamp)}
+                onChange={() => this.handleWantToRideChange(ride)}
                 state={false}
                 disabled={loading}
               />
@@ -351,14 +415,10 @@ class Rides extends Component {
       })
 
     return (
-      <PageWrapper>
-        <CenteredPanel>
-          <img src={pccLogo.src} width='300' height='300' />
-          <h2>Ride Roulette</h2>
-          <p>Choose the type of ride you want to do and check back the afternoon before to see which group you are in</p>
-          {content}
-        </CenteredPanel>
-      </PageWrapper>
+      <>
+        <p>Choose the type of ride you want to do and check back the afternoon before to see which group you are in</p>
+        {content}
+      </>
     )
   }
 }
@@ -368,9 +428,9 @@ Rides.propTypes = {
   user: PropTypes.object
 }
 
-const mapStateToProps = ({ roulette: { token }, user: { email } }) => ({
+const mapStateToProps = ({ roulette: { token }, user }) => ({
   token,
-  email
+  user
 })
 
 const mapDispatchToProps = {

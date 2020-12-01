@@ -47,12 +47,13 @@ const tokenValidator = (opts) => ({
 
     let {
       email,
-      token
+      token,
+      name
     } = JSON.parse(Buffer.from(auth, 'base64'))
 
     email = email.toLowerCase()
 
-    console.info('received email', email, token)
+    console.info('received email', email, token, name)
 
     try {
       if (!await validateToken(email, token)) {
@@ -62,7 +63,8 @@ const tokenValidator = (opts) => ({
       await extendToken(email)
 
       handler.event.user = {
-        email
+        email,
+        name
       }
     } catch (err) {
       console.info('token was invalid', err)
