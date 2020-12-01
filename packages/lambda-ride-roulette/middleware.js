@@ -6,6 +6,10 @@ const {
 
 const errorHandler = () => ({
   onError: (handler, next) => {
+    console.info('incoming error', handler.error)
+    console.info('is http', handler.error instanceof httpErrors.HttpError)
+    console.info('has status code', handler.error && handler.error.statusCode)
+
     if (handler.error instanceof httpErrors.HttpError) {
       if (handler.error.message.includes('failed validation')) {
         const details = handler.error.details[0]
