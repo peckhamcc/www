@@ -416,3 +416,8 @@ export const Spinner = styled.div`
     }
   }
 `
+
+export const SmallSpinner = styled(Spinner)`
+  height: ${spacing(2)};
+  width: ${spacing(2)};
+`

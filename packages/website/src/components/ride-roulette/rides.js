@@ -21,7 +21,8 @@ import {
   HelpText
 } from '../forms'
 import {
-  Spinner
+  Spinner,
+  SmallSpinner
 } from '../panels'
 
 const DAYS = [
@@ -157,8 +158,13 @@ class Rides extends Component {
       })
 
       if (response.status === 200) {
+        const rides = await response.json()
+
         this.setState({
-          rides: await response.json()
+          rides: rides.map(ride => ({
+            ...ride,
+            saved: Boolean(ride.riding)
+          }))
         })
 
         return
@@ -185,6 +191,8 @@ class Rides extends Component {
 
   handleWantToRideChange (ride) {
     let removedPreference = false
+
+    ride.saved = false
 
     if (ride.riding) {
       ride.riding = false
@@ -390,11 +398,17 @@ class Rides extends Component {
                 disabled={loading}
               />
               <RidesPageLink>Checkout the <Link to='/routes'>routes page</Link> for inspiration!</RidesPageLink>
-              <GreenButton
-                onClick={() => this.handleSaveRidePreference(ride)}
-                disabled={loading}
-              >Save
-              </GreenButton>
+              {
+                loading ? (
+                  <SmallSpinner />
+                ) : (
+                  <GreenButton
+                    onClick={() => this.handleSaveRidePreference(ride)}
+                    disabled={loading}
+                  >Save
+                  </GreenButton>
+                )
+              }
             </RidePreferences>
           )
         }
