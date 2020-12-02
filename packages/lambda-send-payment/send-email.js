@@ -72,38 +72,36 @@ div {
     </style>
   </head>
   <body>
-    <div>
-      <p>Hi ${firstName},</p>
-      <p>Thanks for your order, in order to complete it, please make a payment to the following account for the amount of &pound;${amount}</p>
-      <p>Please use ${lastName.toUpperCase()}-KIT as the payment reference.</p>
-      <p>
-        Name: Peckham Cycle Club<br />
-        Account: ${process.env.PCC_ACCOUNT_NUMBER}<br />
-        Sort code: ${process.env.PCC_SORT_CODE}
-      </p>
-      <p>Your order is not complete until payment has been received.</p>
-      <p>The items you have ordered are:</p>
-      <p>
-        ${displayItems(lineItems, '&pound;', '<br />')}
-      </p>
-      <p>Total value: &pound;${amount}</p>
-      <p>We aim to submit orders to the factory every two months.</p>
-      <p>
-        It then typically takes a further six weeks to print, after which your items will be held at
-        <a href="https://ratracecycles.com">Rat Race Cycles</a> for you to pick up.
-      </p>
-      <p>Once we know the delivery date for your items we'll send you an email to let you know.</p>
-      <p>Please get in touch if you'd like any updates in the interim.</p>
-      <p>Thank you,</p>
-      <p>Peckham Cycle Club</p>
-      <p>
-        <a href="mailto:peckhamcc@gmail.com">peckhamcc@gmail.com</a><br />
-        <a href="https://peckham.cc">https://peckham.cc</a><br />
-        <a href="https://facebook.com/PeckhamCC">https://facebook.com/PeckhamCC</a><br />
-        <a href="https://twitter.com/PeckhamCC">https://twitter.com/PeckhamCC</a><br />
-        <a href="https://instagram.com/PeckhamCC">https://instagram.com/PeckhamCC</a>
-      </p>
-    </article>
+    <p>Hi ${firstName},</p>
+    <p>Thanks for your order, in order to complete it, please make a payment to the following account for the amount of &pound;${amount}</p>
+    <p>Please use ${lastName.toUpperCase()}-KIT as the payment reference.</p>
+    <p>
+      Name: Peckham Cycle Club<br />
+      Account: ${process.env.PCC_ACCOUNT_NUMBER}<br />
+      Sort code: ${process.env.PCC_SORT_CODE}
+    </p>
+    <p>Your order is not complete until payment has been received.</p>
+    <p>The items you have ordered are:</p>
+    <p>
+      ${displayItems(lineItems, '&pound;', '<br />')}
+    </p>
+    <p>Total value: &pound;${amount}</p>
+    <p>We aim to submit orders to the factory every two months.</p>
+    <p>
+      It then typically takes a further six weeks to print, after which your items will be held at
+      <a href="https://ratracecycles.com">Rat Race Cycles</a> for you to pick up.
+    </p>
+    <p>Once we know the delivery date for your items we'll send you an email to let you know.</p>
+    <p>Please get in touch if you'd like any updates in the interim.</p>
+    <p>Thank you,</p>
+    <p>Peckham Cycle Club</p>
+    <p>
+      <a href="mailto:peckhamcc@gmail.com">peckhamcc@gmail.com</a><br />
+      <a href="https://peckham.cc">https://peckham.cc</a><br />
+      <a href="https://facebook.com/PeckhamCC">https://facebook.com/PeckhamCC</a><br />
+      <a href="https://twitter.com/PeckhamCC">https://twitter.com/PeckhamCC</a><br />
+      <a href="https://instagram.com/PeckhamCC">https://instagram.com/PeckhamCC</a>
+    </p>
   </body>
 </html>
 `

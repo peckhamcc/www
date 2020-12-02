@@ -42,10 +42,8 @@ div {
     </style>
   </head>
   <body>
-    <div>
-      <p>Use the following link to log in to PCC Ride Roulette:</p>
-      <p><a href="${url}">${url}</a></p>
-    </article>
+    <p>Use the following link to log in to PCC Ride Roulette:</p>
+    <p><a href="${url}">${url}</a></p>
   </body>
 </html>
 `

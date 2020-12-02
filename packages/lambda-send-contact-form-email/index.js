@@ -64,10 +64,8 @@ div {
     </style>
   </head>
   <body>
-    <div>
-      <p>${name} (${email}) submitted this message via the peckham.cc contact form:</p>
-      <p>${message.trim().replace(/\n/g, '<br />')}</p>
-    </article>
+    <p>${name} (${email}) submitted this message via the peckham.cc contact form:</p>
+    <p>${message.trim().replace(/\n/g, '<br />')}</p>
   </body>
 </html>
 `
