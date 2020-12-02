@@ -54,14 +54,6 @@ const sendEmail = (event) => {
 const htmlTemplate = (name, email, message) => `
 <html>
   <head>
-    <style type="text/css">
-
-div {
-  max-width: 800px;
-  padding: 20px;
-}
-
-    </style>
   </head>
   <body>
     <p>${name} (${email}) submitted this message via the peckham.cc contact form:</p>

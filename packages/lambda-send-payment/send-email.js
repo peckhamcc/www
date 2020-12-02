@@ -62,14 +62,6 @@ const displayItems = (lineItems, pound, delimiter) => {
 const htmlTemplate = (firstName, lastName, address1, address2, address3, postCode, lineItems, amount) => `
 <html>
   <head>
-    <style type="text/css">
-
-div {
-  max-width: 800px;
-  padding: 20px;
-}
-
-    </style>
   </head>
   <body>
     <p>Hi ${firstName},</p>

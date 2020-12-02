@@ -32,18 +32,11 @@ async function generateTokenAndSendEmail ({ body: { email } }) {
 const htmlTemplate = (url) => `
 <html>
   <head>
-    <style type="text/css">
-
-div {
-  max-width: 800px;
-  padding: 20px;
-}
-
-    </style>
   </head>
   <body>
     <p>Use the following link to log in to PCC Ride Roulette:</p>
     <p><a href="${url}">${url}</a></p>
+    <p>It will expire in one hour.</p>
   </body>
 </html>
 `
@@ -52,6 +45,8 @@ const textTemplate = (url) => `
 Use the following link to log in to PCC Ride Roulette:
 
 ${url}
+
+It will expire in one hour.
 `
 
 const inputSchema = {

@@ -33,14 +33,6 @@ async function generateRidesHandler () {
 const htmlTemplate = (rides) => `
 <html>
   <head>
-    <style type="text/css">
-
-div {
-  max-width: 800px;
-  padding: 20px;
-}
-
-    </style>
   </head>
   <body>
     <p>Rides for this weekend:</p>
@@ -64,6 +56,7 @@ div {
 
         return output
       })
+        .join('')
     }
   </body>
 </html>
@@ -89,6 +82,7 @@ Riders: ${ride.riders.map(rider => (`
 
     return output
   })
+    .join('')
 }`
 
 module.exports = {
