@@ -50,8 +50,6 @@ const getAllPreferences = async () => {
   do {
     items = await client.scan(params).promise()
     items.Items.forEach((item) => {
-      console.info('found item', item)
-
       scanResults[item.email] = {
         name: item.name,
         preferences: item.preferences

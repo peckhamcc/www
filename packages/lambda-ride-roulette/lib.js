@@ -58,6 +58,9 @@ function shuffle (array) {
 }
 
 function generateRides (ridingDays, riderPrefs) {
+  console.info('passed riding days', JSON.stringify(ridingDays, null, 2))
+  console.info('passed rider prefs', JSON.stringify(riderPrefs, null, 2))
+
   const preferences = {}
 
   Object.keys(riderPrefs).forEach(email => {
