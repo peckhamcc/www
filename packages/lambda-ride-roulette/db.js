@@ -25,7 +25,7 @@ const setRides = async (date, rides) => {
   const client = new AWS.DynamoDB.DocumentClient()
 
   await client.update({
-    TableName: process.env.AWS_PREFERENCES_DB_TABLE,
+    TableName: process.env.AWS_RIDES_DB_TABLE,
     Key: {
       date
     },
