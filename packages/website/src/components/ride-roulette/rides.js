@@ -84,17 +84,45 @@ const Route = Object.freeze({
 })
 
 const DISTANCE_DESCRIPTIONS = {
-  [Distance.Short]: 'Short - 60km',
-  [Distance.Medium]: 'Medium - 80-110km',
-  [Distance.Long]: 'Long - 110-160km',
-  [Distance.Epic]: 'Epic - 160km+'
+  [Type.Road]: {
+    [Distance.Short]: 'Short - 60km',
+    [Distance.Medium]: 'Medium - 80-110km',
+    [Distance.Long]: 'Long - 110-150km',
+    [Distance.Epic]: 'Epic - 150km+'
+  },
+  [Type.Mud]: {
+    [Distance.Short]: 'Short - 20km',
+    [Distance.Medium]: 'Medium - 20-30km',
+    [Distance.Long]: 'Long - 30-40km',
+    [Distance.Epic]: 'Epic - 40km+'
+  },
+  [Type.MountainBiking]: {
+    [Distance.Short]: 'Short - 1hr',
+    [Distance.Medium]: 'Medium - 2hrs',
+    [Distance.Long]: 'Long - 3hrs',
+    [Distance.Epic]: 'Epic - 4hrs+'
+  }
 }
 
 const SPEED_DESCRIPTIONS = {
-  [Speed.Social]: 'Social - 21kph',
-  [Speed.SocialPlus]: 'Social Plus - 24kph',
-  [Speed.AntiSocial]: 'Antisocial - 26kph',
-  [Speed.PainTrain]: '🎷🐩🚴‍♀️🚴‍♂️🚴‍♀️🚴‍♂️💨 - 28kph+'
+  [Type.Road]: {
+    [Speed.Social]: 'Social - 21kph',
+    [Speed.SocialPlus]: 'Social Plus - 24kph',
+    [Speed.AntiSocial]: 'Antisocial - 26kph',
+    [Speed.PainTrain]: '🎷🐩🚴‍♀️🚴‍♂️🚴‍♀️🚴‍♂️💨 - 28kph+'
+  },
+  [Type.Mud]: {
+    [Speed.Social]: 'Social - 16kph',
+    [Speed.SocialPlus]: 'Social Plus - 20kph',
+    [Speed.AntiSocial]: 'Antisocial - 22kph',
+    [Speed.PainTrain]: '🎷🐩🚴‍♀️🚴‍♂️🚴‍♀️🚴‍♂️💨 - 24kph+'
+  },
+  [Type.MountainBiking]: {
+    [Speed.Social]: 'Social - 12kph',
+    [Speed.SocialPlus]: 'Social Plus - 14kph',
+    [Speed.AntiSocial]: 'Antisocial - 16kph',
+    [Speed.PainTrain]: '🎷🐩🚴‍♀️🚴‍♂️🚴‍♀️🚴‍♂️💨 - 18kph+'
+  }
 }
 
 const TYPE_DESCRIPTIONS = {
@@ -424,11 +452,11 @@ class Rides extends Component {
                 </tr>
                 <tr>
                   <GroupHeader>Speed:</GroupHeader>
-                  <GroupCell>{SPEED_DESCRIPTIONS[generatedRide.speed]}</GroupCell>
+                  <GroupCell>{SPEED_DESCRIPTIONS[generatedRide.type][generatedRide.speed]}</GroupCell>
                 </tr>
                 <tr>
                   <GroupHeader>Distance:</GroupHeader>
-                  <GroupCell>{DISTANCE_DESCRIPTIONS[generatedRide.distance]}</GroupCell>
+                  <GroupCell>{DISTANCE_DESCRIPTIONS[generatedRide.type][generatedRide.distance]}</GroupCell>
                 </tr>
                 <tr>
                   <GroupHeader>Riders:</GroupHeader>
@@ -495,6 +523,13 @@ class Rides extends Component {
         )
       }
 
+      console.info(preference.type)
+      console.info(DISTANCE_DESCRIPTIONS[preference.type])
+      console.info(SPEED_DESCRIPTIONS[preference.type])
+
+      console.info(DISTANCE_DESCRIPTIONS)
+      console.info(SPEED_DESCRIPTIONS)
+
       // want to ride on this day
       return (
         <RidePreferences key={timestamp}>
@@ -517,7 +552,7 @@ class Rides extends Component {
           <ChoiceHeader>Distance</ChoiceHeader>
           <MultipleChoice
             choices={Object.values(Distance)}
-            descriptions={DISTANCE_DESCRIPTIONS}
+            descriptions={DISTANCE_DESCRIPTIONS[preference.type]}
             value={preference.distance}
             onChoose={(value) => this.handleChoice(preference, 'distance', value)}
             disabled={loading}
@@ -525,7 +560,7 @@ class Rides extends Component {
           <ChoiceHeader>Speed</ChoiceHeader>
           <MultipleChoice
             choices={Object.values(Speed)}
-            descriptions={SPEED_DESCRIPTIONS}
+            descriptions={SPEED_DESCRIPTIONS[preference.type]}
             value={preference.speed}
             onChoose={(value) => this.handleChoice(preference, 'speed', value)}
             disabled={loading}
@@ -553,194 +588,7 @@ class Rides extends Component {
         </RidePreferences>
       )
     })
-    /*
-    const content = rides
-      .map(ride => {
-        const timestamp = ride.date
-        const date = new Date(timestamp)
 
-        if (ride.ride) {
-          if (ride.riding === false) {
-            // missed the deadline for a ride
-            return null
-          }
-
-          let routeChoice
-
-          const ridersWithRoutes = ride.riders
-            .filter(rider => rider.hasRoute)
-            .map(rider => rider.name)
-
-          if (ridersWithRoutes.length === 0) {
-            routeChoice = (
-              <p>No-one in your group has a route planned, check out the <Link to='/routes'>routes page</Link> for inspiration!</p>
-            )
-          } else if (ridersWithRoutes.length === 1) {
-            routeChoice = (
-              <p>{ridersWithRoutes[0]} has a route planned.</p>
-            )
-          } else {
-            const routers = ridersWithRoutes.slice(0, ridersWithRoutes.length - 1).join(', ') + ' and ' + ridersWithRoutes[ridersWithRoutes.length - 1]
-
-            routeChoice = (
-              <p>{routers} {ridersWithRoutes.length === 2 ? 'both' : 'all'} have routes planned.</p>
-            )
-          }
-
-          const riderList = ride.riders.map((rider, index) => {
-            return (
-              <li key={index}>{rider.name}</li>
-            )
-          })
-
-          if (riderList.length === 0) {
-            routeChoice = (
-              <>
-                <p>It looks like you're the only person who wanted to ride this distance today!</p>
-                <p>Try asking in the WhatsApp room to see if you can join another ride.</p>
-              </>
-            )
-          }
-
-          // have been assigned a ride
-          return (
-            <RidePreferences key={timestamp}>
-              <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
-              <GroupDetails>
-                <tbody>
-                  <tr>
-                    <GroupHeader>Group:</GroupHeader>
-                    <GroupName>{ride.name}</GroupName>
-                  </tr>
-                  <tr>
-                    <GroupHeader>Speed:</GroupHeader>
-                    <GroupCell>{SPEED_DESCRIPTIONS[ride.speed]}</GroupCell>
-                  </tr>
-                  <tr>
-                    <GroupHeader>Distance:</GroupHeader>
-                    <GroupCell>{DISTANCE_DESCRIPTIONS[ride.distance]}</GroupCell>
-                  </tr>
-                  <tr>
-                    <GroupHeader>Riders:</GroupHeader>
-                    <GroupCell>
-                      {
-                        riderList.length ? (
-                          <ul>
-                            {riderList}
-                          </ul>
-                        ) : '-'
-                      }
-                    </GroupCell>
-                  </tr>
-                </tbody>
-              </GroupDetails>
-              {routeChoice}
-              {
-                riderList.length ? (
-                  <>
-                    <p>Rides leave the <a href='https://www.southwark.gov.uk/libraries/find-a-library?chapter=12'>library</a> at 8am (summer) or 8:30am (winter) unless your group has decided otherwise.</p>
-                    <p>Please turn up 5-10 minutes early to find your group and make sure you have everything on the <Link to='/equipment'>equipment list</Link>.</p>
-                  </>
-                ) : null
-              }
-            </RidePreferences>
-          )
-        } else if (ride.saved) {
-          // just saved this one
-          return (
-            <RidePreferences key={timestamp}>
-              <ToggleHeader>
-                <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
-                <Toggle
-                  onChange={() => this.handleWantToRideChange(ride)}
-                  state
-                  disabled={loading}
-                />
-              </ToggleHeader>
-              <p>Your preferences have been saved, check back before the ride to see which group you are in!</p>
-              <BlueButton
-                onClick={() => this.handleUpdateRidePreference(ride)}
-                disabled={loading}
-              >Update
-              </BlueButton>
-            </RidePreferences>
-          )
-        } else if (ride.riding) {
-          // want to ride on this day
-          return (
-            <RidePreferences key={timestamp}>
-              <ToggleHeader>
-                <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
-                <Toggle
-                  onChange={() => this.handleWantToRideChange(ride)}
-                  state
-                  disabled={loading}
-                />
-              </ToggleHeader>
-              <ChoiceHeader>Type</ChoiceHeader>
-              <MultipleChoice
-                choices={Object.values(Type)}
-                descriptions={TYPE_DESCRIPTIONS}
-                value={ride.type}
-                onChoose={(value) => this.handleChoice(ride, 'type', value)}
-                disabled={loading}
-              />
-              <ChoiceHeader>Distance</ChoiceHeader>
-              <MultipleChoice
-                choices={Object.values(Distance)}
-                descriptions={DISTANCE_DESCRIPTIONS}
-                value={ride.distance}
-                onChoose={(value) => this.handleChoice(ride, 'distance', value)}
-                disabled={loading}
-              />
-              <ChoiceHeader>Speed</ChoiceHeader>
-              <MultipleChoice
-                choices={Object.values(Speed)}
-                descriptions={SPEED_DESCRIPTIONS}
-                value={ride.speed}
-                onChoose={(value) => this.handleChoice(ride, 'speed', value)}
-                disabled={loading}
-              />
-              <ChoiceHeader>Route</ChoiceHeader>
-              <MultipleChoice
-                choices={Object.values(Route)}
-                descriptions={ROUTE_DESCRIPTIONS}
-                value={ride.route}
-                onChoose={(value) => this.handleChoice(ride, 'route', value)}
-                disabled={loading}
-              />
-              <RidesPageLink>Check out the <Link to='/routes'>routes page</Link> for inspiration!</RidesPageLink>
-              {
-                loading ? (
-                  <SmallSpinner />
-                ) : (
-                  <GreenButton
-                    onClick={() => this.handleSaveRidePreference(ride)}
-                    disabled={loading}
-                  >Save
-                  </GreenButton>
-                )
-              }
-            </RidePreferences>
-          )
-        }
-
-        // not riding this day
-        return (
-          <RidePreferences key={timestamp}>
-            <ToggleHeader>
-              <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
-              <Toggle
-                onChange={() => this.handleWantToRideChange(ride)}
-                state={false}
-                disabled={loading}
-              />
-            </ToggleHeader>
-          </RidePreferences>
-        )
-      })
-      .filter(Boolean)
-*/
     return (
       <>
         <p>Choose the type of ride you want to do and check back the afternoon before to see which group you are in</p>
