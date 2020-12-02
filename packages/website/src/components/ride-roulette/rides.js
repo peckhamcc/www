@@ -11,7 +11,9 @@ import {
 } from 'react-redux'
 import config from '../../config'
 import {
-  clearRouletteToken
+  expiredRouletteToken,
+  clearRouletteToken,
+  setUserName
 } from '../../store/actions'
 import {
   Toggle,
@@ -238,8 +240,13 @@ class Rides extends Component {
       if (response.status === 200) {
         const {
           rides,
-          preferences
+          preferences,
+          name
         } = await response.json()
+
+        if (name !== this.props.user.name) {
+          this.props.setUserName(name)
+        }
 
         this.setState({
           rides,
@@ -257,7 +264,7 @@ class Rides extends Component {
       }
 
       if (response.status === 401) {
-        this.props.clearRouletteToken()
+        this.props.expiredRouletteToken()
 
         return
       }
@@ -357,7 +364,7 @@ class Rides extends Component {
       }
 
       if (response.status === 401) {
-        this.props.clearRouletteToken()
+        this.props.expiredRouletteToken()
 
         return
       }
@@ -609,7 +616,9 @@ const mapStateToProps = ({ roulette: { token }, user }) => ({
 })
 
 const mapDispatchToProps = {
-  clearRouletteToken
+  expiredRouletteToken,
+  clearRouletteToken,
+  setUserName
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rides)

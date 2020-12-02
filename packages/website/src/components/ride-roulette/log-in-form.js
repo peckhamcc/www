@@ -142,10 +142,18 @@ class LogInForm extends Component {
 
     const { email } = this.state
 
-    let message = [
-      <p key='para1'>Be matched up with club members who want to ride at a similar pace and distance to you this weekend</p>,
-      <p key='para2'>Enter your email address to log in:</p>
-    ]
+    let message = (
+      <>
+        <p>Be matched up with club members who want to ride at a similar pace and distance to you this weekend</p>,
+        <p>Enter your email address to log in:</p>
+      </>
+    )
+
+    if (this.props.tokenExpired) {
+      message = (
+        <p>Your log in link expired, please enter your email to generate a new one:</p>
+      )
+    }
 
     if (step === STEPS.SUCCESS) {
       message = (
@@ -188,8 +196,9 @@ LogInForm.propTypes = {
   user: PropTypes.object
 }
 
-const mapStateToProps = ({ roulette: { token }, user }) => ({
+const mapStateToProps = ({ roulette: { token, tokenExpired }, user }) => ({
   token,
+  tokenExpired,
   user
 })
 
