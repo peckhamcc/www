@@ -12,10 +12,6 @@ import {
 
 class StoreToken extends Component {
   render () {
-    if (this.props.token) {
-      return null
-    }
-
     const encoded = new URLSearchParams(window.location.search).get('token')
 
     if (encoded) {
