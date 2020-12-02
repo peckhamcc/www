@@ -195,8 +195,7 @@ function generateRides (ridingDays, riderPrefs) {
     })
   })
 
-  // console.info('rides', JSON.stringify(rides, null, 2))
-
+  // assign letters so social rides start with 'A'
   Object.keys(rides).forEach(date => {
     Object.keys(rides[date]).forEach(type => {
       let index = 0
@@ -208,11 +207,11 @@ function generateRides (ridingDays, riderPrefs) {
     })
   })
 
-  // rides = { road: { social: [{ name: 'dave', speed: 'social'}]}}
+  // console.info('rides', JSON.stringify(rides, null, 2))
 
-  console.info('rides', JSON.stringify(rides, null, 2))
+  return rides
 }
-
+/*
 const sat = '2020-01-01'
 const sun = '2020-01-02'
 
@@ -325,7 +324,7 @@ const prefs = {
 }
 
 generateRides([sat, sun], prefs)
-
+*/
 module.exports = {
   getNextRidingDays,
   generateRides

@@ -9,7 +9,7 @@ const {
 
 async function generateRidesHandler () {
   const ridingDays = getNextRidingDays()
-  const riderPrefs = getAllPreferences()
+  const riderPrefs = await getAllPreferences()
 
   const rides = generateRides(ridingDays, riderPrefs)
 
