@@ -16,8 +16,8 @@
   "scripts": {
     "test": "echo 0",
     "clean": "rm -rf build",
-    "build": "cp ../config/index.js config.js && cp ../lambda-ride-roulette/email.js email.js && cp ../lambda-ride-roulette/token.js token.js && cp ../lambda-ride-roulette/db.js db.js && cp ../lambda-ride-roulette/middleware.js middleware.js && cp ../lambda-ride-roulette/lib.js lib.js && node-lambda build",
-    "build:dev": "cp ../config/index.js config.js && cp ../lambda-ride-roulette/dev-email.js email.js && cp ../lambda-ride-roulette/dev-token.js token.js && cp ../lambda-ride-roulette/dev-db.js db.js && cp ../lambda-ride-roulette/middleware.js middleware.js && cp ../lambda-ride-roulette/lib.js lib.js && node-lambda build",
+    "build": "cp ../config/index.js config.js && cp ../lambda-ride-roulette/email.js email.js && cp ../lambda-ride-roulette/token.js token.js && cp ../lambda-ride-roulette/db.js db.js && cp ../lambda-ride-roulette/middleware.js middleware.js && cp ../lambda-ride-roulette/lib.js lib.js",
+    "build:dev": "cp ../config/index.js config.js && cp ../lambda-ride-roulette/dev-email.js email.js && cp ../lambda-ride-roulette/dev-token.js token.js && cp ../lambda-ride-roulette/dev-db.js db.js && cp ../lambda-ride-roulette/middleware.js middleware.js && cp ../lambda-ride-roulette/lib.js lib.js",
     "deploy": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-ride-roulette-preferences-set-role-q1mwjbo3 --region eu-west-2",
     "lint": "standard"
   },

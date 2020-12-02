@@ -16,7 +16,7 @@
   "scripts": {
     "test": "npm run build",
     "clean": "rm -rf build",
-    "build": "cp ../config/index.js config.js && node-lambda build",
+    "build": "cp ../config/index.js config.js",
     "deploy": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/send-contact-form-email-role --region eu-west-2",
     "lint": "standard"
   },
