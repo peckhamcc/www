@@ -40,7 +40,6 @@ async function getRidesHandler (event) {
       .map(ride => ({
         ...ride,
         riders: ride.riders
-          .filter(rider => rider.email !== event.user.email)
           .map(rider => ({
             name: rider.name,
             hasRoute: rider.hasRoute
