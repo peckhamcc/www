@@ -91,16 +91,16 @@ const DISTANCE_DESCRIPTIONS = {
     [Distance.Epic]: 'Epic - 150km+'
   },
   [Type.Mud]: {
-    [Distance.Short]: 'Short - 20km',
-    [Distance.Medium]: 'Medium - 20-30km',
-    [Distance.Long]: 'Long - 30-40km',
-    [Distance.Epic]: 'Epic - 40km+'
+    [Distance.Short]: 'Short - 30km',
+    [Distance.Medium]: 'Medium - 40km',
+    [Distance.Long]: 'Long - 50km',
+    [Distance.Epic]: 'Epic - 60km+'
   },
   [Type.MountainBiking]: {
-    [Distance.Short]: 'Short - 1hr',
-    [Distance.Medium]: 'Medium - 2hrs',
-    [Distance.Long]: 'Long - 3hrs',
-    [Distance.Epic]: 'Epic - 4hrs+'
+    [Distance.Short]: 'Short - 2hrs',
+    [Distance.Medium]: 'Medium - 4hrs',
+    [Distance.Long]: 'Long - 6hrs',
+    [Distance.Epic]: 'Epic - 8hrs+'
   }
 }
 
