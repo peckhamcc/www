@@ -13,24 +13,8 @@ import {
 } from '../forms'
 
 class SaveNameForm extends Component {
-  state = {
-    editing: false,
-    name: ''
-  }
-
-  componentDidMount () {
-    this.setState({
-      name: this.props.user.name || '',
-      editing: !this.props.user.name
-    })
-  }
-
   handleNameChange = (event) => {
-    this.props.setUserName(event.target.value.trim())
-
-    this.setState({
-      name: event.target.value
-    })
+    this.props.setUserName(event.target.value)
   }
 
   render () {
@@ -44,11 +28,11 @@ class SaveNameForm extends Component {
           type='text'
           placeholder='Enter your name'
           required
-          value={this.state.name}
+          value={this.props.user.name}
           onChange={this.handleNameChange}
         />
         {
-          this.state.name ? null : (
+          this.props.user.name ? null : (
             <p>Please enter your name so the other riders in your group will know who you are</p>
           )
         }
