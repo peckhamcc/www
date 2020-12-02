@@ -74,7 +74,7 @@ const getPreferences = async (email) => {
   return result.Item || { preferences: {} }
 }
 
-const setPreferences = async (email, { name, preferences }) => {
+const setPreferences = async (email, { rider, preferences }) => {
   const client = new AWS.DynamoDB.DocumentClient()
 
   await client.update({
@@ -82,9 +82,9 @@ const setPreferences = async (email, { name, preferences }) => {
     Key: {
       email
     },
-    UpdateExpression: 'set rider = :n, preferences = :p, expires = :e',
+    UpdateExpression: 'set rider = :r, preferences = :p, expires = :e',
     ExpressionAttributeValues: {
-      ':n': name,
+      ':r': rider,
       ':p': preferences,
       ':e': Math.round(new Date(Date.now() + ONE_MONTH).getTime() / 1000)
     },

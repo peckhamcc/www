@@ -11,6 +11,7 @@ const rideRoulettePreferencesSet = require('@peckhamcc/lambda-ride-roulette-pref
 const rideRouletteRidesGenerate = require('@peckhamcc/lambda-ride-roulette-rides-generate')
 const rideRouletteRidesGet = require('@peckhamcc/lambda-ride-roulette-rides-get')
 const rideRouletteTokenGenerate = require('@peckhamcc/lambda-ride-roulette-token-generate')
+const { callbackify } = require('util')
 
 const ACCOUNT_ID = nanoid()
 const API_ID = nanoid()
@@ -98,7 +99,13 @@ const serveLambda = (name, lambda) => {
       awsRequestId: nanoid()
     }
 
-    lambda.handler(event, context, (error, result) => {
+    let handler = lambda.handler
+
+    if (handler.length !== 3) {
+      handler = callbackify(handler)
+    }
+
+    handler(event, context, (error, result) => {
       if (error) {
         console.error(error)
 
@@ -137,7 +144,7 @@ module.exports = (port) => {
     app.put(config.lambda.rideRoulettePreferencesSet, serveLambda('_peckhamcc_lambda-ride-roulette-preferences-set', rideRoulettePreferencesSet))
 
     app.options('/lambda/ride-roulette-rides-generate', serveLambda('_peckhamcc_lambda-ride-roulette-rides-generate', sendCorsHeaders))
-    app.post('/lambda/ride-roulette-rides-generate', serveLambda('_peckhamcc_lambda-ride-roulette-rides-generate', rideRouletteRidesGenerate))
+    app.get('/lambda/ride-roulette-rides-generate', serveLambda('_peckhamcc_lambda-ride-roulette-rides-generate', rideRouletteRidesGenerate))
 
     app.options(config.lambda.rideRouletteRidesGet, serveLambda('_peckhamcc_lambda-ride-roulette-rides-get', sendCorsHeaders))
     app.get(config.lambda.rideRouletteRidesGet, serveLambda('_peckhamcc_lambda-ride-roulette-rides-get', rideRouletteRidesGet))

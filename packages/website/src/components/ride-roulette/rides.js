@@ -402,6 +402,17 @@ class Rides extends Component {
       }
 
       if (generatedRide) {
+        if (generatedRide.riding === false) {
+          // Not assigned to a ride on this day
+          return (
+            <RidePreferences key={timestamp}>
+              <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
+              <p>Rest day!</p>
+              <p>If you've changed your mind and want to ride, try asking in the WhatsApp room if you can join another ride.</p>
+            </RidePreferences>
+          )
+        }
+
         // have been assigned to a ride
         let routeChoice
 
@@ -435,7 +446,7 @@ class Rides extends Component {
           routeChoice = (
             <>
               <p>It looks like you're the only person who wanted to ride this distance today!</p>
-              <p>Try asking in the WhatsApp room to see if you can join another ride.</p>
+              <p>If you'd prefer company try asking in the WhatsApp room if you can join another ride.</p>
             </>
           )
         }
@@ -522,13 +533,6 @@ class Rides extends Component {
           </RidePreferences>
         )
       }
-
-      console.info(preference.type)
-      console.info(DISTANCE_DESCRIPTIONS[preference.type])
-      console.info(SPEED_DESCRIPTIONS[preference.type])
-
-      console.info(DISTANCE_DESCRIPTIONS)
-      console.info(SPEED_DESCRIPTIONS)
 
       // want to ride on this day
       return (

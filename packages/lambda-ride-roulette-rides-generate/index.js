@@ -25,12 +25,29 @@ async function generateRidesHandler () {
     }
   }
 
-  await sendEmail(config.email.to, config.email.from, 'PCC Ride Roulette Weekend Rides', htmlTemplate(rides), textTemplate(rides))
+  await sendEmail(config.email.to, config.email.from, 'PCC Ride Roulette Weekend Rides', pccHtmlTemplate(rides), pccTextTemplate(rides))
 
-  return rides
+  for (let i = 0; i < ridingDays.length; i++) {
+    const date = ridingDays[i]
+
+    if (rides[date]) {
+      for (let j = 0; j < rides[date].length; j++) {
+        const ride = rides[date][j]
+
+        await Promise.all(
+          ride.riders.map(rider => sendEmail(rider.email, config.email.from, 'PCC Ride Roulette Weekend Rides', riderHtmlTemplate(), riderTextTemplate()))
+        )
+      }
+    }
+  }
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(rides, null, 2)
+  }
 }
 
-const htmlTemplate = (rides) => `
+const pccHtmlTemplate = (rides) => `
 <html>
   <head>
   </head>
@@ -62,7 +79,7 @@ const htmlTemplate = (rides) => `
 </html>
 `
 
-const textTemplate = (rides) => `
+const pccTextTemplate = (rides) => `
 Rides for this weekend:
 
 ${
@@ -84,6 +101,23 @@ Riders: ${ride.riders.map(rider => (`
   })
     .join('')
 }`
+
+const riderHtmlTemplate = () => `
+<html>
+  <head>
+  </head>
+  <body>
+    <p>The PCC Ride Roulette wheel has spun and you've been matched up with ride buddies for the weekend!</p>
+    <p>Log in to Ride Roulette to see the results: <a href="https://peckham.cc/ride-roulette">https://peckham.cc/ride-roulette</a><p>
+  </body>
+</html>
+`
+
+const riderTextTemplate = () => `
+The PCC Ride Roulette wheel has spun and you've been matched up with ride buddies for the weekend!
+
+Log in to Ride Roulette to see the results: https://peckham.cc/ride-roulette
+`
 
 module.exports = {
   handler: generateRidesHandler

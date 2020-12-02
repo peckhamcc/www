@@ -17,19 +17,6 @@ const {
 } = require('./lib')
 
 async function setPreferencesHandler (event) {
-  // DynamoDB schema - pcc-ride-roulette-preferences
-
-  // email: S
-  // expires: N - epoch timestamp
-  // preferences: {
-  //  '2020-02-10': {
-  //    'distance': 'short'
-  //    'speed': 'social'
-  //    'type': 'road',
-  //    'route': 'no-route'
-  //  }
-  // }
-
   const ridingDays = getNextRidingDays()
 
   const prefs = event.body
@@ -46,7 +33,7 @@ async function setPreferencesHandler (event) {
     }, {})
 
   await setPreferences(event.user.email, {
-    name: event.user.name,
+    rider: event.user.name,
     preferences: prefs
   })
 

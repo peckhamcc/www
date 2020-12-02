@@ -89,12 +89,13 @@ function generateRides (ridingDays, riderPrefs) {
   const rides = {}
 
   ridingDays.forEach(date => {
+    rides[date] = rides[date] || []
+
     if (!preferences[date]) {
       return
     }
 
     let groupName = 'Z'.charCodeAt(0)
-    rides[date] = rides[date] || []
 
     typeLookup.forEach(type => {
       if (!preferences[date][type]) {
