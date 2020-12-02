@@ -81,6 +81,8 @@ function generateRides (ridingDays, riderPrefs) {
       })
   })
 
+  console.info('preferences', JSON.stringify(preferences, null, 2))
+
   const rides = {}
 
   ridingDays.forEach(date => {
@@ -124,25 +126,6 @@ function generateRides (ridingDays, riderPrefs) {
                 }
               }
             }
-          }
-
-          // fewer than MAX_GROUP_SIZE riders for the distance, just make one group
-          if (riders.length < MAX_GROUP_SIZE) {
-            rides[date].push({
-              name: groupName,
-              type,
-              distance,
-              speed,
-              riders: riders.map(rider => ({
-                name: rider.name,
-                email: rider.email,
-                hasRoute: rider.route === 'has-route'
-              }))
-            })
-
-            groupName--
-
-            return
           }
 
           // make even groups, with at least one person with a route in each group
@@ -207,10 +190,11 @@ function generateRides (ridingDays, riderPrefs) {
     })
   })
 
-  // console.info('rides', JSON.stringify(rides, null, 2))
+  console.info('rides', JSON.stringify(rides, null, 2))
 
   return rides
 }
+
 /*
 const sat = '2020-01-01'
 const sun = '2020-01-02'
@@ -323,7 +307,7 @@ const prefs = {
   }
 }
 
-generateRides([sat, sun], prefs)
+console.info('rides', JSON.stringify(generateRides([sat, sun], prefs), null, 2))
 */
 module.exports = {
   getNextRidingDays,
