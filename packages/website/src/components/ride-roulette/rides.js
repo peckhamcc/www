@@ -215,7 +215,14 @@ class Rides extends Component {
 
         this.setState({
           rides,
-          preferences
+          preferences: Object.keys(preferences).reduce((acc, curr) => {
+            acc[curr] = {
+              ...preferences[curr],
+              saved: true
+            }
+
+            return acc
+          }, {})
         })
 
         return
