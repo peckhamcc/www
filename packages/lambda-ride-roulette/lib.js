@@ -5,7 +5,7 @@ function nextDate (now, dayIndex) {
   var day = new Date(now.getTime())
   day.setDate(day.getDate() + (dayIndex - 1 - day.getDay() + 7) % 7 + 1)
 
-  return `${day.getFullYear()}-${day.getMonth() + 1}-${day.getDate()}`
+  return `${day.getFullYear()}-${(day.getMonth() + 1).toString().padStart(2, '0')}-${day.getDate().toString().padStart(2, '0')}`
 }
 
 function getNextRidingDays () {
