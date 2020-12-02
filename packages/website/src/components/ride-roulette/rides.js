@@ -24,6 +24,14 @@ import {
   Spinner,
   SmallSpinner
 } from '../panels'
+import {
+  panelLevel2Background,
+  panelLevel2Border,
+  panelLevel2Header
+} from '../../colours'
+import {
+  spacing
+} from '../../units'
 
 const DAYS = [
   'Sun',
@@ -85,8 +93,8 @@ const DISTANCE_DESCRIPTIONS = {
 const SPEED_DESCRIPTIONS = {
   [Speed.Social]: 'Social - 21kph',
   [Speed.SocialPlus]: 'Social Plus - 24kph',
-  [Speed.AntiSocial]: 'Antisocial - 28kph',
-  [Speed.PainTrain]: 'Pain Train - 30kph+'
+  [Speed.AntiSocial]: 'Antisocial - 26kph',
+  [Speed.PainTrain]: '🎷🐩🚴‍♀️🚴‍♂️🚴‍♀️🚴‍♂️💨 - 28kph+'
 }
 
 const TYPE_DESCRIPTIONS = {
@@ -126,6 +134,43 @@ const RidePreferences = styled.div`
 const RidesPageLink = styled(HelpText)`
   margin-bottom: 20px;
   text-align: center;
+`
+
+const GroupDetails = styled.table`
+  background-color: ${panelLevel2Background};
+  border: 1px solid ${panelLevel2Border};
+  color: ${panelLevel2Header};
+  width: 100%;
+  border-collapse: collapse;
+`
+
+const GroupHeader = styled.th`
+  text-align: left;
+  vertical-align: top;
+  padding: ${spacing(0.25)} ${spacing(0.5)};
+  border: 1px solid ${panelLevel2Border};
+`
+
+const GroupCell = styled.td`
+  border: 1px solid ${panelLevel2Border};
+  padding: ${spacing(0.25)} ${spacing(0.5)};
+
+  ul {
+    padding: 0;
+    margin: 0 0 0 ${spacing(1)};
+
+    li {
+      padding: 0;
+      margin: 0;
+    }
+  }
+`
+
+const GroupName = styled(GroupCell)`
+  font-size: 6em;
+  text-align: center;
+  color: #000;
+  line-height: 1;
 `
 
 class Rides extends Component {
@@ -330,13 +375,45 @@ class Rides extends Component {
         const date = new Date(timestamp)
 
         if (ride.ride) {
-          if (!ride.riding) {
+          if (ride.riding === false) {
             // missed the deadline for a ride
+            return null
+          }
+
+          let routeChoice
+
+          const ridersWithRoutes = ride.riders
+            .filter(rider => rider.hasRoute)
+            .map(rider => rider.name)
+
+          if (ridersWithRoutes.length === 0) {
+            routeChoice = (
+              <p>No-one in your group has a route planned, check out the <Link to='/routes'>routes page</Link> for inspiration!</p>
+            )
+          } else if (ridersWithRoutes.length === 1) {
+            routeChoice = (
+              <p>{ridersWithRoutes[0]} has a route planned.</p>
+            )
+          } else {
+            const routers = ridersWithRoutes.slice(0, ridersWithRoutes.length - 1).join(', ') + ' and ' + ridersWithRoutes[ridersWithRoutes.length - 1]
+
+            routeChoice = (
+              <p>{routers} {ridersWithRoutes.length === 2 ? 'both' : 'all'} have routes planned.</p>
+            )
+          }
+
+          const riderList = ride.riders.map((rider, index) => {
             return (
-              <RidePreferences key={timestamp}>
-                <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
-                <p>You have not been assigned to a ride for this day</p>
-              </RidePreferences>
+              <li key={index}>{rider.name}</li>
+            )
+          })
+
+          if (riderList.length === 0) {
+            routeChoice = (
+              <>
+                <p>It looks like you're the only person who wanted to ride this distance today!</p>
+                <p>Try asking in the WhatsApp room to see if you can join another ride.</p>
+              </>
             )
           }
 
@@ -344,7 +421,43 @@ class Rides extends Component {
           return (
             <RidePreferences key={timestamp}>
               <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
-              <p>Ride {ride.ride}</p>
+              <GroupDetails>
+                <tbody>
+                  <tr>
+                    <GroupHeader>Group:</GroupHeader>
+                    <GroupName>{ride.name}</GroupName>
+                  </tr>
+                  <tr>
+                    <GroupHeader>Speed:</GroupHeader>
+                    <GroupCell>{SPEED_DESCRIPTIONS[ride.speed]}</GroupCell>
+                  </tr>
+                  <tr>
+                    <GroupHeader>Distance:</GroupHeader>
+                    <GroupCell>{DISTANCE_DESCRIPTIONS[ride.distance]}</GroupCell>
+                  </tr>
+                  <tr>
+                    <GroupHeader>Riders:</GroupHeader>
+                    <GroupCell>
+                      {
+                        riderList.length ? (
+                          <ul>
+                            {riderList}
+                          </ul>
+                        ) : '-'
+                      }
+                    </GroupCell>
+                  </tr>
+                </tbody>
+              </GroupDetails>
+              {routeChoice}
+              {
+                riderList.length ? (
+                  <>
+                    <p>Rides leave the <a href='https://www.southwark.gov.uk/libraries/find-a-library?chapter=12'>library</a> at 8am (summer) or 8:30am (winter) unless your group has decided otherwise.</p>
+                    <p>Please turn up 5-10 minutes early to find your group and make sure you have everything on the <Link to='/equipment'>equipment list</Link>.</p>
+                  </>
+                ) : null
+              }
             </RidePreferences>
           )
         } else if (ride.saved) {
@@ -411,7 +524,7 @@ class Rides extends Component {
                 onChoose={(value) => this.handleChoice(ride, 'route', value)}
                 disabled={loading}
               />
-              <RidesPageLink>Checkout the <Link to='/routes'>routes page</Link> for inspiration!</RidesPageLink>
+              <RidesPageLink>Check out the <Link to='/routes'>routes page</Link> for inspiration!</RidesPageLink>
               {
                 loading ? (
                   <SmallSpinner />
@@ -441,6 +554,7 @@ class Rides extends Component {
           </RidePreferences>
         )
       })
+      .filter(Boolean)
 
     return (
       <>
