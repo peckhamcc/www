@@ -176,7 +176,8 @@ const GroupName = styled(GroupCell)`
 class Rides extends Component {
   state = {
     loading: false,
-    rides: [],
+    rides: {},
+    preferences: {},
     error: null
   }
 
@@ -207,13 +208,14 @@ class Rides extends Component {
       })
 
       if (response.status === 200) {
-        const rides = await response.json()
+        const {
+          rides,
+          preferences
+        } = await response.json()
 
         this.setState({
-          rides: rides.map(ride => ({
-            ...ride,
-            saved: Boolean(ride.riding)
-          }))
+          rides,
+          preferences
         })
 
         return
@@ -238,76 +240,56 @@ class Rides extends Component {
     }
   }
 
-  handleWantToRideChange (ride) {
-    let removedPreference = false
+  handleWantToRideChange (date) {
+    const {
+      preferences
+    } = this.state
 
-    ride.saved = false
+    if (preferences[date]) {
+      delete preferences[date]
 
-    if (ride.riding) {
-      ride.riding = false
-      removedPreference = true
-    } else {
-      ride.riding = true
-      ride.distance = 'short'
-      ride.speed = 'social'
-      ride.type = 'road'
-      ride.route = 'no-route'
-    }
-
-    this.setState({
-      rides: this.state.rides
-    })
-
-    if (removedPreference) {
       this.handleSaveRidePreferences().catch(err => console.error(err))
+    } else {
+      preferences[date] = {
+        distance: 'short',
+        speed: 'social',
+        type: 'road',
+        route: 'no-route'
+      }
     }
-  }
-
-  handleChoice (ride, type, value) {
-    ride[type] = value
 
     this.setState({
-      rides: this.state.rides
+      preferences
     })
   }
 
-  handleSaveRidePreference = async (ride) => {
+  handleChoice (preference, type, value) {
+    preference[type] = value
+
+    this.setState({
+      preferences: this.state.preferences
+    })
+  }
+
+  handleSaveRidePreference = async (preference) => {
     await this.handleSaveRidePreferences()
-    ride.saved = true
-
-    const {
-      rides
-    } = this.state
+    preference.saved = true
 
     this.setState({
-      rides: rides.map(r => {
-        if (r.date === ride.date) {
-          r.saved = true
-        }
-
-        return r
-      })
+      preferences: this.state.preferences
     })
   }
 
-  handleUpdateRidePreference = (ride) => {
-    const {
-      rides
-    } = this.state
+  handleUpdateRidePreference = (preference) => {
+    delete preference.saved
 
     this.setState({
-      rides: rides.map(r => {
-        if (r.date === ride.date) {
-          delete r.saved
-        }
-
-        return r
-      })
+      preferences: this.state.preferences
     })
   }
 
   handleSaveRidePreferences = async () => {
-    const rides = this.state.rides
+    const preferences = this.state.preferences
 
     this.setState({
       loading: true
@@ -320,10 +302,15 @@ class Rides extends Component {
           Authorization: global.btoa(JSON.stringify({ token: this.props.token, email: this.props.user.email, name: this.props.user.name })),
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(rides.map(ride => ({
-          ...ride,
-          saved: undefined
-        })))
+        body: JSON.stringify(Object.keys(preferences)
+          .map(timestamp => {
+            return {
+              date: timestamp,
+              ...preferences[timestamp],
+              saved: undefined
+            }
+          })
+        )
       })
 
       this.setState({
@@ -360,7 +347,8 @@ class Rides extends Component {
 
     const {
       loading,
-      rides
+      rides,
+      preferences
     } = this.state
 
     if (loading && !rides.length) {
@@ -369,6 +357,196 @@ class Rides extends Component {
       )
     }
 
+    const content = Object.keys(rides).map(timestamp => {
+      const date = new Date(timestamp)
+      const generatedRide = rides[timestamp]
+      const preference = preferences[timestamp]
+
+      if (generatedRide === false) {
+        // rides have not been generated yet, show user preferences
+      }
+
+      if (generatedRide) {
+        // have been assigned to a ride
+        let routeChoice
+
+        const ridersWithRoutes = generatedRide.riders
+          .filter(rider => rider.hasRoute)
+          .map(rider => rider.name)
+
+        if (ridersWithRoutes.length === 0) {
+          routeChoice = (
+            <p>No-one in your group has a route planned, check out the <Link to='/routes'>routes page</Link> for inspiration!</p>
+          )
+        } else if (ridersWithRoutes.length === 1) {
+          routeChoice = (
+            <p>{ridersWithRoutes[0]} has a route planned.</p>
+          )
+        } else {
+          const routers = ridersWithRoutes.slice(0, ridersWithRoutes.length - 1).join(', ') + ' and ' + ridersWithRoutes[ridersWithRoutes.length - 1]
+
+          routeChoice = (
+            <p>{routers} {ridersWithRoutes.length === 2 ? 'both' : 'all'} have routes planned.</p>
+          )
+        }
+
+        const riderList = generatedRide.riders.map((rider, index) => {
+          return (
+            <li key={index}>{rider.name}</li>
+          )
+        })
+
+        if (riderList.length === 0) {
+          routeChoice = (
+            <>
+              <p>It looks like you're the only person who wanted to ride this distance today!</p>
+              <p>Try asking in the WhatsApp room to see if you can join another ride.</p>
+            </>
+          )
+        }
+
+        // have been assigned a ride
+        return (
+          <RidePreferences key={timestamp}>
+            <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
+            <GroupDetails>
+              <tbody>
+                <tr>
+                  <GroupHeader>Group:</GroupHeader>
+                  <GroupName>{generatedRide.name}</GroupName>
+                </tr>
+                <tr>
+                  <GroupHeader>Speed:</GroupHeader>
+                  <GroupCell>{SPEED_DESCRIPTIONS[generatedRide.speed]}</GroupCell>
+                </tr>
+                <tr>
+                  <GroupHeader>Distance:</GroupHeader>
+                  <GroupCell>{DISTANCE_DESCRIPTIONS[generatedRide.distance]}</GroupCell>
+                </tr>
+                <tr>
+                  <GroupHeader>Riders:</GroupHeader>
+                  <GroupCell>
+                    {
+                      riderList.length ? (
+                        <ul>
+                          {riderList}
+                        </ul>
+                      ) : '-'
+                    }
+                  </GroupCell>
+                </tr>
+              </tbody>
+            </GroupDetails>
+            {routeChoice}
+            {
+              riderList.length ? (
+                <>
+                  <p>Rides leave the <a href='https://www.southwark.gov.uk/libraries/find-a-library?chapter=12'>library</a> at 8am (summer) or 8:30am (winter) unless your group has decided otherwise.</p>
+                  <p>Please turn up 5-10 minutes early to find your group and make sure you have everything on the <Link to='/equipment'>equipment list</Link>.</p>
+                </>
+              ) : null
+            }
+          </RidePreferences>
+        )
+      }
+
+      if (!preference) {
+        // not riding this day
+        return (
+          <RidePreferences key={timestamp}>
+            <ToggleHeader>
+              <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
+              <Toggle
+                onChange={() => this.handleWantToRideChange(timestamp)}
+                state={false}
+                disabled={loading}
+              />
+            </ToggleHeader>
+          </RidePreferences>
+        )
+      }
+
+      if (preference.saved) {
+        // just saved this one
+        return (
+          <RidePreferences key={timestamp}>
+            <ToggleHeader>
+              <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
+              <Toggle
+                onChange={() => this.handleWantToRideChange(timestamp)}
+                state
+                disabled={loading}
+              />
+            </ToggleHeader>
+            <p>Your preferences have been saved, check back before the ride to see which group you are in!</p>
+            <BlueButton
+              onClick={() => this.handleUpdateRidePreference(preference)}
+              disabled={loading}
+            >Update
+            </BlueButton>
+          </RidePreferences>
+        )
+      }
+
+      // want to ride on this day
+      return (
+        <RidePreferences key={timestamp}>
+          <ToggleHeader>
+            <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
+            <Toggle
+              onChange={() => this.handleWantToRideChange(timestamp)}
+              state
+              disabled={loading}
+            />
+          </ToggleHeader>
+          <ChoiceHeader>Type</ChoiceHeader>
+          <MultipleChoice
+            choices={Object.values(Type)}
+            descriptions={TYPE_DESCRIPTIONS}
+            value={preference.type}
+            onChoose={(value) => this.handleChoice(preference, 'type', value)}
+            disabled={loading}
+          />
+          <ChoiceHeader>Distance</ChoiceHeader>
+          <MultipleChoice
+            choices={Object.values(Distance)}
+            descriptions={DISTANCE_DESCRIPTIONS}
+            value={preference.distance}
+            onChoose={(value) => this.handleChoice(preference, 'distance', value)}
+            disabled={loading}
+          />
+          <ChoiceHeader>Speed</ChoiceHeader>
+          <MultipleChoice
+            choices={Object.values(Speed)}
+            descriptions={SPEED_DESCRIPTIONS}
+            value={preference.speed}
+            onChoose={(value) => this.handleChoice(preference, 'speed', value)}
+            disabled={loading}
+          />
+          <ChoiceHeader>Route</ChoiceHeader>
+          <MultipleChoice
+            choices={Object.values(Route)}
+            descriptions={ROUTE_DESCRIPTIONS}
+            value={preference.route}
+            onChoose={(value) => this.handleChoice(preference, 'route', value)}
+            disabled={loading}
+          />
+          <RidesPageLink>Check out the <Link to='/routes'>routes page</Link> for inspiration!</RidesPageLink>
+          {
+            loading ? (
+              <SmallSpinner />
+            ) : (
+              <GreenButton
+                onClick={() => this.handleSaveRidePreference(preference)}
+                disabled={loading}
+              >Save
+              </GreenButton>
+            )
+          }
+        </RidePreferences>
+      )
+    })
+    /*
     const content = rides
       .map(ride => {
         const timestamp = ride.date
@@ -555,7 +733,7 @@ class Rides extends Component {
         )
       })
       .filter(Boolean)
-
+*/
     return (
       <>
         <p>Choose the type of ride you want to do and check back the afternoon before to see which group you are in</p>

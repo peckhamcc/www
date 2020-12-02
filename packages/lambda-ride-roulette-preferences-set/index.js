@@ -33,7 +33,7 @@ async function setPreferencesHandler (event) {
   const ridingDays = getNextRidingDays()
 
   const prefs = event.body
-    .filter(event => ridingDays.includes(event.date) && event.riding)
+    .filter(event => ridingDays.includes(event.date))
     .reduce((acc, event) => {
       acc[event.date] = {
         speed: event.speed,
@@ -65,9 +65,6 @@ const inputSchema = {
         properties: {
           date: {
             type: 'string'
-          },
-          riding: {
-            type: 'boolean'
           },
           type: {
             type: 'string',

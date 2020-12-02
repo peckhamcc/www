@@ -18,7 +18,7 @@ const getRides = async (date) => {
     }
   }).promise()
 
-  return (result.Item && result.Item.rides) || []
+  return result.Item && result.Item.rides
 }
 
 const setRides = async (date, rides) => {

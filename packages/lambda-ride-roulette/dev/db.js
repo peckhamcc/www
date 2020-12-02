@@ -1,9 +1,27 @@
 
-const ridesDb = {}
+// const ridesDb = {}
 const preferencesDb = {}
 
+const ridesDb = {
+  '2020-12-5': [
+    {
+      name: 'A',
+      type: 'road',
+      distance: 'long',
+      speed: 'social-plus',
+      riders: [
+        {
+          name: 'Alex',
+          email: 'alex@achingbrain.net',
+          hasRoute: false
+        }
+      ]
+    }
+  ]
+}
+
 const getRides = async (date) => {
-  return ridesDb[date] || []
+  return ridesDb[date]
 }
 
 const setRides = async (date, rides) => {
