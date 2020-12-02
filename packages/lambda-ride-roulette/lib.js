@@ -212,7 +212,7 @@ function generateRides (ridingDays, riderPrefs) {
 
   console.info('rides', JSON.stringify(rides, null, 2))
 }
-/*
+
 const sat = '2020-01-01'
 const sun = '2020-01-02'
 
@@ -325,7 +325,7 @@ const prefs = {
 }
 
 generateRides([sat, sun], prefs)
-*/
+
 module.exports = {
   getNextRidingDays,
   generateRides

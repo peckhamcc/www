@@ -330,6 +330,16 @@ class Rides extends Component {
         const date = new Date(timestamp)
 
         if (ride.ride) {
+          if (!ride.riding) {
+            // missed the deadline for a ride
+            return (
+              <RidePreferences key={timestamp}>
+                <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
+                <p>You have not been assigned to a ride for this day</p>
+              </RidePreferences>
+            )
+          }
+
           // have been assigned a ride
           return (
             <RidePreferences key={timestamp}>

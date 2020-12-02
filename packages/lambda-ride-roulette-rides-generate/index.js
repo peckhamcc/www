@@ -1,14 +1,3 @@
-const middy = require('middy')
-const {
-  jsonBodyParser,
-  validator,
-  httpHeaderNormalizer,
-  cors
-} = require('middy/middlewares')
-const {
-  errorHandler,
-  tokenValidator
-} = require('./middleware')
 const {
   getNextRidingDays,
   generateRides
@@ -18,7 +7,7 @@ const {
   setRides
 } = require('./db')
 
-async function generateRidesHandler (event) {
+async function generateRidesHandler () {
   const ridingDays = getNextRidingDays()
   const riderPrefs = getAllPreferences()
 
@@ -32,24 +21,9 @@ async function generateRidesHandler (event) {
     }
   }
 
-  return {
-    statusCode: 204
-  }
-}
-
-const inputSchema = {
-  type: 'object',
-  properties: {}
+  return rides
 }
 
 module.exports = {
-  handler: middy(generateRidesHandler)
-    .use(httpHeaderNormalizer())
-    .use(tokenValidator())
-    .use(jsonBodyParser())
-    .use(validator({ inputSchema }))
-    .use(errorHandler())
-    .use(cors({
-      origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
-    }))
+  handler: generateRidesHandler
 }

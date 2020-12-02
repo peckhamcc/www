@@ -10,7 +10,7 @@ const {
   tokenValidator
 } = require('./middleware')
 const {
-  // getRides,
+  getRides,
   getPreferences
 } = require('./db')
 const {
@@ -18,25 +18,57 @@ const {
 } = require('./lib')
 
 async function getRidesHandler (event) {
-  // const assigned = await getRides()
   const {
     preferences
   } = await getPreferences(event.user.email)
 
   const ridingDays = getNextRidingDays()
+  const rides = {}
 
-  const rides = ridingDays.map(date => {
+  for (let i = 0; i < ridingDays.length; i++) {
+    const date = ridingDays[i]
+
+    rides[date] = await getRides(date)
+  }
+
+  const output = ridingDays.map(date => {
+    if (rides[date]) {
+      const ride = rides[date].find(ride => {
+        return ride.riders.find(rider => rider.email === event.user.email)
+      })
+
+      if (ride) {
+        return {
+          date,
+          ride: true,
+          ...ride,
+          riders: ride.riders
+            .filter(rider => rider.email !== event.user.email)
+            .map(rider => ({
+              name: rider.name,
+              hasRoute: rider.hasRoute
+            }))
+        }
+      }
+
+      return {
+        date,
+        ride: true,
+        riding: false
+      }
+    }
+
     if (preferences[date]) {
       return {
         date,
         riding: true,
         ...preferences[date]
       }
-    } else {
-      return {
-        date,
-        riding: false
-      }
+    }
+
+    return {
+      date,
+      riding: false
     }
   })
 
@@ -45,7 +77,7 @@ async function getRidesHandler (event) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(rides)
+    body: JSON.stringify(output)
   }
 }
 
