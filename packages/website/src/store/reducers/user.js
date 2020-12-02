@@ -47,12 +47,12 @@ const userReducer = (state = initialState, action) => {
     case SET_USER_NAME:
       return {
         ...state,
-        name: action.payload
+        name: `${action.payload}`.trim()
       }
     case SET_USER_EMAIL:
       return {
         ...state,
-        email: action.payload
+        email: `${action.payload}`.trim()
       }
     default:
       return state

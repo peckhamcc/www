@@ -30,8 +30,10 @@ async function extendToken (email) {
   }).promise()
 }
 
-async function generateToken (email) {
+async function generateLogInLink (email) {
   email = email.toLowerCase()
+
+  let token
 
   const client = new AWS.DynamoDB.DocumentClient()
 
@@ -49,23 +51,25 @@ async function generateToken (email) {
     // extend token TTL
     await extendToken(email)
 
-    return existingToken.Item.token
+    token = existingToken.Item.token
+  } else {
+    token = nanoid()
+
+    await client.put({
+      TableName: process.env.AWS_TOKENS_DB_TABLE,
+      Item: {
+        email: `${email}`,
+        token: `${token}`,
+        // ttl is enabled on the DynamoDB table for the 'expires' field
+        expires: tokenExpiry()
+      }
+    })
+      .promise()
   }
 
-  const token = nanoid()
+  const data = Buffer.from(JSON.stringify({ email, token })).toString('base64')
 
-  await client.put({
-    TableName: process.env.AWS_TOKENS_DB_TABLE,
-    Item: {
-      email: `${email}`,
-      token: `${token}`,
-      // ttl is enabled on the DynamoDB table for the 'expires' field
-      expires: tokenExpiry()
-    }
-  })
-    .promise()
-
-  return token
+  return `https://peckham.cc/ride-roulette?token=${data}`
 }
 
 async function validateToken (email, token) {
@@ -91,7 +95,7 @@ async function validateToken (email, token) {
 }
 
 module.exports = {
-  generateToken,
+  generateLogInLink,
   validateToken,
   extendToken
 }

@@ -10,7 +10,7 @@ const {
 } = require('./middleware')
 const { config } = require('./config')
 const {
-  generateToken
+  generateLogInLink
 } = require('./token')
 const {
   sendEmail
@@ -19,8 +19,7 @@ const {
 async function generateTokenAndSendEmail ({ body: { email } }) {
   email = email.toLowerCase()
 
-  const token = await generateToken(email)
-  const url = `${process.env.NODE_ENV === 'development' ? 'http://localhost:9000' : 'https://peckham.cc'}/ride-roulette?token=${token}`
+  const url = await generateLogInLink(email)
 
   await sendEmail(email, config.email.from, 'PCC Ride Roulette Log In', htmlTemplate(url), textTemplate(url))
 
@@ -34,19 +33,19 @@ const htmlTemplate = (url) => `
   <head>
   </head>
   <body>
-    <p>Use the following link to log in to PCC Ride Roulette:</p>
+    <p>You are one step away from PCC Ride Roulette.</p>
+    <p>Use the following link to log in:</p>
     <p><a href="${url}">${url}</a></p>
-    <p>It will expire in one hour.</p>
   </body>
 </html>
 `
 
 const textTemplate = (url) => `
-Use the following link to log in to PCC Ride Roulette:
+You are one step away from PCC Ride Roulette.
+
+Use the following link to log in:
 
 ${url}
-
-It will expire in one hour.
 `
 
 const inputSchema = {

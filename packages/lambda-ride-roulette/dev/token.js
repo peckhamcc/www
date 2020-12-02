@@ -3,30 +3,37 @@ const { nanoid } = require('nanoid')
 const tokens = {}
 
 const ONE_HOUR = (60 * 60) * 1000
+const ONE_DAY = ONE_HOUR * 24
 
 function tokenExpiry () {
-  return new Date(Date.now() + ONE_HOUR).getTime()
+  return new Date(Date.now() + ONE_DAY).getTime()
 }
 
 async function extendToken (email) {
   tokens[email].expires = tokenExpiry()
 }
 
-async function generateToken (email) {
+async function generateLogInLink (email) {
+  email = email.toLowerCase()
+
+  let token
+
   if (tokens[email] && tokens[email].expires > Date.now()) {
     await extendToken(email)
 
-    return tokens[email].token
+    token = tokens[email].token
+  } else {
+    token = nanoid()
+
+    tokens[email] = {
+      token,
+      expires: tokenExpiry()
+    }
   }
 
-  const token = nanoid()
+  const data = Buffer.from(JSON.stringify({ email, token })).toString('base64')
 
-  tokens[email] = {
-    token,
-    expires: tokenExpiry()
-  }
-
-  return token
+  return `http://localhost:9000/ride-roulette?token=${data}`
 }
 
 async function validateToken (email, token) {
@@ -39,13 +46,11 @@ async function validateToken (email, token) {
 
   const existingToken = tokens[email]
 
-  console.info('token valid', Boolean(existingToken && existingToken.token === token))
-
   return Boolean(existingToken && existingToken.token === token)
 }
 
 module.exports = {
-  generateToken,
+  generateLogInLink,
   validateToken,
   extendToken
 }

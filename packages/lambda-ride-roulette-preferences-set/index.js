@@ -19,23 +19,20 @@ const {
 async function setPreferencesHandler (event) {
   const ridingDays = getNextRidingDays()
 
-  const prefs = event.body
-    .filter(event => ridingDays.includes(event.date))
-    .reduce((acc, event) => {
-      acc[event.date] = {
-        speed: event.speed,
-        distance: event.distance,
-        type: event.type,
-        route: event.route
-      }
+  Object.keys(event.body.preferences).forEach(timestamp => {
+    if (!ridingDays.includes(timestamp)) {
+      delete event.body.preferences[timestamp]
+    }
 
-      return acc
-    }, {})
-
-  await setPreferences(event.user.email, {
-    rider: event.user.name,
-    preferences: prefs
+    event.body.preferences[timestamp] = {
+      type: event.body.preferences[timestamp].type,
+      speed: event.body.preferences[timestamp].speed,
+      distance: event.body.preferences[timestamp].distance,
+      route: event.body.preferences[timestamp].route
+    }
   })
+
+  await setPreferences(event.user.email, event.body)
 
   return {
     statusCode: 204
@@ -46,45 +43,55 @@ const inputSchema = {
   type: 'object',
   properties: {
     body: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          date: {
-            type: 'string'
-          },
-          type: {
-            type: 'string',
-            enum: [
-              'road',
-              'mud',
-              'mtb'
-            ]
-          },
-          speed: {
-            type: 'string',
-            enum: [
-              'social',
-              'social-plus',
-              'antisocial',
-              'pain-train'
-            ]
-          },
-          distance: {
-            type: 'string',
-            enum: [
-              'short',
-              'medium',
-              'long',
-              'epic'
-            ]
-          },
-          route: {
-            type: 'string',
-            enum: [
-              'no-route',
-              'has-route'
-            ]
+      type: 'object',
+      properties: {
+        rider: {
+          type: 'string'
+        },
+        preferences: {
+          type: 'object',
+          patternProperties: {
+            '^\\d{4}-\\d{2}-\\d{2}$': {
+              type: 'object',
+              properties: {
+                date: {
+                  type: 'string'
+                },
+                type: {
+                  type: 'string',
+                  enum: [
+                    'road',
+                    'mud',
+                    'mtb'
+                  ]
+                },
+                speed: {
+                  type: 'string',
+                  enum: [
+                    'social',
+                    'social-plus',
+                    'antisocial',
+                    'pain-train'
+                  ]
+                },
+                distance: {
+                  type: 'string',
+                  enum: [
+                    'short',
+                    'medium',
+                    'long',
+                    'epic'
+                  ]
+                },
+                route: {
+                  type: 'string',
+                  enum: [
+                    'no-route',
+                    'has-route'
+                  ]
+                }
+              }
+            }
           }
         }
       }

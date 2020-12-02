@@ -6,7 +6,8 @@ import {
   connect
 } from 'react-redux'
 import {
-  storeRouletteToken
+  storeRouletteToken,
+  setUserEmail
 } from '../../store/actions'
 
 class StoreToken extends Component {
@@ -15,9 +16,17 @@ class StoreToken extends Component {
       return null
     }
 
-    const token = new URLSearchParams(window.location.search).get('token')
+    const encoded = new URLSearchParams(window.location.search).get('token')
 
-    if (token) {
+    if (encoded) {
+      const {
+        email, token
+      } = JSON.parse(global.atob(encoded))
+
+      if (email !== this.props.user.email) {
+        this.props.setUserEmail(email)
+      }
+
       this.props.storeRouletteToken(token)
       window.location = `${window.location}`.split('?')[0]
     }
@@ -30,12 +39,14 @@ StoreToken.propTypes = {
   token: PropTypes.string
 }
 
-const mapStateToProps = ({ roulette: { token } }) => ({
-  token
+const mapStateToProps = ({ roulette: { token }, user }) => ({
+  token,
+  user
 })
 
 const mapDispatchToProps = {
-  storeRouletteToken
+  storeRouletteToken,
+  setUserEmail
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoreToken)

@@ -144,7 +144,7 @@ class LogInForm extends Component {
 
     let message = (
       <>
-        <p>Be matched up with club members who want to ride at a similar pace and distance to you this weekend</p>,
+        <p>Be matched up with club members who want to ride at a similar pace and distance to you this weekend</p>
         <p>Enter your email address to log in:</p>
       </>
     )

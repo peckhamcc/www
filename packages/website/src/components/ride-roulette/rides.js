@@ -241,11 +241,11 @@ class Rides extends Component {
         const {
           rides,
           preferences,
-          name
+          rider
         } = await response.json()
 
-        if (name !== this.props.user.name) {
-          this.props.setUserName(name)
+        if (rider && rider !== this.props.user.name) {
+          this.props.setUserName(rider)
         }
 
         this.setState({
@@ -344,15 +344,18 @@ class Rides extends Component {
           Authorization: global.btoa(JSON.stringify({ token: this.props.token, email: this.props.user.email, name: this.props.user.name })),
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(Object.keys(preferences)
-          .map(timestamp => {
-            return {
-              date: timestamp,
-              ...preferences[timestamp],
-              saved: undefined
-            }
-          })
-        )
+        body: JSON.stringify({
+          rider: this.props.user.name,
+          preferences: Object.keys(preferences)
+            .reduce((acc, curr) => {
+              acc[curr] = {
+                ...preferences[curr],
+                saved: undefined
+              }
+
+              return acc
+            }, {})
+        })
       })
 
       this.setState({

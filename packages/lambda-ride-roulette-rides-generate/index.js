@@ -9,6 +9,9 @@ const {
 const {
   sendEmail
 } = require('./email')
+const {
+  generateLogInLink
+} = require('./token')
 const { config } = require('./config')
 
 async function generateRidesHandler () {
@@ -35,7 +38,11 @@ async function generateRidesHandler () {
         const ride = rides[date][j]
 
         await Promise.all(
-          ride.riders.map(rider => sendEmail(rider.email, config.email.from, 'PCC Ride Roulette Weekend Rides', riderHtmlTemplate(), riderTextTemplate()))
+          ride.riders.map(async rider => {
+            const link = await generateLogInLink(rider.email)
+
+            return sendEmail(rider.email, config.email.from, 'PCC Ride Roulette Weekend Rides', riderHtmlTemplate(link), riderTextTemplate(link))
+          })
         )
       }
     }
@@ -102,21 +109,21 @@ Riders: ${ride.riders.map(rider => (`
     .join('')
 }`
 
-const riderHtmlTemplate = () => `
+const riderHtmlTemplate = (link) => `
 <html>
   <head>
   </head>
   <body>
     <p>The PCC Ride Roulette wheel has spun and you've been matched up with ride buddies for the weekend!</p>
-    <p>Log in to Ride Roulette to see the results: <a href="https://peckham.cc/ride-roulette">https://peckham.cc/ride-roulette</a><p>
+    <p>Log in to Ride Roulette to see the results: <a href="${link}">${link}</a><p>
   </body>
 </html>
 `
 
-const riderTextTemplate = () => `
+const riderTextTemplate = (link) => `
 The PCC Ride Roulette wheel has spun and you've been matched up with ride buddies for the weekend!
 
-Log in to Ride Roulette to see the results: https://peckham.cc/ride-roulette
+Log in to Ride Roulette to see the results: ${link}
 `
 
 module.exports = {

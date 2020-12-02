@@ -19,7 +19,8 @@ const {
 
 async function getRidesHandler (event) {
   const {
-    preferences
+    preferences,
+    rider
   } = await getPreferences(event.user.email)
 
   const ridingDays = getNextRidingDays()
@@ -55,7 +56,8 @@ async function getRidesHandler (event) {
 
   const output = {
     preferences,
-    rides
+    rides,
+    rider
   }
 
   return {
