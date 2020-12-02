@@ -442,7 +442,7 @@ class Rides extends Component {
           )
         })
 
-        if (riderList.length === 0) {
+        if (riderList.length === 1) {
           routeChoice = (
             <>
               <p>It looks like you're the only person who wanted to ride this distance today!</p>
@@ -472,20 +472,16 @@ class Rides extends Component {
                 <tr>
                   <GroupHeader>Riders:</GroupHeader>
                   <GroupCell>
-                    {
-                      riderList.length ? (
-                        <ul>
-                          {riderList}
-                        </ul>
-                      ) : '-'
-                    }
+                    <ul>
+                      {riderList}
+                    </ul>
                   </GroupCell>
                 </tr>
               </tbody>
             </GroupDetails>
             {routeChoice}
             {
-              riderList.length ? (
+              riderList.length > 1 ? (
                 <>
                   <p>Rides leave the <a href='https://www.southwark.gov.uk/libraries/find-a-library?chapter=12'>library</a> at 8am (summer) or 8:30am (winter) unless your group has decided otherwise.</p>
                   <p>Please turn up 5-10 minutes early to find your group and make sure you have everything on the <Link to='/equipment'>equipment list</Link>.</p>
