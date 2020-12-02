@@ -51,7 +51,7 @@ const getAllPreferences = async () => {
     items = await client.scan(params).promise()
     items.Items.forEach((item) => {
       scanResults[item.email] = {
-        name: item.name,
+        rider: item.rider,
         preferences: item.preferences
       }
     })
