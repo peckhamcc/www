@@ -7,9 +7,10 @@ AWS.config.update({
 })
 
 const ONE_HOUR = (60 * 60) * 1000
+const ONE_DAY = ONE_HOUR * 24
 
 function tokenExpiry () {
-  return Math.round(new Date(Date.now() + ONE_HOUR).getTime() / 1000)
+  return Math.round(new Date(Date.now() + ONE_DAY).getTime() / 1000)
 }
 
 async function extendToken (email) {
