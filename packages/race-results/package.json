@@ -1,8 +1,9 @@
 {
-  "name": "race-results",
+  "name": "@peckhamcc/race-results",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo 0",
     "rainbow": "node ./index.js ./races/rainbow-race.js > ../website/src/pages/results-rainbow-race-early-may-2020.js ",
