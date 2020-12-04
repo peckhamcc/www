@@ -8,6 +8,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 const config = {
   mode: process.env.NODE_ENV || 'production',
@@ -32,7 +33,12 @@ const config = {
       filename: 'index.html',
       template: './src/index.template.html'
     }),
-    new FaviconsWebpackPlugin('./assets/pcc-avatar.png')
+    new FaviconsWebpackPlugin('./assets/pcc-avatar.png'),
+    new CopyPlugin({
+      patterns: [{
+        from: './assets/routes/*.png', to: ''
+      }]
+    })
   ],
   module: {
     rules: [{

@@ -8,21 +8,29 @@ import {
   Hero
 } from '../components/panels'
 import routesBackground from '../../assets/routes-bg.jpg'
-import socialLoopGpx from '../../assets/peckham-cc-social-loop.gpx'
-import knattsValleyGpx from '../../assets/peckham-cc-knatts-valley.gpx'
-import surreyHillsGpx from '../../assets/peckham-cc-surrey-hills.gpx'
 import styled from 'styled-components'
 import {
   FaRegMap,
-  FaChevronCircleUp
+  FaBicycle,
+  FaRoad,
+  FaTree,
+  FaArrowRight,
+  FaArrowUp
 } from 'react-icons/fa'
 import {
   light
 } from '../colours'
+import {
+  spacing
+} from '../units'
+import {
+  Input
+} from '../components/forms'
+import routes from '../../assets/routes'
 
-const Map = styled.iframe`
-  width: 500px;
-  height: 400px;
+const Map = styled.img`
+  max-width: 500px;
+  max-height: 400px;
   margin-top: 20px;
 `
 
@@ -33,6 +41,7 @@ const SharingList = styled.ul`
 
 const Sharing = styled.li`
   list-style: none;
+  margin-bottom: ${spacing(0.5)};
 
   a {
     text-decoration: none;
@@ -44,62 +53,182 @@ const Sharing = styled.li`
   }
 `
 
-const routes = [{
-  hash: 'the-social-loop',
-  title: 'The Social Loop',
-  description: 'A staple of our club Social Spin this 60km/770m route takes is a great introduction to the club.',
-  gpx: socialLoopGpx,
-  strava: 'https://www.strava.com/routes/23414432',
-  embed: 'https://www.plotaroute.com/embedmap/1016515'
-}, {
-  hash: 'knatts-valley',
-  title: 'Knatts Valley',
-  description: 'A touch short of 90km and with 1175m of climbing this is mostly quiet country lanes.',
-  gpx: knattsValleyGpx,
-  strava: 'https://www.strava.com/routes/11036595',
-  embed: 'https://www.plotaroute.com/embedmap/550078'
-}, {
-  hash: 'surrey-hills',
-  title: 'Surrey Hills',
-  description: 'A tougher training ride, this 145km/1800m route takes in the major climbs of the Ride London 100 mile sportive.',
-  gpx: surreyHillsGpx,
-  strava: 'https://www.strava.com/routes/14040879',
-  embed: 'https://www.plotaroute.com/embedmap/655505'
-}]
+const RouteTitle = styled.h3`
+  small {
+    margin: 0 ${spacing(0.5)};
+    color: ${light};
+  }
+`
+
+const MapLink = styled.a`
+  margin: 0 ${spacing(0.5)} 0 0;
+`
+
+const MAX_DISTANCE = routes.map(route => route.distance).reduce((acc, curr) => curr > acc ? curr : acc, 0)
+const MAX_VERT = routes.map(route => route.vert).reduce((acc, curr) => curr > acc ? curr : acc, 0)
+
+const RoutesPanel = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: 940px) {
+    display: block;
+  }
+`
+
+const Filter = styled.div`
+  margin-right: ${spacing(1)};
+  max-width: 344px;
+
+  @media (max-width: 940px) {
+    max-width: 100%;
+    margin-right: 0;
+  }
+`
+
+const FilterCategory = styled.div`
+  display: inline-block;
+  padding-right: ${spacing(2)};
+`
+
+const Routes = styled.div`
+  flex-grow: 1;
+`
 
 class RoutesPage extends Component {
+  state = {
+    distance: {
+      min: 0,
+      max: MAX_DISTANCE
+    },
+    vert: {
+      min: 0,
+      max: MAX_VERT
+    },
+    types: [
+      'road'
+    ],
+    search: ''
+  }
+
+  handleSearchChange (value) {
+    this.setState({
+      search: value
+    })
+  }
+
+  handleTypeChange (type) {
+    let {
+      types
+    } = this.state
+
+    if (types.includes(type)) {
+      types = types.filter(t => t !== type)
+    } else {
+      types.push(type)
+    }
+
+    this.setState({
+      types
+    })
+  }
+
+  handleChange (field, type, value) {
+    const state = this.state
+
+    if (type === 'min' && value >= state[field].max) {
+      return
+    }
+
+    if (type === 'max' && value <= state[field].min) {
+      return
+    }
+
+    state[field][type] = value
+
+    this.setState(state)
+  }
+
   render () {
+    const {
+      distance,
+      vert,
+      search,
+      types
+    } = this.state
+
+    const selectedRoutes = routes.filter(route => {
+      let include = true
+
+      if (search) {
+        include = route.title.toLowerCase().includes(search.toLowerCase())
+      }
+
+      include = include && route.distance >= distance.min
+      include = include && route.distance <= distance.max
+
+      include = include && route.vert >= vert.min
+      include = include && route.vert <= vert.max
+
+      include = include && types.includes(route.type)
+
+      return include
+    })
+      .sort((a, b) => a.title.localeCompare(b.title))
+
     return (
       <PageWrapper>
         <Hero background={routesBackground.src} />
         <Panel>
           <h2>Club Routes</h2>
-          <p>These are some routes that we commonly use.</p>
-          {
-            routes.map((route, index) => {
-              return (
-                <InnerPanel key={index}>
-                  <h3 id={route.hash}>{route.title}</h3>
-                  <SharingList>
-                    <Sharing><a href={route.gpx}><FaRegMap /> Download .gpx</a></Sharing>
-                    <Sharing><a href={route.strava}><FaChevronCircleUp /> View on Strava</a></Sharing>
-                  </SharingList>
-                  <p>{route.description}</p>
-                  <Map
-                    name={route.title}
-                    src={route.embed}
-                    frameborder='0'
-                    scrolling='no'
-                    allowfullscreen
-                    webkitallowfullscreen
-                    mozallowfullscreen
-                    oallowfullscreen
-                    msallowfullscreen
-                  />
-                </InnerPanel>
-              )
-            })
-          }
+          <p>Peckham CC has a variety of routes that we often draw from, ranging from 50-60km social rides all the way up to hilly epics and seaside jaunts.</p>
+          <p>Feel free to grab any of the routes from our collection, and download GPX files to your phone or bike computer to help you navigate on the go.</p>
+          <RoutesPanel>
+            <Filter>
+              <InnerPanel>
+                <p>Search: <Input type='search' value={search} onChange={(event) => this.handleSearchChange(`${event.target.value}`.trim())} /></p>
+                <FilterCategory>
+                  <p>Type:</p>
+                  <p><FaRoad /> Road <input type='checkbox' checked={types.includes('road')} onChange={() => this.handleTypeChange('road')} /></p>
+                  <p><FaTree /> Off-road <input type='checkbox' checked={types.includes('off-road')} onChange={() => this.handleTypeChange('off-road')} /></p>
+                </FilterCategory>
+                <FilterCategory>
+                  <p>Distance:</p>
+                  <p>Min <input type='range' min={1} max={MAX_DISTANCE} value={distance.min} onChange={(event) => this.handleChange('distance', 'min', parseInt(event.target.value))} /> {distance.min}km</p>
+                  <p>Max <input type='range' min={1} max={MAX_DISTANCE} value={distance.max} onChange={(event) => this.handleChange('distance', 'max', parseInt(event.target.value))} /> {distance.max}km</p>
+                </FilterCategory>
+                <FilterCategory>
+                  <p>Vertical:</p>
+                  <p>Min <input type='range' min={1} max={MAX_VERT} value={vert.min} onChange={(event) => this.handleChange('vert', 'min', parseInt(event.target.value))} /> {vert.min}m</p>
+                  <p>Max <input type='range' min={1} max={MAX_VERT} value={vert.max} onChange={(event) => this.handleChange('vert', 'max', parseInt(event.target.value))} /> {vert.max}m</p>
+                </FilterCategory>
+              </InnerPanel>
+            </Filter>
+            <Routes>
+              {
+                selectedRoutes.length ? selectedRoutes.map((route, index) => {
+                  return (
+                    <InnerPanel key={index}>
+                      <RouteTitle id={route.hash}>{route.type === 'road' ? <FaRoad /> : <FaTree />} {route.title} <small><FaArrowRight /> {route.distance}km <FaArrowUp /> {route.vert}m</small></RouteTitle>
+                      <SharingList>
+                        <Sharing><MapLink href={route.gpx}><FaRegMap /> .gpx</MapLink> <MapLink href={route.fit}><FaRegMap /> .fit</MapLink></Sharing>
+                        <Sharing><a href={route.link}><FaBicycle /> View on Ride with GPS</a></Sharing>
+                      </SharingList>
+                      <p>{route.description}</p>
+                      <Map name={route.title} src={route.map} />
+                    </InnerPanel>
+                  )
+                }) : (
+                  <>
+                    <InnerPanel>
+                      <h3>No results</h3>
+                      <p>Nothing matched your search, maybe try some different search parameters?</p>
+                    </InnerPanel>
+                  </>
+                )
+              }
+            </Routes>
+          </RoutesPanel>
         </Panel>
       </PageWrapper>
     )

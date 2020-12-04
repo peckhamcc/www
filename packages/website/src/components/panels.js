@@ -133,7 +133,7 @@ export const Panel = styled.div`
   }
 
   li {
-    margin: ${spacing(1)} 0;
+    margin: ${spacing(0.5)} 0;
   }
 `
 
