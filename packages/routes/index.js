@@ -84,7 +84,10 @@ async function main () {
 
     const output = {
       hash,
-      title: json.name,
+      title: json.name.trim()
+        .replace(/^PCC/, '').trim()
+        .replace(/^CX/, '').trim()
+        .replace(/^-/, '').trim(),
       description: json.description,
       distance: Math.round(json.distance / 1000),
       vert: Math.round(json.elevation_gain),

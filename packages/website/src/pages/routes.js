@@ -29,8 +29,8 @@ import {
 import routes from '../../assets/routes'
 
 const Map = styled.img`
-  max-width: 500px;
-  max-height: 400px;
+  width: 100%;
+  max-width: 1500px;
   margin-top: 20px;
 `
 
@@ -54,9 +54,12 @@ const Sharing = styled.li`
 `
 
 const RouteTitle = styled.h3`
+  margin-bottom: 0;
+
   small {
     margin: 0 ${spacing(0.5)};
     color: ${light};
+    white-space: nowrap;
   }
 `
 
@@ -76,13 +79,24 @@ const RoutesPanel = styled.div`
   }
 `
 
-const Filter = styled.div`
+const Filter = styled(InnerPanel)`
   margin-right: ${spacing(1)};
-  max-width: 344px;
+  width: 344px;
 
   @media (max-width: 940px) {
+    width: 100%;
     max-width: 100%;
     margin-right: 0;
+  }
+`
+
+const FilterSearch = styled(Input)`
+  width: 260px;
+  max-width: 260px;
+
+  @media (max-width: 940px) {
+    width: 100%;
+    max-width: 500px;
   }
 `
 
@@ -185,24 +199,22 @@ class RoutesPage extends Component {
           <p>Feel free to grab any of the routes from our collection, and download GPX files to your phone or bike computer to help you navigate on the go.</p>
           <RoutesPanel>
             <Filter>
-              <InnerPanel>
-                <p>Search: <Input type='search' value={search} onChange={(event) => this.handleSearchChange(`${event.target.value}`.trim())} /></p>
-                <FilterCategory>
-                  <p>Type:</p>
-                  <p><FaRoad /> Road <input type='checkbox' checked={types.includes('road')} onChange={() => this.handleTypeChange('road')} /></p>
-                  <p><FaTree /> Off-road <input type='checkbox' checked={types.includes('off-road')} onChange={() => this.handleTypeChange('off-road')} /></p>
-                </FilterCategory>
-                <FilterCategory>
-                  <p>Distance:</p>
-                  <p>Min <input type='range' min={1} max={MAX_DISTANCE} value={distance.min} onChange={(event) => this.handleChange('distance', 'min', parseInt(event.target.value))} /> {distance.min}km</p>
-                  <p>Max <input type='range' min={1} max={MAX_DISTANCE} value={distance.max} onChange={(event) => this.handleChange('distance', 'max', parseInt(event.target.value))} /> {distance.max}km</p>
-                </FilterCategory>
-                <FilterCategory>
-                  <p>Vertical:</p>
-                  <p>Min <input type='range' min={1} max={MAX_VERT} value={vert.min} onChange={(event) => this.handleChange('vert', 'min', parseInt(event.target.value))} /> {vert.min}m</p>
-                  <p>Max <input type='range' min={1} max={MAX_VERT} value={vert.max} onChange={(event) => this.handleChange('vert', 'max', parseInt(event.target.value))} /> {vert.max}m</p>
-                </FilterCategory>
-              </InnerPanel>
+              <p>Search: <FilterSearch type='search' value={search} onChange={(event) => this.handleSearchChange(`${event.target.value}`.trim())} /></p>
+              <FilterCategory>
+                <p>Type:</p>
+                <p><FaRoad /> Road <input type='checkbox' checked={types.includes('road')} onChange={() => this.handleTypeChange('road')} /></p>
+                <p><FaTree /> Off-road <input type='checkbox' checked={types.includes('off-road')} onChange={() => this.handleTypeChange('off-road')} /></p>
+              </FilterCategory>
+              <FilterCategory>
+                <p>Distance:</p>
+                <p>Min <input type='range' min={1} max={MAX_DISTANCE} value={distance.min} onChange={(event) => this.handleChange('distance', 'min', parseInt(event.target.value))} /> {distance.min}km</p>
+                <p>Max <input type='range' min={1} max={MAX_DISTANCE} value={distance.max} onChange={(event) => this.handleChange('distance', 'max', parseInt(event.target.value))} /> {distance.max}km</p>
+              </FilterCategory>
+              <FilterCategory>
+                <p>Vertical:</p>
+                <p>Min <input type='range' min={1} max={MAX_VERT} value={vert.min} onChange={(event) => this.handleChange('vert', 'min', parseInt(event.target.value))} /> {vert.min}m</p>
+                <p>Max <input type='range' min={1} max={MAX_VERT} value={vert.max} onChange={(event) => this.handleChange('vert', 'max', parseInt(event.target.value))} /> {vert.max}m</p>
+              </FilterCategory>
             </Filter>
             <Routes>
               {
