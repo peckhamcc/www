@@ -231,6 +231,7 @@ class RoutesPage extends Component {
           <RoutesPanel>
             <FilterWrapper>
               <Filter style={filterStyle}>
+                <h3>{selectedRoutes.length} Routes</h3>
                 <p>Search: <FilterSearch type='search' value={search} onChange={(event) => this.handleSearchChange(`${event.target.value}`.trim())} /></p>
                 <FilterCategory>
                   <p>Type:</p>

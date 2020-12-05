@@ -9,6 +9,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const ImageminPlugin = require('imagemin-webpack-plugin').default
 
 const config = {
   mode: process.env.NODE_ENV || 'production',
@@ -38,6 +39,14 @@ const config = {
       patterns: [{
         from: './assets/routes/*.png', to: ''
       }]
+    }),
+    new ImageminPlugin({
+      disable: process.env.NODE_ENV === 'development',
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      pngquant: {
+        strip: true,
+        quality: [0.9, 1]
+      }
     })
   ],
   module: {

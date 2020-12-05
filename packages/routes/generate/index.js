@@ -53,7 +53,7 @@ var path_layer = new ol.layer.Vector({
   style: new ol.style.Style({
     stroke: new ol.style.Stroke({
       color: '#5874bf',
-      width: 4
+      width: 8
     })
   })
 });

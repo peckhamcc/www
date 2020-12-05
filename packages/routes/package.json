@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "start": "rm -rf ../website/assets/routes/*.png && node ."
+    "generate": "rm -rf ../website/assets/routes/*.png && node ."
   },
   "author": "",
   "license": "ISC",

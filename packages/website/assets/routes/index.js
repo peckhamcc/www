@@ -2,7 +2,7 @@
 export default [
   {
     hash: 'pcc-cx-social',
-    title: 'Social',
+    title: 'CX Social',
     description: 'Intended for gravel and CX bikes!',
     distance: 62,
     vert: 758,
@@ -14,7 +14,7 @@ export default [
   },
   {
     hash: 'pcc-cx-social-alt',
-    title: 'Social Alt',
+    title: 'CX Social Alt',
     description: 'CX/Gravel bikes!',
     distance: 52,
     vert: 461,
@@ -26,7 +26,7 @@ export default [
   },
   {
     hash: 'pcc-cx-south-london-loop',
-    title: 'South London Loop',
+    title: 'CX South London Loop',
     description: "Big day out on the cross and gravel bikes! Once you reach Richmond you barely ride on a road again until you're back in London. Find refreshment options at the Box Hill café, or if it's too busy, it's only a few km of flat bridleways to the Cricketer pub in Mogador.",
     distance: 113,
     vert: 1163,
@@ -38,7 +38,7 @@ export default [
   },
   {
     hash: 'pcc-cx-darent-thames-path',
-    title: 'Darent & Thames Path',
+    title: 'CX Darent & Thames Path',
     description: 'Gravel/CX ride - Lumpy and muddy out, flat and smoother back along the Thames Path',
     distance: 82,
     vert: 470,
