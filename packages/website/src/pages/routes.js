@@ -51,15 +51,15 @@ const Sharing = styled.li`
   a:hover {
     text-decoration: underline;
   }
+
+  svg {
+      margin: 0 0 0 ${spacing(0.5)};
+    }
 `
 
-const RouteTitle = styled.h3`
-  margin-bottom: 0;
-
-  small {
-    margin: 0 ${spacing(0.5)};
-    color: ${light};
-    white-space: nowrap;
+const Route = styled(InnerPanel)`
+  h3 {
+    margin-bottom: -5px;
   }
 `
 
@@ -120,7 +120,8 @@ class RoutesPage extends Component {
       max: MAX_VERT
     },
     types: [
-      'road'
+      'road',
+      'off-road'
     ],
     search: ''
   }
@@ -220,15 +221,16 @@ class RoutesPage extends Component {
               {
                 selectedRoutes.length ? selectedRoutes.map((route, index) => {
                   return (
-                    <InnerPanel key={index}>
-                      <RouteTitle id={route.hash}>{route.type === 'road' ? <FaRoad /> : <FaTree />} {route.title} <small><FaArrowRight /> {route.distance}km <FaArrowUp /> {route.vert}m</small></RouteTitle>
+                    <Route key={index}>
+                      <h3 id={route.hash}>{route.type === 'road' ? <FaRoad /> : <FaTree />} {route.title}</h3>
                       <SharingList>
+                        <Sharing><FaArrowRight /> {route.distance}km <FaArrowUp /> {route.vert}m</Sharing>
                         <Sharing><MapLink href={route.gpx}><FaRegMap /> .gpx</MapLink> <MapLink href={route.fit}><FaRegMap /> .fit</MapLink></Sharing>
                         <Sharing><a href={route.link}><FaBicycle /> View on Ride with GPS</a></Sharing>
                       </SharingList>
                       <p>{route.description}</p>
                       <Map name={route.title} src={route.map} />
-                    </InnerPanel>
+                    </Route>
                   )
                 }) : (
                   <>
