@@ -93,8 +93,12 @@ const FilterWrapper = styled(InnerPanel)`
 `
 
 const Filter = styled(InnerPanel)`
-  width: 344px;
+  width: 303px;
   margin: 0;
+
+  @media (max-width: 940px) {
+    width: 100%;
+  }
 `
 
 const FilterSearch = styled(Input)`
