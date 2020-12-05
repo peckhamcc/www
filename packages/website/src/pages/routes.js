@@ -1,6 +1,7 @@
 import React, {
   Component
 } from 'react'
+import onscrolling from 'onscrolling'
 import {
   PageWrapper,
   Panel,
@@ -79,15 +80,21 @@ const RoutesPanel = styled.div`
   }
 `
 
-const Filter = styled(InnerPanel)`
+const FilterWrapper = styled(InnerPanel)`
   margin-right: ${spacing(1)};
-  width: 344px;
+  flex: 0 0 344px;
+  padding: 0;
 
   @media (max-width: 940px) {
     width: 100%;
     max-width: 100%;
     margin-right: 0;
   }
+`
+
+const Filter = styled(InnerPanel)`
+  width: 344px;
+  margin: 0;
 `
 
 const FilterSearch = styled(Input)`
@@ -123,7 +130,29 @@ class RoutesPage extends Component {
       'road',
       'off-road'
     ],
-    search: ''
+    search: '',
+    filterStyle: {}
+  }
+
+  componentDidMount () {
+    onscrolling(this.handleScroll)
+  }
+
+  componentWillUnmount () {
+    onscrolling.remove(this.handleScroll)
+  }
+
+  handleScroll = () => {
+    const { pageYOffset } = window
+
+    const makeFixed = pageYOffset > 774 && window.innerWidth > 940
+
+    this.setState({
+      filterStyle: makeFixed ? {
+        position: 'fixed',
+        top: 65
+      } : {}
+    })
   }
 
   handleSearchChange (value) {
@@ -169,7 +198,8 @@ class RoutesPage extends Component {
       distance,
       vert,
       search,
-      types
+      types,
+      filterStyle
     } = this.state
 
     const selectedRoutes = routes.filter(route => {
@@ -199,24 +229,26 @@ class RoutesPage extends Component {
           <p>Peckham CC has a variety of routes that we often draw from, ranging from 50-60km social rides all the way up to hilly epics and seaside jaunts.</p>
           <p>Feel free to grab any of the routes from our collection, and download GPX files to your phone or bike computer to help you navigate on the go.</p>
           <RoutesPanel>
-            <Filter>
-              <p>Search: <FilterSearch type='search' value={search} onChange={(event) => this.handleSearchChange(`${event.target.value}`.trim())} /></p>
-              <FilterCategory>
-                <p>Type:</p>
-                <p><FaRoad /> Road <input type='checkbox' checked={types.includes('road')} onChange={() => this.handleTypeChange('road')} /></p>
-                <p><FaTree /> Off-road <input type='checkbox' checked={types.includes('off-road')} onChange={() => this.handleTypeChange('off-road')} /></p>
-              </FilterCategory>
-              <FilterCategory>
-                <p>Distance:</p>
-                <p>Min <input type='range' min={1} max={MAX_DISTANCE} value={distance.min} onChange={(event) => this.handleChange('distance', 'min', parseInt(event.target.value))} /> {distance.min}km</p>
-                <p>Max <input type='range' min={1} max={MAX_DISTANCE} value={distance.max} onChange={(event) => this.handleChange('distance', 'max', parseInt(event.target.value))} /> {distance.max}km</p>
-              </FilterCategory>
-              <FilterCategory>
-                <p>Vertical:</p>
-                <p>Min <input type='range' min={1} max={MAX_VERT} value={vert.min} onChange={(event) => this.handleChange('vert', 'min', parseInt(event.target.value))} /> {vert.min}m</p>
-                <p>Max <input type='range' min={1} max={MAX_VERT} value={vert.max} onChange={(event) => this.handleChange('vert', 'max', parseInt(event.target.value))} /> {vert.max}m</p>
-              </FilterCategory>
-            </Filter>
+            <FilterWrapper>
+              <Filter style={filterStyle}>
+                <p>Search: <FilterSearch type='search' value={search} onChange={(event) => this.handleSearchChange(`${event.target.value}`.trim())} /></p>
+                <FilterCategory>
+                  <p>Type:</p>
+                  <p><FaRoad /> Road <input type='checkbox' checked={types.includes('road')} onChange={() => this.handleTypeChange('road')} /></p>
+                  <p><FaTree /> Off-road <input type='checkbox' checked={types.includes('off-road')} onChange={() => this.handleTypeChange('off-road')} /></p>
+                </FilterCategory>
+                <FilterCategory>
+                  <p>Distance:</p>
+                  <p>Min <input type='range' min={1} max={MAX_DISTANCE} value={distance.min} onChange={(event) => this.handleChange('distance', 'min', parseInt(event.target.value))} /> {distance.min}km</p>
+                  <p>Max <input type='range' min={1} max={MAX_DISTANCE} value={distance.max} onChange={(event) => this.handleChange('distance', 'max', parseInt(event.target.value))} /> {distance.max}km</p>
+                </FilterCategory>
+                <FilterCategory>
+                  <p>Vertical:</p>
+                  <p>Min <input type='range' min={1} max={MAX_VERT} value={vert.min} onChange={(event) => this.handleChange('vert', 'min', parseInt(event.target.value))} /> {vert.min}m</p>
+                  <p>Max <input type='range' min={1} max={MAX_VERT} value={vert.max} onChange={(event) => this.handleChange('vert', 'max', parseInt(event.target.value))} /> {vert.max}m</p>
+                </FilterCategory>
+              </Filter>
+            </FilterWrapper>
             <Routes>
               {
                 selectedRoutes.length ? selectedRoutes.map((route, index) => {
