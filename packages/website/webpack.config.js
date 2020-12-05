@@ -45,7 +45,7 @@ const config = {
       test: /\.(jpe?g|png|gif|svg)$/i,
       pngquant: {
         strip: true,
-        quality: [0.9, 1]
+        quality: '95-100'
       }
     })
   ],
