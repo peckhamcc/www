@@ -18,12 +18,14 @@
     "clean": "rm -rf build",
     "build": "cp ../config/index.js config.js && cp ../lambda-ride-roulette/email.js email.js && cp ../lambda-ride-roulette/token.js token.js && cp ../lambda-ride-roulette/db.js db.js && cp ../lambda-ride-roulette/middleware.js middleware.js && cp ../lambda-ride-roulette/lib.js lib.js",
     "build:dev": "cp ../config/index.js config.js && cp ../lambda-ride-roulette/dev-email.js email.js && cp ../lambda-ride-roulette/dev-token.js token.js && cp ../lambda-ride-roulette/dev-db.js db.js && cp ../lambda-ride-roulette/middleware.js middleware.js && cp ../lambda-ride-roulette/lib.js lib.js",
-    "deploy": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-ride-roulette-rides-generate-role-kf29x69m --region eu-west-2",
+    "upload": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-ride-roulette-rides-generate-role-kf29x69m --region eu-west-2",
+    "deploy": "run-s clean build upload",
     "lint": "standard"
   },
   "devDependencies": {
     "aws-sdk": "^2.211.0",
     "node-lambda": "^0.14.0",
+    "npm-run-all": "^4.1.5",
     "standard": "^14.3.1"
   },
   "dependencies": {
