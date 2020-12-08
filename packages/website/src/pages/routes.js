@@ -31,7 +31,7 @@ import routes from '../../assets/routes'
 
 const Map = styled.img`
   width: 100%;
-  max-width: 1500px;
+  max-width: 630px;
   margin-top: 20px;
 `
 
@@ -138,6 +138,12 @@ class RoutesPage extends Component {
     filterStyle: {}
   }
 
+  constructor (props) {
+    super(props)
+
+    this._filterRef = React.createRef()
+  }
+
   componentDidMount () {
     onscrolling(this.handleScroll)
   }
@@ -147,9 +153,8 @@ class RoutesPage extends Component {
   }
 
   handleScroll = () => {
-    const { pageYOffset } = window
-
-    const makeFixed = pageYOffset > 774 && window.innerWidth > 940
+    const { top } = this._filterRef.current.getBoundingClientRect()
+    const makeFixed = top < 70 && window.innerWidth > 940
 
     this.setState({
       filterStyle: makeFixed ? {
@@ -233,7 +238,7 @@ class RoutesPage extends Component {
           <p>Peckham CC has a variety of routes that we often draw from, ranging from 50-60km social rides all the way up to hilly epics and seaside jaunts.</p>
           <p>Feel free to grab any of the routes from our collection, and download GPX files to your phone or bike computer to help you navigate on the go.</p>
           <RoutesPanel>
-            <FilterWrapper>
+            <FilterWrapper ref={this._filterRef}>
               <Filter style={filterStyle}>
                 <h3>{selectedRoutes.length} Routes</h3>
                 <p>Search: <FilterSearch type='search' value={search} onChange={(event) => this.handleSearchChange(`${event.target.value}`.trim())} /></p>
@@ -266,7 +271,9 @@ class RoutesPage extends Component {
                         <Sharing><a href={route.link}><FaBicycle /> View on Ride with GPS</a></Sharing>
                       </SharingList>
                       <p>{route.description}</p>
-                      <Map name={route.title} src={route.map} />
+                      <a href={route.link}>
+                        <Map name={route.title} src={route.map} />
+                      </a>
                     </Route>
                   )
                 }) : (

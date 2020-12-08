@@ -27,7 +27,7 @@ export default [
   {
     hash: 'pcc-cx-south-london-loop',
     title: 'CX South London Loop',
-    description: "Big day out on the cross and gravel bikes! Once you reach Richmond you barely ride on a road again until you're back in London. Find refreshment options at the Box Hill café, or if it's too busy, it's only a few km of flat bridleways to the Cricketer pub in Mogador.",
+    description: "Big day out on the cross and gravel bikes! Once you reach Wimbledon you barely ride on a road again until you're back in London. Find refreshment options at the Box Hill café, or if it's too busy, it's only a few km of flat bridleways to the Cricketer pub in Mogador.",
     distance: 113,
     vert: 1163,
     type: 'off-road',
@@ -88,8 +88,8 @@ export default [
     hash: 'pcc-social-toys-ide',
     title: 'Social+ Toys & Ide',
     description: 'A classic training ride. Café stop at Ide Hill Village Shop to recover after two tough climbs in a row.',
-    distance: 83,
-    vert: 1217,
+    distance: 81,
+    vert: 1208,
     type: 'road',
     link: 'https://ridewithgps.com/routes/34684057',
     gpx: 'https://ridewithgps.com/routes/34684057.gpx',
@@ -159,7 +159,7 @@ export default [
   {
     hash: 'pcc-hell-of-the-ashdown',
     title: 'Hell of the Ashdown',
-    description: '',
+    description: 'The classic February sportive, including riding out from Peckham and back to make it up to 99 miles.',
     distance: 159,
     vert: 2136,
     type: 'road',
