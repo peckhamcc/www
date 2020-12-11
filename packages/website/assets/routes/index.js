@@ -149,7 +149,7 @@ export default [
     title: 'Social',
     description: 'This is the route taken on our Saturday Social Spins. Some minor variants exist but this our typical social route\n\nIt generally ends back in Peckham with a coffee stop at Peckham Rye Cafe or Change Please on Choumert Grove, or a pint at the Brick Brewery.',
     distance: 60,
-    vert: 732,
+    vert: 727,
     type: 'road',
     link: 'https://ridewithgps.com/routes/34683876',
     gpx: 'https://ridewithgps.com/routes/34683876.gpx',
