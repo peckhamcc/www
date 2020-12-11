@@ -29,8 +29,8 @@ class RidesPage extends Component {
           <p>There is a club social ride on every Saturday throughout the year and is the ideal introduction to riding with Peckham CC.</p>
           <p>It's a non-drop ride, meaning we regroup at the tops of climbs and everyone rides back together.</p>
           <p>The '<Link to='/routes'>social loop</Link>' is about 60km long and takes about three hours. There are always multiple groups at the library, and there's generally a group of people interested in riding further and/or slightly faster.</p>
-          <h3>Ladies Ride</h3>
-          <p>From spring to autumn, once a month there is a women-only ride aimed at riders of all abilities. They're not currently running but we hope to start these rides up again soon. The route varies month to month and is designed to offer women and non-male identifying people a safe and inclusive space to stretch themselves. The pace is inclusive and the distance is generally slightly further than the social ride.</p>
+          <h3>Womens Ride</h3>
+          <p>From spring to autumn, once a month there is a ride aimed at riders of all abilities. The route varies month to month and is designed to offer women and non-male identifying people a safe and inclusive space to stretch themselves. There's usuaully a few groups with varying paces, to make an inclusive ride, but we like to push the distance to slightly further than the social ride to include a cafe stop along the route.</p>
           <h3>Training Rides</h3>
           <p>Depending on the time of year and people's training goals, there may be a faster group on Saturdays and sometimes Sundays too.</p>
           <p>These rides are 100-200km in length.</p>
