@@ -38,6 +38,9 @@ const config = {
     new CopyPlugin({
       patterns: [{
         from: './assets/routes/*.png', to: ''
+      }, {
+        from: 'assets/.well-known', to: '.well-known',
+        toType: 'dir'
       }]
     }),
     new ImageminPlugin({
