@@ -5,16 +5,19 @@ import {
   Link
 } from 'react-router-dom'
 import {
+  connect
+} from 'react-redux'
+import {
   PageWrapper,
   Panel,
-  ShopListItem,
-  Hero
+  ShortHero
 } from '../components/panels'
+import {
+  ShopCategoryPanel
+} from '../components/shop/panels'
 import shopBackground from '../../assets/shop-bg.jpg'
 import styled from 'styled-components'
-import {
-  SECTIONS
-} from '../config'
+import WithProducts from '../components/shop/with-products'
 
 const Items = styled.div`
   text-align: center;
@@ -24,7 +27,7 @@ class ShopPage extends Component {
   render () {
     return (
       <PageWrapper>
-        <Hero background={shopBackground.src} />
+        <ShortHero background={shopBackground.src} />
         <Panel>
           <p>
             Our kit is made to order, and is only available to <Link to='/membership'>friends of Peckham CC</Link>, our
@@ -37,19 +40,27 @@ class ShopPage extends Component {
         </Panel>
         <Panel>
           <h2>Shop</h2>
-          <Items>
-            {
-              Object.keys(SECTIONS).map((key, index) => {
-                return (
-                  <ShopListItem item={SECTIONS[key]} key={index} />
-                )
-              })
-            }
-          </Items>
+          <WithProducts>
+            <Items>
+              {
+                Object.keys(this.props.categories).map((id, index) => {
+                  return (
+                    <ShopCategoryPanel item={this.props.categories[id]} key={index} />
+                  )
+                })
+              }
+            </Items>
+          </WithProducts>
         </Panel>
       </PageWrapper>
     )
   }
 }
 
-export default ShopPage
+const mapStateToProps = ({ shop: { categories } }) => ({
+  categories
+})
+
+const mapDispatchToProps = {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShopPage)

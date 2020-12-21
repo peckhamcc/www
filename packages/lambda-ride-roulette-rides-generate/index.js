@@ -1,17 +1,17 @@
-const {
-  getNextRidingDays,
-  generateRides
-} = require('./lib')
+'use strict'
+
 const {
   getAllPreferences,
-  setRides
-} = require('./db')
+  setRides,
+  getNextRidingDays,
+  generateRides
+} = require('./roulette')
 const {
   sendEmail
 } = require('./email')
 const {
   generateLogInLink
-} = require('./token')
+} = require('./account')
 const { config } = require('./config')
 
 async function generateRidesHandler () {

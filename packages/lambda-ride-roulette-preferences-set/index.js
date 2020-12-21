@@ -10,11 +10,9 @@ const {
   tokenValidator
 } = require('./middleware')
 const {
-  setPreferences
-} = require('./db')
-const {
+  setPreferences,
   getNextRidingDays
-} = require('./lib')
+} = require('./roulette')
 
 async function setPreferencesHandler (event) {
   const ridingDays = getNextRidingDays()
@@ -32,7 +30,7 @@ async function setPreferencesHandler (event) {
     }
   })
 
-  await setPreferences(event.user.email, event.body)
+  await setPreferences(event.user, event.body)
 
   return {
     statusCode: 204

@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom'
 import {
   About,
-  Account,
+  Profile,
   Basket,
   Checkout,
   Equipment,
@@ -77,7 +77,7 @@ export default () => {
               <FlexItem expand>
                 <Navigation />
                 <Route exact path='/' component={Home} />
-                <Route path='/account' component={Account} />
+                <Route path='/profile' component={Profile} />
                 <Route path='/equipment' component={Equipment} />
                 <Route path='/rides' component={Rides} />
                 <Route path='/routes' component={Routes} />
@@ -99,7 +99,7 @@ export default () => {
                 <Route exact path='/results/rainbow-race-early-may-2020' component={ResultsRainbowRace} />
                 <Route path='/ride-roulette' component={RideRoulette} />
 
-                <Flag name={['store']}>
+                <Flag name={['shop']}>
                   <>
                     <Route exact path='/shop' component={Shop} />
                     <Route path='/shop/:slug' component={Item} />

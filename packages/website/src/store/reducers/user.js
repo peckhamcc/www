@@ -4,17 +4,21 @@ import {
   SELECTED_GENDER,
   SELECTED_SIZE,
   ACCEPTED_TERMS,
-  SET_USER_NAME,
-  SET_USER_EMAIL
+  UPDATE_USER
 } from '../actions'
 
 const initialState = {
-  user: null,
+  firstName: null,
+  lastName: null,
+  email: null,
+  telephone: null,
+  address1: null,
+  address2: null,
+  address3: null,
+  postCode: null,
   size: null,
   gender: null,
-  acceptedTerms: false,
-  name: null,
-  email: null
+  acceptedTerms: false
 }
 
 const userReducer = (state = initialState, action) => {
@@ -22,12 +26,22 @@ const userReducer = (state = initialState, action) => {
     case SIGN_IN:
       return {
         ...state,
-        user: action.payload
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
+        email: action.payload.email,
+        telephone: action.payload.telephone,
+        address1: action.payload.address1,
+        address2: action.payload.address2,
+        address3: action.payload.address3,
+        postCode: action.payload.postCode,
+        size: action.payload.size,
+        gender: action.payload.gender
       }
     case SIGN_OUT:
       return {
         ...state,
-        user: null
+        name: null,
+        email: null
       }
     case SELECTED_GENDER:
       return {
@@ -44,15 +58,13 @@ const userReducer = (state = initialState, action) => {
         ...state,
         acceptedTerms: action.payload
       }
-    case SET_USER_NAME:
+    case UPDATE_USER:
       return {
         ...state,
-        name: `${action.payload}`.trim()
-      }
-    case SET_USER_EMAIL:
-      return {
-        ...state,
-        email: `${action.payload}`.trim()
+        ...(Object.keys(action.payload).reduce((state, key) => {
+          state[key] = action.payload[key]
+          return state
+        }, {}))
       }
     default:
       return state

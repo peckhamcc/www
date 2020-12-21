@@ -11,17 +11,15 @@ const {
 } = require('./middleware')
 const {
   getRides,
-  getPreferences
-} = require('./db')
-const {
+  getPreferences,
   getNextRidingDays
-} = require('./lib')
+} = require('./roulette')
 
 async function getRidesHandler (event) {
   const {
     preferences,
     rider
-  } = await getPreferences(event.user.email)
+  } = await getPreferences(event.user)
 
   const ridingDays = getNextRidingDays()
   const rides = {}
@@ -37,7 +35,7 @@ async function getRidesHandler (event) {
     }
 
     const ride = generatedRides
-      .filter(ride => ride.riders.find(rider => rider.email === event.user.email))
+      .filter(ride => ride.riders.find(rider => rider.id === event.user))
       .map(ride => ({
         ...ride,
         riders: ride.riders

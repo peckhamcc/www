@@ -1,9 +1,9 @@
-import roulette from './roulette'
+import session from './session'
 import shop from './shop'
 import user from './user'
 
 const reducers = {
-  roulette,
+  session,
   shop,
   user
 }

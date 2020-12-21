@@ -1,5 +1,3 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import stripesImage from '../../assets/stripes.png'
 import {
@@ -147,99 +145,6 @@ export const InnerPanel = styled(Panel)`
   }
 `
 
-const ShopPanel = styled(InnerPanel)`
-  width: 300px;
-  display: inline-block;
-  padding: 0;
-  margin: ${spacing(1)} ${spacing(1)} 0 0;
-  text-align: left;
-
-  h4 {
-    padding: ${spacing(0.5)} ${spacing(1)} 0 ${spacing(1)};
-    margin: 0;
-  }
-
-  h5 {
-    padding: 0 ${spacing(1)} 0 ${spacing(1)};
-    margin: 0;
-    font-size: 16px;
-  }
-
-  img {
-    width: 280px;
-    margin: 0 auto ${spacing(1)} auto;
-    display: block;
-  }
-
-  a {
-    color: ${light};
-    text-decoration: none;
-  }
-`
-
-export const ShopListItem = ({ item: { slug, title, description, images, price } }) => {
-  return (
-    <ShopPanel>
-      <h4>
-        <Link to={`/shop/${slug}`} data-section={slug}>{title}</Link>
-      </h4>
-      {price && <h5><Price price={price} /></h5>}
-      <Link to={`/shop/${slug}`}>
-        <img srcSet={images[0].srcSet} src={images[0].src} width={300} />
-      </Link>
-      {description && (
-        <p>
-          <Link to={`/shop/${slug}`}>{description}</Link>
-        </p>
-      )}
-    </ShopPanel>
-  )
-}
-
-export const BreadCrumbList = styled.ul`
-  padding: ${spacing(1)} 0;
-  margin: 0;
-  list-style: none;
-
-  li {
-    display: inline-block;
-    margin: 0 5px 0 0;
-
-    a {
-      color: ${light};
-    }
-  }
-`
-
-export const Breadcrumb = ({ section, product }) => {
-  const links = [
-    <Link to='/shop' key='shop'>Shop</Link>
-  ]
-
-  if (product) {
-    links.push(
-      <Link to={`/shop/${product.section.slug}`} key='slug'>{product.section.title}</Link>,
-      product.title
-    )
-  } else {
-    links.push(
-      section.title
-    )
-  }
-
-  return (
-    <BreadCrumbList>
-      {links.map((link, index) => <li key={index}>{link} {index < links.length - 1 ? ' /' : ''}</li>)}
-    </BreadCrumbList>
-  )
-}
-
-export const Price = ({ price }) => {
-  return (
-    <span>&pound;{price / 100}</span>
-  )
-}
-
 export const Button = styled.button`
   border-radius: 2px;
   border: 1px solid ${light};
@@ -286,11 +191,6 @@ export const SmallTextButton = styled(TextButton)`
   @media (max-width: 940px) {
     font-size: 16px;
   }
-`
-
-export const Quantity = styled.span`
-  display: inline-block;
-  margin: 0 ${spacing(1)} 0 ${spacing(1)};
 `
 
 export const ModalBlocker = styled.div`
@@ -424,5 +324,19 @@ export const SmallSpinner = styled(Spinner)`
   @media (max-width: 940px) {
     height: 33px;
     width: 33px;
+  }
+`
+
+export const CentredPanel = styled(Panel)`
+  max-width: 376px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 80px;
+  padding-top: 20px;
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 `

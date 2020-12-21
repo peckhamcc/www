@@ -4,6 +4,7 @@ import React, {
 import PropTypes from 'prop-types'
 import {
   FaShoppingCart,
+  FaUser,
   FaBars
 } from 'react-icons/fa'
 import { Link, withRouter } from 'react-router-dom'
@@ -137,6 +138,11 @@ const HamburgerNavMenu = styled.li`
 const CartLink = styled(NavLink)`
   font-size: 24px;
   margin-right: 0;
+`
+
+const ProfileLink = styled(NavLink)`
+  font-size: 24px;
+  margin-right: ${spacing(1)};
 `
 
 const SiteNav = styled(FlexContentLeft)`
@@ -289,7 +295,7 @@ class NavBarWrapper extends Component {
                 <Link to='/contact'>Contact</Link>
               </NavLink>
 
-              <Flag name={['store']}>
+              <Flag name={['shop']}>
                 <NavLink>
                   <Link to='/shop'>Shop</Link>
                 </NavLink>
@@ -302,8 +308,13 @@ class NavBarWrapper extends Component {
           <FaBars />
         </HamburgerMenu>
 
-        <Flag name={['store']}>
+        <Flag name={['shop']}>
           <AccountNav>
+            <ProfileLink>
+              <Link to='/profile'>
+                <FaUser />
+              </Link>
+            </ProfileLink>
             <CartLink>
               <Link to='/basket' style={{ position: 'relative' }}>
                 {cartContents ? <CartContentsCount>{cartContents}</CartContentsCount> : null}
@@ -361,7 +372,7 @@ class NavBarWrapper extends Component {
                 <Link to='/contact'>Contact</Link>
               </NavLink>
 
-              <Flag name={['store']}>
+              <Flag name={['shop']}>
                 <NavLink>
                   <Link to='/shop'>Shop</Link>
                 </NavLink>

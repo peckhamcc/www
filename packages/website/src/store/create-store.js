@@ -1,6 +1,5 @@
 import { createStore, compose } from 'redux'
 import persistState from 'redux-localstorage'
-import config from '../config'
 
 const storeConfig = {
   deserialize: (serializedData) => {
@@ -16,11 +15,8 @@ const storeConfig = {
       return
     }
 
-    if (data.shop && data.shop.cart) {
-      // remove any items that have changed
-      data.shop.cart = data.shop.cart.filter(item => {
-        return config.store.products.find(product => product.sku === item.sku)
-      })
+    if (data.shop) {
+      data.shop.categories = {}
     }
 
     return data

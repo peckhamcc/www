@@ -10,7 +10,13 @@ const sendCorsHeaders = require('@peckhamcc/lambda-send-cors-headers')
 const rideRoulettePreferencesSet = require('@peckhamcc/lambda-ride-roulette-preferences-set')
 const rideRouletteRidesGenerate = require('@peckhamcc/lambda-ride-roulette-rides-generate')
 const rideRouletteRidesGet = require('@peckhamcc/lambda-ride-roulette-rides-get')
-const rideRouletteTokenGenerate = require('@peckhamcc/lambda-ride-roulette-token-generate')
+const accountTokenGenerate = require('@peckhamcc/lambda-account-token-generate')
+const accountUserGet = require('@peckhamcc/lambda-account-user-get')
+const accountUserUpdate = require('@peckhamcc/lambda-account-user-update')
+const shopOrdersCreate = require('@peckhamcc/lambda-shop-orders-create')
+const shopOrdersGet = require('@peckhamcc/lambda-shop-orders-get')
+const shopPaymentsCreate = require('@peckhamcc/lambda-shop-payments-create')
+const shopProductsGet = require('@peckhamcc/lambda-shop-products-get')
 const { callbackify } = require('util')
 
 const ACCOUNT_ID = nanoid()
@@ -149,8 +155,26 @@ module.exports = (port) => {
     app.options(config.lambda.rideRouletteRidesGet, serveLambda('_peckhamcc_lambda-ride-roulette-rides-get', sendCorsHeaders))
     app.get(config.lambda.rideRouletteRidesGet, serveLambda('_peckhamcc_lambda-ride-roulette-rides-get', rideRouletteRidesGet))
 
-    app.options(config.lambda.rideRouletteTokenGenerate, serveLambda('_peckhamcc_lambda-ride-roulette-token-generate', sendCorsHeaders))
-    app.post(config.lambda.rideRouletteTokenGenerate, serveLambda('_peckhamcc_lambda-ride-roulette-token-generate', rideRouletteTokenGenerate))
+    app.options(config.lambda.accountTokenGenerate, serveLambda('_peckhamcc_lambda-account-token-generate', sendCorsHeaders))
+    app.post(config.lambda.accountTokenGenerate, serveLambda('_peckhamcc_lambda-account-token-generate', accountTokenGenerate))
+
+    app.options(config.lambda.accountUserGet, serveLambda('_peckhamcc_lambda-account-user-get', sendCorsHeaders))
+    app.get(config.lambda.accountUserGet, serveLambda('_peckhamcc_lambda-account-user-get', accountUserGet))
+
+    app.options(config.lambda.accountUserUpdate, serveLambda('_peckhamcc_lambda-account-user-update', sendCorsHeaders))
+    app.patch(config.lambda.accountUserUpdate, serveLambda('_peckhamcc_lambda-account-user-update', accountUserUpdate))
+
+    app.options(config.lambda.shopProductsGet, serveLambda('_peckhamcc_lambda-shop-products-get', sendCorsHeaders))
+    app.get(config.lambda.shopProductsGet, serveLambda('_peckhamcc_lambda-shop-products-get', shopProductsGet))
+
+    app.options(config.lambda.shopOrdersCreate, serveLambda('_peckhamcc_lambda-shop-orders-create', sendCorsHeaders))
+    app.post(config.lambda.shopOrdersCreate, serveLambda('_peckhamcc_lambda-shop-orders-create', shopOrdersCreate))
+
+    app.options(config.lambda.shopOrdersGet, serveLambda('_peckhamcc_lambda-shop-orders-get', sendCorsHeaders))
+    app.get(config.lambda.shopOrdersGet, serveLambda('_peckhamcc_lambda-shop-orders-get', shopOrdersGet))
+
+    app.options(config.lambda.shopPaymentsCreate, serveLambda('_peckhamcc_lambda-shop-payments-create', sendCorsHeaders))
+    app.post(config.lambda.shopPaymentsCreate, serveLambda('_peckhamcc_lambda-shop-payments-create', shopPaymentsCreate))
 
     app.use((_, response) => {
       response.sendFile(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist', 'index.html'))

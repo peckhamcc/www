@@ -11,9 +11,8 @@ import {
 } from 'react-redux'
 import config from '../../config'
 import {
-  expiredRouletteToken,
-  clearRouletteToken,
-  setUserName
+  expiredToken,
+  clearToken
 } from '../../store/actions'
 import {
   Toggle,
@@ -213,7 +212,7 @@ class Rides extends Component {
 
   componentDidMount () {
     if (!this.props.user.email) {
-      this.props.clearRouletteToken()
+      this.props.clearToken()
     }
 
     this._loadRides()
@@ -233,20 +232,15 @@ class Rides extends Component {
       const response = await global.fetch(config.lambda.rideRouletteRidesGet, {
         method: 'GET',
         headers: {
-          Authorization: global.btoa(JSON.stringify({ token: this.props.token, email: this.props.user.email, name: this.props.user.name }))
+          Authorization: this.props.token
         }
       })
 
       if (response.status === 200) {
         const {
           rides,
-          preferences,
-          rider
+          preferences
         } = await response.json()
-
-        if (rider && rider !== this.props.user.name) {
-          this.props.setUserName(rider)
-        }
 
         this.setState({
           rides,
@@ -264,7 +258,7 @@ class Rides extends Component {
       }
 
       if (response.status === 401) {
-        this.props.expiredRouletteToken()
+        this.props.expiredToken()
 
         return
       }
@@ -341,7 +335,7 @@ class Rides extends Component {
       const response = await global.fetch(config.lambda.rideRoulettePreferencesSet, {
         method: 'PUT',
         headers: {
-          Authorization: global.btoa(JSON.stringify({ token: this.props.token, email: this.props.user.email, name: this.props.user.name })),
+          Authorization: this.props.token,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -367,7 +361,7 @@ class Rides extends Component {
       }
 
       if (response.status === 401) {
-        this.props.expiredRouletteToken()
+        this.props.expiredToken()
 
         return
       }
@@ -613,15 +607,14 @@ Rides.propTypes = {
   user: PropTypes.object
 }
 
-const mapStateToProps = ({ roulette: { token }, user }) => ({
+const mapStateToProps = ({ session: { token }, user }) => ({
   token,
   user
 })
 
 const mapDispatchToProps = {
-  expiredRouletteToken,
-  clearRouletteToken,
-  setUserName
+  expiredToken,
+  clearToken
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rides)

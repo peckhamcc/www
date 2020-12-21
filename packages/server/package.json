@@ -9,18 +9,24 @@
     "url": "https://github.com/peckhamcc/www/issues"
   },
   "scripts": {
-    "start": "NODE_ENV=development node start.js",
+    "start": "NODE_ENV=development PCC_SHOP_CODE=asdf node start.js",
     "lint": "standard"
   },
   "dependencies": {
     "@peckhamcc/config": "^1.0.0",
+    "@peckhamcc/lambda-account-token-generate": "^1.0.0",
+    "@peckhamcc/lambda-account-user-get": "^1.0.0",
+    "@peckhamcc/lambda-account-user-update": "^1.0.0",
     "@peckhamcc/lambda-ride-roulette-preferences-set": "^1.0.0",
     "@peckhamcc/lambda-ride-roulette-rides-generate": "^1.0.0",
     "@peckhamcc/lambda-ride-roulette-rides-get": "^1.0.0",
-    "@peckhamcc/lambda-ride-roulette-token-generate": "^1.0.0",
     "@peckhamcc/lambda-send-contact-form-email": "^1.0.0",
     "@peckhamcc/lambda-send-cors-headers": "^1.0.0",
     "@peckhamcc/lambda-send-payment": "^1.0.0",
+    "@peckhamcc/lambda-shop-orders-create": "^1.0.0",
+    "@peckhamcc/lambda-shop-orders-get": "^1.0.0",
+    "@peckhamcc/lambda-shop-payments-create": "^1.0.0",
+    "@peckhamcc/lambda-shop-products-get": "^1.0.0",
     "@peckhamcc/website": "^1.0.0",
     "body-parser": "^1.18.2",
     "dotenv": "^8.2.0",

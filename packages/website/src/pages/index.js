@@ -1,5 +1,5 @@
 export { default as About } from './about'
-export { default as Account } from './account'
+export { default as Profile } from './profile'
 export { default as Basket } from './basket'
 export { default as Calendar } from './calendar'
 export { default as Checkout } from './checkout'

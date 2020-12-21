@@ -4,11 +4,14 @@ import React, {
 import {
   PageWrapper,
   Panel,
-  Breadcrumb,
   Hero
 } from '../components/panels'
+import {
+  Breadcrumb
+} from '../components/shop/panels'
 import basketBackground from '../../assets/basket-bg.jpg'
-import Basket from '../components/basket'
+import Basket from '../components/shop/basket'
+import WithProducts from '../components/shop/with-products'
 
 class BasketPage extends Component {
   render () {
@@ -18,7 +21,9 @@ class BasketPage extends Component {
         <Panel>
           <Breadcrumb section={{ title: 'Basket' }} />
           <h2>Basket</h2>
-          <Basket />
+          <WithProducts>
+            <Basket />
+          </WithProducts>
         </Panel>
       </PageWrapper>
     )

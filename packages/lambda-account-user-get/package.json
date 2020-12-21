@@ -1,0 +1,36 @@
+{
+  "name": "@peckhamcc/lambda-account-user-get",
+  "version": "1.0.0",
+  "description": "Validate token for log in",
+  "main": "index.js",
+  "homepage": "https://peckhamcc.github.com/www",
+  "author": "Alex Potsides",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peckhamcc/www"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peckhamcc/www/issues"
+  },
+  "scripts": {
+    "test": "echo 0",
+    "clean": "rm -rf build",
+    "build": "cp ../config/index.js config.js && cp ../lambda-lib/email.js email.js && cp ../lambda-lib/account.js account.js && cp ../lambda-lib/middleware.js middleware.js",
+    "build:dev": "cp ../config/index.js config.js && cp ../lambda-lib/dev-email.js email.js && cp ../lambda-lib/dev-account.js account.js && cp ../lambda-lib/middleware.js middleware.js",
+    "upload": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-account-token-validate-role-vwuyq2fv --region eu-west-2",
+    "deploy": "run-s clean build upload",
+    "lint": "standard"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.211.0",
+    "node-lambda": "^0.14.0",
+    "npm-run-all": "^4.1.5",
+    "standard": "^14.3.1"
+  },
+  "dependencies": {
+    "http-errors": "^1.6.3",
+    "middy": "^0.33.0",
+    "nanoid": "^3.1.18"
+  }
+}
