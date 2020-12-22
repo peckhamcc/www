@@ -1,7 +1,7 @@
 {
   "name": "@peckhamcc/lambda-shop-products-get",
   "version": "1.0.0",
-  "description": "Retrieve shop products from square",
+  "description": "Retrieve shop products from stripe",
   "main": "index.js",
   "homepage": "https://peckhamcc.github.com/www",
   "author": "Alex Potsides",

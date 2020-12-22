@@ -1,7 +1,7 @@
 {
   "name": "@peckhamcc/lambda-shop-orders-get",
   "version": "1.0.0",
-  "description": "Retrieve orders from square",
+  "description": "Retrieve orders from stripe",
   "main": "index.js",
   "homepage": "https://peckhamcc.github.com/www",
   "author": "Alex Potsides",

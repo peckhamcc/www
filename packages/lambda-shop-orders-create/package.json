@@ -1,7 +1,7 @@
 {
   "name": "@peckhamcc/lambda-shop-orders-create",
   "version": "1.0.0",
-  "description": "Create an order with square",
+  "description": "Create a checkout session with stripe",
   "main": "index.js",
   "homepage": "https://peckhamcc.github.com/www",
   "author": "Alex Potsides",

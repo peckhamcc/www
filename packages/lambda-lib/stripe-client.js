@@ -6,12 +6,16 @@ const {
   OPTIONS
 } = require('./config')
 
+const STRIPE_OPTS = {
+  maxNetworkRetries: 5
+}
+
 const getProducts = async () => {
   if (!config.flags.shop) {
     return []
   }
 
-  const client = stripe(config.stripe.secretKey)
+  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
 
   const prices = {}
 
@@ -103,7 +107,7 @@ const getProducts = async () => {
 }
 
 const createCheckoutSession = async (user, items) => {
-  const client = stripe(config.stripe.secretKey)
+  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
 
   const products = await getProducts()
   const slugToProduct = products.reduce((lookup, section) => {
@@ -171,7 +175,7 @@ const getOrders = async (user) => {
     return []
   }
 
-  const client = stripe(config.stripe.secretKey)
+  const client = stripe(config.stripe, STRIPE_OPTS)
   const orders = []
 
   for await (const paymentIntent of client.paymentIntents.list({
@@ -223,7 +227,7 @@ const getOrCreateCustomerId = async (user) => {
     return user.stripeCustomerId
   }
 
-  const client = stripe(config.stripe.secretKey)
+  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
 
   // search existing customers by email
   const {
@@ -252,7 +256,7 @@ async function updateCustomer (user, details) {
     return
   }
 
-  const client = stripe(config.stripe.secretKey)
+  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
 
   const update = {
     name: details.name,
