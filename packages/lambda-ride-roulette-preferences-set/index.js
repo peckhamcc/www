@@ -14,23 +14,24 @@ const {
   getNextRidingDays
 } = require('./roulette')
 
-async function setPreferencesHandler (event) {
+async function setPreferencesHandler ({ userId, body: preferences }) {
   const ridingDays = getNextRidingDays()
 
-  Object.keys(event.body.preferences).forEach(timestamp => {
+  Object.keys(preferences).forEach(timestamp => {
     if (!ridingDays.includes(timestamp)) {
-      delete event.body.preferences[timestamp]
+      delete preferences[timestamp]
+      return
     }
 
-    event.body.preferences[timestamp] = {
-      type: event.body.preferences[timestamp].type,
-      speed: event.body.preferences[timestamp].speed,
-      distance: event.body.preferences[timestamp].distance,
-      route: event.body.preferences[timestamp].route
+    preferences[timestamp] = {
+      type: preferences[timestamp].type,
+      speed: preferences[timestamp].speed,
+      distance: preferences[timestamp].distance,
+      route: preferences[timestamp].route
     }
   })
 
-  await setPreferences(event.user, event.body)
+  await setPreferences(userId, preferences)
 
   return {
     statusCode: 204
@@ -42,53 +43,45 @@ const inputSchema = {
   properties: {
     body: {
       type: 'object',
-      properties: {
-        rider: {
-          type: 'string'
-        },
-        preferences: {
+      patternProperties: {
+        '^\\d{4}-\\d{2}-\\d{2}$': {
           type: 'object',
-          patternProperties: {
-            '^\\d{4}-\\d{2}-\\d{2}$': {
-              type: 'object',
-              properties: {
-                date: {
-                  type: 'string'
-                },
-                type: {
-                  type: 'string',
-                  enum: [
-                    'road',
-                    'mud',
-                    'mtb'
-                  ]
-                },
-                speed: {
-                  type: 'string',
-                  enum: [
-                    'social',
-                    'social-plus',
-                    'antisocial',
-                    'pain-train'
-                  ]
-                },
-                distance: {
-                  type: 'string',
-                  enum: [
-                    'short',
-                    'medium',
-                    'long',
-                    'epic'
-                  ]
-                },
-                route: {
-                  type: 'string',
-                  enum: [
-                    'no-route',
-                    'has-route'
-                  ]
-                }
-              }
+          properties: {
+            date: {
+              type: 'string'
+            },
+            type: {
+              type: 'string',
+              enum: [
+                'road',
+                'mud',
+                'mtb'
+              ]
+            },
+            speed: {
+              type: 'string',
+              enum: [
+                'social',
+                'social-plus',
+                'antisocial',
+                'pain-train'
+              ]
+            },
+            distance: {
+              type: 'string',
+              enum: [
+                'short',
+                'medium',
+                'long',
+                'epic'
+              ]
+            },
+            route: {
+              type: 'string',
+              enum: [
+                'no-route',
+                'has-route'
+              ]
             }
           }
         }

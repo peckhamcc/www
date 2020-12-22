@@ -15,7 +15,7 @@ import {
   spacing
 } from '../../units'
 import {
-  PRODUCT_IMAGES
+  ITEM_IMAGES
 } from './panels'
 
 const Thumbnails = styled.div`
@@ -101,7 +101,7 @@ class ImageViewer extends Component {
       let index = s.index - 1
 
       if (index < 0) {
-        index = PRODUCT_IMAGES[product.slug].length - 1
+        index = ITEM_IMAGES[product.slug].length - 1
       }
 
       return {
@@ -116,7 +116,7 @@ class ImageViewer extends Component {
     this.setState(s => {
       let index = s.index + 1
 
-      if (index === PRODUCT_IMAGES[product.slug].length) {
+      if (index === ITEM_IMAGES[product.slug].length) {
         index = 0
       }
 
@@ -132,7 +132,7 @@ class ImageViewer extends Component {
 
   render () {
     const { product } = this.props
-    const images = PRODUCT_IMAGES[product.slug]
+    const images = ITEM_IMAGES[product.slug]
     const mainImage = images[this.state.index]
 
     return (

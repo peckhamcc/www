@@ -43,9 +43,9 @@ class ShopPage extends Component {
           <WithProducts>
             <Items>
               {
-                Object.keys(this.props.categories).map((id, index) => {
+                Object.keys(this.props.sections).map((id, index) => {
                   return (
-                    <ShopCategoryPanel item={this.props.categories[id]} key={index} />
+                    <ShopCategoryPanel item={this.props.sections[id]} key={index} />
                   )
                 })
               }
@@ -57,8 +57,8 @@ class ShopPage extends Component {
   }
 }
 
-const mapStateToProps = ({ shop: { categories } }) => ({
-  categories
+const mapStateToProps = ({ shop: { sections } }) => ({
+  sections
 })
 
 const mapDispatchToProps = {}

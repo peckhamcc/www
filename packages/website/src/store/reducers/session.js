@@ -1,4 +1,4 @@
-import { SESSION_STORE_TOKEN, SESSION_EXPIRED_TOKEN, SESSION_CLEAR_TOKEN } from '../actions'
+import { SESSION_STORE_TOKEN, SESSION_EXPIRED_TOKEN, SIGN_OUT } from '../actions'
 
 const initialState = {
   token: null,
@@ -14,13 +14,12 @@ const accountReducer = (state = initialState, action) => {
         tokenExpired: false
       }
     case SESSION_EXPIRED_TOKEN:
-      console.info('token expired')
       return {
         ...state,
         token: null,
         tokenExpired: true
       }
-    case SESSION_CLEAR_TOKEN:
+    case SIGN_OUT:
       return {
         ...state,
         token: null,

@@ -15,12 +15,8 @@ const {
   getNextRidingDays
 } = require('./roulette')
 
-async function getRidesHandler (event) {
-  const {
-    preferences,
-    rider
-  } = await getPreferences(event.user)
-
+async function getRidesHandler ({ userId }) {
+  const preferences = await getPreferences(userId)
   const ridingDays = getNextRidingDays()
   const rides = {}
 
@@ -35,7 +31,7 @@ async function getRidesHandler (event) {
     }
 
     const ride = generatedRides
-      .filter(ride => ride.riders.find(rider => rider.id === event.user))
+      .filter(ride => ride.riders.find(rider => rider.id === userId))
       .map(ride => ({
         ...ride,
         riders: ride.riders
@@ -54,8 +50,7 @@ async function getRidesHandler (event) {
 
   const output = {
     preferences,
-    rides,
-    rider
+    rides
   }
 
   return {

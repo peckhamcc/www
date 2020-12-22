@@ -49,7 +49,7 @@ const tokenValidator = (opts) => ({
       throw new httpErrors.Unauthorized('Missing or invalid credentials')
     }
 
-    handler.event.user = await getUserIdForToken(token)
+    handler.event.userId = await getUserIdForToken(token)
   }
 })
 

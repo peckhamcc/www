@@ -6,16 +6,16 @@ import {
   Link
 } from 'react-router-dom'
 import {
-  SmallTextButton,
-  Button
+  SmallTextButton
 } from '../panels'
 import {
-  GreenButton
+  GreenButton,
+  QuantityButton
 } from '../forms'
 import {
   Quantity,
   Price,
-  PRODUCT_IMAGES
+  ItemImage
 } from './panels'
 import styled from 'styled-components'
 import {
@@ -38,8 +38,12 @@ import {
 import {
   spacing
 } from '../../units'
-
-import OPTIONS from './options'
+import {
+  OPTIONS
+} from '@peckhamcc/config'
+import {
+  Flag
+} from '../../lib/flags'
 
 const BasketWrapper = styled.div`
   display: flex;
@@ -151,13 +155,6 @@ const Terms = styled.div`
   }
 `
 
-const QuantityButton = styled(Button)`
-  @media (max-width: 940px) {
-    padding: 3px ${spacing(1)};
-    font-size: 22px;
-  }
-`
-
 class Basket extends Component {
   state = {
     showTermsError: false
@@ -197,10 +194,16 @@ class Basket extends Component {
         showTermsError: true
       })
     }
+
+    window.location = '/checkout'
   }
 
   render () {
-    const { cart, acceptedTerms } = this.props
+    const {
+      cart,
+      acceptedTerms,
+      slugLookup
+    } = this.props
     const { showTermsError } = this.state
 
     if (!cart.length) {
@@ -221,14 +224,14 @@ class Basket extends Component {
           <TBody>
             {
               cart.map((item, index) => {
-                const product = this.props.products[item.sku]
+                const product = slugLookup[item.slug]
 
                 return (
                   <Row key={index}>
                     <Cell>
                       <ProductTitle>{item.name}</ProductTitle>
                       <ProductImage>
-                        <img srcSet={PRODUCT_IMAGES[product.slug][0].srcSet} src={PRODUCT_IMAGES[product.slug][0].src} width={100} />
+                        <ItemImage item={product} width={100} />
                       </ProductImage>
                       <ProductDetails>
                         <DetailWrapper>
@@ -236,10 +239,10 @@ class Basket extends Component {
                             <p>
                               {
                                 Object.keys(item.options).map(option => {
-                                  let value = item.options[option]
+                                  const value = item.options[option]
 
                                   if (option === 'size') {
-                                    value = value.substring(1)
+                                    return OPTIONS[option][product.sizeChart][value].name
                                   }
 
                                   return OPTIONS[option][value]
@@ -258,7 +261,7 @@ class Basket extends Component {
                         </DetailWrapper>
                       </ProductDetails>
                     </Cell>
-                    <Cell><Price price={product.price * item.quantity} /></Cell>
+                    <Cell><Price price={product.price.amount * item.quantity} /></Cell>
                   </Row>
                 )
               })
@@ -271,7 +274,7 @@ class Basket extends Component {
               </RightAlignedCell>
               <Cell>
                 <Price price={cart.reduce((acc, item) => {
-                  return acc + (this.props.products[item.sku].price * item.quantity)
+                  return acc + (slugLookup[item.slug].price.amount * item.quantity)
                 }, 0)}
                 />
               </Cell>
@@ -295,9 +298,11 @@ class Basket extends Component {
             </p>
           </Terms>
           <ButtonHolder>
-            <Link to='/checkout' onClick={this.handleShowCheckout}>
-              <GreenButton data-button='enter-payment-information'>Enter your details</GreenButton>
-            </Link>
+            <Flag
+              name={['payments']}
+              component={() => <GreenButton data-button='enter-payment-information' onClick={this.handleShowCheckout}>Proceed to payment</GreenButton>}
+              fallbackComponent={() => <GreenButton data-button='enter-payment-information' onClick={this.handleShowCheckout}>Enter your details</GreenButton>}
+            />
           </ButtonHolder>
         </PlaceOrder>
       </BasketWrapper>
@@ -310,10 +315,10 @@ Basket.propTypes = {
   user: PropTypes.object
 }
 
-const mapStateToProps = ({ shop: { cart, categories, products }, user: { user, acceptedTerms } }) => ({
+const mapStateToProps = ({ shop: { cart, sections, slugLookup }, user: { user, acceptedTerms } }) => ({
   cart,
-  categories,
-  products,
+  sections,
+  slugLookup,
   user,
   acceptedTerms
 })

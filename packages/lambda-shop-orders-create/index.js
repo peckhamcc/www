@@ -9,34 +9,31 @@ const {
   tokenValidator
 } = require('./middleware')
 const {
-  createOrder,
+  createCheckoutSession,
   getOrCreateCustomerId
-} = require('./square-client')
-const {
-  nanoid
-} = require('nanoid')
-const {
-  config
-} = require('./config')
+} = require('./stripe-client')
 const {
   updateUser,
   getUser
 } = require('./account')
 
-async function ordersCreateHandler ({ body: { user, items }, user: userId }) {
-  const idempotencyKey = nanoid()
-  const locationId = config.square.locationId
+async function ordersCreateHandler ({ userId, body: items }) {
+  const user = await getUser(userId)
 
-  await updateUser(userId, user)
+  if (!user.stripeCustomerId) {
+    user.stripeCustomerId = await getOrCreateCustomerId(user)
 
-  const customerId = await getOrCreateCustomerId(user)
+    await updateUser(userId, {
+      stripeCustomerId: user.stripeCustomerId
+    })
+  }
+
+  const sessionId = await createCheckoutSession(user, items)
 
   return {
     statusCode: 200,
     body: {
-      idempotencyKey,
-      user: await getUser(userId),
-      ...(await createOrder(customerId, locationId, items, idempotencyKey))
+      sessionId
     }
   }
 }
@@ -45,71 +42,24 @@ const inputSchema = {
   type: 'object',
   properties: {
     body: {
-      type: 'object',
-      properties: {
-        items: {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              id: {
-                type: 'string'
-              },
-              quantity: {
-                type: 'string'
-              }
-            },
-            required: [
-              'id', 'quantity'
-            ]
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          slug: {
+            type: 'string'
+          },
+          quantity: {
+            type: 'string'
+          },
+          options: {
+            type: 'object'
           }
         },
-        shopCode: {
-          type: 'string',
-          const: process.env.PCC_SHOP_CODE
-        },
-        user: {
-          type: 'object',
-          properties: {
-            firstName: {
-              type: 'string',
-              pattern: '.+'
-            },
-            lastName: {
-              type: 'string',
-              pattern: '.+'
-            },
-            email: {
-              type: 'string',
-              pattern: '.+'
-            },
-            telephone: {
-              type: 'string',
-              pattern: '.+'
-            },
-            address1: {
-              type: 'string',
-              pattern: '.+'
-            },
-            address2: {
-              type: 'string'
-            },
-            address3: {
-              type: 'string'
-            },
-            postCode: {
-              type: 'string',
-              pattern: '.+'
-            }
-          },
-          required: [
-            'firstName', 'lastName', 'email', 'telephone', 'address1', 'postCode'
-          ]
-        }
-      },
-      required: [
-        'items', 'shopCode', 'user'
-      ]
+        required: [
+          'slug', 'quantity'
+        ]
+      }
     }
   }
 }

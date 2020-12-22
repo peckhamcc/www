@@ -4,18 +4,14 @@ import {
   SELECTED_GENDER,
   SELECTED_SIZE,
   ACCEPTED_TERMS,
-  UPDATE_USER
+  UPDATE_USER,
+  SESSION_EXPIRED_TOKEN
 } from '../actions'
 
 const initialState = {
-  firstName: null,
-  lastName: null,
+  name: null,
   email: null,
-  telephone: null,
-  address1: null,
-  address2: null,
-  address3: null,
-  postCode: null,
+  phone: null,
   size: null,
   gender: null,
   acceptedTerms: false
@@ -26,22 +22,22 @@ const userReducer = (state = initialState, action) => {
     case SIGN_IN:
       return {
         ...state,
-        firstName: action.payload.firstName,
-        lastName: action.payload.lastName,
+        name: action.payload.name,
         email: action.payload.email,
-        telephone: action.payload.telephone,
-        address1: action.payload.address1,
-        address2: action.payload.address2,
-        address3: action.payload.address3,
-        postCode: action.payload.postCode,
+        phone: action.payload.phone,
         size: action.payload.size,
         gender: action.payload.gender
       }
     case SIGN_OUT:
+    case SESSION_EXPIRED_TOKEN:
       return {
         ...state,
         name: null,
-        email: null
+        email: null,
+        phone: null,
+        size: null,
+        gender: null,
+        acceptedTerms: false
       }
     case SELECTED_GENDER:
       return {

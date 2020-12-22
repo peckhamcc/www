@@ -6,11 +6,20 @@ const {
   errorHandler,
   tokenValidator
 } = require('./middleware')
+const {
+  getOrders
+} = require('./stripe-client')
+const {
+  getUser
+} = require('./account')
 
-async function ordersGetHandler () {
+async function ordersGetHandler ({ userId }) {
+  const user = await getUser(userId)
+  const orders = await getOrders(user)
+
   return {
     statusCode: 200,
-    body: []
+    body: orders
   }
 }
 

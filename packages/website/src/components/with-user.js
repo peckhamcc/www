@@ -13,10 +13,13 @@ import {
 } from 'react-redux'
 import {
   signIn,
+  signOut,
   setToken,
   expiredToken
 } from '../store/actions'
-import config from '../config'
+import {
+  config
+} from '@peckhamcc/config'
 import {
   Input,
   FormInputWrapper
@@ -32,6 +35,8 @@ const STEPS = {
   CREATING_TOKEN: 'CREATING_TOKEN',
   CREATED_TOKEN: 'CREATED_TOKEN',
   VALIDATING_TOKEN: 'VALIDATING_TOKEN',
+  ENTER_DETAILS: 'ENTER_DETAILS',
+  SAVING_DETAILS: 'SAVING_DETAILS',
   DONE: 'DONE',
   ERROR: 'ERROR'
 }
@@ -39,22 +44,40 @@ const STEPS = {
 class WithUser extends Component {
   state = {
     step: STEPS.ENTER_EMAIL,
-    tokenSent: false,
     name: '',
+    phone: '',
     email: '',
-    token: null,
-    creatingToken: false,
-    verifyingToken: false,
-    errors: {
-
-    }
+    error: null
   }
 
   static getDerivedStateFromProps (props, state) {
-    if (props.token) {
-      state.step = STEPS.DONE
-    } else {
-      state.step = STEPS.ENTER_EMAIL
+    state.name = state.name || props.user.name || ''
+    state.phone = state.phone || props.user.phone || ''
+    state.email = state.email || props.user.email || ''
+
+    if (props.token && props.user.name && props.user.phone) {
+      return {
+        ...state,
+        step: STEPS.DONE
+      }
+    }
+
+    if (state.step === STEPS.CREATED_TOKEN) {
+      return state
+    }
+
+    if (!props.token) {
+      return {
+        ...state,
+        step: STEPS.ENTER_EMAIL
+      }
+    }
+
+    if (!props.user.name || !props.user.phone) {
+      return {
+        ...state,
+        step: STEPS.ENTER_DETAILS
+      }
     }
 
     return state
@@ -64,62 +87,62 @@ class WithUser extends Component {
     const token = new URLSearchParams(window.location.search).get('token')
 
     if (token) {
-      this.setState({
-        step: STEPS.VALIDATING_TOKEN
+      this.props.signOut()
+      await this._validateToken(token)
+    }
+  }
+
+  async _validateToken (token) {
+    this.setState({
+      step: STEPS.VALIDATING_TOKEN
+    })
+
+    try {
+      const response = await global.fetch(config.lambda.accountUserGet, {
+        method: 'GET',
+        headers: {
+          Authorization: token
+        }
       })
 
-      try {
-        const response = await global.fetch(config.lambda.accountUserGet, {
-          method: 'GET',
-          headers: {
-            Authorization: token
-          }
-        })
+      if (response.status === 200) {
+        this.props.setToken(token)
+        const user = await response.json()
+        this.props.signIn(user)
 
-        if (response.status === 200) {
-          this.props.setToken(token)
-          this.props.signIn(await response.json())
+        window.location = `${window.location}`.split('?')[0]
 
-          window.location = `${window.location}`.split('?')[0]
-
-          return
-        }
-
-        if (response.status === 401) {
-          this.props.expiredToken()
-
-          window.location = `${window.location}`.split('?')[0]
-
-          return
-        }
-
-        if (response.status === 422) {
-          const body = await response.json()
-
-          console.info(body)
-
-          this.setState({
-            step: STEPS.ENTER_EMAIL,
-            error: body.field
-          })
-
-          return
-        }
-
-        throw new Error(response.statusText)
-      } catch (error) {
-        this.setState({
-          step: STEPS.ERROR,
-          error
-        })
-
-        console.error('verify token error')
-        console.error(error)
-      } finally {
-        this.setState({
-          loading: false
-        })
+        return
       }
+
+      if (response.status === 401) {
+        this.props.expiredToken()
+
+        window.location = `${window.location}`.split('?')[0]
+
+        return
+      }
+
+      if (response.status === 422) {
+        const body = await response.json()
+
+        this.setState({
+          step: STEPS.ENTER_EMAIL,
+          error: body.field
+        })
+
+        return
+      }
+
+      throw new Error(response.statusText)
+    } catch (error) {
+      this.setState({
+        step: STEPS.ERROR,
+        error
+      })
+
+      console.error('verify token error')
+      console.error(error)
     }
   }
 
@@ -175,40 +198,106 @@ class WithUser extends Component {
     }
   }
 
-  handleEmailChange = (event) => {
+  handleDetailChange = (key, value) => {
     this.setState({
-      email: event.target.value
+      [key]: value
     })
   }
 
+  handleUpdateDetails = async (event) => {
+    event.preventDefault()
+
+    this.setState({
+      step: STEPS.SAVING_DETAILS
+    })
+
+    try {
+      const response = await global.fetch(config.lambda.accountUserUpdate, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.props.token
+        },
+        body: JSON.stringify({
+          name: this.state.name,
+          phone: this.state.phone
+        })
+      })
+
+      if (response.status === 200) {
+        this.props.signIn(await response.json())
+
+        this.setState({
+          step: STEPS.DONE
+        })
+
+        return
+      }
+
+      if (response.status === 401) {
+        this.props.expiredToken()
+
+        this.setState({
+          step: STEPS.ENTER_EMAIL
+        })
+
+        return
+      }
+
+      if (response.status === 422) {
+        const body = await response.json()
+
+        this.setState({
+          step: STEPS.ENTER_DETAILS,
+          error: body.field
+        })
+
+        return
+      }
+
+      throw new Error(response.statusText)
+    } catch (error) {
+      this.setState({
+        step: STEPS.ERROR,
+        error
+      })
+
+      console.error(error)
+    }
+  }
+
   render () {
-    const step = this.state.step
+    const {
+      step
+    } = this.state
+    const {
+      tokenExpired
+    } = this.props
 
     if (step === STEPS.ENTER_EMAIL) {
       return (
         <>
           <CentredPanel>
             <img src={clubLogo.src} width='300' height='300' />
-            {this.props.tokenExpired ? (
+            {tokenExpired ? (
               <p>Your session has expired.</p>
             ) : null}
             <p>Please enter your email address to log in:</p>
             <Form onSubmit={this.handleCreateToken}>
-              <FormInputWrapper error={this.state.errors.firstName}>
+              <FormInputWrapper error={this.state.error === 'email'}>
                 <Input
                   name='email'
                   type='email'
-                  onChange={this.handleEmailChange}
+                  onChange={(event) => this.handleDetailChange('email', event.target.value)}
                   value={this.state.email}
                   data-input='email'
                   placeholder='your-email@example.com'
                   required
-                  disabled={step === STEPS.CREATING_TOKEN}
                 />
               </FormInputWrapper>
 
               <Button
-                disabled={step === STEPS.CREATING_TOKEN || Object.keys(this.state.errors).length}
+                disabled={Boolean(this.state.error)}
                 data-button='create-token'
               >Submit
               </Button>
@@ -233,21 +322,20 @@ class WithUser extends Component {
             <img src={clubLogo.src} width='300' height='300' />
             <p>A log in link has been emailed to you, please check your inbox and/or spam folder</p>
             <Form onSubmit={this.handleCreateToken}>
-              <FormInputWrapper error={this.state.errors.firstName}>
+              <FormInputWrapper error={this.state.error === 'email'}>
                 <Input
                   name='email'
                   type='email'
-                  onChange={this.handleEmailChange}
+                  onChange={(event) => this.handleDetailChange('email', event.target.value)}
                   value={this.state.email}
                   data-input='email'
                   placeholder='your-email@example.com'
                   required
-                  disabled={step === STEPS.CREATING_TOKEN}
                 />
               </FormInputWrapper>
 
               <Button
-                disabled={step === STEPS.CREATING_TOKEN || Object.keys(this.state.errors).length}
+                disabled={Boolean(this.state.error)}
                 data-button='create-token'
               >Submit
               </Button>
@@ -265,6 +353,55 @@ class WithUser extends Component {
           </CentredPanel>
         </>
       )
+    } else if (step === STEPS.ENTER_DETAILS) {
+      return (
+        <>
+          <CentredPanel>
+            <img src={clubLogo.src} width='300' height='300' />
+            <p>Please let us know a bit more about you:</p>
+            <Form onSubmit={this.handleUpdateDetails}>
+              <FormInputWrapper error={this.state.error === 'name'}>
+                <Input
+                  name='name'
+                  type='text'
+                  onChange={(event) => this.handleDetailChange('name', event.target.value)}
+                  value={this.state.name}
+                  data-input='name'
+                  placeholder='Your name'
+                  required
+                />
+              </FormInputWrapper>
+              <FormInputWrapper error={this.state.error === 'phone'}>
+                <Input
+                  name='phone'
+                  type='tel'
+                  onChange={(event) => this.handleDetailChange('phone', event.target.value)}
+                  value={this.state.phone}
+                  data-input='phone'
+                  placeholder='Your phone number'
+                  required
+                />
+              </FormInputWrapper>
+
+              <Button
+                disabled={Boolean(this.state.error)}
+                data-button='update-details'
+              >Submit
+              </Button>
+            </Form>
+          </CentredPanel>
+        </>
+      )
+    } else if (step === STEPS.SAVING_DETAILS) {
+      return (
+        <>
+          <CentredPanel>
+            <img src={clubLogo.src} width='300' height='300' />
+            <p>Saving your details</p>
+            <Spinner />
+          </CentredPanel>
+        </>
+      )
     } else if (step === STEPS.DONE) {
       return this.props.children
     }
@@ -274,6 +411,7 @@ class WithUser extends Component {
         <CentredPanel>
           <img src={clubLogo.src} width='300' height='300' />
           <p>An error occurred, sorry it didn't work out :(</p>
+          <p>Maybe try again later?</p>
         </CentredPanel>
       </>
     )
@@ -293,6 +431,7 @@ const mapStateToProps = ({ session: { token, tokenExpired }, user }) => ({
 
 const mapDispatchToProps = {
   signIn,
+  signOut,
   setToken,
   expiredToken
 }

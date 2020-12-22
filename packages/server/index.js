@@ -15,7 +15,6 @@ const accountUserGet = require('@peckhamcc/lambda-account-user-get')
 const accountUserUpdate = require('@peckhamcc/lambda-account-user-update')
 const shopOrdersCreate = require('@peckhamcc/lambda-shop-orders-create')
 const shopOrdersGet = require('@peckhamcc/lambda-shop-orders-get')
-const shopPaymentsCreate = require('@peckhamcc/lambda-shop-payments-create')
 const shopProductsGet = require('@peckhamcc/lambda-shop-products-get')
 const { callbackify } = require('util')
 
@@ -172,9 +171,6 @@ module.exports = (port) => {
 
     app.options(config.lambda.shopOrdersGet, serveLambda('_peckhamcc_lambda-shop-orders-get', sendCorsHeaders))
     app.get(config.lambda.shopOrdersGet, serveLambda('_peckhamcc_lambda-shop-orders-get', shopOrdersGet))
-
-    app.options(config.lambda.shopPaymentsCreate, serveLambda('_peckhamcc_lambda-shop-payments-create', sendCorsHeaders))
-    app.post(config.lambda.shopPaymentsCreate, serveLambda('_peckhamcc_lambda-shop-payments-create', shopPaymentsCreate))
 
     app.use((_, response) => {
       response.sendFile(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist', 'index.html'))

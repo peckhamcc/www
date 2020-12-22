@@ -233,9 +233,6 @@ export const MultipleChoice = ({ choices, descriptions, value, onChoose, ...prop
 }
 
 export const GreenButton = styled(Button)`
-  display: block;
-  margin: 10px auto;
-  padding: 8px ${spacing(4)};
   background-color: #098c0b;
   color: #FFF;
   border: 1px solid ${adjustColour('#098c0b', -1)};
@@ -254,9 +251,6 @@ export const GreenButton = styled(Button)`
 `
 
 export const BlueButton = styled(Button)`
-  display: block;
-  margin: 10px auto;
-  padding: 8px ${spacing(4)};
   background-color: ${pccDarkBlue};
   color: #FFF;
   border: 1px solid ${adjustColour(pccDarkBlue, -20)};
@@ -271,5 +265,14 @@ export const BlueButton = styled(Button)`
 
   &:disabled {
     background-color: grey;
+  }
+`
+
+export const QuantityButton = styled(Button)`
+  margin: ${spacing(0.5)} 0 ${spacing(0.5)} 0;
+  padding: 3px ${spacing(1)};
+
+  @media (max-width: 940px) {
+    font-size: 22px;
   }
 `

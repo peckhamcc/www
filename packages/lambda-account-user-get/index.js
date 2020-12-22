@@ -9,33 +9,13 @@ const {
   tokenValidator
 } = require('./middleware')
 const {
-  getUser,
-  getUserFoPCCStatus,
-  getUserOrders,
-  getUserTrainingSessions
+  getUser
 } = require('./account')
 
-async function getUserHandler ({ user }) {
-  const [
-    profile,
-    membership,
-    orders,
-    events
-  ] = await Promise.all([
-    getUser(user),
-    getUserFoPCCStatus(user),
-    getUserOrders(user),
-    getUserTrainingSessions(user)
-  ])
-
+async function getUserHandler ({ userId }) {
   return {
     statusCode: 200,
-    body: {
-      profile,
-      membership,
-      orders,
-      events
-    }
+    body: await getUser(userId)
   }
 }
 

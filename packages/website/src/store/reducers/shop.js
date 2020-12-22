@@ -1,69 +1,24 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_CART_ITEM, CLEAR_CART, SHOP_LOAD_PRODUCTS, SHOP_SET_PRODUCTS } from '../actions'
-
-const VARIANTS = [
-  'size',
-  'gender',
-  'pockets',
-  'sleeves'
-]
-
-function processItem (item, category) {
-  const options = {}
-
-  // skus are ${product_code}:${size}-${gender}-${pockets}-${sleeves}
-  // size is ${type}${value}
-  //  type is the sizing chart
-  //    J - jerseys
-  //    A - arm warmers
-  //    T - tshirts
-  //    G - gloves
-  //    S - socks
-  //   value depends on the sizing chart
-  // gender is U: unisex, M: male or F: female
-  // sleeves is S or L
-  // pockets is Y or N
-
-  const firstSku = item.variations[0].sku
-  item.slug = firstSku.split(':')[0].toLowerCase()
-
-  item.variations.forEach(variation => {
-    if (!variation.sku.includes(':')) {
-      // no variations for this item
-      return
-    }
-
-    variation.sku.split(':')[1]
-      .split('-')
-      .filter(Boolean)
-      .forEach((value, index) => {
-        const variant = VARIANTS[index]
-
-        if (!variant) {
-          return
-        }
-
-        if (!options[variant]) {
-          options[variant] = new Set()
-        }
-
-        options[variant].add(value)
-      })
-  })
-
-  item.slug = item.slug.toLowerCase()
-  item.category = category.id
-  item.options = Object.keys(options).reduce((opts, key) => {
-    opts[key] = Array.from(options[key])
-
-    return opts
-  }, {})
-}
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  UPDATE_CART_ITEM,
+  CLEAR_CART,
+  SHOP_LOAD_PRODUCTS,
+  SHOP_SET_PRODUCTS,
+  SHOP_LOAD_ORDERS,
+  SHOP_SET_ORDERS,
+  SIGN_OUT,
+  SESSION_EXPIRED_TOKEN
+} from '../actions'
 
 const initialState = {
   cart: [],
-  loading: true,
-  categories: {},
-  products: {}
+  loadingProducts: true,
+  sections: {},
+  products: {},
+  slugLookup: {},
+  orders: [],
+  loadingOrders: true
 }
 
 const shopReducer = (state = initialState, action) => {
@@ -71,57 +26,36 @@ const shopReducer = (state = initialState, action) => {
     case SHOP_LOAD_PRODUCTS: {
       return {
         ...state,
-        loading: true,
-        categories: {}
+        loadingProducts: true,
+        sections: {},
+        slugLookup: {}
       }
     }
     case SHOP_SET_PRODUCTS: {
-      const categories = action.payload
+      const sections = action.payload
+      const slugLookup = sections.reduce((lookup, section) => {
+        lookup[section.slug] = section
 
-      // add slugs to loaded products
-      Object.keys(categories).forEach(categoryId => {
-        const category = categories[categoryId]
-        category.slug = category.name.replace(/[^a-z0-9]/gmi, '-').replace(/-+/g, '-').toLowerCase()
-        category.items.forEach(item => processItem(item, category))
-      })
-
-      const items = Object
-        .keys(categories)
-        .reduce((products, id) => {
-          return products.concat(categories[id].items)
-        }, [])
-
-      // create sku => details lookup
-      const products = {}
-
-      Object.keys(categories)
-        .reduce((products, key) => {
-          return products.concat(categories[key].items)
-        }, [])
-        .forEach(product => {
-          product.variations.forEach(variant => {
-            products[variant.sku] = {
-              id: variant.id,
-              name: product.name,
-              slug: product.slug,
-              price: variant.price
-            }
-          })
+        section.items.forEach(item => {
+          lookup[item.slug] = item
         })
+
+        return lookup
+      }, {})
 
       return {
         ...state,
-        loading: false,
-        categories,
-        products,
+        loadingProducts: false,
+        sections,
+        slugLookup,
 
-        // remove any products from cart that now do not have an SKU
-        cart: (state.cart || []).filter(item => items.find(i => i.variations.find(variation => variation.sku === item.sku)))
+        // remove any products from cart that now do not have a slug
+        cart: (state.cart || []).filter(item => Boolean(slugLookup[item.slug]))
       }
     }
     case ADD_TO_CART: {
       let cart = state.cart
-      const existingItem = cart.find(item => item.sku === action.payload.sku)
+      const existingItem = cart.find(item => item.slug === action.payload.slug && JSON.stringify(item.options) === JSON.stringify(action.payload.options))
 
       if (existingItem) {
         existingItem.quantity += action.payload.quantity
@@ -140,13 +74,14 @@ const shopReducer = (state = initialState, action) => {
     case REMOVE_FROM_CART:
       return {
         ...state,
-        cart: state.cart.filter(item => item.sku !== action.payload.sku)
+        cart: state.cart
+          .filter(item => !(item.slug === action.payload.slug && JSON.stringify(item.options) === JSON.stringify(action.payload.options)))
       }
     case UPDATE_CART_ITEM:
       return {
         ...state,
         cart: state.cart.map(item => {
-          if (item.sku === action.payload.sku) {
+          if (item.slug === action.payload.slug && JSON.stringify(item.options) === JSON.stringify(action.payload.options)) {
             return action.payload
           }
 
@@ -156,6 +91,25 @@ const shopReducer = (state = initialState, action) => {
     case CLEAR_CART:
       return {
         ...state,
+        cart: []
+      }
+    case SHOP_LOAD_ORDERS:
+      return {
+        ...state,
+        loadingOrders: true
+      }
+    case SHOP_SET_ORDERS:
+      return {
+        ...state,
+        loadingOrders: false,
+        orders: action.payload
+      }
+    case SIGN_OUT:
+    case SESSION_EXPIRED_TOKEN:
+      return {
+        ...state,
+        loadingOrders: true,
+        orders: [],
         cart: []
       }
     default:

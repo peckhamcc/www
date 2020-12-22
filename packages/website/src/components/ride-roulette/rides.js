@@ -11,8 +11,7 @@ import {
 } from 'react-redux'
 import config from '../../config'
 import {
-  expiredToken,
-  clearToken
+  expiredToken
 } from '../../store/actions'
 import {
   Toggle,
@@ -211,10 +210,6 @@ class Rides extends Component {
   }
 
   componentDidMount () {
-    if (!this.props.user.email) {
-      this.props.clearToken()
-    }
-
     this._loadRides()
       .catch(() => {})
   }
@@ -338,18 +333,16 @@ class Rides extends Component {
           Authorization: this.props.token,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          rider: this.props.user.name,
-          preferences: Object.keys(preferences)
-            .reduce((acc, curr) => {
-              acc[curr] = {
-                ...preferences[curr],
-                saved: undefined
-              }
+        body: JSON.stringify(Object.keys(preferences)
+          .reduce((acc, curr) => {
+            acc[curr] = {
+              ...preferences[curr],
+              saved: undefined
+            }
 
-              return acc
-            }, {})
-        })
+            return acc
+          }, {})
+        )
       })
 
       this.setState({
@@ -450,7 +443,7 @@ class Rides extends Component {
           routeChoice = (
             <>
               <p>It looks like you're the only person who wanted to ride this distance today!</p>
-              <p>If you'd prefer company try asking in the WhatsApp room if you can join another ride.</p>
+              <p>If you'd prefer company try asking if there's space on another ride in the WhatsApp group.</p>
             </>
           )
         }
@@ -528,6 +521,7 @@ class Rides extends Component {
             <BlueButton
               onClick={() => this.handleUpdateRidePreference(preference)}
               disabled={loading}
+              centred
             >Update
             </BlueButton>
           </RidePreferences>
@@ -585,6 +579,7 @@ class Rides extends Component {
               <GreenButton
                 onClick={() => this.handleSaveRidePreference(preference)}
                 disabled={loading}
+                centred
               >Save
               </GreenButton>
             )
@@ -613,8 +608,7 @@ const mapStateToProps = ({ session: { token }, user }) => ({
 })
 
 const mapDispatchToProps = {
-  expiredToken,
-  clearToken
+  expiredToken
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rides)

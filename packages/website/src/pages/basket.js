@@ -19,7 +19,7 @@ class BasketPage extends Component {
       <PageWrapper>
         <Hero background={basketBackground.src} />
         <Panel>
-          <Breadcrumb section={{ title: 'Basket' }} />
+          <Breadcrumb section={{ name: 'Basket' }} />
           <h2>Basket</h2>
           <WithProducts>
             <Basket />

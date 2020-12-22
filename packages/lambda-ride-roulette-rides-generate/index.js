@@ -10,6 +10,7 @@ const {
   sendEmail
 } = require('./email')
 const {
+  getUser,
   generateLogInLink
 } = require('./account')
 const { config } = require('./config')
@@ -18,7 +19,7 @@ async function generateRidesHandler () {
   const ridingDays = getNextRidingDays()
   const riderPrefs = await getAllPreferences()
 
-  const rides = generateRides(ridingDays, riderPrefs)
+  const rides = await generateRides(ridingDays, riderPrefs, getUser)
 
   for (let i = 0; i < ridingDays.length; i++) {
     const date = ridingDays[i]
@@ -39,7 +40,7 @@ async function generateRidesHandler () {
 
         await Promise.all(
           ride.riders.map(async rider => {
-            const link = await generateLogInLink(rider.email)
+            const link = await generateLogInLink(rider.email, '/ride-roulette')
 
             return sendEmail(rider.email, config.email.from, 'PCC Ride Roulette Weekend Rides', riderHtmlTemplate(link), riderTextTemplate(link))
           })

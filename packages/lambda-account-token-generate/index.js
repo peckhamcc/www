@@ -17,8 +17,6 @@ const {
 } = require('./email')
 
 async function generateTokenAndSendEmail ({ body: { email, redirect } }) {
-  email = email.toLowerCase()
-
   const url = await generateLogInLink(email, redirect)
 
   await sendEmail(email, config.email.from, 'PCC Log In', htmlTemplate(url), textTemplate(url))
@@ -51,7 +49,11 @@ const inputSchema = {
     body: {
       type: 'object',
       properties: {
-        email: { type: 'string', format: 'email' }
+        email: {
+          type: 'string',
+          format: 'email',
+          transform: ['trim', 'toLowerCase']
+        }
       },
       required: ['email']
     }

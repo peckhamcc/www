@@ -10,13 +10,21 @@ const {
   tokenValidator
 } = require('./middleware')
 const {
+  getUser,
   updateUser
 } = require('./account')
+const {
+  updateCustomer
+} = require('./stripe-client')
 
-async function updateUserHandler (event) {
+async function updateUserHandler ({ userId, body: details }) {
+  const user = await getUser(userId)
+
+  await updateCustomer(user, details)
+
   return {
     statusCode: 200,
-    body: await updateUser(event.user, event.body)
+    body: await updateUser(userId, details)
   }
 }
 
@@ -26,35 +34,40 @@ const inputSchema = {
     body: {
       type: 'object',
       properties: {
-        firstName: {
-          type: 'string'
-        },
-        lastName: {
-          type: 'string'
-        },
-        address1: {
-          type: 'string'
-        },
-        address2: {
-          type: 'string'
-        },
-        address3: {
-          type: 'string'
-        },
-        postCode: {
-          type: 'string'
+        name: {
+          type: 'string',
+          transform: ['trim']
         },
         email: {
-          type: 'string'
+          type: 'string',
+          format: 'email',
+          transform: ['trim', 'toLowerCase']
         },
-        telephone: {
-          type: 'string'
+        phone: {
+          type: 'string',
+          transform: ['trim']
         },
         gender: {
-          type: 'string'
+          type: 'string',
+          transform: ['trim'],
+          enum: [
+            'M',
+            'F'
+          ]
         },
         size: {
-          type: 'string'
+          type: 'string',
+          transform: ['trim'],
+          enum: [
+            'XXS',
+            'XS',
+            'S',
+            'M',
+            'L',
+            'XL',
+            '2XL',
+            '3XL'
+          ]
         }
       }
     }

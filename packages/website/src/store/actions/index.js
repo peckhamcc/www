@@ -10,9 +10,10 @@ export const SELECTED_SIZE = 'USER/SELECTED_SIZE'
 export const SELECTED_GENDER = 'USER/SELECTED_GENDER'
 export const SESSION_STORE_TOKEN = 'SESSION/STORE_TOKEN'
 export const SESSION_EXPIRED_TOKEN = 'SESSION/EXPIRED_TOKEN'
-export const SESSION_CLEAR_TOKEN = 'SESSION/CLEAR_TOKEN'
 export const SHOP_LOAD_PRODUCTS = 'SHOP/LOAD_PRODUCTS'
 export const SHOP_SET_PRODUCTS = 'SHOP/SET_PRODUCTS'
+export const SHOP_LOAD_ORDERS = 'SHOP/LOAD_ORDERS'
+export const SHOP_SET_ORDERS = 'SHOP/SET_ORDERS'
 
 const action = (type) => (payload) => ({
   type,
@@ -31,6 +32,7 @@ export const selectedSize = action(SELECTED_SIZE)
 export const selectedGender = action(SELECTED_GENDER)
 export const setToken = action(SESSION_STORE_TOKEN)
 export const expiredToken = action(SESSION_EXPIRED_TOKEN)
-export const clearToken = action(SESSION_CLEAR_TOKEN)
 export const loadProducts = action(SHOP_LOAD_PRODUCTS)
 export const setProducts = action(SHOP_SET_PRODUCTS)
+export const loadOrders = action(SHOP_LOAD_ORDERS)
+export const setOrders = action(SHOP_SET_ORDERS)

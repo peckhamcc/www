@@ -11,6 +11,7 @@ import {
   Profile,
   Basket,
   Checkout,
+  CheckoutSuccess,
   Equipment,
   Home,
   Orders,
@@ -104,7 +105,8 @@ export default () => {
                     <Route exact path='/shop' component={Shop} />
                     <Route path='/shop/:slug' component={Item} />
                     <Route path='/basket' component={Basket} />
-                    <Route path='/checkout' component={Checkout} />
+                    <Route exact path='/checkout' component={Checkout} />
+                    <Route exact path='/checkout/success' component={CheckoutSuccess} />
                     <Route path='/orders' component={Orders} />
                   </>
                 </Flag>

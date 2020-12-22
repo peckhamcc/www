@@ -146,17 +146,26 @@ export const InnerPanel = styled(Panel)`
 `
 
 export const Button = styled.button`
+  margin: ${spacing(1)} ${spacing(1)} ${spacing(1)} 0;
+  padding: ${spacing(0.5)} ${spacing(4)};
   border-radius: 2px;
   border: 1px solid ${light};
   cursor: pointer;
   display: inline-block;
-  margin: 0 5px 0 0;
-  padding: 3px ${spacing(1)};
   min-width: 40px;
   text-align: center;
   color: ${light};
   background-color: transparent;
   font-size: 18px;
+
+  ${(props) => {
+    if (props.centred) {
+      return `
+  margin: ${spacing(1)} auto;
+  display: block;
+      `
+    }
+  }}
 
   &:hover {
     background-color: ${lightAccent};
@@ -171,7 +180,6 @@ export const Button = styled.button`
   }
 
   @media (max-width: 940px) {
-    padding: 3px ${spacing(2)};
     font-size: 22px;
   }
 `

@@ -4,4 +4,4 @@ token.js
 middleware.js
 account.js
 roulette.js
-square-client.js
+stripe-client.js

@@ -137,9 +137,7 @@ const getAllPreferences = async () => {
 }
 
 const getPreferences = async (id) => {
-  return preferencesDb.values[id] || {
-    preferences: {}
-  }
+  return preferencesDb.values[id] || {}
 }
 
 const setPreferences = async (id, prefs) => {

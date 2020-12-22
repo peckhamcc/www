@@ -7,7 +7,7 @@ const {
 } = require('./middleware')
 const {
   getProducts
-} = require('./square-client')
+} = require('./stripe-client')
 
 async function getProductsHandler () {
   return {

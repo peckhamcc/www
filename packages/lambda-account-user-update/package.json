@@ -16,8 +16,8 @@
   "scripts": {
     "test": "echo 0",
     "clean": "rm -rf build",
-    "build": "cp ../config/index.js config.js && cp ../lambda-lib/email.js email.js && cp ../lambda-lib/account.js account.js && cp ../lambda-lib/middleware.js middleware.js",
-    "build:dev": "cp ../config/index.js config.js && cp ../lambda-lib/dev-email.js email.js && cp ../lambda-lib/dev-account.js account.js && cp ../lambda-lib/middleware.js middleware.js",
+    "build": "cp ../config/index.js config.js && cp ../lambda-lib/email.js email.js && cp ../lambda-lib/account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/stripe-client.js stripe-client.js",
+    "build:dev": "cp ../config/index.js config.js && cp ../lambda-lib/dev-email.js email.js && cp ../lambda-lib/dev-account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/stripe-client.js stripe-client.js",
     "upload": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-user-update-role-vwuyq2fv --region eu-west-2",
     "deploy": "run-s clean build upload",
     "lint": "standard"
@@ -31,6 +31,7 @@
   "dependencies": {
     "http-errors": "^1.6.3",
     "middy": "^0.33.0",
-    "nanoid": "^3.1.18"
+    "nanoid": "^3.1.18",
+    "stripe": "^8.129.0"
   }
 }

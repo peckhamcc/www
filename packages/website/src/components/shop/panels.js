@@ -11,14 +11,15 @@ import {
   spacing
 } from '../../units'
 
+import clubLogo from '../../../assets/pcc-avatar.png?sizes[]=300,sizes[]=500'
 import armWarmersImage from '../../../assets/shop/arm-warmers.png?sizes[]=300,sizes[]=500'
 import armWarmersWhiteImage from '../../../assets/shop/arm-warmers-white.png?sizes[]=300,sizes[]=500'
 import bibsFrontImage from '../../../assets/shop/bibs-front.png?sizes[]=300,sizes[]=500'
 import bibsRearImage from '../../../assets/shop/bibs-rear.png?sizes[]=300,sizes[]=500'
 import capFrontImage from '../../../assets/shop/cap-front.png?sizes[]=300,sizes[]=500'
-// import capWhiteSidesImage from '../../../assets/shop/cap-white-sides.png?sizes[]=300,sizes[]=500'
-// import capWhiteFrontImage from '../../../assets/shop/cap-white-front.png?sizes[]=300,sizes[]=500'
-// import capSidesImage from '../../../assets/shop/cap-sides.png?sizes[]=300,sizes[]=500'
+import capSidesImage from '../../../assets/shop/cap-sides.png?sizes[]=300,sizes[]=500'
+import capWhiteFrontImage from '../../../assets/shop/cap-white-front.png?sizes[]=300,sizes[]=500'
+import capWhiteSidesImage from '../../../assets/shop/cap-white-sides.png?sizes[]=300,sizes[]=500'
 import giletFrontImage from '../../../assets/shop/gilet-front.png?sizes[]=300,sizes[]=500'
 import giletRearImage from '../../../assets/shop/gilet-rear.png?sizes[]=300,sizes[]=500'
 import giletWhiteFrontImage from '../../../assets/shop/gilet-white-front.png?sizes[]=300,sizes[]=500'
@@ -34,14 +35,14 @@ import winterJacketFrontImage from '../../../assets/shop/winter-jacket-front.png
 import winterJacketRearImage from '../../../assets/shop/winter-jacket-rear.png?sizes[]=300,sizes[]=500'
 import winterTightsFrontImage from '../../../assets/shop/winter-tights-front.png?sizes[]=300,sizes[]=500'
 import winterTightsRearImage from '../../../assets/shop/winter-tights-rear.png?sizes[]=300,sizes[]=500'
-// import socksSummerSideImage from '../../../assets/shop/socks-summer-side.png?sizes[]=300,sizes[]=500'
-// import socksSummerTopImage from '../../../assets/shop/socks-summer-top.png?sizes[]=300,sizes[]=500'
-// import socksWinterSideImage from '../../../assets/shop/socks-winter-side.png?sizes[]=300,sizes[]=500'
-// import socksWinterTopImage from '../../../assets/shop/socks-winter-top.png?sizes[]=300,sizes[]=500'
+import socksSummerSideImage from '../../../assets/shop/socks-summer-side.png?sizes[]=300,sizes[]=500'
+import socksSummerTopImage from '../../../assets/shop/socks-summer-top.png?sizes[]=300,sizes[]=500'
+import socksWinterSideImage from '../../../assets/shop/socks-winter-side.png?sizes[]=300,sizes[]=500'
+import socksWinterTopImage from '../../../assets/shop/socks-winter-top.png?sizes[]=300,sizes[]=500'
 // import glovesImage from '../../../assets/shop/gloves.png?sizes[]=300,sizes[]=500'
 import multiTubeImage from '../../../assets/shop/multi-tube.png?sizes[]=300,sizes[]=500'
 // import headsetCapImage from '../../../assets/shop/headset-cap.png?sizes[]=300,sizes[]=500'
-// import bidonImage from '../../../assets/shop/bidon.png?sizes[]=300,sizes[]=500'
+import bidonImage from '../../../assets/shop/bidon.png?sizes[]=300,sizes[]=500'
 // import tshirtFrontImage from '../../../assets/shop/tshirt-front.png?sizes[]=300,sizes[]=500'
 // import tshirtRearImage from '../../../assets/shop/tshirt-rear.png?sizes[]=300,sizes[]=500'
 // import lsTshirtFrontImage from '../../../assets/shop/ls-tshirt-front.png?sizes[]=300,sizes[]=500'
@@ -49,28 +50,55 @@ import multiTubeImage from '../../../assets/shop/multi-tube.png?sizes[]=300,size
 // import hoodieFrontImage from '../../../assets/shop/hoodie-front.png?sizes[]=300,sizes[]=500'
 // import hoodieRearImage from '../../../assets/shop/hoodie-rear.png?sizes[]=300,sizes[]=500'
 // import zipHoodieFrontImage from '../../../assets/shop/zip-hoodie-front.png?sizes[]=300,sizes[]=500'
-// import musetteImage from '../../../assets/shop/musette.png?sizes[]=300,sizes[]=500'
+import musetteImage from '../../../assets/shop/musette.png?sizes[]=300,sizes[]=500'
 import speedSuitFrontImage from '../../../assets/shop/skin-suit-front.png?sizes[]=300,sizes[]=500'
 import speedSuitRearImage from '../../../assets/shop/skin-suit-rear.png?sizes[]=300,sizes[]=500'
 import triSuitFrontImage from '../../../assets/shop/tri-suit-front.png?sizes[]=300,sizes[]=500'
 import triSuitRearImage from '../../../assets/shop/tri-suit-rear.png?sizes[]=300,sizes[]=500'
 
-export const CATEGORY_IMAGES = {
-  accessories: capFrontImage,
-  'bib-shorts-tights': bibsFrontImage,
-  jerseys: ssJerseyFrontImage,
-  outerwear: winterJacketFrontImage,
-  'skin-suits': speedSuitFrontImage
-}
+export const ITEM_IMAGES = {
+  accessories: [
+    capFrontImage
+  ],
+  'bib-shorts-and-tights': [
+    bibsFrontImage
+  ],
+  jerseys: [
+    ssJerseyFrontImage
+  ],
+  outerwear: [
+    winterJacketFrontImage
+  ],
+  'skin-suits': [
+    speedSuitFrontImage
+  ],
 
-export const PRODUCT_IMAGES = {
+  'musette-2019': [
+    musetteImage
+  ],
+  'white-socks-2019': [
+    socksSummerSideImage,
+    socksSummerTopImage
+  ],
+  'black-socks-2019': [
+    socksWinterSideImage,
+    socksWinterTopImage
+  ],
+  'white-cap-2019': [
+    capWhiteFrontImage,
+    capWhiteSidesImage
+  ],
+  'black-cap-2019': [
+    capFrontImage,
+    capSidesImage
+  ],
   'neck-warmer-2019': [
     multiTubeImage
   ],
   'white-arm-warmers-2019': [
     armWarmersWhiteImage
   ],
-  'arm-warmers-2019': [
+  'black-arm-warmers-2019': [
     armWarmersImage
   ],
   'winter-tights-2019': [
@@ -116,6 +144,9 @@ export const PRODUCT_IMAGES = {
   'speed-suit-2019': [
     speedSuitFrontImage,
     speedSuitRearImage
+  ],
+  'bidon-2019': [
+    bidonImage
   ]
 }
 
@@ -149,28 +180,49 @@ const ShopPanel = styled(InnerPanel)`
   }
 `
 
-export const ShopCategoryPanel = ({ item: { slug, name } }) => {
+const findImage = (slug) => {
+  const img = ITEM_IMAGES[slug]
+
+  if (!img) {
+    console.warn('No image found for', slug)
+    return clubLogo
+  }
+
+  return img[0]
+}
+
+export const ItemImage = ({ item, ...attrs }) => {
+  return (
+    <img srcSet={findImage(item.slug).srcSet} src={findImage(item.slug).src} {...attrs} />
+  )
+}
+
+export const ShopCategoryPanel = ({ item }) => {
+  const { slug, name } = item
+
   return (
     <ShopPanel>
       <h4>
         <Link to={`/shop/${slug}`} data-section={slug}>{name}</Link>
       </h4>
       <Link to={`/shop/${slug}`}>
-        <img srcSet={CATEGORY_IMAGES[slug].srcSet} src={CATEGORY_IMAGES[slug].src} width={300} />
+        <ItemImage item={item} width={300} />
       </Link>
     </ShopPanel>
   )
 }
 
-export const ShopItemPanel = ({ item: { slug, name, variations } }) => {
+export const ShopItemPanel = ({ item }) => {
+  const { slug, name, price } = item
+
   return (
     <ShopPanel>
       <h4>
         <Link to={`/shop/${slug}`} data-section={slug}>{name}</Link>
       </h4>
-      <h5><Price price={variations[0].price} /></h5>
+      <h5><Price price={price.amount} /></h5>
       <Link to={`/shop/${slug}`}>
-        <img srcSet={PRODUCT_IMAGES[slug][0].srcSet} src={PRODUCT_IMAGES[slug][0].src} width={300} />
+        <ItemImage item={item} width={300} />
       </Link>
     </ShopPanel>
   )

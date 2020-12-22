@@ -30,8 +30,6 @@ async function generateLogInLink (email, redirect) {
     throw httpErrors.BadRequest('Invalid redirect')
   }
 
-  email = email.toLowerCase()
-
   let user = userLookup.values[email]
 
   // create new user
@@ -104,38 +102,9 @@ async function getUser (id) {
   return users.values[id]
 }
 
-async function addUserOrder (userId, orderId) {
-  const user = await getUser(userId)
-
-  if (!user) {
-    throw new Error('Could not load user for id', userId)
-  }
-
-  user.orders = user.orders || []
-  user.orders.push(orderId)
-
-  users.save()
-}
-
-async function getUserFoPCCStatus (id) {
-  return {}
-}
-
-async function getUserOrders (id) {
-  return []
-}
-
-async function getUserTrainingSessions (id) {
-  return []
-}
-
 module.exports = {
   generateLogInLink,
   getUserIdForToken,
   updateUser,
-  getUser,
-  getUserFoPCCStatus,
-  getUserOrders,
-  getUserTrainingSessions,
-  addUserOrder
+  getUser
 }

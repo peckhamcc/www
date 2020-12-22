@@ -34,17 +34,16 @@ const Section = ({ section }) => {
 class ItemPanel extends Component {
   render () {
     const {
-      categories,
-      slug
+      slug,
+      slugLookup
     } = this.props
 
-    let section = Object.keys(categories).map(id => categories[id]).find(category => category.slug === slug)
-    const product = Object.keys(categories).reduce((acc, id) => {
-      return acc.concat(categories[id].items)
-    }, []).find(product => product.slug === slug)
+    let section = slugLookup[slug]
+    let product
 
-    if (product) {
-      section = categories[product.category]
+    if (section.section) {
+      product = section
+      section = slugLookup[product.section]
     }
 
     if (!section && !product) {
@@ -60,8 +59,8 @@ class ItemPanel extends Component {
   }
 }
 
-const mapStateToProps = ({ shop: { categories } }) => ({
-  categories
+const mapStateToProps = ({ shop: { slugLookup } }) => ({
+  slugLookup
 })
 
 const mapDispatchToProps = {}

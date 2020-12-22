@@ -67,32 +67,35 @@ function shuffle (array) {
   return array
 }
 
-function generateRides (ridingDays, riderPrefs) {
+async function generateRides (ridingDays, riderPrefs, getUser) {
   console.info('passed riding days', JSON.stringify(ridingDays, null, 2))
   console.info('passed rider prefs', JSON.stringify(riderPrefs, null, 2))
 
   const preferences = {}
 
-  Object.keys(riderPrefs).forEach(email => {
-    const result = riderPrefs[email]
+  for (const userId of Object.keys(riderPrefs)) {
+    for (const date of Object.keys(riderPrefs[userId])) {
+      if (!ridingDays.includes(date)) {
+        continue
+      }
 
-    Object.keys(result.preferences)
-      .filter(date => ridingDays.includes(date))
-      .forEach(date => {
-        const prefs = result.preferences[date]
+      const prefs = riderPrefs[userId][date]
 
-        preferences[date] = preferences[date] || {}
-        preferences[date][prefs.type] = preferences[date][prefs.type] || {}
-        preferences[date][prefs.type][prefs.distance] = preferences[date][prefs.type][prefs.distance] || {}
-        preferences[date][prefs.type][prefs.distance][prefs.speed] = preferences[date][prefs.type][prefs.distance][prefs.speed] || []
+      preferences[date] = preferences[date] || {}
+      preferences[date][prefs.type] = preferences[date][prefs.type] || {}
+      preferences[date][prefs.type][prefs.distance] = preferences[date][prefs.type][prefs.distance] || {}
+      preferences[date][prefs.type][prefs.distance][prefs.speed] = preferences[date][prefs.type][prefs.distance][prefs.speed] || []
 
-        preferences[date][prefs.type][prefs.distance][prefs.speed].push({
-          name: result.rider,
-          email,
-          route: prefs.route
-        })
+      const user = await getUser(userId)
+
+      preferences[date][prefs.type][prefs.distance][prefs.speed].push({
+        id: userId,
+        name: user.name,
+        email: user.email,
+        route: prefs.route
       })
-  })
+    }
+  }
 
   console.info('preferences', JSON.stringify(preferences, null, 2))
 
@@ -179,6 +182,7 @@ function generateRides (ridingDays, riderPrefs) {
               distance,
               speed,
               riders: riders.map(rider => ({
+                id: rider.id,
                 name: rider.name,
                 email: rider.email,
                 hasRoute: rider.route === 'has-route'
@@ -272,10 +276,10 @@ const getPreferences = async (userId) => {
     }
   }).promise()
 
-  return result.Item || { preferences: {} }
+  return (result.Item && result.Item.preferences) || {}
 }
 
-const setPreferences = async (userId, { rider, preferences }) => {
+const setPreferences = async (userId, { preferences }) => {
   const client = new AWS.DynamoDB.DocumentClient()
 
   await client.update({
@@ -283,9 +287,8 @@ const setPreferences = async (userId, { rider, preferences }) => {
     Key: {
       userId
     },
-    UpdateExpression: 'set rider = :r, preferences = :p, expires = :e',
+    UpdateExpression: 'set preferences = :p, expires = :e',
     ExpressionAttributeValues: {
-      ':r': rider,
       ':p': preferences,
       ':e': Math.round(new Date(Date.now() + ONE_MONTH).getTime() / 1000)
     },

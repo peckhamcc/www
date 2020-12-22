@@ -6,6 +6,9 @@ import {
   Panel,
   Hero
 } from '../components/panels'
+import {
+  GreenButton
+} from '../components/forms'
 import contactBackground from '../../assets/contact-bg.jpg'
 import styled from 'styled-components'
 import {
@@ -32,12 +35,6 @@ const TextArea = styled.textarea`
   width: 100%;
   max-width: 500px;
   height: 300px;
-  font-size: ${spacing(1)};
-`
-
-const Submit = styled.input`
-  display: block;
-  margin: ${spacing(1)} 0;
   font-size: ${spacing(1)};
 `
 
@@ -140,7 +137,9 @@ class ContactPage extends Component {
             <Input type='email' name='email' onChange={(event) => this.handleInputChange('email', event)} value={this.state.email} disabled={this.state.state === STATE.SENDING} />
             <Label htmlFor='message'>Message</Label>
             <TextArea name='message' onChange={(event) => this.handleInputChange('message', event)} value={this.state.message} disabled={this.state.state === STATE.SENDING} />
-            <Submit type='submit' value='Send' disabled={this.state.state === STATE.SENDING} />
+            <div>
+              <GreenButton type='submit' disabled={this.state.state === STATE.SENDING}>Send</GreenButton>
+            </div>
           </form>
         </Panel>
       </PageWrapper>

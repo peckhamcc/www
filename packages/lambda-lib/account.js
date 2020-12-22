@@ -42,8 +42,6 @@ async function generateLogInLink (email, redirect) {
     throw httpErrors.BadRequest('Invalid redirect')
   }
 
-  email = email.toLowerCase()
-
   const client = new AWS.DynamoDB.DocumentClient()
   const token = nanoid()
 
@@ -97,13 +95,9 @@ async function getUser (id) {
 
 async function updateUser (id, details) {
   const fields = [
-    'firstName',
-    'lastName',
-    'telephone',
-    'address1',
-    'address2',
-    'address3',
-    'postCode',
+    'name',
+    'phone',
+    'email',
     'gender',
     'size'
   ]
@@ -136,44 +130,9 @@ async function updateUser (id, details) {
   }).promise()
 }
 
-async function getUserFoPCCStatus (id) {
-  return {}
-}
-
-async function getUserOrders (id) {
-  return []
-}
-
-async function addUserOrder (id, orderId) {
-  const client = new AWS.DynamoDB.DocumentClient()
-
-  await client.update({
-    TableName: process.env.AWS_USERS_DB_TABLE,
-    Key: {
-      id
-    },
-    UpdateExpression: 'set #o = list_append(#o, :o)',
-    ExpressionAttributeNames: {
-      '#o': 'orders'
-    },
-    ExpressionAttributeValues: {
-      ':o': orderId
-    },
-    ReturnValues: 'UPDATED_NEW'
-  }).promise()
-}
-
-async function getUserTrainingSessions (id) {
-  return []
-}
-
 module.exports = {
   generateLogInLink,
   getUserIdForToken,
-  getUser,
   updateUser,
-  getUserFoPCCStatus,
-  getUserOrders,
-  getUserTrainingSessions,
-  addUserOrder
+  getUser
 }

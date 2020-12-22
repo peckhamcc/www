@@ -15,7 +15,7 @@ import {
 
 class WithProducts extends Component {
   async componentDidMount () {
-    if (Object.keys(this.props.categories).length) {
+    if (Object.keys(this.props.sections).length) {
       return
     }
 
@@ -39,20 +39,32 @@ class WithProducts extends Component {
   }
 
   render () {
-    return Object.keys(this.props.categories).length ? (
+    const {
+      sections,
+      loadingProducts
+    } = this.props
+
+    if (loadingProducts) {
+      return (
+        <Spinner />
+      )
+    }
+
+    return sections.length ? (
       <>
         {this.props.children}
       </>
     ) : (
       <>
-        <Spinner />
+        <p>There are no products available in the shop at the moment, please check back later!</p>
       </>
     )
   }
 }
 
-const mapStateToProps = ({ shop: { categories } }) => ({
-  categories
+const mapStateToProps = ({ shop: { sections, loadingProducts } }) => ({
+  sections,
+  loadingProducts
 })
 
 const mapDispatchToProps = {
