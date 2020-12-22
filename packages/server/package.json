@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@peckhamcc/config": "^1.0.0",
-    "@peckhamcc/lambda-account-token-generate": "^1.0.0",
+    "@peckhamcc/lambda-account-token-create": "^1.0.0",
     "@peckhamcc/lambda-account-user-get": "^1.0.0",
     "@peckhamcc/lambda-account-user-update": "^1.0.0",
     "@peckhamcc/lambda-ride-roulette-preferences-set": "^1.0.0",

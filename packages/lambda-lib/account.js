@@ -43,12 +43,61 @@ async function generateLogInLink (email, redirect) {
   }
 
   const client = new AWS.DynamoDB.DocumentClient()
+
+  // use AWS_USER_LOOKUP_DB_TABLE to turn email into id, maybe creating a new user
+  const userLookup = await client.get({
+    TableName: process.env.AWS_USER_LOOKUP_DB_TABLE,
+    Key: {
+      email
+    }
+  }).promise()
+
+  let id
+
+  if (userLookup.Item) {
+    id = userLookup.Item.id
+  } else {
+    id = nanoid()
+
+    // no user for that email, create a new user
+    await client.update({
+      TableName: process.env.AWS_USERS_DB_TABLE,
+      Key: {
+        id
+      },
+      UpdateExpression: 'set #e = :e',
+      ExpressionAttributeNames: {
+        '#e': 'email'
+      },
+      ExpressionAttributeValues: {
+        ':e': email
+      },
+      ReturnValues: 'UPDATED_NEW'
+    }).promise()
+
+    // create lookup for next time
+    await client.update({
+      TableName: process.env.AWS_USER_LOOKUP_DB_TABLE,
+      Key: {
+        email
+      },
+      UpdateExpression: 'set #i = :i',
+      ExpressionAttributeNames: {
+        '#i': 'id'
+      },
+      ExpressionAttributeValues: {
+        ':i': id
+      },
+      ReturnValues: 'UPDATED_NEW'
+    }).promise()
+  }
+
   const token = nanoid()
 
   await client.put({
     TableName: process.env.AWS_TOKENS_DB_TABLE,
     Item: {
-      email: `${email}`,
+      id: `${id}`,
       token: `${token}`,
       // ttl is enabled on the DynamoDB table for the 'expires' field
       expires: tokenExpiry()
@@ -94,6 +143,8 @@ async function getUser (id) {
 }
 
 async function updateUser (id, details) {
+  const user = await getUser(id)
+
   const fields = [
     'name',
     'phone',
@@ -128,6 +179,12 @@ async function updateUser (id, details) {
     ExpressionAttributeValues: attributeValues,
     ReturnValues: 'UPDATED_NEW'
   }).promise()
+
+  if (details.email && user.email !== details.email) {
+    // update AWS_USER_LOOKUP_DB_TABLE
+  }
+
+  return getUser(id)
 }
 
 module.exports = {

@@ -30,26 +30,26 @@ async function generateLogInLink (email, redirect) {
     throw httpErrors.BadRequest('Invalid redirect')
   }
 
-  let user = userLookup.values[email]
+  let userId = userLookup.values[email]
 
   // create new user
-  if (!user) {
+  if (!userId) {
     console.info('creating new user')
-    user = nanoid()
+    userId = nanoid()
 
-    users.values[user] = {
+    users.values[userId] = {
       email
     }
     users.save()
 
-    userLookup.values[email] = user
+    userLookup.values[email] = userId
     userLookup.save()
   }
 
   const key = nanoid()
 
   tokens.values[key] = {
-    user,
+    user: userId,
     expires: tokenExpiry()
   }
   tokens.save()

@@ -438,7 +438,7 @@ const config = {
     sendContactFormEmail: '/lambda/send-contact-form-email',
     rideRoulettePreferencesSet: '/lambda/ride-roulette-preferences-set',
     rideRouletteRidesGet: '/lambda/ride-roulette-rides-get',
-    accountTokenGenerate: '/lambda/account-token-generate',
+    accountTokenGenerate: '/lambda/account-token-create',
     accountUserGet: '/lambda/account-user-get',
     accountUserUpdate: '/lambda/account-user-update',
     shopProductsGet: '/lambda/shop-products-get',
@@ -473,12 +473,12 @@ if (process.env.NODE_ENV !== 'development') {
   config.lambda.sendContactFormEmail = 'https://api.peckham.cc/contact'
   config.lambda.rideRoulettePreferencesSet = 'https://api.peckham.cc/ride-roulette/preferences'
   config.lambda.rideRouletteRidesGet = 'https://api.peckham.cc/ride-roulette/rides'
-  config.lambda.accountTokenGenerate = 'https://api.peckham.cc/account/token'
-  config.lambda.accountUserGet = 'https://api.peckham.cc/account/user'
-  config.lambda.accountUserUpdate = 'https://api.peckham.cc/account/user'
+  config.lambda.accountTokenGenerate = 'https://api.peckham.cc/token'
+  config.lambda.accountUserGet = 'https://api.peckham.cc/user'
+  config.lambda.accountUserUpdate = 'https://api.peckham.cc/user'
   config.lambda.shopProductsGet = 'https://api.peckham.cc/shop/products'
-  config.lambda.shopOrdersCreate = 'https://api.peckham.cc/shop/orders'
-  config.lambda.shopOrdersGet = 'https://api.peckham.cc/shop/orders'
+  config.lambda.shopOrdersCreate = 'https://api.peckham.cc/user/orders'
+  config.lambda.shopOrdersGet = 'https://api.peckham.cc/user/orders'
 
   config.stripe.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY
   config.stripe.secretKey = process.env.STRIPE_SECRET_KEY
