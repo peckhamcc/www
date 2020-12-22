@@ -18,7 +18,7 @@
     "clean": "rm -rf build",
     "build": "cp ../config/index.js config.js && cp ../lambda-lib/stripe-client.js stripe-client.js && cp ../lambda-lib/account.js account.js && cp ../lambda-lib/middleware.js middleware.js",
     "build:dev": "cp ../config/index.js config.js && cp ../lambda-lib/stripe-client.js stripe-client.js && cp ../lambda-lib/dev-account.js account.js && cp ../lambda-lib/middleware.js middleware.js",
-    "upload": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-shop-products-get-role-h01tz0un --region eu-west-2",
+    "upload": "node-lambda deploy --runtime nodejs12.x --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-shop-products-get-role-h01tz0un --region eu-west-2",
     "deploy": "run-s clean build upload",
     "lint": "standard"
   },

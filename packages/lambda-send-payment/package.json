@@ -17,7 +17,7 @@
     "test": "NODE_ENV=test npm run build && node-lambda run -j test/event.json -x test/context.json -f test/test.env",
     "clean": "rm -rf build",
     "build": "cp ../config/index.js config.js",
-    "upload": "node-lambda deploy --role arn:aws:iam::614175028878:role/service-role/send-payment-role --region eu-west-2",
+    "upload": "node-lambda deploy --runtime nodejs12.x --role arn:aws:iam::614175028878:role/service-role/send-payment-role --region eu-west-2",
     "deploy": "run-s clean build upload",
     "lint": "standard"
   },
