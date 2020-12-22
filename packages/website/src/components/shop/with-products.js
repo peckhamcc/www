@@ -27,7 +27,7 @@ class WithProducts extends Component {
       })
 
       if (response.status === 200) {
-        this.props.setProducts((await response.json()).products)
+        this.props.setProducts(await response.json())
 
         return
       }
