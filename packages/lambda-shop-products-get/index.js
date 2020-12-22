@@ -12,7 +12,9 @@ const {
 async function getProductsHandler () {
   return {
     statusCode: 200,
-    body: await getProducts()
+    body: {
+      products: await getProducts()
+    }
   }
 }
 

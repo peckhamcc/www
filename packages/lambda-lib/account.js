@@ -97,8 +97,8 @@ async function generateLogInLink (email, redirect) {
   await client.put({
     TableName: process.env.AWS_TOKENS_DB_TABLE,
     Item: {
-      id: `${id}`,
       token: `${token}`,
+      user: `${id}`,
       // ttl is enabled on the DynamoDB table for the 'expires' field
       expires: tokenExpiry()
     }
