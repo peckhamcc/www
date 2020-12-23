@@ -175,7 +175,7 @@ const getOrders = async (user) => {
     return []
   }
 
-  const client = stripe(config.stripe, STRIPE_OPTS)
+  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
   const orders = []
 
   for await (const paymentIntent of client.paymentIntents.list({
