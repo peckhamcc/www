@@ -279,7 +279,7 @@ const getPreferences = async (userId) => {
   return (result.Item && result.Item.preferences) || {}
 }
 
-const setPreferences = async (userId, { preferences }) => {
+const setPreferences = async (userId, preferences) => {
   const client = new AWS.DynamoDB.DocumentClient()
 
   await client.update({
