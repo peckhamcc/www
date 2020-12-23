@@ -109,8 +109,7 @@ const shopReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingOrders: true,
-        orders: [],
-        cart: []
+        orders: []
       }
     default:
       return state
