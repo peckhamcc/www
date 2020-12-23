@@ -234,7 +234,7 @@ const setRides = async (date, rides) => {
     Key: {
       date
     },
-    UpdateExpression: 'set rides = :r, expiry = :e',
+    UpdateExpression: 'set rides = :r, expires = :e',
     ExpressionAttributeValues: {
       ':r': rides,
       ':e': Math.round(new Date(Date.now() + ONE_MONTH).getTime() / 1000)
