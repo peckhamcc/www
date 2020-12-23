@@ -10,6 +10,9 @@ const TerserPlugin = require('terser-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const ImageminPlugin = require('imagemin-webpack-plugin').default
+const {
+  config: appConfig
+} = require('@peckhamcc/config')
 
 const config = {
   mode: process.env.NODE_ENV || 'production',
@@ -25,7 +28,8 @@ const config = {
     new CaseSensitivePathsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: `'${process.env.NODE_ENV || 'production'}'`
+        NODE_ENV: `'${process.env.NODE_ENV || 'production'}'`,
+        STRIPE_PUBLISHABLE_KEY: `'${process.env.STRIPE_PUBLISHABLE_KEY || appConfig.stripe.publishableKey}'`
       }
     }),
     new webpack.NoEmitOnErrorsPlugin(),
