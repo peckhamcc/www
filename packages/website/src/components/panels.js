@@ -348,3 +348,7 @@ export const CentredPanel = styled(Panel)`
     margin-right: auto;
   }
 `
+
+export const Info = styled.p`
+  text-align: center;
+`

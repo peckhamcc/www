@@ -3,7 +3,8 @@ import React, {
 } from 'react'
 import PropTypes from 'prop-types'
 import {
-  Link
+  Link,
+  withRouter
 } from 'react-router-dom'
 import {
   SmallTextButton
@@ -195,7 +196,7 @@ class Basket extends Component {
       })
     }
 
-    window.location = '/checkout'
+    this.props.history.push('/checkout')
   }
 
   render () {
@@ -330,4 +331,4 @@ const mapDispatchToProps = {
   userAcceptedTerms: acceptedTerms
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Basket)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Basket))

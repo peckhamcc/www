@@ -4,22 +4,25 @@ import React, {
 import {
   connect
 } from 'react-redux'
-import styled from 'styled-components'
+import {
+  withRouter
+} from 'react-router-dom'
 import {
   expiredToken
 } from '../../store/actions'
 import {
-  Spinner
+  Spinner,
+  Info
 } from '../panels'
 import {
   config
 } from '@peckhamcc/config'
 
-const Info = styled.p`
-  text-align: center;
-`
-
 class Checkout extends Component {
+  state = {
+
+  }
+
   async componentDidMount () {
     const scriptId = 'stripe.js'
 
@@ -42,6 +45,12 @@ class Checkout extends Component {
     const {
       cart
     } = this.props
+
+    if (!cart.length) {
+      this.props.history.push('/basket')
+
+      return
+    }
 
     try {
       const response = await global.fetch(config.lambda.shopOrdersCreate, {
@@ -92,7 +101,7 @@ class Checkout extends Component {
 
     return (
       <>
-        <Info>Redirecting you to for payment...</Info>
+        <Info>Redirecting you to Stripe for payment...</Info>
         <Spinner />
       </>
 
@@ -110,4 +119,4 @@ const mapDispatchToProps = {
   expiredToken
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Checkout))

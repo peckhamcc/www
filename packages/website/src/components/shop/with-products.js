@@ -5,7 +5,8 @@ import {
   connect
 } from 'react-redux'
 import {
-  Spinner
+  Spinner,
+  Info
 } from '../panels'
 import config from '../../config'
 import {
@@ -46,7 +47,10 @@ class WithProducts extends Component {
 
     if (loadingProducts) {
       return (
-        <Spinner />
+        <>
+          <Info>Loading shop...</Info>
+          <Spinner />
+        </>
       )
     }
 
