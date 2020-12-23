@@ -4,6 +4,7 @@ import React, {
 import {
   connect
 } from 'react-redux'
+import styled from 'styled-components'
 import {
   expiredToken
 } from '../../store/actions'
@@ -13,6 +14,10 @@ import {
 import {
   config
 } from '@peckhamcc/config'
+
+const Info = styled.p`
+  text-align: center;
+`
 
 class Checkout extends Component {
   async componentDidMount () {
@@ -63,13 +68,34 @@ class Checkout extends Component {
 
       throw new Error(response.statusText)
     } catch (error) {
+      this.setState({
+        error
+      })
+
       console.error(error)
     }
   }
 
   render () {
+    const {
+      error
+    } = this.state
+
+    if (error) {
+      return (
+        <>
+          <p>An error occurred, sorry it didn't work out :(</p>
+          <p>Maybe try again later?</p>
+        </>
+      )
+    }
+
     return (
-      <Spinner />
+      <>
+        <Info>Redirecting you to for payment...</Info>
+        <Spinner />
+      </>
+
     )
   }
 }
