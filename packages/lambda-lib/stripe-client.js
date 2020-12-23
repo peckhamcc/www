@@ -248,8 +248,6 @@ const getOrCreateCustomerId = async (user) => {
     phone: user.phone
   })
 
-  console.info('ok', JSON.stringify(customer, null, 2))
-
   return customer.id
 }
 

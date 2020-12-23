@@ -151,7 +151,8 @@ async function updateUser (id, details) {
     'phone',
     'email',
     'gender',
-    'size'
+    'size',
+    'stripeCustomerId'
   ]
 
   const expression = []
@@ -168,6 +169,11 @@ async function updateUser (id, details) {
     }
   })
 
+  if (!expression.length) {
+    // nothing to update here
+    return getUser(id)
+  }
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   await client.update({
@@ -182,7 +188,29 @@ async function updateUser (id, details) {
   }).promise()
 
   if (details.email && user.email !== details.email) {
-    // update AWS_USER_LOOKUP_DB_TABLE
+    // email changed, update the user lookup table
+    await client.update({
+      TableName: process.env.AWS_USER_LOOKUP_DB_TABLE,
+      Key: {
+        email: details.email
+      },
+      UpdateExpression: 'set #i = :i',
+      ExpressionAttributeNames: {
+        '#i': 'id'
+      },
+      ExpressionAttributeValues: {
+        ':i': id
+      },
+      ReturnValues: 'UPDATED_NEW'
+    }).promise()
+
+    // remove old lookup
+    await client.delete({
+      TableName: process.env.AWS_USER_LOOKUP_DB_TABLE,
+      Key: {
+        email: user.email
+      }
+    }).promise()
   }
 
   return getUser(id)
