@@ -5,3 +5,4 @@ middleware.js
 lib.js
 account.js
 roulette.js
+stripe-client.js
