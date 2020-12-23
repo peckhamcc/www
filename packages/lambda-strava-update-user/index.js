@@ -26,7 +26,7 @@ async function updateUser (event) {
         S: `${event.path.id}`
       }
     },
-    TableName: process.env.AWS_DB_TABLE
+    TableName: process.env.AWS_STRAVA_OAUTH_TABLE
   }).promise()
 
   if (!item || !item.Item) {
@@ -36,7 +36,7 @@ async function updateUser (event) {
   }
 
   await db.updateItem({
-    TableName: process.env.AWS_DB_TABLE,
+    TableName: process.env.AWS_STRAVA_OAUTH_TABLE,
     Key: {
       id: {
         S: `${event.path.id}`

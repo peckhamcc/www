@@ -69,7 +69,7 @@ async function exchangeCode (event) {
     })
 
     await db.putItem({
-      TableName: process.env.AWS_DB_TABLE,
+      TableName: process.env.AWS_STRAVA_OAUTH_TABLE,
       Item: {
         id: {
           S: `${result.athlete.id}`

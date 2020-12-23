@@ -21,7 +21,7 @@ async function readTokens (event) {
   })
 
   const scanResults = []
-  const params = { TableName: process.env.AWS_DB_TABLE }
+  const params = { TableName: process.env.AWS_STRAVA_OAUTH_TABLE }
   let items = {
     LastEvaluatedKey: true
   }
