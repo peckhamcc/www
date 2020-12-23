@@ -162,7 +162,7 @@ async function updateUser (id, details) {
     const shortName = field.substring(0, 2).toLowerCase()
 
     if (details[field] != null) {
-      expression.push(`set #${shortName} = :${shortName}`)
+      expression.push(`#${shortName} = :${shortName}`)
       attributeNames[`#${shortName}`] = field
       attributeValues[`:${shortName}`] = details[field]
     }
@@ -175,7 +175,7 @@ async function updateUser (id, details) {
     Key: {
       id
     },
-    UpdateExpression: expression.join(', '),
+    UpdateExpression: `SET ${expression.join(', ')}`,
     ExpressionAttributeNames: attributeNames,
     ExpressionAttributeValues: attributeValues,
     ReturnValues: 'UPDATED_NEW'
