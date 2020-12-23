@@ -40,12 +40,14 @@ const tokenValidator = (opts) => ({
     const { headers } = handler.event
 
     if (!headers) {
+      console.info('No headers passed to request')
       throw new httpErrors.Unauthorized('Missing or invalid credentials')
     }
 
     const token = headers.Authorization || headers.authorization
 
     if (!token) {
+      console.info('No authorization header in request request')
       throw new httpErrors.Unauthorized('Missing or invalid credentials')
     }
 

@@ -119,6 +119,7 @@ async function getUserIdForToken (token) {
   }).promise()
 
   if (!existingToken || !existingToken.Item) {
+    console.info('Nothing in token table for', token)
     throw new httpErrors.Unauthorized('Missing or invalid credentials')
   }
 
