@@ -12,7 +12,10 @@ const {
 async function getProductsHandler () {
   return {
     statusCode: 200,
-    body: await getProducts()
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(await getProducts())
   }
 }
 

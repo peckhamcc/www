@@ -19,7 +19,10 @@ async function ordersGetHandler ({ userId }) {
 
   return {
     statusCode: 200,
-    body: orders
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(orders)
   }
 }
 

@@ -15,7 +15,10 @@ const {
 async function getUserHandler ({ userId }) {
   return {
     statusCode: 200,
-    body: await getUser(userId)
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(await getUser(userId))
   }
 }
 

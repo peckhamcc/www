@@ -11,6 +11,9 @@ const errorHandler = () => ({
 
         handler.response = {
           statusCode: 422,
+          headers: {
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({
             field: details.dataPath.replace('.body.', '')
           })
@@ -20,6 +23,9 @@ const errorHandler = () => ({
       } else {
         handler.response = {
           statusCode: handler.error.statusCode,
+          headers: {
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({
             message: handler.error.message
           })

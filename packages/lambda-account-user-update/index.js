@@ -24,7 +24,10 @@ async function updateUserHandler ({ userId, body: details }) {
 
   return {
     statusCode: 200,
-    body: await updateUser(userId, details)
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(await updateUser(userId, details))
   }
 }
 

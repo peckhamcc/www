@@ -32,9 +32,12 @@ async function ordersCreateHandler ({ userId, body: items }) {
 
   return {
     statusCode: 200,
-    body: {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
       sessionId
-    }
+    })
   }
 }
 
