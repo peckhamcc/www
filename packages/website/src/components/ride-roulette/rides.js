@@ -22,7 +22,8 @@ import {
 } from '../forms'
 import {
   Spinner,
-  SmallSpinner
+  SmallSpinner,
+  Info
 } from '../panels'
 import {
   panelLevel2Background,
@@ -385,7 +386,10 @@ class Rides extends Component {
 
     if (loading && !rides.length) {
       return (
-        <Spinner />
+        <>
+          <Info>Loading rides</Info>
+          <Spinner />
+        </>
       )
     }
 

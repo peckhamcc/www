@@ -7,7 +7,8 @@ import {
 import styled from 'styled-components'
 import {
   Button,
-  Spinner
+  Spinner,
+  Info
 } from '../panels'
 import {
   expiredToken,
@@ -189,7 +190,7 @@ class Details extends Component {
     } else if (step === STEPS.SAVING_DETAILS) {
       return (
         <>
-          <p>Saving your details</p>
+          <Info>Saving your details</Info>
           <Spinner />
         </>
       )

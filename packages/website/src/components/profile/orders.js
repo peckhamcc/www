@@ -6,7 +6,8 @@ import {
 } from 'react-redux'
 import styled from 'styled-components'
 import {
-  Spinner
+  Spinner,
+  Info
 } from '../panels'
 import {
   ItemImage,
@@ -197,7 +198,10 @@ class Orders extends Component {
 
     return (
       loadingOrders ? (
-        <Spinner />
+        <>
+          <Info>Loading orders</Info>
+          <Spinner />
+        </>
       ) : (
         orders.length ? (
           orders.map(order => (

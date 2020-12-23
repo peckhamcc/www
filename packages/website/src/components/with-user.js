@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 import {
   Button,
   Spinner,
-  CentredPanel
+  CentredPanel,
+  Info
 } from './panels'
 import styled from 'styled-components'
 import {
@@ -305,7 +306,7 @@ class WithUser extends Component {
         <>
           <CentredPanel>
             <img src={clubLogo.src} width='300' height='300' />
-            <p>Creating a log in link...</p>
+            <Info>Creating a log in link...</Info>
             <Spinner />
           </CentredPanel>
         </>
@@ -342,7 +343,7 @@ class WithUser extends Component {
         <>
           <CentredPanel>
             <img src={clubLogo.src} width='300' height='300' />
-            <p>Validating your log in</p>
+            <Info>Validating your log in</Info>
             <Spinner />
           </CentredPanel>
         </>
@@ -391,7 +392,7 @@ class WithUser extends Component {
         <>
           <CentredPanel>
             <img src={clubLogo.src} width='300' height='300' />
-            <p>Saving your details</p>
+            <Info>Saving your details</Info>
             <Spinner />
           </CentredPanel>
         </>

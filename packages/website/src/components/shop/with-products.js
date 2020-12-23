@@ -48,7 +48,7 @@ class WithProducts extends Component {
     if (loadingProducts) {
       return (
         <>
-          <Info>Loading shop...</Info>
+          <Info>Loading shop</Info>
           <Spinner />
         </>
       )

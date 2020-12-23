@@ -272,7 +272,7 @@ const getPreferences = async (userId) => {
   const result = await client.get({
     TableName: process.env.AWS_PREFERENCES_DB_TABLE,
     Key: {
-      userId
+      id: userId
     }
   }).promise()
 
@@ -285,7 +285,7 @@ const setPreferences = async (userId, { preferences }) => {
   await client.update({
     TableName: process.env.AWS_PREFERENCES_DB_TABLE,
     Key: {
-      userId
+      id: userId
     },
     UpdateExpression: 'set preferences = :p, expires = :e',
     ExpressionAttributeValues: {

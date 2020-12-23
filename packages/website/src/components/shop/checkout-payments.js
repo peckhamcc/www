@@ -101,7 +101,7 @@ class Checkout extends Component {
 
     return (
       <>
-        <Info>Redirecting you to Stripe for payment...</Info>
+        <Info>Redirecting you to Stripe for payment</Info>
         <Spinner />
       </>
 
