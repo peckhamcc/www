@@ -134,14 +134,14 @@ class WithUser extends Component {
         return
       }
 
-      throw new Error(response.statusText)
+      console.info(response)
+      throw new Error('Could not verify token')
     } catch (error) {
       this.setState({
         step: STEPS.ERROR,
         error
       })
 
-      console.error('verify token error')
       console.error(error)
     }
   }
@@ -175,8 +175,6 @@ class WithUser extends Component {
 
       if (response.status === 422) {
         const body = await response.json()
-
-        console.info(body)
 
         this.setState({
           step: STEPS.ENTER_EMAIL,
@@ -255,7 +253,8 @@ class WithUser extends Component {
         return
       }
 
-      throw new Error(response.statusText)
+      console.info(response)
+      throw new Error('Could not update details')
     } catch (error) {
       this.setState({
         step: STEPS.ERROR,
@@ -297,7 +296,6 @@ class WithUser extends Component {
               </FormInputWrapper>
 
               <Button
-                disabled={Boolean(this.state.error)}
                 data-button='create-token'
               >Submit
               </Button>
@@ -335,7 +333,6 @@ class WithUser extends Component {
               </FormInputWrapper>
 
               <Button
-                disabled={Boolean(this.state.error)}
                 data-button='create-token'
               >Submit
               </Button>
