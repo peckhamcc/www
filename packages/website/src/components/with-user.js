@@ -43,7 +43,7 @@ const STEPS = {
 
 class WithUser extends Component {
   state = {
-    step: STEPS.ENTER_EMAIL,
+    step: STEPS.DONE,
     name: '',
     phone: '',
     email: '',
@@ -62,21 +62,19 @@ class WithUser extends Component {
       }
     }
 
-    if (state.step === STEPS.CREATED_TOKEN) {
-      return state
-    }
-
-    if (!props.token) {
-      return {
-        ...state,
-        step: STEPS.ENTER_EMAIL
+    if (state.step === STEPS.DONE) {
+      if (!props.token) {
+        return {
+          ...state,
+          step: STEPS.ENTER_EMAIL
+        }
       }
-    }
 
-    if (!props.user.name || !props.user.phone) {
-      return {
-        ...state,
-        step: STEPS.ENTER_DETAILS
+      if (!props.user.name || !props.user.phone) {
+        return {
+          ...state,
+          step: STEPS.ENTER_DETAILS
+        }
       }
     }
 
@@ -107,8 +105,7 @@ class WithUser extends Component {
 
       if (response.status === 200) {
         this.props.setToken(token)
-        const user = await response.json()
-        this.props.signIn(user)
+        this.props.signIn(await response.json())
 
         window.location = `${window.location}`.split('?')[0]
 
@@ -308,7 +305,7 @@ class WithUser extends Component {
         <>
           <CentredPanel>
             <img src={clubLogo.src} width='300' height='300' />
-            <p>Enter your email address to log in:</p>
+            <p>Creating a log in link...</p>
             <Spinner />
           </CentredPanel>
         </>
