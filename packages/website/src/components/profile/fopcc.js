@@ -266,7 +266,7 @@ class Fopcc extends Component {
       ),
       cancelled: (
         <>
-          <p>Your Friends of PCC membership has been cancelled and will expire on {formatDate(fopcc.renews)}.</p>
+          <p>Your Friends of PCC membership has been cancelled and no further subscription payments will be collected.</p>
           <p>We're sorry to see you go, please know you can rejoin at any time!</p>
           <GreenButton onClick={this.handleJoinFoPCC}>Become a Friend of PCC</GreenButton>
         </>

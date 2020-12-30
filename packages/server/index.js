@@ -15,6 +15,7 @@ const accountUserGet = require('@peckhamcc/lambda-account-user-get')
 const accountUserUpdate = require('@peckhamcc/lambda-account-user-update')
 const shopOrdersCreate = require('@peckhamcc/lambda-shop-orders-create')
 const shopOrdersGet = require('@peckhamcc/lambda-shop-orders-get')
+const shopOrdersItemsGet = require('@peckhamcc/lambda-shop-orders-items-get')
 const shopProductsGet = require('@peckhamcc/lambda-shop-products-get')
 const fopccJoin = require('@peckhamcc/lambda-fopcc-join')
 const fopccLeave = require('@peckhamcc/lambda-fopcc-leave')
@@ -57,7 +58,7 @@ const serveLambda = (name, lambda) => {
       multiValueHeaders: multiValueHeaders,
       queryStringParameters: null,
       multiValueQueryStringParameters: null,
-      pathParameters: null,
+      pathParameters: request.params,
       stageVariables: null,
       requestContext: {
         resourceId: RESOURCE_ID,
@@ -174,11 +175,14 @@ module.exports = (port) => {
 
     app.options(config.lambda.shopOrdersGet, serveLambda('_peckhamcc_lambda-shop-orders-get', sendCorsHeaders))
     app.get(config.lambda.shopOrdersGet, serveLambda('_peckhamcc_lambda-shop-orders-get', shopOrdersGet))
+    // /lambda/shop-orders-items-get/:orderId/items
+    app.options(config.lambda.shopOrdersItemsGet + '/:orderId/items', serveLambda('_peckhamcc_lambda-shop-orders-items-get', sendCorsHeaders))
+    app.get(config.lambda.shopOrdersItemsGet + '/:orderId/items', serveLambda('_peckhamcc_lambda-shop-orders-items-get', shopOrdersItemsGet))
 
-    app.options(config.lambda.fopccJoin, serveLambda('_peckhamcc_lambda-fopcc-join', fopccJoin))
+    app.options(config.lambda.fopccJoin, serveLambda('_peckhamcc_lambda-fopcc-join', sendCorsHeaders))
     app.post(config.lambda.fopccJoin, serveLambda('_peckhamcc_lambda-fopcc-join', fopccJoin))
 
-    app.options(config.lambda.fopccLeave, serveLambda('_peckhamcc_lambda-fopcc-leave', fopccLeave))
+    app.options(config.lambda.fopccLeave, serveLambda('_peckhamcc_lambda-fopcc-leave', sendCorsHeaders))
     app.delete(config.lambda.fopccLeave, serveLambda('_peckhamcc_lambda-fopcc-leave', fopccLeave))
 
     app.options('/lambda/stripe-webhook', serveLambda('_peckhamcc_lambda-fopcc-webhook', stripeWebhook))

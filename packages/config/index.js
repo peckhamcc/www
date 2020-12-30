@@ -444,6 +444,7 @@ const config = {
     shopProductsGet: '/lambda/shop-products-get',
     shopOrdersCreate: '/lambda/shop-orders-create',
     shopOrdersGet: '/lambda/shop-orders-get',
+    shopOrdersItemsGet: '/lambda/shop-orders-items-get',
     fopccJoin: '/lambda/fopcc-join',
     fopccLeave: '/lambda/fopcc-leave'
   },
@@ -485,6 +486,7 @@ if (process.env.NODE_ENV !== 'development') {
   config.lambda.shopProductsGet = 'https://api.peckham.cc/shop/products'
   config.lambda.shopOrdersCreate = 'https://api.peckham.cc/user/orders'
   config.lambda.shopOrdersGet = 'https://api.peckham.cc/user/orders'
+  config.lambda.shopOrdersItemsGet = 'https://api.peckham.cc/user/orders'
   config.lambda.fopccJoin = 'https://api.peckham.cc/fopcc'
   config.lambda.fopccLeave = 'https://api.peckham.cc/fopcc'
 

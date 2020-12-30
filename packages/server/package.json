@@ -27,6 +27,7 @@
     "@peckhamcc/lambda-send-payment": "^1.0.0",
     "@peckhamcc/lambda-shop-orders-create": "^1.0.0",
     "@peckhamcc/lambda-shop-orders-get": "^1.0.0",
+    "@peckhamcc/lambda-shop-orders-items-get": "^1.0.0",
     "@peckhamcc/lambda-shop-products-get": "^1.0.0",
     "@peckhamcc/lambda-stripe-webhook": "^1.0.0",
     "@peckhamcc/website": "^1.0.0",

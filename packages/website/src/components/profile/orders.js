@@ -7,10 +7,10 @@ import {
 import styled from 'styled-components'
 import {
   Spinner,
-  Info
+  Info,
+  Button
 } from '../panels'
 import {
-  ItemImage,
   Price
 } from '../shop/panels'
 import {
@@ -27,6 +27,7 @@ import {
 import {
   spacing
 } from '../../units'
+import Order from './order'
 
 const Table = styled.table`
   width: 100%;
@@ -35,10 +36,6 @@ const Table = styled.table`
 
 const THead = styled.thead`
   border-bottom: 1px solid ${panelLevel2Border};
-`
-
-const TFoot = styled.tfoot`
-  border-top: 1px solid ${panelLevel2Border};
 `
 
 const TBody = styled.tbody`
@@ -59,97 +56,45 @@ const Cell = styled.td`
   padding: ${spacing(1)};
 `
 
-const ItemHeader = styled(Header)`
-  width: 80%;
-`
-
-const RightAlignedCell = styled(Cell)`
-  text-align: right;
-`
-
-const ProductImage = styled.div`
-  display: inline-block;
-  margin: 4px ${spacing(1)} 0 0;
-  border: 1px solid ${panelLevel2Border};
-  padding: 4px;
-  vertical-align: top;
-`
-
-const ProductDetails = styled.div`
-  display: inline-block;
-  vertical-align: top;
-`
-
-const DetailWrapper = styled.div`
-  margin: ${spacing(1)} 0;
-`
-
 const STATUSES = {
-  pending: (
-    <p>This order is awaiting submission to the factory for production</p>
-  ),
-  production: (
-    <p>This order is in production at the factory</p>
-  ),
-  ready: (
-    <p>This order ready for pick up from <a href='https://ratracecycles.com/'>Rat Race Cycles</a></p>
-  ),
-  complete: (
-    <p>This order is complete</p>
-  )
+  pending: 'Pending',
+  production: 'In production',
+  ready: 'Ready for pick up',
+  complete: 'Complete'
 }
 
-const Order = ({ order }) => {
-  const date = new Date(order.date)
-
+function OrderList ({ orders, onShowOrder }) {
   return (
-    <div>
-      <h4>{date.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</h4>
-      {STATUSES[order.status] && STATUSES[order.status]}
-      <Table>
-        <THead>
-          <Row>
-            <ItemHeader>Item</ItemHeader>
-            <Header>Subtotal</Header>
-          </Row>
-        </THead>
-        <TBody>
-          {
-            order.items.map((item, index) => {
-              return (
-                <Row key={index}>
-                  <Cell>
-                    <ProductImage>
-                      <ItemImage item={item} width={50} />
-                    </ProductImage>
-                    <ProductDetails>
-                      <DetailWrapper>
-                        {item.quantity}x {item.name}<br />{item.description}
-                      </DetailWrapper>
-                    </ProductDetails>
-                  </Cell>
-                  <Cell><Price price={item.price * item.quantity} /></Cell>
-                </Row>
-              )
-            })
-          }
-        </TBody>
-        <TFoot>
-          <Row>
-            <RightAlignedCell>
-              Total
-            </RightAlignedCell>
-            <Cell>
-              <Price price={order.amount} />
-            </Cell>
-          </Row>
-        </TFoot>
-      </Table>
-    </div>
+    <Table>
+      <THead>
+        <Row>
+          <Header>Date</Header>
+          <Header>Total</Header>
+          <Header>Status</Header>
+          <Header>Actions</Header>
+        </Row>
+      </THead>
+      <TBody>
+        {
+          orders.map(order => (
+            <Row key={order.id}>
+              <Cell>{new Date(order.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</Cell>
+              <Cell><Price price={order.amount} /></Cell>
+              <Cell>{(STATUSES[order.status] && STATUSES[order.status]) || 'N/a'}</Cell>
+              <Cell><Button style={{ margin: 0 }} onClick={() => onShowOrder(order)}>Order details</Button></Cell>
+            </Row>
+          ))
+        }
+      </TBody>
+    </Table>
   )
 }
 
 class Orders extends Component {
+  state = {
+    order: null
+  }
+
   async componentDidMount () {
     if (this.props.orders.length) {
       return
@@ -190,11 +135,32 @@ class Orders extends Component {
     }
   }
 
+  handleShowOrder = (order) => {
+    this.setState({
+      order
+    })
+  }
+
+  handleShowOrders = () => {
+    this.setState({
+      order: null
+    })
+  }
+
   render () {
     const {
       loadingOrders,
       orders
     } = this.props
+    const {
+      order
+    } = this.state
+
+    if (order) {
+      return (
+        <Order order={order} onShowOrders={this.handleShowOrders} />
+      )
+    }
 
     return (
       loadingOrders ? (
@@ -204,11 +170,12 @@ class Orders extends Component {
         </>
       ) : (
         orders.length ? (
-          orders.map(order => (
-            <Order order={order} key={order.id} />
-          ))
+          <>
+            <OrderList orders={orders} onShowOrder={this.handleShowOrder} />
+          </>
+
         ) : (
-          <p>You have no outstanding kit orders</p>
+          <p>You have no outstanding shop orders</p>
         )
       )
     )

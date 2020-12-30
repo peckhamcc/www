@@ -14,26 +14,29 @@ import {
   Flag
 } from '../lib/flags'
 import WithUser from '../components/with-user'
+import WithFoPCC from '../components/with-fopcc'
 import WithProducts from '../components/shop/with-products'
 
 class CheckoutPage extends Component {
   render () {
     return (
       <WithUser redirect='/checkout'>
-        <PageWrapper>
-          <Hero background={checkoutBackground.src} />
-          <Panel>
-            <Breadcrumb section={{ name: 'Checkout' }} />
-            <h2>Checkout</h2>
-            <WithProducts>
-              <Flag
-                name={['payments']}
-                component={CheckoutPayment}
-                fallbackComponent={CheckoutTransfer}
-              />
-            </WithProducts>
-          </Panel>
-        </PageWrapper>
+        <WithFoPCC>
+          <PageWrapper>
+            <Hero background={checkoutBackground.src} />
+            <Panel>
+              <Breadcrumb section={{ name: 'Checkout' }} />
+              <h2>Checkout</h2>
+              <WithProducts>
+                <Flag
+                  name={['payments']}
+                  component={CheckoutPayment}
+                  fallbackComponent={CheckoutTransfer}
+                />
+              </WithProducts>
+            </Panel>
+          </PageWrapper>
+        </WithFoPCC>
       </WithUser>
     )
   }

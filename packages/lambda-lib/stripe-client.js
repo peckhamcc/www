@@ -256,30 +256,7 @@ const getOrders = async (userId, stripeCustomerId) => {
       id: paymentIntent.id,
       date: paymentIntent.created * 1000,
       amount: paymentIntent.amount,
-      status: paymentIntent.metadata && paymentIntent.metadata.status,
-      items: []
-    }
-
-    const sessions = await client.checkout.sessions.list({
-      payment_intent: paymentIntent.id,
-      limit: 100
-    })
-
-    for (const session of sessions.data) {
-      for await (const lineItem of client.checkout.sessions.listLineItems(session.id, {
-        limit: 100,
-        expand: ['data.price.product']
-      })) {
-        const item = {
-          slug: lineItem.price.product.metadata.slug,
-          name: lineItem.price.product.name,
-          description: lineItem.description,
-          quantity: lineItem.quantity,
-          price: lineItem.amount_total
-        }
-
-        order.items.push(item)
-      }
+      status: paymentIntent.metadata && paymentIntent.metadata.status
     }
 
     orders.push(order)
@@ -288,6 +265,42 @@ const getOrders = async (userId, stripeCustomerId) => {
   await cache.set(`orders-${userId}`, orders)
 
   return orders
+}
+
+const getOrderItems = async (paymentIntent) => {
+  const cached = await cache.get(`order-items-${paymentIntent}`)
+
+  if (cached) {
+    return cached
+  }
+
+  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
+  const items = []
+  const sessions = await client.checkout.sessions.list({
+    payment_intent: paymentIntent,
+    limit: 100
+  })
+
+  for (const session of sessions.data) {
+    for await (const lineItem of client.checkout.sessions.listLineItems(session.id, {
+      limit: 100,
+      expand: ['data.price.product']
+    })) {
+      const item = {
+        slug: lineItem.price.product.metadata.slug,
+        name: lineItem.price.product.name,
+        description: lineItem.description,
+        quantity: lineItem.quantity,
+        price: lineItem.amount_total
+      }
+
+      items.push(item)
+    }
+  }
+
+  await cache.set(`order-items-${paymentIntent}`, items)
+
+  return items
 }
 
 const getOrCreateCustomerId = async (user) => {
@@ -392,6 +405,14 @@ function verifyWebhookEvent (body, signature) {
   }
 }
 
+async function setPaymentMetadata (paymentIntentId, metadata) {
+  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
+
+  await client.paymentIntents.update(paymentIntentId, {
+    metadata
+  })
+}
+
 module.exports = {
   getProducts,
   getOrders,
@@ -403,5 +424,7 @@ module.exports = {
   cancelFopccMembership,
   getPaymentDigits,
   updateCustomer,
-  verifyWebhookEvent
+  verifyWebhookEvent,
+  getOrderItems,
+  setPaymentMetadata
 }

@@ -35,10 +35,6 @@ const ListItem = styled.li`
   color: ${lightLowlight};
 `
 
-const JoinForm = styled.form`
-  margin: ${spacing(2)} 0;
-`
-
 class MembershipPage extends Component {
   render () {
     return (
@@ -58,14 +54,7 @@ class MembershipPage extends Component {
             <ListItem>20% off a bike fit at <a href='http://cadenceperformance.com/'>Cadence Performance</a> in Crystal Palace</ListItem>
           </PerksList>
           <p>The scheme is managed via the British Cycling website. You do not have to join British Cycling be part of Friends of PCC but we do recommend it.</p>
-          <JoinForm
-            action='https://www.britishcycling.org.uk/club/subscriptions/buy'
-            method='get'
-          >
-            <input type='hidden' name='club_id' value='8092' />
-            <input type='hidden' name='subscription_id' value='2760' />
-            <Button>Join Friends of PCC</Button>
-          </JoinForm>
+          <Button><Link to='/profile/fopcc'>Join Friends of PCC</Link></Button>
           <HelpText>The fee is due annually and is non-refundable. Fees go towards the club's running costs such as our continued affiliation to British Cycling, kit design fees, venue hire and other projects designed to benefit members.</HelpText>
           <h2>Social Rides</h2>
           <p>Our weekend Social Rides are free to join - we welcome all comers whether they choose to become Friends of PCC or not.</p>

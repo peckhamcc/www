@@ -14,8 +14,24 @@ const {
 const {
   getPaymentDigits,
   updateFopccPaymentMethod,
-  verifyWebhookEvent
+  verifyWebhookEvent,
+  getOrderItems,
+  setPaymentMetadata
 } = require('./stripe-client')
+const {
+  sendEmail
+} = require('./email')
+const {
+  fopccNewSubscriptionEmail,
+  fopccUpdatedSubscriptionEmail,
+  fopccPaymentSuccessEmail,
+  fopccPaymentFailureEmail,
+  fopccCancellationEmail,
+  shopOrderEmail
+} = require('./emails')
+const {
+  config
+} = require('./config')
 
 async function handleCheckoutComplete (context, event) {
   const { data: { object: { mode } } } = event
@@ -27,8 +43,9 @@ async function handleCheckoutComplete (context, event) {
   } else if (mode === 'setup') {
     // updating a FoPCC subscription
     await updateFoPCCSubscription(context, event)
-  } else {
+  } else if (mode === 'payment') {
     // a regular shop transaction
+    await handleShopOrder(context, event)
   }
 }
 
@@ -54,6 +71,8 @@ async function handleNewFoPCCSubscription ({ userId, user }, { data: { object } 
       status: 'pending-payment'
     }
   })
+
+  await sendEmail(user.email, config.email.from, 'You are now a Friend of PCC', fopccNewSubscriptionEmail.html(user.name), fopccNewSubscriptionEmail.text(user.name))
 }
 
 async function updateFoPCCSubscription ({ userId, user }, { data: { object } }) {
@@ -87,6 +106,32 @@ async function updateFoPCCSubscription ({ userId, user }, { data: { object } }) 
     user.fopcc.subscriptionId,
     setupIntent
   )
+
+  await sendEmail(user.email, config.email.from, 'Friend of PCC payment details updated', fopccUpdatedSubscriptionEmail.html(user.name), fopccUpdatedSubscriptionEmail.text(user.name))
+}
+
+async function handleShopOrder ({ userId, user }, { data: { object } }) {
+  const paymentIntent = object.payment_intent
+
+  if (!paymentIntent) {
+    throw new httpErrors.BadRequest('No payment intent found')
+  }
+
+  const amount = object.amount_total
+
+  if (!amount) {
+    throw new httpErrors.BadRequest('No payment amount found')
+  }
+
+  await setPaymentMetadata(paymentIntent, {
+    status: 'pending'
+  })
+
+  const lineItems = await getOrderItems(paymentIntent)
+
+  console.info('products', JSON.stringify(lineItems))
+
+  await sendEmail(user.email, config.email.from, 'Peckham Cycle Club order', shopOrderEmail.html(user.name, amount, lineItems), shopOrderEmail.text(user.name, amount, lineItems))
 }
 
 async function handleInvoicePaid (context, event) {
@@ -131,7 +176,7 @@ async function handleFoPCCPayment ({ userId, user }, { data: { object } }) {
     throw new httpErrors.BadRequest('No last4 found')
   }
 
-  const invoice = object.invoice_pdf
+  const invoice = object.hosted_invoice_url
 
   if (!invoice) {
     throw new httpErrors.BadRequest('No invoice found')
@@ -162,6 +207,8 @@ async function handleFoPCCPayment ({ userId, user }, { data: { object } }) {
       invoices
     }
   })
+
+  await sendEmail(user.email, config.email.from, 'Friend of PCC payment collected', fopccPaymentSuccessEmail.html(user.name, invoice), fopccPaymentSuccessEmail.text(user.name, invoice))
 }
 
 async function handleInvoicePaymentFailure (context, event) {
@@ -185,6 +232,8 @@ async function handleFoPCCPaymentFailure ({ userId, user }, { data: { object } }
       status: 'payment-failed'
     }
   })
+
+  await sendEmail(user.email, config.email.from, 'Friend of PCC payment failed', fopccPaymentFailureEmail.html(user.name), fopccPaymentFailureEmail.text(user.name))
 }
 
 async function handleFoPCCCancellation ({ userId, user }, { data: { object } }) {
@@ -201,6 +250,7 @@ async function handleFoPCCCancellation ({ userId, user }, { data: { object } }) 
       subscriptionId: undefined
     }
   })
+  await sendEmail(user.email, config.email.from, 'Friend of PCC membership cancelled', fopccCancellationEmail.html(user.name), fopccCancellationEmail.text(user.name))
 }
 
 async function fopccWebhook ({ body, headers }) {

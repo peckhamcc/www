@@ -43,7 +43,7 @@ class ProfileOrdersPage extends Component {
               </Tab>
             </TabHolder>
             <TabContent>
-              <h3>Kit orders</h3>
+              <h3>Shop orders</h3>
               <Orders />
             </TabContent>
           </Panel>
