@@ -21,13 +21,14 @@ async function updateUserHandler ({ userId, body: details }) {
   const user = await getUser(userId)
 
   await updateCustomer(user, details)
+  await updateUser(userId, details)
 
   return {
     statusCode: 200,
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(await updateUser(userId, details))
+    body: JSON.stringify(await getUser(userId))
   }
 }
 

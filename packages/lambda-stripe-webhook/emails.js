@@ -93,13 +93,13 @@ const htmlTemplateShopOrder = (name, amount, lineItems) => `
       ${displayItems(lineItems, '&pound;', '<br />')}
     </p>
     <p>Total value: &pound;${toCurrencyString(amount)}</p>
-    <p>We aim to submit orders to the factory every two months.</p>
+    <p>We aim to submit orders to the factory once the previous order has arrived (roughly once every two months).</p>
     <p>
       It then typically takes a further six weeks to print, after which your items will be held at
       <a href="https://ratracecycles.com">Rat Race Cycles</a> for you to pick up.
     </p>
-    <p>Once we know the delivery date for your items we'll send you an email to let you know.</p>
-    <p>Please get in touch if you'd like any updates in the interim.</p>
+    <p>You can check on the status of your order at <a href="https://pekcham.cc/profile/orders">https://pekcham.cc/profile/orders</a><p/>
+    <p>Please <a href="https://peckham.cc/contact">get in touch</a> if you'd like any updates in the interim.</p>
     <p>Thank you,</p>
     ${htmlFooter}
   </body>
@@ -117,13 +117,13 @@ ${displayItems(lineItems, '£', '\r\n')}
 
 Total value: £${toCurrencyString(amount)}
 
-We aim to submit orders to the factory every two months.
+We aim to submit orders to the factory once the previous order has arrived (roughly once every two months).
 
 It then typically takes about six weeks to print, after which your items will be held at Rat Race Cycles for you to pick up.
 
-Once we know the delivery date for your items we'll send you an email to let you know.
+You can check on the status of your order at https://pekcham.cc/profile/orders
 
-Please get in touch if you'd like any updates in the interim.
+Please get in touch if you'd like any updates in the interim: https://peckham.cc/contact
 
 Thank you,
 

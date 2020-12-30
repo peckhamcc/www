@@ -129,8 +129,6 @@ async function handleShopOrder ({ userId, user }, { data: { object } }) {
 
   const lineItems = await getOrderItems(paymentIntent)
 
-  console.info('products', JSON.stringify(lineItems))
-
   await sendEmail(user.email, config.email.from, 'Peckham Cycle Club order', shopOrderEmail.html(user.name, amount, lineItems), shopOrderEmail.text(user.name, amount, lineItems))
 }
 
