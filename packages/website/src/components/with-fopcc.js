@@ -20,7 +20,7 @@ class WithFoPCC extends Component {
       children
     } = this.props
 
-    if (user.fopcc && ((user.fopcc.status === 'active') || (user.fopcc.bc && user.fopcc.expires < Date.now()))) {
+    if (user.fopcc && ((user.fopcc.status === 'active') || (user.fopcc.bc && user.fopcc.expires > Date.now()))) {
       return children
     }
 
