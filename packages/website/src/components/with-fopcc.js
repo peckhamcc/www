@@ -32,6 +32,7 @@ class WithFoPCC extends Component {
           <p>To access this area you must be a <Link to='/membership'>Friend of PCC</Link>, our voluntary membership scheme.</p>
           <p>Don't worry though, it is open to all!</p>
           <Button centred><Link to='/profile/fopcc'>Join Friends of PCC</Link></Button>
+          <p>If you have a valid Friends of PCC membership and are seeing this message, please <Link to='/contact'>contact us</Link>.</p>
         </CentredPanel>
       </>
     )
