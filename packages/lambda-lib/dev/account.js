@@ -5,6 +5,7 @@ const jsonDb = require('./json-db')
 const tokens = jsonDb('tokens.json')
 const users = jsonDb('users.json')
 const userLookup = jsonDb('user-lookup.json')
+const customerLookup = jsonDb('customer-lookup.json')
 
 const ONE_HOUR = (60 * 60) * 1000
 const ONE_DAY = ONE_HOUR * 24
@@ -95,16 +96,24 @@ async function updateUser (id, details) {
     userLookup.save()
   }
 
-  return getUser(id)
+  if (details.stripeCustomerId && user.stripeCustomerId !== details.stripeCustomerId) {
+    customerLookup.values[details.stripeCustomerId] = id
+    customerLookup.save()
+  }
 }
 
 async function getUser (id) {
   return users.values[id]
 }
 
+async function getUserIdForCustomerId (customerId) {
+  return customerLookup.values[customerId]
+}
+
 module.exports = {
   generateLogInLink,
   getUserIdForToken,
   updateUser,
-  getUser
+  getUser,
+  getUserIdForCustomerId
 }

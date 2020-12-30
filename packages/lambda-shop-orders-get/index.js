@@ -1,4 +1,5 @@
 const middy = require('middy')
+const httpErrors = require('http-errors')
 const {
   cors
 } = require('middy/middlewares')
@@ -15,7 +16,12 @@ const {
 
 async function ordersGetHandler ({ userId }) {
   const user = await getUser(userId)
-  const orders = await getOrders(user)
+
+  if (!user) {
+    throw new httpErrors.BadRequest('No user found for that ID')
+  }
+
+  const orders = await getOrders(userId, user.stripeCustomerId)
 
   return {
     statusCode: 200,

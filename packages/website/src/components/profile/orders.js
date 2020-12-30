@@ -105,7 +105,7 @@ const Order = ({ order }) => {
   return (
     <div>
       <h4>{date.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</h4>
-      {STATUSES[order.status]}
+      {STATUSES[order.status] && STATUSES[order.status]}
       <Table>
         <THead>
           <Row>

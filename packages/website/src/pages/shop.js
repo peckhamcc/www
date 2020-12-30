@@ -43,11 +43,13 @@ class ShopPage extends Component {
           <WithProducts>
             <Items>
               {
-                Object.keys(this.props.sections).map((id, index) => {
-                  return (
-                    <ShopCategoryPanel item={this.props.sections[id]} key={index} />
-                  )
-                })
+                this.props.sections
+                  .filter(section => section.slug !== 'unknown')
+                  .map(section => {
+                    return (
+                      <ShopCategoryPanel item={section} key={section.slug} />
+                    )
+                  })
               }
             </Items>
           </WithProducts>

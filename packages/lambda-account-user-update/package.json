@@ -16,8 +16,8 @@
   "scripts": {
     "test": "echo 0",
     "clean": "rm -rf build",
-    "build": "cp ../config/index.js config.js && cp ../lambda-lib/email.js email.js && cp ../lambda-lib/account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/stripe-client.js stripe-client.js",
-    "build:dev": "cp ../config/index.js config.js && cp ../lambda-lib/dev-email.js email.js && cp ../lambda-lib/dev-account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/stripe-client.js stripe-client.js",
+    "build": "cp ../config/index.js config.js && cp ../lambda-lib/email.js email.js && cp ../lambda-lib/account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/stripe-client.js stripe-client.js && cp ../lambda-lib/cache.js cache.js",
+    "build:dev": "cp ../config/index.js config.js && cp ../lambda-lib/dev-email.js email.js && cp ../lambda-lib/dev-account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/stripe-client.js stripe-client.js && cp ../lambda-lib/dev-cache.js cache.js",
     "upload": "node-lambda deploy --runtime nodejs12.x --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-account-user-update-role-zbw1hhaj --region eu-west-2",
     "deploy": "run-s clean build upload",
     "lint": "standard"

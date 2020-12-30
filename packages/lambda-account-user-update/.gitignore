@@ -6,3 +6,4 @@ lib.js
 account.js
 roulette.js
 stripe-client.js
+cache.js

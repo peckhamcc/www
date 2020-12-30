@@ -16,6 +16,9 @@ const accountUserUpdate = require('@peckhamcc/lambda-account-user-update')
 const shopOrdersCreate = require('@peckhamcc/lambda-shop-orders-create')
 const shopOrdersGet = require('@peckhamcc/lambda-shop-orders-get')
 const shopProductsGet = require('@peckhamcc/lambda-shop-products-get')
+const fopccJoin = require('@peckhamcc/lambda-fopcc-join')
+const fopccLeave = require('@peckhamcc/lambda-fopcc-leave')
+const stripeWebhook = require('@peckhamcc/lambda-stripe-webhook')
 const { callbackify } = require('util')
 
 const ACCOUNT_ID = nanoid()
@@ -171,6 +174,15 @@ module.exports = (port) => {
 
     app.options(config.lambda.shopOrdersGet, serveLambda('_peckhamcc_lambda-shop-orders-get', sendCorsHeaders))
     app.get(config.lambda.shopOrdersGet, serveLambda('_peckhamcc_lambda-shop-orders-get', shopOrdersGet))
+
+    app.options(config.lambda.fopccJoin, serveLambda('_peckhamcc_lambda-fopcc-join', fopccJoin))
+    app.post(config.lambda.fopccJoin, serveLambda('_peckhamcc_lambda-fopcc-join', fopccJoin))
+
+    app.options(config.lambda.fopccLeave, serveLambda('_peckhamcc_lambda-fopcc-leave', fopccLeave))
+    app.delete(config.lambda.fopccLeave, serveLambda('_peckhamcc_lambda-fopcc-leave', fopccLeave))
+
+    app.options('/lambda/stripe-webhook', serveLambda('_peckhamcc_lambda-fopcc-webhook', stripeWebhook))
+    app.post('/lambda/stripe-webhook', serveLambda('_peckhamcc_lambda-fopcc-webhook', stripeWebhook))
 
     app.use((_, response) => {
       response.sendFile(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist', 'index.html'))

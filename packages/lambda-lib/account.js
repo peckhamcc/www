@@ -133,14 +133,14 @@ async function getUserIdForToken (token) {
 async function getUser (id) {
   const client = new AWS.DynamoDB.DocumentClient()
 
-  const user = await client.get({
+  const result = await client.get({
     TableName: process.env.AWS_USERS_DB_TABLE,
     Key: {
       id
     }
   }).promise()
 
-  return user.Item
+  return result.Item
 }
 
 async function updateUser (id, details) {
@@ -152,7 +152,8 @@ async function updateUser (id, details) {
     'email',
     'gender',
     'size',
-    'stripeCustomerId'
+    'stripeCustomerId',
+    'fopcc'
   ]
 
   const expression = []
@@ -213,12 +214,42 @@ async function updateUser (id, details) {
     }).promise()
   }
 
-  return getUser(id)
+  if (details.stripeCustomerId && user.stripeCustomerId !== details.stripeCustomerId) {
+    // add a stripe customer to user id lookup
+    await client.update({
+      TableName: process.env.AWS_STRIPE_CUSTOMER_LOOKUP_DB_TABLE,
+      Key: {
+        customerId: details.stripeCustomerId
+      },
+      UpdateExpression: 'set #i = :i',
+      ExpressionAttributeNames: {
+        '#i': 'id'
+      },
+      ExpressionAttributeValues: {
+        ':i': id
+      },
+      ReturnValues: 'UPDATED_NEW'
+    }).promise()
+  }
+}
+
+async function getUserIdForCustomerId (customerId) {
+  const client = new AWS.DynamoDB.DocumentClient()
+
+  const userLookup = await client.get({
+    TableName: process.env.AWS_STRIPE_CUSTOMER_LOOKUP_DB_TABLE,
+    Key: {
+      customerId
+    }
+  }).promise()
+
+  return userLookup.Item && userLookup.Item.id
 }
 
 module.exports = {
   generateLogInLink,
   getUserIdForToken,
   updateUser,
-  getUser
+  getUser,
+  getUserIdForCustomerId
 }

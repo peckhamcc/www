@@ -1,5 +1,7 @@
 export { default as About } from './about'
-export { default as Profile } from './profile'
+export { default as ProfileDetails } from './profile-details'
+export { default as ProfileFoPCC } from './profile-fopcc'
+export { default as ProfileOrders } from './profile-orders'
 export { default as Basket } from './basket'
 export { default as Calendar } from './calendar'
 export { default as Checkout } from './checkout'

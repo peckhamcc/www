@@ -16,7 +16,7 @@ const storeConfig = {
     }
 
     if (data.shop) {
-      data.shop.sections = {}
+      data.shop.sections = []
       data.shop.orders = []
     }
 

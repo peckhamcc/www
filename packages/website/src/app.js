@@ -8,7 +8,9 @@ import {
 } from 'react-router-dom'
 import {
   About,
-  Profile,
+  ProfileDetails,
+  ProfileOrders,
+  ProfileFoPCC,
   Basket,
   Checkout,
   CheckoutSuccess,
@@ -78,7 +80,10 @@ export default () => {
               <FlexItem expand>
                 <Navigation />
                 <Route exact path='/' component={Home} />
-                <Route path='/profile' component={Profile} />
+                <Route exact path='/profile' component={ProfileDetails} />
+                <Route exact path='/profile/details' component={ProfileDetails} />
+                <Route exact path='/profile/fopcc' component={ProfileFoPCC} />
+                <Route exact path='/profile/orders' component={ProfileOrders} />
                 <Route path='/equipment' component={Equipment} />
                 <Route path='/rides' component={Rides} />
                 <Route path='/routes' component={Routes} />

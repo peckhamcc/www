@@ -14,6 +14,7 @@ const initialState = {
   phone: null,
   size: null,
   gender: null,
+  fopcc: null,
   acceptedTerms: false
 }
 
@@ -26,7 +27,8 @@ const userReducer = (state = initialState, action) => {
         email: action.payload.email,
         phone: action.payload.phone,
         size: action.payload.size,
-        gender: action.payload.gender
+        gender: action.payload.gender,
+        fopcc: action.payload.fopcc
       }
     case SIGN_OUT:
     case SESSION_EXPIRED_TOKEN:
@@ -37,6 +39,7 @@ const userReducer = (state = initialState, action) => {
         phone: null,
         size: null,
         gender: null,
+        fopcc: null,
         acceptedTerms: false
       }
     case SELECTED_GENDER:

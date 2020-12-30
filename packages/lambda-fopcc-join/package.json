@@ -1,7 +1,7 @@
 {
-  "name": "@peckhamcc/lambda-shop-products-get",
+  "name": "@peckhamcc/lambda-fopcc-join",
   "version": "1.0.0",
-  "description": "Retrieve shop products from stripe",
+  "description": "Start the process to subscribe to fopcc",
   "main": "index.js",
   "homepage": "https://peckhamcc.github.com/www",
   "author": "Alex Potsides",
@@ -18,7 +18,7 @@
     "clean": "rm -rf build",
     "build": "cp ../config/index.js config.js && cp ../lambda-lib/stripe-client.js stripe-client.js && cp ../lambda-lib/account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/cache.js cache.js",
     "build:dev": "cp ../config/index.js config.js && cp ../lambda-lib/stripe-client.js stripe-client.js && cp ../lambda-lib/dev-account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/dev-cache.js cache.js",
-    "upload": "node-lambda deploy --runtime nodejs12.x --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-shop-products-get-role-h01tz0un --region eu-west-2",
+    "upload": "node-lambda deploy --runtime nodejs12.x --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-fopcc-join-role-gmmmyrp3 --region eu-west-2",
     "deploy": "run-s clean build upload",
     "lint": "standard"
   },

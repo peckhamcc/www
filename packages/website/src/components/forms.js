@@ -250,6 +250,24 @@ export const GreenButton = styled(Button)`
   }
 `
 
+export const RedButton = styled(Button)`
+  background-color: #8c0909;
+  color: #FFF;
+  border: 1px solid ${adjustColour('#8c0909', -1)};
+
+  &:hover {
+    background-color: ${adjustColour('#8c0909', 20)};
+  }
+
+  &:active {
+    background-color: ${adjustColour('#8c0909', 60)};
+  }
+
+  &:disabled {
+    background-color: grey;
+  }
+`
+
 export const BlueButton = styled(Button)`
   background-color: ${pccDarkBlue};
   color: #FFF;

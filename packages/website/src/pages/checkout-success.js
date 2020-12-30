@@ -33,7 +33,7 @@ class CheckoutPage extends Component {
             <Breadcrumb section={{ name: 'Success' }} />
             <h2>Order complete</h2>
             <p>Your order has been successfully submitted.</p>
-            <p>Keep an eye on your <Link to='/profile'>profile page</Link> to track the order progress.</p>
+            <p>Keep an eye on your <Link to='/profile/orders'>orders page</Link> to track the order progress.</p>
             <p>Please <Link to='/contact'>contact us</Link> if you have any questions.</p>
           </Panel>
         </PageWrapper>

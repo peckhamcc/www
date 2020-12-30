@@ -1,23 +1,23 @@
 const middy = require('middy')
 const {
   cors,
-  jsonBodyParser,
-  validator
+  jsonBodyParser
 } = require('middy/middlewares')
 const {
   errorHandler,
   tokenValidator
 } = require('./middleware')
 const {
-  createCheckoutSession,
-  getOrCreateCustomerId
+  getOrCreateCustomerId,
+  updateFopccCheckoutSession,
+  createFopccCheckoutSession
 } = require('./stripe-client')
 const {
   updateUser,
   getUser
 } = require('./account')
 
-async function ordersCreateHandler ({ userId, body: items }) {
+async function fopccJoinHandler ({ userId, body: items }) {
   const user = await getUser(userId)
 
   if (!user.stripeCustomerId) {
@@ -30,7 +30,21 @@ async function ordersCreateHandler ({ userId, body: items }) {
     user.stripeCustomerId = stripeCustomerId
   }
 
-  const sessionId = await createCheckoutSession(userId, user.stripeCustomerId, items)
+  let sessionId
+
+  if (user.fopcc && user.fopcc.subscriptionId) {
+    // manage existing subscription
+    sessionId = await updateFopccCheckoutSession(userId, user.stripeCustomerId, user.fopcc.subscriptionId)
+  } else {
+    // create new subscription
+    await updateUser(userId, {
+      fopcc: {
+        status: 'pending'
+      }
+    })
+
+    sessionId = await createFopccCheckoutSession(userId, user.stripeCustomerId)
+  }
 
   return {
     statusCode: 200,
@@ -43,38 +57,11 @@ async function ordersCreateHandler ({ userId, body: items }) {
   }
 }
 
-const inputSchema = {
-  type: 'object',
-  properties: {
-    body: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          slug: {
-            type: 'string'
-          },
-          quantity: {
-            type: 'string'
-          },
-          options: {
-            type: 'object'
-          }
-        },
-        required: [
-          'slug', 'quantity'
-        ]
-      }
-    }
-  }
-}
-
 module.exports = {
-  handler: middy(ordersCreateHandler)
+  handler: middy(fopccJoinHandler)
     .use(errorHandler())
     .use(tokenValidator())
     .use(jsonBodyParser())
-    .use(validator({ inputSchema }))
     .use(cors({
       origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'
     }))

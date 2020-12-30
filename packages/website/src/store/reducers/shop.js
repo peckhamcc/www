@@ -14,8 +14,7 @@ import {
 const initialState = {
   cart: [],
   loadingProducts: true,
-  sections: {},
-  products: {},
+  sections: [],
   slugLookup: {},
   orders: [],
   loadingOrders: true
@@ -27,7 +26,7 @@ const shopReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingProducts: true,
-        sections: {},
+        sections: [],
         slugLookup: {}
       }
     }

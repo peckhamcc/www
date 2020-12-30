@@ -443,7 +443,9 @@ const config = {
     accountUserUpdate: '/lambda/account-user-update',
     shopProductsGet: '/lambda/shop-products-get',
     shopOrdersCreate: '/lambda/shop-orders-create',
-    shopOrdersGet: '/lambda/shop-orders-get'
+    shopOrdersGet: '/lambda/shop-orders-get',
+    fopccJoin: '/lambda/fopcc-join',
+    fopccLeave: '/lambda/fopcc-leave'
   },
   flags: {
     shop: true,
@@ -464,7 +466,11 @@ const config = {
     publishableKey: 'pk_test_rmrtd0D68Bhyua67OuSctFir',
     secretKey: 'sk_test_DhQgzX3EJlaiDQPhbsju94dc',
     checkoutSuccess: 'http://localhost:9000/checkout/success',
-    checkoutCancel: 'http://localhost:9000/basket'
+    checkoutCancel: 'http://localhost:9000/basket',
+    webhookSecret: 'whsec_3KbRZmxQdQtJrkE6H929x8de2Vg6trY2',
+    fopccSuccess: 'http://localhost:9000/profile/fopcc',
+    fopccCancel: 'http://localhost:9000/profile/fopcc',
+    fopccId: 'price_1I2XUx2cnIK2AWWQ8Y5xgq4I'
   }
 }
 
@@ -479,11 +485,17 @@ if (process.env.NODE_ENV !== 'development') {
   config.lambda.shopProductsGet = 'https://api.peckham.cc/shop/products'
   config.lambda.shopOrdersCreate = 'https://api.peckham.cc/user/orders'
   config.lambda.shopOrdersGet = 'https://api.peckham.cc/user/orders'
+  config.lambda.fopccJoin = 'https://api.peckham.cc/fopcc'
+  config.lambda.fopccLeave = 'https://api.peckham.cc/fopcc'
 
   config.stripe.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY
   config.stripe.secretKey = process.env.STRIPE_SECRET_KEY
   config.stripe.checkoutSuccess = 'https://peckham.cc/checkout/success'
   config.stripe.checkoutCancel = 'https://peckham.cc/basket'
+  config.stripe.webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
+  config.stripe.fopccSuccess = 'https://peckham.cc/profile/fopcc'
+  config.stripe.fopccCancel = 'https://peckham.cc/profile/fopcc'
+  config.stripe.fopccId = process.env.STRIPE_FOPCC_ID
 }
 
 module.exports = {
