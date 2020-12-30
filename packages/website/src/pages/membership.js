@@ -6,6 +6,9 @@ import {
 } from 'react-router-dom'
 import styled from 'styled-components'
 import {
+  connect
+} from 'react-redux'
+import {
   spacing
 } from '../units'
 import {
@@ -37,6 +40,25 @@ const ListItem = styled.li`
 
 class MembershipPage extends Component {
   render () {
+    const {
+      user
+    } = this.props
+
+    let joinOrManage = (
+      <>
+        <Button><Link to='/profile/fopcc'>Join Friends of PCC</Link></Button>
+      </>
+    )
+
+    if (user.fopcc && ((user.fopcc.status === 'active') || (user.fopcc.bc && user.fopcc.expires > Date.now()))) {
+      joinOrManage = (
+        <>
+          <p>You are a Friend of PCC</p>
+          <Button><Link to='/profile/fopcc'>Manage your Friends of PCC membership</Link></Button>
+        </>
+      )
+    }
+
     return (
       <PageWrapper>
         <Hero background={membershipBackground.src} />
@@ -53,8 +75,7 @@ class MembershipPage extends Component {
             <ListItem>20% off your first in-store purchase at <a href='https://www.cafeducycliste.com/london-store/'>Cafe du Cycliste</a> near Spitalfields</ListItem>
             <ListItem>20% off a bike fit at <a href='http://cadenceperformance.com/'>Cadence Performance</a> in Crystal Palace</ListItem>
           </PerksList>
-          <p>The scheme is managed via the British Cycling website. You do not have to join British Cycling be part of Friends of PCC but we do recommend it.</p>
-          <Button><Link to='/profile/fopcc'>Join Friends of PCC</Link></Button>
+          {joinOrManage}
           <HelpText>The fee is due annually and is non-refundable. Fees go towards the club's running costs such as our continued affiliation to British Cycling, kit design fees, venue hire and other projects designed to benefit members.</HelpText>
           <h2>Social Rides</h2>
           <p>Our weekend Social Rides are free to join - we welcome all comers whether they choose to become Friends of PCC or not.</p>
@@ -70,4 +91,12 @@ class MembershipPage extends Component {
   }
 }
 
-export default MembershipPage
+const mapStateToProps = ({ user }) => ({
+  user
+})
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MembershipPage)
