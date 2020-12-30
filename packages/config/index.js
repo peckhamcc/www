@@ -490,10 +490,10 @@ if (process.env.NODE_ENV !== 'development') {
   config.lambda.fopccJoin = 'https://api.peckham.cc/fopcc'
   config.lambda.fopccLeave = 'https://api.peckham.cc/fopcc'
 
-  // config.stripe.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY
-  // config.stripe.secretKey = process.env.STRIPE_SECRET_KEY
-  // config.stripe.webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
-  // config.stripe.fopccId = process.env.STRIPE_FOPCC_ID
+  config.stripe.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY
+  config.stripe.secretKey = process.env.STRIPE_SECRET_KEY
+  config.stripe.webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
+  config.stripe.fopccId = process.env.STRIPE_FOPCC_ID
   config.stripe.checkoutSuccess = 'https://peckham.cc/checkout/success'
   config.stripe.checkoutCancel = 'https://peckham.cc/basket'
   config.stripe.fopccSuccess = 'https://peckham.cc/profile/fopcc'

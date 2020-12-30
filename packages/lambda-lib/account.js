@@ -172,7 +172,7 @@ async function updateUser (id, details) {
 
   if (!expression.length) {
     // nothing to update here
-    return getUser(id)
+    return
   }
 
   const client = new AWS.DynamoDB.DocumentClient()

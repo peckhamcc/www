@@ -17,7 +17,7 @@ const {
   getUser
 } = require('./account')
 
-async function fopccJoinHandler ({ userId, body: items }) {
+async function fopccJoinHandler ({ userId }) {
   const user = await getUser(userId)
 
   if (!user.stripeCustomerId) {
