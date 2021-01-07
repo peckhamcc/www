@@ -86,7 +86,8 @@
     "parser": "babel-eslint",
     "ignore": [
       "dist",
-      "src/lib"
+      "src/lib",
+      "assets/routes/index.js"
     ]
   }
 }
