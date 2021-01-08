@@ -12,7 +12,7 @@ const TYPES = {
 }
 
 const RIDEWITHGPS_IDS = [
-  'https://ridewithgps.com/routes/34978326', // PCC Geoff\'s Suburban London Social
+  'https://ridewithgps.com/routes/34978326', // PCC Geoff's Suburban London Social
   'https://ridewithgps.com/routes/34684178', // PCC CX South London Loop
   'https://ridewithgps.com/routes/34684114', // PCC Surrey Hills
   'https://ridewithgps.com/routes/34684089', // PCC Peckham to Rye
