@@ -10,3 +10,4 @@ build
 .lambda
 .env
 deploy.env
+packages/website/assets/routes
