@@ -32,7 +32,7 @@ const RIDEWITHGPS_IDS = [
 
   'https://ridewithgps.com/routes/35012533', // PCC Ally Pally
   'https://ridewithgps.com/routes/35012528', // PCC Thames Path East
-  'https://ridewithgps.com/routes/35012504', // PCC Every London Bridge
+  'https://ridewithgps.com/routes/35034777', // PCC Every London Bridge
   'https://ridewithgps.com/routes/35012502', // PCC South London Alpine
   'https://ridewithgps.com/routes/35012501', // PCC Hills of South East London
 ]
