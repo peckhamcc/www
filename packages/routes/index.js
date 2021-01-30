@@ -30,7 +30,7 @@ const RIDEWITHGPS_IDS = [
   'https://ridewithgps.com/routes/34684188', // PCC CX Social Alt
   'https://ridewithgps.com/routes/34684164', // PCC CX Darent & Thames Path
 
-  'https://ridewithgps.com/routes/35012533', // PCC Ally Pally
+  'https://ridewithgps.com/routes/35102689', // PCC Ally Pally
   'https://ridewithgps.com/routes/35012528', // PCC Thames Path East
   'https://ridewithgps.com/routes/35034777', // PCC Every London Bridge
   'https://ridewithgps.com/routes/35012502', // PCC South London Alpine
