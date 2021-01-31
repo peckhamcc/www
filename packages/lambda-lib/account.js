@@ -7,7 +7,8 @@ AWS.config.update({
   region: config.aws.dynamodb.region
 })
 
-const ONE_HOUR = (60 * 60) * 1000
+const FIFTEEN_MINUTES = (15 * 60) * 1000
+const ONE_HOUR = FIFTEEN_MINUTES * 4
 const ONE_DAY = ONE_HOUR * 24
 
 const REDIRECT_URLS = {
@@ -17,7 +18,11 @@ const REDIRECT_URLS = {
   '/checkout': true
 }
 
-function tokenExpiry () {
+function loginTokenExpiry () {
+  return Math.round(new Date(Date.now() + FIFTEEN_MINUTES).getTime() / 1000)
+}
+
+function fullTokenExpiry () {
   return Math.round(new Date(Date.now() + ONE_DAY).getTime() / 1000)
 }
 
@@ -31,7 +36,7 @@ async function extendToken (token) {
     },
     UpdateExpression: 'set expires = :e',
     ExpressionAttributeValues: {
-      ':e': tokenExpiry()
+      ':e': fullTokenExpiry()
     },
     ReturnValues: 'UPDATED_NEW'
   }).promise()
@@ -99,13 +104,14 @@ async function generateLogInLink (email, redirect) {
     Item: {
       token: `${token}`,
       user: `${id}`,
+      type: 'login',
       // ttl is enabled on the DynamoDB table for the 'expires' field
-      expires: tokenExpiry()
+      expires: loginTokenExpiry()
     }
   })
     .promise()
 
-  return `https://peckham.cc${redirect}?token=${token}`
+  return `https://peckham.cc${redirect}#token=${token}`
 }
 
 async function getUserIdForToken (token) {
@@ -120,6 +126,11 @@ async function getUserIdForToken (token) {
 
   if (!existingToken || !existingToken.Item) {
     console.info('Nothing in token table for', token)
+    throw new httpErrors.Unauthorized('Missing or invalid credentials')
+  }
+
+  if (existingToken.type !== 'full') {
+    console.info('Token', token, 'was login token')
     throw new httpErrors.Unauthorized('Missing or invalid credentials')
   }
 
@@ -246,10 +257,59 @@ async function getUserIdForCustomerId (customerId) {
   return userLookup.Item && userLookup.Item.id
 }
 
+async function invalidateToken (token) {
+  const client = new AWS.DynamoDB.DocumentClient()
+
+  // remove old token
+  await client.delete({
+    TableName: process.env.AWS_TOKENS_DB_TABLE,
+    Key: {
+      token
+    }
+  }).promise()
+}
+
+async function exchangeToken (token) {
+  const client = new AWS.DynamoDB.DocumentClient()
+
+  const existingToken = await client.get({
+    TableName: process.env.AWS_TOKENS_DB_TABLE,
+    Key: {
+      token
+    }
+  }).promise()
+
+  if (existingToken.type !== 'login') {
+    console.info('Token', token, 'was full token')
+    throw new httpErrors.Unauthorized('Missing or invalid credentials')
+  }
+
+  // expire the old token
+  await invalidateToken(token)
+
+  token = nanoid()
+
+  await client.put({
+    TableName: process.env.AWS_TOKENS_DB_TABLE,
+    Item: {
+      token: `${token}`,
+      user: `${existingToken.user}`,
+      type: 'full',
+      // ttl is enabled on the DynamoDB table for the 'expires' field
+      expires: fullTokenExpiry()
+    }
+  })
+    .promise()
+
+  return token
+}
+
 module.exports = {
   generateLogInLink,
   getUserIdForToken,
   updateUser,
   getUser,
-  getUserIdForCustomerId
+  getUserIdForCustomerId,
+  exchangeToken,
+  invalidateToken
 }

@@ -38,6 +38,7 @@ const STEPS = {
   VALIDATING_TOKEN: 'VALIDATING_TOKEN',
   ENTER_DETAILS: 'ENTER_DETAILS',
   SAVING_DETAILS: 'SAVING_DETAILS',
+  TOKEN_EXPIRED: 'TOKEN_EXPIRED',
   DONE: 'DONE',
   ERROR: 'ERROR'
 }
@@ -83,15 +84,73 @@ class WithUser extends Component {
   }
 
   async componentDidMount () {
-    const token = new URLSearchParams(window.location.search).get('token')
+    const token = new URLSearchParams(window.location.hash.substring(1)).get('token')
 
     if (token) {
       this.props.signOut()
-      await this._validateToken(token)
+
+      window.history.pushState('', document.title, window.location.pathname)
+
+      await this._exchangeToken(token)
     }
   }
 
-  async _validateToken (token) {
+  async _exchangeToken (token) {
+    this.setState({
+      step: STEPS.VALIDATING_TOKEN
+    })
+
+    try {
+      const response = await global.fetch(config.lambda.accountTokenExchange, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          token
+        })
+      })
+
+      if (response.status === 200) {
+        const body = await response.json()
+
+        return this._getUserDetails(body.token)
+      }
+
+      if (response.status === 401) {
+        this.props.expiredToken()
+
+        this.setState({
+          step: STEPS.ENTER_EMAIL
+        })
+
+        return
+      }
+
+      if (response.status === 422) {
+        const body = await response.json()
+
+        this.setState({
+          step: STEPS.ENTER_EMAIL,
+          error: body.field
+        })
+
+        return
+      }
+
+      console.info(response)
+      throw new Error('Could not verify token')
+    } catch (error) {
+      this.setState({
+        step: STEPS.ERROR,
+        error
+      })
+
+      console.error(error)
+    }
+  }
+
+  async _getUserDetails (token) {
     this.setState({
       step: STEPS.VALIDATING_TOKEN
     })
@@ -108,15 +167,11 @@ class WithUser extends Component {
         this.props.setToken(token)
         this.props.signIn(await response.json())
 
-        window.location = `${window.location}`.split('?')[0]
-
         return
       }
 
       if (response.status === 401) {
         this.props.expiredToken()
-
-        window.location = `${window.location}`.split('?')[0]
 
         return
       }

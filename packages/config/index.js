@@ -585,6 +585,8 @@ const config = {
     rideRoulettePreferencesSet: '/lambda/ride-roulette-preferences-set',
     rideRouletteRidesGet: '/lambda/ride-roulette-rides-get',
     accountTokenGenerate: '/lambda/account-token-create',
+    accountTokenExchange: '/lambda/account-token-exchange',
+    accountTokenInvalidate: '/lambda/account-token-invalidate',
     accountUserGet: '/lambda/account-user-get',
     accountUserUpdate: '/lambda/account-user-update',
     shopProductsGet: '/lambda/shop-products-get',
@@ -637,6 +639,8 @@ if (process.env.NODE_ENV !== 'development') {
   config.lambda.rideRoulettePreferencesSet = 'https://api.peckham.cc/ride-roulette/preferences'
   config.lambda.rideRouletteRidesGet = 'https://api.peckham.cc/ride-roulette/rides'
   config.lambda.accountTokenGenerate = 'https://api.peckham.cc/token'
+  config.lambda.accountTokenExchange = 'https://api.peckham.cc/token'
+  config.lambda.accountTokenInvalidate = 'https://api.peckham.cc/token'
   config.lambda.accountUserGet = 'https://api.peckham.cc/user'
   config.lambda.accountUserUpdate = 'https://api.peckham.cc/user'
   config.lambda.shopProductsGet = 'https://api.peckham.cc/shop/products'

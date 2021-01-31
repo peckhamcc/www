@@ -25,6 +25,9 @@ import onscrolling from 'onscrolling'
 import {
   Flag
 } from '../lib/flags'
+import {
+  config
+} from '@peckhamcc/config'
 
 const HAMBUGER_BREAK = 800
 
@@ -164,6 +167,20 @@ const MobileNav = styled.ul`
   }
 `
 
+const UserNav = styled.ul`
+  background: #FFF;
+  margin: 0;
+  padding: 10px 50px 10px 20px;
+  float: right;
+
+
+  li {
+    display: block;
+    padding: 10px;
+    padding-right: 0;
+  }
+`
+
 const SiteIcon = styled.div`
   padding: 5px 0 0 0;
   position: absolute;
@@ -218,6 +235,27 @@ class NavBarWrapper extends Component {
     }))
   }
 
+  handleToggleDropDownUserMenu = () => {
+    this.setState(s => ({
+      userMenuOpen: !s.userMenuOpen
+    }))
+  }
+
+  handleSignOut = async () => {
+    this.props.signOut()
+
+    try {
+      await global.fetch(config.lambda.accountTokenInvalidate, {
+        method: 'DELETE',
+        headers: {
+          Authorization: this.props.token
+        }
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   render () {
     const {
       cart,
@@ -225,7 +263,7 @@ class NavBarWrapper extends Component {
         pathname
       }
     } = this.props
-    const { bgOpacity, menuOpen } = this.state
+    const { bgOpacity, menuOpen, userMenuOpen } = this.state
     let logoOpacity = 1
 
     if (pathname === '/') {
@@ -310,10 +348,8 @@ class NavBarWrapper extends Component {
 
         <Flag name={['shop']}>
           <AccountNav>
-            <ProfileLink>
-              <Link to='/profile'>
-                <FaUser />
-              </Link>
+            <ProfileLink onClick={this.handleToggleDropDownUserMenu}>
+              <FaUser />
             </ProfileLink>
             <CartLink>
               <Link to='/basket' style={{ position: 'relative' }}>
@@ -323,6 +359,31 @@ class NavBarWrapper extends Component {
             </CartLink>
           </AccountNav>
         </Flag>
+
+        {userMenuOpen && (
+          <ModalBlocker onClick={this.handleToggleDropDownUserMenu} style={{ top: 59 }}>
+            <UserNav>
+              {this.props.token ? (
+                <>
+                  <NavLink>
+                    <Link to='/profile'>Profile</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link onClick={this.handleSignOut}>
+                      Log out
+                    </Link>
+                  </NavLink>
+                </>
+              ) : (
+                <>
+                  <NavLink>
+                    <Link to='/profile'>Log in</Link>
+                  </NavLink>
+                </>
+              )}
+            </UserNav>
+          </ModalBlocker>
+        )}
 
         {menuOpen && (
           <ModalBlocker onClick={this.handleToggleDropDownMenu} style={{ top: 60 }}>
@@ -387,13 +448,14 @@ class NavBarWrapper extends Component {
   }
 }
 
-const mapStateToProps = ({ shop: { cart }, user: { user } }) => ({
+const mapStateToProps = ({ shop: { cart }, user: { user }, session: { token } }) => ({
   cart,
-  user
+  user,
+  token
 })
 
 const mapDispatchToProps = {
-  signOut: signOut
+  signOut
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBarWrapper))

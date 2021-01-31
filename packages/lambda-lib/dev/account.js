@@ -7,15 +7,20 @@ const users = jsonDb('users.json')
 const userLookup = jsonDb('user-lookup.json')
 const customerLookup = jsonDb('customer-lookup.json')
 
-const ONE_HOUR = (60 * 60) * 1000
+const FIFTEEN_MINUTES = (15 * 60) * 1000
+const ONE_HOUR = FIFTEEN_MINUTES * 4
 const ONE_DAY = ONE_HOUR * 24
 
-function tokenExpiry () {
+function loginTokenExpiry () {
+  return new Date(Date.now() + FIFTEEN_MINUTES).getTime()
+}
+
+function fullTokenExpiry () {
   return new Date(Date.now() + ONE_DAY).getTime()
 }
 
 async function extendToken (key) {
-  tokens.values[key].expires = tokenExpiry()
+  tokens.values[key].expires = fullTokenExpiry()
   tokens.save()
 }
 
@@ -24,6 +29,23 @@ const REDIRECT_URLS = {
   '/shop': true,
   '/ride-roulette': true,
   '/checkout': true
+}
+
+function findToken (key) {
+  // simulate DynamoDB TTL
+  if (tokens.values[key] && tokens.values[key].expires < Date.now()) {
+    delete tokens.values[key]
+    tokens.save()
+
+    console.info('token', key, 'expired')
+  }
+
+  if (!tokens.values[key]) {
+    console.info('token', key, 'missing', tokens.values)
+    throw new httpErrors.Unauthorized('Missing or invalid credentials')
+  }
+
+  return tokens.values[key]
 }
 
 async function generateLogInLink (email, redirect) {
@@ -51,30 +73,24 @@ async function generateLogInLink (email, redirect) {
 
   tokens.values[key] = {
     user: userId,
-    expires: tokenExpiry()
+    expires: loginTokenExpiry(),
+    type: 'login'
   }
   tokens.save()
 
-  return `http://localhost:9000${redirect}?token=${key}`
+  return `http://localhost:9000${redirect}#token=${key}`
 }
 
-async function getUserIdForToken (token) {
-  // simulate DynamoDB TTL
-  if (tokens.values[token] && tokens.values[token].expires < Date.now()) {
-    delete tokens.values[token]
-    tokens.save()
+async function getUserIdForToken (key) {
+  const token = findToken(key)
 
-    console.info('token', token, 'expired')
+  if (token.type !== 'full') {
+    throw httpErrors.BadRequest('Invalid token')
   }
 
-  if (!tokens.values[token]) {
-    console.info('token', token, 'missing', tokens.values)
-    throw new httpErrors.Unauthorized('Missing or invalid credentials')
-  }
+  await extendToken(key)
 
-  await extendToken(token)
-
-  return tokens.values[token].user
+  return tokens.values[key].user
 }
 
 async function updateUser (id, details) {
@@ -110,10 +126,39 @@ async function getUserIdForCustomerId (customerId) {
   return customerLookup.values[customerId]
 }
 
+async function invalidateToken (key) {
+  delete tokens.values[key]
+  tokens.save()
+}
+
+async function exchangeToken (key) {
+  const token = findToken(key)
+
+  if (token.type !== 'login') {
+    throw new httpErrors.Unauthorized('Missing or invalid credentials')
+  }
+
+  // expire the old token
+  await invalidateToken(key)
+
+  // create a new token
+  key = nanoid()
+  tokens.values[key] = {
+    user: token.user,
+    expires: fullTokenExpiry(),
+    type: 'full'
+  }
+  tokens.save()
+
+  return key
+}
+
 module.exports = {
   generateLogInLink,
   getUserIdForToken,
   updateUser,
   getUser,
-  getUserIdForCustomerId
+  getUserIdForCustomerId,
+  exchangeToken,
+  invalidateToken
 }

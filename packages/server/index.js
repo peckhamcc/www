@@ -11,6 +11,8 @@ const rideRoulettePreferencesSet = require('@peckhamcc/lambda-ride-roulette-pref
 const rideRouletteRidesGenerate = require('@peckhamcc/lambda-ride-roulette-rides-generate')
 const rideRouletteRidesGet = require('@peckhamcc/lambda-ride-roulette-rides-get')
 const accountTokenGenerate = require('@peckhamcc/lambda-account-token-create')
+const accountTokenExchange = require('@peckhamcc/lambda-account-token-exchange')
+const accountTokenInvalidate = require('@peckhamcc/lambda-account-token-invalidate')
 const accountUserGet = require('@peckhamcc/lambda-account-user-get')
 const accountUserUpdate = require('@peckhamcc/lambda-account-user-update')
 const shopOrdersCreate = require('@peckhamcc/lambda-shop-orders-create')
@@ -182,6 +184,12 @@ module.exports = (port) => {
 
     app.options(config.lambda.accountTokenGenerate, serveLambda('_peckhamcc_lambda-account-token-create', sendCorsHeaders))
     app.post(config.lambda.accountTokenGenerate, serveLambda('_peckhamcc_lambda-account-token-create', accountTokenGenerate))
+
+    app.options(config.lambda.accountTokenExchange, serveLambda('_peckhamcc_lambda-account-token-exchange', sendCorsHeaders))
+    app.put(config.lambda.accountTokenExchange, serveLambda('_peckhamcc_lambda-account-token-exchange', accountTokenExchange))
+
+    app.options(config.lambda.accountTokenInvalidate, serveLambda('_peckhamcc_lambda-account-token-invalidate', sendCorsHeaders))
+    app.delete(config.lambda.accountTokenInvalidate, serveLambda('_peckhamcc_lambda-account-token-invalidate', accountTokenInvalidate))
 
     app.options(config.lambda.accountUserGet, serveLambda('_peckhamcc_lambda-account-user-get', sendCorsHeaders))
     app.get(config.lambda.accountUserGet, serveLambda('_peckhamcc_lambda-account-user-get', accountUserGet))
