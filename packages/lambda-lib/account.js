@@ -129,8 +129,8 @@ async function getUserIdForToken (token) {
     throw new httpErrors.Unauthorized('Missing or invalid credentials')
   }
 
-  if (existingToken.type !== 'full') {
-    console.info('Token', token, 'was login token')
+  if (existingToken.Item.type !== 'full') {
+    console.info('Token', token, 'was', existingToken.Item.type, 'token')
     throw new httpErrors.Unauthorized('Missing or invalid credentials')
   }
 
