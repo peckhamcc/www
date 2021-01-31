@@ -279,8 +279,13 @@ async function exchangeToken (token) {
     }
   }).promise()
 
-  if (existingToken.type !== 'login') {
-    console.info('Token', token, 'was full token')
+  if (!existingToken.Item) {
+    console.info('No token for', token)
+    throw new httpErrors.Unauthorized('Missing or invalid credentials')
+  }
+
+  if (existingToken.Item.type !== 'login') {
+    console.info('Token', token, 'was', existingToken.Item.type, 'token')
     throw new httpErrors.Unauthorized('Missing or invalid credentials')
   }
 
@@ -293,7 +298,7 @@ async function exchangeToken (token) {
     TableName: process.env.AWS_TOKENS_DB_TABLE,
     Item: {
       token: `${token}`,
-      user: `${existingToken.user}`,
+      user: `${existingToken.Item.user}`,
       type: 'full',
       // ttl is enabled on the DynamoDB table for the 'expires' field
       expires: fullTokenExpiry()
