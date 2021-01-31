@@ -17,9 +17,12 @@ async function handleExchangeToken ({ body: { token: loginToken } }) {
 
   return {
     statusCode: 200,
-    body: {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
       token: fullToken
-    }
+    })
   }
 }
 
