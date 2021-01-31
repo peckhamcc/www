@@ -20,6 +20,7 @@ const shopProductsGet = require('@peckhamcc/lambda-shop-products-get')
 const fopccJoin = require('@peckhamcc/lambda-fopcc-join')
 const fopccLeave = require('@peckhamcc/lambda-fopcc-leave')
 const stripeWebhook = require('@peckhamcc/lambda-stripe-webhook')
+const inkthreadableWebhook = require('@peckhamcc/lambda-inkthreadable-webhook')
 const { callbackify } = require('util')
 
 const ACCOUNT_ID = nanoid()
@@ -49,6 +50,27 @@ const serveLambda = (name, lambda) => {
       multiValueHeaders[key] = [value]
     }
 
+    const multiValueQueryStringParameters = {}
+
+    for (const key of Object.keys(request.query)) {
+      if (Array.isArray(request.query[key])) {
+        multiValueQueryStringParameters[key] = request.query[key]
+      } else {
+        multiValueQueryStringParameters[key] = [request.query[key]]
+      }
+    }
+
+    const queryStringParameters = {}
+
+    for (const key of Object.keys(request.query)) {
+      if (Array.isArray(request.query[key])) {
+        // last parameter wins with amazon lambda integration
+        queryStringParameters[key] = request.query[key][request.query[key].length - 1]
+      } else {
+        queryStringParameters[key] = request.query[key]
+      }
+    }
+
     // an AWS Proxy event https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway-tutorial.html
     const event = {
       resource: request.path,
@@ -56,8 +78,8 @@ const serveLambda = (name, lambda) => {
       httpMethod: request.method,
       headers: headers,
       multiValueHeaders: multiValueHeaders,
-      queryStringParameters: null,
-      multiValueQueryStringParameters: null,
+      queryStringParameters: queryStringParameters,
+      multiValueQueryStringParameters: multiValueQueryStringParameters,
       pathParameters: request.params,
       stageVariables: null,
       requestContext: {
@@ -185,8 +207,11 @@ module.exports = (port) => {
     app.options(config.lambda.fopccLeave, serveLambda('_peckhamcc_lambda-fopcc-leave', sendCorsHeaders))
     app.delete(config.lambda.fopccLeave, serveLambda('_peckhamcc_lambda-fopcc-leave', fopccLeave))
 
-    app.options('/lambda/stripe-webhook', serveLambda('_peckhamcc_lambda-fopcc-webhook', stripeWebhook))
-    app.post('/lambda/stripe-webhook', serveLambda('_peckhamcc_lambda-fopcc-webhook', stripeWebhook))
+    app.options('/lambda/stripe-webhook', serveLambda('_peckhamcc_lambda-stripe-webhook', stripeWebhook))
+    app.post('/lambda/stripe-webhook', serveLambda('_peckhamcc_lambda-stripe-webhook', stripeWebhook))
+
+    app.options('/lambda/inkthreadable-webook', serveLambda('_peckhamcc_lambda-inkthreadable-webhook', inkthreadableWebhook))
+    app.post('/lambda/inkthreadable-webhook', serveLambda('_peckhamcc_lambda-inkthreadable-webhook', inkthreadableWebhook))
 
     app.use((_, response) => {
       response.sendFile(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist', 'index.html'))

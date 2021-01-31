@@ -46,6 +46,13 @@ import {
   Flag
 } from '../../lib/flags'
 
+const PRODUCT_TYPES = {
+  'made-to-order': 'Made to order',
+  dropship: 'Made on demand',
+  premade: 'Pre-made',
+  subscription: 'Subscription'
+}
+
 const BasketWrapper = styled.div`
   display: flex;
 
@@ -129,7 +136,11 @@ const ButtonHolder = styled.div`
 `
 
 const DetailWrapper = styled.div`
-  margin: ${spacing(1)} 0;
+  margin: 0 0 ${spacing(0.5)} 0;
+
+  p {
+    margin: 0
+  }
 `
 
 const Terms = styled.div`
@@ -144,7 +155,7 @@ const Terms = styled.div`
     color: ${errorText};
   ` : ''}
 
-  h4 {
+  h4, h5 {
     margin: 0 ${spacing(1)};
     padding: 0;
   }
@@ -155,6 +166,51 @@ const Terms = styled.div`
     text-align: left;
   }
 `
+
+const SHIPPING_LIMITS = [{
+  max: 99,
+  method: 'Royal Mail 24 Recorded',
+  cost: 330
+}, {
+  max: 100,
+  method: 'Royal Mail 24 Recorded',
+  cost: 380
+}, {
+  max: 699,
+  method: 'DPD Next Day',
+  cost: 560
+}, {
+  max: Infinity,
+  method: 'DPD Next Day',
+  cost: 850
+}]
+
+const findShippingMethod = (shippingWeight) => {
+  return SHIPPING_LIMITS
+    .filter(method => shippingWeight < method.max)
+    .shift()
+}
+
+const Shipping = ({ shippingWeight }) => {
+  const {
+    method,
+    cost
+  } = findShippingMethod(shippingWeight)
+
+  return (
+    <Row>
+      <Cell>
+        <ProductTitle>Shipping</ProductTitle>
+        <ProductDetails>
+          <DetailWrapper>
+            Shipping of made on demand items will be via {method}
+          </DetailWrapper>
+        </ProductDetails>
+      </Cell>
+      <Cell><Price price={cost} /></Cell>
+    </Row>
+  )
+}
 
 class Basket extends Component {
   state = {
@@ -205,12 +261,90 @@ class Basket extends Component {
       acceptedTerms,
       slugLookup
     } = this.props
-    const { showTermsError } = this.state
+    const {
+      showTermsError
+    } = this.state
 
     if (!cart.length) {
       return (
         <p>There's nothing in your cart. Try visiting the <Link to='/shop'>shop</Link>?</p>
       )
+    }
+
+    let hasMtoKit = false
+    let hasDropShipKit = false
+    let hasPremadeKit = false
+    let hasSubscription = false
+
+    cart.forEach(item => {
+      const product = slugLookup[item.slug]
+
+      hasMtoKit = hasMtoKit || product.type === 'made-to-order'
+      hasDropShipKit = hasDropShipKit || product.type === 'dropship'
+      hasPremadeKit = hasPremadeKit || product.type === 'premade'
+      hasSubscription = hasSubscription || product.type === 'subscription'
+    })
+
+    const terms = []
+
+    if (hasMtoKit) {
+      terms.push((
+        <>
+          <h5>Made to order</h5>
+          <p>Your basket contains kit that is made to order.</p>
+          <p>Orders cannot be cancelled, exchanged, or refunded once your order has been placed.</p>
+          <p>We aim to send kit orders to the factory every two months, then it will take approximately 6 weeks to be made &amp; shipped.</p>
+          <p>When items are available, your order will be available to be picked up from <a href='https://ratracecycles.com/'>Rat Race Cycles</a> at 118 Evelina Road, SE15 3HL.</p>
+        </>
+      ))
+    }
+
+    if (hasDropShipKit) {
+      terms.push((
+        <>
+          <h5>Made on demand</h5>
+          <p>Your basket contains items that are made on demand.</p>
+          <p>On-demand kit is submitted to the factory as soon as payment has been received and is shipped directly to you, usually within 1-2 weeks.</p>
+        </>
+      ))
+    }
+
+    if (hasPremadeKit) {
+      terms.push((
+        <>
+          <h5>Pre-made</h5>
+          <p>Your basket contains items that are pre-made.</p>
+          <p>Once payment is made your order will be available to be picked up immediately from <a href='https://ratracecycles.com/'>Rat Race Cycles</a> at 118 Evelina Road, SE15 3HL.</p>
+        </>
+      ))
+    }
+
+    if (hasSubscription) {
+      terms.push((
+        <>
+          <h5>Subscription</h5>
+          <p>Your basket contains a subscription.</p>
+          <p>The FoPCC subscription will renew on a yearly basis - visit your <Link to='/user/profile'>profile page</Link> to cancel at any time.</p>
+        </>
+      ))
+    }
+
+    let cartTotal = cart.reduce((acc, item) => {
+      return acc + (slugLookup[item.slug].price.amount * item.quantity)
+    }, 0)
+
+    const shippingWeight = cart.reduce((acc, item) => {
+      const product = slugLookup[item.slug]
+
+      if (!product.shippingWeight) {
+        return acc
+      }
+
+      return acc + (product.shippingWeight * item.quantity)
+    }, 0)
+
+    if (hasDropShipKit) {
+      cartTotal += findShippingMethod(shippingWeight).cost
     }
 
     return (
@@ -226,31 +360,32 @@ class Basket extends Component {
             {
               cart.map((item, index) => {
                 const product = slugLookup[item.slug]
+                const details = []
+
+                if (item.options) {
+                  Object.keys(item.options).map(option => {
+                    const value = item.options[option]
+
+                    details.push(
+                      option === 'size' ? OPTIONS[option][product.sizeChart][value].name : OPTIONS[option][value]
+                    )
+                  })
+                }
+
+                if (product.type) {
+                  details.push(PRODUCT_TYPES[product.type])
+                }
 
                 return (
                   <Row key={index}>
                     <Cell>
                       <ProductTitle>{item.name}</ProductTitle>
                       <ProductImage>
-                        <ItemImage item={product} width={100} />
+                        <ItemImage item={product} colour={item.options && item.options.colour} width={100} />
                       </ProductImage>
                       <ProductDetails>
                         <DetailWrapper>
-                          {item.options && (
-                            <p>
-                              {
-                                Object.keys(item.options).map(option => {
-                                  const value = item.options[option]
-
-                                  if (option === 'size') {
-                                    return OPTIONS[option][product.sizeChart][value].name
-                                  }
-
-                                  return OPTIONS[option][value]
-                                }).join(', ')
-                              }
-                            </p>
-                          )}
+                          {details.join(', ')}
                         </DetailWrapper>
                         <DetailWrapper>
                           <QuantityButton onClick={() => this.decreaseQuantity(item)} disabled={item.quantity === 1}><FaMinus /></QuantityButton>
@@ -267,6 +402,7 @@ class Basket extends Component {
                 )
               })
             }
+            {hasDropShipKit && <Shipping shippingWeight={shippingWeight} />}
           </TBody>
           <TFoot>
             <Row>
@@ -274,10 +410,7 @@ class Basket extends Component {
                 Total
               </RightAlignedCell>
               <Cell>
-                <Price price={cart.reduce((acc, item) => {
-                  return acc + (slugLookup[item.slug].price.amount * item.quantity)
-                }, 0)}
-                />
+                <Price price={cartTotal} />
               </Cell>
             </Row>
           </TFoot>
@@ -285,10 +418,10 @@ class Basket extends Component {
         <PlaceOrder>
           <Terms error={showTermsError}>
             <h4>Terms &amp; Conditions</h4>
-            <p>All kit is made to order and cannot be cancelled, exchanged or refunded once your order has been placed.</p>
-            <p>We aim to send kit orders to the factory every two months, then it will take approximately 6 weeks to be made &amp; shipped.</p>
-            <p>When items are available, your order will be available to be picked up from the most excellent <a href='https://ratracecycles.com/'>Rat Race Cycles</a> at 118 Evelina Road, SE15 3HL.</p>
-            <p>We will be in touch to let you know the delivery date as soon as it is available and once items are ready for pick up.</p>
+            <p>Once placed orders cannot be cancelled, exchanged, or refunded.</p>
+            {
+              terms
+            }
             <p>Please confirm you understand the above and are happy to proceed with your order:
               <Checkbox
                 type='checkbox'

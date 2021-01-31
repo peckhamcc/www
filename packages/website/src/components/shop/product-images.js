@@ -1,7 +1,6 @@
 import React, {
   Component
 } from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
   FaChevronLeft,
@@ -95,13 +94,13 @@ class ImageViewer extends Component {
   }
 
   handleNextImage = () => {
-    const { product } = this.props
+    const images = this._getImages()
 
     this.setState(s => {
       let index = s.index - 1
 
       if (index < 0) {
-        index = ITEM_IMAGES[product.slug].length - 1
+        index = images.length - 1
       }
 
       return {
@@ -111,12 +110,12 @@ class ImageViewer extends Component {
   }
 
   handlePreviousImage = () => {
-    const { product } = this.props
+    const images = this._getImages()
 
     this.setState(s => {
       let index = s.index + 1
 
-      if (index === ITEM_IMAGES[product.slug].length) {
+      if (index === images.length) {
         index = 0
       }
 
@@ -130,9 +129,18 @@ class ImageViewer extends Component {
     this.setState({ index })
   }
 
+  _getImages () {
+    const { product, colour } = this.props
+
+    if (colour) {
+      return ITEM_IMAGES[product.slug][colour]
+    }
+
+    return ITEM_IMAGES[product.slug]
+  }
+
   render () {
-    const { product } = this.props
-    const images = ITEM_IMAGES[product.slug]
+    const images = this._getImages()
     const mainImage = images[this.state.index]
 
     return (
@@ -167,10 +175,6 @@ class ImageViewer extends Component {
       </div>
     )
   }
-}
-
-ImageViewer.images = {
-  product: PropTypes.array.isRequired
 }
 
 export default ImageViewer

@@ -5,6 +5,8 @@ const {
 
 const errorHandler = () => ({
   onError: (handler, next) => {
+    console.error(handler.error)
+
     if (handler.error instanceof httpErrors.HttpError) {
       if (handler.error.message.includes('failed validation')) {
         const details = handler.error.details[0]
@@ -46,14 +48,12 @@ const tokenValidator = (opts) => ({
     const { headers } = handler.event
 
     if (!headers) {
-      console.info('No headers passed to request')
       throw new httpErrors.Unauthorized('Missing or invalid credentials')
     }
 
     const token = headers.Authorization || headers.authorization
 
     if (!token) {
-      console.info('No authorization header in request request')
       throw new httpErrors.Unauthorized('Missing or invalid credentials')
     }
 

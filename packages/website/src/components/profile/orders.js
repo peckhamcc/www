@@ -56,13 +56,6 @@ const Cell = styled.td`
   padding: ${spacing(1)};
 `
 
-const STATUSES = {
-  pending: 'Pending',
-  production: 'In production',
-  ready: 'Ready for pick up',
-  complete: 'Complete'
-}
-
 function OrderList ({ orders, onShowOrder }) {
   return (
     <Table>
@@ -70,7 +63,6 @@ function OrderList ({ orders, onShowOrder }) {
         <Row>
           <Header>Date</Header>
           <Header>Total</Header>
-          <Header>Status</Header>
           <Header>Actions</Header>
         </Row>
       </THead>
@@ -80,7 +72,6 @@ function OrderList ({ orders, onShowOrder }) {
             <Row key={order.id}>
               <Cell>{new Date(order.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</Cell>
               <Cell><Price price={order.amount} /></Cell>
-              <Cell>{(STATUSES[order.status] && STATUSES[order.status]) || 'N/a'}</Cell>
               <Cell><Button style={{ margin: 0 }} onClick={() => onShowOrder(order)}>Order details</Button></Cell>
             </Row>
           ))

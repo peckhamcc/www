@@ -27,6 +27,14 @@ import {
   spacing
 } from '../../units'
 
+const STATUSES = {
+  pending: 'Pending',
+  production: 'In production',
+  ready: 'Ready for pick up',
+  shipped: 'Shipped',
+  complete: 'Complete'
+}
+
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -59,7 +67,7 @@ const Cell = styled.td`
 `
 
 const ItemHeader = styled(Header)`
-  width: 80%;
+  width: 70%;
 `
 
 const RightAlignedCell = styled(Cell)`
@@ -83,22 +91,8 @@ const DetailWrapper = styled.div`
   margin: ${spacing(1)} 0;
 `
 
-const STATUSES = {
-  pending: (
-    <p>Your order will be submitted to the factory in the next batch.</p>
-  ),
-  production: (
-    <p>Your order is in production at the factory.</p>
-  ),
-  ready: (
-    <p>Your order is ready for pickup from Rat Race Cycles.</p>
-  ),
-  complete: (
-    <p>You have picked up your order from Rat Race Cycles.</p>
-  ),
-  'n/a': (
-    <p>This order does not contain any physical products.</p>
-  )
+function formatDate (date) {
+  return new Date(date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })
 }
 
 class Order extends Component {
@@ -121,9 +115,15 @@ class Order extends Component {
       })
 
       if (response.status === 200) {
+        const {
+          items,
+          shipping
+        } = await response.json()
+
         this.setState({
           loading: false,
-          items: await response.json()
+          items,
+          shipping
         })
 
         return
@@ -144,7 +144,8 @@ class Order extends Component {
   render () {
     const {
       loading,
-      items
+      items,
+      shipping
     } = this.state
     const {
       order,
@@ -160,14 +161,31 @@ class Order extends Component {
       )
     }
 
+    let trackingInfo = ''
+
+    if (shipping && shipping.trackingNumber) {
+      let trackingLink = `https://www.royalmail.com/track-your-item#/tracking-results/${shipping.trackingNumber}`
+
+      if (!shipping.shippingMethod.toLowerCase().includes('recorded')) {
+        trackingLink = `https://track.dpd.co.uk/search?reference=${shipping.trackingNumber}`
+      }
+
+      trackingInfo = (
+        <>
+          <p>Your order has shipped via {shipping.shippingMethod} on {formatDate(shipping.shiped_at || shipping.shipped_at)}- the tracking number is <a href={trackingLink}>{shipping.trackingNumber}</a></p>
+        </>
+      )
+    }
+
     return (
       <>
-        <h4>{new Date(order.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</h4>
-        {STATUSES[order.status] || STATUSES['n/a']}
+        <h4>{formatDate(order.date)}</h4>
+        {trackingInfo}
         <Table>
           <THead>
             <Row>
               <ItemHeader>Item</ItemHeader>
+              <Header>Status</Header>
               <Header>Subtotal</Header>
             </Row>
           </THead>
@@ -178,7 +196,7 @@ class Order extends Component {
                   <Row key={index}>
                     <Cell>
                       <ProductImage>
-                        <ItemImage item={item} width={50} />
+                        <ItemImage item={item} colour={item.metadata && item.metadata.colour} width={50} />
                       </ProductImage>
                       <ProductDetails>
                         <DetailWrapper>
@@ -186,7 +204,8 @@ class Order extends Component {
                         </DetailWrapper>
                       </ProductDetails>
                     </Cell>
-                    <Cell><Price price={item.price * item.quantity} /></Cell>
+                    <Cell>{STATUSES[item.status]}</Cell>
+                    <Cell><Price price={item.price} /></Cell>
                   </Row>
                 )
               })

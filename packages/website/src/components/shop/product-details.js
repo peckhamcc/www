@@ -195,6 +195,34 @@ const PRODUCT_DESCRIPTIONS = {
       <p>They have minimal seams for comfort and have silicone grippers at the bicep to ensure they stay in place.</p>
       <p>In black to match your black jersey, cap, socks, etc</p>
     </>
+  ),
+  'hoodie-2021': (
+    <>
+      <p>Hoodie with kangaroo pocket and club logo design printed on the front and rear.</p>
+      <p>Made from 350gsm brushed 85% Organic ring-spun Combed Cotton with 15% Recycled Polyester.</p>
+      <p>Looks great on the podium, next to the CX course or in the airport lounge on the way to Mallorca.</p>
+      <p>N.b our casualwear line is printed on-demand and shipped directly to you in 1-2 weeks so a postage cost will be calculated at checkout.</p>
+    </>
+  ),
+  'zip-hoodie-2021': (
+    <>
+      <p>Zip hoodie with kangaroo pocket and club logo design printed on the front and rear.</p>
+      <p>Made from 300gsm terry fabric made of 85% Organic ring-spun Combed Cotton with 15% Recycled Polyester.</p>
+      <p>Looks great on the podium, next to the CX course or in the airport lounge on the way to Mallorca.</p>
+      <p>N.b our casualwear line is printed on-demand and shipped directly to you in 1-2 weeks so a postage cost will be calculated at checkout.</p>
+    </>
+  ),
+  't-shirt-2021': (
+    <>
+      <p>Short-sleeved t-shirt in 180gsm 100% organic ringspun cotton with club logo printed on the front.</p>
+      <p>N.b our casualwear line is printed on-demand and shipped directly to you in 1-2 weeks so a postage cost will be calculated at checkout.</p>
+    </>
+  ),
+  'ls-t-shirt-2021': (
+    <>
+      <p>Long-sleeved t-shirt in 180gsm 100% organic ringspun cotton with club logo printed on the front.</p>
+      <p>N.b our casualwear line is printed on-demand and shipped directly to you in 1-2 weeks so a postage cost will be calculated at checkout.</p>
+    </>
   )
 }
 
@@ -274,6 +302,8 @@ class ProductDetails extends Component {
 
       return s
     })
+
+    this.props.onChooseOption(key, value)
   }
 
   handleDecreaseQuantity = () => {
@@ -305,7 +335,9 @@ class ProductDetails extends Component {
       slug: product.slug,
       name: product.name,
       quantity: this.state.quantity,
-      options: this.state.options
+      options: {
+        ...this.state.options
+      }
     })
 
     this.setState({
@@ -409,12 +441,10 @@ class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
-  cart: PropTypes.array.isRequired,
   user: PropTypes.object
 }
 
-const mapStateToProps = ({ shop: { cart }, user: { user, size, gender } }) => ({
-  cart,
+const mapStateToProps = ({ user: { user, size, gender } }) => ({
   user,
   size,
   gender

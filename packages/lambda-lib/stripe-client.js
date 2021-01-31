@@ -18,6 +18,20 @@ const CACHE_KEYS = {
 
 const ONE_HOUR = (60 * 60) * 1000
 
+const SHIPPING_LIMITS = [{
+  max: 99,
+  price: config.stripe.shipping[0]
+}, {
+  max: 100,
+  price: config.stripe.shipping[1]
+}, {
+  max: 699,
+  price: config.stripe.shipping[2]
+}, {
+  max: Infinity,
+  price: config.stripe.shipping[3]
+}]
+
 const getProducts = async () => {
   if (!config.flags.shop) {
     return []
@@ -33,7 +47,10 @@ const getProducts = async () => {
 
   const prices = {}
 
-  for await (const price of client.prices.list()) {
+  for await (const price of client.prices.list({
+    limit: 100,
+    active: true
+  })) {
     prices[price.product] = price
   }
 
@@ -110,7 +127,9 @@ const getProducts = async () => {
         id: price.id,
         type: price.type,
         amount: price.unit_amount
-      }
+      },
+      type: product.metadata.type,
+      shippingWeight: parseInt(product.metadata['shipping-weight'] || '0', 10)
     })
   }
 
@@ -141,43 +160,69 @@ const createCheckoutSession = async (userId, stripeCustomerId, items) => {
 
   const metadata = {}
 
+  let shippingWeight = 0
+
+  const lineItems = items.map((item, index) => {
+    const product = slugToProduct[item.slug]
+    let description = product.description
+
+    if (!product) {
+      throw new Error('Could not find product for slug ' + item.slug)
+    }
+
+    if (Object.keys(item.options || {}).length) {
+      metadata[`item-${index}`] = JSON.stringify(item.options)
+
+      description = Object.keys(item.options).map(option => {
+        const value = item.options[option]
+
+        if (option === 'size') {
+          return OPTIONS[option][product.sizeChart][value].name
+        }
+
+        return OPTIONS[option][value]
+      }).join(', ')
+    }
+
+    shippingWeight += (product.shippingWeight || 0) * item.quantity
+
+    return {
+      price: product.price.id,
+      quantity: item.quantity,
+      description
+    }
+  })
+
+  let shippingAddressCollection
+
+  if (shippingWeight) {
+    // tell stripe to collect shipping information
+    shippingAddressCollection = {
+      allowed_countries: ['GB']
+    }
+
+    const { price } = SHIPPING_LIMITS
+      .filter(method => shippingWeight < method.max)
+      .shift()
+
+    // add shipping method
+    lineItems.push({
+      price,
+      quantity: 1
+    })
+  }
+
   const session = await client.checkout.sessions.create({
     payment_method_types: [
       'card'
     ],
     customer: stripeCustomerId,
-    line_items: items.map((item, index) => {
-      const product = slugToProduct[item.slug]
-      let description = product.description
-
-      if (!product) {
-        throw new Error('Could not find product for slug ' + item.slug)
-      }
-
-      if (Object.keys(item.options || {}).length) {
-        metadata[`item-${index}`] = JSON.stringify(item.options)
-
-        description = Object.keys(item.options).map(option => {
-          const value = item.options[option]
-
-          if (option === 'size') {
-            return OPTIONS[option][product.sizeChart][value].name
-          }
-
-          return OPTIONS[option][value]
-        }).join(', ')
-      }
-
-      return {
-        price: product.price.id,
-        quantity: item.quantity,
-        description
-      }
-    }),
+    line_items: lineItems,
     mode: 'payment',
     metadata,
     success_url: config.stripe.checkoutSuccess,
-    cancel_url: config.stripe.checkoutCancel
+    cancel_url: config.stripe.checkoutCancel,
+    shipping_address_collection: shippingAddressCollection
   })
 
   return session.id
@@ -245,7 +290,8 @@ const getOrders = async (userId, stripeCustomerId) => {
   const orders = []
 
   for await (const paymentIntent of client.paymentIntents.list({
-    customer: stripeCustomerId
+    customer: stripeCustomerId,
+    limit: 100
   })) {
     if (!paymentIntent.charges.total_count) {
       // no charges on this payment intent, nothing to see here
@@ -255,8 +301,7 @@ const getOrders = async (userId, stripeCustomerId) => {
     const order = {
       id: paymentIntent.id,
       date: paymentIntent.created * 1000,
-      amount: paymentIntent.amount,
-      status: paymentIntent.metadata && paymentIntent.metadata.status
+      amount: paymentIntent.amount
     }
 
     orders.push(order)
@@ -276,26 +321,38 @@ const getOrderItems = async (paymentIntent) => {
 
   const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
   const items = []
-  const sessions = await client.checkout.sessions.list({
-    payment_intent: paymentIntent,
-    limit: 100
-  })
+  const session = await getCheckoutSession(paymentIntent)
 
-  for (const session of sessions.data) {
-    for await (const lineItem of client.checkout.sessions.listLineItems(session.id, {
-      limit: 100,
-      expand: ['data.price.product']
-    })) {
-      const item = {
-        slug: lineItem.price.product.metadata.slug,
-        name: lineItem.price.product.name,
-        description: lineItem.description,
-        quantity: lineItem.quantity,
-        price: lineItem.amount_total
-      }
-
-      items.push(item)
+  for await (const lineItem of client.checkout.sessions.listLineItems(session.id, {
+    limit: 100,
+    expand: ['data.price.product']
+  })) {
+    const item = {
+      slug: lineItem.price.product.metadata.slug,
+      name: lineItem.price.product.name,
+      description: lineItem.description,
+      quantity: lineItem.quantity,
+      price: lineItem.amount_total,
+      productMetadata: lineItem.price.product.metadata,
+      metadata: JSON.parse(session.metadata[`item-${items.length}`] || '{}')
     }
+
+    if (item.productMetadata['shipping-weight']) {
+      item.productMetadata.shippingWeight = parseInt(item.productMetadata['shipping-weight'], 10)
+      delete item.productMetadata['shipping-weight']
+    } else {
+      item.productMetadata.shippingWeight = 0
+    }
+
+    if (item.productMetadata.designs) {
+      item.productMetadata.designs = JSON.parse(item.productMetadata.designs)
+    }
+
+    if (item.productMetadata.mockups) {
+      item.productMetadata.mockups = JSON.parse(item.productMetadata.mockups)
+    }
+
+    items.push(item)
   }
 
   await cache.set(`order-items-${paymentIntent}`, items)
@@ -413,6 +470,29 @@ async function setPaymentMetadata (paymentIntentId, metadata) {
   })
 }
 
+async function getPaymentMetadata (paymentIntentId) {
+  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
+
+  const {
+    metadata
+  } = await client.paymentIntents.retrieve(paymentIntentId)
+
+  return metadata
+}
+
+async function getCheckoutSession (paymentIntentId) {
+  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
+
+  const sessions = await client.checkout.sessions.list({
+    payment_intent: paymentIntentId,
+    limit: 100
+  })
+
+  for (const session of sessions.data) {
+    return session
+  }
+}
+
 module.exports = {
   getProducts,
   getOrders,
@@ -426,5 +506,7 @@ module.exports = {
   updateCustomer,
   verifyWebhookEvent,
   getOrderItems,
-  setPaymentMetadata
+  setPaymentMetadata,
+  getPaymentMetadata,
+  getCheckoutSession
 }

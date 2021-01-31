@@ -32,6 +32,9 @@ const {
 const {
   config
 } = require('./config')
+const {
+  createOrder: createInkThreadableOrder
+} = require('./inkthreadable-client')
 
 async function handleCheckoutComplete (context, event) {
   const { data: { object: { mode } } } = event
@@ -123,13 +126,38 @@ async function handleShopOrder ({ userId, user }, { data: { object } }) {
     throw new httpErrors.BadRequest('No payment amount found')
   }
 
-  await setPaymentMetadata(paymentIntent, {
-    status: 'pending'
+  const orderItems = await getOrderItems(paymentIntent)
+  const metadata = {}
+
+  // see if we need to take any further action
+  let hasMtoKit = false
+  let hasDropShipKit = false
+  let hasPremadeKit = false
+  let hasSubscription = false
+
+  orderItems.forEach((item, index) => {
+    if (item.productMetadata.type === 'premade') {
+      metadata[`item-${index}`] = 'ready'
+      hasPremadeKit = hasPremadeKit || true
+    } else if (item.productMetadata.type === 'made-to-order') {
+      metadata[`item-${index}`] = 'pending'
+      hasMtoKit = hasMtoKit || true
+    } else if (item.productMetadata.type === 'dropship') {
+      metadata[`item-${index}`] = 'production'
+      hasDropShipKit = hasDropShipKit || true
+    } else if (item.productMetadata.type === 'subscription') {
+      metadata[`item-${index}`] = 'n/a'
+      hasSubscription = hasSubscription || true
+    }
   })
 
-  const lineItems = await getOrderItems(paymentIntent)
+  if (hasDropShipKit) {
+    await createInkThreadableOrder(user, object, orderItems.filter(item => item.productMetadata.type === 'dropship'))
+  }
 
-  await sendEmail(user.email, config.email.from, 'Peckham Cycle Club order', shopOrderEmail.html(user.name, amount, lineItems), shopOrderEmail.text(user.name, amount, lineItems))
+  await setPaymentMetadata(paymentIntent, metadata)
+
+  await sendEmail(user.email, config.email.from, 'Peckham Cycle Club order', shopOrderEmail.html(user.name, amount, orderItems), shopOrderEmail.text(user.name, amount, orderItems))
 }
 
 async function handleInvoicePaid (context, event) {
@@ -251,7 +279,7 @@ async function handleFoPCCCancellation ({ userId, user }, { data: { object } }) 
   await sendEmail(user.email, config.email.from, 'Friend of PCC membership cancelled', fopccCancellationEmail.html(user.name), fopccCancellationEmail.text(user.name))
 }
 
-async function fopccWebhook ({ body, headers }) {
+async function stripeWebhook ({ body, headers }) {
   const event = verifyWebhookEvent(body, headers['Stripe-Signature'])
 
   console.info('event', JSON.stringify(event, null, 2))
@@ -314,7 +342,7 @@ async function fopccWebhook ({ body, headers }) {
 }
 
 module.exports = {
-  handler: middy(fopccWebhook)
+  handler: middy(stripeWebhook)
     .use(errorHandler())
     .use(cors({
       origin: process.env.NODE_ENV !== 'development' ? 'https://peckham.cc' : '*'

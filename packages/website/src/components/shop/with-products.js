@@ -23,7 +23,7 @@ class WithProducts extends Component {
     this.props.loadProducts()
 
     try {
-      const response = await global.fetch(config.lambda.shopProductsGet, {
+      const response = await global.fetch(config.lambda.shopProductsGet + '?foo=bar&foo=bar', {
         method: 'GET'
       })
 

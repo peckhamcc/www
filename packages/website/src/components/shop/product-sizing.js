@@ -182,14 +182,29 @@ class Sizing extends Component {
                       <tr key={index}>
                         <TableHeader>{capitalise(attribute)}</TableHeader>
                         {sizeTable.map((size, index) => {
-                          let sizeDisplay = size.measurements[attribute][gender]
+                          let sizeDisplay
+
+                          if (size.measurements[attribute][gender]) {
+                            sizeDisplay = size.measurements[attribute][gender]
+                          } else {
+                            sizeDisplay = size.measurements[attribute]
+                          }
 
                           if (typeof sizeDisplay !== 'string') {
-                            // min/max based on unit type
-                            if (unit === 'metric') {
-                              sizeDisplay = `${sizeDisplay.min}-${sizeDisplay.max}cm`
+                            if (sizeDisplay.min && sizeDisplay.max) {
+                              // min/max based on unit type
+                              if (unit === 'metric') {
+                                sizeDisplay = `${sizeDisplay.min}-${sizeDisplay.max}cm`
+                              } else {
+                                sizeDisplay = `${parseInt(sizeDisplay.min * 0.39)}-${parseInt(sizeDisplay.max * 0.39)}"`
+                              }
                             } else {
-                              sizeDisplay = `${parseInt(sizeDisplay.min * 0.39)}-${parseInt(sizeDisplay.max * 0.39)}"`
+                              // just a size
+                              if (unit === 'metric') {
+                                sizeDisplay = `${sizeDisplay}cm`
+                              } else {
+                                sizeDisplay = `${parseInt(sizeDisplay * 0.39)}"`
+                              }
                             }
                           }
 
@@ -203,6 +218,7 @@ class Sizing extends Component {
                 }
               </tbody>
             </Table>
+            <small>Garment sizes are approximate and for guidance only.</small>
           </>
         ) : (
           <p>One size fits all</p>

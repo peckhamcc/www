@@ -12,6 +12,10 @@ const OPTIONS = {
     S: 'Short sleeves',
     L: 'Long sleeves'
   },
+  colour: {
+    WHI: 'White',
+    BLK: 'Black'
+  },
   size: {
     'arm-warmers': {
       S: {
@@ -341,79 +345,221 @@ const OPTIONS = {
     },
 
     't-shirts': {
+      XXS: {
+        name: 'Extra, extra Small',
+        measurements: {
+          chest: 87,
+          body: 64,
+          sleeve: 19
+        }
+      },
+      XS: {
+        name: 'Extra Small',
+        measurements: {
+          chest: 92,
+          body: 66,
+          sleeve: 19.5
+        }
+      },
       S: {
         name: 'Small',
         measurements: {
-          chest: {
-            male: {
-              min: 86,
-              max: 91
-            },
-            female: {
-              min: 86,
-              max: 89
-            }
-          }
+          chest: 98,
+          body: 69,
+          sleeve: 20.5
         }
       },
       M: {
         name: 'Medium',
         measurements: {
-          chest: {
-            male: {
-              min: 96,
-              max: 101
-            },
-            female: {
-              min: 91,
-              max: 94
-            }
-          }
+          chest: 104,
+          body: 72,
+          sleeve: 21.5
         }
       },
       L: {
         name: 'Large',
         measurements: {
-          chest: {
-            male: {
-              min: 106,
-              max: 111
-            },
-            female: {
-              min: 99,
-              max: 101
-            }
-          }
+          chest: 110,
+          body: 74,
+          sleeve: 22.5
         }
       },
       XL: {
         name: 'Extra large',
         measurements: {
-          chest: {
-            male: {
-              min: 117,
-              max: 122
-            },
-            female: {
-              min: 106,
-              max: 112
-            }
-          }
+          chest: 116,
+          body: 76,
+          sleeve: 22.5
         }
       },
-      XXL: {
+      '2XL': {
         name: 'XX Large',
         measurements: {
-          chest: {
-            male: {
-              min: 127,
-              max: 132
-            },
-            female: {
-              min: 117,
-              max: 122
-            }
-          }
+          chest: 122,
+          body: 76,
+          sleeve: 23.5
+        }
+      }
+    },
+
+    'ls-t-shirts': {
+      S: {
+        name: 'Small',
+        measurements: {
+          chest: 98,
+          body: 70,
+          sleeve: 64
+        }
+      },
+      M: {
+        name: 'Medium',
+        measurements: {
+          chest: 104,
+          body: 72,
+          sleeve: 65
+        }
+      },
+      L: {
+        name: 'Large',
+        measurements: {
+          chest: 110,
+          body: 74,
+          sleeve: 66
+        }
+      },
+      XL: {
+        name: 'Extra large',
+        measurements: {
+          chest: 116,
+          body: 76,
+          sleeve: 67
+        }
+      },
+      '2XL': {
+        name: 'XX Large',
+        measurements: {
+          chest: 122,
+          body: 78,
+          sleeve: 68
+        }
+      }
+    },
+
+    hoodies: {
+      XXS: {
+        name: 'Extra, extra Small',
+        measurements: {
+          chest: 93,
+          body: 63,
+          sleeve: 60.5
+        }
+      },
+      XS: {
+        name: 'Extra Small',
+        measurements: {
+          chest: 98,
+          body: 65,
+          sleeve: 61.5
+        }
+      },
+      S: {
+        name: 'Small',
+        measurements: {
+          chest: 103,
+          body: 68,
+          sleeve: 64
+        }
+      },
+      M: {
+        name: 'Medium',
+        measurements: {
+          chest: 108,
+          body: 72,
+          sleeve: 65.5
+        }
+      },
+      L: {
+        name: 'Large',
+        measurements: {
+          chest: 114,
+          body: 74,
+          sleeve: 67
+        }
+      },
+      XL: {
+        name: 'Extra large',
+        measurements: {
+          chest: 120,
+          body: 76,
+          sleeve: 68.5
+        }
+      },
+      '2XL': {
+        name: 'XX Large',
+        measurements: {
+          chest: 126,
+          body: 78,
+          sleeve: 70
+        }
+      }
+    },
+
+    'zip-hoodies': {
+      XXS: {
+        name: 'Extra, extra Small',
+        measurements: {
+          chest: 93,
+          body: 63,
+          sleeve: 60.5
+        }
+      },
+      XS: {
+        name: 'Extra Small',
+        measurements: {
+          chest: 98,
+          body: 65,
+          sleeve: 61.5
+        }
+      },
+      S: {
+        name: 'Small',
+        measurements: {
+          chest: 103,
+          body: 68,
+          sleeve: 64
+        }
+      },
+      M: {
+        name: 'Medium',
+        measurements: {
+          chest: 108,
+          body: 72,
+          sleeve: 65.5
+        }
+      },
+      L: {
+        name: 'Large',
+        measurements: {
+          chest: 114,
+          body: 74,
+          sleeve: 67
+        }
+      },
+      XL: {
+        name: 'Extra large',
+        measurements: {
+          chest: 120,
+          body: 76,
+          sleeve: 68.5
+        }
+      },
+      '2XL': {
+        name: 'XX Large',
+        measurements: {
+          chest: 126,
+          body: 78,
+          sleeve: 70
         }
       }
     }
@@ -468,10 +614,20 @@ const config = {
     secretKey: 'sk_test_DhQgzX3EJlaiDQPhbsju94dc',
     checkoutSuccess: 'http://localhost:9000/checkout/success',
     checkoutCancel: 'http://localhost:9000/basket',
-    webhookSecret: 'whsec_3KbRZmxQdQtJrkE6H929x8de2Vg6trY2',
+    webhookSecret: 'whsec_V85VMT9TqY03irWzudQjqfagPD7iC6f4',
     fopccSuccess: 'http://localhost:9000/profile/fopcc',
     fopccCancel: 'http://localhost:9000/profile/fopcc',
-    fopccId: 'price_1I2XUx2cnIK2AWWQ8Y5xgq4I'
+    fopccId: 'price_1I2XUx2cnIK2AWWQ8Y5xgq4I',
+    shipping: [
+      'price_1IFdvZ2cnIK2AWWQlmQmCp9s', // £3.30 Royal Mail 24
+      'price_1IFdwE2cnIK2AWWQfH3dewBh', // £3.80 Royal Mail 24
+      'price_1IFduC2cnIK2AWWQnRH1Jylp', // £5.60 DPD
+      'price_1IFdud2cnIK2AWWQJwCOubZG' // £8.50 DPD
+    ]
+  },
+  inkthreadable: {
+    appId: 'inkthreadable-1234',
+    secretKey: 'wow-such-secret-shhhh'
   }
 }
 
@@ -498,6 +654,15 @@ if (process.env.NODE_ENV !== 'development') {
   config.stripe.checkoutCancel = 'https://peckham.cc/basket'
   config.stripe.fopccSuccess = 'https://peckham.cc/profile/fopcc'
   config.stripe.fopccCancel = 'https://peckham.cc/profile/fopcc'
+  config.stripe.shipping = [
+    process.env.STRIPE_SHIPPING_0,
+    process.env.STRIPE_SHIPPING_1,
+    process.env.STRIPE_SHIPPING_2,
+    process.env.STRIPE_SHIPPING_3
+  ]
+
+  config.inkthreadable.appId = process.env.INKTHREADABLE_APP_ID
+  config.inkthreadable.secretKey = process.env.INKTHREADABLE_SECRET_KEY
 }
 
 module.exports = {

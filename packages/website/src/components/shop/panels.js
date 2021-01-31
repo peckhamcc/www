@@ -30,7 +30,6 @@ import ssJerseyFrontImage from '../../../assets/shop/ss-jersey-front.png?sizes[]
 import ssJerseyRearImage from '../../../assets/shop/ss-jersey-rear.png?sizes[]=300,sizes[]=500'
 import ssSummerJerseyFrontImage from '../../../assets/shop/ss-summer-jersey-front.png?sizes[]=300,sizes[]=500'
 import ssSummerJerseyRearImage from '../../../assets/shop/ss-summer-jersey-rear.png?sizes[]=300,sizes[]=500'
-// import ctsJerseyFrontImage from '../../../assets/shop/cts-jersey-front.png?sizes[]=300,sizes[]=500'
 import winterJacketFrontImage from '../../../assets/shop/winter-jacket-front.png?sizes[]=300,sizes[]=500'
 import winterJacketRearImage from '../../../assets/shop/winter-jacket-rear.png?sizes[]=300,sizes[]=500'
 import winterTightsFrontImage from '../../../assets/shop/winter-tights-front.png?sizes[]=300,sizes[]=500'
@@ -39,22 +38,28 @@ import socksSummerSideImage from '../../../assets/shop/socks-summer-side.png?siz
 import socksSummerTopImage from '../../../assets/shop/socks-summer-top.png?sizes[]=300,sizes[]=500'
 import socksWinterSideImage from '../../../assets/shop/socks-winter-side.png?sizes[]=300,sizes[]=500'
 import socksWinterTopImage from '../../../assets/shop/socks-winter-top.png?sizes[]=300,sizes[]=500'
-// import glovesImage from '../../../assets/shop/gloves.png?sizes[]=300,sizes[]=500'
 import multiTubeImage from '../../../assets/shop/multi-tube.png?sizes[]=300,sizes[]=500'
 // import headsetCapImage from '../../../assets/shop/headset-cap.png?sizes[]=300,sizes[]=500'
 import bidonImage from '../../../assets/shop/bidon.png?sizes[]=300,sizes[]=500'
-// import tshirtFrontImage from '../../../assets/shop/tshirt-front.png?sizes[]=300,sizes[]=500'
-// import tshirtRearImage from '../../../assets/shop/tshirt-rear.png?sizes[]=300,sizes[]=500'
-// import lsTshirtFrontImage from '../../../assets/shop/ls-tshirt-front.png?sizes[]=300,sizes[]=500'
-// import lsTshirtRearImage from '../../../assets/shop/ls-tshirt-rear.png?sizes[]=300,sizes[]=500'
-// import hoodieFrontImage from '../../../assets/shop/hoodie-front.png?sizes[]=300,sizes[]=500'
-// import hoodieRearImage from '../../../assets/shop/hoodie-rear.png?sizes[]=300,sizes[]=500'
-// import zipHoodieFrontImage from '../../../assets/shop/zip-hoodie-front.png?sizes[]=300,sizes[]=500'
+import tshirtBlkFrontImage from '../../../assets/shop/t-shirt-2021-blk-front.png?sizes[]=300,sizes[]=500'
+import tshirtWhiFrontImage from '../../../assets/shop/t-shirt-2021-whi-front.png?sizes[]=300,sizes[]=500'
+import lsTshirtBlkFrontImage from '../../../assets/shop/ls-t-shirt-2021-blk-front.png?sizes[]=300,sizes[]=500'
+import lsTshirtWhiFrontImage from '../../../assets/shop/ls-t-shirt-2021-whi-front.png?sizes[]=300,sizes[]=500'
+import hoodieBlkFrontImage from '../../../assets/shop/hoodie-2021-blk-front.png?sizes[]=300,sizes[]=500'
+import hoodieBlkBackImage from '../../../assets/shop/hoodie-2021-blk-back.png?sizes[]=300,sizes[]=500'
+import hoodieWhiFrontImage from '../../../assets/shop/hoodie-2021-whi-front.png?sizes[]=300,sizes[]=500'
+import hoodieWhiBackImage from '../../../assets/shop/hoodie-2021-whi-back.png?sizes[]=300,sizes[]=500'
+import zipHoodieBlkFrontImage from '../../../assets/shop/zip-hoodie-2021-blk-front.png?sizes[]=300,sizes[]=500'
+import zipHoodieBlkBackImage from '../../../assets/shop/zip-hoodie-2021-blk-back.png?sizes[]=300,sizes[]=500'
+import zipHoodieWhiFrontImage from '../../../assets/shop/zip-hoodie-2021-whi-front.png?sizes[]=300,sizes[]=500'
+import zipHoodieWhiBackImage from '../../../assets/shop/zip-hoodie-2021-whi-back.png?sizes[]=300,sizes[]=500'
 import musetteImage from '../../../assets/shop/musette.png?sizes[]=300,sizes[]=500'
 import speedSuitFrontImage from '../../../assets/shop/skin-suit-front.png?sizes[]=300,sizes[]=500'
 import speedSuitRearImage from '../../../assets/shop/skin-suit-rear.png?sizes[]=300,sizes[]=500'
 import triSuitFrontImage from '../../../assets/shop/tri-suit-front.png?sizes[]=300,sizes[]=500'
 import triSuitRearImage from '../../../assets/shop/tri-suit-rear.png?sizes[]=300,sizes[]=500'
+import royalMailShippingImage from '../../../assets/shop/royal-mail.png?sizes[]=300,sizes[]=500'
+import dpdShippingImage from '../../../assets/shop/dpd.png?sizes[]=300,sizes[]=500'
 
 export const ITEM_IMAGES = {
   accessories: [
@@ -71,6 +76,9 @@ export const ITEM_IMAGES = {
   ],
   'skin-suits': [
     speedSuitFrontImage
+  ],
+  casualwear: [
+    hoodieBlkFrontImage
   ],
 
   'musette-2019': [
@@ -147,6 +155,48 @@ export const ITEM_IMAGES = {
   ],
   'bidon-2019': [
     bidonImage
+  ],
+  'hoodie-2021': {
+    BLK: [
+      hoodieBlkFrontImage,
+      hoodieBlkBackImage
+    ],
+    WHI: [
+      hoodieWhiFrontImage,
+      hoodieWhiBackImage
+    ]
+  },
+  'zip-hoodie-2021': {
+    BLK: [
+      zipHoodieBlkFrontImage,
+      zipHoodieBlkBackImage
+    ],
+    WHI: [
+      zipHoodieWhiFrontImage,
+      zipHoodieWhiBackImage
+    ]
+  },
+  't-shirt-2021': {
+    BLK: [
+      tshirtBlkFrontImage
+    ],
+    WHI: [
+      tshirtWhiFrontImage
+    ]
+  },
+  'ls-t-shirt-2021': {
+    BLK: [
+      lsTshirtBlkFrontImage
+    ],
+    WHI: [
+      lsTshirtWhiFrontImage
+    ]
+  },
+  'royal-mail-shipping': [
+    royalMailShippingImage
+  ],
+  'dpd-shipping': [
+    dpdShippingImage
   ]
 }
 
@@ -180,20 +230,29 @@ const ShopPanel = styled(InnerPanel)`
   }
 `
 
-const findImage = (slug) => {
-  const img = ITEM_IMAGES[slug]
+const findImage = (slug, colour) => {
+  let img = ITEM_IMAGES[slug]
 
   if (!img) {
     console.warn('No image found for', slug)
     return clubLogo
   }
 
-  return img[0]
+  if (colour) {
+    img = img[colour]
+  }
+
+  if (Array.isArray(img)) {
+    return img[0]
+  }
+
+  // item has multiple colour options
+  return img[Object.keys(img)[0]][0]
 }
 
-export const ItemImage = ({ item, ...attrs }) => {
+export const ItemImage = ({ item, colour, ...attrs }) => {
   return (
-    <img srcSet={findImage(item.slug).srcSet} src={findImage(item.slug).src} {...attrs} />
+    <img srcSet={findImage(item.slug, colour).srcSet} src={findImage(item.slug, colour).src} {...attrs} />
   )
 }
 
@@ -268,7 +327,7 @@ export const Breadcrumb = ({ section, product }) => {
 
 export const Price = ({ price }) => {
   return (
-    <span>&pound;{price / 100}</span>
+    <span>&pound;{(price / 100).toFixed(2)}</span>
   )
 }
 

@@ -8,7 +8,8 @@ const {
   tokenValidator
 } = require('./middleware')
 const {
-  getOrderItems
+  getOrderItems,
+  getPaymentMetadata
 } = require('./stripe-client')
 const {
   getUser
@@ -21,14 +22,31 @@ async function ordersGetHandler ({ userId, pathParameters }) {
     throw new httpErrors.BadRequest('No user found for that ID')
   }
 
-  const items = await getOrderItems(pathParameters.orderId)
+  const paymentIntentId = pathParameters.orderId
+
+  if (!paymentIntentId) {
+    throw new httpErrors.BadRequest('No payment intent found in request')
+  }
+
+  const items = await getOrderItems(paymentIntentId)
+
+  // order items are cached, payment metadata is not as it is
+  // updated as the order progresses
+  const paymentMetadata = await getPaymentMetadata(paymentIntentId)
+
+  items.forEach((item, index) => {
+    item.status = paymentMetadata[`item-${index}`]
+  })
 
   return {
     statusCode: 200,
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(items)
+    body: JSON.stringify({
+      items,
+      shipping: JSON.parse(paymentMetadata.shipping || '{}')
+    })
   }
 }
 
