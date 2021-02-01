@@ -241,7 +241,9 @@ class NavBarWrapper extends Component {
     }))
   }
 
-  handleSignOut = async () => {
+  handleSignOut = async (event) => {
+    event.preventDefault()
+
     this.props.signOut()
 
     try {
@@ -369,9 +371,9 @@ class NavBarWrapper extends Component {
                     <Link to='/profile'>Profile</Link>
                   </NavLink>
                   <NavLink>
-                    <Link onClick={this.handleSignOut}>
+                    <a onClick={this.handleSignOut} href='#'>
                       Log out
-                    </Link>
+                    </a>
                   </NavLink>
                 </>
               ) : (

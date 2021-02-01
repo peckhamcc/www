@@ -420,7 +420,13 @@ class Basket extends Component {
             <h4>Terms &amp; Conditions</h4>
             <p>Once placed orders cannot be cancelled, exchanged, or refunded.</p>
             {
-              terms
+              terms.map((terms, index) => {
+                return (
+                  <div key={`terms-${index}`}>
+                    {terms}
+                  </div>
+                )
+              })
             }
             <p>Please confirm you understand the above and are happy to proceed with your order:
               <Checkbox

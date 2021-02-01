@@ -84,12 +84,21 @@ class WithUser extends Component {
   }
 
   async componentDidMount () {
+    window.addEventListener('hashchange', this._handleHashChange, false)
+    this._handleHashChange()
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('hashchange', this._handleHashChange)
+  }
+
+  _handleHashChange = async () => {
     const token = new URLSearchParams(window.location.hash.substring(1)).get('token')
 
     if (token) {
       this.props.signOut()
 
-      window.history.pushState('', document.title, window.location.pathname)
+      window.history.replaceState(null, null, ' ')
 
       await this._exchangeToken(token)
     }
