@@ -81,7 +81,12 @@ const displayItems = (lineItems, pound, delimiter) => {
     .join(`${delimiter}${delimiter}`)
 }
 
-const htmlTemplateShopOrder = (name, amount, lineItems) => `
+const htmlTemplateShopOrder = (name, amount, lineItems, {
+  hasMtoKit,
+  hasDropShipKit,
+  hasPremadeKit,
+  hasSubscription
+}) => `
 <html>
   <head>
   </head>
@@ -93,11 +98,30 @@ const htmlTemplateShopOrder = (name, amount, lineItems) => `
       ${displayItems(lineItems, '&pound;', '<br />')}
     </p>
     <p>Total value: &pound;${toCurrencyString(amount)}</p>
+    ${hasMtoKit ? `
+    <h3>Made to order</h3>
+    <p>Your order contains kit that is made to order</p>
     <p>We aim to submit orders to the factory once the previous order has arrived (roughly once every two months).</p>
     <p>
       It then typically takes a further six weeks to print, after which your items will be held at
       <a href="https://ratracecycles.com">Rat Race Cycles</a> for you to pick up.
     </p>
+    ` : ''}
+    ${hasDropShipKit ? `
+    <h3>Made on demand</h3>
+    <p>Your order contains items that are made on demand</p>
+    <p>On-demand items are submitted to the factory as soon as payment has been received and is shipped directly to you, usually within 1-2 weeks.</p>
+    ` : ''}
+    ${hasPremadeKit ? `
+    <h3>Pre-made</h3>
+    <p>Your order contains items that are pre-made.</p>
+    <p>Your order is available to be picked up immediately from <a href='https://ratracecycles.com/'>Rat Race Cycles</a> at 118 Evelina Road, SE15 3HL.</p>
+    ` : ''}
+    ${hasSubscription ? `
+    <h3>Subscription</h3>
+    <p>Your order contains a subscription.</p>
+    <p>The FoPCC subscription will renew on a yearly basis - visit your <a href="https://peckham.cc/user/profile">profile page</a> to cancel at any time.</p>
+    ` : ''}
     <p>You can check on the status of your order at <a href="https://pekcham.cc/profile/orders">https://pekcham.cc/profile/orders</a><p/>
     <p>Please <a href="https://peckham.cc/contact">get in touch</a> if you'd like any updates in the interim.</p>
     <p>Thank you,</p>
@@ -106,7 +130,12 @@ const htmlTemplateShopOrder = (name, amount, lineItems) => `
 </html>
 `
 
-const textTemplateShopOrder = (name, amount, lineItems) => `
+const textTemplateShopOrder = (name, amount, lineItems, {
+  hasMtoKit,
+  hasDropShipKit,
+  hasPremadeKit,
+  hasSubscription
+}) => `
 Hi ${name},
 
 You order from the Peckham Cycle Club shop has been received.
@@ -117,9 +146,40 @@ ${displayItems(lineItems, '£', '\r\n')}
 
 Total value: £${toCurrencyString(amount)}
 
+${hasMtoKit ? `
+Made to order
+
+Your order contains kit that is made to order
+
 We aim to submit orders to the factory once the previous order has arrived (roughly once every two months).
 
-It then typically takes about six weeks to print, after which your items will be held at Rat Race Cycles for you to pick up.
+It then typically takes a further six weeks to print, after which your items will be held at Rat Race Cycles for you to pick up.
+` : ''}
+
+${hasDropShipKit ? `
+Made on demand
+
+Your order contains items that are made on demand
+
+On-demand items are submitted to the factory as soon as payment has been received and is shipped directly to you, usually within 1-2 weeks.
+` : ''}
+
+${hasPremadeKit ? `
+Pre-made
+
+Your order contains items that are pre-made.
+
+Your order is available to be picked up immediately from Rat Race Cycles at 118 Evelina Road, SE15 3HL.
+` : ''}
+
+${hasSubscription ? `
+Subscription
+
+Your order contains a subscription.
+
+The FoPCC subscription will renew on a yearly basis - visit https://peckham.cc/user/profile to cancel at any time.
+` : ''}
+
 
 You can check on the status of your order at https://pekcham.cc/profile/orders
 

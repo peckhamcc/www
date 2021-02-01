@@ -130,34 +130,36 @@ async function handleShopOrder ({ userId, user }, { data: { object } }) {
   const metadata = {}
 
   // see if we need to take any further action
-  let hasMtoKit = false
-  let hasDropShipKit = false
-  let hasPremadeKit = false
-  let hasSubscription = false
+  const lineItemTypes = {
+    hasMtoKit: false,
+    hasDropShipKit: false,
+    hasPremadeKit: false,
+    hasSubscription: false
+  }
 
   orderItems.forEach((item, index) => {
     if (item.productMetadata.type === 'premade') {
       metadata[`item-${index}`] = 'ready'
-      hasPremadeKit = hasPremadeKit || true
+      lineItemTypes.hasPremadeKit = lineItemTypes.hasPremadeKit || true
     } else if (item.productMetadata.type === 'made-to-order') {
       metadata[`item-${index}`] = 'pending'
-      hasMtoKit = hasMtoKit || true
+      lineItemTypes.hasMtoKit = lineItemTypes.hasMtoKit || true
     } else if (item.productMetadata.type === 'dropship') {
       metadata[`item-${index}`] = 'production'
-      hasDropShipKit = hasDropShipKit || true
+      lineItemTypes.hasDropShipKit = lineItemTypes.hasDropShipKit || true
     } else if (item.productMetadata.type === 'subscription') {
       metadata[`item-${index}`] = 'n/a'
-      hasSubscription = hasSubscription || true
+      lineItemTypes.hasSubscription = lineItemTypes.hasSubscription || true
     }
   })
 
-  if (hasDropShipKit) {
+  if (lineItemTypes.hasDropShipKit) {
     await createInkThreadableOrder(user, object, orderItems.filter(item => item.productMetadata.type === 'dropship'))
   }
 
   await setPaymentMetadata(paymentIntent, metadata)
 
-  await sendEmail(user.email, config.email.from, 'Peckham Cycle Club order', shopOrderEmail.html(user.name, amount, orderItems), shopOrderEmail.text(user.name, amount, orderItems))
+  await sendEmail(user.email, config.email.from, 'Peckham Cycle Club order', shopOrderEmail.html(user.name, amount, orderItems, lineItemTypes), shopOrderEmail.text(user.name, amount, orderItems, lineItemTypes))
 }
 
 async function handleInvoicePaid (context, event) {
