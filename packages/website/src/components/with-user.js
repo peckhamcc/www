@@ -36,6 +36,7 @@ const STEPS = {
   CREATING_TOKEN: 'CREATING_TOKEN',
   CREATED_TOKEN: 'CREATED_TOKEN',
   VALIDATING_TOKEN: 'VALIDATING_TOKEN',
+  FETCHING_DETAILS: 'FETCHING_DETAILS',
   ENTER_DETAILS: 'ENTER_DETAILS',
   SAVING_DETAILS: 'SAVING_DETAILS',
   TOKEN_EXPIRED: 'TOKEN_EXPIRED',
@@ -151,8 +152,7 @@ class WithUser extends Component {
       throw new Error('Could not verify token')
     } catch (error) {
       this.setState({
-        step: STEPS.ERROR,
-        error
+        step: STEPS.TOKEN_EXPIRED
       })
 
       console.error(error)
@@ -161,7 +161,7 @@ class WithUser extends Component {
 
   async _getUserDetails (token) {
     this.setState({
-      step: STEPS.VALIDATING_TOKEN
+      step: STEPS.FETCHING_DETAILS
     })
 
     try {
@@ -182,6 +182,10 @@ class WithUser extends Component {
       if (response.status === 401) {
         this.props.expiredToken()
 
+        this.setState({
+          step: STEPS.TOKEN_EXPIRED
+        })
+
         return
       }
 
@@ -200,8 +204,7 @@ class WithUser extends Component {
       throw new Error('Could not verify token')
     } catch (error) {
       this.setState({
-        step: STEPS.ERROR,
-        error
+        step: STEPS.TOKEN_EXPIRED
       })
 
       console.error(error)
@@ -408,6 +411,16 @@ class WithUser extends Component {
           <CentredPanel>
             <img src={clubLogo.src} width='300' height='300' />
             <Info>Validating your log in</Info>
+            <Spinner />
+          </CentredPanel>
+        </>
+      )
+    } else if (step === STEPS.FETCHING_DETAILS) {
+      return (
+        <>
+          <CentredPanel>
+            <img src={clubLogo.src} width='300' height='300' />
+            <Info>Fetching your details</Info>
             <Spinner />
           </CentredPanel>
         </>
