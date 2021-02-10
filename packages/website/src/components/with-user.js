@@ -16,7 +16,8 @@ import {
   signIn,
   signOut,
   setToken,
-  expiredToken
+  expiredToken,
+  updateUser
 } from '../store/actions'
 import {
   config
@@ -47,41 +48,7 @@ const STEPS = {
 class WithUser extends Component {
   state = {
     step: STEPS.DONE,
-    name: '',
-    phone: '',
-    email: '',
     error: null
-  }
-
-  static getDerivedStateFromProps (props, state) {
-    state.name = state.name || props.user.name || ''
-    state.phone = state.phone || props.user.phone || ''
-    state.email = state.email || props.user.email || ''
-
-    if (props.token && props.user.name && props.user.phone) {
-      return {
-        ...state,
-        step: STEPS.DONE
-      }
-    }
-
-    if (state.step === STEPS.DONE) {
-      if (!props.token) {
-        return {
-          ...state,
-          step: STEPS.ENTER_EMAIL
-        }
-      }
-
-      if (!props.user.name || !props.user.phone) {
-        return {
-          ...state,
-          step: STEPS.ENTER_DETAILS
-        }
-      }
-    }
-
-    return state
   }
 
   async componentDidMount () {
@@ -173,8 +140,20 @@ class WithUser extends Component {
       })
 
       if (response.status === 200) {
+        const details = await response.json()
+
         this.props.setToken(token)
-        this.props.signIn(await response.json())
+        this.props.signIn(details)
+
+        if (!details.name || !details.phone) {
+          this.setState({
+            step: STEPS.ENTER_DETAILS
+          })
+        } else {
+          this.setState({
+            step: STEPS.DONE
+          })
+        }
 
         return
       }
@@ -218,6 +197,11 @@ class WithUser extends Component {
       step: STEPS.CREATING_TOKEN
     })
 
+    const {
+      user,
+      redirect
+    } = this.props
+
     try {
       const response = await global.fetch(config.lambda.accountTokenGenerate, {
         method: 'POST',
@@ -225,8 +209,8 @@ class WithUser extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          email: this.state.email,
-          redirect: this.props.redirect
+          email: user.email,
+          redirect
         })
       })
 
@@ -262,7 +246,7 @@ class WithUser extends Component {
   }
 
   handleDetailChange = (key, value) => {
-    this.setState({
+    this.props.updateUser({
       [key]: value
     })
   }
@@ -274,6 +258,10 @@ class WithUser extends Component {
       step: STEPS.SAVING_DETAILS
     })
 
+    const {
+      user
+    } = this.props
+
     try {
       const response = await global.fetch(config.lambda.accountUserUpdate, {
         method: 'PATCH',
@@ -282,8 +270,8 @@ class WithUser extends Component {
           Authorization: this.props.token
         },
         body: JSON.stringify({
-          name: this.state.name,
-          phone: this.state.phone
+          name: user.name,
+          phone: user.phone
         })
       })
 
@@ -331,12 +319,20 @@ class WithUser extends Component {
   }
 
   render () {
-    const {
+    let {
       step
     } = this.state
     const {
+      user,
+      token
+    } = this.props
+    const {
       tokenExpired
     } = this.props
+
+    if (!token && step === STEPS.DONE) {
+      step = STEPS.ENTER_EMAIL
+    }
 
     if (step === STEPS.ENTER_EMAIL) {
       return (
@@ -353,7 +349,7 @@ class WithUser extends Component {
                   name='email'
                   type='email'
                   onChange={(event) => this.handleDetailChange('email', event.target.value)}
-                  value={this.state.email}
+                  value={user.email || ''}
                   data-input='email'
                   placeholder='your-email@example.com'
                   required
@@ -390,7 +386,7 @@ class WithUser extends Component {
                   name='email'
                   type='email'
                   onChange={(event) => this.handleDetailChange('email', event.target.value)}
-                  value={this.state.email}
+                  value={user.email || ''}
                   data-input='email'
                   placeholder='your-email@example.com'
                   required
@@ -437,7 +433,7 @@ class WithUser extends Component {
                   name='name'
                   type='text'
                   onChange={(event) => this.handleDetailChange('name', event.target.value)}
-                  value={this.state.name}
+                  value={user.name || ''}
                   data-input='name'
                   placeholder='Your name'
                   required
@@ -448,7 +444,7 @@ class WithUser extends Component {
                   name='phone'
                   type='tel'
                   onChange={(event) => this.handleDetailChange('phone', event.target.value)}
-                  value={this.state.phone}
+                  value={user.phone || ''}
                   data-input='phone'
                   placeholder='Your phone number'
                   required
@@ -505,7 +501,8 @@ const mapDispatchToProps = {
   signIn,
   signOut,
   setToken,
-  expiredToken
+  expiredToken,
+  updateUser
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(WithUser)
