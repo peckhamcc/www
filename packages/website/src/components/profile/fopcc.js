@@ -8,7 +8,8 @@ import styled from 'styled-components'
 import {
   Spinner,
   Info,
-  Button
+  Button,
+  Note
 } from '../panels'
 import {
   GreenButton,
@@ -211,6 +212,7 @@ class Fopcc extends Component {
         <>
           <p>You are not yet a Friend of PCC.</p>
           <GreenButton onClick={this.handleJoinFoPCC}>Become a Friend of PCC</GreenButton>
+          <Note>If you have recently become a Friend you may need to reload this page to see the status change.</Note>
         </>
       )
     }

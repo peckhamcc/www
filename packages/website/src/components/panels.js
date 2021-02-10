@@ -4,6 +4,7 @@ import {
   panelLevel1Background,
   panelLevel1Header,
   panelLevel1Text,
+  panelLevel1Note,
   panelLevel2Background,
   panelLevel2Header,
   panelLevel2Text,
@@ -351,4 +352,8 @@ export const CentredPanel = styled(Panel)`
 
 export const Info = styled.p`
   text-align: center;
+`
+
+export const Note = styled.p`
+  color: ${panelLevel1Note}
 `

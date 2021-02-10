@@ -45,6 +45,7 @@ export const lightLowlight = '#969696'
 export const panelLevel1Background = '#FFFFFF'
 export const panelLevel1Header = adjustColour(panelLevel1Background, -180)
 export const panelLevel1Text = adjustColour(panelLevel1Background, -120)
+export const panelLevel1Note = adjustColour(panelLevel1Background, -90)
 
 export const panelLevel2Background = '#f3f3f3'
 export const panelLevel2Header = adjustColour(panelLevel2Background, -180)
