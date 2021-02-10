@@ -61,7 +61,7 @@ async function handleNewFoPCCSubscription ({ userId, user }, { data: { object } 
     throw new httpErrors.BadRequest('No subscription id found in webhook event')
   }
 
-  if (user.fopcc.subscriptionId) {
+  if (user.fopcc && user.fopcc.subscriptionId) {
     throw new httpErrors.BadRequest('User already has a subscription')
   }
 

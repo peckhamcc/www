@@ -37,12 +37,6 @@ async function fopccJoinHandler ({ userId }) {
     sessionId = await updateFopccCheckoutSession(userId, user.stripeCustomerId, user.fopcc.subscriptionId)
   } else {
     // create new subscription
-    await updateUser(userId, {
-      fopcc: {
-        status: 'pending'
-      }
-    })
-
     sessionId = await createFopccCheckoutSession(userId, user.stripeCustomerId)
   }
 

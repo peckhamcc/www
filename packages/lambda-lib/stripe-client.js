@@ -376,6 +376,8 @@ const getOrCreateCustomerId = async (user) => {
   })
 
   if (customers.length) {
+    console.info(`Retrieved existing customer id ${customers[0].id} for ${user.email}`)
+
     return customers[0].id
   }
 
@@ -385,6 +387,8 @@ const getOrCreateCustomerId = async (user) => {
     name: user.name,
     phone: user.phone
   })
+
+  console.info(`Created customer id ${customer.id} for ${user.email}`)
 
   return customer.id
 }
