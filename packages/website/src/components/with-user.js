@@ -48,7 +48,10 @@ const STEPS = {
 class WithUser extends Component {
   state = {
     step: STEPS.DONE,
-    error: null
+    error: null,
+    email: '',
+    name: '',
+    phone: ''
   }
 
   async componentDidMount () {
@@ -58,6 +61,36 @@ class WithUser extends Component {
 
   componentWillUnmount () {
     window.removeEventListener('hashchange', this._handleHashChange)
+  }
+
+  static getDerivedStateFromProps (props, state) {
+    state.name = state.name || props.user.name || ''
+    state.phone = state.phone || props.user.phone || ''
+
+    const {
+      token
+    } = props
+    const {
+      step,
+      name,
+      phone
+    } = state
+
+    if (step === STEPS.DONE) {
+      if (!token) {
+        state = {
+          ...state,
+          step: STEPS.ENTER_EMAIL
+        }
+      } else if (!name || !phone) {
+        state = {
+          ...state,
+          step: STEPS.ENTER_DETAILS
+        }
+      }
+    }
+
+    return state
   }
 
   _handleHashChange = async () => {
@@ -198,9 +231,11 @@ class WithUser extends Component {
     })
 
     const {
-      user,
       redirect
     } = this.props
+    const {
+      email
+    } = this.state
 
     try {
       const response = await global.fetch(config.lambda.accountTokenGenerate, {
@@ -209,7 +244,7 @@ class WithUser extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          email: user.email,
+          email,
           redirect
         })
       })
@@ -246,7 +281,7 @@ class WithUser extends Component {
   }
 
   handleDetailChange = (key, value) => {
-    this.props.updateUser({
+    this.setState({
       [key]: value
     })
   }
@@ -259,8 +294,9 @@ class WithUser extends Component {
     })
 
     const {
-      user
-    } = this.props
+      name,
+      phone
+    } = this.state
 
     try {
       const response = await global.fetch(config.lambda.accountUserUpdate, {
@@ -270,8 +306,8 @@ class WithUser extends Component {
           Authorization: this.props.token
         },
         body: JSON.stringify({
-          name: user.name,
-          phone: user.phone
+          name,
+          phone
         })
       })
 
@@ -319,20 +355,15 @@ class WithUser extends Component {
   }
 
   render () {
-    let {
-      step
-    } = this.state
     const {
-      user,
-      token
-    } = this.props
+      step,
+      email,
+      name,
+      phone
+    } = this.state
     const {
       tokenExpired
     } = this.props
-
-    if (!token && step === STEPS.DONE) {
-      step = STEPS.ENTER_EMAIL
-    }
 
     if (step === STEPS.ENTER_EMAIL) {
       return (
@@ -349,7 +380,7 @@ class WithUser extends Component {
                   name='email'
                   type='email'
                   onChange={(event) => this.handleDetailChange('email', event.target.value)}
-                  value={user.email || ''}
+                  value={email}
                   data-input='email'
                   placeholder='your-email@example.com'
                   required
@@ -386,7 +417,7 @@ class WithUser extends Component {
                   name='email'
                   type='email'
                   onChange={(event) => this.handleDetailChange('email', event.target.value)}
-                  value={user.email || ''}
+                  value={email}
                   data-input='email'
                   placeholder='your-email@example.com'
                   required
@@ -433,7 +464,7 @@ class WithUser extends Component {
                   name='name'
                   type='text'
                   onChange={(event) => this.handleDetailChange('name', event.target.value)}
-                  value={user.name || ''}
+                  value={name}
                   data-input='name'
                   placeholder='Your name'
                   required
@@ -444,7 +475,7 @@ class WithUser extends Component {
                   name='phone'
                   type='tel'
                   onChange={(event) => this.handleDetailChange('phone', event.target.value)}
-                  value={user.phone || ''}
+                  value={phone}
                   data-input='phone'
                   placeholder='Your phone number'
                   required
