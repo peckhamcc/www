@@ -38,6 +38,5 @@
     "ignore": [
       "packages"
     ]
-  },
-  "dependencies": {}
+  }
 }

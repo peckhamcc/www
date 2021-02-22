@@ -1,7 +1,7 @@
-import test from 'ava'
-import sinon from 'sinon'
-import proxyquire from 'proxyquire'
-import faker from 'faker'
+const test = require('ava')
+const sinon = require('sinon')
+const proxyquire = require('proxyquire')
+const faker = require('faker')
 
 let aws
 let lambda
