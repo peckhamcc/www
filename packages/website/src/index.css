@@ -39,3 +39,23 @@ a:hover {
 h1, h2, h3, h4, h5, h6 {
   color: #111;
 }
+
+div[data-form='3426454:l5f7t9'] #mlb2-3426454.ml-form-embedContainer .ml-form-align-center {
+  text-align: left;
+}
+
+div[data-form='3426454:l5f7t9'] #mlb2-3426454.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody {
+  padding: 16px 0 0 0;
+}
+
+div[data-form='3426454:l5f7t9'] #mlb2-3426454.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent h4 {
+  color: #4b4b4b;
+  font-size: 24px;
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+div[data-form='3426454:l5f7t9'] #mlb2-3426454.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent p {
+  color: #878787;
+  font-size: 16px;
+  line-height: 1.6;
+}

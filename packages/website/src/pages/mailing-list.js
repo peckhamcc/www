@@ -4,15 +4,9 @@ import React, {
 import {
   PageWrapper,
   Panel,
-  Button,
   Hero
 } from '../components/panels'
 import background from '../../assets/mailing-list-bg.jpg'
-import {
-  Label,
-  Input,
-  HelpText
-} from '../components/forms'
 
 class MailingListPage extends Component {
   render () {
@@ -20,35 +14,7 @@ class MailingListPage extends Component {
       <PageWrapper>
         <Hero background={background.src} />
         <Panel>
-          <h2>Mailing list</h2>
-          <p>Sign up to our mailing list for club updates, including rides, trips, training, kit, etc</p>
-          <form
-            style={{
-              padding: 3
-            }}
-            action='https://tinyletter.com/peckhamcc'
-            method='post'
-            target='popupwindow'
-            onSubmit={() => {
-              window.open('https://tinyletter.com/peckhamcc', 'popupwindow', 'scrollbars=yes,width=800,height=600')
-              return true
-            }}
-          >
-            <p>
-              <Label htmlFor='tlemail'>Enter your email address</Label>
-            </p>
-            <p>
-              <Input
-                name='email'
-                id='tlemail'
-                type='email'
-                placeholder='me@example.com'
-              />
-            </p>
-            <input type='hidden' value='1' name='embed' />
-            <Button>Subscribe</Button>
-          </form>
-          <HelpText>You can unsubscribe at any time. Your email will only be used to contact you and will not be shared with anyone without your permission.</HelpText>
+          <div className='ml-form-embed' data-account='2816293:n1z2e4e8x1' data-form='3426454:l5f7t9'></div>
         </Panel>
       </PageWrapper>
     )
