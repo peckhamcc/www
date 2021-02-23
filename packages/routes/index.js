@@ -157,8 +157,8 @@ export default ${JSON.stringify(routes, null, 2)}
     await browser.close()
 
     if (browser && browser.process() != null) {
-      console.info('Browser process still alive, sending SIGINT')
-      browser.process().kill('SIGINT')
+      console.info('Browser process still alive, sending SIGKILL')
+      browser.process().kill('SIGKILL')
     }
 
     server.close()
