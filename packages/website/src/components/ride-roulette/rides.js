@@ -482,12 +482,14 @@ class Rides extends Component {
             </GroupDetails>
             {routeChoice}
             {
-              riderList.length > 1 ? (
-                <>
-                  <p>Rides leave the <a href='https://www.southwark.gov.uk/libraries/find-a-library?chapter=12'>library</a> at 8am (summer) or 8:30am (winter) unless your group has decided otherwise.</p>
-                  <p>Please turn up 5-10 minutes early to find your group and make sure you have everything on the <Link to='/equipment'>equipment list</Link>.</p>
-                </>
-              ) : null
+              riderList.length > 1
+                ? (
+                  <>
+                    <p>Rides leave the <a href='https://www.southwark.gov.uk/libraries/find-a-library?chapter=12'>library</a> at 8am (summer) or 8:30am (winter) unless your group has decided otherwise.</p>
+                    <p>Please turn up 5-10 minutes early to find your group and make sure you have everything on the <Link to='/equipment'>equipment list</Link>.</p>
+                  </>
+                  )
+                : null
             }
           </RidePreferences>
         )
@@ -577,16 +579,18 @@ class Rides extends Component {
           />
           <RidesPageLink>Check out the <Link to='/routes'>routes page</Link> for inspiration!</RidesPageLink>
           {
-            loading ? (
-              <SmallSpinner />
-            ) : (
-              <GreenButton
-                onClick={() => this.handleSaveRidePreference(preference)}
-                disabled={loading}
-                centred
-              >Save
-              </GreenButton>
-            )
+            loading
+              ? (
+                <SmallSpinner />
+                )
+              : (
+                <GreenButton
+                  onClick={() => this.handleSaveRidePreference(preference)}
+                  disabled={loading}
+                  centred
+                >Save
+                </GreenButton>
+                )
           }
         </RidePreferences>
       )

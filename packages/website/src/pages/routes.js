@@ -157,10 +157,12 @@ class RoutesPage extends Component {
     const makeFixed = top < 70 && window.innerWidth > 940
 
     this.setState({
-      filterStyle: makeFixed ? {
-        position: 'fixed',
-        top: 65
-      } : {}
+      filterStyle: makeFixed
+        ? {
+            position: 'fixed',
+            top: 65
+          }
+        : {}
     })
   }
 
@@ -261,29 +263,31 @@ class RoutesPage extends Component {
             </FilterWrapper>
             <Routes>
               {
-                selectedRoutes.length ? selectedRoutes.map((route, index) => {
-                  return (
-                    <Route key={index}>
-                      <h3 id={route.hash}>{route.type === 'road' ? <FaRoad /> : <FaTree />} {route.title}</h3>
-                      <SharingList>
-                        <Sharing><FaArrowRight /> {route.distance}km <FaArrowUp /> {route.vert}m</Sharing>
-                        <Sharing><MapLink href={route.gpx}><FaRegMap /> .gpx</MapLink> <MapLink href={route.fit}><FaRegMap /> .fit</MapLink></Sharing>
-                        <Sharing><a href={route.link}><FaBicycle /> View on Ride with GPS</a></Sharing>
-                      </SharingList>
-                      <p>{route.description}</p>
-                      <a href={route.link}>
-                        <Map name={route.title} src={route.map} />
-                      </a>
-                    </Route>
-                  )
-                }) : (
-                  <>
-                    <InnerPanel>
-                      <h3>No results</h3>
-                      <p>Nothing matched your search, maybe try some different search parameters?</p>
-                    </InnerPanel>
-                  </>
-                )
+                selectedRoutes.length
+                  ? selectedRoutes.map((route, index) => {
+                      return (
+                        <Route key={index}>
+                          <h3 id={route.hash}>{route.type === 'road' ? <FaRoad /> : <FaTree />} {route.title}</h3>
+                          <SharingList>
+                            <Sharing><FaArrowRight /> {route.distance}km <FaArrowUp /> {route.vert}m</Sharing>
+                            <Sharing><MapLink href={route.gpx}><FaRegMap /> .gpx</MapLink> <MapLink href={route.fit}><FaRegMap /> .fit</MapLink></Sharing>
+                            <Sharing><a href={route.link}><FaBicycle /> View on Ride with GPS</a></Sharing>
+                          </SharingList>
+                          <p>{route.description}</p>
+                          <a href={route.link}>
+                            <Map name={route.title} src={route.map} />
+                          </a>
+                        </Route>
+                      )
+                    })
+                  : (
+                    <>
+                      <InnerPanel>
+                        <h3>No results</h3>
+                        <p>Nothing matched your search, maybe try some different search parameters?</p>
+                      </InnerPanel>
+                    </>
+                    )
               }
             </Routes>
           </RoutesPanel>

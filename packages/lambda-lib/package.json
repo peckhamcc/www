@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "node-lambda": "^0.14.0",
-    "standard": "^14.3.1"
+    "standard": "^16.0.3"
   },
   "dependencies": {
     "aws-sdk": "^2.211.0",

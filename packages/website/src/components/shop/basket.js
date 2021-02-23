@@ -150,10 +150,12 @@ const Terms = styled.div`
   padding: 0;
   border: 1px solid transparent;
 
-  ${props => props.error ? `
+  ${props => props.error
+  ? `
     /*border: 1px solid ${errorText};*/
     color: ${errorText};
-  ` : ''}
+  `
+  : ''}
 
   h4, h5 {
     margin: 0 ${spacing(1)};
@@ -363,7 +365,7 @@ class Basket extends Component {
                 const details = []
 
                 if (item.options) {
-                  Object.keys(item.options).map(option => {
+                  Object.keys(item.options).forEach(option => {
                     const value = item.options[option]
 
                     details.push(

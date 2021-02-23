@@ -13,7 +13,7 @@ class ReactComment extends Component {
   }
 
   componentDidMount () {
-    const el = ReactDOM.findDOMNode(this)
+    const el = ReactDOM.findDOMNode(this) // eslint-disable-line
     ReactDOM.unmountComponentAtNode(el)
     el.outerHTML = this.createComment()
   }

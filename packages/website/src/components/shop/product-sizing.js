@@ -162,21 +162,22 @@ class Sizing extends Component {
     return (
       <SizingContainer>
         <h3>Sizing</h3>
-        {sizeTable ? (
-          <>
-            <SizeControls>
-              {genderControls}
-              {unitControls}
-            </SizeControls>
-            <Table>
-              <thead>
-                <tr>
-                  <TableHeader>Sizes</TableHeader>
-                  {sizeTable.map((size, index) => <TableHeader key={index}>{size.code}</TableHeader>)}
-                </tr>
-              </thead>
-              <tbody>
-                {
+        {sizeTable
+          ? (
+            <>
+              <SizeControls>
+                {genderControls}
+                {unitControls}
+              </SizeControls>
+              <Table>
+                <thead>
+                  <tr>
+                    <TableHeader>Sizes</TableHeader>
+                    {sizeTable.map((size, index) => <TableHeader key={index}>{size.code}</TableHeader>)}
+                  </tr>
+                </thead>
+                <tbody>
+                  {
                   Object.keys(sizeTable[0].measurements).map((attribute, index) => {
                     return (
                       <tr key={index}>
@@ -216,13 +217,14 @@ class Sizing extends Component {
                     )
                   })
                 }
-              </tbody>
-            </Table>
-            <small>Garment sizes are approximate and for guidance only.</small>
-          </>
-        ) : (
-          <p>One size fits all</p>
-        )}
+                </tbody>
+              </Table>
+              <small>Garment sizes are approximate and for guidance only.</small>
+            </>
+            )
+          : (
+            <p>One size fits all</p>
+            )}
       </SizingContainer>
     )
   }

@@ -370,9 +370,11 @@ class WithUser extends Component {
         <>
           <CentredPanel>
             <img src={clubLogo.src} width='300' height='300' />
-            {tokenExpired ? (
-              <p>Your session has expired.</p>
-            ) : null}
+            {tokenExpired
+              ? (
+                <p>Your session has expired.</p>
+                )
+              : null}
             <p>Please enter your email address to log in:</p>
             <Form onSubmit={this.handleCreateToken}>
               <FormInputWrapper error={this.state.error === 'email'}>

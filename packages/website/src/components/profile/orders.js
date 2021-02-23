@@ -154,21 +154,25 @@ class Orders extends Component {
     }
 
     return (
-      loadingOrders ? (
-        <>
-          <Info>Loading orders</Info>
-          <Spinner />
-        </>
-      ) : (
-        orders.length ? (
+      loadingOrders
+        ? (
           <>
-            <OrderList orders={orders} onShowOrder={this.handleShowOrder} />
+            <Info>Loading orders</Info>
+            <Spinner />
           </>
+          )
+        : (
+            orders.length
+              ? (
+                <>
+                  <OrderList orders={orders} onShowOrder={this.handleShowOrder} />
+                </>
 
-        ) : (
-          <p>You have no outstanding shop orders</p>
-        )
-      )
+                )
+              : (
+                <p>You have no outstanding shop orders</p>
+                )
+          )
     )
   }
 }

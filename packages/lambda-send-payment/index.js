@@ -49,10 +49,7 @@ const sendPayment = function ({ body }) {
       unitAmount: toCurrencyString(lineItem.price),
       // 127 char limit
       description: [item.gender && `Gender: ${item.gender.name}`, item.size && `Size: ${item.size.name}`]
-        .concat(item.variants
-          ? Object.keys(item.variants)
-            .map(variant =>
-              `${capitalise(variant)}: ${item.variants[variant].name}`) : [])
+        .concat(item.variants ? Object.keys(item.variants).map(variant => `${capitalise(variant)}: ${item.variants[variant].name}`) : [])
         .filter(Boolean)
         .join(', ')
         .trim()

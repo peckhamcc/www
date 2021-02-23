@@ -54,15 +54,17 @@ class WithProducts extends Component {
       )
     }
 
-    return sections.length ? (
-      <>
-        {this.props.children}
-      </>
-    ) : (
-      <>
-        <p>There are no products available in the shop at the moment, please check back later!</p>
-      </>
-    )
+    return sections.length
+      ? (
+        <>
+          {this.props.children}
+        </>
+        )
+      : (
+        <>
+          <p>There are no products available in the shop at the moment, please check back later!</p>
+        </>
+        )
   }
 }
 

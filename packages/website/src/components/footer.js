@@ -49,7 +49,7 @@ const FooterWrapper = () => {
     <Footer>
       <FlexContainerCentered>
         <FlexContentLeft>
-        United we <Comment text='Sausage' /> roll
+          United we <Comment text='Sausage' /> roll
         </FlexContentLeft>
 
         <FlexContentRight>

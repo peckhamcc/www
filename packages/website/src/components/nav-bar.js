@@ -365,24 +365,26 @@ class NavBarWrapper extends Component {
         {userMenuOpen && (
           <ModalBlocker onClick={this.handleToggleDropDownUserMenu} style={{ top: 59 }}>
             <UserNav>
-              {this.props.token ? (
-                <>
-                  <NavLink>
-                    <Link to='/profile'>Profile</Link>
-                  </NavLink>
-                  <NavLink>
-                    <a onClick={this.handleSignOut} href='#'>
-                      Log out
-                    </a>
-                  </NavLink>
-                </>
-              ) : (
-                <>
-                  <NavLink>
-                    <Link to='/profile'>Log in</Link>
-                  </NavLink>
-                </>
-              )}
+              {this.props.token
+                ? (
+                  <>
+                    <NavLink>
+                      <Link to='/profile'>Profile</Link>
+                    </NavLink>
+                    <NavLink>
+                      <a onClick={this.handleSignOut} href='#'>
+                        Log out
+                      </a>
+                    </NavLink>
+                  </>
+                  )
+                : (
+                  <>
+                    <NavLink>
+                      <Link to='/profile'>Log in</Link>
+                    </NavLink>
+                  </>
+                  )}
             </UserNav>
           </ModalBlocker>
         )}

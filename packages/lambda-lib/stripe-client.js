@@ -492,7 +492,7 @@ async function getCheckoutSession (paymentIntentId) {
     limit: 100
   })
 
-  for (const session of sessions.data) {
+  for (const session of sessions.data) { // eslint-disable-line no-unreachable-loop
     return session
   }
 }

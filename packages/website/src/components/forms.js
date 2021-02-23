@@ -44,7 +44,8 @@ export const TransactionId = styled.p`
 `
 
 export const FormInputWrapper = styled.div`
-  ${props => props.error ? `
+  ${props => props.error
+  ? `
     label {
       color: ${errorText};
     }
@@ -53,7 +54,8 @@ export const FormInputWrapper = styled.div`
       border: 1px solid ${errorText};
       color: ${errorText};
     }
-  ` : ''}
+  `
+  : ''}
 `
 
 export const DetailsWrapper = styled.div`

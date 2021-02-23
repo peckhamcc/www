@@ -1,3 +1,4 @@
+/* eslint-disable */
 
 const htmlFooter = `<p>Peckham Cycle Club</p>
     <p>

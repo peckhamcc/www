@@ -54,16 +54,20 @@ const FlexContainer = styled.div`
   display: flex;
   flex-direction: ${props => props.vertical ? 'column' : 'row'};
 
-  ${props => props.centered ? `
+  ${props => props.centered
+  ? `
   align-items: center;
   justify-content: center;
-  ` : ''};
+  `
+  : ''};
 `
 
 const FlexItem = styled.div`
-  ${props => props.expand ? `
+  ${props => props.expand
+  ? `
   flex-grow: 1;
-  ` : ''};
+  `
+  : ''};
 `
 
 const AppWrapper = styled(FlexContainer)`
