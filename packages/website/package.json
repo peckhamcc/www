@@ -19,7 +19,7 @@
     "lint": "standard",
     "start": "NODE_ENV=development webpack --progress --colors --watch",
     "prepublishOnly": "run-s build",
-    "deploy": "run-s clean build upload",
+    "deploy": "run-s build upload",
     "upload": "s3-deploy './dist/**' --cwd './dist/' --region eu-west-2 --bucket cc.peckham --deleteRemoved --etag --gzip --invalidate '/*' --distId E39LOZKFS19ZDJ"
   },
   "dependencies": {
