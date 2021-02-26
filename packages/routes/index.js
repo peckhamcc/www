@@ -130,7 +130,7 @@ async function main () {
         link: `${route_url}`,
         gpx: `${route_url}.gpx`,
         fit: `${route_url}.fit`,
-        map: `/assets/routes/${id}.png`
+        map: `/routes/${id}.png`
       }
 
       const gpx = createGpx(route_url, json)

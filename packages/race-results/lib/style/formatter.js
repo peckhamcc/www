@@ -101,10 +101,10 @@ export default () => {
       <Panel>
         ${output.join('\n        ')}
       </Panel>
-      <LinkPanel background={equipmentBackground.src}>
+      <LinkPanel background={equipmentBackground}>
         <Link to='/results'>Results</Link>
       </LinkPanel>
-      <LinkPanel background={membershipBackground.src}>
+      <LinkPanel background={membershipBackground}>
         <Link to='/membership'>Membership</Link>
       </LinkPanel>
     </PageWrapper>
