@@ -504,6 +504,7 @@ async function getRRCOrders () {
 async function getKitOrderItems (fromDate) {
   const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
   const items = {}
+  const orders = []
 
   // pagination
   let endingBefore
@@ -523,6 +524,18 @@ async function getKitOrderItems (fromDate) {
     }
 
     const orderItems = await getOrderItems(paymentIntent.id)
+    const customer = await client.customers.retrieve(paymentIntent.customer)
+
+    if (customer.deleted) {
+      continue
+    }
+
+    const order = {
+      name: customer.name,
+      amount: paymentIntent.amount,
+      date: new Date(paymentIntent.created * 1000),
+      items: []
+    }
 
     orderItems.forEach(item => {
       // only made to order items
@@ -530,19 +543,31 @@ async function getKitOrderItems (fromDate) {
         return
       }
 
-      if (!items[item.name]) {
-        items[item.name] = {}
-      }
+      const hasVariations = Boolean(Object.keys(item.metadata).length)
 
-      if (!items[item.name][item.description]) {
-        items[item.name][item.description] = 0
-      }
+      order.items.push(`${item.quantity}x ${item.name}${hasVariations ? ` - ${item.description}` : ''}`)
 
-      items[item.name][item.description]++
+      if (hasVariations) {
+        if (!items[item.name]) {
+          items[item.name] = {}
+        }
+
+        if (!items[item.name][item.description]) {
+          items[item.name][item.description] = 0
+        }
+
+        items[item.name][item.description] += +item.quantity
+      } else {
+        items[item.name] = (items[item.name] || 0) + item.quantity
+      }
     })
+
+    if (order.items.length) {
+      orders.push(order)
+    }
   }
 
-  return items
+  return { items, orders }
 }
 
 async function setOrderItemsStatus (since, status) {
