@@ -46,7 +46,10 @@ async function bundle () {
       'process.env.STRIPE_SHIPPING_3': `"${process.env.STRIPE_SHIPPING_3}"`,
 
       'process.env.INKTHREADABLE_APP_ID': `"${process.env.INKTHREADABLE_APP_ID}"`,
-      'process.env.INKTHREADABLE_SECRET_KEY': `"${process.env.INKTHREADABLE_SECRET_KEY}"`
+      'process.env.INKTHREADABLE_SECRET_KEY': `"${process.env.INKTHREADABLE_SECRET_KEY}"`,
+
+      'process.env.KIT_SUPPLIER_NAME': `"${process.env.KIT_SUPPLIER_NAME}"`,
+      'process.env.KIT_SUPPLIER_EMAIL': `"${process.env.KIT_SUPPLIER_EMAIL}"`
     },
     loader: {
       '.png': 'file',
