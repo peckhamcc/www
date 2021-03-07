@@ -534,6 +534,7 @@ async function getKitOrderItems (fromDate) {
       name: customer.name,
       amount: paymentIntent.amount,
       date: new Date(paymentIntent.created * 1000),
+      payment: paymentIntent.id,
       items: []
     }
 

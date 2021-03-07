@@ -33,13 +33,14 @@ async function getOrders () {
   })
 }
 
-async function createOrder (date) {
+async function createOrder (date, payments) {
   const client = new AWS.DynamoDB.DocumentClient()
 
   await client.put({
     TableName: process.env.AWS_ORDERS_DB_TABLE,
     Item: {
-      date
+      date,
+      payments
     }
   }).promise()
 }

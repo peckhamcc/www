@@ -10,8 +10,8 @@ const {
   getLastOrder
 } = require('./kit')
 const {
-  getKitOrderItems,
-  setOrderItemsStatus
+  getKitOrderItems
+  // setOrderItemsStatus
 } = require('./stripe-client')
 const {
   sendEmail
@@ -58,8 +58,8 @@ async function kitOrdersCreateHandler () {
       htmlTemplateCreateOrder(config.kit.name, items),
       textTemplateCreateOrder(config.kit.name, items)
     )
-    await setOrderItemsStatus(since, 'production')
-    await createOrder(orderDate)
+    await createOrder(orderDate, orders.map(order => order.payment))
+    // await setOrderItemsStatus(orders.map(order => order.payment), 'production')
   } else {
     console.info('Nothing ordered this month')
   }

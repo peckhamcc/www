@@ -21,9 +21,10 @@ async function getOrders () {
     })
 }
 
-async function createOrder (date) {
+async function createOrder (date, payments) {
   const order = {
-    date: Math.round(date.getTime() / 1000)
+    date: Math.round(date.getTime() / 1000),
+    payments
   }
 
   orders.values[nanoid()] = order
