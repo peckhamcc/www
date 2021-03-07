@@ -13,11 +13,9 @@ const {
   getKitOrderItems
   // setOrderItemsStatus
 } = require('./stripe-client')
-/*
 const {
-  // sendEmail
+  sendEmail
 } = require('./email')
-*/
 const {
   config
 } = require('./config')
@@ -59,16 +57,16 @@ async function kitOrdersCreateHandler () {
       config.email.from,
       config.email.from,
       clubTitle,
-      htmlTemplateClubNotification(date, clubItems),
-      textTemplateClubNotification(date, clubItems)
+      htmlTemplateClubNotification(date, orders),
+      textTemplateClubNotification(date, orders)
     )
     await sendEmail(
-      //config.kit.email,
+      // config.kit.email,
       config.email.from,
       config.email.from,
       supplierTitle,
-      htmlTemplateCreateOrder(config.kit.name, supplierItems),
-      textTemplateCreateOrder(config.kit.name, supplierItems)
+      htmlTemplateCreateOrder(config.kit.name, items),
+      textTemplateCreateOrder(config.kit.name, items)
     )
     // await setOrderItemsStatus(since, 'production')
     // await createOrder(orderDate)
