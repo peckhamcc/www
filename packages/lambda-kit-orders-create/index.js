@@ -6,12 +6,12 @@ const {
   errorHandler
 } = require('./middleware')
 const {
-  // createOrder,
+  createOrder,
   getLastOrder
 } = require('./kit')
 const {
-  getKitOrderItems
-  // setOrderItemsStatus
+  getKitOrderItems,
+  setOrderItemsStatus
 } = require('./stripe-client')
 const {
   sendEmail
@@ -41,17 +41,7 @@ async function kitOrdersCreateHandler () {
     const date = `${new Intl.DateTimeFormat('en', { month: 'long' }).format(orderDate)} ${new Intl.DateTimeFormat('en', { year: 'numeric' }).format(orderDate)}`
 
     const supplierTitle = `Peckham Cycle Club kit order - ${date}`
-    const clubTitle = `Peckham Cycle Club kit order - ${date}`
-
-    console.info(supplierTitle)
-    console.info('to', config.kit.email)
-    console.info(htmlTemplateCreateOrder(config.kit.name, items))
-    console.info(textTemplateCreateOrder(config.kit.name, items))
-
-    console.info(clubTitle)
-    console.info('to', config.kit.email)
-    console.info(htmlTemplateClubNotification(date, orders))
-    console.info(textTemplateClubNotification(date, orders))
+    const clubTitle = `Kit orders - ${date}`
 
     await sendEmail(
       config.email.from,
@@ -68,8 +58,8 @@ async function kitOrdersCreateHandler () {
       htmlTemplateCreateOrder(config.kit.name, items),
       textTemplateCreateOrder(config.kit.name, items)
     )
-    // await setOrderItemsStatus(since, 'production')
-    // await createOrder(orderDate)
+    await setOrderItemsStatus(since, 'production')
+    await createOrder(orderDate)
   } else {
     console.info('Nothing ordered this month')
   }
@@ -105,8 +95,8 @@ const htmlTemplateCreateOrder = (name, items) => `
       : `${name}<br/>
     ${Object.keys(items[name]).map(variant => {
       return `${items[name][variant]}x ${variant}`
-    }).join('</p><p>')}
-    `}`
+    }).join('<br/>')}
+    <br/>${Object.keys(items[name]).reduce((acc, curr) => acc + items[name][curr], 0)} total`}`
 }).join('</p><p>')
     }</p>
     <p>Thanks,</p>
@@ -137,6 +127,7 @@ ${
 ${Object.keys(items[name]).map(variant => {
   return `${items[name][variant]}x ${variant}`
 }).join('\r\n')}
+${Object.keys(items[name]).reduce((acc, curr) => acc + items[name][curr], 0)} total
 `}`
 }).join('\r\n')
 }
