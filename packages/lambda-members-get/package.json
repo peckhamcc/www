@@ -1,0 +1,37 @@
+{
+  "name": "@peckhamcc/lambda-members-get",
+  "version": "1.0.0",
+  "description": "Retrieve orders from stripe",
+  "main": "index.js",
+  "homepage": "https://peckhamcc.github.com/www",
+  "author": "Alex Potsides",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peckhamcc/www"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peckhamcc/www/issues"
+  },
+  "scripts": {
+    "test": "echo 0",
+    "clean": "rm -rf build",
+    "build": "cp ../config/index.js config.js && cp ../lambda-lib/stripe-client.js stripe-client.js && cp ../lambda-lib/account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/cache.js cache.js && cp ../lambda-lib/members.js members.js",
+    "build:dev": "cp ../config/index.js config.js && cp ../lambda-lib/stripe-client.js stripe-client.js && cp ../lambda-lib/dev-account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/dev-cache.js cache.js && cp ../lambda-lib/dev-members.js members.js",
+    "upload": "node-lambda deploy --runtime nodejs14.x --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-admin-members-get-role-xxx0zj83 --region eu-west-2",
+    "deploy": "run-s clean build upload",
+    "lint": "standard"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.211.0",
+    "node-lambda": "^0.14.0",
+    "npm-run-all": "^4.1.5",
+    "standard": "^16.0.3"
+  },
+  "dependencies": {
+    "http-errors": "^1.6.3",
+    "middy": "^0.33.0",
+    "nanoid": "^3.1.18",
+    "stripe": "^8.129.0"
+  }
+}

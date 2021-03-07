@@ -368,6 +368,15 @@ class NavBarWrapper extends Component {
               {this.props.token
                 ? (
                   <>
+                    {
+                      this.props.user && this.props.user.admin
+                        ? (
+                          <NavLink>
+                            <Link to='/admin'>Admin</Link>
+                          </NavLink>
+                          )
+                        : null
+                    }
                     <NavLink>
                       <Link to='/profile'>Profile</Link>
                     </NavLink>
@@ -452,7 +461,7 @@ class NavBarWrapper extends Component {
   }
 }
 
-const mapStateToProps = ({ shop: { cart }, user: { user }, session: { token } }) => ({
+const mapStateToProps = ({ shop: { cart }, user, session: { token } }) => ({
   cart,
   user,
   token

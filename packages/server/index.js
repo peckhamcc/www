@@ -23,6 +23,9 @@ const fopccJoin = require('@peckhamcc/lambda-fopcc-join')
 const fopccLeave = require('@peckhamcc/lambda-fopcc-leave')
 const stripeWebhook = require('@peckhamcc/lambda-stripe-webhook')
 const inkthreadableWebhook = require('@peckhamcc/lambda-inkthreadable-webhook')
+const kitOrdersGet = require('@peckhamcc/lambda-kit-orders-get')
+const rrcOrdersGet = require('@peckhamcc/lambda-rrc-orders-get')
+const membersGet = require('@peckhamcc/lambda-members-get')
 const { callbackify } = require('util')
 
 const ACCOUNT_ID = nanoid()
@@ -220,6 +223,15 @@ module.exports = (port) => {
 
     app.options('/lambda/inkthreadable-webook', serveLambda('_peckhamcc_lambda-inkthreadable-webhook', inkthreadableWebhook))
     app.post('/lambda/inkthreadable-webhook', serveLambda('_peckhamcc_lambda-inkthreadable-webhook', inkthreadableWebhook))
+
+    app.options(config.lambda.kitOrdersGet, serveLambda('_peckhamcc_lambda-kit-orders-get', sendCorsHeaders))
+    app.get(config.lambda.kitOrdersGet, serveLambda('_peckhamcc_lambda-kit-orders-get', kitOrdersGet))
+
+    app.options(config.lambda.rrcOrdersGet, serveLambda('_peckhamcc_lambda-rrc-orders-get', sendCorsHeaders))
+    app.get(config.lambda.rrcOrdersGet, serveLambda('_peckhamcc_lambda-rrc-orders-get', rrcOrdersGet))
+
+    app.options(config.lambda.membersGet, serveLambda('_peckhamcc_lambda-members-get', sendCorsHeaders))
+    app.get(config.lambda.membersGet, serveLambda('_peckhamcc_lambda-members-get', membersGet))
 
     app.use((_, response) => {
       response.sendFile(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist', 'index.html'))

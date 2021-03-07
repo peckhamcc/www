@@ -497,6 +497,90 @@ async function getCheckoutSession (paymentIntentId) {
   }
 }
 
+async function getRRCOrders () {
+
+}
+
+async function getKitOrderItems (fromDate) {
+  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
+  const items = {}
+
+  // pagination
+  let endingBefore
+
+  for await (const paymentIntent of client.paymentIntents.list({
+    limit: 100,
+    ending_before: endingBefore,
+    created: {
+      gt: fromDate
+    }
+  })) {
+    endingBefore = paymentIntent.id
+
+    if (!paymentIntent.charges.total_count) {
+      // no charges on this payment intent, nothing to see here
+      continue
+    }
+
+    const orderItems = await getOrderItems(paymentIntent.id)
+
+    orderItems.forEach(item => {
+      // only made to order items
+      if (item.productMetadata.type !== 'made-to-order') {
+        return
+      }
+
+      if (!items[item.name]) {
+        items[item.name] = {}
+      }
+
+      if (!items[item.name][item.description]) {
+        items[item.name][item.description] = 0
+      }
+
+      items[item.name][item.description]++
+    })
+  }
+
+  return items
+}
+
+async function setOrderItemsStatus (since, status) {
+  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
+
+  // pagination
+  let endingBefore
+
+  for await (const paymentIntent of client.paymentIntents.list({
+    limit: 100,
+    ending_before: endingBefore,
+    created: {
+      gt: since
+    }
+  })) {
+    endingBefore = paymentIntent.id
+
+    if (!paymentIntent.charges.total_count) {
+      // no charges on this payment intent, nothing to see here
+      continue
+    }
+
+    const metadata = paymentIntent.metadata
+    const orderItems = await getOrderItems(paymentIntent.id)
+
+    orderItems.forEach((item, index) => {
+      // only made to order items
+      if (item.productMetadata.type !== 'made-to-order') {
+        return
+      }
+
+      metadata[`item-${index}`] = status
+    })
+
+    await setPaymentMetadata(paymentIntent.id, metadata)
+  }
+}
+
 module.exports = {
   getProducts,
   getOrders,
@@ -512,5 +596,9 @@ module.exports = {
   getOrderItems,
   setPaymentMetadata,
   getPaymentMetadata,
-  getCheckoutSession
+  getCheckoutSession,
+
+  getRRCOrders,
+  getKitOrderItems,
+  setOrderItemsStatus
 }

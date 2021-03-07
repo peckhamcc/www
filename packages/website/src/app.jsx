@@ -9,6 +9,10 @@ import {
 } from 'react-router-dom'
 import {
   About,
+  Admin,
+  AdminKit,
+  AdminMembers,
+  AdminRRC,
   ProfileDetails,
   ProfileOrders,
   ProfileFoPCC,
@@ -17,7 +21,6 @@ import {
   CheckoutSuccess,
   Equipment,
   Home,
-  Orders,
   Racing,
   Rides,
   Routes,
@@ -88,6 +91,10 @@ const App = () => {
                 <Route exact path='/profile/details' component={ProfileDetails} />
                 <Route exact path='/profile/fopcc' component={ProfileFoPCC} />
                 <Route exact path='/profile/orders' component={ProfileOrders} />
+                <Route exact path='/admin' component={Admin} />
+                <Route exact path='/admin/kit' component={AdminKit} />
+                <Route exact path='/admin/members' component={AdminMembers} />
+                <Route exact path='/admin/rrc' component={AdminRRC} />
                 <Route path='/equipment' component={Equipment} />
                 <Route path='/rides' component={Rides} />
                 <Route path='/routes' component={Routes} />
@@ -116,7 +123,6 @@ const App = () => {
                     <Route path='/basket' component={Basket} />
                     <Route exact path='/checkout' component={Checkout} />
                     <Route exact path='/checkout/success' component={CheckoutSuccess} />
-                    <Route path='/orders' component={Orders} />
                   </>
                 </Flag>
 

@@ -17,7 +17,7 @@
     "test": "echo 0",
     "clean": "rm -rf build",
     "build": "cp ../config/index.js config.js",
-    "upload": "node-lambda deploy --runtime nodejs12.x --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-strava-oauth-role-r0eimiof --region eu-west-2",
+    "upload": "node-lambda deploy --runtime nodejs14.x --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-strava-oauth-role-r0eimiof --region eu-west-2",
     "deploy": "run-s clean build upload",
     "lint": "standard"
   },

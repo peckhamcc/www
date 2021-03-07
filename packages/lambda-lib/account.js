@@ -15,7 +15,11 @@ const REDIRECT_URLS = {
   '/profile': true,
   '/shop': true,
   '/ride-roulette': true,
-  '/checkout': true
+  '/checkout': true,
+  '/admin': true,
+  '/admin/members': true,
+  '/admin/kit': true,
+  '/admin/rrc': true
 }
 
 function loginTokenExpiry () {

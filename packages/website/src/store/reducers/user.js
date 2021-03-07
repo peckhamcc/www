@@ -15,7 +15,11 @@ const initialState = {
   size: null,
   gender: null,
   fopcc: null,
-  acceptedTerms: false
+  acceptedTerms: false,
+  admin: null,
+  rrcAdmin: null,
+  kitAdmin: null,
+  membersAdmin: null
 }
 
 const userReducer = (state = initialState, action) => {
@@ -28,7 +32,11 @@ const userReducer = (state = initialState, action) => {
         phone: action.payload.phone,
         size: action.payload.size,
         gender: action.payload.gender,
-        fopcc: action.payload.fopcc
+        fopcc: action.payload.fopcc,
+        rrcAdmin: action.payload.rrcAdmin,
+        kitAdmin: action.payload.kitAdmin,
+        membersAdmin: action.payload.membersAdmin,
+        admin: action.payload.rrcAdmin || action.payload.kitAdmin || action.payload.membersAdmin
       }
     case SIGN_OUT:
     case SESSION_EXPIRED_TOKEN:
@@ -40,7 +48,11 @@ const userReducer = (state = initialState, action) => {
         size: null,
         gender: null,
         fopcc: null,
-        acceptedTerms: false
+        acceptedTerms: false,
+        admin: null,
+        rrcAdmin: null,
+        kitAdmin: null,
+        membersAdmin: null
       }
     case SELECTED_GENDER:
       return {

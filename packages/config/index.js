@@ -594,7 +594,10 @@ const config = {
     shopOrdersGet: '/lambda/shop-orders-get',
     shopOrdersItemsGet: '/lambda/shop-orders-items-get',
     fopccJoin: '/lambda/fopcc-join',
-    fopccLeave: '/lambda/fopcc-leave'
+    fopccLeave: '/lambda/fopcc-leave',
+    membersGet: '/lambda/members-get',
+    kitOrdersGet: '/lambda/kit-orders-get',
+    rrcOrdersGet: '/lambda/rrc-orders-get'
   },
   flags: {
     shop: true,
@@ -630,6 +633,10 @@ const config = {
   inkthreadable: {
     appId: 'inkthreadable-1234',
     secretKey: 'wow-such-secret-shhhh'
+  },
+  kit: {
+    name: 'Supplier Name',
+    email: 'supplier-email@example.com'
   }
 }
 
@@ -650,6 +657,10 @@ if (process.env.NODE_ENV !== 'development') {
   config.lambda.fopccJoin = 'https://api.peckham.cc/fopcc'
   config.lambda.fopccLeave = 'https://api.peckham.cc/fopcc'
 
+  config.lambda.membersGet = 'https://api.peckham.cc/members'
+  config.lambda.kitOrdersGet = 'https://api.peckham.cc/kit-orders'
+  config.lambda.rrcOrdersGet = 'https://api.peckham.cc/rrc-orders'
+
   config.stripe.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY
   config.stripe.secretKey = process.env.STRIPE_SECRET_KEY
   config.stripe.webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
@@ -667,6 +678,9 @@ if (process.env.NODE_ENV !== 'development') {
 
   config.inkthreadable.appId = process.env.INKTHREADABLE_APP_ID
   config.inkthreadable.secretKey = process.env.INKTHREADABLE_SECRET_KEY
+
+  config.kit.name = process.env.KIT_SUPPLIER_NAME
+  config.kit.email = process.env.KIT_SUPPLIER_EMAIL
 }
 
 module.exports = {
