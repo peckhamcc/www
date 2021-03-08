@@ -39,7 +39,7 @@ async function createOrder (date, payments) {
   await client.put({
     TableName: process.env.AWS_ORDERS_DB_TABLE,
     Item: {
-      date,
+      date: Math.round(date.getTime() / 1000),
       payments
     }
   }).promise()
