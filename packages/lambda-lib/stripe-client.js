@@ -312,16 +312,43 @@ const getOrders = async (userId, stripeCustomerId) => {
   return orders
 }
 
-const getOrderItems = async (paymentIntent) => {
-  const cached = await cache.get(`order-items-${paymentIntent}`)
+const getOrder = async (paymentIntentId) => {
+  const order = await getCachedOrder(paymentIntentId)
+
+  // order items are cached, payment metadata is not as it is
+  // updated as the order progresses
+  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
+  const paymentIntent = await client.paymentIntents.retrieve(paymentIntentId)
+
+  order.items.forEach((item, index) => {
+    item.status = paymentIntent.metadata[`item-${index}`]
+  })
+
+  await cache.set(`order-${paymentIntentId}`, order)
+
+  return order
+}
+
+const getCachedOrder = async (paymentIntentId) => {
+  const cached = await cache.get(`order-${paymentIntentId}`)
 
   if (cached) {
     return cached
   }
 
   const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
-  const items = []
-  const session = await getCheckoutSession(paymentIntent)
+  const session = await getCheckoutSession(paymentIntentId)
+  const paymentIntent = await getPayment(paymentIntentId)
+  const customer = await client.customers.retrieve(session.customer)
+
+  const order = {
+    name: customer.name,
+    deleted: Boolean(customer.deleted),
+    amount: paymentIntent.amount,
+    date: new Date(paymentIntent.created * 1000),
+    payment: paymentIntentId,
+    items: []
+  }
 
   for await (const lineItem of client.checkout.sessions.listLineItems(session.id, {
     limit: 100,
@@ -334,7 +361,7 @@ const getOrderItems = async (paymentIntent) => {
       quantity: lineItem.quantity,
       price: lineItem.amount_total,
       productMetadata: lineItem.price.product.metadata,
-      metadata: JSON.parse(session.metadata[`item-${items.length}`] || '{}')
+      metadata: JSON.parse(session.metadata[`item-${order.items.length}`] || '{}')
     }
 
     if (item.productMetadata['shipping-weight']) {
@@ -352,12 +379,12 @@ const getOrderItems = async (paymentIntent) => {
       item.productMetadata.mockups = JSON.parse(item.productMetadata.mockups)
     }
 
-    items.push(item)
+    order.items.push(item)
   }
 
-  await cache.set(`order-items-${paymentIntent}`, items)
+  await cache.set(`order-${paymentIntent}`, order)
 
-  return items
+  return order
 }
 
 const getOrCreateCustomerId = async (user) => {
@@ -474,14 +501,21 @@ async function setPaymentMetadata (paymentIntentId, metadata) {
   })
 }
 
-async function getPaymentMetadata (paymentIntentId) {
+async function getPayment (paymentIntentId) {
+  const cacheKey = `payment-${paymentIntentId}`
+  const cached = await cache.get(cacheKey)
+
+  if (cached) {
+    return cached
+  }
+
   const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
 
-  const {
-    metadata
-  } = await client.paymentIntents.retrieve(paymentIntentId)
+  const payment = await client.paymentIntents.retrieve(paymentIntentId)
 
-  return metadata
+  await cache.set(cacheKey, payment)
+
+  return payment
 }
 
 async function getCheckoutSession (paymentIntentId) {
@@ -501,9 +535,8 @@ async function getRRCOrders () {
 
 }
 
-async function getKitOrderItems (fromDate) {
+async function getNewOrders (fromDate) {
   const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
-  const items = {}
   const orders = []
 
   // pagination
@@ -523,52 +556,10 @@ async function getKitOrderItems (fromDate) {
       continue
     }
 
-    const orderItems = await getOrderItems(paymentIntent.id)
-    const customer = await client.customers.retrieve(paymentIntent.customer)
-
-    if (customer.deleted) {
-      continue
-    }
-
-    const order = {
-      name: customer.name,
-      amount: paymentIntent.amount,
-      date: new Date(paymentIntent.created * 1000),
-      payment: paymentIntent.id,
-      items: []
-    }
-
-    orderItems.forEach(item => {
-      // only made to order items
-      if (item.productMetadata.type !== 'made-to-order') {
-        return
-      }
-
-      const hasVariations = Boolean(Object.keys(item.metadata).length)
-
-      order.items.push(`${item.quantity}x ${item.name}${hasVariations ? ` - ${item.description}` : ''}`)
-
-      if (hasVariations) {
-        if (!items[item.name]) {
-          items[item.name] = {}
-        }
-
-        if (!items[item.name][item.description]) {
-          items[item.name][item.description] = 0
-        }
-
-        items[item.name][item.description] += +item.quantity
-      } else {
-        items[item.name] = (items[item.name] || 0) + item.quantity
-      }
-    })
-
-    if (order.items.length) {
-      orders.push(order)
-    }
+    orders.push(await getCachedOrder(paymentIntent.id))
   }
 
-  return { items, orders }
+  return orders
 }
 
 async function setOrderItemsStatus (since, status) {
@@ -592,7 +583,7 @@ async function setOrderItemsStatus (since, status) {
     }
 
     const metadata = paymentIntent.metadata
-    const orderItems = await getOrderItems(paymentIntent.id)
+    const { items: orderItems } = await getOrder(paymentIntent.id)
 
     orderItems.forEach((item, index) => {
       // only made to order items
@@ -619,12 +610,12 @@ module.exports = {
   getPaymentDigits,
   updateCustomer,
   verifyWebhookEvent,
-  getOrderItems,
+  getOrder,
   setPaymentMetadata,
-  getPaymentMetadata,
+  getPayment,
   getCheckoutSession,
 
   getRRCOrders,
-  getKitOrderItems,
+  getNewOrders,
   setOrderItemsStatus
 }

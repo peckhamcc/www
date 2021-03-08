@@ -11,9 +11,9 @@ const {
   getUser
 } = require('./account')
 const {
-  getOrderItems,
+  getOrder,
   setPaymentMetadata,
-  getPaymentMetadata,
+  getPayment,
   getCheckoutSession
 } = require('./stripe-client')
 const {
@@ -96,8 +96,8 @@ async function inkthreadableWebhook ({ queryStringParameters, body }) {
     throw new httpErrors.BadRequest('No user found for user id')
   }
 
-  const orderItems = await getOrderItems(paymentIntent)
-  const metadata = await getPaymentMetadata(paymentIntent)
+  const { items: orderItems } = await getOrder(paymentIntent)
+  const { metadata } = await getPayment(paymentIntent)
 
   if (order.deleted) {
     console.info('Order', order.id, 'paymentIntent', paymentIntent, 'was cancelled')

@@ -1,2 +1,2 @@
 
-module.exports = require('./dev/kit')
+module.exports = require('../lambda-lib/dev/kit')

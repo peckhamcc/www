@@ -15,7 +15,7 @@ const {
   getPaymentDigits,
   updateFopccPaymentMethod,
   verifyWebhookEvent,
-  getOrderItems,
+  getOrder,
   setPaymentMetadata
 } = require('./stripe-client')
 const {
@@ -126,7 +126,7 @@ async function handleShopOrder ({ userId, user }, { data: { object } }) {
     throw new httpErrors.BadRequest('No payment amount found')
   }
 
-  const orderItems = await getOrderItems(paymentIntent)
+  const order = await getOrder(paymentIntent)
   const metadata = {}
 
   // see if we need to take any further action
@@ -137,7 +137,7 @@ async function handleShopOrder ({ userId, user }, { data: { object } }) {
     hasSubscription: false
   }
 
-  orderItems.forEach((item, index) => {
+  order.items.forEach((item, index) => {
     if (item.productMetadata.type === 'premade') {
       metadata[`item-${index}`] = 'ready'
       lineItemTypes.hasPremadeKit = lineItemTypes.hasPremadeKit || true
@@ -154,12 +154,12 @@ async function handleShopOrder ({ userId, user }, { data: { object } }) {
   })
 
   if (lineItemTypes.hasDropShipKit) {
-    await createInkThreadableOrder(user, object, orderItems.filter(item => item.productMetadata.type === 'dropship'))
+    await createInkThreadableOrder(user, object, order.items.filter(item => item.productMetadata.type === 'dropship'))
   }
 
   await setPaymentMetadata(paymentIntent, metadata)
 
-  await sendEmail(user.email, config.email.from, 'Peckham Cycle Club order', shopOrderEmail.html(user.name, amount, orderItems, lineItemTypes), shopOrderEmail.text(user.name, amount, orderItems, lineItemTypes))
+  await sendEmail(user.email, config.email.from, 'Peckham Cycle Club order', shopOrderEmail.html(user.name, amount, order.items, lineItemTypes), shopOrderEmail.text(user.name, amount, order.items, lineItemTypes))
 }
 
 async function handleInvoicePaid (context, event) {

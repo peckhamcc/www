@@ -10,7 +10,7 @@ const {
   getLastOrder
 } = require('./kit')
 const {
-  getKitOrderItems
+  getNewOrders
   // setOrderItemsStatus
 } = require('./stripe-client')
 const {
@@ -24,19 +24,49 @@ async function kitOrdersCreateHandler () {
   const lastOrder = await getLastOrder()
   const since = lastOrder ? lastOrder.date : 0
 
-  console.info('Fetching items starting at timestamp', since)
+  console.info('Fetching made-to-order items starting at timestamp', since)
 
-  const {
-    orders,
-    items
-  } = await getKitOrderItems(since)
+  const items = []
+  let orders = await getNewOrders(since)
+
+  orders = orders.filter(order => {
+    // ignore deleted customers
+    if (order.deleted) {
+      return false
+    }
+
+    console.info(JSON.stringify(order, null, 2))
+
+    // ignore any non made-to-order items
+    order.items = order.items.filter(item => item.productMetadata.type === 'made-to-order')
+
+    // process order items for sending to supplier
+    order.items.forEach(item => {
+      const hasVariations = Boolean(Object.keys(item.metadata).length)
+
+      if (hasVariations) {
+        if (!items[item.name]) {
+          items[item.name] = {}
+        }
+
+        if (!items[item.name][item.description]) {
+          items[item.name][item.description] = 0
+        }
+
+        items[item.name][item.description] += +item.quantity
+      } else {
+        items[item.name] = (items[item.name] || 0) + item.quantity
+      }
+    })
+
+    // ignore any orders with no made-to-order items
+    return Boolean(order.items.length)
+  })
+
+  console.info('Orders')
+  console.info(JSON.stringify(orders, null, 2))
 
   if (Object.keys(items).length) {
-    console.info('Orders')
-    console.info(JSON.stringify(orders, null, 2))
-    console.info('Items')
-    console.info(JSON.stringify(items, null, 2))
-
     const orderDate = new Date()
     const date = `${new Intl.DateTimeFormat('en', { month: 'long' }).format(orderDate)} ${new Intl.DateTimeFormat('en', { year: 'numeric' }).format(orderDate)}`
 
@@ -156,7 +186,7 @@ const htmlTemplateClubNotification = (date, orders) => `
         return `
     <p>${order.name}<br/>
       ${new Intl.DateTimeFormat('en', { minute: 'numeric', hour: 'numeric', day: 'numeric', month: 'short', year: 'numeric' }).format(order.date)}<br/>
-      ${order.items.join('<br/>')}</p>`
+      ${order.items.map(item => `${item.quantity}x ${item.name}${Object.keys(item.metadata).length ? ` ${item.description}` : ''}`).join('<br/>')}</p>`
       }).join('\r\n')
     }
     <p>Peckham Cycle Club</p>
@@ -178,7 +208,7 @@ ${
   return `
 ${order.name}
 ${new Intl.DateTimeFormat('en', { minute: 'numeric', hour: 'numeric', day: 'numeric', month: 'short', year: 'numeric' }).format(order.date)}
-${order.items.join('\r\n')}`
+${order.items.map(item => `${item.quantity}x ${item.name}${Object.keys(item.metadata).length ? ` ${item.description}` : ''}`).join('\r\n')}`
   }).join('\r\n')
 }
 
