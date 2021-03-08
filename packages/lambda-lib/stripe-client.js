@@ -330,7 +330,8 @@ const getOrder = async (paymentIntentId) => {
 }
 
 const getCachedOrder = async (paymentIntentId) => {
-  const cached = await cache.get(`order-${paymentIntentId}`)
+  const cacheKey = `order-${paymentIntentId}`
+  const cached = await cache.get(cacheKey)
 
   if (cached) {
     return cached
@@ -345,7 +346,7 @@ const getCachedOrder = async (paymentIntentId) => {
     name: customer.name,
     deleted: Boolean(customer.deleted),
     amount: paymentIntent.amount,
-    date: new Date(paymentIntent.created * 1000),
+    date: paymentIntent.created * 1000,
     payment: paymentIntentId,
     items: []
   }
@@ -382,7 +383,7 @@ const getCachedOrder = async (paymentIntentId) => {
     order.items.push(item)
   }
 
-  await cache.set(`order-${paymentIntent}`, order)
+  await cache.set(cacheKey, order)
 
   return order
 }
