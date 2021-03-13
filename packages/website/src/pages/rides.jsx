@@ -22,7 +22,7 @@ class RidesPage extends Component {
         <Panel>
           <h2>Club Rides</h2>
           <p>We will be restarting group rides after 29th March 2021 in line with the latest <a href='https://www.britishcycling.org.uk/about/article/20200512-about-bc-news-British-Cycling-Updated-Coronavirus-Guidance-0'>British Cycling Covid-19 guidance</a> published 9th March in groups of 6-8 people. The first Social Ride will be Saturday 3rd April.</p>
-          <p>If you would like to join a ride before then, we are still riding in pairs so drop us a line via <a href='mailto:peckhamcc@gmail.com?subject = Find me a ride'>email</a> or social media and we will try to match you up with another rider.</p>
+          <p>If you would like to join a ride before then, we are still riding in pairs so <Link to='/contact'>drop us a line</Link> or contact us via social media and we will try to match you up with another rider.</p>
           <p>While Covid-19 safety remains a concern we will need to <a href='https://docs.google.com/forms/d/e/1FAIpQLSc9AFF9oQI2bDKWf9heplIi3hPQE6Ok2v-zGObByD9T0EjlbQ/viewform'>collect your contact details</a> before we set off to comply with track and trace regulations: these details will be removed from our records after 21 days and will be used for no other purpose and will not be shared with any other party.</p>
           <h3>How to join a ride</h3>
           <p>Looking to join your first ride with Peckham Cycle Club? We look forward to welcoming you!</p>
