@@ -297,19 +297,22 @@ class NavBarWrapper extends Component {
                 <Link to='/club'>Club</Link>
                 <ul>
                   <NavLink>
-                    <Link to='/calendar'>Calendar</Link>
+                    <Link to='/rides'>Ride with us</Link>
                   </NavLink>
                   <NavLink>
-                    <Link to='/equipment'>Equipment</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/ethos'>Club Ethos</Link>
+                    <Link to='/ethos'>Club ethos</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/diversity'>Diversity &amp; Inclusion</Link>
                   </NavLink>
                   <NavLink>
-                    <Link to='/leading'>Leading a ride</Link>
+                    <Link to='/equipment'>Equipment</Link>
+                  </NavLink>     
+                  <NavLink>
+                    <Link to='/riding'>On the road</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/calendar'>Calendar</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/mailing-list'>Mailing list</Link>
@@ -318,13 +321,10 @@ class NavBarWrapper extends Component {
                     <Link to='/membership'>Membership</Link>
                   </NavLink>
                   <NavLink>
-                    <Link to='/riding'>On the road</Link>
+                    <Link to='/leading'>Leading a ride</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/racing'>Racing</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/rides'>Rides</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/routes'>Routes</Link>
@@ -408,19 +408,22 @@ class NavBarWrapper extends Component {
                 <Link to='/club'>Club</Link>
                 <ul>
                   <NavLink>
-                    <Link to='/calendar'>Calendar</Link>
+                    <Link to='/rides'>Ride with us</Link>
                   </NavLink>
                   <NavLink>
-                    <Link to='/equipment'>Equipment</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/ethos'>Club Ethos</Link>
+                    <Link to='/ethos'>Club ethos</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/diversity'>Diversity &amp; Inclusion</Link>
                   </NavLink>
                   <NavLink>
-                    <Link to='/leading'>Leading a ride</Link>
+                    <Link to='/equipment'>Equipment</Link>
+                  </NavLink>     
+                  <NavLink>
+                    <Link to='/riding'>On the road</Link>
+                  </NavLink>
+                  <NavLink>
+                    <Link to='/calendar'>Calendar</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/mailing-list'>Mailing list</Link>
@@ -429,13 +432,10 @@ class NavBarWrapper extends Component {
                     <Link to='/membership'>Membership</Link>
                   </NavLink>
                   <NavLink>
-                    <Link to='/riding'>On the road</Link>
+                    <Link to='/leading'>Leading a ride</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/racing'>Racing</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/rides'>Rides</Link>
                   </NavLink>
                   <NavLink>
                     <Link to='/routes'>Routes</Link>
