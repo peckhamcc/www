@@ -255,10 +255,7 @@ const getAllPreferences = async () => {
   do {
     items = await client.scan(params).promise()
     items.Items.forEach((item) => {
-      scanResults[item.email] = {
-        rider: item.rider,
-        preferences: item.preferences
-      }
+      scanResults[item.id] = item.preferences
     })
     params.ExclusiveStartKey = items.LastEvaluatedKey
   } while (items.LastEvaluatedKey)
