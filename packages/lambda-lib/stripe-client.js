@@ -57,8 +57,7 @@ const getProducts = async () => {
   const sections = {}
 
   for await (const product of client.products.list({
-    active: true,
-    shippable: true
+    active: true
   })) {
     let section = product.metadata.section
 
