@@ -32,7 +32,7 @@ class RidesPage extends Component {
           <p>There will be one or two nominated ride leaders who will look after the group while on the road. Before setting off, they will talk you through some hand signals that cyclists usually use: watch a video about hand signals and more information about group riding <Link to='/riding'>here</Link>.</p>
           <p>We ride in single or double file and help everyone to stay together by not going too far off the front. We regroup regularly and take breaks for snacks / coffee / loo along the way.</p>
           <h3>What to bring</h3>
-          <p>We ask that you come prepared with a few things to make your ride easier. Take a look at our <Link to='/equipment'>Equipment</Link>page to find out what to bring along with you </p>
+          <p>We ask that you come prepared with a few things to make your ride easier. Take a look at our <Link to='/equipment'>equipment</Link> page to find out what to bring along with you </p>
           <h3>Am I ready?</h3>
           <p>We would expect new riders to be confident on their bikes, to be able to ride for 2-3 hours in one go, and to usually have a road bike. These aren’t essential but if you’re concerned about the distance, have a hybrid bike or anything else let us know when you email us.</p>
           <p>We offer a Buddy Ride Scheme aimed at people who might not be quite ready to join the Social. In these rides you will be paired up one-on-one with a PCC member to do a slightly easier route but still get the full PCC experience.  Please <Link to='/contact'>contact us</Link> if this is of interest.</p>

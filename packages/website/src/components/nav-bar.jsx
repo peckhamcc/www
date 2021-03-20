@@ -307,7 +307,7 @@ class NavBarWrapper extends Component {
                   </NavLink>
                   <NavLink>
                     <Link to='/equipment'>Equipment</Link>
-                  </NavLink>     
+                  </NavLink>
                   <NavLink>
                     <Link to='/riding'>On the road</Link>
                   </NavLink>
@@ -418,7 +418,7 @@ class NavBarWrapper extends Component {
                   </NavLink>
                   <NavLink>
                     <Link to='/equipment'>Equipment</Link>
-                  </NavLink>     
+                  </NavLink>
                   <NavLink>
                     <Link to='/riding'>On the road</Link>
                   </NavLink>
