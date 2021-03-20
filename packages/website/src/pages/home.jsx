@@ -76,10 +76,11 @@ class HomePage extends Component {
           <p>Full details are posted on Facebook and Twitter towards the end of the week when we know what the weather is going to do, please check those pages for more information.</p>
         </Panel> */}
         <Panel>
-          <h2>Nov 5th update: Coronavirus update</h2>
-          <p>Sadly, in light of the nationwide lockdown starting today and <a href='https://www.britishcycling.org.uk/article/20201104-about-bc-news-British-Cycling-activities-and-events-to-be-suspended-as-new-national-measures-come-into-force-0'>updated guidance from British Cycling</a> we are pausing all Peckham CC club and social rides until further notice.  You may still ride with one other person from another household, but if you are out riding, stay safe and take care on the roads as they get colder and wetter.</p>
+          <h2>March 13th: Covid-19 Update</h2>
+          <p>We are looking forward to returning to group riding soon! Our Saturday morning social rides will be back on 3rd April, in line with the latest <a href='https://www.britishcycling.org.uk/about/article/20210309-about-bc-news-British-Cycling-update--The-Way-Forward-0'>British Cycling Guidance</a> which allows group rides after 29th March.</p>
+          <p>If you’ve not ridden with the Club before have a look at our <Link to='/rides'>Rides page</Link> for information about How to join our rides.</p>
           <p>For the latest updates on this and more please sign up to our <Link to='/mailing-list'>mailing list</Link>.</p>
-          <p>We hope our riders, friends, family and loved ones remain safe and well - United we Roll!</p>
+          <p>United we Roll!</p>
         </Panel>
         <LinkPanel background={membershipBackground}>
           <Link to='/membership'>Membership</Link>
