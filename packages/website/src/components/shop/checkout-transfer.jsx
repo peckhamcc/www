@@ -268,7 +268,7 @@ class EnterDetails extends Component {
               value={this.state.values.shopCode}
               data-input='shopCode'
             />
-            <HelpText>If you do not know what the shop code is, please <Link to='/contact'>contact us</Link> or ask in the WhatsApp group.</HelpText>
+            <HelpText>If you do not know what the shop code is, please <Link to='/contact'>contact us</Link> or ask in Slack.</HelpText>
           </FormInputWrapper>
         </ShopCodeWrapper>
 

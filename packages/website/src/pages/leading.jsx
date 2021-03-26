@@ -30,7 +30,7 @@ class LeadingPage extends Component {
             <li>Eyeball everyone’s bike to make sure it’s suitable for the ride</li>
             <li>Everyone understands and is comfortable with the distance that will be travelled</li>
             <li>
-              You have collected details from everyone on your ride for the purposes of track and trace. Ask on WhatsApp
+              You have collected details from everyone on your ride for the purposes of track and trace. Ask on Slack
               if you need a link to the form!
             </li>
             <li>

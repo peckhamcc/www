@@ -409,7 +409,7 @@ class Rides extends Component {
             <RidePreferences key={timestamp}>
               <h3>{DAYS[date.getDay()]} {MONTHS[date.getMonth()]} {date.getDate()}</h3>
               <p>Rest day!</p>
-              <p>If you've changed your mind and want to ride, try asking in the WhatsApp room if you can join another ride.</p>
+              <p>If you've changed your mind and want to ride, try asking in Slack if you can join another ride.</p>
             </RidePreferences>
           )
         }
@@ -447,7 +447,7 @@ class Rides extends Component {
           routeChoice = (
             <>
               <p>It looks like you're the only person who wanted to ride this distance today!</p>
-              <p>If you'd prefer company try asking if there's space on another ride in the WhatsApp group.</p>
+              <p>If you'd prefer company try asking if there's space on another ride in Slack.</p>
             </>
           )
         }
