@@ -86,7 +86,7 @@ const Route = Object.freeze({
 
 const DISTANCE_DESCRIPTIONS = {
   [Type.Road]: {
-    [Distance.Short]: 'Short - 60km',
+    [Distance.Short]: 'Short - 60-80km',
     [Distance.Medium]: 'Medium - 80-110km',
     [Distance.Long]: 'Long - 110-150km',
     [Distance.Epic]: 'Epic - 150km+'
