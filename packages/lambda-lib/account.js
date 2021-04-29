@@ -10,6 +10,7 @@ AWS.config.update({
 const FIFTEEN_MINUTES = (15 * 60) * 1000
 const ONE_HOUR = FIFTEEN_MINUTES * 4
 const ONE_DAY = ONE_HOUR * 24
+const ONE_WEEK = ONE_DAY * 7
 
 const REDIRECT_URLS = {
   '/profile': true,
@@ -27,7 +28,7 @@ function loginTokenExpiry () {
 }
 
 function fullTokenExpiry () {
-  return Math.round(new Date(Date.now() + ONE_DAY).getTime() / 1000)
+  return Math.round(new Date(Date.now() + ONE_WEEK).getTime() / 1000)
 }
 
 async function extendToken (token) {

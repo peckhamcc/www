@@ -10,13 +10,14 @@ const customerLookup = jsonDb('customer-lookup.json')
 const FIFTEEN_MINUTES = (15 * 60) * 1000
 const ONE_HOUR = FIFTEEN_MINUTES * 4
 const ONE_DAY = ONE_HOUR * 24
+const ONE_WEEK = ONE_DAY * 7
 
 function loginTokenExpiry () {
   return new Date(Date.now() + FIFTEEN_MINUTES).getTime()
 }
 
 function fullTokenExpiry () {
-  return new Date(Date.now() + ONE_DAY).getTime()
+  return new Date(Date.now() + ONE_WEEK).getTime()
 }
 
 async function extendToken (key) {
