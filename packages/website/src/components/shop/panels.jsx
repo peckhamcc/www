@@ -42,17 +42,17 @@ import multiTubeImage from '../../../assets/shop/multi-tube.png'
 // import headsetCapImage from '../../../assets/shop/headset-cap.png'
 import bidonImage from '../../../assets/shop/bidon.png'
 import tshirtBlkFrontImage from '../../../assets/shop/t-shirt-2021-blk-front.png'
+import tshirtBlkBackImage from '../../../assets/shop/t-shirt-2021-blk-back.png'
 import tshirtWhiFrontImage from '../../../assets/shop/t-shirt-2021-whi-front.png'
+import tshirtWhiBackImage from '../../../assets/shop/t-shirt-2021-whi-back.png'
 import lsTshirtBlkFrontImage from '../../../assets/shop/ls-t-shirt-2021-blk-front.png'
+import lsTshirtBlkBackImage from '../../../assets/shop/ls-t-shirt-2021-blk-back.png'
 import lsTshirtWhiFrontImage from '../../../assets/shop/ls-t-shirt-2021-whi-front.png'
+import lsTshirtWhiBackImage from '../../../assets/shop/ls-t-shirt-2021-whi-back.png'
 import hoodieBlkFrontImage from '../../../assets/shop/hoodie-2021-blk-front.png'
 import hoodieBlkBackImage from '../../../assets/shop/hoodie-2021-blk-back.png'
-import hoodieWhiFrontImage from '../../../assets/shop/hoodie-2021-whi-front.png'
-import hoodieWhiBackImage from '../../../assets/shop/hoodie-2021-whi-back.png'
 import zipHoodieBlkFrontImage from '../../../assets/shop/zip-hoodie-2021-blk-front.png'
 import zipHoodieBlkBackImage from '../../../assets/shop/zip-hoodie-2021-blk-back.png'
-import zipHoodieWhiFrontImage from '../../../assets/shop/zip-hoodie-2021-whi-front.png'
-import zipHoodieWhiBackImage from '../../../assets/shop/zip-hoodie-2021-whi-back.png'
 import musetteImage from '../../../assets/shop/musette.png'
 import speedSuitFrontImage from '../../../assets/shop/skin-suit-front.png'
 import speedSuitRearImage from '../../../assets/shop/skin-suit-rear.png'
@@ -160,36 +160,32 @@ export const ITEM_IMAGES = {
     BLK: [
       hoodieBlkFrontImage,
       hoodieBlkBackImage
-    ],
-    WHI: [
-      hoodieWhiFrontImage,
-      hoodieWhiBackImage
     ]
   },
   'zip-hoodie-2021': {
     BLK: [
       zipHoodieBlkFrontImage,
       zipHoodieBlkBackImage
-    ],
-    WHI: [
-      zipHoodieWhiFrontImage,
-      zipHoodieWhiBackImage
     ]
   },
   't-shirt-2021': {
     BLK: [
-      tshirtBlkFrontImage
+      tshirtBlkFrontImage,
+      tshirtBlkBackImage
     ],
     WHI: [
-      tshirtWhiFrontImage
+      tshirtWhiFrontImage,
+      tshirtWhiBackImage
     ]
   },
   'ls-t-shirt-2021': {
     BLK: [
-      lsTshirtBlkFrontImage
+      lsTshirtBlkFrontImage,
+      lsTshirtBlkBackImage
     ],
     WHI: [
-      lsTshirtWhiFrontImage
+      lsTshirtWhiFrontImage,
+      lsTshirtWhiBackImage
     ]
   },
   'royal-mail-shipping': [

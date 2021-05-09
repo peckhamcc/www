@@ -624,10 +624,10 @@ const config = {
     fopccCancel: 'http://localhost:9000/profile/fopcc',
     fopccId: 'price_1I2XUx2cnIK2AWWQ8Y5xgq4I',
     shipping: [
-      'price_1IFdvZ2cnIK2AWWQlmQmCp9s', // £3.30 Royal Mail 24
       'price_1IFdwE2cnIK2AWWQfH3dewBh', // £3.80 Royal Mail 24
-      'price_1IFduC2cnIK2AWWQnRH1Jylp', // £5.60 DPD
-      'price_1IFdud2cnIK2AWWQJwCOubZG' // £8.50 DPD
+      'price_1Ip8w42cnIK2AWWQGEYHL61S', // £5.90 Royal Mail 24
+      'price_1Ip8sK2cnIK2AWWQvClVj3Q0', // £6.50 DPD
+      'price_1Ip8s32cnIK2AWWQNDThkyak' // £10.50 DPD
     ]
   },
   inkthreadable: {
