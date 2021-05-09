@@ -172,19 +172,19 @@ const Terms = styled.div`
 const SHIPPING_LIMITS = [{
   max: 99,
   method: 'Royal Mail 24 Recorded',
-  cost: 330
+  cost: 380
 }, {
   max: 100,
   method: 'Royal Mail 24 Recorded',
-  cost: 380
+  cost: 590
 }, {
   max: 699,
   method: 'DPD Next Day',
-  cost: 560
+  cost: 650
 }, {
   max: Infinity,
   method: 'DPD Next Day',
-  cost: 850
+  cost: 1050
 }]
 
 const findShippingMethod = (shippingWeight) => {
