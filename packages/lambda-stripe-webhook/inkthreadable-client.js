@@ -15,6 +15,20 @@ const COLOUR_MODIFIER = {
 
 const PCC_ASSETS = 'http://cc.peckham.assets.s3-website.eu-west-2.amazonaws.com'
 
+const SHIPPING_LIMITS = [{
+  max: 100,
+  method: 'recorded 24'
+}, {
+  max: Infinity,
+  method: 'courier'
+}]
+
+const findShippingMethod = (shippingWeight) => {
+  return SHIPPING_LIMITS
+    .filter(method => shippingWeight < method.max)
+    .shift()
+}
+
 function createSignature (body, secretKey) {
   const shasum = crypto.createHash('sha1')
   shasum.update(body + secretKey)
@@ -62,7 +76,11 @@ function createClient (appId, secretKey) {
           phone1: user.phone
         },
         shipping: {
-          shippingMethod: 'recorded 24'
+          shippingMethod: findShippingMethod(
+            lineItems.reduce((acc, curr) => {
+              return acc + parseInt(curr.productMetadata['shipping-weight'] || '0', 10)
+            }, 0)
+          )
         },
         items: lineItems.map(item => {
           const orderItem = {
