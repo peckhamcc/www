@@ -87,8 +87,16 @@ const PRODUCT_DESCRIPTIONS = {
   'bib-shorts-2019': (
     <>
       <p>Club Bib Shorts in black</p>
-      <p>Made from Italian Power Lycra fabric with Coldblack Technology, our Club Bibshort has a wicking upper mesh and flat-lock stitching and overlocked seams throughout for comfort.</p>
-      <p>There's a discrete rear pocket for your valuables and raw edge silicone hem grips to make sure the legs stay put.</p>
+      <p>Our Club Bibshort has a wicking upper mesh and flat-lock stitching with overlocked seams throughout for comfort.</p>
+      <p>The legs have raw edge silicone hem grips to make sure the legs stay put.</p>
+      <p>They are available in male and female specific versions.</p>
+    </>
+  ),
+  'pro-bib-shorts-2019': (
+    <>
+      <p>Pro Bib Shorts in black</p>
+      <p>Similar to our Club Bibshort, the Pro version has an improved pad and dimpled side panels for extra speed.</p>
+      <p>The legs have raw edge silicone hem grips to make sure the legs stay put.</p>
       <p>They are available in male and female specific versions.</p>
     </>
   ),

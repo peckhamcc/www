@@ -117,6 +117,10 @@ export const ITEM_IMAGES = {
     bibsFrontImage,
     bibsRearImage
   ],
+  'pro-bib-shorts-2019': [
+    bibsFrontImage,
+    bibsRearImage
+  ],
   'short-sleeved-race-jersey-2019': [
     ssJerseyFrontImage,
     ssJerseyRearImage
