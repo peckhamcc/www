@@ -35,7 +35,6 @@ class RidesPage extends Component {
           <p>We ask that you come prepared with a few things to make your ride easier. Take a look at our <Link to='/equipment'>equipment</Link> page to find out what to bring along with you </p>
           <h3>Am I ready?</h3>
           <p>We would expect new riders to be confident on their bikes, to be able to ride for 2-3 hours in one go, and to have a road bike. If you’re concerned about the distance or anything else let us know when you email us.</p>
-          <p>We offer a Buddy Ride Scheme aimed at people who might not be quite ready to join the Social. In these rides you will be paired up one-on-one with a PCC member to do a slightly easier route but still get the full PCC experience.  Please <Link to='/contact'>contact us</Link> if this is of interest.</p>
           <h3>Do I need to sign up to be a Friend of PCC to ride?</h3>
           <p>You can do as many Social Rides as you like with us without signing up to be a Friend of PCC: they are free and open to all, and always will be.</p>
           <p>If you’ve done a few rides with us and feel that Peckham CC is a good fit for you and would like to join being a Friend costs £25/year and it will enable you to access more perks like purchasing Club kit, discounts, track sessions and events. Find out more about becoming a Friend of PCC <Link to='/membership'>here</Link>.</p>
