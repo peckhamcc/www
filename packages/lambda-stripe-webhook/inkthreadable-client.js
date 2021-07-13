@@ -17,7 +17,7 @@ const PCC_ASSETS = 'http://cc.peckham.assets.s3-website.eu-west-2.amazonaws.com'
 
 const SHIPPING_LIMITS = [{
   max: 700,
-  method: 'recorded 24'
+  method: 'recorded'
 }, {
   max: Infinity,
   method: 'courier'
