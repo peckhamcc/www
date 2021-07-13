@@ -19,13 +19,13 @@ const CACHE_KEYS = {
 const ONE_HOUR = (60 * 60) * 1000
 
 const SHIPPING_LIMITS = [{
-  max: 99,
+  max: 101,
   price: config.stripe.shipping[0]
 }, {
-  max: 100,
+  max: 400,
   price: config.stripe.shipping[1]
 }, {
-  max: 699,
+  max: 700,
   price: config.stripe.shipping[2]
 }, {
   max: Infinity,
