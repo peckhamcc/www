@@ -60,6 +60,8 @@ import triSuitFrontImage from '../../../assets/shop/tri-suit-front.png'
 import triSuitRearImage from '../../../assets/shop/tri-suit-rear.png'
 import royalMailShippingImage from '../../../assets/shop/royal-mail.png'
 import dpdShippingImage from '../../../assets/shop/dpd.png'
+import bdayTshirtWhiFrontImage from '../../../assets/shop/bday-t-shirt-2021-whi-front.png'
+import bdayTshirtWhiBackImage from '../../../assets/shop/bday-t-shirt-2021-whi-back.png'
 
 export const ITEM_IMAGES = {
   accessories: [
@@ -190,6 +192,12 @@ export const ITEM_IMAGES = {
     WHI: [
       lsTshirtWhiFrontImage,
       lsTshirtWhiBackImage
+    ]
+  },
+  'bday-t-shirt-2021': {
+    WHI: [
+      bdayTshirtWhiFrontImage,
+      bdayTshirtWhiBackImage
     ]
   },
   'royal-mail-shipping': [
