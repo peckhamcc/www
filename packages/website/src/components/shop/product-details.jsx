@@ -231,6 +231,12 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Long-sleeved t-shirt in 180gsm 100% organic ringspun cotton with club logo printed on the front.</p>
       <p>N.b our casualwear line is printed on-demand and shipped directly to you in 1-2 weeks so a postage cost will be calculated at checkout.</p>
     </>
+  ),
+  'bday-t-shirt-2021': (
+    <>
+      <p>Celebrate our <del>10th</del> 11th birthday with this limited-edition short-sleeved t-shirt in 180gsm 100% organic ringspun cotton with front and rear designs.</p>
+      <p>N.b our casualwear line is printed on-demand and shipped directly to you in 1-2 weeks so a postage cost will be calculated at checkout.</p>
+    </>
   )
 }
 
