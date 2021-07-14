@@ -166,8 +166,8 @@ class Order extends Component {
     if (shipping && shipping.trackingNumber) {
       let trackingLink = `https://www.royalmail.com/track-your-item#/tracking-results/${shipping.trackingNumber}`
 
-      if (!shipping.shippingMethod.toLowerCase().includes('recorded')) {
-        trackingLink = `https://track.dpd.co.uk/search?reference=${shipping.trackingNumber}`
+      if (!shipping.shippingMethod.toLowerCase().includes('tracked')) {
+        trackingLink = `https://track.amazon.co.uk/tracking/123123123312?trackingId=${shipping.trackingNumber}`
       }
 
       trackingInfo = (

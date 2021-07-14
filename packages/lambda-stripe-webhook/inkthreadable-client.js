@@ -17,15 +17,16 @@ const PCC_ASSETS = 'http://cc.peckham.assets.s3-website.eu-west-2.amazonaws.com'
 
 const SHIPPING_LIMITS = [{
   max: 700,
-  method: 'recorded'
+  method: 'tracked'
 }, {
   max: Infinity,
-  method: 'courier'
+  method: 'amazon'
 }]
 
 const findShippingMethod = (shippingWeight) => {
   return SHIPPING_LIMITS
     .filter(method => shippingWeight < method.max)
+    .map(method => method.method)
     .shift()
 }
 

@@ -19,17 +19,11 @@ const CACHE_KEYS = {
 const ONE_HOUR = (60 * 60) * 1000
 
 const SHIPPING_LIMITS = [{
-  max: 101,
+  max: 700,
   price: config.stripe.shipping[0]
 }, {
-  max: 400,
-  price: config.stripe.shipping[1]
-}, {
-  max: 700,
-  price: config.stripe.shipping[2]
-}, {
   max: Infinity,
-  price: config.stripe.shipping[3]
+  price: config.stripe.shipping[1]
 }]
 
 const getProducts = async () => {

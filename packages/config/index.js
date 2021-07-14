@@ -624,10 +624,8 @@ const config = {
     fopccCancel: 'http://localhost:9000/profile/fopcc',
     fopccId: 'price_1I2XUx2cnIK2AWWQ8Y5xgq4I',
     shipping: [
-      'price_1IFdwE2cnIK2AWWQfH3dewBh', // £3.80 Royal Mail 24
-      'price_1Ip8w42cnIK2AWWQGEYHL61S', // £5.90 Royal Mail 24
-      'price_1Ip8sK2cnIK2AWWQvClVj3Q0', // £6.50 DPD
-      'price_1Ip8s32cnIK2AWWQNDThkyak' // £10.50 DPD
+      'price_1JD96L2cnIK2AWWQpPRZ1rUE', // £3.90 Royal Mail 24 Tracked
+      'price_1JD9512cnIK2AWWQQQ1eNiv8' // £5.75 Amazon Next Day
     ]
   },
   inkthreadable: {
@@ -670,10 +668,8 @@ if (process.env.NODE_ENV !== 'development') {
   config.stripe.fopccSuccess = 'https://peckham.cc/profile/fopcc'
   config.stripe.fopccCancel = 'https://peckham.cc/profile/fopcc'
   config.stripe.shipping = [
-    process.env.STRIPE_SHIPPING_0,
-    process.env.STRIPE_SHIPPING_1,
-    process.env.STRIPE_SHIPPING_2,
-    process.env.STRIPE_SHIPPING_3
+    process.env.STRIPE_SHIPPING_0, // £3.90 Royal Mail 24 Tracked
+    process.env.STRIPE_SHIPPING_1 // £5.75 Amazon Next Day
   ]
 
   config.inkthreadable.appId = process.env.INKTHREADABLE_APP_ID

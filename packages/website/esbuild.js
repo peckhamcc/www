@@ -42,8 +42,6 @@ async function bundle () {
       'process.env.STRIPE_FOPCC_ID': `"${process.env.STRIPE_FOPCC_ID}"`,
       'process.env.STRIPE_SHIPPING_0': `"${process.env.STRIPE_SHIPPING_0}"`,
       'process.env.STRIPE_SHIPPING_1': `"${process.env.STRIPE_SHIPPING_1}"`,
-      'process.env.STRIPE_SHIPPING_2': `"${process.env.STRIPE_SHIPPING_2}"`,
-      'process.env.STRIPE_SHIPPING_3': `"${process.env.STRIPE_SHIPPING_3}"`,
 
       'process.env.INKTHREADABLE_APP_ID': `"${process.env.INKTHREADABLE_APP_ID}"`,
       'process.env.INKTHREADABLE_SECRET_KEY': `"${process.env.INKTHREADABLE_SECRET_KEY}"`,
