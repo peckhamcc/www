@@ -123,7 +123,7 @@ const htmlTemplateShopOrder = (name, amount, lineItems, {
     <p>Your order contains a subscription.</p>
     <p>The FoPCC subscription will renew on a yearly basis - visit your <a href="https://peckham.cc/user/profile">profile page</a> to cancel at any time.</p>
     ` : ''}
-    <p>You can check on the status of your order at <a href="https://pekcham.cc/profile/orders">https://pekcham.cc/profile/orders</a><p/>
+    <p>You can check on the status of your order at <a href="https://peckham.cc/profile/orders">https://peckham.cc/profile/orders</a><p/>
     <p>Please <a href="https://peckham.cc/contact">get in touch</a> if you'd like any updates in the interim.</p>
     <p>Thank you,</p>
     ${htmlFooter}
@@ -182,7 +182,7 @@ The FoPCC subscription will renew on a yearly basis - visit https://peckham.cc/u
 ` : ''}
 
 
-You can check on the status of your order at https://pekcham.cc/profile/orders
+You can check on the status of your order at https://peckham.cc/profile/orders
 
 Please get in touch if you'd like any updates in the interim: https://peckham.cc/contact
 
