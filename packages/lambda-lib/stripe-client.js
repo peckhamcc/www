@@ -560,7 +560,8 @@ async function getNewOrders (fromDate) {
       }
     })
 
-    console.info('stripe-client[getNewOrders]', 'Fetched page', JSON.stringify(page, null, 2))
+    console.info('stripe-client[getNewOrders]', 'Fetched page', page)
+    console.info(JSON.stringify(payments, null, 2))
 
     if (!payments.data.length) {
       break
@@ -589,9 +590,9 @@ async function getNewOrders (fromDate) {
       } else {
         console.info('stripe-client[getNewOrders]', paymentIntent.id, 'had no order')
       }
-
-      page++
     }
+
+    page++
   }
 
   console.info('stripe-client[getNewOrders]', 'Returning', orders.length, 'orders')
