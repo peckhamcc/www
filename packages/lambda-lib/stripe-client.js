@@ -547,14 +547,14 @@ async function getNewOrders (fromDate) {
   const orders = []
 
   // pagination
-  let endingBefore
+  let startingAfter
   let page = 1
 
   while (true) {
     console.info('stripe-client[getNewOrders]', 'Fetching page', page)
     const payments = await client.paymentIntents.list({
       limit: 100,
-      ending_before: endingBefore,
+      starting_after: startingAfter,
       created: {
         gt: fromDate
       }
@@ -567,7 +567,7 @@ async function getNewOrders (fromDate) {
     }
 
     for (const paymentIntent of payments.data) {
-      endingBefore = paymentIntent.id
+      startingAfter = paymentIntent.id
 
       if (!paymentIntent.charges.total_count) {
         // no charges on this payment intent, nothing to see here
