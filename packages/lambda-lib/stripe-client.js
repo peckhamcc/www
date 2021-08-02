@@ -560,11 +560,13 @@ async function getNewOrders (fromDate) {
       }
     })
 
-    if (!payments.length) {
+    console.info('stripe-client[getNewOrders]', 'Fetched page', JSON.stringify(page, null, 2))
+
+    if (!payments.data.length) {
       break
     }
 
-    for (const paymentIntent of payments) {
+    for (const paymentIntent of payments.data) {
       endingBefore = paymentIntent.id
 
       if (!paymentIntent.charges.total_count) {
