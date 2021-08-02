@@ -30,11 +30,6 @@ async function kitOrdersCreateHandler () {
   let orders = await getNewOrders(since)
 
   orders = orders.filter(order => {
-    // ignore deleted customers
-    if (order.deleted) {
-      return false
-    }
-
     console.info(JSON.stringify(order, null, 2))
 
     // ignore any non made-to-order items

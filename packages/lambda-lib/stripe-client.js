@@ -548,28 +548,51 @@ async function getNewOrders (fromDate) {
 
   // pagination
   let endingBefore
+  let page = 1
 
-  for await (const paymentIntent of client.paymentIntents.list({
-    limit: 100,
-    ending_before: endingBefore,
-    created: {
-      gt: fromDate
+  while (true) {
+    console.info('stripe-client[getNewOrders]', 'Fetching page', page)
+    const payments = await client.paymentIntents.list({
+      limit: 100,
+      ending_before: endingBefore,
+      created: {
+        gt: fromDate
+      }
+    })
+
+    if (!payments.length) {
+      break
     }
-  })) {
-    endingBefore = paymentIntent.id
 
-    if (!paymentIntent.charges.total_count) {
-      // no charges on this payment intent, nothing to see here
-      continue
-    }
+    for (const paymentIntent of payments) {
+      endingBefore = paymentIntent.id
 
-    const order = await getCachedOrder(paymentIntent.id)
+      if (!paymentIntent.charges.total_count) {
+        // no charges on this payment intent, nothing to see here
+        console.info('stripe-client[getNewOrders]', paymentIntent.id, 'had no charges')
+        continue
+      }
 
-    // some payments are not linked to an order
-    if (order) {
-      orders.push()
+      const order = await getCachedOrder(paymentIntent.id)
+
+      // some payments are not linked to an order
+      if (order) {
+        // ignore deleted customers
+        if (!order.deleted) {
+          console.info('stripe-client[getNewOrders]', paymentIntent.id, 'had order')
+          orders.push(order)
+        } else {
+          console.info('stripe-client[getNewOrders]', paymentIntent.id, 'had deleted order')
+        }
+      } else {
+        console.info('stripe-client[getNewOrders]', paymentIntent.id, 'had no order')
+      }
+
+      page++
     }
   }
+
+  console.info('stripe-client[getNewOrders]', 'Returning', orders.length, 'orders')
 
   return orders
 }
