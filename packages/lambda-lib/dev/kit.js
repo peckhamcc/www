@@ -23,7 +23,7 @@ async function getOrders () {
 
 async function createOrder (date, payments) {
   const order = {
-    date: date.getTime(),
+    date: Math.round(date.getTime() / 1000),
     payments
   }
 
