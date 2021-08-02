@@ -549,23 +549,19 @@ async function getNewOrders (fromDate) {
   // pagination
   let startingAfter
   let page = 1
+  let payments = {
+    has_more: true
+  }
 
-  while (true) {
+  while (payments.has_more) {
     console.info('stripe-client[getNewOrders]', 'Fetching page', page)
-    const payments = await client.paymentIntents.list({
+    payments = await client.paymentIntents.list({
       limit: 100,
       starting_after: startingAfter,
       created: {
         gt: fromDate
       }
     })
-
-    console.info('stripe-client[getNewOrders]', 'Fetched page', page)
-    console.info(JSON.stringify(payments, null, 2))
-
-    if (!payments.data.length) {
-      break
-    }
 
     for (const paymentIntent of payments.data) {
       startingAfter = paymentIntent.id
