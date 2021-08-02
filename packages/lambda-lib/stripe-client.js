@@ -308,6 +308,10 @@ const getOrders = async (userId, stripeCustomerId) => {
 const getOrder = async (paymentIntentId) => {
   const order = await getCachedOrder(paymentIntentId)
 
+  if (!order) {
+    return
+  }
+
   // order items are cached, payment metadata is not as it is
   // updated as the order progresses
   const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
@@ -332,6 +336,13 @@ const getCachedOrder = async (paymentIntentId) => {
 
   const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
   const session = await getCheckoutSession(paymentIntentId)
+
+  if (!session) {
+    // if there's no checkout session, the payment may be from a different
+    // integration, e.g. ti.to ticket sales etc
+    return
+  }
+
   const paymentIntent = await getPayment(paymentIntentId)
   const customer = await client.customers.retrieve(session.customer)
 
@@ -523,6 +534,8 @@ async function getCheckoutSession (paymentIntentId) {
   for (const session of sessions.data) { // eslint-disable-line no-unreachable-loop
     return session
   }
+
+  console.error('No session found for payment intent id', paymentIntentId, 'in', JSON.stringify(sessions, null, 2))
 }
 
 async function getRRCOrders () {
@@ -550,7 +563,12 @@ async function getNewOrders (fromDate) {
       continue
     }
 
-    orders.push(await getCachedOrder(paymentIntent.id))
+    const order = await getCachedOrder(paymentIntent.id)
+
+    // some payments are not linked to an order
+    if (order) {
+      orders.push()
+    }
   }
 
   return orders
@@ -577,7 +595,14 @@ async function setOrderItemsStatus (since, status) {
     }
 
     const metadata = paymentIntent.metadata
-    const { items: orderItems } = await getOrder(paymentIntent.id)
+    const order = await getOrder(paymentIntent.id)
+
+    if (!order) {
+      // no order associated with this payment id (may be for something like ti.to ticket sales etc)
+      continue
+    }
+
+    const { items: orderItems } = order
 
     orderItems.forEach((item, index) => {
       // only made to order items

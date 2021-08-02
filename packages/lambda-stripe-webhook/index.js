@@ -127,6 +127,11 @@ async function handleShopOrder ({ userId, user }, { data: { object } }) {
   }
 
   const order = await getOrder(paymentIntent)
+
+  if (!order) {
+    throw new Error('No order found for payment intent id ' + paymentIntent)
+  }
+
   const metadata = {}
 
   // see if we need to take any further action

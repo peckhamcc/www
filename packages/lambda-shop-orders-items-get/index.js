@@ -29,6 +29,11 @@ async function ordersGetHandler ({ userId, pathParameters }) {
   }
 
   const order = await getOrder(paymentIntentId)
+
+  if (!order) {
+    throw new httpErrors.BadRequest('No order found for payment intent')
+  }
+
   const { metadata: paymentMetadata } = await getPayment(paymentIntentId)
 
   return {
