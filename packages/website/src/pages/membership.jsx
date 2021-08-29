@@ -73,7 +73,6 @@ class MembershipPage extends Component {
             <ListItem>10% off parts at <a href='https://ratracecycles.com'>Rat Race Cycles</a></ListItem>
             <ListItem>10% off <a href='https://lovevelo.co.uk'>Love Velo</a> holidays (for 7 or fewer, 8 or more 1 in 8 go free)</ListItem>
             <ListItem>20% off your first in-store purchase at <a href='https://www.cafeducycliste.com/london-store/'>Cafe du Cycliste</a> near Spitalfields</ListItem>
-            <ListItem>20% off a bike fit at <a href='http://cadenceperformance.com/'>Cadence Performance</a> in Crystal Palace</ListItem>
           </PerksList>
           {joinOrManage}
           <HelpText>The fee is due annually and is non-refundable. Fees go towards the club's running costs such as our continued affiliation to British Cycling, kit design fees, venue hire and other projects designed to benefit members.</HelpText>
