@@ -287,7 +287,7 @@ class Basket extends Component {
           <h5>Made to order</h5>
           <p>Your basket contains kit that is made to order.</p>
           <p>Orders cannot be cancelled, exchanged, or refunded once your order has been placed.</p>
-          <p>We aim to send kit orders to the factory every two months, then it will take approximately 6 weeks to be made &amp; shipped.</p>
+          <p>We aim to send kit orders to the factory on the first of every month, then it will take approximately 12 weeks to be made &amp; shipped.</p>
           <p>When items are available, your order will be available to be picked up from <a href='https://ratracecycles.com/'>Rat Race Cycles</a> at 118 Evelina Road, SE15 3HL.</p>
         </>
       ))

@@ -78,9 +78,9 @@ const htmlTemplate = (firstName, lastName, address1, address2, address3, postCod
       ${displayItems(lineItems, '&pound;', '<br />')}
     </p>
     <p>Total value: &pound;${amount}</p>
-    <p>We aim to submit orders to the factory every two months.</p>
+    <p>We aim to submit orders to the factory on the first of every month.</p>
     <p>
-      It then typically takes a further six weeks to print, after which your items will be held at
+      It then typically takes a further twelve weeks to be made, after which your items will be held at
       <a href="https://ratracecycles.com">Rat Race Cycles</a> for you to pick up.
     </p>
     <p>Once we know the delivery date for your items we'll send you an email to let you know.</p>
@@ -117,9 +117,9 @@ ${displayItems(lineItems, '£', '\r\n')}
 
 Total value: £${amount}
 
-We aim to submit orders to the factory every two months.
+We aim to submit orders to the factory on the first of every month.
 
-It then typically takes about six weeks to print, after which your items will be held at Rat Race Cycles for you to pick up.
+It then typically takes about twelve weeks to be made, after which your items will be held at Rat Race Cycles for you to pick up.
 
 Once we know the delivery date for your items we'll send you an email to let you know.
 
