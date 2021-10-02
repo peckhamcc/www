@@ -1,7 +1,7 @@
 {
   "name": "@peckhamcc/lambda-members-get",
   "version": "1.0.0",
-  "description": "Retrieve orders from stripe",
+  "description": "Get details of PCC members",
   "main": "index.js",
   "homepage": "https://peckhamcc.github.com/www",
   "author": "Alex Potsides",
