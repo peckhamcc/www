@@ -28,7 +28,7 @@ class AdminMembersPage extends Component {
         <PageWrapper>
           <ShortHero background={heroBackground} />
           <Panel>
-            <h2>Admin</h2>
+            <h2>Club Admin</h2>
             <p>Hello {this.props.user.name}</p>
 
             <TabHolder>
@@ -55,7 +55,6 @@ class AdminMembersPage extends Component {
               }
             </TabHolder>
             <TabContent>
-              <h3>Members</h3>
               <Members />
             </TabContent>
           </Panel>

@@ -10,12 +10,12 @@ import WithUser from '../components/with-user'
 function AdminPage ({ user }) {
   const history = useHistory()
 
-  if (user.memberAdmin) {
+  if (user.membersAdmin) {
     history.push('/admin/members')
     return null
   }
 
-  if (user.shopAdmin) {
+  if (user.kitAdmin) {
     history.push('/admin/kit')
     return null
   }

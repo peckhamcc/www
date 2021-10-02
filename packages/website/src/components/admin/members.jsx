@@ -22,7 +22,8 @@ import {
   config
 } from '@peckhamcc/config'
 import {
-  panelLevel2Border
+  panelLevel1Background,
+  panelLevel2Header
 } from '../../colours'
 import {
   spacing
@@ -33,47 +34,78 @@ const Table = styled.table`
   border-collapse: collapse;
 `
 
-const THead = styled.thead`
-  border-bottom: 1px solid ${panelLevel2Border};
-`
-
 const TBody = styled.tbody`
 `
 
-const Row = styled.tr`
+const OddRow = styled.tr`
 
 `
 
-const Header = styled.th`
-  text-align: left;
-  vertical-align: top;
-  padding: ${spacing(1)};
+const EvenRow = styled.tr`
+  background-color: ${panelLevel1Background};
 `
 
 const Cell = styled.td`
   vertical-align: top;
   padding: ${spacing(1)};
+
+  h3 {
+    color: ${panelLevel2Header};
+    padding: 0;
+    margin: 0;
+  }
+
+  p {
+    padding: 0;
+    margin: 0;
+  }
 `
 
-function MemberList ({ members, onShowMember }) {
+const Filter = styled.div`
+  padding: ${spacing(1)} 0;
+`
+
+const Query = styled.div`
+  display: inline-block;
+  margin-right: ${spacing(1)};
+`
+
+function MemberList ({ members }) {
   return (
     <Table>
-      <THead>
-        <Row>
-          <Header>Name</Header>
-          <Header>Emergency Contact</Header>
-          <Header>Actions</Header>
-        </Row>
-      </THead>
       <TBody>
         {
-          members.map(member => (
-            <Row key={member.id}>
-              <Cell>{member.name}</Cell>
-              <Cell>-</Cell>
-              <Cell><Button style={{ margin: 0 }} onClick={() => onShowMember(member)}>Details</Button></Cell>
-            </Row>
-          ))
+          members.map((member, index) => {
+            const Row = index % 2 === 0 ? EvenRow : OddRow
+            let fopccStatus = '😶 Not a Friend'
+
+            if (member.fopcc) {
+              if (member.fopcc.status) {
+                if (member.fopcc.status === 'active') {
+                  fopccStatus = `✅ Stripe managed, renews ${new Date(member.fopcc.renews).toLocaleDateString('en-GB')}`
+                } else {
+                  fopccStatus = ` ❌ Stripe managed, status "${member.fopcc.status}"`
+                }
+              }
+
+              if (member.fopcc.bc) {
+                if (member.fopcc.expires > Date.now()) {
+                  fopccStatus = `✅ BC managed, expires ${new Date(member.fopcc.expires).toLocaleDateString('en-GB')}`
+                } else {
+                  fopccStatus = ` ❌ BC managed, expired ${new Date(member.fopcc.expires).toLocaleDateString('en-GB')}`
+                }
+              }
+            }
+
+            return (
+              <Row key={member.id}>
+                <Cell>
+                  <h3>{member.name}</h3>
+                  <p>Email: {member.email}<br />Phone: {member.phone}<br />FoPCC: {fopccStatus}</p>
+                </Cell>
+              </Row>
+            )
+          })
         }
       </TBody>
     </Table>
@@ -87,13 +119,7 @@ class AdminMembers extends Component {
   }
 
   async componentDidMount () {
-    if (this.props.members.length) {
-      return
-    }
-
-    await Promise.all([
-      this._loadMembers()
-    ])
+    await this._loadMembers()
       .catch(err => console.error(err))
   }
 
@@ -109,7 +135,8 @@ class AdminMembers extends Component {
       })
 
       if (response.status === 200) {
-        this.props.setMembers(await response.json())
+        const members = await response.json()
+        this.props.setMembers(members.sort((a, b) => `${a.name}`.localeCompare(`${b.name}`)))
 
         return
       }
@@ -126,22 +153,76 @@ class AdminMembers extends Component {
     }
   }
 
-  handleShowMember = (order) => {
-    this.setState({
-      order
-    })
-  }
-
-  handleShowMember = () => {
-    this.setState({
-      order: null
-    })
-  }
-
   handleSearchChange = (event) => {
     this.setState({
-      filter: event.target.value.trim().toLowerCase()
+      filter: event.target.value
     })
+  }
+
+  handleQueryChange = (event) => {
+    this.setState({
+      query: event.target.value
+    })
+  }
+
+  handleExport = (filteredMembers) => {
+    const escape = (str) => `${str || ''}`.replace(/,/g, '\\,')
+
+    let data = [
+      'Name',
+      'Email',
+      'Phone',
+      'FoPCC type',
+      'FoPCC status',
+      'FoPCC expiry',
+      'FoPCC renews'
+    ].join(', ')
+
+    filteredMembers.forEach(member => {
+      let foPccType = ''
+      let foPccStatus = ''
+      let foPccExpiry = ''
+      let foPccRenews = ''
+
+      if (member.fopcc) {
+        if (member.fopcc.bc) {
+          foPccType = 'BC'
+          foPccStatus = member.fopcc.expires > Date.now() ? 'ok' : 'expired'
+          foPccExpiry = new Date(member.fopcc.expires).toLocaleDateString('en-GB')
+        }
+
+        if (member.fopcc.status) {
+          foPccType = 'Stripe'
+          foPccStatus = member.fopcc.status === 'active' ? 'ok' : member.fopcc.status
+          foPccRenews = new Date(member.fopcc.renews).toLocaleDateString('en-GB')
+        }
+      }
+
+      const fields = [
+        escape(member.name),
+        escape(member.email),
+        escape(member.phone),
+        foPccType,
+        foPccStatus,
+        foPccExpiry,
+        foPccRenews
+      ]
+
+      data += `\n${fields.join(', ')}`
+    })
+
+    const blob = new globalThis.Blob([
+      data
+    ], {
+      type: 'text/csv;charset=utf-8'
+    })
+    const blobUrl = URL.createObjectURL(blob)
+    const anchor = document.createElement('a')
+    anchor.href = blobUrl
+    anchor.target = '_blank'
+    anchor.download = `fopcc-export-${Date.now()}.csv`
+    anchor.click()
+    URL.revokeObjectURL(blobUrl)
   }
 
   render () {
@@ -151,7 +232,8 @@ class AdminMembers extends Component {
     } = this.props
     const {
       member,
-      filter
+      filter,
+      query
     } = this.state
 
     if (member) {
@@ -162,10 +244,62 @@ class AdminMembers extends Component {
 
     let filteredMembers = members
 
-    if (filter) {
+    if (filter && filter.trim()) {
+      const searchTerm = filter.trim().toLowerCase()
+
       filteredMembers = filteredMembers.filter(member => {
-        return member.name.toLowerCase().includes(filter)
+        return (member.name || '').toLowerCase().includes(searchTerm) ||
+          (member.email || '').toLowerCase().includes(searchTerm) ||
+          (member.phone || '').toLowerCase().includes(searchTerm)
       })
+    }
+
+    const friends = filteredMembers.filter(member => {
+      if (!member.fopcc) {
+        return false
+      }
+
+      // stripe
+      if (member.fopcc.status === 'active') {
+        return true
+      }
+
+      // bc
+      if (member.fopcc.bc && member.fopcc.expires > Date.now()) {
+        return true
+      }
+
+      return false
+    })
+
+    const lapsed = filteredMembers.filter(member => {
+      if (!member.fopcc) {
+        return false
+      }
+
+      // stripe
+      if (member.fopcc.status && member.fopcc.status !== 'active') {
+        return true
+      }
+
+      // bc
+      if (member.fopcc.bc && member.fopcc.expires <= Date.now()) {
+        return true
+      }
+
+      return false
+    })
+
+    const allCount = filteredMembers.length
+    const friendsCount = friends.length
+    const lapsedCount = lapsed.length
+
+    if (query) {
+      if (query === 'friends') {
+        filteredMembers = friends
+      } else if (query === 'lapsed') {
+        filteredMembers = lapsed
+      }
     }
 
     return (
@@ -178,9 +312,15 @@ class AdminMembers extends Component {
           )
         : (
           <>
-            <div>
+            <Filter>
               <Input type='search' placeholder='Search' value={filter} onChange={this.handleSearchChange} />
-            </div>
+              <div>
+                <Query><input type='radio' name='query' value='all' checked={!query || query === 'all'} onChange={this.handleQueryChange} /> All ({allCount})</Query>
+                <Query><input type='radio' name='query' value='friends' checked={query === 'friends'} onChange={this.handleQueryChange} /> Friends ({friendsCount})</Query>
+                <Query><input type='radio' name='query' value='lapsed' checked={query === 'lapsed'} onChange={this.handleQueryChange} /> Lapsed ({lapsedCount})</Query>
+              </div>
+              <Button style={{ marginBottom: 0 }} onClick={() => this.handleExport(filteredMembers)}>Export ({filteredMembers.length})</Button>
+            </Filter>
             {
             filteredMembers.length
               ? (
