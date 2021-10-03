@@ -169,7 +169,8 @@ async function updateUser (id, details) {
     'gender',
     'size',
     'stripeCustomerId',
-    'fopcc'
+    'fopcc',
+    'lastLogin'
   ]
 
   const expression = []
@@ -310,6 +311,11 @@ async function exchangeToken (token) {
     }
   })
     .promise()
+
+  // update user login time
+  await updateUser(`${existingToken.Item.user}`, {
+    lastLogin: Date.now()
+  })
 
   return token
 }

@@ -29,8 +29,6 @@ class AdminKitPage extends Component {
           <ShortHero background={heroBackground} />
           <Panel>
             <h2>Club Admin</h2>
-            <p>Hello {this.props.user.name}</p>
-
             <TabHolder>
               {
                 this.props.user.membersAdmin

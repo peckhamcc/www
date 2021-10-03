@@ -155,6 +155,11 @@ async function exchangeToken (key) {
   }
   tokens.save()
 
+  // update user login time
+  await updateUser(token.user, {
+    lastLogin: Date.now()
+  })
+
   return key
 }
 
