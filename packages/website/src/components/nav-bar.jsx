@@ -372,7 +372,7 @@ class NavBarWrapper extends Component {
                       this.props.user && this.props.user.admin
                         ? (
                           <NavLink>
-                            <Link to='/admin'>Admin</Link>
+                            <Link to='/admin'>Club Admin</Link>
                           </NavLink>
                           )
                         : null
