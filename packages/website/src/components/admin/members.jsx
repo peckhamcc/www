@@ -242,7 +242,7 @@ class AdminMembers extends Component {
       )
     }
 
-    let filteredMembers = members
+    let filteredMembers = members.filter(member => Boolean(member.name))
 
     if (filter && filter.trim()) {
       const searchTerm = filter.trim().toLowerCase()
