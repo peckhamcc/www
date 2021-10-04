@@ -34,6 +34,10 @@ function fullTokenExpiry () {
 async function extendToken (token) {
   const client = new AWS.DynamoDB.DocumentClient()
 
+  if (!process.env.AWS_TOKENS_DB_TABLE) {
+    throw new Error('No AWS_TOKENS_DB_TABLE var found in environment')
+  }
+
   await client.update({
     TableName: process.env.AWS_TOKENS_DB_TABLE,
     Key: {
@@ -54,6 +58,10 @@ async function generateLogInLink (email, redirect) {
 
   const client = new AWS.DynamoDB.DocumentClient()
 
+  if (!process.env.AWS_USER_LOOKUP_DB_TABLE) {
+    throw new Error('No AWS_USER_LOOKUP_DB_TABLE var found in environment')
+  }
+
   // use AWS_USER_LOOKUP_DB_TABLE to turn email into id, maybe creating a new user
   const userLookup = await client.get({
     TableName: process.env.AWS_USER_LOOKUP_DB_TABLE,
@@ -68,6 +76,10 @@ async function generateLogInLink (email, redirect) {
     id = userLookup.Item.id
   } else {
     id = nanoid()
+
+    if (!process.env.AWS_USERS_DB_TABLE) {
+      throw new Error('No AWS_USERS_DB_TABLE var found in environment')
+    }
 
     // no user for that email, create a new user
     await client.update({
@@ -84,6 +96,10 @@ async function generateLogInLink (email, redirect) {
       },
       ReturnValues: 'UPDATED_NEW'
     }).promise()
+
+    if (!process.env.AWS_USER_LOOKUP_DB_TABLE) {
+      throw new Error('No AWS_USER_LOOKUP_DB_TABLE var found in environment')
+    }
 
     // create lookup for next time
     await client.update({
@@ -104,6 +120,10 @@ async function generateLogInLink (email, redirect) {
 
   const token = nanoid()
 
+  if (!process.env.AWS_TOKENS_DB_TABLE) {
+    throw new Error('No AWS_TOKENS_DB_TABLE var found in environment')
+  }
+
   await client.put({
     TableName: process.env.AWS_TOKENS_DB_TABLE,
     Item: {
@@ -121,6 +141,10 @@ async function generateLogInLink (email, redirect) {
 
 async function getUserIdForToken (token) {
   const client = new AWS.DynamoDB.DocumentClient()
+
+  if (!process.env.AWS_TOKENS_DB_TABLE) {
+    throw new Error('No AWS_TOKENS_DB_TABLE var found in environment')
+  }
 
   const existingToken = await client.get({
     TableName: process.env.AWS_TOKENS_DB_TABLE,
@@ -148,6 +172,10 @@ async function getUserIdForToken (token) {
 
 async function getUser (id) {
   const client = new AWS.DynamoDB.DocumentClient()
+
+  if (!process.env.AWS_USERS_DB_TABLE) {
+    throw new Error('No AWS_USERS_DB_TABLE var found in environment')
+  }
 
   const result = await client.get({
     TableName: process.env.AWS_USERS_DB_TABLE,
@@ -194,6 +222,10 @@ async function updateUser (id, details) {
 
   const client = new AWS.DynamoDB.DocumentClient()
 
+  if (!process.env.AWS_USERS_DB_TABLE) {
+    throw new Error('No AWS_USERS_DB_TABLE var found in environment')
+  }
+
   await client.update({
     TableName: process.env.AWS_USERS_DB_TABLE,
     Key: {
@@ -206,6 +238,10 @@ async function updateUser (id, details) {
   }).promise()
 
   if (details.email && user.email !== details.email) {
+    if (!process.env.AWS_USER_LOOKUP_DB_TABLE) {
+      throw new Error('No AWS_USER_LOOKUP_DB_TABLE var found in environment')
+    }
+
     // email changed, update the user lookup table
     await client.update({
       TableName: process.env.AWS_USER_LOOKUP_DB_TABLE,
@@ -232,6 +268,10 @@ async function updateUser (id, details) {
   }
 
   if (details.stripeCustomerId && user.stripeCustomerId !== details.stripeCustomerId) {
+    if (!process.env.AWS_STRIPE_CUSTOMER_LOOKUP_DB_TABLE) {
+      throw new Error('No AWS_STRIPE_CUSTOMER_LOOKUP_DB_TABLE var found in environment')
+    }
+
     // add a stripe customer to user id lookup
     await client.update({
       TableName: process.env.AWS_STRIPE_CUSTOMER_LOOKUP_DB_TABLE,
@@ -251,6 +291,10 @@ async function updateUser (id, details) {
 }
 
 async function getUserIdForCustomerId (customerId) {
+  if (!process.env.AWS_STRIPE_CUSTOMER_LOOKUP_DB_TABLE) {
+    throw new Error('No AWS_STRIPE_CUSTOMER_LOOKUP_DB_TABLE var found in environment')
+  }
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   const userLookup = await client.get({
@@ -264,6 +308,10 @@ async function getUserIdForCustomerId (customerId) {
 }
 
 async function invalidateToken (token) {
+  if (!process.env.AWS_TOKENS_DB_TABLE) {
+    throw new Error('No AWS_TOKENS_DB_TABLE var found in environment')
+  }
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   // remove old token
@@ -276,6 +324,10 @@ async function invalidateToken (token) {
 }
 
 async function exchangeToken (token) {
+  if (!process.env.AWS_TOKENS_DB_TABLE) {
+    throw new Error('No AWS_TOKENS_DB_TABLE var found in environment')
+  }
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   const existingToken = await client.get({
@@ -299,6 +351,10 @@ async function exchangeToken (token) {
   await invalidateToken(token)
 
   token = nanoid()
+
+  if (!process.env.AWS_TOKENS_DB_TABLE) {
+    throw new Error('No AWS_TOKENS_DB_TABLE var found in environment')
+  }
 
   await client.put({
     TableName: process.env.AWS_TOKENS_DB_TABLE,

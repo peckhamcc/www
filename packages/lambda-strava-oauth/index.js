@@ -52,6 +52,10 @@ async function sendCode (code) {
 }
 
 async function exchangeCode (event) {
+  if (!process.env.AWS_STRAVA_OAUTH_TABLE) {
+    throw new Error('No AWS_STRAVA_OAUTH_TABLE var found in environment')
+  }
+
   try {
     const {
       code

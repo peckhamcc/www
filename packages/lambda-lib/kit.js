@@ -25,6 +25,10 @@ async function getCachedOrder (orderId) {
 
     const client = new AWS.DynamoDB.DocumentClient()
 
+    if (!process.env.AWS_ORDERS_DB_TABLE) {
+      throw new Error('No AWS_ORDERS_DB_TABLE var found in environment')
+    }
+
     const { Item: dbOrder } = await client.get({
       TableName: process.env.AWS_ORDERS_DB_TABLE,
       Key: {
@@ -49,6 +53,10 @@ async function getOrders () {
   const client = new AWS.DynamoDB.DocumentClient()
   const orders = []
 
+  if (!process.env.AWS_ORDERS_DB_TABLE) {
+    throw new Error('No AWS_ORDERS_DB_TABLE var found in environment')
+  }
+
   const items = await client.scan({
     TableName: process.env.AWS_ORDERS_DB_TABLE
   }).promise()
@@ -71,6 +79,10 @@ async function getOrders () {
 }
 
 async function createOrder (date, payments) {
+  if (!process.env.AWS_ORDERS_DB_TABLE) {
+    throw new Error('No AWS_ORDERS_DB_TABLE var found in environment')
+  }
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   await client.put({
@@ -108,6 +120,10 @@ async function updateOrder (id, details) {
   }
 
   const client = new AWS.DynamoDB.DocumentClient()
+
+  if (!process.env.AWS_ORDERS_DB_TABLE) {
+    throw new Error('No AWS_ORDERS_DB_TABLE var found in environment')
+  }
 
   await client.update({
     TableName: process.env.AWS_ORDERS_DB_TABLE,

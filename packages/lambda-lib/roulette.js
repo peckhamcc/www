@@ -214,6 +214,10 @@ async function generateRides (ridingDays, riderPrefs, getUser) {
 }
 
 const getRides = async (date) => {
+  if (!process.env.AWS_RIDES_DB_TABLE) {
+    throw new Error('No AWS_RIDES_DB_TABLE var found in environment')
+  }
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   const result = await client.get({
@@ -227,6 +231,10 @@ const getRides = async (date) => {
 }
 
 const setRides = async (date, rides) => {
+  if (!process.env.AWS_RIDES_DB_TABLE) {
+    throw new Error('No AWS_RIDES_DB_TABLE var found in environment')
+  }
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   await client.update({
@@ -244,6 +252,10 @@ const setRides = async (date, rides) => {
 }
 
 const getAllPreferences = async () => {
+  if (!process.env.AWS_PREFERENCES_DB_TABLE) {
+    throw new Error('No AWS_PREFERENCES_DB_TABLE var found in environment')
+  }
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   const scanResults = {}
@@ -264,6 +276,10 @@ const getAllPreferences = async () => {
 }
 
 const getPreferences = async (userId) => {
+  if (!process.env.AWS_PREFERENCES_DB_TABLE) {
+    throw new Error('No AWS_PREFERENCES_DB_TABLE var found in environment')
+  }
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   const result = await client.get({
@@ -277,6 +293,10 @@ const getPreferences = async (userId) => {
 }
 
 const setPreferences = async (userId, preferences) => {
+  if (!process.env.AWS_PREFERENCES_DB_TABLE) {
+    throw new Error('No AWS_PREFERENCES_DB_TABLE var found in environment')
+  }
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   await client.update({

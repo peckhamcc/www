@@ -10,6 +10,10 @@ const AWS = require('aws-sdk')
 const { config } = require('./config')
 
 async function updateUser (event) {
+  if (!process.env.AWS_STRAVA_OAUTH_TABLE) {
+    throw new Error('No AWS_STRAVA_OAUTH_TABLE var found in environment')
+  }
+
   if (event.header.Authorization !== process.env.AUTH_TOKEN) {
     return {
       statusCode: 403

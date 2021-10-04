@@ -20,6 +20,10 @@ async function readTokens (event) {
     region: config.aws.dynamodb.region
   })
 
+  if (!process.env.AWS_STRAVA_OAUTH_TABLE) {
+    throw new Error('No AWS_STRAVA_OAUTH_TABLE var found in environment')
+  }
+
   const scanResults = []
   const params = { TableName: process.env.AWS_STRAVA_OAUTH_TABLE }
   let items = {

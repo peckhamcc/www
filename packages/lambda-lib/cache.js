@@ -21,6 +21,10 @@ async function get (key) {
 }
 
 async function set (key, value, ttl) {
+  if (!process.env.AWS_CACHE_DB_TABLE) {
+    throw new Error('No AWS_CACHE_DB_TABLE var found in environment')
+  }
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   await client.update({
@@ -42,6 +46,10 @@ async function set (key, value, ttl) {
 }
 
 async function remove (key) {
+  if (!process.env.AWS_CACHE_DB_TABLE) {
+    throw new Error('No AWS_CACHE_DB_TABLE var found in environment')
+  }
+
   const client = new AWS.DynamoDB.DocumentClient()
 
   await client.delete({
