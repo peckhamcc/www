@@ -2,6 +2,7 @@ const AWS = require('aws-sdk')
 const { config } = require('./config')
 const { getOrder: getMemberOrder } = require('./stripe-client')
 const cache = require('./cache')
+const { nanoid } = require('nanoid')
 
 AWS.config.update({
   region: config.aws.dynamodb.region
@@ -17,24 +18,24 @@ async function getCachedOrder (orderId) {
   const cacheKey = `kit-order-${orderId}`
   let order = await cache.get(cacheKey)
 
+  const client = new AWS.DynamoDB.DocumentClient()
+
+  if (!process.env.AWS_ORDERS_DB_TABLE) {
+    throw new Error('No AWS_ORDERS_DB_TABLE var found in environment')
+  }
+
+  const { Item: dbOrder } = await client.get({
+    TableName: process.env.AWS_ORDERS_DB_TABLE,
+    Key: {
+      id: orderId
+    }
+  }).promise()
+
   if (!order) {
     order = {
       amount: 0,
       items: []
     }
-
-    const client = new AWS.DynamoDB.DocumentClient()
-
-    if (!process.env.AWS_ORDERS_DB_TABLE) {
-      throw new Error('No AWS_ORDERS_DB_TABLE var found in environment')
-    }
-
-    const { Item: dbOrder } = await client.get({
-      TableName: process.env.AWS_ORDERS_DB_TABLE,
-      Key: {
-        id: orderId
-      }
-    }).promise()
 
     for (const paymentId of dbOrder.payments) {
       const memberOrder = await getMemberOrder(paymentId)
@@ -42,11 +43,16 @@ async function getCachedOrder (orderId) {
       order.amount += memberOrder.amount
       order.items.push(memberOrder)
     }
+
+    await cache.set(cacheKey, order)
   }
 
-  await cache.set(cacheKey, order)
-
-  return order
+  return {
+    ...order,
+    status: dbOrder.status,
+    date: dbOrder.date,
+    id: dbOrder.id
+  }
 }
 
 async function getOrders () {
@@ -88,6 +94,7 @@ async function createOrder (date, payments) {
   await client.put({
     TableName: process.env.AWS_ORDERS_DB_TABLE,
     Item: {
+      id: nanoid(),
       date: Math.round(date.getTime() / 1000),
       status: 'pending',
       payments
