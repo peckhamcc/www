@@ -597,6 +597,7 @@ const config = {
     fopccLeave: '/lambda/fopcc-leave',
     membersGet: '/lambda/members-get',
     kitOrdersGet: '/lambda/kit-orders-get',
+    kitOrdersUpdate: '/lambda/kit-orders-update',
     rrcOrdersGet: '/lambda/rrc-orders-get'
   },
   flags: {
@@ -656,8 +657,9 @@ if (process.env.NODE_ENV !== 'development') {
   config.lambda.fopccLeave = 'https://api.peckham.cc/fopcc'
 
   config.lambda.membersGet = 'https://api.peckham.cc/members'
-  config.lambda.kitOrdersGet = 'https://api.peckham.cc/kit-orders'
-  config.lambda.rrcOrdersGet = 'https://api.peckham.cc/rrc-orders'
+  config.lambda.kitOrdersGet = 'https://api.peckham.cc/kit/orders'
+  config.lambda.kitOrdersUpdate = 'https://api.peckham.cc/kit/orders'
+  config.lambda.rrcOrdersGet = 'https://api.peckham.cc/rrc/orders'
 
   config.stripe.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY
   config.stripe.secretKey = process.env.STRIPE_SECRET_KEY

@@ -102,7 +102,7 @@ async function updateUser (id, details) {
   const user = await getUser(id)
 
   if (!user) {
-    throw new Error('Could not load user for id', id)
+    throw new Error('Could not load user for id ' + id)
   }
 
   users.values[id] = {

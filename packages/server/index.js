@@ -24,6 +24,7 @@ const fopccLeave = require('@peckhamcc/lambda-fopcc-leave')
 const stripeWebhook = require('@peckhamcc/lambda-stripe-webhook')
 const inkthreadableWebhook = require('@peckhamcc/lambda-inkthreadable-webhook')
 const kitOrdersGet = require('@peckhamcc/lambda-kit-orders-get')
+const kitOrdersUpdate = require('@peckhamcc/lambda-kit-orders-update')
 const rrcOrdersGet = require('@peckhamcc/lambda-rrc-orders-get')
 const membersGet = require('@peckhamcc/lambda-members-get')
 const { callbackify } = require('util')
@@ -226,6 +227,7 @@ module.exports = (port) => {
 
     app.options(config.lambda.kitOrdersGet, serveLambda('_peckhamcc_lambda-kit-orders-get', sendCorsHeaders))
     app.get(config.lambda.kitOrdersGet, serveLambda('_peckhamcc_lambda-kit-orders-get', kitOrdersGet))
+    app.patch(config.lambda.kitOrdersUpdate, serveLambda('_peckhamcc_lambda-kit-orders-update', kitOrdersUpdate))
 
     app.options(config.lambda.rrcOrdersGet, serveLambda('_peckhamcc_lambda-rrc-orders-get', sendCorsHeaders))
     app.get(config.lambda.rrcOrdersGet, serveLambda('_peckhamcc_lambda-rrc-orders-get', rrcOrdersGet))

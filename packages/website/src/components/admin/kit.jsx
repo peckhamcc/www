@@ -55,7 +55,22 @@ const Cell = styled.td`
   padding: ${spacing(1)};
 `
 
-function OrderList ({ orders, onShowOrder }) {
+const STATUSES = {
+  pending: {
+    next: 'production'
+  },
+  production: {
+    next: 'shipped'
+  },
+  shipped: {
+    next: 'ready'
+  },
+  ready: {
+
+  }
+}
+
+function OrderList ({ orders, onUpdateStatus }) {
   return (
     <Table>
       <THead>
@@ -67,13 +82,22 @@ function OrderList ({ orders, onShowOrder }) {
       </THead>
       <TBody>
         {
-          orders.map(order => (
-            <Row key={order.id}>
-              <Cell>{new Date(order.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</Cell>
-              <Cell><Price price={order.amount} /></Cell>
-              <Cell><Button style={{ margin: 0 }} onClick={() => onShowOrder(order)}>Order details</Button></Cell>
-            </Row>
-          ))
+          orders.map(order => {
+            const status = STATUSES[order.status]
+            let nextButton
+
+            if (status && status.next) {
+              nextButton = <Button style={{ margin: 0 }} onClick={() => onUpdateStatus(order, status.next)}>Update status to "{status.next}"</Button>
+            }
+
+            return (
+              <Row key={order.id}>
+                <Cell>{new Date(order.date * 1000).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</Cell>
+                <Cell><Price price={order.amount} /></Cell>
+                <Cell>{nextButton}</Cell>
+              </Row>
+            )
+          })
         }
       </TBody>
     </Table>
@@ -86,21 +110,14 @@ class KitOrders extends Component {
   }
 
   async componentDidMount () {
-    if (this.props.orders.length) {
-      return
-    }
-
-    await Promise.all([
-      this._loadOrders()
-    ])
-      .catch(err => console.error(err))
+    this._loadOrders().catch(err => console.error(err))
   }
 
   async _loadOrders () {
     this.props.loadKitOrders()
 
     try {
-      const response = await global.fetch(config.lambda.shopOrdersGet, {
+      const response = await global.fetch(config.lambda.kitOrdersGet, {
         method: 'GET',
         headers: {
           Authorization: this.props.token
@@ -131,10 +148,37 @@ class KitOrders extends Component {
     })
   }
 
-  handleShowOrders = () => {
-    this.setState({
-      order: null
-    })
+  handleUpdateStatus = async (order, status) => {
+    console.info(order, status)
+    try {
+      const response = await global.fetch(config.lambda.kitOrdersUpdate, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.props.token
+        },
+        body: JSON.stringify({
+          id: order.id,
+          status
+        })
+      })
+
+      if (response.status === 200) {
+        this._loadOrders()
+
+        return
+      }
+
+      if (response.status === 401) {
+        this.props.expiredToken()
+
+        return
+      }
+
+      throw new Error(response.statusText)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   render () {
@@ -164,7 +208,7 @@ class KitOrders extends Component {
             orders.length
               ? (
                 <>
-                  <OrderList orders={orders} onShowOrder={this.handleShowOrder} />
+                  <OrderList orders={orders} onUpdateStatus={this.handleUpdateStatus} />
                 </>
 
                 )
