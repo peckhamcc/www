@@ -15,13 +15,13 @@ const {
   getUserIdForCustomerId
 } = require('./account')
 const {
-  // updateOrder,
+  updateOrder,
   getOrder
 } = require('./kit')
 const {
   getOrder: getMemberOrder,
-  getPayment
-  // setPaymentMetadata
+  getPayment,
+  setPaymentMetadata
 } = require('./stripe-client')
 // const { config } = require('./config')
 // const {
@@ -39,7 +39,7 @@ async function kitOrdersUpdateHandler ({ userId, body: { id, ...details } }) {
     throw new httpErrors.Forbidden('Nope')
   }
 
-  // await updateOrder(id, details)
+  await updateOrder(id, details)
 
   const order = await getOrder(id)
   const emailed = {}
@@ -65,7 +65,7 @@ async function kitOrdersUpdateHandler ({ userId, body: { id, ...details } }) {
       })
 
       if (updatedStatus) {
-        // await setPaymentMetadata(item.payment, metadata)
+        await setPaymentMetadata(item.payment, metadata)
       }
 
       if (details.status === 'ready') {
