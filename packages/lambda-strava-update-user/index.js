@@ -6,46 +6,31 @@ const {
   httpHeaderNormalizer,
   cors
 } = require('middy/middlewares')
-const AWS = require('aws-sdk')
-const { config } = require('./config')
+const {
+  getOne,
+  updateOne
+} = require('./db')
 
 async function updateUser (event) {
-  if (!process.env.AWS_STRAVA_OAUTH_TABLE) {
-    throw new Error('No AWS_STRAVA_OAUTH_TABLE var found in environment')
-  }
-
   if (event.header.Authorization !== process.env.AUTH_TOKEN) {
     return {
       statusCode: 403
     }
   }
 
-  const db = new AWS.DynamoDB({
-    region: config.aws.dynamodb.region
+  const item = await getOne(process.env.AWS_STRAVA_OAUTH_TABLE, {
+    id: `${event.path.id}`
   })
 
-  const item = await db.getItem({
-    Key: {
-      id: {
-        S: `${event.path.id}`
-      }
-    },
-    TableName: process.env.AWS_STRAVA_OAUTH_TABLE
-  }).promise()
-
-  if (!item || !item.Item) {
+  if (!item) {
     return {
       statusCode: 404
     }
   }
 
-  await db.updateItem({
-    TableName: process.env.AWS_STRAVA_OAUTH_TABLE,
-    Key: {
-      id: {
-        S: `${event.path.id}`
-      }
-    },
+  await updateOne(process.env.AWS_STRAVA_OAUTH_TABLE, {
+    id: `${event.path.id}`
+  }, {
     UpdateExpression: 'SET #A=:a, #R=:r, #E=:e, #I=:i',
     ExpressionAttributeNames: {
       '#A': 'access_token',
@@ -68,7 +53,7 @@ async function updateUser (event) {
       }
     },
     ReturnValues: 'UPDATED_NEW'
-  }).promise()
+  })
 }
 
 const inputSchema = {

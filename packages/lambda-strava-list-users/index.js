@@ -6,8 +6,9 @@ const {
   httpHeaderNormalizer,
   cors
 } = require('middy/middlewares')
-const AWS = require('aws-sdk')
-const { config } = require('./config')
+const {
+  getMany
+} = require('./db')
 
 async function readTokens (event) {
   if (event.header.Authorization !== process.env.AUTH_TOKEN) {
@@ -16,31 +17,17 @@ async function readTokens (event) {
     }
   }
 
-  const db = new AWS.DynamoDB({
-    region: config.aws.dynamodb.region
-  })
+  const results = []
 
-  if (!process.env.AWS_STRAVA_OAUTH_TABLE) {
-    throw new Error('No AWS_STRAVA_OAUTH_TABLE var found in environment')
+  for await (const item of getMany(process.env.AWS_STRAVA_OAUTH_TABLE)) {
+    results.push({
+      id: parseInt(item.id),
+      refresh_token: item.refresh_token,
+      access_token: item.access_token
+    })
   }
 
-  const scanResults = []
-  const params = { TableName: process.env.AWS_STRAVA_OAUTH_TABLE }
-  let items = {
-    LastEvaluatedKey: true
-  }
-
-  do {
-    items = await db.scan(params).promise()
-    items.Items.forEach((item) => scanResults.push({
-      id: parseInt(item.id.S),
-      refresh_token: item.refresh_token.S,
-      access_token: item.access_token.S
-    }))
-    params.ExclusiveStartKey = items.LastEvaluatedKey
-  } while (items.LastEvaluatedKey)
-
-  return scanResults
+  return results
 }
 
 const inputSchema = {

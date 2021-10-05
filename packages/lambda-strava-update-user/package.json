@@ -16,7 +16,7 @@
   "scripts": {
     "test": "echo 0",
     "clean": "rm -rf build",
-    "build": "cp ../config/index.js config.js",
+    "build": "cp ../config/index.js config.js && cp ../lambda-lib/db.js db.js",
     "deploy": "node-lambda deploy --runtime nodejs14.x --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-strava-update-user-role-0m1n6h8r --region eu-west-2",
     "upload": "run-s clean build upload",
     "lint": "standard"

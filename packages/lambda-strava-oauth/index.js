@@ -8,8 +8,9 @@ const {
 } = require('middy/middlewares')
 const https = require('https')
 const querystring = require('querystring')
-const AWS = require('aws-sdk')
-const { config } = require('./config')
+const {
+  putOne
+} = require('./db')
 
 async function sendCode (code) {
   return new Promise((resolve, reject) => {
@@ -52,10 +53,6 @@ async function sendCode (code) {
 }
 
 async function exchangeCode (event) {
-  if (!process.env.AWS_STRAVA_OAUTH_TABLE) {
-    throw new Error('No AWS_STRAVA_OAUTH_TABLE var found in environment')
-  }
-
   try {
     const {
       code
@@ -68,34 +65,14 @@ async function exchangeCode (event) {
       throw new Error('Unexpected result')
     }
 
-    const db = new AWS.DynamoDB({
-      region: config.aws.dynamodb.region
+    await putOne(process.env.AWS_STRAVA_OAUTH_TABLE, {
+      id: `${result.athlete.id}`,
+      token_type: result.token_type,
+      expires_at: `${result.expires_at}`,
+      expires_in: `${result.expires_in}`,
+      refresh_token: result.refresh_token,
+      access_token: result.access_token
     })
-
-    await db.putItem({
-      TableName: process.env.AWS_STRAVA_OAUTH_TABLE,
-      Item: {
-        id: {
-          S: `${result.athlete.id}`
-        },
-        token_type: {
-          S: result.token_type
-        },
-        expires_at: {
-          S: `${result.expires_at}`
-        },
-        expires_in: {
-          S: `${result.expires_in}`
-        },
-        refresh_token: {
-          S: result.refresh_token
-        },
-        access_token: {
-          S: result.access_token
-        }
-      }
-    })
-      .promise()
 
     return {
       location: 'https://peckham.cc/strava/success'

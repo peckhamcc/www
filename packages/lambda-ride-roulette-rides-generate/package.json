@@ -16,7 +16,7 @@
   "scripts": {
     "test": "echo 0",
     "clean": "rm -rf build",
-    "build": "cp ../config/index.js config.js && cp ../lambda-lib/email.js email.js && cp ../lambda-lib/account.js account.js && cp ../lambda-lib/roulette.js roulette.js && cp ../lambda-lib/middleware.js middleware.js",
+    "build": "cp ../config/index.js config.js && cp ../lambda-lib/email.js email.js && cp ../lambda-lib/account.js account.js && cp ../lambda-lib/roulette.js roulette.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/db.js db.js",
     "build:dev": "cp ../config/index.js config.js && cp ../lambda-lib/dev-email.js email.js && cp ../lambda-lib/dev-account.js account.js && cp ../lambda-lib/dev-roulette.js roulette.js && cp ../lambda-lib/middleware.js middleware.js",
     "upload": "node-lambda deploy --runtime nodejs14.x --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-ride-roulette-rides-generate-role-kf29x69m --region eu-west-2",
     "deploy": "run-s clean build upload",

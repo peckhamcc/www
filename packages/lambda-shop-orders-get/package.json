@@ -16,7 +16,7 @@
   "scripts": {
     "test": "echo 0",
     "clean": "rm -rf build",
-    "build": "cp ../config/index.js config.js && cp ../lambda-lib/stripe-client.js stripe-client.js && cp ../lambda-lib/account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/cache.js cache.js",
+    "build": "cp ../config/index.js config.js && cp ../lambda-lib/stripe-client.js stripe-client.js && cp ../lambda-lib/account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/cache.js cache.js && cp ../lambda-lib/db.js db.js",
     "build:dev": "cp ../config/index.js config.js && cp ../lambda-lib/stripe-client.js stripe-client.js && cp ../lambda-lib/dev-account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/dev-cache.js cache.js",
     "upload": "node-lambda deploy --runtime nodejs14.x --role arn:aws:iam::614175028878:role/service-role/_peckhamcc_lambda-shop-orders-get-role-niypeytd --region eu-west-2",
     "deploy": "run-s clean build upload",

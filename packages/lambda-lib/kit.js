@@ -1,12 +1,12 @@
-const AWS = require('aws-sdk')
-const { config } = require('./config')
+const { nanoid } = require('nanoid')
 const { getOrder: getMemberOrder } = require('./stripe-client')
 const cache = require('./cache')
-const { nanoid } = require('nanoid')
-
-AWS.config.update({
-  region: config.aws.dynamodb.region
-})
+const {
+  getOne,
+  getMany,
+  updateOne,
+  putOne
+} = require('./db')
 
 async function getLastOrder () {
   const orders = await getOrders()
@@ -18,18 +18,9 @@ async function getCachedOrder (orderId) {
   const cacheKey = `kit-order-${orderId}`
   let order = await cache.get(cacheKey)
 
-  const client = new AWS.DynamoDB.DocumentClient()
-
-  if (!process.env.AWS_ORDERS_DB_TABLE) {
-    throw new Error('No AWS_ORDERS_DB_TABLE var found in environment')
-  }
-
-  const { Item: dbOrder } = await client.get({
-    TableName: process.env.AWS_ORDERS_DB_TABLE,
-    Key: {
-      id: orderId
-    }
-  }).promise()
+  const dbOrder = await getOne(process.env.AWS_ORDERS_DB_TABLE, {
+    id: orderId
+  })
 
   if (!order) {
     order = {
@@ -56,18 +47,9 @@ async function getCachedOrder (orderId) {
 }
 
 async function getOrders () {
-  const client = new AWS.DynamoDB.DocumentClient()
   const orders = []
 
-  if (!process.env.AWS_ORDERS_DB_TABLE) {
-    throw new Error('No AWS_ORDERS_DB_TABLE var found in environment')
-  }
-
-  const items = await client.scan({
-    TableName: process.env.AWS_ORDERS_DB_TABLE
-  }).promise()
-
-  for (const order of items.Items) {
+  for await (const order of getMany(process.env.AWS_ORDERS_DB_TABLE)) {
     orders.push(await getCachedOrder(order.id))
   }
 
@@ -85,21 +67,12 @@ async function getOrders () {
 }
 
 async function createOrder (date, payments) {
-  if (!process.env.AWS_ORDERS_DB_TABLE) {
-    throw new Error('No AWS_ORDERS_DB_TABLE var found in environment')
-  }
-
-  const client = new AWS.DynamoDB.DocumentClient()
-
-  await client.put({
-    TableName: process.env.AWS_ORDERS_DB_TABLE,
-    Item: {
-      id: nanoid(),
-      date: Math.round(date.getTime() / 1000),
-      status: 'pending',
-      payments
-    }
-  }).promise()
+  await putOne(process.env.AWS_ORDERS_DB_TABLE, {
+    id: nanoid(),
+    date: Math.round(date.getTime() / 1000),
+    status: 'pending',
+    payments
+  })
 }
 
 async function updateOrder (id, details) {
@@ -126,22 +99,14 @@ async function updateOrder (id, details) {
     return
   }
 
-  const client = new AWS.DynamoDB.DocumentClient()
-
-  if (!process.env.AWS_ORDERS_DB_TABLE) {
-    throw new Error('No AWS_ORDERS_DB_TABLE var found in environment')
-  }
-
-  await client.update({
-    TableName: process.env.AWS_ORDERS_DB_TABLE,
-    Key: {
-      id
-    },
+  await updateOne(process.env.AWS_ORDERS_DB_TABLE, {
+    id
+  }, {
     UpdateExpression: `SET ${expression.join(', ')}`,
     ExpressionAttributeNames: attributeNames,
     ExpressionAttributeValues: attributeValues,
     ReturnValues: 'UPDATED_NEW'
-  }).promise()
+  })
 }
 
 module.exports = {
