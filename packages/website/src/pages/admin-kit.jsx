@@ -29,6 +29,8 @@ class AdminKitPage extends Component {
           <ShortHero background={heroBackground} />
           <Panel>
             <h2>Club Admin</h2>
+            <p>Order statuses are <pre>pending -&gt; production -&gt; shipped -&gt; ready</pre></p>
+            <p>Members will receive an email update when the status moves from 'shipped' to 'ready'.</p>
             <TabHolder>
               {
                 this.props.user.membersAdmin
