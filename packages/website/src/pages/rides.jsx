@@ -21,9 +21,6 @@ class RidesPage extends Component {
         <Hero background={ridesBackground} />
         <Panel>
           <h2>Club Rides</h2>
-          <p>We will be restarting group rides after 29th March 2021 in line with the latest <a href='https://www.britishcycling.org.uk/about/article/20200512-about-bc-news-British-Cycling-Updated-Coronavirus-Guidance-0'>British Cycling Covid-19 guidance</a> published 9th March in groups of 6-8 people. The first Social Ride will be Saturday 3rd April.</p>
-          <p>If you would like to join a ride before then, we are still riding in pairs so <Link to='/contact'>drop us a line</Link> or contact us via social media and we will try to match you up with another rider.</p>
-          <p>While Covid-19 safety remains a concern we will need to <a href='https://docs.google.com/forms/d/e/1FAIpQLSc9AFF9oQI2bDKWf9heplIi3hPQE6Ok2v-zGObByD9T0EjlbQ/viewform'>collect your contact details</a> before we set off to comply with track and trace regulations: these details will be removed from our records after 21 days and will be used for no other purpose and will not be shared with any other party.</p>
           <h3>How to join a ride</h3>
           <p>Looking to join your first ride with Peckham Cycle Club? We look forward to welcoming you!</p>
           <p>Every Saturday we run a Social Ride aimed at introducing new riders to the Club that starts at 8am (summer months) or 8.30am (winter months) at <a href='http://www.southwark.gov.uk/libraries/find-a-library?chapter=13'>Peckham Library</a>. This is usually the <a href='https://ridewithgps.com/routes/34683876'>same route</a> each week and heads out through South East London into the lanes of Kent. It’s about 60km and we'll usually be riding for about 3 hours, with a few hills along the way! We ride in groups of 6-8, typically around 20-22kph but don’t worry if you’re not sure whether that speed is right for you: it is always a no drop ride.</p>
