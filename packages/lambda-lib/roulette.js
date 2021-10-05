@@ -1,12 +1,8 @@
-const AWS = require('aws-sdk')
-
-/*
-const { config } = require('./config')
-
-AWS.config.update({
-  region: config.aws.dynamodb.region
-})
-*/
+const {
+  getOne,
+  getMany,
+  updateOne
+} = require('./db')
 
 const ONE_DAY = ((60 * 60) * 24) * 1000
 const ONE_MONTH = ONE_DAY * 30
@@ -214,103 +210,55 @@ async function generateRides (ridingDays, riderPrefs, getUser) {
 }
 
 const getRides = async (date) => {
-  if (!process.env.AWS_RIDES_DB_TABLE) {
-    throw new Error('No AWS_RIDES_DB_TABLE var found in environment')
-  }
+  const result = await getOne(process.env.AWS_RIDES_DB_TABLE, {
+    date
+  })
 
-  const client = new AWS.DynamoDB.DocumentClient()
-
-  const result = await client.get({
-    TableName: process.env.AWS_RIDES_DB_TABLE,
-    Key: {
-      date
-    }
-  }).promise()
-
-  return result.Item && result.Item.rides
+  return result && result.rides
 }
 
 const setRides = async (date, rides) => {
-  if (!process.env.AWS_RIDES_DB_TABLE) {
-    throw new Error('No AWS_RIDES_DB_TABLE var found in environment')
-  }
-
-  const client = new AWS.DynamoDB.DocumentClient()
-
-  await client.update({
-    TableName: process.env.AWS_RIDES_DB_TABLE,
-    Key: {
-      date
-    },
+  await updateOne(process.env.AWS_RIDES_DB_TABLE, {
+    date
+  }, {
     UpdateExpression: 'set rides = :r, expires = :e',
     ExpressionAttributeValues: {
       ':r': rides,
       ':e': Math.round(new Date(Date.now() + ONE_MONTH).getTime() / 1000)
     },
     ReturnValues: 'UPDATED_NEW'
-  }).promise()
+  })
 }
 
 const getAllPreferences = async () => {
-  if (!process.env.AWS_PREFERENCES_DB_TABLE) {
-    throw new Error('No AWS_PREFERENCES_DB_TABLE var found in environment')
-  }
-
-  const client = new AWS.DynamoDB.DocumentClient()
-
   const scanResults = {}
-  const params = { TableName: process.env.AWS_PREFERENCES_DB_TABLE }
-  let items = {
-    LastEvaluatedKey: true
-  }
 
-  do {
-    items = await client.scan(params).promise()
-    items.Items.forEach((item) => {
-      scanResults[item.id] = item.preferences
-    })
-    params.ExclusiveStartKey = items.LastEvaluatedKey
-  } while (items.LastEvaluatedKey)
+  for await (const item of getMany(process.env.AWS_PREFERENCES_DB_TABLE)) {
+    scanResults[item.id] = item.preferences
+  }
 
   return scanResults
 }
 
 const getPreferences = async (userId) => {
-  if (!process.env.AWS_PREFERENCES_DB_TABLE) {
-    throw new Error('No AWS_PREFERENCES_DB_TABLE var found in environment')
-  }
+  const result = getOne(process.env.AWS_PREFERENCES_DB_TABLE, {
+    id: userId
+  })
 
-  const client = new AWS.DynamoDB.DocumentClient()
-
-  const result = await client.get({
-    TableName: process.env.AWS_PREFERENCES_DB_TABLE,
-    Key: {
-      id: userId
-    }
-  }).promise()
-
-  return (result.Item && result.Item.preferences) || {}
+  return (result && result.preferences) || {}
 }
 
 const setPreferences = async (userId, preferences) => {
-  if (!process.env.AWS_PREFERENCES_DB_TABLE) {
-    throw new Error('No AWS_PREFERENCES_DB_TABLE var found in environment')
-  }
-
-  const client = new AWS.DynamoDB.DocumentClient()
-
-  await client.update({
-    TableName: process.env.AWS_PREFERENCES_DB_TABLE,
-    Key: {
-      id: userId
-    },
+  await updateOne(process.env.AWS_PREFERENCES_DB_TABLE, {
+    id: userId
+  }, {
     UpdateExpression: 'set preferences = :p, expires = :e',
     ExpressionAttributeValues: {
       ':p': preferences,
       ':e': Math.round(new Date(Date.now() + ONE_MONTH).getTime() / 1000)
     },
     ReturnValues: 'UPDATED_NEW'
-  }).promise()
+  })
 }
 
 module.exports = {

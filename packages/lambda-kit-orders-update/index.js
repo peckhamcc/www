@@ -86,7 +86,7 @@ async function kitOrdersUpdateHandler ({ userId, body: { id, ...details } }) {
 
         emails[userId].items.push(...memberOrder.items
           .filter(item => item.productMetadata.type === 'made-to-order')
-          .map(item => `${item.quantity} ${item.name} ${item.description ? `- ${item.description}` : ''}`)
+          .map(item => `${item.quantity}x ${item.name} ${item.description ? `- ${item.description}` : ''}`)
         )
       }
     }

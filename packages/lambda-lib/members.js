@@ -1,22 +1,15 @@
-const AWS = require('aws-sdk')
-const { config } = require('./config')
-
-AWS.config.update({
-  region: config.aws.dynamodb.region
-})
+const {
+  getMany
+} = require('./db')
 
 async function getMembers () {
-  const client = new AWS.DynamoDB.DocumentClient()
+  const members = []
 
-  if (!process.env.AWS_USERS_DB_TABLE) {
-    throw new Error('No AWS_USERS_DB_TABLE var found in environment')
+  for await (const member of getMany(process.env.AWS_USERS_DB_TABLE)) {
+    members.push(member)
   }
 
-  const items = await client.scan({
-    TableName: process.env.AWS_USERS_DB_TABLE
-  }).promise()
-
-  return items.Items
+  return members
 }
 
 module.exports = {
