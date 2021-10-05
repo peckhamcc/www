@@ -8,7 +8,7 @@ const cache = require('./cache')
 async function getLastOrder () {
   const orders = await getOrders()
 
-  return orders.pop()
+  return orders[0]
 }
 
 async function getCachedOrder (orderId) {
@@ -47,11 +47,11 @@ async function getOrders () {
 
   return output.sort((a, b) => {
     if (a < b) {
-      return -1
+      return 1
     }
 
     if (a > b) {
-      return 1
+      return -1
     }
 
     return 0

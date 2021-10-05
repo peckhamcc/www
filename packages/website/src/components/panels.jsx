@@ -149,7 +149,7 @@ export const InnerPanel = styled(Panel)`
 export const Button = styled.button`
   margin: ${spacing(1)} ${spacing(1)} ${spacing(1)} 0;
   padding: ${spacing(0.5)} ${spacing(4)};
-  border-radius: 2px;
+  border-radius: 4px;
   border: 1px solid ${light};
   cursor: pointer;
   display: inline-block;

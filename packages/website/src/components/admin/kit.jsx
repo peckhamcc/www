@@ -7,9 +7,11 @@ import {
 import styled from 'styled-components'
 import {
   Spinner,
-  Info,
-  Button
+  Info
 } from '../panels'
+import {
+  BlueButton
+} from '../forms'
 import {
   Price
 } from '../shop/panels'
@@ -70,7 +72,7 @@ const STATUSES = {
   }
 }
 
-function OrderList ({ orders, onUpdateStatus }) {
+function OrderList ({ orders, updatingStatus, onUpdateStatus }) {
   return (
     <Table>
       <THead>
@@ -87,7 +89,7 @@ function OrderList ({ orders, onUpdateStatus }) {
             let nextButton
 
             if (status && status.next) {
-              nextButton = <Button style={{ margin: 0 }} onClick={() => onUpdateStatus(order, status.next)}>Update status to "{status.next}"</Button>
+              nextButton = <BlueButton style={{ margin: 0 }} onClick={() => onUpdateStatus(order, status.next)} disabled={updatingStatus}>Update status to "{status.next}"</BlueButton>
             }
 
             return (
@@ -106,7 +108,8 @@ function OrderList ({ orders, onUpdateStatus }) {
 
 class KitOrders extends Component {
   state = {
-    order: null
+    order: null,
+    updatingStatus: false
   }
 
   async componentDidMount () {
@@ -149,7 +152,10 @@ class KitOrders extends Component {
   }
 
   handleUpdateStatus = async (order, status) => {
-    console.info(order, status)
+    this.setState({
+      updatingStatus: true
+    })
+
     try {
       const response = await global.fetch(config.lambda.kitOrdersUpdate, {
         method: 'PATCH',
@@ -178,6 +184,10 @@ class KitOrders extends Component {
       throw new Error(response.statusText)
     } catch (error) {
       console.error(error)
+    } finally {
+      this.setState({
+        updatingStatus: false
+      })
     }
   }
 
@@ -187,7 +197,8 @@ class KitOrders extends Component {
       orders
     } = this.props
     const {
-      order
+      order,
+      updatingStatus
     } = this.state
 
     if (order) {
@@ -208,7 +219,7 @@ class KitOrders extends Component {
             orders.length
               ? (
                 <>
-                  <OrderList orders={orders} onUpdateStatus={this.handleUpdateStatus} />
+                  <OrderList orders={orders} updatingStatus={updatingStatus} onUpdateStatus={this.handleUpdateStatus} />
                 </>
 
                 )

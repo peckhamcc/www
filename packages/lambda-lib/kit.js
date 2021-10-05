@@ -11,7 +11,7 @@ AWS.config.update({
 async function getLastOrder () {
   const orders = await getOrders()
 
-  return orders.pop()
+  return orders[0]
 }
 
 async function getCachedOrder (orderId) {
@@ -73,11 +73,11 @@ async function getOrders () {
 
   return orders.sort((a, b) => {
     if (a.date < b.date) {
-      return -1
+      return 1
     }
 
     if (a.date > b.date) {
-      return 1
+      return -1
     }
 
     return 0

@@ -23,10 +23,10 @@ const {
   getPayment,
   setPaymentMetadata
 } = require('./stripe-client')
-// const { config } = require('./config')
-// const {
-// sendEmail
-// } = require('./email')
+const { config } = require('./config')
+const {
+  sendEmail
+} = require('./email')
 
 async function kitOrdersUpdateHandler ({ userId, body: { id, ...details } }) {
   const user = await getUser(userId)
@@ -79,7 +79,9 @@ async function kitOrdersUpdateHandler ({ userId, body: { id, ...details } }) {
           console.info('would email', user.email)
 
           // send email
-          // await sendEmail(user.email, config.email.from, 'PCC order ready for collection', htmlTemplate(user.name), textTemplate(user.name))
+          if (userId === 'aY8JfKlM5JIKCJz5nDSlU') {
+            await sendEmail(user.email, config.email.from, 'PCC order ready for collection', htmlTemplate(user.name), textTemplate(user.name))
+          }
         }
       }
     }
@@ -93,7 +95,7 @@ async function kitOrdersUpdateHandler ({ userId, body: { id, ...details } }) {
     body: JSON.stringify({})
   }
 }
-/*
+
 const htmlTemplate = (name) => `
 <html>
   <head>
@@ -110,7 +112,7 @@ Hi ${name},
 
 Your PCC kit order is ready to be picked up from Rat Race Cycles
 `
-*/
+
 const inputSchema = {
   type: 'object',
   properties: {
