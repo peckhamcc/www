@@ -42,7 +42,7 @@ async function kitOrdersUpdateHandler ({ userId, body: { id, ...details } }) {
   await updateOrder(id, details)
 
   const order = await getOrder(id)
-  const emailed = {}
+  const emails = {}
 
   if (details.status) {
     for (const item of order.items) {
@@ -71,20 +71,34 @@ async function kitOrdersUpdateHandler ({ userId, body: { id, ...details } }) {
       if (details.status === 'ready') {
         const userId = await getUserIdForCustomerId(customer)
 
-        if (!emailed[userId]) {
-          emailed[userId] = true
-
-          const user = await getUser(userId)
-
-          console.info('would email', user.email)
-
-          // send email
-          if (userId === 'aY8JfKlM5JIKCJz5nDSlU') {
-            await sendEmail(user.email, config.email.from, 'PCC order ready for collection', htmlTemplate(user.name), textTemplate(user.name))
-          }
+        if (!userId) {
+          console.info('Could not look up user id for', customer)
+          continue
         }
+
+        const user = await getUser(userId)
+
+        emails[userId] = emails[userId] || {
+          name: user.name,
+          email: user.email,
+          items: []
+        }
+
+        emails[userId].items.push(...memberOrder.items
+          .filter(item => item.productMetadata.type === 'made-to-order')
+          .map(item => `${item.quantity} ${item.name} ${item.description ? `- ${item.description}` : ''}`)
+        )
       }
     }
+
+    await Promise.all(
+      Object.keys(emails)
+        .filter(userId => userId === 'aY8JfKlM5JIKCJz5nDSlU')
+        .map(userId => emails[userId])
+        .map(async ({ name, email, items }) => {
+          await sendEmail(email, config.email.from, 'PCC order ready for collection', htmlTemplate(name, items), textTemplate(name, items))
+        })
+    )
   }
 
   return {
@@ -96,21 +110,33 @@ async function kitOrdersUpdateHandler ({ userId, body: { id, ...details } }) {
   }
 }
 
-const htmlTemplate = (name) => `
+const htmlTemplate = (name, items) => `
 <html>
   <head>
   </head>
   <body>
     <p>Hi ${name},</p>
-    <p>Your PCC kit order is ready to be picked up from Rat Race Cycles</p>
+    <p>You have PCC kit ready to be picked up from Rat Race Cycles.</p>
+    <p>The item(s) are:</p>
+    <p>${items.join('<br />')}</p>
+    <p>United we roll!</p>
+    <p>Peckham Cycle Club</p>
   </body>
 </html>
 `
 
-const textTemplate = (name) => `
+const textTemplate = (name, items) => `
 Hi ${name},
 
-Your PCC kit order is ready to be picked up from Rat Race Cycles
+You have PCC kit ready to be picked up from Rat Race Cycles.
+
+The items are:
+
+${items.join('\n')}
+
+United we roll!
+
+Peckham Cycle Club
 `
 
 const inputSchema = {
