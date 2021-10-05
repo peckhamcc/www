@@ -62,13 +62,15 @@ const STATUSES = {
     next: 'production'
   },
   production: {
+    previous: 'pending',
     next: 'shipped'
   },
   shipped: {
+    previous: 'production',
     next: 'ready'
   },
   ready: {
-
+    previous: 'shipped'
   }
 }
 
@@ -78,25 +80,33 @@ function OrderList ({ orders, updatingStatus, onUpdateStatus }) {
       <THead>
         <Row>
           <Header>Date</Header>
+          <Header>Status</Header>
           <Header>Total</Header>
-          <Header>Actions</Header>
+          <Header>Update status</Header>
         </Row>
       </THead>
       <TBody>
         {
           orders.map(order => {
             const status = STATUSES[order.status]
+            let previousButton
+
+            if (status && status.previous) {
+              previousButton = <BlueButton style={{ margin: 0 }} onClick={() => onUpdateStatus(order, status.previous)} disabled={updatingStatus}>{status.previous}</BlueButton>
+            }
+
             let nextButton
 
             if (status && status.next) {
-              nextButton = <BlueButton style={{ margin: 0 }} onClick={() => onUpdateStatus(order, status.next)} disabled={updatingStatus}>Update status to "{status.next}"</BlueButton>
+              nextButton = <BlueButton style={{ margin: 0 }} onClick={() => onUpdateStatus(order, status.next)} disabled={updatingStatus}>{status.next}</BlueButton>
             }
 
             return (
               <Row key={order.id}>
                 <Cell>{new Date(order.date * 1000).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</Cell>
+                <Cell>{order.status}</Cell>
                 <Cell><Price price={order.amount} /></Cell>
-                <Cell>{nextButton}</Cell>
+                <Cell>{previousButton} {nextButton}</Cell>
               </Row>
             )
           })
