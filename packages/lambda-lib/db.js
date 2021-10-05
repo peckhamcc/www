@@ -77,9 +77,7 @@ async function updateOne (table, key, fields) {
   try {
     await client.update({
       TableName: table,
-      Key: {
-        key
-      },
+      Key: key,
       ...fields
     }).promise()
   } catch (err) {
@@ -103,9 +101,7 @@ async function removeOne (table, key) {
   try {
     await client.delete({
       TableName: table,
-      Key: {
-        key
-      }
+      Key: key
     }).promise()
   } catch (err) {
     console.error(err)
