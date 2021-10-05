@@ -93,7 +93,6 @@ async function kitOrdersUpdateHandler ({ userId, body: { id, ...details } }) {
 
     await Promise.all(
       Object.keys(emails)
-        .filter(userId => userId === 'aY8JfKlM5JIKCJz5nDSlU')
         .map(userId => emails[userId])
         .map(async ({ name, email, items }) => {
           await sendEmail(email, config.email.from, 'PCC order ready for collection', htmlTemplate(name, items), textTemplate(name, items))
