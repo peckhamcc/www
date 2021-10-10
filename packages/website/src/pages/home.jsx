@@ -68,18 +68,12 @@ class HomePage extends Component {
           backgroundImage9
         ])}
         />
-        {/* <Panel>
-          <h2>Upcoming rides</h2>
-          <p>There are rides every Saturday and sometimes Sundays too.</p>
-          <p>The Saturday Social Spin is an ideal introduction to the club - it's 60-80kms at a beginner friendly speed, leaving Peckham Library at 8am in the summer and 8:30am in the winter.</p>
-          <p>Other rides are organised on an ad-hoc basis and the speed/distance depends on who's riding and what they are training for.</p>
-          <p>Full details are posted on Facebook and Twitter towards the end of the week when we know what the weather is going to do, please check those pages for more information.</p>
-        </Panel> */}
         <Panel>
-          <h2>March 13th: Covid-19 Update</h2>
-          <p>We are looking forward to returning to group riding soon! Our Saturday morning social rides will be back on 3rd April, in line with the latest <a href='https://www.britishcycling.org.uk/about/article/20210309-about-bc-news-British-Cycling-update--The-Way-Forward-0'>British Cycling Guidance</a> which allows group rides after 29th March.</p>
-          <p>If you’ve not ridden with the Club before have a look at our <Link to='/rides'>Rides page</Link> for information about How to join our rides.</p>
-          <p>For the latest updates on this and more please sign up to our <Link to='/mailing-list'>mailing list</Link>.</p>
+          <h2>Welcome to Peckham Cycle Club!</h2>
+          <p>We are a social cycling club based out of Peckham in South East London. We organise friendly, inclusive rides which usually take place around Kent on the weekends, as well as organising events, trips in the UK and abroad, and lots of social activities! Our growing number of riders have interests that span all areas of cycling, from commuters looking to tackle their first sportive, through to mile-munching roadies and riders looking to have some fun on gravel.  We also have first time racers getting into cyclo-cross, track racing, and crits and one or two of us are even standing on the odd podium.</p>
+          <p>We hope there's something to suit everyone and very much encourage our members to try new things out.</p>
+          <p>Our weekly Saturday Social rides are at the heart of the Club. If you'd like to try out Peckham CC then this is the ride for you - just take a look at our <Link to='/rides'>Ride With Us</Link> page first and send us an email/message on social media to introduce yourself.</p>
+          <p>We hope to see you on a ride soon.</p>
           <p>United we Roll!</p>
         </Panel>
         <LinkPanel background={membershipBackground}>

@@ -17,7 +17,7 @@ class EthosPage extends Component {
           <p>
             We are a social cycling club that is inclusive and welcoming. We ride safely and sensibly and look out for
             each other on the bike and off. Unlike many clubs, our weekly club ride is open to everyone - if you ride
-            with us you’re a member. To contribute to the activities of the club, come on trips and buy club kit you
+            with us you're a member. To contribute to the activities of the club, come on trips and buy club kit you
             can become a <Link to='/membership'>friend of Peckham CC</Link>, our voluntary membership scheme.
           </p>
 
@@ -31,15 +31,15 @@ class EthosPage extends Component {
           <h3>We ride respectfully and sensibly</h3>
           <p>
             We respect each other and other road users by riding safely at all times following the rules of the road and
-            good group riding etiquette. We pass on signals down the group, we don’t overlap wheels, we ride no more
-            than two abreast and move to single file to let cars pass, we don’t drop riders and we always listen to our
+            good group riding etiquette. We pass on signals down the group, we don't overlap wheels, we ride no more
+            than two abreast and move to single file to let cars pass, we don't drop riders and we always listen to our
             ride leader.
           </p>
 
           <h3>We flourish because of our members</h3>
           <p>
             Everything we do is only possible because of club members volunteering their time and energy. A committee is
-            elected each year to lead the club but it’s the combined effort of all the volunteers that makes the club
+            elected each year to lead the club but it's the combined effort of all the volunteers that makes the club
             grow and flourish.
           </p>
         </Panel>

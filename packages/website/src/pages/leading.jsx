@@ -21,13 +21,13 @@ class LeadingPage extends Component {
           <p>Additional club regulars can help out where they can but should defer to the ride leaders on pace &amp; route.</p>
 
           <h3>Who can lead a ride</h3>
-          <p>There are no exacting criteria for who can lead a ride. If you’ve done the ride enough times to consider yourself a regular and know the route, you can volunteer to help lead the ride.  Regulars should try to lead a ride at least every couple of months to spread the workload around.</p>
+          <p>There are no exacting criteria for who can lead a ride. If you've done the ride enough times to consider yourself a regular and know the route, you can volunteer to help lead the ride.  Regulars should try to lead a ride at least every couple of months to spread the workload around.</p>
 
           <h3>Before the ride</h3>
           <p>Before setting off ensure:</p>
           <ol>
             <li>No group is larger than 6 people. If it is, encourage others to take another group.</li>
-            <li>Eyeball everyone’s bike to make sure it’s suitable for the ride</li>
+            <li>Eyeball everyone's bike to make sure it's suitable for the ride</li>
             <li>Everyone understands and is comfortable with the distance that will be travelled</li>
             <li>
               You have collected details from everyone on your ride for the purposes of track and trace. Ask on Slack
@@ -55,7 +55,7 @@ class LeadingPage extends Component {
               </SubList>
             </li>
             <li>Tell people they are expected to pass hand signals/shouts up/down the group</li>
-            <li>Remind people to ride within their limits, stop at red lights, don’t cross into the opposite lane on blind bends, etc</li>
+            <li>Remind people to ride within their limits, stop at red lights, don't cross into the opposite lane on blind bends, etc</li>
             <li>Announce any other business - upcoming sportives, socials, kit orders, etc</li>
           </ol>
           <p>If people turn up without the right equipment, plan a stop at <a href='http://cadenceperformance.com'>Cadence</a> so they can buy the missing parts.</p>
