@@ -37,7 +37,7 @@ class RidesPage extends Component {
           <p>If you've done a few rides with us and feel that Peckham CC is a good fit for you and would like to join being a Friend costs £25/year and it will enable you to access more perks like purchasing Club kit, discounts, track sessions and events. Find out more about becoming a Friend of PCC <Link to='/membership'>here</Link>.</p>
           <h3>Rides for women and non-binary people</h3>
           <p>On the second Sunday of each month we have a ride specifically for all cis and trans women as well as non-binary people who are comfortable in a space that centres on women. Our routes and distances vary (there's usually a couple of options) but we aim to provide a safe and inclusive space for a fun and sociable ride. We always aim to include a cafe stop along the way!</p>
-          <p>Members can join our <a href='https://peckhamcc.slack.com/archives/C01HW9YSS82'>#women-and-nb-rides</a> Slack channel for chat about the rides and all rides are also advertised on the <a href='https://peckhamcc.slack.com/archives/C01J8SG7YKB'>#announcement</a> channel, Facebook and Instagram.</p>
+          <p>Members can join our <a href='https://peckhamcc.slack.com/archives/C01HW9YSS82'>#women-and-nb-rides</a> Slack channel for chat about the rides and all rides are also advertised on the <a href='https://peckhamcc.slack.com/archives/C01J8SG7YKB'>#announcements</a> channel, <a href='https://www.facebook.com/PeckhamCC/'>Facebook</a> and <a href='https://www.instagram.com/peckhamcc/'>Instagram</a>.</p>
         </Panel>
         <LinkPanel background={equipmentBackground}>
           <Link to='/equipment'>Equipment</Link>
