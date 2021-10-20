@@ -35,8 +35,9 @@ class RidesPage extends Component {
           <h3>Do I need to sign up to be a Friend of PCC to ride?</h3>
           <p>You can do as many Social Rides as you like with us without signing up to be a Friend of PCC: they are free and open to all, and always will be.</p>
           <p>If you've done a few rides with us and feel that Peckham CC is a good fit for you and would like to join being a Friend costs £25/year and it will enable you to access more perks like purchasing Club kit, discounts, track sessions and events. Find out more about becoming a Friend of PCC <Link to='/membership'>here</Link>.</p>
-          <h3>Womens rides</h3>
-          <p>Once a month from spring to autumn we organise a ride for women and non-male identifying cyclists of all abilities. The route varies month to month and is designed to offer a safe and inclusive space for riders to stretch themselves. There's usuaully a few groups with varying paces to make an inclusive ride, but we like to push the distance to slightly further than the social ride to include a cafe stop along the route.</p>
+          <h3>Rides for women and non-binary people</h3>
+          <p>On the second Sunday of each month we have a ride specifically for all cis and trans women as well as non-binary people who are comfortable in a space that centres on women. Our routes and distances vary (there's usually a couple of options) but we aim to provide a safe and inclusive space for a fun and sociable ride. We always aim to include a cafe stop along the way!</p>
+          <p>Members can join our <a href='https://peckhamcc.slack.com/archives/C01HW9YSS82'>#women-and-nb-rides</a> Slack channel for chat about the rides and all rides are also advertised on the <a href='https://peckhamcc.slack.com/archives/C01J8SG7YKB'>#announcement</a> channel, Facebook and Instagram.</p>
         </Panel>
         <LinkPanel background={equipmentBackground}>
           <Link to='/equipment'>Equipment</Link>

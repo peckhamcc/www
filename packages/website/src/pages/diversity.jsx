@@ -4,7 +4,6 @@ import { PageWrapper, Panel, Hero, LinkPanel } from '../components/panels'
 import ethosBackground from '../../assets/ethos-bg.png'
 import membershipBackground from '../../assets/membership-bg.jpg'
 import diversityBackground from '../../assets/diversity-bg.jpg'
-import diversityReport from '../../assets/diversity-report-action-plan-jul-2020.pdf'
 
 class DiversityPage extends Component {
   render () {
@@ -13,69 +12,32 @@ class DiversityPage extends Component {
         <Hero background={diversityBackground} />
         <Panel>
           <h2>Diversity and Inclusion</h2>
-
-          <p>
-            At Peckham CC we seek to be an inclusive and welcoming club as set out in our
-            our <Link to='/ethos'>ethos and core ideals</Link>. Whilst we are exceptionally proud of our reputation as
-            a friendly and approachable club, we also recognise that the lack of diversity in cycling is a major issue
-            and that our club does not adequately reflect our local community. We want to address this and, working with
-            our members, the club committee have been reflecting on what actions we need to take to improve our
-            diversity and inclusion.
-          </p>
-          <p>
-            Our first step has been to look at our local context, the available guidance and research on diversity in
-            cycling, key themes and barriers to inclusion and possible actions we can take. We have brought this
-            research and thinking together in
-            our <a href={diversityReport}>Peckham CC Diversity &amp; Inclusion Report</a>. This report is just our first
-            step and the club is now working on a diversity and inclusion action plan which will be co-created with our
-            members to ensure our actions reflect our local need and context.
-          </p>
-          <p>
-            We think it's important to be transparent about this work so we will update this page with our latest
-            actions.
-          </p>
-
-          <h3>Actions July-September 2020:</h3>
-          <h4>Completed</h4>
+          <p>At Peckham CC we seek to be an inclusive and welcoming club as set out in our <Link to='/ethos'>ethos and core ideals</Link>. All are welcome whatever their background, ethnicity, gender identity, religious belief or sexuality.</p>
+          <p>We are exceptionally proud of our reputation as a friendly and approachable club but we also recognise that the lack of diversity in cycling is a major issue and that our club does not adequately reflect our local community, particularly in terms of ethnic diversity. At Peckham CC we want to ensure we grow and develop our inclusive practice and for our membership to become even more diverse.</p>
+          <h3>What are we doing?</h3>
+          <p>Peckham CC was created to be a social and welcoming cycling club. Paid membership has never been, and will never be, compulsory to ride with us and be a part of the club. Based on this our Saturday ‘social rides' are the basis of all we do and we aim to make those rides as approachable and accessible as we can. This is the foundation of our work to be inclusive but we have been working to try and recognise barriers for different people and how we can overcome them.</p>
+          <p>Our first step in this work has been to look at our local context, the available guidance and research on diversity in cycling, key themes and barriers to inclusion and possible actions we can take. We brought this research and thinking together in our <a href='https://drive.google.com/file/d/16gKxWn5SzYtLrFqU1Lcw4RkmhsAE-pZk/view?usp=sharing'>Peckham CC Diversity &amp; Inclusion Report 2020</a>. This report was our first step in understanding the challenges and thinking about our next actions.</p>
+          <p>We are now working on a range of actions based on our report and action plan. We think it's important to be transparent about this work so we try to keep this webpage up to date with new information.</p>
+          <h3>Key actions over 2020-2021</h3>
           <ul>
-            <li>Diversity and Inclusion report shared with the club for initial feedback and discussion.</li>
-            <li>Report shared with other local SE clubs with the aim to prompt discussion and share good practice.</li>
-            <li>Convened a meeting of local clubs to discuss Diversity &amp; Inclusion and draft a joint letter to British Cycling (see below).</li>
+            <li>Run regular rides for women and non-binary people</li>
+            <li>Raised awareness with members about diversity and inclusion in cycling, in particular ethnic diversity and inclusion, LGBTQIA+ inclusion and how we can be allies</li>
+            <li>Updated our <Link to='/rides'>Ride with us</Link> page to try and make it as clear as possible for new riders and we always speak to new people so they know what to expect and we can see how best to support them</li>
+            <li>Engaging with the <a href='https://www.britishcycling.org.uk/regions/southeast?c=EN'>British Cycling South East Region</a> to share ideas and support their work on diversity and inclusion</li>
+            <li>Ensuring we turn up to BC SE regional meetings to champion diversity and inclusion matters. One of our members is now also a board member for the region</li>
           </ul>
-          <h4>Outstanding</h4>
-          <ul>
-            <li>Review and improve our diverse imagery on our website and social media channels.</li>
-            <li>
-              Add a blog page to the PCC website to provide a space for club members to talk about their experiences of
-              cycling, to share real-life stories and inspire people to join our club.
-            </li>
-          </ul>
-
+          <h3>Diversity in Cycling Resource Bank</h3>
+          <p>As we have come across great resources, cyclists and groups promoting and supporting inclusion in cycling we have added these to our <a href='https://docs.google.com/spreadsheets/d/13_RWXXVqUmTIeY-xgaD5875St72yil1FFzOuPjb6dOk/edit?usp=sharing'>Diversity in Cycling Resource Bank</a>.</p>
+          <p>We have found it really helpful and informative to connect with these amazing resources and people and we hope others may find it useful too.</p>
+          <p>If you want to suggest something to be added to the bank just <a href='https://docs.google.com/forms/d/e/1FAIpQLSeZ1NJAlgnrxoavlhuTcJiKLRHav16WR9XwbZ7SF_QTKu5JOg/viewform?usp=sf_link'>fill out this form</a>.</p>
           <h3>South East London Diversity &amp; Inclusion Network</h3>
-
-          <p>
-            In August we convened a virtual meeting with representatives from other local cycling and triathlon clubs.
-            The aim of this meeting was to discuss diversity in our clubs, the barriers to inclusion we each face and to
-            share ideas and good practice for improving Diversity &amp; Inclusion.
-          </p>
-          <p>
-            As a group we also discussed and redrafted a letter we are going to send to British Cycling asking them to
-            take a more transparent and strategic approach to improving diversity in cycling and supporting clubs to
-            improve our Diversity &amp; Inclusion.
-          </p>
-          <p>
-            The group agreed that continued collaboration across our clubs would be positive for all of us and we are
-            going to continue to work together to share ideas, help each other and develop initiatives to improve
-            Diversity &amp; Inclusion.
-          </p>
-          <p>
-            In line with our commitment to transparency you are welcome to view the <a href='https://drive.google.com/drive/folders/1YgGuhpbsFx8FnGMAS-zvR-07Sx2VR0mg'>network meeting notes.</a>
-          </p>
-
-          <p>
-            If you want to get in touch about our diversity and inclusion work in the club please get in touch via
-            our <Link to='/contact'>contact form</Link>.
-          </p>
+          <p>In August 2020 we convened a virtual meeting with representatives from other local cycling and triathlon clubs. The aim of this meeting was to discuss diversity in our clubs, the barriers to inclusion we each face and to share ideas and good practice for improving Diversity &amp; Inclusion.</p>
+          <p>The group agreed that continued collaboration across our clubs would be positive for all of us so we created a SE London D&amp;I Network to support this.</p>
+          <p>In line with our commitment to transparency you are welcome to view the <a href='https://drive.google.com/file/d/1xScN04irhgRKGCkt7xlwCjmKU819664n/view?usp=sharing'>network meeting notes</a>.</p>
+          <h3>Get involved</h3>
+          <p>If you're already a member of Peckham CC and want to get involved in our diversity and inclusion work, or just ask a question or share an idea, then we'd love to hear from you. You can find and message our D&amp;I Lead, Jemma Adams, on Slack.</p>
+          <p>All events, rides and initiatives related to diversity and inclusion will be shared on Slack in the <a href='https://peckhamcc.slack.com/archives/C01J8SG7YKB'>#announcements</a> channel and the <a href='https://peckhamcc.slack.com/archives/C01HFELEAPR'>#chat</a> channel. </p>
+          <p>If you're not a member but want to get in touch about our diversity and inclusion work, share ideas with us or join the SE London D&amp;I Network then please get in touch via our <Link to='/contact'>contact form</Link>.</p>
         </Panel>
         <LinkPanel background={ethosBackground}>
           <Link to='/ethos'>Ethos</Link>
