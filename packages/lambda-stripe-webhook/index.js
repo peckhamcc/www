@@ -79,20 +79,10 @@ async function handleNewFoPCCSubscription ({ userId, user }, { data: { object } 
 }
 
 async function updateFoPCCSubscription ({ userId, user }, { data: { object } }) {
-  console.info('Handling updated FoPCC subscription', object.subscription)
-
-  const subscriptionId = object.subscription
-
-  if (!subscriptionId) {
-    throw new httpErrors.BadRequest('No subscription id found in webhook event')
-  }
+  console.info('Handling updated FoPCC subscription with setup intent', object.setup_intent)
 
   if (!user.fopcc.subscriptionId) {
     throw new httpErrors.BadRequest('User had no existing subscription')
-  }
-
-  if (subscriptionId !== user.fopcc.subscriptionId) {
-    throw new httpErrors.BadRequest('Subscription ID was incorrect')
   }
 
   // already had a membership, update the payment method

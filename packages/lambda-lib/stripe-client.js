@@ -425,7 +425,7 @@ const getOrCreateCustomerId = async (user) => {
   return customer.id
 }
 
-async function updateFopccPaymentMethod (customerId, subscriptionId, setupIntent) {
+async function updateFopccPaymentMethod (customerId, exstingSubscriptionId, setupIntent) {
   const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
 
   const intent = await client.setupIntents.retrieve(setupIntent)
@@ -438,6 +438,16 @@ async function updateFopccPaymentMethod (customerId, subscriptionId, setupIntent
 
   if (!paymentMethod) {
     throw new httpErrors.BadGateway('No payment method found for passed id')
+  }
+
+  const subscriptionId = intent && intent.metadata && intent.metadata.subscription_id
+
+  if (!subscriptionId) {
+    throw new httpErrors.BadGateway('No subscription id found in payment intent metadata')
+  }
+
+  if (subscriptionId !== exstingSubscriptionId) {
+    throw new httpErrors.BadRequest('Subscription ID was incorrect')
   }
 
   // update payment method for customer
