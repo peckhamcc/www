@@ -20,7 +20,7 @@ export const setupClient = () => {
 export const renderOptions = {
   renderNode: {
     [BLOCKS.EMBEDDED_ENTRY]: (node) => {
-      console.log(node.data.target.sys.contentType.sys.id);
+      console.log(node.data.target.sys.contentType.sys.id)
       if (node.data.target.sys.contentType.sys.id === 'videoEmbed') {
         return (
           <iframe
@@ -32,23 +32,23 @@ export const renderOptions = {
             title={node.data.target.fields.title}
             allowFullScreen='true'
           />
-        );
+        )
       }
       if (node.data.target.sys.contentType.sys.id === 'button') {
         return (
           <Button><Link to={node.data.target.fields.url}>{node.data.target.fields.text}</Link></Button>
-        );
+        )
       }
     },
     [BLOCKS.EMBEDDED_ASSET]: (node) => {
-      console.log('run');
+      console.log('run')
       return (
         <img
           src={`https://${node.data.target.fields.file.url}`}
           alt={node.data.target.fields.description}
-          style={{borderRadius: '10px', maxWidth: '100%'}}
+          style={{ borderRadius: '10px', maxWidth: '100%' }}
         />
-      );
-    },
-  },
-};
+      )
+    }
+  }
+}
