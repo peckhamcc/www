@@ -20,7 +20,6 @@ export const setupClient = () => {
 export const renderOptions = {
   renderNode: {
     [BLOCKS.EMBEDDED_ENTRY]: (node) => {
-      console.log(node.data.target.sys.contentType.sys.id)
       if (node.data.target.sys.contentType.sys.id === 'videoEmbed') {
         return (
           <iframe
@@ -41,7 +40,6 @@ export const renderOptions = {
       }
     },
     [BLOCKS.EMBEDDED_ASSET]: (node) => {
-      console.log('run')
       return (
         <img
           src={`https://${node.data.target.fields.file.url}`}
