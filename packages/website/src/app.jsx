@@ -1,14 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import {
-  Provider
-} from 'react-redux'
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom'
-import {
-  About,
   Admin,
   AdminKit,
   AdminMembers,
@@ -19,10 +13,7 @@ import {
   Basket,
   Checkout,
   CheckoutSuccess,
-  Equipment,
-  Home,
-  Racing,
-  Rides,
+  Dynamic,
   Routes,
   Shop,
   Item,
@@ -30,9 +21,6 @@ import {
   Membership,
   Contact,
   Riding,
-  Leading,
-  Ethos,
-  Diversity,
   Calendar,
   Strava,
   StravaError,
@@ -47,30 +35,30 @@ import Navigation from './components/nav-bar'
 import Footer from './components/footer'
 import { config } from '@peckhamcc/config'
 import styled from 'styled-components'
-import {
-  Break
-} from './components/panels'
+import { Break } from './components/panels'
 import { FlagsProvider, Flag } from './lib/flags'
 import ScrollToTop from './components/scroll-to-top'
 
 const FlexContainer = styled.div`
   display: flex;
-  flex-direction: ${props => props.vertical ? 'column' : 'row'};
+  flex-direction: ${(props) => (props.vertical ? 'column' : 'row')};
 
-  ${props => props.centered
-  ? `
+  ${(props) =>
+    props.centered
+      ? `
   align-items: center;
   justify-content: center;
   `
-  : ''};
+      : ''};
 `
 
 const FlexItem = styled.div`
-  ${props => props.expand
-  ? `
+  ${(props) =>
+    props.expand
+      ? `
   flex-grow: 1;
   `
-  : ''};
+      : ''};
 `
 
 const AppWrapper = styled(FlexContainer)`
@@ -86,34 +74,37 @@ const App = () => {
             <AppWrapper vertical>
               <FlexItem expand>
                 <Navigation />
-                <Route exact path='/' component={Home} />
                 <Route exact path='/profile' component={ProfileDetails} />
-                <Route exact path='/profile/details' component={ProfileDetails} />
+                <Route
+                  exact
+                  path='/profile/details'
+                  component={ProfileDetails}
+                />
                 <Route exact path='/profile/fopcc' component={ProfileFoPCC} />
                 <Route exact path='/profile/orders' component={ProfileOrders} />
                 <Route exact path='/admin' component={Admin} />
                 <Route exact path='/admin/kit' component={AdminKit} />
                 <Route exact path='/admin/members' component={AdminMembers} />
                 <Route exact path='/admin/rrc' component={AdminRRC} />
-                <Route path='/equipment' component={Equipment} />
-                <Route path='/rides' component={Rides} />
+
                 <Route path='/routes' component={Routes} />
-                <Route path='/membership' component={Membership} />
-                <Route path='/club' component={About} />
                 <Route path='/contact' component={Contact} />
                 <Route path='/mailing-list' component={MailingList} />
-                <Route path='/racing' component={Racing} />
-                <Route path='/riding' component={Riding} />
-                <Route path='/leading' component={Leading} />
-                <Route path='/ethos' component={Ethos} />
-                <Route path='/diversity' component={Diversity} />
                 <Route path='/calendar' component={Calendar} />
                 <Route exact path='/strava/error' component={StravaError} />
                 <Route exact path='/strava/success' component={StravaSuccess} />
                 <Route exact path='/strava' component={Strava} />
                 <Route exact path='/results' component={Results} />
-                <Route exact path='/results/lockdown-crits-2020' component={ResultsLockdownCrits} />
-                <Route exact path='/results/rainbow-race-early-may-2020' component={ResultsRainbowRace} />
+                <Route
+                  exact
+                  path='/results/lockdown-crits-2020'
+                  component={ResultsLockdownCrits}
+                />
+                <Route
+                  exact
+                  path='/results/rainbow-race-early-may-2020'
+                  component={ResultsRainbowRace}
+                />
                 <Route path='/ride-roulette' component={RideRoulette} />
 
                 <Flag name={['shop']}>
@@ -122,12 +113,41 @@ const App = () => {
                     <Route path='/shop/:slug' component={Item} />
                     <Route path='/basket' component={Basket} />
                     <Route exact path='/checkout' component={Checkout} />
-                    <Route exact path='/checkout/success' component={CheckoutSuccess} />
+                    <Route
+                      exact
+                      path='/checkout/success'
+                      component={CheckoutSuccess}
+                    />
                   </>
                 </Flag>
 
-                <Route path='/track-trace' component={() => window.location.replace('https://docs.google.com/forms/d/e/1FAIpQLSc9AFF9oQI2bDKWf9heplIi3hPQE6Ok2v-zGObByD9T0EjlbQ/viewform')} />
+                <Route
+                  path='/track-trace'
+                  component={() =>
+                    window.location.replace(
+                      'https://docs.google.com/forms/d/e/1FAIpQLSc9AFF9oQI2bDKWf9heplIi3hPQE6Ok2v-zGObByD9T0EjlbQ/viewform'
+                    )}
+                />
 
+                <Switch>
+                  {/* static pages */}
+                  {/* <Route exact path="/" component={Dynamic} /> */}
+                  {/* <Route path="/club" component={Dynamic} /> */}
+                  {/* <Route path="/ethos" component={Ethos} /> */}
+                  {/* <Route path="/diversity" component={Diversity} /> */}
+                  {/* <Route path="/equipment" component={Equipment} /> */}
+                  {/* <Route path="/leading" component={Leading} /> */}
+                  {/* <Route path="/racing" component={Racing} /> */}
+                  {/* videos */}
+                  <Route path='/riding' component={Riding} />
+                  {/* button */}
+                  <Route path='/membership' component={Membership} />
+                  {/* <Redirect  to="/" /> */}
+                  {/* <Route path="/rides" component={Rides} /> */}
+                  <Route path='*'>
+                    <Dynamic />
+                  </Route>
+                </Switch>
               </FlexItem>
               <Break />
               <Footer />

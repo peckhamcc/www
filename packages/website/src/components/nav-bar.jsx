@@ -1,12 +1,6 @@
-import React, {
-  Component
-} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  FaShoppingCart,
-  FaUser,
-  FaBars
-} from 'react-icons/fa'
+import { FaShoppingCart, FaUser, FaBars } from 'react-icons/fa'
 import { Link, withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
@@ -18,22 +12,17 @@ import {
   Break
 } from './panels'
 import pccAvatar from '../../assets/pcc-logo-round.png'
-import {
-  spacing
-} from '../units'
+import { spacing } from '../units'
 import onscrolling from 'onscrolling'
-import {
-  Flag
-} from '../lib/flags'
-import {
-  config
-} from '@peckhamcc/config'
+import { Flag } from '../lib/flags'
+import { config } from '@peckhamcc/config'
+import { ContentfulMenu } from './contentful-menu'
 
 const HAMBUGER_BREAK = 800
 
 const CartContentsCount = styled.div`
-  color: #FFF;
-  background-color: #F10;
+  color: #fff;
+  background-color: #f10;
   border-radius: ${spacing(1)};
   font-size: ${spacing(1)};
   font-weight: bold;
@@ -53,12 +42,12 @@ const NavBar = styled.nav`
   right: 0;
   z-index: 500;
   position: fixed;
-  background-color: #FFF;
+  background-color: #fff;
 `
 
 const LongMenu = styled.div`
   @media (max-width: ${HAMBUGER_BREAK}px) {
-    display: none
+    display: none;
   }
 `
 
@@ -66,7 +55,7 @@ const HamburgerMenu = styled.div`
   margin: 15px 0 0 15px;
 
   @media (min-width: ${HAMBUGER_BREAK + 1}px) {
-    display: none
+    display: none;
   }
 `
 
@@ -82,59 +71,7 @@ const NavLink = styled.li`
   }
   a:hover {
     text-decoration: underline;
-    color: #F10;
-  }
-`
-
-const NavMenu = styled.li`
-  list-style: none;
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-
-  > a {
-    font-size: 18px;
-    text-decoration: none;
-    color: #333;
-    padding: 0;
-    margin: 0 20px 0 0;
-  }
-  a:hover {
-    text-decoration: underline;
-    color: #F10;
-  }
-
-  ul {
-    display: none;
-  }
-
-  :hover {
-    ul {
-      background-color: #FFF;
-      display: block;
-      margin: 0 0 0 -15px;
-      padding: 20px 10px 5px 10px;
-      min-width: 100px;
-      position: absolute;
-
-      li {
-        display: block;
-        margin: 5px 5px 15px 5px;
-      }
-    }
-  }
-`
-
-const HamburgerNavMenu = styled.li`
-  a {
-    font-size: 18px;
-    text-decoration: none;
-    color: #333;
-  }
-
-  a:hover {
-    text-decoration: underline;
-    color: #F10;
+    color: #f10;
   }
 `
 
@@ -153,7 +90,7 @@ const SiteNav = styled(FlexContentLeft)`
 `
 
 const MobileNav = styled.ul`
-  background: #FFF;
+  background: #fff;
   margin: 0;
   padding: 10px;
 
@@ -163,16 +100,15 @@ const MobileNav = styled.ul`
   }
 
   @media (min-width: ${HAMBUGER_BREAK + 1}px) {
-    display: none
+    display: none;
   }
 `
 
 const UserNav = styled.ul`
-  background: #FFF;
+  background: #fff;
   margin: 0;
   padding: 10px 50px 10px 20px;
   float: right;
-
 
   li {
     display: block;
@@ -206,12 +142,12 @@ class NavBarWrapper extends Component {
     user: PropTypes.object,
     signOut: PropTypes.func.isRequired,
     location: PropTypes.object.isRequired
-  }
+  };
 
   state = {
     bgOpacity: 0,
     menuOpen: false
-  }
+  };
 
   componentDidMount () {
     onscrolling(this.handleScroll)
@@ -227,19 +163,19 @@ class NavBarWrapper extends Component {
     this.setState({
       bgOpacity: pageYOffset < 100 ? pageYOffset / 100 : 1
     })
-  }
+  };
 
   handleToggleDropDownMenu = () => {
-    this.setState(s => ({
+    this.setState((s) => ({
       menuOpen: !s.menuOpen
     }))
-  }
+  };
 
   handleToggleDropDownUserMenu = () => {
-    this.setState(s => ({
+    this.setState((s) => ({
       userMenuOpen: !s.userMenuOpen
     }))
-  }
+  };
 
   handleSignOut = async (event) => {
     event.preventDefault()
@@ -256,14 +192,12 @@ class NavBarWrapper extends Component {
     } catch (err) {
       console.error(err)
     }
-  }
+  };
 
   render () {
     const {
       cart,
-      location: {
-        pathname
-      }
+      location: { pathname }
     } = this.props
     const { bgOpacity, menuOpen, userMenuOpen } = this.state
     let logoOpacity = 1
@@ -278,9 +212,10 @@ class NavBarWrapper extends Component {
 
     return (
       <NavBar>
-        <SiteIcon style={{
-          opacity: logoOpacity
-        }}
+        <SiteIcon
+          style={{
+            opacity: logoOpacity
+          }}
         >
           <Link to='/'>
             <img src={pccAvatar} height='50' width='50' />
@@ -290,51 +225,7 @@ class NavBarWrapper extends Component {
         <LongMenu>
           <FlexContainerCentered>
             <SiteNav>
-              <NavLink>
-                <Link to='/'>Home</Link>
-              </NavLink>
-              <NavMenu>
-                <Link to='/club'>Club</Link>
-                <ul>
-                  <NavLink>
-                    <Link to='/rides'>Ride with us</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/ethos'>Club ethos</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/diversity'>Diversity &amp; Inclusion</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/equipment'>Equipment</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/riding'>On the road</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/calendar'>Calendar</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/mailing-list'>Mailing list</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/membership'>Membership</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/leading'>Leading a ride</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/racing'>Racing</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/routes'>Routes</Link>
-                  </NavLink>
-                </ul>
-              </NavMenu>
-              <NavLink>
-                <Link to='/contact'>Contact</Link>
-              </NavLink>
-
+              <ContentfulMenu />
               <Flag name={['shop']}>
                 <NavLink>
                   <Link to='/shop'>Shop</Link>
@@ -355,7 +246,11 @@ class NavBarWrapper extends Component {
             </ProfileLink>
             <CartLink>
               <Link to='/basket' style={{ position: 'relative' }}>
-                {cartContents ? <CartContentsCount>{cartContents}</CartContentsCount> : null}
+                {cartContents
+                  ? (
+                    <CartContentsCount>{cartContents}</CartContentsCount>
+                    )
+                  : null}
                 <FaShoppingCart />
               </Link>
             </CartLink>
@@ -363,20 +258,21 @@ class NavBarWrapper extends Component {
         </Flag>
 
         {userMenuOpen && (
-          <ModalBlocker onClick={this.handleToggleDropDownUserMenu} style={{ top: 59 }}>
+          <ModalBlocker
+            onClick={this.handleToggleDropDownUserMenu}
+            style={{ top: 59 }}
+          >
             <UserNav>
               {this.props.token
                 ? (
                   <>
-                    {
-                      this.props.user && this.props.user.admin
-                        ? (
-                          <NavLink>
-                            <Link to='/admin'>Club Admin</Link>
-                          </NavLink>
-                          )
-                        : null
-                    }
+                    {this.props.user && this.props.user.admin
+                      ? (
+                        <NavLink>
+                          <Link to='/admin'>Club Admin</Link>
+                        </NavLink>
+                        )
+                      : null}
                     <NavLink>
                       <Link to='/profile'>Profile</Link>
                     </NavLink>
@@ -399,52 +295,12 @@ class NavBarWrapper extends Component {
         )}
 
         {menuOpen && (
-          <ModalBlocker onClick={this.handleToggleDropDownMenu} style={{ top: 60 }}>
+          <ModalBlocker
+            onClick={this.handleToggleDropDownMenu}
+            style={{ top: 60 }}
+          >
             <MobileNav>
-              <NavLink>
-                <Link to='/'>Home</Link>
-              </NavLink>
-              <HamburgerNavMenu>
-                <Link to='/club'>Club</Link>
-                <ul>
-                  <NavLink>
-                    <Link to='/rides'>Ride with us</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/ethos'>Club ethos</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/diversity'>Diversity &amp; Inclusion</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/equipment'>Equipment</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/riding'>On the road</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/calendar'>Calendar</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/mailing-list'>Mailing list</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/membership'>Membership</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/leading'>Leading a ride</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/racing'>Racing</Link>
-                  </NavLink>
-                  <NavLink>
-                    <Link to='/routes'>Routes</Link>
-                  </NavLink>
-                </ul>
-              </HamburgerNavMenu>
-              <NavLink>
-                <Link to='/contact'>Contact</Link>
-              </NavLink>
+              <ContentfulMenu mobile />
 
               <Flag name={['shop']}>
                 <NavLink>
@@ -471,4 +327,6 @@ const mapDispatchToProps = {
   signOut
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBarWrapper))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(NavBarWrapper)
+)

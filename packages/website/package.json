@@ -27,10 +27,13 @@
     "upload": "s3-deploy './dist/**' --cwd './dist/' --region eu-west-2 --bucket cc.peckham --deleteRemoved --etag --gzip --invalidate '/*' --distId E39LOZKFS19ZDJ"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.11.1",
     "@peckhamcc/config": "^1.0.0",
     "babel-runtime": "^6.11.6",
+    "contentful": "^9.1.10",
     "flag": "^4.4.0",
     "isemail": "^3.1.1",
+    "nanoid": "^3.1.18",
     "onscrolling": "^1.0.0",
     "prop-types": "^15.3.2",
     "react": "^16.8.0",
@@ -41,7 +44,6 @@
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.1",
     "redux-localstorage": "^0.4.1",
-    "nanoid": "^3.1.18",
     "styled-components": "^5.2.1",
     "whatwg-fetch": "^3.0.0"
   },
