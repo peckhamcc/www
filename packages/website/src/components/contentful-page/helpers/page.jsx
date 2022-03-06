@@ -1,12 +1,11 @@
-import { setupClient } from '../../../shared/contentful'
+import { setupClient, renderOptions } from '../../../shared/contentful'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 export const getPageFromId = async (entryId) => {
   const client = setupClient()
   const entry = await client.getEntry(entryId, {
-    include: 0
+    include: 10
   })
-  const renderOptions = {}
   const bodyComponents = documentToReactComponents(
     entry.fields.body,
     renderOptions
@@ -29,7 +28,6 @@ export const getPageFromSlug = async (slug = '') => {
   const entry = entries?.items[0] || null
   if (!entry) return null
 
-  const renderOptions = {}
   const bodyComponents = documentToReactComponents(
     entry.fields.body,
     renderOptions
