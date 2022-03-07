@@ -43,12 +43,12 @@ export const ContentfulPage = ({ slug }) => {
           <LinkPanel
             background={page?.previousPage?.fields?.image[0]?.fields.file.url}
           >
-            <Link to='/diversity'>{page.previousPage.fields.title}</Link>
+            <Link to={page.previousPage.fields.url}>{page.previousPage.fields.title}</Link>
           </LinkPanel>
         )}
         {page?.nextPage?.fields?.image[0]?.fields.file.url && (
           <LinkPanel background={page.nextPage.fields.image[0]?.fields.file.url}>
-            <Link to='/diversity'>{page.nextPage.fields.title}</Link>
+            <Link to={page.nextPage.fields.url}>{page.nextPage.fields.title}</Link>
           </LinkPanel>
         )}
       </PageWrapper>
