@@ -37,21 +37,20 @@ async function bundle () {
       'process.env.NODE_DEBUG': `"${process.env.NODE_ENV === 'development'}"`,
 
       'process.env.STRIPE_PUBLISHABLE_KEY': `"${process.env.STRIPE_PUBLISHABLE_KEY}"`,
-      'process.env.STRIPE_SECRET_KEY': `"${process.env.STRIPE_SECRET_KEY}"`,
-      'process.env.STRIPE_WEBHOOK_SECRET': `"${process.env.STRIPE_WEBHOOK_SECRET}"`,
-      'process.env.STRIPE_FOPCC_ID': `"${process.env.STRIPE_FOPCC_ID}"`,
-      'process.env.STRIPE_SHIPPING_0': `"${process.env.STRIPE_SHIPPING_0}"`,
-      'process.env.STRIPE_SHIPPING_1': `"${process.env.STRIPE_SHIPPING_1}"`,
+      'process.env.STRIPE_SECRET_KEY': '"secret"',
+      'process.env.STRIPE_WEBHOOK_SECRET': '"secret"',
+      'process.env.STRIPE_FOPCC_ID': '"secret"',
+      'process.env.STRIPE_SHIPPING_0': '"secret"',
+      'process.env.STRIPE_SHIPPING_1': '"secret"',
 
       'process.env.CONTENTFUL_ACCESS_TOKEN': `"${process.env.CONTENTFUL_ACCESS_TOKEN}"`,
       'process.env.CONTENTFUL_SPACE': `"${process.env.CONTENTFUL_SPACE}"`,
 
-      'process.env.INKTHREADABLE_APP_ID': `"${process.env.INKTHREADABLE_APP_ID}"`,
-      'process.env.INKTHREADABLE_SECRET_KEY': `"${process.env.INKTHREADABLE_SECRET_KEY}"`,
+      'process.env.INKTHREADABLE_APP_ID': '"secret"',
+      'process.env.INKTHREADABLE_SECRET_KEY': '"secret"',
 
-      'process.env.KIT_SUPPLIER_NAME': `"${process.env.KIT_SUPPLIER_NAME}"`,
-      'process.env.KIT_SUPPLIER_EMAIL': `"${process.env.KIT_SUPPLIER_EMAIL}"`
-
+      'process.env.KIT_SUPPLIER_NAME': '"secret"',
+      'process.env.KIT_SUPPLIER_EMAIL': '"secret"'
     },
     loader: {
       '.png': 'file',

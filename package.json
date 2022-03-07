@@ -4,7 +4,6 @@
   "description": "Demo: [https://peckhamcc.github.io/www/](https://peckhamcc.github.io/www/)",
   "main": "index.js",
   "scripts": {
-    "postinstall": "lerna bootstrap",
     "reset": "lerna run --parallel clean && rm -rf packages/*/node_modules && rm -rf node_modules",
     "test": "lerna run --parallel test",
     "build": "lerna run  --concurrency 1 build",
@@ -25,7 +24,7 @@
   "homepage": "https://peckham.cc",
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "lerna": "^3.10.8",
+    "lerna": "^4.0.0",
     "pre-commit": "^1.2.2",
     "standard": "^16.0.3"
   },
@@ -38,5 +37,8 @@
     "ignore": [
       "packages"
     ]
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
