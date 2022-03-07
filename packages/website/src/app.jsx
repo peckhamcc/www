@@ -130,20 +130,10 @@ const App = () => {
                 />
 
                 <Switch>
-                  {/* static pages */}
-                  {/* <Route exact path="/" component={Dynamic} /> */}
-                  {/* <Route path="/club" component={Dynamic} /> */}
-                  {/* <Route path="/ethos" component={Ethos} /> */}
-                  {/* <Route path="/diversity" component={Diversity} /> */}
-                  {/* <Route path="/equipment" component={Equipment} /> */}
-                  {/* <Route path="/leading" component={Leading} /> */}
-                  {/* <Route path="/racing" component={Racing} /> */}
                   {/* videos */}
                   <Route path='/riding' component={Riding} />
                   {/* button */}
                   <Route path='/membership' component={Membership} />
-                  {/* <Redirect  to="/" /> */}
-                  {/* <Route path="/rides" component={Rides} /> */}
                   <Route path='*'>
                     <Dynamic />
                   </Route>

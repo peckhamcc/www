@@ -629,6 +629,10 @@ const config = {
       'price_1JD9512cnIK2AWWQQQ1eNiv8' // £5.75 Amazon Next Day
     ]
   },
+  contentful: {
+    accessToken: '9BIPHbYi-pk3yqZJlaJMgp8iVaTJY1Pj2pVIE-uc61A',
+    space: '6dcasuqyhf2a'
+  },
   inkthreadable: {
     appId: 'inkthreadable-1234',
     secretKey: 'wow-such-secret-shhhh'
@@ -673,6 +677,9 @@ if (process.env.NODE_ENV !== 'development') {
     process.env.STRIPE_SHIPPING_0, // £3.90 Royal Mail 24 Tracked
     process.env.STRIPE_SHIPPING_1 // £5.75 Amazon Next Day
   ]
+
+  config.contentful.accessToken = process.env.CONTENTFUL_ACCESS_TOKEN
+  config.contentful.space = process.env.CONTENTFUL_SPACE
 
   config.inkthreadable.appId = process.env.INKTHREADABLE_APP_ID
   config.inkthreadable.secretKey = process.env.INKTHREADABLE_SECRET_KEY
