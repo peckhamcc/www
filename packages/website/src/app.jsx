@@ -18,9 +18,7 @@ import {
   Shop,
   Item,
   MailingList,
-  Membership,
   Contact,
-  Riding,
   Calendar,
   Strava,
   StravaError,
@@ -130,10 +128,6 @@ const App = () => {
                 />
 
                 <Switch>
-                  {/* videos */}
-                  <Route path='/riding' component={Riding} />
-                  {/* button */}
-                  <Route path='/membership' component={Membership} />
                   <Route path='*'>
                     <Dynamic />
                   </Route>
