@@ -61,7 +61,7 @@ export const panelLevel3HoverBackground = adjustColour(panelLevel3Background, -8
 
 export const errorText = '#ff6459'
 export const errorBackground = '#EC9590'
-export const pccLightBlue = '#56d3dc'
-export const pccDarkBlue = '#5874bf'
-export const pccRed = '#ff454d'
-export const pccYellow = '#e5e95c'
+export const pccLightBlue = '#45C4D7'
+export const pccDarkBlue = '#2E6DCB'
+export const pccRed = '#CC2B37'
+export const pccYellow = '#FBE104'
