@@ -43,6 +43,9 @@ async function bundle () {
       'process.env.STRIPE_SHIPPING_0': '"secret"',
       'process.env.STRIPE_SHIPPING_1': '"secret"',
 
+      'process.env.CONTENTFUL_ACCESS_TOKEN': `"${process.env.CONTENTFUL_ACCESS_TOKEN}"`,
+      'process.env.CONTENTFUL_SPACE': `"${process.env.CONTENTFUL_SPACE}"`,
+
       'process.env.INKTHREADABLE_APP_ID': '"secret"',
       'process.env.INKTHREADABLE_SECRET_KEY': '"secret"',
 
