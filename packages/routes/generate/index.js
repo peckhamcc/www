@@ -10,7 +10,7 @@ function parseGpxData(xml) {
   var result = {
     segments: [],
     waypoints: []
-  };
+  }
   $('trkseg', xml).each(function() {
     var this_seg = [];
     $('trkpt', this).each(function() {

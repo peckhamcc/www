@@ -4,8 +4,9 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 export const getPageFromId = async (entryId) => {
   const client = setupClient()
   const entry = await client.getEntry(entryId, {
-    include: 10
+    include: 0
   })
+  const renderOptions = {}
   const bodyComponents = documentToReactComponents(
     entry.fields.body,
     renderOptions
