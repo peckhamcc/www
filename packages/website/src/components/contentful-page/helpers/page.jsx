@@ -1,4 +1,4 @@
-import { setupClient } from '../../../shared/contentful'
+import { setupClient, renderOptions } from '../../../shared/contentful'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 export const getPageFromId = async (entryId) => {
@@ -29,7 +29,6 @@ export const getPageFromSlug = async (slug = '') => {
   const entry = entries?.items[0] || null
   if (!entry) return null
 
-  const renderOptions = {}
   const bodyComponents = documentToReactComponents(
     entry.fields.body,
     renderOptions
