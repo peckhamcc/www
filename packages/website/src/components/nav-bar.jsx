@@ -142,12 +142,12 @@ class NavBarWrapper extends Component {
     user: PropTypes.object,
     signOut: PropTypes.func.isRequired,
     location: PropTypes.object.isRequired
-  };
+  }
 
   state = {
     bgOpacity: 0,
     menuOpen: false
-  };
+  }
 
   componentDidMount () {
     onscrolling(this.handleScroll)
@@ -163,19 +163,19 @@ class NavBarWrapper extends Component {
     this.setState({
       bgOpacity: pageYOffset < 100 ? pageYOffset / 100 : 1
     })
-  };
+  }
 
   handleToggleDropDownMenu = () => {
-    this.setState((s) => ({
+    this.setState(s => ({
       menuOpen: !s.menuOpen
     }))
-  };
+  }
 
   handleToggleDropDownUserMenu = () => {
-    this.setState((s) => ({
+    this.setState(s => ({
       userMenuOpen: !s.userMenuOpen
     }))
-  };
+  }
 
   handleSignOut = async (event) => {
     event.preventDefault()
@@ -192,7 +192,7 @@ class NavBarWrapper extends Component {
     } catch (err) {
       console.error(err)
     }
-  };
+  }
 
   render () {
     const {
