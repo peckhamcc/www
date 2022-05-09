@@ -229,11 +229,11 @@ class NavBarWrapper extends Component {
           <FaBars />
         </HamburgerMenu>
 
-        <Flag name={['shop']}>
-          <AccountNav>
-            <ProfileLink onClick={this.handleToggleDropDownUserMenu}>
-              <FaUser />
-            </ProfileLink>
+        <AccountNav>
+          <ProfileLink onClick={this.handleToggleDropDownUserMenu}>
+            <FaUser />
+          </ProfileLink>
+          <Flag name={['shop']}>
             <CartLink>
               <Link to='/basket' style={{ position: 'relative' }}>
                 {cartContents
@@ -244,8 +244,8 @@ class NavBarWrapper extends Component {
                 <FaShoppingCart />
               </Link>
             </CartLink>
-          </AccountNav>
-        </Flag>
+          </Flag>
+        </AccountNav>
 
         {userMenuOpen && (
           <ModalBlocker

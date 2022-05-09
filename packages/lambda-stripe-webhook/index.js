@@ -81,7 +81,7 @@ async function handleNewFoPCCSubscription ({ userId, user }, { data: { object } 
 async function updateFoPCCSubscription ({ userId, user }, { data: { object } }) {
   console.info('Handling updated FoPCC subscription with setup intent', object.setup_intent)
 
-  if (!user.fopcc.subscriptionId) {
+  if (!user.fopcc || !user.fopcc.subscriptionId) {
     throw new httpErrors.BadRequest('User had no existing subscription')
   }
 
@@ -166,7 +166,7 @@ async function handleInvoicePaid (context, event) {
 }
 
 async function handleFoPCCPayment ({ userId, user }, { data: { object } }) {
-  if (object.subscription !== user.fopcc.subscriptionId) {
+  if (user.fopcc && object.subscription !== user.fopcc.subscriptionId) {
     throw new httpErrors.BadRequest('Subscription ID was incorrect')
   }
 
@@ -211,7 +211,7 @@ async function handleFoPCCPayment ({ userId, user }, { data: { object } }) {
     throw new httpErrors.BadRequest('No amount found')
   }
 
-  const invoices = user.fopcc.invoices || []
+  const invoices = (user.fopcc && user.fopcc.invoices) || []
 
   invoices.push({
     date: Date.now(),
@@ -243,7 +243,7 @@ async function handleInvoicePaymentFailure (context, event) {
 }
 
 async function handleFoPCCPaymentFailure ({ userId, user }, { data: { object } }) {
-  if (object.subscription !== user.fopcc.subscriptionId) {
+  if (user.fopcc && object.subscription !== user.fopcc.subscriptionId) {
     throw new httpErrors.BadRequest('Subscription ID was incorrect')
   }
 
@@ -260,7 +260,7 @@ async function handleFoPCCPaymentFailure ({ userId, user }, { data: { object } }
 }
 
 async function handleFoPCCCancellation ({ userId, user }, { data: { object } }) {
-  if (object.id !== user.fopcc.subscriptionId) {
+  if (user.fopcc && object.id !== user.fopcc.subscriptionId) {
     throw new httpErrors.BadRequest('Subscription ID was incorrect')
   }
 
