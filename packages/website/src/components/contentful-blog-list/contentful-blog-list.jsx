@@ -8,7 +8,6 @@ export const ContentfulBlogList = ({ slug }) => {
 
   const getData = async () => {
     const blogItems = await getBlogs()
-    console.log(blogItems)
     setBlogs(blogItems)
   }
 
@@ -20,7 +19,7 @@ export const ContentfulBlogList = ({ slug }) => {
     ? ''
     : (
       <PageWrapper>
-        <Hero><h1>Blogs</h1></Hero>
+        <Hero background='http://images.ctfassets.net/6dcasuqyhf2a/5dlpqFLilkKyfLxKmevhRJ/e14aa9b3beafc095f9b55660823eafff/image_from_ios.jpg?w=1100&h=700&fit=fill'><h1>Blogs</h1></Hero>
         <Break />
         <BlogSection>
           <BlogTitle>

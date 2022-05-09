@@ -8,7 +8,6 @@ export const ContentfulBlogPage = ({ slug }) => {
 
   const getData = async () => {
     const page = await getBlogFromSlug(slug.replace('/blog', ''))
-    console.log('page', page)
     setPage(page)
   }
 

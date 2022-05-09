@@ -13,7 +13,6 @@ export const ContentfulHome = ({ slug }) => {
   const getData = async () => {
     const blogItems = await getBlogs()
     const contentBlockItems = await getContentBlocks()
-    console.log(blogItems)
     setBlogs(blogItems)
     setContentBlocks(contentBlockItems)
   }

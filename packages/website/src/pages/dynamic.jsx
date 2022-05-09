@@ -7,8 +7,6 @@ import { useLocation } from 'react-router-dom'
 
 const DynamicPage = ({ template = 'page' }) => {
   const location = useLocation()
-  console.log('template', template)
-  console.log('location', location)
 
   if (template === 'home') {
     return <ContentfulHome slug={location.pathname} />
