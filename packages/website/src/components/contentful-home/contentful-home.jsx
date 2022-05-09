@@ -62,6 +62,7 @@ export const ContentfulHome = ({ slug }) => {
             {homeBlock2}
           </div>
         </TextStrip>
+        <Break />
       </PageWrapper>
       )
 }

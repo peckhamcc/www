@@ -23,7 +23,7 @@ export const ContentfulBlogPage = ({ slug }) => {
         <Break />
         <Breadcrumb>
           <div className='content'>
-            <a href='/blog'>Blog</a> <span>/</span> {page.title}
+            <a href='/blog'>Blogs</a> <span>/</span> {page.title}
           </div>
         </Breadcrumb>
         <Author>
