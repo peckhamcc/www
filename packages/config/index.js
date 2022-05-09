@@ -601,7 +601,7 @@ const config = {
     rrcOrdersGet: '/lambda/rrc-orders-get'
   },
   flags: {
-    shop: true,
+    shop: false,
     email: true,
     payments: true
   },
