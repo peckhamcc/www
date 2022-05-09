@@ -7,7 +7,6 @@ import {
 } from 'react-icons/fa'
 import {
   pccLightBlue,
-  panelLevel3Background,
   panelLevel3Text
 } from '../colours'
 import {
@@ -23,7 +22,7 @@ const Footer = styled.footer`
   padding: ${spacing(3)} ${spacing(2)} ${spacing(1)} ${spacing(2)};
   font-size: 16px;
   color: ${panelLevel3Text};
-  background-color: ${panelLevel3Background};
+  background-color: #000;
 
   @media (max-width: 640px) {
     font-size: 12px;

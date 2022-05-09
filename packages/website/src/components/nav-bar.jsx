@@ -196,15 +196,9 @@ class NavBarWrapper extends Component {
 
   render () {
     const {
-      cart,
-      location: { pathname }
+      cart
     } = this.props
-    const { bgOpacity, menuOpen, userMenuOpen } = this.state
-    let logoOpacity = 1
-
-    if (pathname === '/') {
-      logoOpacity = bgOpacity
-    }
+    const { menuOpen, userMenuOpen } = this.state
 
     const cartContents = cart.reduce((acc, curr) => {
       return acc + curr.quantity
@@ -212,11 +206,7 @@ class NavBarWrapper extends Component {
 
     return (
       <NavBar>
-        <SiteIcon
-          style={{
-            opacity: logoOpacity
-          }}
-        >
+        <SiteIcon>
           <Link to='/'>
             <img src={pccAvatar} height='50' width='50' />
           </Link>

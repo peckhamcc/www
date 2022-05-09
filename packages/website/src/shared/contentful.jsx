@@ -45,7 +45,7 @@ export const renderOptions = {
     [BLOCKS.EMBEDDED_ASSET]: (node) => {
       return (
         <img
-          src={`https://${node.data.target.fields.file.url}`}
+          src={`https://${node.data.target.fields.file.url}?w=750&h=750`}
           alt={node.data.target.fields.description}
           style={{ borderRadius: '10px', maxWidth: '100%' }}
         />

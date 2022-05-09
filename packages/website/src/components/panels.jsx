@@ -94,7 +94,7 @@ export const Break = styled.hr`
   width: 100%;
   height: ${spacing(0.5)};
   border: 0;
-  margin: ${spacing(4)} 0 0 0;
+  margin: 0 0 0 0;
 `
 
 export const PageWrapper = styled.article`
