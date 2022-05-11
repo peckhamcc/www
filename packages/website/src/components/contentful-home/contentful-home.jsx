@@ -7,8 +7,17 @@ import { getContentBlocks } from './helpers/contentBlocks'
 export const ContentfulHome = ({ slug }) => {
   const [blogs, setBlogs] = useState(null)
   const [contentBlocks, setContentBlocks] = useState(null)
-  const homeBlock1 = contentBlocks?.filter((item) => item.fields.key === 'home.text.block.1')[0].fields.value
-  const homeBlock2 = contentBlocks?.filter((item) => item.fields.key === 'home.text.block.2')[0].fields.value
+  const getContentBlockValue = (key) => {
+    const blocks = contentBlocks?.filter((item) => item.fields.key === key)
+    if (!(blocks && blocks.length > 0)) return null
+
+    return blocks[0].fields.value
+  }
+  const homeBlock1 = getContentBlockValue('home.text.block.1')
+  const homeBlock2 = getContentBlockValue('home.text.block.2')
+  const homeImage = getContentBlockValue('home.hero.image')
+  const blogTitle = getContentBlockValue('home.blog.title')
+  const blogLinkAll = getContentBlockValue('home.blog.link.all')
 
   const getData = async () => {
     const blogItems = await getBlogs()
@@ -21,11 +30,11 @@ export const ContentfulHome = ({ slug }) => {
     getData()
   }, [slug])
 
-  return !blogs
+  return !blogs || !contentBlocks
     ? ''
     : (
       <PageWrapper>
-        <Hero background='http://images.ctfassets.net/6dcasuqyhf2a/5dlpqFLilkKyfLxKmevhRJ/e14aa9b3beafc095f9b55660823eafff/image_from_ios.jpg?w=1100&h=700&fit=fill' />
+        <Hero background={homeImage} />
         <TextStrip>
           <div className='text'>
             {homeBlock1}
@@ -35,10 +44,10 @@ export const ContentfulHome = ({ slug }) => {
         <BlogSection>
           <BlogTitle>
             <div className='column-left'>
-              <h2>Recent Blogs/News</h2>
+              <h2>{blogTitle}</h2>
             </div>
             <div className='column-right'>
-              <a href='/blog'>See All Blogs</a>
+              <a href='/blog'>{blogLinkAll}</a>
             </div>
           </BlogTitle>
           <Blogs>
