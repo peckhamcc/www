@@ -46,6 +46,10 @@ export const BlogSection = styled.div`
   max-width: 750px;
   margin: 0 auto;
   padding: 20px 0;
+
+  @media (max-width: 640px) {
+    padding: 20px 20px;
+  }
 `
 
 export const Blogs = styled.div`
@@ -54,7 +58,7 @@ export const Blogs = styled.div`
   gap: 30px 10px;
 
   @media (max-width: 640px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 `
 

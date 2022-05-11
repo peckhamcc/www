@@ -19,7 +19,7 @@ export const ContentfulBlogPage = ({ slug }) => {
     ? ''
     : (
       <PageWrapper>
-        <Hero background={`${page.image.fields.file.url}?w=1100&h=700&fit=fill`}><h1>{page.title}</h1></Hero>
+        <Hero background={`${page.image?.fields.file.url}?w=1100&h=700&fit=fill`}><h1>{page.title}</h1></Hero>
         <Break />
         <Breadcrumb>
           <div className='content'>

@@ -40,7 +40,7 @@ export const ContentfulHome = ({ slug }) => {
             {homeBlock1}
           </div>
         </TextStrip>
-        <Break />
+        <Break height='20px' />
         <BlogSection>
           <BlogTitle>
             <div className='column-left'>
@@ -54,7 +54,7 @@ export const ContentfulHome = ({ slug }) => {
             {blogs.map((blog) => (
               <Blog key={blog.title}>
                 <a href={`/blog${blog.url}`}>
-                  <BlogImage background={`${blog.image.fields.file.url}?w=500&h=500&fit=fill`} />
+                  <BlogImage background={`${blog.image?.fields.file.url}?w=500&h=500&fit=fill`} />
                 </a>
                 <div className='text'>
                   <h2>{blog.title}</h2>
@@ -71,7 +71,7 @@ export const ContentfulHome = ({ slug }) => {
             {homeBlock2}
           </div>
         </TextStrip>
-        <Break />
+        <Break height='20px' />
       </PageWrapper>
       )
 }

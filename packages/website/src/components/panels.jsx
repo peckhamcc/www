@@ -92,7 +92,7 @@ export const Break = styled.hr`
   background-position: center;
   background-size: cover;
   width: 100%;
-  height: ${spacing(0.5)};
+  height: ${(props) => props.height || spacing(0.5)};
   border: 0;
   margin: 0 0 0 0;
 `
