@@ -7,7 +7,8 @@ export const getBlogFromSlug = async (slug = '') => {
     content_type: 'blog',
     limit: 1,
     include: 10,
-    'fields.url': slug
+    'fields.url': slug,
+    order: '-fields.date'
   })
   const entry = entries?.items[0] || null
   if (!entry) return null

@@ -5,7 +5,8 @@ export const getBlogs = async () => {
   const entries = await client.getEntries({
     content_type: 'blog',
     limit: 6,
-    include: 10
+    include: 10,
+    order: '-fields.date'
   })
   const items = entries?.items || null
   if (!items.length > 0) return null
