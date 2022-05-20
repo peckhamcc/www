@@ -11,7 +11,6 @@ padding: 120px 0;
 background-image: url(${props => props.background});
 background-size: cover;
 background-position: center center;
-background-color: #2e6dcb;
 font-size: 35px;
 text-align: center;
 h1{
@@ -21,6 +20,7 @@ h1{
   color: white;
   display: inline-block;
   border-radius: 6px;
+  margin: 20px;
 }
 
 @media (max-width: 640px) {
@@ -85,6 +85,10 @@ export const Blog = styled.div`
     display: inline-block;
     font-size: 16px;
     border-radius: 6px;
+
+    &:hover{
+      background-color: #2459a8;
+    }
   }
 `
 

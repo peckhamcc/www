@@ -4,10 +4,12 @@ import { getBlogs } from './helpers/blogs'
 import { Break } from '../panels'
 
 export const ContentfulBlogList = ({ slug }) => {
-  const [blogs, setBlogs] = useState(null)
+  const [blogs, setBlogs] = useState([])
 
   const getData = async () => {
     const blogItems = await getBlogs()
+    if (!blogItems) return
+
     setBlogs(blogItems)
   }
 

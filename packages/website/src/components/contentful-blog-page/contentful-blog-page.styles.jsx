@@ -21,6 +21,7 @@ h1{
   color: white;
   display: inline-block;
   border-radius: 6px;
+  margin: 20px;
 }
 
 @media (max-width: 640px) {

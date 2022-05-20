@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Break } from '../panels'
+import Logo from '../logo'
 import { PageWrapper, Hero, Blog, Blogs, BlogImage, TextStrip, BlogSection, BlogTitle } from './contentful-home.styles'
 import { getBlogs } from './helpers/blogs'
 import { getContentBlocks } from './helpers/contentBlocks'
 
 export const ContentfulHome = ({ slug }) => {
-  const [blogs, setBlogs] = useState(null)
+  const [blogs, setBlogs] = useState([])
   const [contentBlocks, setContentBlocks] = useState(null)
   const getContentBlockValue = (key) => {
     const blocks = contentBlocks?.filter((item) => item.fields.key === key)
@@ -18,6 +19,7 @@ export const ContentfulHome = ({ slug }) => {
   const homeImage = getContentBlockValue('home.hero.image')
   const blogTitle = getContentBlockValue('home.blog.title')
   const blogLinkAll = getContentBlockValue('home.blog.link.all')
+  const hasBlogs = blogs?.length > 0
 
   const getData = async () => {
     const blogItems = await getBlogs()
@@ -30,48 +32,60 @@ export const ContentfulHome = ({ slug }) => {
     getData()
   }, [slug])
 
-  return !blogs || !contentBlocks
+  return !contentBlocks
     ? ''
     : (
       <PageWrapper>
-        <Hero background={homeImage} />
+        <Hero background={homeImage}>
+          <Logo
+            color='white'
+            style={{
+              zIndex: 20,
+              position: 'relative'
+            }}
+          />
+        </Hero>
         <TextStrip>
           <div className='text'>
             {homeBlock1}
           </div>
         </TextStrip>
         <Break height='20px' />
-        <BlogSection>
-          <BlogTitle>
-            <div className='column-left'>
-              <h2>{blogTitle}</h2>
-            </div>
-            <div className='column-right'>
-              <a href='/blog'>{blogLinkAll}</a>
-            </div>
-          </BlogTitle>
-          <Blogs>
-            {blogs.map((blog) => (
-              <Blog key={blog.title}>
-                <a href={`/blog${blog.url}`}>
-                  <BlogImage background={`${blog.image?.fields.file.url}?w=500&h=500&fit=fill`} />
-                </a>
-                <div className='text'>
-                  <h2>{blog.title}</h2>
-                  <p>{blog.dateFormatted}</p>
-                  <a className='button' href={`/blog${blog.url}`}>View</a>
+        {hasBlogs && (
+          <>
+            <BlogSection>
+              <BlogTitle>
+                <div className='column-left'>
+                  <h2>{blogTitle}</h2>
                 </div>
-              </Blog>
-            ))}
-          </Blogs>
-        </BlogSection>
-        <Break />
-        <TextStrip>
-          <div className='text'>
-            {homeBlock2}
-          </div>
-        </TextStrip>
-        <Break height='20px' />
+                <div className='column-right'>
+                  <a href='/blog'>{blogLinkAll}</a>
+                </div>
+              </BlogTitle>
+              <Blogs>
+                {blogs.map((blog) => (
+                  <Blog key={blog.title}>
+                    <a href={`/blog${blog.url}`}>
+                      <BlogImage background={`${blog.image?.fields.file.url}?w=500&h=500&fit=fill`} />
+                    </a>
+                    <div className='text'>
+                      <h2>{blog.title}</h2>
+                      <p>{blog.dateFormatted}</p>
+                      <a className='button' href={`/blog${blog.url}`}>View</a>
+                    </div>
+                  </Blog>
+                ))}
+              </Blogs>
+            </BlogSection>
+            <Break />
+            <TextStrip>
+              <div className='text'>
+                {homeBlock2}
+              </div>
+            </TextStrip>
+            <Break height='20px' />
+          </>
+        )}
       </PageWrapper>
       )
 }

@@ -85,6 +85,7 @@ export const FlexContentCenter = styled(FlexContent)`
 
 export const FlexContentRight = styled(FlexContent)`
   text-align: right;
+  align-self: center;
 `
 
 export const Break = styled.hr`

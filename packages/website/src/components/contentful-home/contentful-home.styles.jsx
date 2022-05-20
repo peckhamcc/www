@@ -7,7 +7,7 @@ background-color: white;
 font-size: 16px;
 `
 export const Hero = styled.div`
-height: 400px;
+padding: 70px 0;
 background-image: url(${props => props.background});
 background-size: cover;
 background-position: center center;
@@ -22,6 +22,10 @@ h1{
   color: white;
   display: inline-block;
   border-radius: 6px;
+  margin: 20px;
+}
+svg{
+  width: 500px;
 }
 &:after{
   content: '';
@@ -34,10 +38,12 @@ h1{
 }
 
 @media (max-width: 640px) {
-  height: 200px;
-  padding: 80px 0;
+  padding: 40px 0;
     h1{
       font-size: 1.5rem;
+    }
+    svg{
+      width: 70vw;
     }
   }
 `
@@ -97,6 +103,10 @@ export const Blog = styled.div`
     display: inline-block;
     font-size: 16px;
     border-radius: 6px;
+
+    &:hover{
+      background-color: #2459a8;
+    }
   }
 `
 
