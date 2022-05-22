@@ -166,7 +166,7 @@ module.exports = (port) => {
     const app = express()
 
     // main site
-    app.use('/', serveStatic(path.resolve(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist'))))
+    app.use('/', serveStatic(path.resolve(path.join(__dirname, '../website/dist'))))
 
     // "lambdas"
     app.use(bodyParser.text({ type: '*/*' }))
@@ -236,7 +236,7 @@ module.exports = (port) => {
     app.get(config.lambda.membersGet, serveLambda('_peckhamcc_lambda-members-get', membersGet))
 
     app.use((_, response) => {
-      response.sendFile(path.join(__dirname, 'node_modules', '@peckhamcc', 'website', 'dist', 'index.html'))
+      response.sendFile(path.resolve(path.join(__dirname, '../website/dist/index.html')))
     })
 
     const listener = app.listen(port, () => {
