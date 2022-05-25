@@ -7,6 +7,7 @@ background-color: white;
 font-size: 16px;
 `
 export const Hero = styled.div`
+min-height: 500px;
 padding: 70px 0;
 background-image: url(${props => props.background});
 background-size: cover;
@@ -33,11 +34,12 @@ svg{
   bottom:0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 30%;
   background-image: linear-gradient(transparent, black);
 }
 
 @media (max-width: 640px) {
+  min-height: 250px;
   padding: 40px 0;
     h1{
       font-size: 1.5rem;

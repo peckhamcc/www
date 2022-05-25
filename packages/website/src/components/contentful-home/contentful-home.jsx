@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Break } from '../panels'
-import Logo from '../logo'
 import { PageWrapper, Hero, Blog, Blogs, BlogImage, TextStrip, BlogSection, BlogTitle } from './contentful-home.styles'
 import { getBlogs } from './helpers/blogs'
 import { getContentBlocks } from './helpers/contentBlocks'
@@ -36,15 +35,7 @@ export const ContentfulHome = ({ slug }) => {
     ? ''
     : (
       <PageWrapper>
-        <Hero background={homeImage}>
-          <Logo
-            color='white'
-            style={{
-              zIndex: 20,
-              position: 'relative'
-            }}
-          />
-        </Hero>
+        <Hero background={homeImage} />
         <TextStrip>
           <div className='text'>
             {homeBlock1}

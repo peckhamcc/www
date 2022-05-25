@@ -14,7 +14,6 @@ import {
   FlexContentLeft,
   FlexContentRight
 } from './panels'
-import UnitedWeRoll from './united-we-roll'
 import { spacing } from '../units'
 
 const Footer = styled.footer`
@@ -48,7 +47,7 @@ const FooterWrapper = () => {
     <Footer>
       <FlexContainerCentered>
         <FlexContentLeft>
-          <UnitedWeRoll color='white' width='80px' />
+          United we roll
         </FlexContentLeft>
 
         <FlexContentRight>

@@ -11,12 +11,12 @@ import {
   ModalBlocker,
   Break
 } from './panels'
+import pccAvatar from '../../assets/pcc-logo-round.png'
 import { spacing } from '../units'
 import onscrolling from 'onscrolling'
 import { Flag } from '../lib/flags'
 import { config } from '@peckhamcc/config'
 import { ContentfulMenu } from './contentful-menu'
-import Logo from './logo'
 
 const HAMBUGER_BREAK = 800
 
@@ -209,7 +209,7 @@ class NavBarWrapper extends Component {
       <NavBar>
         <SiteIcon>
           <Link to='/'>
-            <Logo />
+            <img src={pccAvatar} height='50' width='50' />
           </Link>
         </SiteIcon>
 

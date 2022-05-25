@@ -6,7 +6,7 @@ export const getMainMenu = async () => {
     content_type: 'menu',
     limit: 1,
     include: 10,
-    'fields.title': 'Main'
+    'fields.title': 'Main-new'
   })
   const entry = entries?.items[0] || null
   if (!entry) return null
