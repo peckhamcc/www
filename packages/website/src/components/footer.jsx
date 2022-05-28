@@ -21,7 +21,7 @@ const Footer = styled.footer`
   padding: ${spacing(3)} ${spacing(2)};
   font-size: 16px;
   color: ${panelLevel3Text};
-  background-color: #000;
+  background-color: #2d2d2d;
 
   @media (max-width: 640px) {
     font-size: 12px;
