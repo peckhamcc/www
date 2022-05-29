@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { PageWrapper, Panel, Hero, LinkPanel } from '../panels'
+import { Break } from '../panels'
 import { getPageFromSlug } from './helpers/page'
-import SlideShow from '../slide-show'
-import { shuffle } from './helpers/images'
-import { Logo } from './contentful-page.styles'
-import { Link } from 'react-router-dom'
+import { Hero, Article, PageWrapper } from './contentful-page.styles'
 
 export const ContentfulPage = ({ slug }) => {
   const [page, setPage] = useState(null)
   const hasImage = page?.image?.length > 0
-  const hasMultiImages = page?.image?.length > 1
-  const multiImageArray = page?.image?.map(
-    (image) => image.fields.file.url + '?w=1100&h=700&fit=fill'
-  )
+  const isHomePage = slug === '/'
 
   const getData = async () => {
     const page = await getPageFromSlug(slug)
@@ -26,31 +20,17 @@ export const ContentfulPage = ({ slug }) => {
   return !page
     ? ''
     : (
-      <PageWrapper>
-        {slug === '/' && <Logo>Peckham Cycle Club</Logo>}
+      <PageWrapper isHomePage={isHomePage}>
         {hasImage &&
-          (hasMultiImages
-            ? (
-              <SlideShow slides={shuffle(multiImageArray)} />
-              )
-            : (
-              <Hero
-                background={`${page.image[0].fields.file.url}?w=1100&h=700&fit=fill`}
-              />
-              ))}
-        <Panel>{page.bodyComponents}</Panel>
-        {page?.previousPage?.fields?.image[0]?.fields.file.url && (
-          <LinkPanel
-            background={page?.previousPage?.fields?.image[0]?.fields.file.url}
-          >
-            <Link to={page.previousPage.fields.url}>{page.previousPage.fields.title}</Link>
-          </LinkPanel>
-        )}
-        {page?.nextPage?.fields?.image[0]?.fields.file.url && (
-          <LinkPanel background={page.nextPage.fields.image[0]?.fields.file.url}>
-            <Link to={page.nextPage.fields.url}>{page.nextPage.fields.title}</Link>
-          </LinkPanel>
-        )}
+          <>
+            <Hero background={`${page.image[0].fields.file.url}?w=1400&h=700&fit=fill`}>
+              <h1>
+                {page.title}
+              </h1>
+            </Hero>
+            <Break />
+          </>}
+        <Article>{page.bodyComponents}</Article>
       </PageWrapper>
       )
 }

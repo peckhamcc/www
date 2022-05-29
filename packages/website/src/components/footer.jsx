@@ -7,7 +7,6 @@ import {
 } from 'react-icons/fa'
 import {
   pccLightBlue,
-  panelLevel3Background,
   panelLevel3Text
 } from '../colours'
 import {
@@ -15,15 +14,14 @@ import {
   FlexContentLeft,
   FlexContentRight
 } from './panels'
-import Comment from './comment'
 import { spacing } from '../units'
 
 const Footer = styled.footer`
   clear: both;
-  padding: ${spacing(3)} ${spacing(2)} ${spacing(1)} ${spacing(2)};
+  padding: ${spacing(3)} ${spacing(2)};
   font-size: 16px;
   color: ${panelLevel3Text};
-  background-color: ${panelLevel3Background};
+  background-color: #2d2d2d;
 
   @media (max-width: 640px) {
     font-size: 12px;
@@ -32,8 +30,8 @@ const Footer = styled.footer`
 
 const SocialLink = styled.a`
   color: ${panelLevel3Text};
-  font-size: 18px;
-  margin-left: 10px;
+  font-size: 25px;
+  margin-left: 20px;
 
   &:link {
     color: ${panelLevel3Text};
@@ -49,7 +47,7 @@ const FooterWrapper = () => {
     <Footer>
       <FlexContainerCentered>
         <FlexContentLeft>
-          United we <Comment text='Sausage' /> roll
+          United we roll
         </FlexContentLeft>
 
         <FlexContentRight>

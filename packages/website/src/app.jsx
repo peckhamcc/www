@@ -127,6 +127,16 @@ const App = () => {
                     )}
                 />
 
+                <Route exact path='/'>
+                  <Dynamic template='home' />
+                </Route>
+                <Route exact path='/blog'>
+                  <Dynamic template='blog' />
+                </Route>
+                <Route path='/blog/:slug'>
+                  <Dynamic template='blog-page' />
+                </Route>
+
                 <Switch>
                   <Route path='*'>
                     <Dynamic />
