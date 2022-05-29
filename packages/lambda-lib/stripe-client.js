@@ -38,16 +38,6 @@ const getProducts = async () => {
   }
 
   const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
-
-  const prices = {}
-
-  for await (const price of client.prices.list({
-    limit: 100,
-    active: true
-  })) {
-    prices[price.product] = price
-  }
-
   const sections = {}
 
   for await (const product of client.products.list({
@@ -89,17 +79,62 @@ const getProducts = async () => {
 
     if (product.metadata.options) {
       product.metadata.options.split('-').forEach(option => {
-        if (!product.metadata[option]) {
-          console.error('Product', product.name, 'has option', option, 'but it is not defined in the product metadata')
+        if (product.metadata[option]) {
+          options[option] = product.metadata[option].split('-')
+          return
         }
 
-        options[option] = product.metadata[option].split('-')
+        if (product.metadata.gender) {
+          // some options are split by gender
+          const genderOptions = {}
+
+          product.metadata.gender.split('-').forEach(gender => {
+            const genderKey = `${option}-${gender}`
+
+            if (product.metadata[genderKey] == null) {
+              console.error('Product', product.name, 'has option', option, 'which may be gendered, but it is not defined in the product metadata under', genderKey)
+              return
+            }
+
+            if (product.metadata[genderKey]) {
+              genderOptions[gender] = product.metadata[genderKey].split('-')
+            }
+          })
+
+          options[option] = genderOptions
+
+          return
+        }
+
+        if (options[option] == null) {
+          console.error('Product', product.name, 'has option', option, 'but it is not defined in the product metadata')
+        }
       })
     }
 
-    const price = prices[product.id]
+    const prices = {}
 
-    if (!price) {
+    for await (const price of client.prices.list({
+      limit: 100,
+      active: true,
+      product: product.id
+    })) {
+      if (!price.active) {
+        continue
+      }
+
+      if (!price.nickname) {
+        console.error('Price', price.id, 'for product', product.name, 'has no nickname configured - set it to the supplier product code')
+      }
+
+      prices[price.nickname] = {
+        id: price.id,
+        type: price.type,
+        amount: price.unit_amount
+      }
+    }
+
+    if (!Object.keys(prices).length) {
       console.error('Product', product.name, 'has no configured price')
     }
 
@@ -116,11 +151,7 @@ const getProducts = async () => {
       section: section,
       sizeChart: product.metadata['size-chart'],
       options,
-      price: {
-        id: price.id,
-        type: price.type,
-        amount: price.unit_amount
-      },
+      prices,
       type: product.metadata.type,
       shippingWeight: parseInt(product.metadata['shipping-weight'] || '0', 10)
     })
@@ -163,24 +194,56 @@ const createCheckoutSession = async (userId, stripeCustomerId, items) => {
       throw new Error('Could not find product for slug ' + item.slug)
     }
 
+    const chosen = []
+
     if (Object.keys(item.options || {}).length) {
       metadata[`item-${index}`] = JSON.stringify(item.options)
 
       description = Object.keys(item.options).map(option => {
+        const optionDetails = OPTIONS[option]
         const value = item.options[option]
 
         if (option === 'size') {
-          return OPTIONS[option][product.sizeChart][value].name
-        }
+          const chart = OPTIONS[option][product.sizeChart]
 
-        return OPTIONS[option][value]
+          return `${optionDetails.name}: ${chart[value].name}`
+        } else {
+          chosen.push(value)
+
+          return `${optionDetails.name}: ${optionDetails.options[value]}`
+        }
       }).join(', ')
     }
 
     shippingWeight += (product.shippingWeight || 0) * item.quantity
 
+    const codes = OPTIONS.productPrices[product.slug]
+
+    if (!codes) {
+      throw new Error(`No product prices defined in config for ${product.slug}`)
+    }
+
+    const matrix = chosen.join('-')
+    let code
+
+    if (matrix === '') {
+      if (typeof codes !== 'string') {
+        throw new Error(`Product ${product.slug} only had size option but multiple configured prices`)
+      }
+
+      code = codes
+    } else {
+      code = codes[matrix]
+    }
+
+    if (!code) {
+      throw new Error(`No product price defined in config for ${product.slug} and selection ${matrix}`)
+    }
+
+    const price = product.prices[code]
+
     return {
-      price: product.price.id,
+      price: price.id,
       quantity: item.quantity,
       description
     }

@@ -3,7 +3,8 @@ import React, {
 } from 'react'
 import styled from 'styled-components'
 import {
-  SelectableOption
+  SelectableOption,
+  Note
 } from '../panels'
 import {
   spacing
@@ -61,19 +62,11 @@ class Sizing extends Component {
     let defaultUnit = null
 
     if (props.product.options.size) {
-      const tableKey = props.product.sizeChart
-      const sizeTable = Object.keys(OPTIONS.size[tableKey]).map(code => {
-        return {
-          code,
-          ...OPTIONS.size[tableKey][code]
-        }
-      })
-      const size = sizeTable[0]
+      if (props.product.options.gender != null) {
+        defaultGender = props.product.options.gender[0]
+      }
 
-      const measurements = Object.keys(size.measurements)
-      const genders = Object.keys(size.measurements[measurements[0]])
-
-      defaultGender = genders[0] || 'unisex'
+      defaultGender = defaultGender ?? 'U'
       defaultUnit = 'metric'
     }
 
@@ -116,6 +109,15 @@ class Sizing extends Component {
         }
       })
 
+      // filter sizes that are not available to the current gender, if not unisex
+      sizeTable = sizeTable.filter(size => {
+        if (gender === 'U') {
+          return true
+        }
+
+        return Object.values(size.measurements).every(measurement => Boolean(measurement[gender]))
+      })
+
       const size = sizeTable[0]
       const measurement = Object.keys(size.measurements).pop()
       const genders = Object.keys(size.measurements[measurement])
@@ -144,13 +146,24 @@ class Sizing extends Component {
         genderControls = (
           <GenderControls>
             {
-              genders.map((g, index) => (
+              genders.filter(g => {
+                // ensure product is available in this gender
+                const genderKey = Object.keys(OPTIONS.gender.options).find(key => {
+                  return g === OPTIONS.gender.options[key].toLowerCase()
+                })
+
+                if (genderKey == null) {
+                  return true
+                }
+
+                return product.options.gender.includes(genderKey)
+              }).map((g, index) => (
                 <SelectableOption
                   selected={g === gender}
                   onClick={() => this.setGender(g)}
                   key={index}
                   data-gender={g}
-                >{capitalise(g)}
+                >{capitalise(OPTIONS.gender.options[g])}
                 </SelectableOption>
               ))
             }
@@ -219,7 +232,7 @@ class Sizing extends Component {
                 }
                 </tbody>
               </Table>
-              <small>Garment sizes are approximate and for guidance only.</small>
+              <Note>Garment sizes are approximate and for guidance only.</Note>
             </>
             )
           : (

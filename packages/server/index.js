@@ -25,6 +25,7 @@ const stripeWebhook = require('@peckhamcc/lambda-stripe-webhook')
 const inkthreadableWebhook = require('@peckhamcc/lambda-inkthreadable-webhook')
 const kitOrdersGet = require('@peckhamcc/lambda-kit-orders-get')
 const kitOrdersUpdate = require('@peckhamcc/lambda-kit-orders-update')
+const kitOrdersCreate = require('@peckhamcc/lambda-kit-orders-create')
 const rrcOrdersGet = require('@peckhamcc/lambda-rrc-orders-get')
 const membersGet = require('@peckhamcc/lambda-members-get')
 const { callbackify } = require('util')
@@ -40,8 +41,12 @@ const serveLambda = (name, lambda) => {
     let body = ''
 
     if (request.method === 'POST' || request.method === 'PUT' || request.method === 'PATCH') {
-      for await (const buf of request.body) {
-        body += buf.toString('utf8')
+      try {
+        for await (const buf of request.body) {
+          body += buf.toString('utf8')
+        }
+      } catch (err) {
+        console.error(err)
       }
     }
 
@@ -228,6 +233,9 @@ module.exports = (port) => {
     app.options(config.lambda.kitOrdersGet, serveLambda('_peckhamcc_lambda-kit-orders-get', sendCorsHeaders))
     app.get(config.lambda.kitOrdersGet, serveLambda('_peckhamcc_lambda-kit-orders-get', kitOrdersGet))
     app.patch(config.lambda.kitOrdersUpdate, serveLambda('_peckhamcc_lambda-kit-orders-update', kitOrdersUpdate))
+
+    app.options('/lambda/kit-orders-create', serveLambda('_peckhamcc_lambda-kit-orders-create', kitOrdersCreate))
+    app.post('/lambda/kit-orders-create', serveLambda('_peckhamcc_lambda-kit-orders-create', kitOrdersCreate))
 
     app.options(config.lambda.rrcOrdersGet, serveLambda('_peckhamcc_lambda-rrc-orders-get', sendCorsHeaders))
     app.get(config.lambda.rrcOrdersGet, serveLambda('_peckhamcc_lambda-rrc-orders-get', rrcOrdersGet))

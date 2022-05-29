@@ -17,7 +17,8 @@ const {
   sendEmail
 } = require('./email')
 const {
-  config
+  config,
+  OPTIONS
 } = require('./config')
 
 async function kitOrdersCreateHandler () {
@@ -26,7 +27,7 @@ async function kitOrdersCreateHandler () {
 
   console.info('Fetching made-to-order items starting at timestamp', since)
 
-  const items = []
+  const items = {}
   let orders = await getNewOrders(since)
 
   orders = orders.filter(order => {
@@ -37,21 +38,64 @@ async function kitOrdersCreateHandler () {
 
     // process order items for sending to supplier
     order.items.forEach(item => {
-      const hasVariations = Boolean(Object.keys(item.metadata).length)
+      console.info(item)
 
-      if (hasVariations) {
-        if (!items[item.name]) {
-          items[item.name] = {}
+      const codes = OPTIONS.productPrices[item.slug]
+
+      if (!codes) {
+        if (!item.slug.includes('2022')) {
+          console.error('Old kit in order')
+          return
         }
 
-        if (!items[item.name][item.description]) {
-          items[item.name][item.description] = 0
-        }
-
-        items[item.name][item.description] += +item.quantity
-      } else {
-        items[item.name] = (items[item.name] || 0) + item.quantity
+        throw new Error(`Could not load product codes for product with slug ${item.slug}`)
       }
+
+      let sku
+
+      if (typeof codes === 'string') {
+        sku = codes
+      }
+
+      if (sku == null && Boolean(Object.keys(item.metadata).length)) {
+        const choices = []
+
+        for (const [key, value] of Object.entries(item.metadata)) {
+          if (key === 'size') {
+            continue
+          }
+
+          choices.push(value)
+        }
+
+        const matrix = choices.join('-')
+
+        sku = codes[matrix]
+
+        if (sku == null) {
+          throw new Error(`Could not load sku for product with slug ${item.slug} and matrix ${matrix}`)
+        }
+      }
+
+      const details = OPTIONS.productCodes[sku]
+
+      if (details == null) {
+        throw new Error(`Could not load line details for product with slug ${item.slug} and SKU ${sku}`)
+      }
+
+      if (items[sku] == null) {
+        items[sku] = {
+          name: details.name,
+          notes: details.notes || '',
+          quantity: 0
+        }
+      }
+
+      items[sku].quantity += +item.quantity
+
+      item.supplierName = details.name
+      item.supplierNotes = details.notes
+      item.supplierSku = sku
     })
 
     // ignore any orders with no made-to-order items
@@ -80,10 +124,11 @@ async function kitOrdersCreateHandler () {
       config.email.from,
       config.email.from,
       supplierTitle,
-      htmlTemplateCreateOrder(config.kit.name, items),
-      textTemplateCreateOrder(config.kit.name, items)
+      htmlTemplateSupplierNotification(config.kit.name, items),
+      textTemplateSupplierNotification(config.kit.name, items)
     )
     await createOrder(orderDate, orders.map(order => order.payment))
+
     // await setOrderItemsStatus(orders.map(order => order.payment), 'production')
   } else {
     console.info('Nothing ordered this month')
@@ -105,7 +150,7 @@ module.exports = {
     }))
 }
 
-const htmlTemplateCreateOrder = (name, items) => `
+const htmlTemplateSupplierNotification = (name, items) => `
 <html>
   <head>
   </head>
@@ -113,17 +158,19 @@ const htmlTemplateCreateOrder = (name, items) => `
     <p>Hi ${name},</p>
     <p>Please may we place an order for the following items:</p>
     <p>${
-      Object.keys(items).map(name => {
-        return `${typeof items[name] === 'number'
-      ? `${items[name]}x ${name}
-    `
-      : `${name}<br/>
-    ${Object.keys(items[name]).map(variant => {
-      return `${items[name][variant]}x ${variant}`
-    }).join('<br/>')}
-    <br/>${Object.keys(items[name]).reduce((acc, curr) => acc + items[name][curr], 0)} total`}`
-}).join('</p><p>')
+      Object.keys(items).map(sku => {
+        let item = `${items[sku].quantity}x ${sku} "${items[sku].name}"`
+
+        if (items[sku].notes) {
+          item += `<br/>${items[sku].notes}`
+        }
+
+        return item
+      }).join('<br/><br/>')
     }</p>
+    <p>${
+      Object.keys(items).reduce((acc, sku) => acc + items[sku].quantity, 0)
+    } items total.</p>
     <p>Thanks,</p>
     <p>Alex</p>
     <p>Peckham Cycle Club</p>
@@ -138,28 +185,33 @@ const htmlTemplateCreateOrder = (name, items) => `
 </html>
 `
 
-const textTemplateCreateOrder = (name, items) => `
+const textTemplateSupplierNotification = (name, items) => `
 Hi ${name},
 
 Please may we place an order for the following items:
 
 ${
-  Object.keys(items).map(name => {
-    return `${typeof items[name] === 'number'
-  ? `${items[name]}x ${name}
-`
-  : `${name}
-${Object.keys(items[name]).map(variant => {
-  return `${items[name][variant]}x ${variant}`
-}).join('\r\n')}
-${Object.keys(items[name]).reduce((acc, curr) => acc + items[name][curr], 0)} total
-`}`
-}).join('\r\n')
+  Object.keys(items).map(sku => {
+    let item = `${items[sku].quantity}x ${sku} "${items[sku].name}"`
+
+    if (items[sku].notes) {
+      item += `\r\n${items[sku].notes}`
+    }
+
+    return item
+  })
+    .join('\r\n\r\n')
 }
+
+${
+  Object.keys(items).reduce((acc, sku) => acc + items[sku].quantity, 0)
+} items total.
 
 Thanks,
 
 Alex
+
+--
 
 Peckham Cycle Club
 
@@ -181,8 +233,28 @@ const htmlTemplateClubNotification = (date, orders) => `
         return `
     <p>${order.name}<br/>
       ${new Intl.DateTimeFormat('en', { minute: 'numeric', hour: 'numeric', day: 'numeric', month: 'short', year: 'numeric' }).format(order.date)}<br/>
-      ${order.items.map(item => `${item.quantity}x ${item.name}${Object.keys(item.metadata).length ? ` ${item.description}` : ''}`).join('<br/>')}</p>`
-      }).join('\r\n')
+      ${order.items.map(item => {
+        let line = `${item.quantity}x ${item.name}`
+
+        if (item.supplierSku) {
+          line += ` - ${item.supplierSku}`
+        }
+
+        if (item.supplierName) {
+          line += ` "${item.supplierName}"`
+        }
+
+        if (item.supplierNotes) {
+          line += `<br/>"${item.supplierNotes}"`
+        }
+
+        if (Object.keys(item.metadata).length) {
+          line += `<br/>${item.description}`
+        }
+
+        return line
+      }).join('<br/><br/>')}</p>`
+    })
     }
     <p>Peckham Cycle Club</p>
     <p>
@@ -203,9 +275,31 @@ ${
   return `
 ${order.name}
 ${new Intl.DateTimeFormat('en', { minute: 'numeric', hour: 'numeric', day: 'numeric', month: 'short', year: 'numeric' }).format(order.date)}
-${order.items.map(item => `${item.quantity}x ${item.name}${Object.keys(item.metadata).length ? ` ${item.description}` : ''}`).join('\r\n')}`
+${order.items.map(item => {
+  let line = `${item.quantity}x ${item.name}`
+
+  if (item.supplierSku) {
+    line += ` - ${item.supplierSku}`
+  }
+
+  if (item.supplierName) {
+    line += ` "${item.supplierName}"`
+  }
+
+  if (item.supplierNotes) {
+    line += `\r\n"${item.supplierNotes}"`
+  }
+
+  if (Object.keys(item.metadata).length) {
+    line += `\r\n${item.description}`
+  }
+
+  return line
+}).join('\r\n')}`
   }).join('\r\n')
 }
+
+--
 
 Peckham Cycle Club
 

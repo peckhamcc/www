@@ -45,6 +45,9 @@ import {
 import {
   Flag
 } from '../../lib/flags'
+import {
+  getPrice
+} from '../../lib/products'
 
 const PRODUCT_TYPES = {
   'made-to-order': 'Made to order',
@@ -139,6 +142,10 @@ const DetailWrapper = styled.div`
   margin: 0 0 ${spacing(0.5)} 0;
 
   p {
+    margin: 0
+  }
+
+  li {
     margin: 0
   }
 `
@@ -287,7 +294,7 @@ class Basket extends Component {
           <h5>Made to order</h5>
           <p>Your basket contains kit that is made to order.</p>
           <p>Orders cannot be cancelled, exchanged, or refunded once your order has been placed.</p>
-          <p>We aim to send kit orders to the factory on the first of every month, then it will take approximately 12 weeks to be made &amp; shipped.</p>
+          <p>We aim to send kit orders to the factory on the first of every month, then it will take approximately 6 weeks to be made &amp; shipped.</p>
           <p>When items are available, your order will be available to be picked up from <a href='https://ratracecycles.com/'>Rat Race Cycles</a> at 118 Evelina Road, SE15 3HL.</p>
         </>
       ))
@@ -323,9 +330,13 @@ class Basket extends Component {
       ))
     }
 
-    let cartTotal = cart.reduce((acc, item) => {
-      return acc + (slugLookup[item.slug].price.amount * item.quantity)
-    }, 0)
+    function findPrice (item) {
+      const price = getPrice(slugLookup[item.slug], item.options)
+
+      return price.amount * item.quantity
+    }
+
+    let cartTotal = cart.reduce((acc, item) => acc + findPrice(item), 0)
 
     const shippingWeight = cart.reduce((acc, item) => {
       const product = slugLookup[item.slug]
@@ -358,40 +369,51 @@ class Basket extends Component {
 
                 if (item.options) {
                   Object.keys(item.options).forEach(option => {
+                    const optionDetails = OPTIONS[option]
                     const value = item.options[option]
 
-                    details.push(
-                      option === 'size' ? OPTIONS[option][product.sizeChart][value].name : OPTIONS[option][value]
-                    )
-                  })
-                }
+                    if (option === 'size') {
+                      const chart = OPTIONS[option][product.sizeChart]
 
-                if (product.type) {
-                  details.push(PRODUCT_TYPES[product.type])
+                      details.push(
+                        `${optionDetails.name}: ${chart[value].name}`
+                      )
+                    } else {
+                      details.push(
+                        `${optionDetails.name}: ${optionDetails.options[value]}`
+                      )
+                    }
+                  })
                 }
 
                 return (
                   <Row key={index}>
                     <Cell>
-                      <ProductTitle>{item.name}</ProductTitle>
+                      <ProductTitle>{item.name} - {PRODUCT_TYPES[product.type]}</ProductTitle>
                       <ProductImage>
                         <ItemImage item={product} colour={item.options && item.options.colour} width={100} />
                       </ProductImage>
                       <ProductDetails>
                         <DetailWrapper>
-                          {details.join(', ')}
-                        </DetailWrapper>
-                        <DetailWrapper>
-                          <QuantityButton onClick={() => this.decreaseQuantity(item)} disabled={item.quantity === 1}><FaMinus /></QuantityButton>
-                          <Quantity>{item.quantity}</Quantity>
-                          <QuantityButton onClick={() => this.increaseQuantity(item)}><FaPlus /></QuantityButton>
-                        </DetailWrapper>
-                        <DetailWrapper>
-                          <SmallTextButton onClick={() => this.removeFromBasket(item)}>Remove from basket</SmallTextButton>
+                          <ul>
+                            {
+                              details.map((detail, index) => (
+                                <li key={`index-${index}`}>{detail}</li>
+                              ))
+                            }
+                          </ul>
                         </DetailWrapper>
                       </ProductDetails>
+                      <DetailWrapper>
+                        <QuantityButton onClick={() => this.decreaseQuantity(item)} disabled={item.quantity === 1}><FaMinus /></QuantityButton>
+                        <Quantity>{item.quantity}</Quantity>
+                        <QuantityButton onClick={() => this.increaseQuantity(item)}><FaPlus /></QuantityButton>
+                      </DetailWrapper>
+                      <DetailWrapper>
+                        <SmallTextButton onClick={() => this.removeFromBasket(item)}>Remove from basket</SmallTextButton>
+                      </DetailWrapper>
                     </Cell>
-                    <Cell><Price price={product.price.amount * item.quantity} /></Cell>
+                    <Cell><Price price={findPrice(item)} /></Cell>
                   </Row>
                 )
               })
