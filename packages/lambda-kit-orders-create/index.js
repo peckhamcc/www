@@ -38,8 +38,6 @@ async function kitOrdersCreateHandler () {
 
     // process order items for sending to supplier
     order.items.forEach(item => {
-      console.info(item)
-
       const codes = OPTIONS.productPrices[item.slug]
 
       if (!codes) {
