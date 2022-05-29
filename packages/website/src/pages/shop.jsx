@@ -30,7 +30,7 @@ class ShopPage extends Component {
         <ShortHero background={shopBackground} />
         <Panel>
           <p>
-            Our kit is made to order, and is only available to <Link to='/membership'>friends of Peckham CC</Link>, our
+            Our kit is made to order, and is only available to <Link to='/membership'>Friends of Peckham CC</Link>, our
             voluntary membership scheme.
           </p>
           <p>
@@ -44,6 +44,7 @@ class ShopPage extends Component {
             <Items>
               {
                 this.props.sections
+                  .sort((a, b) => a.name.localeCompare(b.name))
                   .filter(section => section.slug !== 'unknown')
                   .map(section => {
                     return (

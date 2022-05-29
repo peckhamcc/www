@@ -13,27 +13,19 @@ import {
 
 import clubLogo from '../../../assets/pcc-avatar.png'
 import armWarmersImage from '../../../assets/shop/arm-warmers.png'
-import armWarmersWhiteImage from '../../../assets/shop/arm-warmers-white.png'
 import bibsFrontImage from '../../../assets/shop/bibs-front.png'
-import bibsRearImage from '../../../assets/shop/bibs-rear.png'
+import bibs34FrontImage from '../../../assets/shop/34-bibs-front.png'
+import bibsTightsFrontImage from '../../../assets/shop/winter-tights-front.png'
 import capFrontImage from '../../../assets/shop/cap-front.png'
 import capSidesImage from '../../../assets/shop/cap-sides.png'
 import capWhiteFrontImage from '../../../assets/shop/cap-white-front.png'
 import capWhiteSidesImage from '../../../assets/shop/cap-white-sides.png'
 import giletFrontImage from '../../../assets/shop/gilet-front.png'
 import giletRearImage from '../../../assets/shop/gilet-rear.png'
-import giletWhiteFrontImage from '../../../assets/shop/gilet-white-front.png'
-import giletWhiteRearImage from '../../../assets/shop/gilet-white-rear.png'
 import lsJerseyFrontImage from '../../../assets/shop/ls-jersey-front.png'
-import lsJerseyRearImage from '../../../assets/shop/ls-jersey-rear.png'
 import ssJerseyFrontImage from '../../../assets/shop/ss-jersey-front.png'
 import ssJerseyRearImage from '../../../assets/shop/ss-jersey-rear.png'
-import ssSummerJerseyFrontImage from '../../../assets/shop/ss-summer-jersey-front.png'
-import ssSummerJerseyRearImage from '../../../assets/shop/ss-summer-jersey-rear.png'
 import winterJacketFrontImage from '../../../assets/shop/winter-jacket-front.png'
-import winterJacketRearImage from '../../../assets/shop/winter-jacket-rear.png'
-import winterTightsFrontImage from '../../../assets/shop/winter-tights-front.png'
-import winterTightsRearImage from '../../../assets/shop/winter-tights-rear.png'
 import socksSummerSideImage from '../../../assets/shop/socks-summer-side.png'
 import socksSummerTopImage from '../../../assets/shop/socks-summer-top.png'
 import socksWinterSideImage from '../../../assets/shop/socks-winter-side.png'
@@ -56,8 +48,6 @@ import zipHoodieBlkBackImage from '../../../assets/shop/zip-hoodie-2021-blk-back
 import musetteImage from '../../../assets/shop/musette.png'
 import speedSuitFrontImage from '../../../assets/shop/skin-suit-front.png'
 import speedSuitRearImage from '../../../assets/shop/skin-suit-rear.png'
-import triSuitFrontImage from '../../../assets/shop/tri-suit-front.png'
-import triSuitRearImage from '../../../assets/shop/tri-suit-rear.png'
 import royalMailShippingImage from '../../../assets/shop/royal-mail.png'
 import dpdShippingImage from '../../../assets/shop/amazon.png'
 import bdayTshirtWhiFrontImage from '../../../assets/shop/bday-t-shirt-2021-whi-front.png'
@@ -76,7 +66,7 @@ export const ITEM_IMAGES = {
     ssJerseyFrontImage
   ],
   outerwear: [
-    winterJacketFrontImage
+    giletFrontImage
   ],
   'skin-suits': [
     speedSuitFrontImage
@@ -104,60 +94,64 @@ export const ITEM_IMAGES = {
     capFrontImage,
     capSidesImage
   ],
-  'neck-warmer-2019': [
-    multiTubeImage
-  ],
-  'white-arm-warmers-2019': [
-    armWarmersWhiteImage
-  ],
-  'black-arm-warmers-2019': [
+  'summer-sleeves-2022': [
     armWarmersImage
   ],
-  'winter-tights-2019': [
-    winterTightsFrontImage,
-    winterTightsRearImage
+  'winter-arm-warmers-2022': [
+    armWarmersImage
   ],
-  'bib-shorts-2019': [
-    bibsFrontImage,
-    bibsRearImage
+  'neck-warmer-2022': [
+    multiTubeImage
   ],
-  'pro-bib-shorts-2019': [
-    bibsFrontImage,
-    bibsRearImage
+  'club-bib-shorts-2022': [
+    bibsFrontImage
   ],
-  'short-sleeved-race-jersey-2019': [
+  'pro-bib-shorts-2022': [
+    bibsFrontImage
+  ],
+  'club-3-4-bib-shorts-2022': [
+    bibs34FrontImage
+  ],
+  'club-bib-tights-2022': [
+    bibsTightsFrontImage
+  ],
+  'club-jersey-2022': [
     ssJerseyFrontImage,
     ssJerseyRearImage
   ],
-  'short-sleeved-summer-jersey-2019': [
-    ssSummerJerseyFrontImage,
-    ssSummerJerseyRearImage
-  ],
-  'short-sleeved-jersey-2019': [
+  'pro-jersey-2022': [
     ssJerseyFrontImage,
     ssJerseyRearImage
   ],
-  'long-sleeved-jersey-2019': [
-    lsJerseyFrontImage,
-    lsJerseyRearImage
-  ],
-  'shell-jacket-2019': [
-    winterJacketFrontImage,
-    winterJacketRearImage
-  ],
-  'gilet-2019': [
+  'lightweight-gilet-2022': [
     giletFrontImage,
     giletRearImage
   ],
-  'white-gilet-2019': [
-    giletWhiteFrontImage,
-    giletWhiteRearImage
+  'club-gilet-2022': [
+    giletFrontImage,
+    giletRearImage
   ],
-  'tri-suit-2019': [
-    triSuitFrontImage,
-    triSuitRearImage
+  'winter-pro-jersey-2022': [
+    lsJerseyFrontImage
   ],
-  'speed-suit-2019': [
+  'winter-club-jersey-2022': [
+    lsJerseyFrontImage
+  ],
+  'rain-jacket-2022': [
+    winterJacketFrontImage
+  ],
+  'winter-jacket-2022': [
+    winterJacketFrontImage
+  ],
+  'club-skin-suit-2022': [
+    speedSuitFrontImage,
+    speedSuitRearImage
+  ],
+  'road-skin-suit-2022': [
+    speedSuitFrontImage,
+    speedSuitRearImage
+  ],
+  'track-skin-suit-2022': [
     speedSuitFrontImage,
     speedSuitRearImage
   ],
@@ -286,7 +280,16 @@ export const ShopCategoryPanel = ({ item }) => {
 }
 
 export const ShopItemPanel = ({ item }) => {
-  const { slug, name, price } = item
+  const { slug, name, prices } = item
+
+  // choose the lowest price
+  const price = Object.values(prices).reduce((acc, curr) => {
+    if (curr.amount < acc.amount) {
+      return curr
+    }
+
+    return acc
+  }, Object.values(prices)[0])
 
   return (
     <ShopPanel>

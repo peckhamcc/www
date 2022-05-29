@@ -7,7 +7,8 @@ import {
 } from 'react-router-dom'
 import {
   Button,
-  SelectableOption
+  SelectableOption,
+  Note
 } from '../panels'
 import {
   Price,
@@ -42,97 +43,145 @@ import {
 import {
   QuantityButton
 } from '../forms'
+import {
+  getPrice
+} from '../../lib/products'
+
+const preproductionWarning = (
+  <Note>Please note the graphics shown are not final, amendments will be made before the first batch goes into production.</Note>
+)
 
 const PRODUCT_DESCRIPTIONS = {
-  'short-sleeved-jersey-2019': (
+  'club-jersey-2022': (
     <>
-      <p>Lightweight Short Sleeved Club Jersey in black.</p>
-      <p>Made from a combination of Coolmax and Mondrian fabric, the PCC club jersey has flatlock seams, silicone grippers, three large rear pockets and a fourth with a zip for your valuables.</p>
-      <p>It is available in male and female specific versions and has an athletic fit.</p>
-      <p>British Cycling approved club colours for racing.</p>
+      <p>The Club Jersey has flatlock seams, silicone grippers, and three large rear pockets including one with a hook to secure your valuables.</p>
+      <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <p>There are two fabrics available, a woven polyester or smooth polyester/elastane mix.</p>
+      <p>Some jerseys are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+      {preproductionWarning}
     </>
   ),
-  'short-sleeved-summer-jersey-2019': (
+  'pro-jersey-2022': (
     <>
-      <p>Lightweight Short Sleeved Club Jersey in white.</p>
-      <p>Made from a combination of Coolmax and Mondrian fabric, the PCC club jersey has flatlock seams, silicone grippers, three large rear pockets and a fourth with a zip for your valuables.</p>
-      <p>It is available in male and female specific versions and has an athletic fit.</p>
+      <p>The aero jersey has a similar shape to the club jersey but is made from a lighter weight material and has more panels for a closer fit.</p>
+      <p>The Race Jersey has flatlock seams, silicone grippers, and three large rear pockets including one with a hook to secure your valuables.</p>
+      <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <p>The fabric options are a smooth 110g/m2 polyester/elastane mix, a lightweight summer version at 85g/m2 or a woven 150g/m2 version made with polyester and carbon fibre.</p>
+      <p>Some jerseys are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+      {preproductionWarning}
     </>
   ),
-  'long-sleeved-jersey-2019': (
+  'winter-club-jersey-2022': (
     <>
-      <p>Long Sleeved Winter Jersey in black.</p>
-      <p>Made from a high performing Hydrophilic and Hydrophobic fabric and has three large rear pockets.</p>
-      <p>It comes with a full-length YKK zip and silicone grippers on the cuffs &amp; waist.</p>
-      <p>It is available in male and female specific versions and has an athletic fit.</p>
-      <p>British Cycling approved club colours for racing.</p>
+      <p>Made from 240g/m2 insulated material with a higher neck than the club jersey to keep the elements out, the Winter Club Jersey has flatlock seams, silicone grippers, and three large rear pockets.</p>
+      <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <p>Some jerseys are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+      {preproductionWarning}
     </>
   ),
-  'short-sleeved-race-jersey-2019': (
+  'winter-pro-jersey-2022': (
     <>
-      <p>Lightweight Short Sleeved Race Jersey in black.</p>
-      <p>This is the same design as our club jersey but in a slim fit with longer sleeves for better aerodynamics.</p>
-      <p>Made from a combination of Coolmax and Mondrian fabric, the PCC club jersey has flatlock seams, silicone grippers, three large rear pockets and a fourth with a zip for your valuables.</p>
-      <p>It is available in male and female specific versions and has a race fit.</p>
-      <p>British Cycling approved club colours for racing.</p>
+      <p>Made from 200g/m2 material with a higher neck than the pro jersey to keep the elements out, the Winter Pro Jersey has extra panels for a more aerodynamic fit, flatlock seams, silicone grippers, and three large rear pockets.</p>
+      <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <p>Some jerseys are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+      {preproductionWarning}
     </>
   ),
-  'winter-tights-2019': (
+  'lightweight-gilet-2022': (
     <>
-      <p>Winter Tights in black</p>
-      <p>Thermal winter tights made from Roubaix high stretch insulation (e.g. nylon/lycra construction with a brushed inner to retain heat).</p>
-      <p>They are available in male and female specific versions and have an athletic fit.</p>
+      <p>The Lightweight Gilet is perfect for long descents on summer rides and packs down easily to be stowed in a jersey pocket when not in use.</p>
+      <p>It is made from a 77g/m2 100% polyester material, has a deep neck for increased wind protection, comes with a full-length zip and a mesh back.</p>
+      <p>Some gilets are available in a "plus size" that adds 5cm to the body.</p>
+      {preproductionWarning}
     </>
   ),
-  'bib-shorts-2019': (
+  'club-gilet-2022': (
     <>
-      <p>Club Bib Shorts in black</p>
-      <p>Our Club Bibshort has a wicking upper mesh and flat-lock stitching with overlocked seams throughout for comfort.</p>
-      <p>The legs have raw edge silicone hem grips to make sure the legs stay put.</p>
-      <p>They are available in male and female specific versions.</p>
+      <p>The Club Gilet has a waterproof rating of 10k/10k, and is made of a 160g/m2 high stretch 90% polyester/10% polyurethane material.</p>
+      <p>It has a deep neck for increased wind protection, comes with a full-length zip, three rear pockets and is a great three-season option for layering and comfort.</p>
+      <p>It's available with a mesh back for warmer days or a membrane back for bad weather.</p>
+      <p>Some gilets are available in a "plus size" that adds 5cm to the body.</p>
+      {preproductionWarning}
     </>
   ),
-  'pro-bib-shorts-2019': (
+  'club-bib-shorts-2022': (
     <>
-      <p>Pro Bib Shorts in black</p>
-      <p>Similar to our Club Bibshort, the Pro version has an improved pad and dimpled side panels for extra speed.</p>
-      <p>The legs have raw edge silicone hem grips to make sure the legs stay put.</p>
-      <p>They are available in male and female specific versions.</p>
+      <p>Our Club Bib Short has a wicking upper mesh and flat-lock stitching with overlocked seams throughout for comfort and the legs have raw edge silicone hem grips to make sure the legs stay put.</p>
+      <p>They are available in male and female specific versions and the male fit can also be made with female pads.</p>
+      <p>There are two pads available, a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
+      <p>Some shorts are available in a "plus size" that adds 5cm to the legs.</p>
+      <p>Shorts are available in regular lycra fabric or roubaix which is insulated for colder weather.</p>
+      {preproductionWarning}
     </>
   ),
-  'shell-jacket-2019': (
+  'pro-bib-shorts-2022': (
     <>
-      <p>Club Shell Jacket in black</p>
-      <p>Lightweight packable outer layer in an athletic fit.</p>
+      <p>Our Pro Bib Shorts have more panels than the Club version for a closer fit.</p>
+      <p>They are available in male and female specific versions and the male fit can also be made with female pads.</p>
+      <p>There are two pads available, a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
+      <p>Some shorts are available in a "plus size" that adds 5cm to the legs.</p>
+      <p>Shorts are available in a textured lycra fabric, a lighter summer weight fabric or roubaix which is insulated for colder weather.</p>
+      {preproductionWarning}
     </>
   ),
-  'white-gilet-2019': (
+  'club-3-4-bib-shorts-2022': (
     <>
-      <p>Lightweight packable Club Gilet in white</p>
-      <p>The Club Gilet has a windproof front &amp; shoulders and is made of a high stretch fine denier material.</p>
-      <p>It has a deep neck for increased wind protection, comes with a full-length YKK zip, three rear pockets and packs down to easily fit in a jersey pocket.</p>
-      <p>It is available in male and female specific versions and has an athletic fit.</p>
-      <p>Exactly the same as the black gilet, only it will match your white jersey, socks &amp; cap</p>
+      <p>Our 3/4 length shorts feature silicone elastic grippers to keep the legs in place, flat seams for comfort, and reflective elements for visibility.</p>
+      <p>They are available in male and female specific versions and with a choice of pads.</p>
+      <p>There are two pads available, a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
+      <p>Some shorts are available in a "plus size" that adds 5cm to the legs.</p>
+      <p>Shorts are available in regular lycra fabric or roubaix which is insulated for colder weather.</p>
+      {preproductionWarning}
     </>
   ),
-  'gilet-2019': (
+  'club-bib-tights-2022': (
     <>
-      <p>Lightweight packable Club Gilet in black</p>
-      <p>The Club Gilet has a windproof front &amp; shoulders and is made of a high stretch fine denier material.</p>
-      <p>It has a deep neck for increased wind protection, comes with a full-length YKK zip, three rear pockets and packs down to easily fit in a jersey pocket.</p>
-      <p>It is available in male and female specific versions and has an athletic fit.</p>
+      <p>Our bib tights are made from an insulated roubaix material and feature silicone elastic grippers to keep the legs in place, flat seams for comfort, and reflective elements for visibility.</p>
+      <p>They are available in male and female specific versions and with a choice of pads or no pad at all if you wish to wear them over summer bibs.</p>
+      <p>There are two pads available, a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
+      <p>Some tights are available in a "plus size" that adds 5cm to the legs.</p>
+      {preproductionWarning}
     </>
   ),
-  'speed-suit-2019': (
+  'rain-jacket-2022': (
     <>
-      <p>Equally at home on the track or at the Christmas Party, a speedsuit is for when only the fastest will do.</p>
-      <p>British Cycling approved club colours for racing.</p>
+      <p>Our rain jacket is designed for bad weather. With a high neck, fully taped seams, an elongated tail and a waterproof zipper it will protect you against the worst the sky can chuck at you.</p>
+      <p>The fabric has a 20k/20k waterproof/breathability rating and is a lightweight 100g/m2.</p>
+      <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <p>Some jackets are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+      {preproductionWarning}
     </>
   ),
-  'tri-suit-2019': (
+  'winter-jacket-2022': (
     <>
-      <p>The aquatic cousin of the speedsuit, a trisuit worn under a wetsuit will save a few minutes during the transition from swim to cycle.</p>
-      <p>And you won't have to strip in a field.</p>
+      <p>Our winter jacket has 10k/10k waterproof/breathability rating and is made from a lightweight three-layer 160g/m2 fabric that is wind and waterproof while remaining breathable.</p>
+      <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <p>Some jackets are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+      {preproductionWarning}
+    </>
+  ),
+  'club-skin-suit-2022': (
+    <>
+      <p>All purpose skin suit with sleeve, pad, material and pocket options making it suited to all racing types or just for hanging out in at the Brick.</p>
+      <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <p>Some skin suits are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+      {preproductionWarning}
+    </>
+  ),
+  'road-skin-suit-2022': (
+    <>
+      <p>Skin suit with short sleeves and three rear pockets suited to road/CX or MTB racing.</p>
+      <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <p>Some skin suits are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+      {preproductionWarning}
+    </>
+  ),
+  'track-skin-suit-2022': (
+    <>
+      <p>Based on the track skin suits worn by Team GB, this skin suit has number pockets so you don't need to use pins.</p>
+      <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <p>Some skin suits are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+      {preproductionWarning}
     </>
   ),
   'musette-2019': (
@@ -164,12 +213,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>N.b. there is stock of this item available to buy at <a href='https://ratracecycles.com'>Rat Race Cycles</a></p>
     </>
   ),
-  'neck-warmer-2019': (
-    <>
-      <p>Club Neck Warmer</p>
-      <p>Versatile fabric tube that can be worn as a neck tube, mask, bandana, skull cap etc.</p>
-    </>
-  ),
   'white-cap-2019': (
     <>
       <p>White cotton cap with stitched ribbon and white screen print.</p>
@@ -190,18 +233,21 @@ const PRODUCT_DESCRIPTIONS = {
       <p>N.b. there is stock of this item available to buy at <a href='https://ratracecycles.com'>Rat Race Cycles</a></p>
     </>
   ),
-  'white-arm-warmers-2019': (
+  'winter-arm-warmers-2022': (
     <>
-      <p>Our Thermal Arm Warmers are made from Roubaix high stretch insulation (e.g. nylon/lycra construction with a brushed inner to retain heat).</p>
+      <p>Our Winter Arm Warmers are made from roubaix fabric -nylon/lycra construction with a brushed inner to retain heat.</p>
       <p>They have minimal seams for comfort and have silicone grippers at the bicep to ensure they stay in place.</p>
-      <p>In white to match your white jersey, cap, socks, etc</p>
     </>
   ),
-  'black-arm-warmers-2019': (
+  'summer-sleeves-2022': (
     <>
-      <p>Our Thermal Arm Warmers are made from Roubaix high stretch insulation (e.g. nylon/lycra construction with a brushed inner to retain heat).</p>
+      <p>Lightweight lycra sleeves designed to keep the sun off your skin.</p>
       <p>They have minimal seams for comfort and have silicone grippers at the bicep to ensure they stay in place.</p>
-      <p>In black to match your black jersey, cap, socks, etc</p>
+    </>
+  ),
+  'neck-warmer-2022': (
+    <>
+      <p>Versatile fabric tube for use as a neck-warmer, face mask, hat, etc</p>
     </>
   ),
   'hoodie-2021': (
@@ -298,7 +344,12 @@ class ProductDetails extends Component {
     }
 
     Object.keys(product.options).forEach(key => {
-      this.state.options[key] = product.options[key][0]
+      if (Array.isArray(product.options[key])) {
+        this.state.options[key] = product.options[key][0]
+      } else {
+        // non-array options are gendered
+        this.state.options[key] = product.options[key][product.options.gender[0]][0]
+      }
     })
   }
 
@@ -313,6 +364,24 @@ class ProductDetails extends Component {
 
     this.setState(s => {
       s.options[key] = value
+
+      if (key === 'gender') {
+        // reset any options that are not available to this gender
+
+        Object.keys(this.props.product.options).forEach(key => {
+          if (Array.isArray(this.props.product.options[key])) {
+            return
+          }
+
+          // non-array options are gendered
+          if (!this.props.product.options[key][value]) {
+            // this product does not have this option available for this gender
+            s.options[key] = this.props.product.options[key][this.props.product.options.gender[0]][0]
+          } else if (!this.props.product.options[key][value].includes(s.options[key])) {
+            s.options[key] = this.props.product.options[key][value][0]
+          }
+        })
+      }
 
       return s
     })
@@ -367,36 +436,138 @@ class ProductDetails extends Component {
 
   render () {
     const { product } = this.props
+    const { options } = this.state
 
-    const options = []
+    const productOptions = []
 
     Object.keys(product.options).forEach(key => {
-      options.push(
-        <div key={key}>
-          <h4>{key.substring(0, 1).toUpperCase()}{key.substring(1)}</h4>
-          {
-            product.options[key].map(option => {
-              let name = option
+      const optionDetails = OPTIONS[key]
 
-              if (key === 'size') {
-                name = option
-              } else if (OPTIONS[key] && OPTIONS[key][option]) {
-                name = OPTIONS[key][option]
+      if (!optionDetails) {
+        throw new Error(`No options key defined for ${key}`)
+      }
+
+      const choices = product.options[key]
+
+      if (Array.isArray(choices)) {
+        productOptions.push(
+          <div key={key}>
+            <h4>{optionDetails.name}</h4>
+            {optionDetails.notes ? <Note>{optionDetails.notes}</Note> : ''}
+            {
+              product.options[key].map(option => {
+                let name
+
+                if (key === 'size') {
+                  name = option
+                } else if (OPTIONS[key] && OPTIONS[key].options[option]) {
+                  name = OPTIONS[key].options[option]
+                }
+
+                if (!name) {
+                  throw new Error(`No option name ${option} for option ${key}`)
+                }
+
+                return (
+                  <SelectableOption
+                    selected={this.state.options[key] === option}
+                    onClick={() => this.handleChooseOption(key, option)}
+                    key={`${key}-${option}`}
+                  >{name}
+                  </SelectableOption>
+                )
+              })
+            }
+          </div>
+        )
+      } else {
+        // non-array options are gendered options
+        const gender = options.gender
+
+        if (choices[gender]) {
+          productOptions.push(
+            <div key={key}>
+              <h4>{optionDetails.name}</h4>
+              {optionDetails.notes ? <Note>{optionDetails.notes}</Note> : ''}
+              {
+                choices[gender].map(option => {
+                  let name = option
+
+                  if (key === 'size') {
+                    name = option
+                  } else if (OPTIONS[key] && OPTIONS[key].options[option]) {
+                    name = OPTIONS[key].options[option]
+                  }
+
+                  if (!name) {
+                    throw new Error(`No gendered option name ${option} for option ${key}`)
+                  }
+
+                  return (
+                    <SelectableOption
+                      selected={this.state.options[key] === option}
+                      onClick={() => this.handleChooseOption(key, option)}
+                      key={`${key}-${option}`}
+                    >{name}
+                    </SelectableOption>
+                  )
+                })
               }
-
-              return (
-                <SelectableOption
-                  selected={this.state.options[key] === option}
-                  onClick={() => this.handleChooseOption(key, option)}
-                  key={`${key}-${option}`}
-                >{name}
-                </SelectableOption>
-              )
-            })
-          }
-        </div>
-      )
+            </div>
+          )
+        }
+      }
     })
+
+    const price = getPrice(product, options)
+    /*
+    let price = Object.values(product.prices)[0]
+
+    if (Object.keys(product.options).length) {
+      const chosen = []
+
+      for (const [key, value] of Object.entries(options)) {
+        if (key === 'size') {
+          // size does not affect price
+          continue
+        }
+
+        chosen.push(value)
+      }
+
+      const matrix = chosen.join('-')
+
+      console.info('matrix', matrix)
+
+      const codes = OPTIONS.productPrices[product.slug]
+
+      if (!codes) {
+        throw new Error(`No product prices defined in config for ${product.slug}`)
+      }
+
+      let code
+
+      if (matrix === '') {
+        if (typeof codes != 'string') {
+          throw new Error(`Product ${product.slug} only had size option but multiple configured prices`)
+        }
+
+        code = codes
+      } else {
+        code = codes[matrix]
+      }
+
+      if (!code) {
+        throw new Error(`No product price defined in config for ${product.slug} and selection ${matrix}`)
+      }
+
+      price = product.prices[code]
+
+      if (!price) {
+        throw new Error(`No product price defined for code ${code} for product ${product.slug}`)
+      }
+    }
+    */
 
     return (
       <ProductDetailsPanel>
@@ -424,10 +595,10 @@ class ProductDetails extends Component {
           </Modal>
         )}
         <h2>{product.name}</h2>
-        <h3><Price price={product.price.amount} /></h3>
+        <h3><Price price={price.amount} /></h3>
         {productDescription(product.slug)}
         <OptionsArea>
-          {options}
+          {productOptions}
           <h4>Quantity</h4>
           <QuantityButton
             onClick={this.handleDecreaseQuantity}

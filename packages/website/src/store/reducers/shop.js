@@ -35,6 +35,10 @@ const shopReducer = (state = initialState, action) => {
       const slugLookup = sections.reduce((lookup, section) => {
         lookup[section.slug] = section
 
+        section.items = section.items.sort((a, b) => {
+          return a.name.localeCompare(b.name)
+        })
+
         section.items.forEach(item => {
           lookup[item.slug] = item
         })
