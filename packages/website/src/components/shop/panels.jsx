@@ -23,15 +23,16 @@ import capWhiteSidesImage from '../../../assets/shop/cap-white-sides.png'
 import giletFrontImage from '../../../assets/shop/gilet-front.png'
 import giletRearImage from '../../../assets/shop/gilet-rear.png'
 import lsJerseyFrontImage from '../../../assets/shop/ls-jersey-front.png'
+import lsJerseyRearImage from '../../../assets/shop/ls-jersey-rear.png'
 import ssJerseyFrontImage from '../../../assets/shop/ss-jersey-front.png'
 import ssJerseyRearImage from '../../../assets/shop/ss-jersey-rear.png'
 import winterJacketFrontImage from '../../../assets/shop/winter-jacket-front.png'
+import winterJacketRearImage from '../../../assets/shop/winter-jacket-rear.png'
 import socksSummerSideImage from '../../../assets/shop/socks-summer-side.png'
 import socksSummerTopImage from '../../../assets/shop/socks-summer-top.png'
 import socksWinterSideImage from '../../../assets/shop/socks-winter-side.png'
 import socksWinterTopImage from '../../../assets/shop/socks-winter-top.png'
 import multiTubeImage from '../../../assets/shop/multi-tube.png'
-// import headsetCapImage from '../../../assets/shop/headset-cap.png'
 import bidonImage from '../../../assets/shop/bidon.png'
 import tshirtBlkFrontImage from '../../../assets/shop/t-shirt-2021-blk-front.png'
 import tshirtBlkBackImage from '../../../assets/shop/t-shirt-2021-blk-back.png'
@@ -231,12 +232,18 @@ export const ITEM_IMAGES = {
     src: lsJerseyFrontImage,
     text: 'Pro winter jersey front'
   }, {
+    src: lsJerseyRearImage,
+    text: 'Pro winter jersey rear'
+  }, {
     src: tempsFabric,
     text: 'Lightweight roubaix-style jersey material'
   }],
   'winter-club-jersey-2022': [{
     src: lsJerseyFrontImage,
     text: 'Winter jersey front'
+  }, {
+    src: lsJerseyRearImage,
+    text: 'Winter jersey rear'
   }, {
     src: andorraFabric,
     text: 'Warm roubaix-style jersey material'
@@ -245,12 +252,18 @@ export const ITEM_IMAGES = {
     src: winterJacketFrontImage,
     text: 'Rain jacket front'
   }, {
+    src: winterJacketRearImage,
+    text: 'Rain jacket rear'
+  }, {
     src: eventFabric,
     text: 'Wind and waterproof fabric'
   }],
   'winter-jacket-2022': [{
     src: winterJacketFrontImage,
     text: 'Winter jacket front'
+  }, {
+    src: winterJacketRearImage,
+    text: 'Winter jacket rear'
   }, {
     src: missionFlowFabric,
     text: 'Three-layer wind/waterproof membrane fabric'
