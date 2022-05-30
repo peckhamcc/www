@@ -57,7 +57,8 @@ const PRODUCT_DESCRIPTIONS = {
       <p>The Club Jersey has flatlock seams, silicone grippers, and three large rear pockets including one with a hook to secure your valuables.</p>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
       <p>There are two fabrics available, a woven polyester or smooth polyester/elastane mix.</p>
-      <p>Some jerseys are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+      <p>All jerseys are cut from the same pattern but woven fabrics will stretch less so may feel tighter, smooth fabrics will stretch more and will fit more body shapes.</p>
+      <p>Woven fabrics also tend to be slightly thicker so will be warmer.</p>
       {preproductionWarning}
     </>
   ),
@@ -66,8 +67,9 @@ const PRODUCT_DESCRIPTIONS = {
       <p>The aero jersey has a similar shape to the club jersey but is made from a lighter weight material and has more panels for a closer fit.</p>
       <p>The Race Jersey has flatlock seams, silicone grippers, and three large rear pockets including one with a hook to secure your valuables.</p>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
-      <p>The fabric options are a smooth 110g/m2 polyester/elastane mix, a lightweight summer version at 85g/m2 or a woven 150g/m2 version made with polyester and carbon fibre.</p>
-      <p>Some jerseys are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+      <p>The fabric options are a smooth 110g/m2 polyester/elastane mix, a so-thin-you-might-get-sunburnt-through 85g/m2 lightweight summer version or a woven 150g/m2 version made with polyester and carbon fibre.</p>
+      <p>All jerseys are cut from the same pattern but woven fabrics will stretch less so may feel tighter, smooth fabrics will stretch more and will fit more body shapes.</p>
+      <p>Woven fabrics also tend to be slightly thicker so will be warmer.</p>
       {preproductionWarning}
     </>
   ),
@@ -127,8 +129,7 @@ const PRODUCT_DESCRIPTIONS = {
   'club-3-4-bib-shorts-2022': (
     <>
       <p>Our 3/4 length shorts feature silicone elastic grippers to keep the legs in place, flat seams for comfort, and reflective elements for visibility.</p>
-      <p>They are available in male and female specific versions and with a choice of pads.</p>
-      <p>There are two pads available, a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
+      <p>They are available in male and female specific versions and with a choice of pads - a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
       <p>Some shorts are available in a "plus size" that adds 5cm to the legs.</p>
       <p>Shorts are available in regular lycra fabric or roubaix which is insulated for colder weather.</p>
       {preproductionWarning}
@@ -137,8 +138,7 @@ const PRODUCT_DESCRIPTIONS = {
   'club-bib-tights-2022': (
     <>
       <p>Our bib tights are made from an insulated roubaix material and feature silicone elastic grippers to keep the legs in place, flat seams for comfort, and reflective elements for visibility.</p>
-      <p>They are available in male and female specific versions and with a choice of pads or no pad at all if you wish to wear them over summer bibs.</p>
-      <p>There are two pads available, a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
+      <p>They are available in male and female specific versions and with a choice of pads - a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
       <p>Some tights are available in a "plus size" that adds 5cm to the legs.</p>
       {preproductionWarning}
     </>
@@ -237,12 +237,14 @@ const PRODUCT_DESCRIPTIONS = {
     <>
       <p>Our Winter Arm Warmers are made from roubaix fabric -nylon/lycra construction with a brushed inner to retain heat.</p>
       <p>They have minimal seams for comfort and have silicone grippers at the bicep to ensure they stay in place.</p>
+      <p>For sizing you should match them to your jersey size.</p>
     </>
   ),
   'summer-sleeves-2022': (
     <>
       <p>Lightweight lycra sleeves designed to keep the sun off your skin.</p>
       <p>They have minimal seams for comfort and have silicone grippers at the bicep to ensure they stay in place.</p>
+      <p>For sizing you should match them to your jersey size.</p>
     </>
   ),
   'neck-warmer-2022': (
