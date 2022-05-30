@@ -78,6 +78,10 @@ const ImageNav = styled.div`
 
 const ProductImage = styled.div`
   flex-grow: 1;
+
+  p {
+    text-align: center;
+  }
 `
 
 const ThumbnailImage = ({ image, onClick, selected }) => {
@@ -97,10 +101,10 @@ class ImageViewer extends Component {
     const images = this._getImages()
 
     this.setState(s => {
-      let index = s.index - 1
+      let index = s.index + 1
 
-      if (index < 0) {
-        index = images.length - 1
+      if (index === images.length) {
+        index = 0
       }
 
       return {
@@ -113,10 +117,10 @@ class ImageViewer extends Component {
     const images = this._getImages()
 
     this.setState(s => {
-      let index = s.index + 1
+      let index = s.index - 1
 
-      if (index === images.length) {
-        index = 0
+      if (index < 0) {
+        index = images.length - 1
       }
 
       return {
@@ -155,7 +159,8 @@ class ImageViewer extends Component {
           )}
 
           <ProductImage>
-            <Image src={mainImage} />
+            <Image src={mainImage.src} />
+            {mainImage.text && <p>{mainImage.text}</p>}
           </ProductImage>
 
           {images.length > 1 && (
@@ -169,7 +174,7 @@ class ImageViewer extends Component {
 
         {images.length > 1 && (
           <Thumbnails>
-            {images.map((image, index) => <ThumbnailImage image={image} key={index} onClick={() => this.viewImage(index)} selected={index === this.state.index} />)}
+            {images.map((image, index) => <ThumbnailImage image={image.src} key={index} onClick={() => this.viewImage(index)} selected={index === this.state.index} />)}
           </Thumbnails>
         )}
       </div>

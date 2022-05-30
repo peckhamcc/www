@@ -104,7 +104,7 @@ const htmlTemplateShopOrder = (name, amount, lineItems, {
     <p>Your order contains kit that is made to order</p>
     <p>We aim to submit orders to the factory on the first of every month.</p>
     <p>
-      It then typically takes a further twelve weeks to print, after which your items will be held at
+      It then typically takes a further six weeks to be made, after which your items will be held at
       <a href="https://ratracecycles.com">Rat Race Cycles</a> for you to pick up.
     </p>
     ` : ''}
@@ -154,7 +154,7 @@ Your order contains kit that is made to order
 
 We aim to submit orders to the factory on the first of every month.
 
-It then typically takes a further twelve weeks to print, after which your items will be held at Rat Race Cycles for you to pick up.
+It then typically takes a further six weeks to be made, after which your items will be held at Rat Race Cycles for you to pick up.
 ` : ''}
 
 ${hasDropShipKit ? `

@@ -78,7 +78,7 @@ const OPTIONS = {
   },
   size: {
     name: 'Size',
-    notes: 'Where available, + sizes add 5cm to the arms/body/legs depending on garment',
+    notes: '+ sizes add 5cm to the arms & body or legs',
     'arm-warmers': {
       1: {
         name: '1',

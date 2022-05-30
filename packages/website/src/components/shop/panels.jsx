@@ -54,158 +54,299 @@ import bdayTshirtWhiFrontImage from '../../../assets/shop/bday-t-shirt-2021-whi-
 import bdayTshirtWhiBackImage from '../../../assets/shop/bday-t-shirt-2021-whi-back.png'
 import bdayTshirtBlkFrontImage from '../../../assets/shop/bday-t-shirt-2021-blk-front.png'
 import bdayTshirtBlkBackImage from '../../../assets/shop/bday-t-shirt-2021-blk-back.png'
+import valuablesPouch from '../../../assets/shop/valuables-pouch.png'
+import spinnFabric from '../../../assets/shop/material-spinn.jpg'
+import stripesFabric from '../../../assets/shop/material-stripes.jpg'
+import razorFabric from '../../../assets/shop/material-razor.jpg'
+import veranoFabric from '../../../assets/shop/material-verano.jpg'
+import carbonFabric from '../../../assets/shop/material-carbon.jpg'
+import andorraFabric from '../../../assets/shop/material-andorra.jpg'
+import tempsFabric from '../../../assets/shop/material-temps.jpg'
+import microfibreFabric from '../../../assets/shop/material-microfibre.jpg'
+import missionFlowFabric from '../../../assets/shop/material-mission-flow.jpg'
+import eventFabric from '../../../assets/shop/material-event.png'
+import lycraPowerFabric from '../../../assets/shop/material-lycra-power.jpg'
+import goffratoFabric from '../../../assets/shop/material-goffrato.jpg'
+import veranoFlexFabric from '../../../assets/shop/material-verano-flex.png'
+import roubaixFabric from '../../../assets/shop/material-roubaix.jpg'
+import revolutionalFabric from '../../../assets/shop/material-revolutional.jpg'
+import briosFabric from '../../../assets/shop/material-brios.jpg'
 
 export const ITEM_IMAGES = {
-  accessories: [
-    capFrontImage
-  ],
-  'bib-shorts-and-tights': [
-    bibsFrontImage
-  ],
-  jerseys: [
-    ssJerseyFrontImage
-  ],
-  outerwear: [
-    giletFrontImage
-  ],
-  'skin-suits': [
-    speedSuitFrontImage
-  ],
-  casualwear: [
-    hoodieBlkFrontImage
-  ],
+  accessories: [{
+    src: capFrontImage
+  }],
+  'bib-shorts-and-tights': [{
+    src: bibsFrontImage
+  }],
+  jerseys: [{
+    src: ssJerseyFrontImage
+  }],
+  outerwear: [{
+    src: giletFrontImage
+  }],
+  'skin-suits': [{
+    src: speedSuitFrontImage
+  }],
+  casualwear: [{
+    src: hoodieBlkFrontImage
+  }],
 
-  'musette-2019': [
-    musetteImage
-  ],
-  'white-socks-2019': [
-    socksSummerSideImage,
-    socksSummerTopImage
-  ],
-  'black-socks-2019': [
-    socksWinterSideImage,
-    socksWinterTopImage
-  ],
-  'white-cap-2019': [
-    capWhiteFrontImage,
-    capWhiteSidesImage
-  ],
-  'black-cap-2019': [
-    capFrontImage,
-    capSidesImage
-  ],
-  'summer-sleeves-2022': [
-    armWarmersImage
-  ],
-  'winter-arm-warmers-2022': [
-    armWarmersImage
-  ],
-  'neck-warmer-2022': [
-    multiTubeImage
-  ],
-  'club-bib-shorts-2022': [
-    bibsFrontImage
-  ],
-  'pro-bib-shorts-2022': [
-    bibsFrontImage
-  ],
-  'club-3-4-bib-shorts-2022': [
-    bibs34FrontImage
-  ],
-  'club-bib-tights-2022': [
-    bibsTightsFrontImage
-  ],
-  'club-jersey-2022': [
-    ssJerseyFrontImage,
-    ssJerseyRearImage
-  ],
-  'pro-jersey-2022': [
-    ssJerseyFrontImage,
-    ssJerseyRearImage
-  ],
-  'lightweight-gilet-2022': [
-    giletFrontImage,
-    giletRearImage
-  ],
-  'club-gilet-2022': [
-    giletFrontImage,
-    giletRearImage
-  ],
-  'winter-pro-jersey-2022': [
-    lsJerseyFrontImage
-  ],
-  'winter-club-jersey-2022': [
-    lsJerseyFrontImage
-  ],
-  'rain-jacket-2022': [
-    winterJacketFrontImage
-  ],
-  'winter-jacket-2022': [
-    winterJacketFrontImage
-  ],
-  'club-skin-suit-2022': [
-    speedSuitFrontImage,
-    speedSuitRearImage
-  ],
-  'road-skin-suit-2022': [
-    speedSuitFrontImage,
-    speedSuitRearImage
-  ],
-  'track-skin-suit-2022': [
-    speedSuitFrontImage,
-    speedSuitRearImage
-  ],
-  'bidon-2019': [
-    bidonImage
-  ],
+  'musette-2019': [{
+    src: musetteImage
+  }],
+  'white-socks-2019': [{
+    src: socksSummerSideImage
+  }, {
+    src: socksSummerTopImage
+  }],
+  'black-socks-2019': [{
+    src: socksWinterSideImage
+  }, {
+    src: socksWinterTopImage
+  }],
+  'white-cap-2019': [{
+    src: capWhiteFrontImage
+  }, {
+    src: capWhiteSidesImage
+  }],
+  'black-cap-2019': [{
+    src: capFrontImage
+  }, {
+    src: capSidesImage
+  }],
+  'summer-sleeves-2022': [{
+    src: armWarmersImage,
+    text: 'Summer sleeves'
+  }, {
+    src: lycraPowerFabric,
+    text: 'Lightweight lycra fabric'
+  }],
+  'winter-arm-warmers-2022': [{
+    src: armWarmersImage,
+    text: 'Winter arm warmers'
+  }, {
+    src: roubaixFabric,
+    text: 'Insulated roubaix fabric'
+  }],
+  'neck-warmer-2022': [{
+    src: multiTubeImage
+  }],
+  'club-bib-shorts-2022': [{
+    src: bibsFrontImage,
+    text: 'Bib shorts'
+  }, {
+    src: lycraPowerFabric,
+    text: 'Lycra fabric'
+  }],
+  'pro-bib-shorts-2022': [{
+    src: bibsFrontImage,
+    text: 'Pro bib shorts'
+  }, {
+    src: goffratoFabric,
+    text: 'Speed textured lycra'
+  }, {
+    src: veranoFlexFabric,
+    text: 'Lightweight summer fabric'
+  }, {
+    src: roubaixFabric,
+    text: 'Insulated roubaix fabric'
+  }],
+  'club-3-4-bib-shorts-2022': [{
+    src: bibs34FrontImage,
+    text: '3/4 bibs'
+  }, {
+    src: lycraPowerFabric,
+    text: 'Lycra fabric'
+  }, {
+    src: roubaixFabric,
+    text: 'Insulated roubaix fabric'
+  }],
+  'club-bib-tights-2022': [{
+    src: bibsTightsFrontImage,
+    text: 'Winter tights'
+  }, {
+    src: roubaixFabric,
+    text: 'Insulated roubaix fabric'
+  }],
+  'club-jersey-2022': [{
+    src: ssJerseyFrontImage,
+    text: 'Jersey front'
+  }, {
+    src: ssJerseyRearImage,
+    text: 'Jersey rear'
+  }, {
+    src: spinnFabric,
+    text: 'Woven fabric option'
+  }, {
+    src: razorFabric,
+    text: 'Smooth fabric option (on body)'
+  }, {
+    src: stripesFabric,
+    text: 'Smooth fabric option (on arms)'
+  }, {
+    src: valuablesPouch,
+    text: 'Optional valuables pouch'
+  }],
+  'pro-jersey-2022': [{
+    src: ssJerseyFrontImage,
+    text: 'Jersey front'
+  }, {
+    src: ssJerseyRearImage,
+    text: 'Jersey rear'
+  }, {
+    src: razorFabric,
+    text: 'Smooth fabric option'
+  }, {
+    src: veranoFabric,
+    text: 'Lightweight fabric option'
+  }, {
+    src: carbonFabric,
+    text: 'Woven fabric option'
+  }, {
+    src: valuablesPouch,
+    text: 'Optional valuables pouch'
+  }],
+  'lightweight-gilet-2022': [{
+    src: giletFrontImage,
+    text: 'Gilet front'
+  }, {
+    src: giletRearImage,
+    text: 'Gilet rear'
+  }, {
+    src: microfibreFabric,
+    text: 'Lightweight microfibre fabric on chest and shoulders'
+  }],
+  'club-gilet-2022': [{
+    src: giletFrontImage,
+    text: 'Gilet front'
+  }, {
+    src: giletRearImage,
+    text: 'Gilet rear'
+  }, {
+    src: missionFlowFabric,
+    text: 'Three-layer wind/waterproof membrane fabric'
+  }],
+  'winter-pro-jersey-2022': [{
+    src: lsJerseyFrontImage,
+    text: 'Pro winter jersey front'
+  }, {
+    src: tempsFabric,
+    text: 'Lightweight roubaix-style jersey material'
+  }],
+  'winter-club-jersey-2022': [{
+    src: lsJerseyFrontImage,
+    text: 'Winter jersey front'
+  }, {
+    src: andorraFabric,
+    text: 'Warm roubaix-style jersey material'
+  }],
+  'rain-jacket-2022': [{
+    src: winterJacketFrontImage,
+    text: 'Rain jacket front'
+  }, {
+    src: eventFabric,
+    text: 'Wind and waterproof fabric'
+  }],
+  'winter-jacket-2022': [{
+    src: winterJacketFrontImage,
+    text: 'Winter jacket front'
+  }, {
+    src: missionFlowFabric,
+    text: 'Three-layer wind/waterproof membrane fabric'
+  }],
+  'club-skin-suit-2022': [{
+    src: speedSuitFrontImage,
+    text: 'Skin suit front'
+  }, {
+    src: speedSuitRearImage,
+    text: 'Skin suit rear'
+  }, {
+    src: lycraPowerFabric,
+    text: 'Lycra fabric'
+  }, {
+    src: revolutionalFabric,
+    text: 'Lightweight fabric'
+  }],
+  'road-skin-suit-2022': [{
+    src: speedSuitFrontImage,
+    text: 'Skin suit front'
+  }, {
+    src: speedSuitRearImage,
+    text: 'Skin suit rear'
+  }, {
+    src: briosFabric,
+    text: 'Lycra fabric'
+  }, {
+    src: veranoFlexFabric,
+    text: 'Lightweight fabric'
+  }],
+  'track-skin-suit-2022': [{
+    src: speedSuitFrontImage,
+    text: 'Skin suit front'
+  }, {
+    src: speedSuitRearImage,
+    text: 'Skin suit rear'
+  }],
+  'bidon-2019': [{
+    src: bidonImage
+  }],
   'hoodie-2021': {
-    BLK: [
-      hoodieBlkFrontImage,
-      hoodieBlkBackImage
-    ]
+    BLK: [{
+      src: hoodieBlkFrontImage
+    }, {
+      src: hoodieBlkBackImage
+    }]
   },
   'zip-hoodie-2021': {
-    BLK: [
-      zipHoodieBlkFrontImage,
-      zipHoodieBlkBackImage
-    ]
+    BLK: [{
+      src: zipHoodieBlkFrontImage
+    }, {
+      src: zipHoodieBlkBackImage
+    }]
   },
   't-shirt-2021': {
-    BLK: [
-      tshirtBlkFrontImage,
-      tshirtBlkBackImage
-    ],
-    WHI: [
-      tshirtWhiFrontImage,
-      tshirtWhiBackImage
-    ]
+    BLK: [{
+      src: tshirtBlkFrontImage
+    }, {
+      src: tshirtBlkBackImage
+    }],
+    WHI: [{
+      src: tshirtWhiFrontImage
+    }, {
+      src: tshirtWhiBackImage
+    }]
   },
   'ls-t-shirt-2021': {
-    BLK: [
-      lsTshirtBlkFrontImage,
-      lsTshirtBlkBackImage
-    ],
-    WHI: [
-      lsTshirtWhiFrontImage,
-      lsTshirtWhiBackImage
-    ]
+    BLK: [{
+      src: lsTshirtBlkFrontImage
+    }, {
+      src: lsTshirtBlkBackImage
+    }],
+    WHI: [{
+      src: lsTshirtWhiFrontImage
+    }, {
+      src: lsTshirtWhiBackImage
+    }]
   },
   'bday-t-shirt-2021': {
-    BLK: [
-      bdayTshirtBlkFrontImage,
-      bdayTshirtBlkBackImage
-    ],
-    WHI: [
-      bdayTshirtWhiFrontImage,
-      bdayTshirtWhiBackImage
-    ]
+    BLK: [{
+      src: bdayTshirtBlkFrontImage
+    }, {
+      src: bdayTshirtBlkBackImage
+    }],
+    WHI: [{
+      src: bdayTshirtWhiFrontImage
+    }, {
+      src: bdayTshirtWhiBackImage
+    }]
   },
-  'royal-mail-shipping': [
-    royalMailShippingImage
-  ],
-  'dpd-shipping': [
-    dpdShippingImage
-  ]
+  'royal-mail-shipping': [{
+    src: royalMailShippingImage
+  }],
+  'dpd-shipping': [{
+    src: dpdShippingImage
+  }]
 }
 
 const ShopPanel = styled(InnerPanel)`
@@ -260,7 +401,7 @@ const findImage = (slug, colour) => {
 
 export const ItemImage = ({ item, colour, ...attrs }) => {
   return (
-    <img src={findImage(item.slug, colour)} {...attrs} />
+    <img src={findImage(item.slug, colour).src} {...attrs} />
   )
 }
 
