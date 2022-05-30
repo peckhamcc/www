@@ -197,10 +197,11 @@ const createCheckoutSession = async (userId, stripeCustomerId, items) => {
 
     const chosen = []
 
-    if (Object.keys(item.options || {}).length) {
+    if (product.variations) {
       metadata[`item-${index}`] = JSON.stringify(item.options)
 
-      description = Object.keys(item.options).map(option => {
+      // ensure the order is constant
+      description = product.variations.split('-').map(option => {
         const optionDetails = OPTIONS[option]
         const value = item.options[option]
 
