@@ -3,8 +3,6 @@ import {
 } from '@peckhamcc/config'
 
 export function getPrice (product, options) {
-  console.info('product', product, 'options', options)
-
   const codes = OPTIONS.productPrices[product.slug]
 
   if (!codes) {
@@ -13,16 +11,17 @@ export function getPrice (product, options) {
 
   let price = Object.values(product.prices)[0]
 
-  if (Object.keys(product.options).length) {
+  if (product.variations) {
     const chosen = []
 
-    for (const [key, value] of Object.entries(options)) {
+    // ensure the order is constant
+    for (const key of product.variations.split('-')) {
       if (key === 'size') {
         // size does not affect price
         continue
       }
 
-      chosen.push(value)
+      chosen.push(options[key])
     }
 
     const matrix = chosen.join('-')

@@ -153,7 +153,8 @@ const getProducts = async () => {
       options,
       prices,
       type: product.metadata.type,
-      shippingWeight: parseInt(product.metadata['shipping-weight'] || '0', 10)
+      shippingWeight: parseInt(product.metadata['shipping-weight'] || '0', 10),
+      variations: product.metadata.options
     })
   }
 
