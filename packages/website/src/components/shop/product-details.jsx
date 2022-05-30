@@ -345,14 +345,16 @@ class ProductDetails extends Component {
       options: {}
     }
 
-    Object.keys(product.options).forEach(key => {
-      if (Array.isArray(product.options[key])) {
-        this.state.options[key] = product.options[key][0]
-      } else {
-        // non-array options are gendered
-        this.state.options[key] = product.options[key][product.options.gender[0]][0]
-      }
-    })
+    if (product.variations) {
+      product.variations.split('-').forEach(key => {
+        if (Array.isArray(product.options[key])) {
+          this.state.options[key] = product.options[key][0]
+        } else {
+          // non-array options are gendered
+          this.state.options[key] = product.options[key][product.options.gender[0]][0]
+        }
+      })
+    }
   }
 
   handleChooseOption = (key, value) => {
@@ -442,58 +444,24 @@ class ProductDetails extends Component {
 
     const productOptions = []
 
-    Object.keys(product.options).forEach(key => {
-      const optionDetails = OPTIONS[key]
+    if (product.variations) {
+      product.variations.split('-').forEach(key => {
+        const optionDetails = OPTIONS[key]
 
-      if (!optionDetails) {
-        throw new Error(`No options key defined for ${key}`)
-      }
+        if (!optionDetails) {
+          throw new Error(`No options key defined for ${key}`)
+        }
 
-      const choices = product.options[key]
+        const choices = product.options[key]
 
-      if (Array.isArray(choices)) {
-        productOptions.push(
-          <div key={key}>
-            <h4>{optionDetails.name}</h4>
-            {optionDetails.notes ? <Note>{optionDetails.notes}</Note> : ''}
-            {
-              product.options[key].map(option => {
-                let name
-
-                if (key === 'size') {
-                  name = option
-                } else if (OPTIONS[key] && OPTIONS[key].options[option]) {
-                  name = OPTIONS[key].options[option]
-                }
-
-                if (!name) {
-                  throw new Error(`No option name ${option} for option ${key}`)
-                }
-
-                return (
-                  <SelectableOption
-                    selected={this.state.options[key] === option}
-                    onClick={() => this.handleChooseOption(key, option)}
-                    key={`${key}-${option}`}
-                  >{name}
-                  </SelectableOption>
-                )
-              })
-            }
-          </div>
-        )
-      } else {
-        // non-array options are gendered options
-        const gender = options.gender
-
-        if (choices[gender]) {
+        if (Array.isArray(choices)) {
           productOptions.push(
             <div key={key}>
               <h4>{optionDetails.name}</h4>
               {optionDetails.notes ? <Note>{optionDetails.notes}</Note> : ''}
               {
-                choices[gender].map(option => {
-                  let name = option
+                product.options[key].map(option => {
+                  let name
 
                   if (key === 'size') {
                     name = option
@@ -502,7 +470,7 @@ class ProductDetails extends Component {
                   }
 
                   if (!name) {
-                    throw new Error(`No gendered option name ${option} for option ${key}`)
+                    throw new Error(`No option name ${option} for option ${key}`)
                   }
 
                   return (
@@ -517,9 +485,45 @@ class ProductDetails extends Component {
               }
             </div>
           )
+        } else {
+          // non-array options are gendered options
+          const gender = options.gender
+
+          if (choices[gender]) {
+            productOptions.push(
+              <div key={key}>
+                <h4>{optionDetails.name}</h4>
+                {optionDetails.notes ? <Note>{optionDetails.notes}</Note> : ''}
+                {
+                  choices[gender].map(option => {
+                    let name = option
+
+                    if (key === 'size') {
+                      name = option
+                    } else if (OPTIONS[key] && OPTIONS[key].options[option]) {
+                      name = OPTIONS[key].options[option]
+                    }
+
+                    if (!name) {
+                      throw new Error(`No gendered option name ${option} for option ${key}`)
+                    }
+
+                    return (
+                      <SelectableOption
+                        selected={this.state.options[key] === option}
+                        onClick={() => this.handleChooseOption(key, option)}
+                        key={`${key}-${option}`}
+                      >{name}
+                      </SelectableOption>
+                    )
+                  })
+                }
+              </div>
+            )
+          }
         }
-      }
-    })
+      })
+    }
 
     const price = getPrice(product, options)
 
