@@ -208,7 +208,7 @@ const createCheckoutSession = async (userId, stripeCustomerId, items) => {
         if (option === 'size') {
           const chart = OPTIONS[option][product.sizeChart]
 
-          return `${optionDetails.name}: ${chart[value].name}`
+          return `${chart.name}: ${chart.options[value].name}`
         } else {
           chosen.push(value)
 

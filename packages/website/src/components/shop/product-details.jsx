@@ -446,7 +446,15 @@ class ProductDetails extends Component {
 
     if (product.variations) {
       product.variations.split('-').forEach(key => {
-        const optionDetails = OPTIONS[key]
+        let optionDetails = OPTIONS[key]
+
+        if (key === 'size') {
+          if (!product.sizeChart) {
+            throw new Error(`No size chart defined for product ${product.slug}`)
+          }
+
+          optionDetails = OPTIONS.size[product.sizeChart]
+        }
 
         if (!optionDetails) {
           throw new Error(`No options key defined for ${key}`)
@@ -465,8 +473,9 @@ class ProductDetails extends Component {
 
                   if (key === 'size') {
                     name = option
-                  } else if (OPTIONS[key] && OPTIONS[key].options[option]) {
-                    name = OPTIONS[key].options[option]
+                    console.info('option', options, optionDetails)
+                  } else if (optionDetails.options[option]) {
+                    name = optionDetails.options[option]
                   }
 
                   if (!name) {
@@ -499,9 +508,9 @@ class ProductDetails extends Component {
                     let name = option
 
                     if (key === 'size') {
-                      name = option
-                    } else if (OPTIONS[key] && OPTIONS[key].options[option]) {
-                      name = OPTIONS[key].options[option]
+                      name = optionDetails.options[option].name
+                    } else if (optionDetails.options[option]) {
+                      name = optionDetails.options[option]
                     }
 
                     if (!name) {

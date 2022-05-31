@@ -376,7 +376,7 @@ class Basket extends Component {
                       const chart = OPTIONS[option][product.sizeChart]
 
                       details.push(
-                        `${optionDetails.name}: ${chart[value].name}`
+                        `${chart.name}: ${chart.options[value].name}`
                       )
                     } else {
                       details.push(
