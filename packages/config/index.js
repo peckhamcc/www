@@ -77,195 +77,200 @@ const OPTIONS = {
     }
   },
   size: {
-    name: 'Size',
-    notes: '+ sizes add 5cm to the arms & body or legs',
     'arm-warmers': {
-      1: {
-        name: '1',
-        measurements: {
-          jersey: {
-            U: '1'
+      name: 'Size',
+      options: {
+        1: {
+          name: '1',
+          measurements: {
+            jersey: {
+              U: '1'
+            }
           }
-        }
-      },
-      '2/3': {
-        name: '2-3',
-        measurements: {
-          jersey: {
-            U: '2-3'
+        },
+        '2/3': {
+          name: '2-3',
+          measurements: {
+            jersey: {
+              U: '2-3'
+            }
           }
-        }
-      },
-      '4/5': {
-        name: '4-5',
-        measurements: {
-          jersey: {
-            U: '4-5'
+        },
+        '4/5': {
+          name: '4-5',
+          measurements: {
+            jersey: {
+              U: '4-5'
+            }
           }
-        }
-      },
-      '6/8': {
-        name: '6-8',
-        measurements: {
-          jersey: {
-            U: '6-8'
+        },
+        '6/8': {
+          name: '6-8',
+          measurements: {
+            jersey: {
+              U: '6-8'
+            }
           }
         }
       }
     },
     jerseys: {
-      1: {
-        name: '1',
-        measurements: {
-          chest: {
-            M: {
-              min: 84,
-              max: 88
-            },
-            F: {
-              min: 82,
-              max: 86
+      name: 'Size',
+      notes: 'L sizes add 5cm length to the arms & body',
+      options: {
+        1: {
+          name: '1',
+          measurements: {
+            chest: {
+              M: {
+                min: 84,
+                max: 88
+              },
+              F: {
+                min: 82,
+                max: 86
+              }
             }
           }
-        }
-      },
-      '1+': {
-        name: '1+',
-        measurements: {
-          chest: {
-            M: {
-              min: 84,
-              max: 88
+        },
+        '1+': {
+          name: '1L',
+          measurements: {
+            chest: {
+              M: {
+                min: 84,
+                max: 88
+              }
             }
           }
-        }
-      },
-      2: {
-        name: '2',
-        measurements: {
-          chest: {
-            M: {
-              min: 88,
-              max: 92
-            },
-            F: {
-              min: 86,
-              max: 90
+        },
+        2: {
+          name: '2',
+          measurements: {
+            chest: {
+              M: {
+                min: 88,
+                max: 92
+              },
+              F: {
+                min: 86,
+                max: 90
+              }
             }
           }
-        }
-      },
-      '2+': {
-        name: '2+',
-        measurements: {
-          chest: {
-            M: {
-              min: 88,
-              max: 92
+        },
+        '2+': {
+          name: '2L',
+          measurements: {
+            chest: {
+              M: {
+                min: 88,
+                max: 92
+              }
             }
           }
-        }
-      },
-      3: {
-        name: '3',
-        measurements: {
-          chest: {
-            M: {
-              min: 92,
-              max: 96
-            },
-            F: {
-              min: 90,
-              max: 94
+        },
+        3: {
+          name: '3',
+          measurements: {
+            chest: {
+              M: {
+                min: 92,
+                max: 96
+              },
+              F: {
+                min: 90,
+                max: 94
+              }
             }
           }
-        }
-      },
-      '3+': {
-        name: '3+',
-        measurements: {
-          chest: {
-            M: {
-              min: 92,
-              max: 96
+        },
+        '3+': {
+          name: '3L',
+          measurements: {
+            chest: {
+              M: {
+                min: 92,
+                max: 96
+              }
             }
           }
-        }
-      },
-      4: {
-        name: '4',
-        measurements: {
-          chest: {
-            M: {
-              min: 96,
-              max: 100
-            },
-            F: {
-              min: 94,
-              max: 98
+        },
+        4: {
+          name: '4',
+          measurements: {
+            chest: {
+              M: {
+                min: 96,
+                max: 100
+              },
+              F: {
+                min: 94,
+                max: 98
+              }
             }
           }
-        }
-      },
-      '4+': {
-        name: '4+',
-        measurements: {
-          chest: {
-            M: {
-              min: 96,
-              max: 100
+        },
+        '4+': {
+          name: '4L',
+          measurements: {
+            chest: {
+              M: {
+                min: 96,
+                max: 100
+              }
             }
           }
-        }
-      },
-      5: {
-        name: '5',
-        measurements: {
-          chest: {
-            M: {
-              min: 100,
-              max: 104
-            },
-            F: {
-              min: 98,
-              max: 106
+        },
+        5: {
+          name: '5',
+          measurements: {
+            chest: {
+              M: {
+                min: 100,
+                max: 104
+              },
+              F: {
+                min: 98,
+                max: 106
+              }
             }
           }
-        }
-      },
-      6: {
-        name: '6',
-        measurements: {
-          chest: {
-            M: {
-              min: 104,
-              max: 112
-            },
-            F: {
-              min: 106,
-              max: 114
+        },
+        6: {
+          name: '6',
+          measurements: {
+            chest: {
+              M: {
+                min: 104,
+                max: 112
+              },
+              F: {
+                min: 106,
+                max: 114
+              }
             }
           }
-        }
-      },
-      7: {
-        name: '7',
-        measurements: {
-          chest: {
-            M: {
-              min: 112,
-              max: 120
+        },
+        7: {
+          name: '7',
+          measurements: {
+            chest: {
+              M: {
+                min: 112,
+                max: 120
+              }
             }
           }
-        }
-      },
-      8: {
-        name: '8',
-        measurements: {
-          chest: {
-            M: {
-              min: 120,
-              max: 128
+        },
+        8: {
+          name: '8',
+          measurements: {
+            chest: {
+              M: {
+                min: 120,
+                max: 128
+              }
             }
           }
         }
@@ -273,158 +278,162 @@ const OPTIONS = {
     },
 
     shorts: {
-      1: {
-        name: '1',
-        measurements: {
-          hips: {
-            M: {
-              min: 85,
-              max: 89
-            },
-            F: {
-              min: 86,
-              max: 90
+      name: 'Size',
+      notes: 'L sizes add 5cm length to the legs',
+      options: {
+        1: {
+          name: '1',
+          measurements: {
+            hips: {
+              M: {
+                min: 85,
+                max: 89
+              },
+              F: {
+                min: 86,
+                max: 90
+              }
             }
           }
-        }
-      },
-      '1+': {
-        name: '1+',
-        measurements: {
-          hips: {
-            M: {
-              min: 85,
-              max: 89
+        },
+        '1+': {
+          name: '1L',
+          measurements: {
+            hips: {
+              M: {
+                min: 85,
+                max: 89
+              }
             }
           }
-        }
-      },
-      2: {
-        name: '2',
-        measurements: {
-          hips: {
-            M: {
-              min: 89,
-              max: 93
-            },
-            F: {
-              min: 90,
-              max: 94
+        },
+        2: {
+          name: '2',
+          measurements: {
+            hips: {
+              M: {
+                min: 89,
+                max: 93
+              },
+              F: {
+                min: 90,
+                max: 94
+              }
             }
           }
-        }
-      },
-      '2+': {
-        name: '2+',
-        measurements: {
-          hips: {
-            M: {
-              min: 89,
-              max: 93
+        },
+        '2+': {
+          name: '2L',
+          measurements: {
+            hips: {
+              M: {
+                min: 89,
+                max: 93
+              }
             }
           }
-        }
-      },
-      3: {
-        name: '3',
-        measurements: {
-          hips: {
-            M: {
-              min: 93,
-              max: 97
-            },
-            F: {
-              min: 94,
-              max: 98
+        },
+        3: {
+          name: '3',
+          measurements: {
+            hips: {
+              M: {
+                min: 93,
+                max: 97
+              },
+              F: {
+                min: 94,
+                max: 98
+              }
             }
           }
-        }
-      },
-      '3+': {
-        name: '3+',
-        measurements: {
-          hips: {
-            M: {
-              min: 93,
-              max: 97
+        },
+        '3+': {
+          name: '3L',
+          measurements: {
+            hips: {
+              M: {
+                min: 93,
+                max: 97
+              }
             }
           }
-        }
-      },
-      4: {
-        name: '4',
-        measurements: {
-          hips: {
-            M: {
-              min: 97,
-              max: 101
-            },
-            F: {
-              min: 94,
-              max: 98
+        },
+        4: {
+          name: '4',
+          measurements: {
+            hips: {
+              M: {
+                min: 97,
+                max: 101
+              },
+              F: {
+                min: 94,
+                max: 98
+              }
             }
           }
-        }
-      },
-      '4+': {
-        name: '4+',
-        measurements: {
-          hips: {
-            M: {
-              min: 97,
-              max: 101
+        },
+        '4+': {
+          name: '4L',
+          measurements: {
+            hips: {
+              M: {
+                min: 97,
+                max: 101
+              }
             }
           }
-        }
-      },
-      5: {
-        name: '5',
-        measurements: {
-          hips: {
-            M: {
-              min: 102,
-              max: 1110
-            },
-            F: {
-              min: 98,
-              max: 106
+        },
+        5: {
+          name: '5',
+          measurements: {
+            hips: {
+              M: {
+                min: 102,
+                max: 1110
+              },
+              F: {
+                min: 98,
+                max: 106
+              }
             }
           }
-        }
-      },
-      6: {
-        name: '6',
-        measurements: {
-          hips: {
-            M: {
-              min: 105,
-              max: 113
-            },
-            F: {
-              min: 110,
-              max: 118
+        },
+        6: {
+          name: '6',
+          measurements: {
+            hips: {
+              M: {
+                min: 105,
+                max: 113
+              },
+              F: {
+                min: 110,
+                max: 118
+              }
             }
           }
-        }
-      },
-      7: {
-        name: '7',
-        measurements: {
-          hips: {
-            M: {
-              min: 113,
-              max: 121
+        },
+        7: {
+          name: '7',
+          measurements: {
+            hips: {
+              M: {
+                min: 113,
+                max: 121
+              }
             }
           }
-        }
-      },
-      8: {
-        name: '8',
-        measurements: {
-          hips: {
-            M: {
-              min: 121,
-              max: 129
+        },
+        8: {
+          name: '8',
+          measurements: {
+            hips: {
+              M: {
+                min: 121,
+                max: 129
+              }
             }
           }
         }
@@ -432,87 +441,93 @@ const OPTIONS = {
     },
 
     socks: {
-      'S/M': {
-        name: 'Small/Medium',
-        measurements: {
-          shoe: {
-            U: 'UK 3-6'
+      name: 'Size',
+      options: {
+        'S/M': {
+          name: 'S/M',
+          measurements: {
+            shoe: {
+              U: 'UK 3-6'
+            }
           }
-        }
-      },
-      'L/XL': {
-        name: 'Large/Extra Large',
-        measurements: {
-          shoe: {
-            U: 'UK 7-11+'
+        },
+        'L/XL': {
+          name: 'L/XL',
+          measurements: {
+            shoe: {
+              U: 'UK 7-11+'
+            }
           }
         }
       }
     },
 
     gloves: {
-      XS: {
-        name: 'Extra small',
-        measurements: {
-          palm: {
-            U: {
-              metric: '7cm',
-              imperial: '2.7"'
+      name: 'Size',
+      options: {
+        XS: {
+          name: 'XS',
+          measurements: {
+            palm: {
+              U: {
+                metric: '7cm',
+                imperial: '2.7"'
+              }
             }
           }
-        }
-      },
-      S: {
-        name: 'Small',
-        measurements: {
-          palm: {
-            U: {
-              metric: '8cm',
-              imperial: '3.1"'
+        },
+        S: {
+          name: 'S',
+          measurements: {
+            palm: {
+              U: {
+                metric: '8cm',
+                imperial: '3.1"'
+              }
             }
           }
-        }
-      },
-      M: {
-        name: 'Medium',
-        measurements: {
-          palm: {
-            U: {
-              metric: '9cm',
-              imperial: '3.5"'
+        },
+        M: {
+          name: 'M',
+          measurements: {
+            palm: {
+              U: {
+                metric: '9cm',
+                imperial: '3.5"'
+              }
             }
           }
-        }
-      },
-      L: {
-        name: 'Large',
-        measurements: {
-          palm: {
-            U: {
-              metric: '10cm',
-              imperial: '3.9"'
+        },
+        L: {
+          name: 'L',
+          measurements: {
+            palm: {
+              U: {
+                metric: '10cm',
+                imperial: '3.9"'
+              }
             }
           }
-        }
-      },
-      XL: {
-        name: 'Extra large',
-        measurements: {
-          palm: {
-            U: {
-              metric: '11cm',
-              imperial: '4.3"'
+        },
+        XL: {
+          name: 'XL',
+          measurements: {
+            palm: {
+              U: {
+                metric: '11cm',
+                imperial: '4.3"'
+              }
             }
           }
-        }
-      },
-      XXL: {
-        name: 'XX Large',
-        measurements: {
-          palm: {
-            U: {
-              metric: '12cm',
-              imperial: '5.1"'
+        },
+        XXL: {
+          name: 'XXL',
+          measurements: {
+            palm: {
+              U: {
+                metric: '12cm',
+                imperial: '5.1"'
+              }
             }
           }
         }
@@ -520,221 +535,233 @@ const OPTIONS = {
     },
 
     't-shirts': {
-      XXS: {
-        name: 'Extra, extra Small',
-        measurements: {
-          chest: 87,
-          body: 64,
-          sleeve: 19
-        }
-      },
-      XS: {
-        name: 'Extra Small',
-        measurements: {
-          chest: 92,
-          body: 66,
-          sleeve: 19.5
-        }
-      },
-      S: {
-        name: 'Small',
-        measurements: {
-          chest: 98,
-          body: 69,
-          sleeve: 20.5
-        }
-      },
-      M: {
-        name: 'Medium',
-        measurements: {
-          chest: 104,
-          body: 72,
-          sleeve: 21.5
-        }
-      },
-      L: {
-        name: 'Large',
-        measurements: {
-          chest: 110,
-          body: 74,
-          sleeve: 22.5
-        }
-      },
-      XL: {
-        name: 'Extra large',
-        measurements: {
-          chest: 116,
-          body: 76,
-          sleeve: 22.5
-        }
-      },
-      '2XL': {
-        name: 'XX Large',
-        measurements: {
-          chest: 122,
-          body: 76,
-          sleeve: 23.5
+      name: 'Size',
+      options: {
+        XXS: {
+          name: 'XXS',
+          measurements: {
+            chest: 87,
+            body: 64,
+            sleeve: 19
+          }
+        },
+        XS: {
+          name: 'XS',
+          measurements: {
+            chest: 92,
+            body: 66,
+            sleeve: 19.5
+          }
+        },
+        S: {
+          name: 'S',
+          measurements: {
+            chest: 98,
+            body: 69,
+            sleeve: 20.5
+          }
+        },
+        M: {
+          name: 'M',
+          measurements: {
+            chest: 104,
+            body: 72,
+            sleeve: 21.5
+          }
+        },
+        L: {
+          name: 'L',
+          measurements: {
+            chest: 110,
+            body: 74,
+            sleeve: 22.5
+          }
+        },
+        XL: {
+          name: 'XL',
+          measurements: {
+            chest: 116,
+            body: 76,
+            sleeve: 22.5
+          }
+        },
+        '2XL': {
+          name: 'XXL',
+          measurements: {
+            chest: 122,
+            body: 76,
+            sleeve: 23.5
+          }
         }
       }
     },
 
     'ls-t-shirts': {
-      S: {
-        name: 'Small',
-        measurements: {
-          chest: 98,
-          body: 70,
-          sleeve: 64
-        }
-      },
-      M: {
-        name: 'Medium',
-        measurements: {
-          chest: 104,
-          body: 72,
-          sleeve: 65
-        }
-      },
-      L: {
-        name: 'Large',
-        measurements: {
-          chest: 110,
-          body: 74,
-          sleeve: 66
-        }
-      },
-      XL: {
-        name: 'Extra large',
-        measurements: {
-          chest: 116,
-          body: 76,
-          sleeve: 67
-        }
-      },
-      '2XL': {
-        name: 'XX Large',
-        measurements: {
-          chest: 122,
-          body: 78,
-          sleeve: 68
+      name: 'Size',
+      options: {
+        S: {
+          name: 'S',
+          measurements: {
+            chest: 98,
+            body: 70,
+            sleeve: 64
+          }
+        },
+        M: {
+          name: 'M',
+          measurements: {
+            chest: 104,
+            body: 72,
+            sleeve: 65
+          }
+        },
+        L: {
+          name: 'L',
+          measurements: {
+            chest: 110,
+            body: 74,
+            sleeve: 66
+          }
+        },
+        XL: {
+          name: 'XL',
+          measurements: {
+            chest: 116,
+            body: 76,
+            sleeve: 67
+          }
+        },
+        '2XL': {
+          name: '2XL',
+          measurements: {
+            chest: 122,
+            body: 78,
+            sleeve: 68
+          }
         }
       }
     },
 
     hoodies: {
-      XXS: {
-        name: 'Extra, extra Small',
-        measurements: {
-          chest: 93,
-          body: 63,
-          sleeve: 60.5
-        }
-      },
-      XS: {
-        name: 'Extra Small',
-        measurements: {
-          chest: 98,
-          body: 65,
-          sleeve: 61.5
-        }
-      },
-      S: {
-        name: 'Small',
-        measurements: {
-          chest: 103,
-          body: 68,
-          sleeve: 64
-        }
-      },
-      M: {
-        name: 'Medium',
-        measurements: {
-          chest: 108,
-          body: 72,
-          sleeve: 65.5
-        }
-      },
-      L: {
-        name: 'Large',
-        measurements: {
-          chest: 114,
-          body: 74,
-          sleeve: 67
-        }
-      },
-      XL: {
-        name: 'Extra large',
-        measurements: {
-          chest: 120,
-          body: 76,
-          sleeve: 68.5
-        }
-      },
-      '2XL': {
-        name: 'XX Large',
-        measurements: {
-          chest: 126,
-          body: 78,
-          sleeve: 70
+      name: 'Size',
+      options: {
+        XXS: {
+          name: 'XXS',
+          measurements: {
+            chest: 93,
+            body: 63,
+            sleeve: 60.5
+          }
+        },
+        XS: {
+          name: 'XS',
+          measurements: {
+            chest: 98,
+            body: 65,
+            sleeve: 61.5
+          }
+        },
+        S: {
+          name: 'S',
+          measurements: {
+            chest: 103,
+            body: 68,
+            sleeve: 64
+          }
+        },
+        M: {
+          name: 'M',
+          measurements: {
+            chest: 108,
+            body: 72,
+            sleeve: 65.5
+          }
+        },
+        L: {
+          name: 'L',
+          measurements: {
+            chest: 114,
+            body: 74,
+            sleeve: 67
+          }
+        },
+        XL: {
+          name: 'XL',
+          measurements: {
+            chest: 120,
+            body: 76,
+            sleeve: 68.5
+          }
+        },
+        '2XL': {
+          name: 'XXL',
+          measurements: {
+            chest: 126,
+            body: 78,
+            sleeve: 70
+          }
         }
       }
     },
 
     'zip-hoodies': {
-      XXS: {
-        name: 'Extra, extra Small',
-        measurements: {
-          chest: 93,
-          body: 63,
-          sleeve: 60.5
-        }
-      },
-      XS: {
-        name: 'Extra Small',
-        measurements: {
-          chest: 98,
-          body: 65,
-          sleeve: 61.5
-        }
-      },
-      S: {
-        name: 'Small',
-        measurements: {
-          chest: 103,
-          body: 68,
-          sleeve: 64
-        }
-      },
-      M: {
-        name: 'Medium',
-        measurements: {
-          chest: 108,
-          body: 72,
-          sleeve: 65.5
-        }
-      },
-      L: {
-        name: 'Large',
-        measurements: {
-          chest: 114,
-          body: 74,
-          sleeve: 67
-        }
-      },
-      XL: {
-        name: 'Extra large',
-        measurements: {
-          chest: 120,
-          body: 76,
-          sleeve: 68.5
-        }
-      },
-      '2XL': {
-        name: 'XX Large',
-        measurements: {
-          chest: 126,
-          body: 78,
-          sleeve: 70
+      name: 'Size',
+      options: {
+        XXS: {
+          name: 'XXS',
+          measurements: {
+            chest: 93,
+            body: 63,
+            sleeve: 60.5
+          }
+        },
+        XS: {
+          name: 'XS',
+          measurements: {
+            chest: 98,
+            body: 65,
+            sleeve: 61.5
+          }
+        },
+        S: {
+          name: 'S',
+          measurements: {
+            chest: 103,
+            body: 68,
+            sleeve: 64
+          }
+        },
+        M: {
+          name: 'M',
+          measurements: {
+            chest: 108,
+            body: 72,
+            sleeve: 65.5
+          }
+        },
+        L: {
+          name: 'L',
+          measurements: {
+            chest: 114,
+            body: 74,
+            sleeve: 67
+          }
+        },
+        XL: {
+          name: 'XL',
+          measurements: {
+            chest: 120,
+            body: 76,
+            sleeve: 68.5
+          }
+        },
+        '2XL': {
+          name: 'XXL',
+          measurements: {
+            chest: 126,
+            body: 78,
+            sleeve: 70
+          }
         }
       }
     }

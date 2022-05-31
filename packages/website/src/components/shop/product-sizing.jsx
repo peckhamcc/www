@@ -102,10 +102,10 @@ class Sizing extends Component {
 
     if (product.options.size) {
       const tableKey = product.sizeChart
-      sizeTable = Object.keys(OPTIONS.size[tableKey]).map(code => {
+      sizeTable = Object.keys(OPTIONS.size[tableKey].options).map(code => {
         return {
           code,
-          ...OPTIONS.size[tableKey][code]
+          ...OPTIONS.size[tableKey].options[code]
         }
       })
 
@@ -116,6 +116,10 @@ class Sizing extends Component {
         }
 
         return Object.values(size.measurements).every(measurement => Boolean(measurement[gender]))
+      })
+
+      sizeTable = sizeTable.sort((a, b) => {
+        return a.name.localeCompare(b.name)
       })
 
       const size = sizeTable[0]
@@ -186,7 +190,7 @@ class Sizing extends Component {
                 <thead>
                   <tr>
                     <TableHeader>Sizes</TableHeader>
-                    {sizeTable.map((size, index) => <TableHeader key={index}>{size.code}</TableHeader>)}
+                    {sizeTable.map((size, index) => <TableHeader key={index}>{size.name}</TableHeader>)}
                   </tr>
                 </thead>
                 <tbody>
