@@ -490,7 +490,7 @@ const getOrCreateCustomerId = async (user) => {
   return customer.id
 }
 
-async function updateFopccPaymentMethod (customerId, exstingSubscriptionId, setupIntent) {
+async function updateFopccPaymentMethod (customerId, existingSubscriptionId, setupIntent) {
   const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
 
   const intent = await client.setupIntents.retrieve(setupIntent)
@@ -511,7 +511,8 @@ async function updateFopccPaymentMethod (customerId, exstingSubscriptionId, setu
     throw new httpErrors.BadGateway('No subscription id found in payment intent metadata')
   }
 
-  if (subscriptionId !== exstingSubscriptionId) {
+  if (subscriptionId !== existingSubscriptionId) {
+    console.info('Subscription ID was incorrect - new subscription', subscriptionId, 'did not match existing subscription', existingSubscriptionId)
     throw new httpErrors.BadRequest('Subscription ID was incorrect')
   }
 
