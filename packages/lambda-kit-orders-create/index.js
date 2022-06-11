@@ -64,12 +64,14 @@ async function kitOrdersCreateHandler () {
       if (sku == null && Boolean(Object.keys(item.metadata).length)) {
         const choices = []
 
-        for (const [key, value] of Object.entries(item.metadata)) {
+        // ensure the order is constant
+        for (const key of item.productMetadata.options.split('-')) {
           if (key === 'size') {
+            // size does not affect sku
             continue
           }
 
-          choices.push(value)
+          choices.push(item.metadata[key])
         }
 
         const matrix = choices.join('-')

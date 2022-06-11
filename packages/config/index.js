@@ -1405,10 +1405,7 @@ const OPTIONS = {
       'F-FR-VER': 'n61066-LA04',
       'F-FE-VER': 'n61066-LA02',
       'F-FR-ROU': 'n61064-LA04',
-      'F-FE-ROU': 'n61064-LA02',
-
-      // remove these after first order has been placed
-      'ME-M-GOF': 'n61065-MA13'
+      'F-FE-ROU': 'n61064-LA02'
     },
 
     'club-3-4-bib-shorts-2022': {
