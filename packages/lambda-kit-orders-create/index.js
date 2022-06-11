@@ -33,6 +33,9 @@ async function kitOrdersCreateHandler () {
   const items = {}
   let orders = await getNewOrders(since)
 
+  console.info('Orders')
+  console.info(JSON.stringify(orders, null, 2))
+
   orders = orders.filter(order => {
     console.info(JSON.stringify(order, null, 2))
 
@@ -109,9 +112,6 @@ async function kitOrdersCreateHandler () {
     // ignore any orders with no made-to-order items
     return Boolean(order.items.length)
   })
-
-  console.info('Orders')
-  console.info(JSON.stringify(orders, null, 2))
 
   console.info('Items')
   console.info(JSON.stringify(items, null, 2))
