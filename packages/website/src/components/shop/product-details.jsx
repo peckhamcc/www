@@ -473,7 +473,6 @@ class ProductDetails extends Component {
 
                   if (key === 'size') {
                     name = option
-                    console.info('option', options, optionDetails)
                   } else if (optionDetails.options[option]) {
                     name = optionDetails.options[option]
                   }
