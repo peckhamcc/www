@@ -6,7 +6,7 @@ const {
   errorHandler
 } = require('./middleware')
 const {
-  createOrder,
+  // createOrder,
   getLastOrder
 } = require('./kit')
 const {
@@ -20,6 +20,9 @@ const {
   config,
   OPTIONS
 } = require('./config')
+const createOrderSpreadsheet = require('./create-order-spreadsheet')
+
+const ORDER_ITEMS_MINIMUM = 5
 
 async function kitOrdersCreateHandler () {
   const lastOrder = await getLastOrder()
@@ -85,11 +88,18 @@ async function kitOrdersCreateHandler () {
         items[sku] = {
           name: details.name,
           notes: details.notes || '',
-          quantity: 0
+          section: item.productMetadata.section,
+          quantity: 0,
+          sizes: {}
         }
       }
 
+      if (items[sku].sizes[item.metadata.size] == null) {
+        items[sku].sizes[item.metadata.size] = 0
+      }
+
       items[sku].quantity += +item.quantity
+      items[sku].sizes[item.metadata.size] += +item.quantity
 
       item.supplierName = details.name
       item.supplierNotes = details.notes
@@ -103,33 +113,53 @@ async function kitOrdersCreateHandler () {
   console.info('Orders')
   console.info(JSON.stringify(orders, null, 2))
 
-  if (Object.keys(items).length) {
+  console.info('Items')
+  console.info(JSON.stringify(items, null, 2))
+
+  // make sure we have more than 5x items (not including accessories)
+  let itemCount = 0
+
+  Object.values(items).forEach(item => {
+    if (item.section !== 'accessories') {
+      itemCount++
+    }
+  })
+
+  if (itemCount >= ORDER_ITEMS_MINIMUM) {
     const orderDate = new Date()
     const date = `${new Intl.DateTimeFormat('en', { month: 'long' }).format(orderDate)} ${new Intl.DateTimeFormat('en', { year: 'numeric' }).format(orderDate)}`
 
     const supplierTitle = `Peckham Cycle Club kit order - ${date}`
     const clubTitle = `Kit orders - ${date}`
 
+    const spreadsheet = createOrderSpreadsheet(items)
+
     await sendEmail(
       config.email.from,
       config.email.from,
       clubTitle,
       htmlTemplateClubNotification(date, orders),
-      textTemplateClubNotification(date, orders)
+      textTemplateClubNotification(date, orders), [
+        spreadsheet
+      ]
     )
     await sendEmail(
+      // uncomment when sending emails direct to suppliers..
       // config.kit.email,
       config.email.from,
       config.email.from,
       supplierTitle,
       htmlTemplateSupplierNotification(config.kit.name, items),
-      textTemplateSupplierNotification(config.kit.name, items)
+      textTemplateSupplierNotification(config.kit.name, items), [
+        spreadsheet
+      ]
     )
-    await createOrder(orderDate, orders.map(order => order.payment))
+    // await createOrder(orderDate, orders.map(order => order.payment))
 
+    // uncomment when sending emails direct to suppliers..
     // await setOrderItemsStatus(orders.map(order => order.payment), 'production')
   } else {
-    console.info('Nothing ordered this month')
+    console.info(`Only ${itemCount} items ordered this month, ${Object.keys(items).length} including accessories`)
   }
 
   return {

@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "http-errors": "^1.6.3",
-    "nanoid": "^3.1.18"
+    "nanoid": "^3.1.18",
+    "nodemailer": "^6.7.5"
   }
 }
