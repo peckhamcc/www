@@ -67,16 +67,17 @@ async function kitOrdersCreateHandler () {
         sku = codes
       }
 
+      let metadata = item.metadata
+
+      // if metadata has been set on the payment, use that to derive the SKU,
+      // otherwise use the immutable metadata from the checkout
+      if (payment.metadata[`item-${index}-metadata`] != null) {
+        console.info('Payment', order.payment, 'has overridden metadata')
+        metadata = JSON.parse(payment.metadata[`item-${index}-metadata`])
+      }
+
       if (sku == null && Boolean(Object.keys(item.metadata).length)) {
         const choices = []
-        let metadata = item.metadata
-
-        // if metadata has been set on the payment, use that to derive the SKU,
-        // otherwise use the immutable metadata from the checkout
-        if (payment.metadata[`item-${index}-metadata`] != null) {
-          console.info('Payment', order.payment, 'has overridden metadata')
-          metadata = JSON.parse(payment.metadata[`item-${index}-metadata`])
-        }
 
         // ensure the order is constant
         for (const key of item.productMetadata.options.split('-')) {
@@ -113,12 +114,12 @@ async function kitOrdersCreateHandler () {
         }
       }
 
-      if (items[sku].sizes[item.metadata.size] == null) {
-        items[sku].sizes[item.metadata.size] = 0
+      if (items[sku].sizes[metadata.size] == null) {
+        items[sku].sizes[metadata.size] = 0
       }
 
       items[sku].quantity += +item.quantity
-      items[sku].sizes[item.metadata.size] += +item.quantity
+      items[sku].sizes[metadata.size] += +item.quantity
 
       item.supplierName = details.name
       item.supplierNotes = details.notes
