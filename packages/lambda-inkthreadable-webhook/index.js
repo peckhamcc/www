@@ -13,7 +13,7 @@ const {
 const {
   getOrder,
   setPaymentMetadata,
-  getPayment,
+  getCachedPayment,
   getCheckoutSession
 } = require('./stripe-client')
 const {
@@ -97,7 +97,7 @@ async function inkthreadableWebhook ({ queryStringParameters, body }) {
   }
 
   const { items: orderItems } = await getOrder(paymentIntent)
-  const { metadata } = await getPayment(paymentIntent)
+  const { metadata } = await getCachedPayment(paymentIntent)
 
   if (order.deleted) {
     console.info('Order', order.id, 'paymentIntent', paymentIntent, 'was cancelled')

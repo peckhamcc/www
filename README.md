@@ -10,3 +10,9 @@ Demo: [https://peckhamcc.github.io/www/](https://peckhamcc.github.io/www/)
 ```console
 $ ngrok http 9000 --subdomain achingbrain
 ```
+
+Simulate generating an order:
+
+```js
+$ curl -X POST http://localhost:9000/lambda/kit-orders-create
+```

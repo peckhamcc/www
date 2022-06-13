@@ -379,8 +379,7 @@ const getOrder = async (paymentIntentId) => {
 
   // order items are cached, payment metadata is not as it is
   // updated as the order progresses
-  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
-  const paymentIntent = await client.paymentIntents.retrieve(paymentIntentId)
+  const paymentIntent = await getPayment(paymentIntentId)
 
   order.items.forEach((item, index) => {
     item.status = paymentIntent.metadata[`item-${index}`]
@@ -391,6 +390,33 @@ const getOrder = async (paymentIntentId) => {
   return order
 }
 
+/**
+ * @typedef {object} Item
+ * @property {string} Item.slug
+ * @property {string} Item.name
+ * @property {string} Item.description
+ * @property {number} Item.quantity
+ * @property {string} Item.price
+ * @property {Record<string, string} Item.productMetadata
+ * @property {Record<string, string} Item.metadata
+ *
+ * @typedef {object} Payment
+ * @property {string} Payment.id
+ * @property {Record<string, string} Payment.metadata
+ *
+ * @typedef {object} Order
+ * @property {string} Order.name
+ * @property {boolean} Order.deleted
+ * @property {string} Order.amount
+ * @property {number} Order.date
+ * @property {string} Order.payment
+ * @property {Item[]} Order.items
+ */
+
+/**
+ * @param {string} paymentIntentId
+ * @returns {Promise<Order>}
+ */
 const getCachedOrder = async (paymentIntentId) => {
   const cacheKey = `order-${paymentIntentId}`
   const cached = await cache.get(cacheKey)
@@ -408,9 +434,10 @@ const getCachedOrder = async (paymentIntentId) => {
     return
   }
 
-  const paymentIntent = await getPayment(paymentIntentId)
+  const paymentIntent = await getCachedPayment(paymentIntentId)
   const customer = await client.customers.retrieve(session.customer)
 
+  /** @type {Order} */
   const order = {
     name: customer.name,
     deleted: Boolean(customer.deleted),
@@ -424,6 +451,7 @@ const getCachedOrder = async (paymentIntentId) => {
     limit: 100,
     expand: ['data.price.product']
   })) {
+    /** @type {Item} */
     const item = {
       slug: lineItem.price.product.metadata.slug,
       name: lineItem.price.product.name,
@@ -582,7 +610,7 @@ async function setPaymentMetadata (paymentIntentId, metadata) {
   })
 }
 
-async function getPayment (paymentIntentId) {
+async function getCachedPayment (paymentIntentId) {
   const cacheKey = `payment-${paymentIntentId}`
   const cached = await cache.get(cacheKey)
 
@@ -590,8 +618,12 @@ async function getPayment (paymentIntentId) {
     return cached
   }
 
-  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
+  return getPayment(paymentIntentId)
+}
 
+async function getPayment (paymentIntentId) {
+  const cacheKey = `payment-${paymentIntentId}`
+  const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
   const payment = await client.paymentIntents.retrieve(paymentIntentId)
 
   await cache.set(cacheKey, payment)
@@ -618,6 +650,10 @@ async function getRRCOrders () {
 
 }
 
+/**
+ * @param {number} fromDate
+ * @returns {Promise<Order[]>}
+ */
 async function getNewOrders (fromDate) {
   const client = stripe(config.stripe.secretKey, STRIPE_OPTS)
   const orders = []
@@ -729,6 +765,7 @@ module.exports = {
   verifyWebhookEvent,
   getOrder,
   setPaymentMetadata,
+  getCachedPayment,
   getPayment,
   getCheckoutSession,
 

@@ -139,6 +139,10 @@ async function handleShopOrder ({ userId, user }, { data: { object } }) {
     } else if (item.productMetadata.type === 'made-to-order') {
       metadata[`item-${index}`] = 'pending'
       lineItemTypes.hasMtoKit = lineItemTypes.hasMtoKit || true
+
+      // copy user item choices to payment metadata - we generate the order from this field
+      // because we can edit it after the fact, eg. when they've chosen the wrong size etc
+      metadata[`item-${index}-metadata`] = JSON.stringify(item.metadata || {})
     } else if (item.productMetadata.type === 'dropship') {
       metadata[`item-${index}`] = 'production'
       lineItemTypes.hasDropShipKit = lineItemTypes.hasDropShipKit || true

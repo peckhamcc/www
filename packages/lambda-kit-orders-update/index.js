@@ -20,7 +20,7 @@ const {
 } = require('./kit')
 const {
   getOrder: getMemberOrder,
-  getPayment,
+  getCachedPayment,
   setPaymentMetadata
 } = require('./stripe-client')
 const { config } = require('./config')
@@ -53,7 +53,7 @@ async function kitOrdersUpdateHandler ({ userId, body: { id, ...details } }) {
         continue
       }
 
-      const { customer, metadata } = await getPayment(item.payment)
+      const { customer, metadata } = await getCachedPayment(item.payment)
       let updatedStatus = false
 
       // update order status for made to order items

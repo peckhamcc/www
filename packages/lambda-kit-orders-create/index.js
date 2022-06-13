@@ -10,7 +10,8 @@ const {
   getLastOrder
 } = require('./kit')
 const {
-  getNewOrders
+  getNewOrders,
+  getPayment
   // setOrderItemsStatus
 } = require('./stripe-client')
 const {
@@ -31,19 +32,23 @@ async function kitOrdersCreateHandler () {
   console.info('Fetching made-to-order items starting at timestamp', since)
 
   const items = {}
-  let orders = await getNewOrders(since)
+  const orders = []
 
-  console.info('Orders')
-  console.info(JSON.stringify(orders, null, 2))
-
-  orders = orders.filter(order => {
+  for (const order of await getNewOrders(since)) {
+    console.info('loaded order')
     console.info(JSON.stringify(order, null, 2))
 
-    // ignore any non made-to-order items
-    order.items = order.items.filter(item => item.productMetadata.type === 'made-to-order')
+    const payment = await getPayment(order.payment)
+    console.info('loaded payment')
+    console.info(JSON.stringify(payment, null, 2))
 
     // process order items for sending to supplier
-    order.items.forEach(item => {
+    order.items.forEach((item, index) => {
+      if (item.productMetadata.type !== 'made-to-order') {
+        // ignore any non made-to-order items
+        return
+      }
+
       const codes = OPTIONS.productPrices[item.slug]
 
       if (!codes) {
@@ -55,6 +60,7 @@ async function kitOrdersCreateHandler () {
         throw new Error(`Could not load product codes for product with slug ${item.slug}`)
       }
 
+      /** @type {string} */
       let sku
 
       if (typeof codes === 'string') {
@@ -63,6 +69,14 @@ async function kitOrdersCreateHandler () {
 
       if (sku == null && Boolean(Object.keys(item.metadata).length)) {
         const choices = []
+        let metadata = item.metadata
+
+        // if metadata has been set on the payment, use that to derive the SKU,
+        // otherwise use the immutable metadata from the checkout
+        if (payment.metadata[`item-${index}-metadata`] != null) {
+          console.info('Payment', order.payment, 'has overridden metadata')
+          metadata = JSON.parse(payment.metadata[`item-${index}-metadata`])
+        }
 
         // ensure the order is constant
         for (const key of item.productMetadata.options.split('-')) {
@@ -71,7 +85,7 @@ async function kitOrdersCreateHandler () {
             continue
           }
 
-          choices.push(item.metadata[key])
+          choices.push(metadata[key])
         }
 
         const matrix = choices.join('-')
@@ -112,8 +126,13 @@ async function kitOrdersCreateHandler () {
     })
 
     // ignore any orders with no made-to-order items
-    return Boolean(order.items.length)
-  })
+    if (order.items.length) {
+      orders.push(order)
+    }
+  }
+
+  console.info('Orders')
+  console.info(JSON.stringify(orders, null, 2))
 
   console.info('Items')
   console.info(JSON.stringify(items, null, 2))

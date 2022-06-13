@@ -9,7 +9,7 @@ const {
 } = require('./middleware')
 const {
   getOrder,
-  getPayment
+  getCachedPayment
 } = require('./stripe-client')
 const {
   getUser
@@ -34,7 +34,7 @@ async function ordersGetHandler ({ userId, pathParameters }) {
     throw new httpErrors.BadRequest('No order found for payment intent')
   }
 
-  const { metadata: paymentMetadata } = await getPayment(paymentIntentId)
+  const { metadata: paymentMetadata } = await getCachedPayment(paymentIntentId)
 
   return {
     statusCode: 200,
