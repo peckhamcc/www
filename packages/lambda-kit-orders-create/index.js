@@ -234,7 +234,7 @@ const htmlTemplateSupplierNotification = (name, items) => `
         let item = `${items[sku].quantity}x ${sku} "${items[sku].name}"`
 
         if (items[sku].notes) {
-          item += `<br/>${items[sku].notes}`
+          item += `<br/>Notes: ${items[sku].notes}`
         }
 
         if (items[sku].sizes) {
@@ -250,6 +250,7 @@ const htmlTemplateSupplierNotification = (name, items) => `
     <p>${
       Object.keys(items).reduce((acc, sku) => acc + items[sku].quantity, 0)
     } items total.</p>
+    <p>Please see the attached spreadsheet and let me know if anything doesn't make sense.</p>
     <p>Thanks,</p>
     <p>Alex</p>
     <p>Peckham Cycle Club</p>
@@ -274,7 +275,7 @@ ${
     let item = `${items[sku].quantity}x ${sku} "${items[sku].name}"`
 
     if (items[sku].notes) {
-      item += `\r\n${items[sku].notes}`
+      item += `\r\nNotes: ${items[sku].notes}`
     }
 
     if (items[sku].sizes) {
@@ -320,29 +321,29 @@ const htmlTemplateClubNotification = (date, orders) => `
       orders.map(order => {
         return `
     <p><b>${order.name}</b><br/>
-      ${new Intl.DateTimeFormat('en', { minute: 'numeric', hour: 'numeric', day: 'numeric', month: 'short', year: 'numeric' }).format(order.date)}<br/>
-      ${order.items.map(item => {
-        let line = `${item.quantity}x ${item.name}`
+        ${new Intl.DateTimeFormat('en', { minute: 'numeric', hour: 'numeric', day: 'numeric', month: 'short', year: 'numeric' }).format(order.date)}<br/>
+        ${order.items.map(item => {
+          let line = `${item.quantity}x ${item.name}`
 
-        if (item.supplierSku) {
-          line += ` - ${item.supplierSku}`
-        }
+          if (item.supplierSku) {
+            line += ` - ${item.supplierSku}`
+          }
 
-        if (item.supplierName) {
-          line += ` "${item.supplierName}"`
-        }
+          if (item.supplierName) {
+            line += ` "${item.supplierName}"`
+          }
 
-        if (item.supplierNotes) {
-          line += `<br/>"${item.supplierNotes}"`
-        }
+          if (item.supplierNotes) {
+            line += `<br/>Notes: ${item.supplierNotes}`
+          }
 
-        if (Object.keys(item.metadata).length) {
-          line += `<br/>${item.description}`
-        }
+          if (Object.keys(item.metadata).length) {
+            line += `<br/>${item.description}`
+          }
 
-        return line
-      }).join('<br/><br/>')}</p>`
-    }).join('')}
+          return line
+        }).join('<br/><br/>')}</p>`
+      }).join('')
     }
     <p>Peckham Cycle Club</p>
     <p>
@@ -375,7 +376,7 @@ ${order.items.map(item => {
   }
 
   if (item.supplierNotes) {
-    line += `\r\n"${item.supplierNotes}"`
+    line += `\r\nNotes: ${item.supplierNotes}`
   }
 
   if (Object.keys(item.metadata).length) {
