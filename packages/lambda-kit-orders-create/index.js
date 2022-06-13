@@ -39,8 +39,11 @@ async function kitOrdersCreateHandler () {
     console.info(JSON.stringify(order, null, 2))
 
     const payment = await getPayment(order.payment)
-    console.info('loaded payment')
-    console.info(JSON.stringify(payment, null, 2))
+    console.info('loaded payment metadata')
+    console.info(JSON.stringify({
+      id: order.payment,
+      metadata: payment.metadata
+    }, null, 2))
 
     // process order items for sending to supplier
     order.items.forEach((item, index) => {
@@ -68,6 +71,7 @@ async function kitOrdersCreateHandler () {
       }
 
       let metadata = item.metadata
+      let description = item.description
 
       // if metadata has been set on the payment, use that to derive the SKU,
       // otherwise use the immutable metadata from the checkout
@@ -96,6 +100,20 @@ async function kitOrdersCreateHandler () {
         if (sku == null) {
           throw new Error(`Could not load sku for product with slug ${item.slug} and matrix ${matrix}`)
         }
+
+        // if this product has options, update description based on (possibly) updated metadata
+        description = item.productMetadata.options.split('-').map(option => {
+          const optionDetails = OPTIONS[option]
+          const value = metadata[option]
+
+          if (option === 'size') {
+            const chart = OPTIONS[option][item.productMetadata['size-chart']]
+
+            return `${chart.name}: ${chart.options[value].name}`
+          } else {
+            return `${optionDetails.name}: ${optionDetails.options[value]}`
+          }
+        }).join(', ')
       }
 
       const details = OPTIONS.productCodes[sku]
@@ -124,6 +142,14 @@ async function kitOrdersCreateHandler () {
       item.supplierName = details.name
       item.supplierNotes = details.notes
       item.supplierSku = sku
+      item.description = description
+    })
+
+    // filter out any non made-to-order items
+    order.items = order.items.filter(item => {
+      console.info('wat', item)
+
+      return item.productMetadata.type === 'made-to-order'
     })
 
     // ignore any orders with no made-to-order items
@@ -215,6 +241,13 @@ const htmlTemplateSupplierNotification = (name, items) => `
           item += `<br/>${items[sku].notes}`
         }
 
+        if (items[sku].sizes) {
+          item += '<br/>Sizes:'
+          Object.keys(items[sku].sizes).forEach(key => {
+            item += `<br/>${key}: ${items[sku].sizes[key]}`
+          })
+        }
+
         return item
       }).join('<br/><br/>')
     }</p>
@@ -246,6 +279,13 @@ ${
 
     if (items[sku].notes) {
       item += `\r\n${items[sku].notes}`
+    }
+
+    if (items[sku].sizes) {
+      item += '\r\nSizes:'
+      Object.keys(items[sku].sizes).forEach(key => {
+        item += `\r\n${key}: ${items[sku].sizes[key]}`
+      })
     }
 
     return item
@@ -304,7 +344,7 @@ const htmlTemplateClubNotification = (date, orders) => `
 
         return line
       }).join('<br/><br/>')}</p>`
-    })
+    }).join('')}
     }
     <p>Peckham Cycle Club</p>
     <p>

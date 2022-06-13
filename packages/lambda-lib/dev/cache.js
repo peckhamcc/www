@@ -8,12 +8,16 @@ async function get (key) {
     cache.save()
   }
 
-  return cache.values[key] && cache.values[key].value
+  const val = cache.values[key] && cache.values[key].value
+
+  if (val) {
+    return JSON.parse(JSON.stringify(val))
+  }
 }
 
 async function set (key, value, ttl) {
   cache.values[key] = {
-    value,
+    value: JSON.parse(JSON.stringify(value)),
     expires: ttl
   }
   cache.save()
