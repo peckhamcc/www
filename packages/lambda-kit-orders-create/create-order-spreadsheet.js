@@ -54,8 +54,7 @@ module.exports = function (items) {
             const column = sizeLookup[item.section][size]
 
             if (column == null) {
-              // throw new Error(`Could not find size column for ${sku}`)
-              console.error(`!!! could not find size column for ${sku}`)
+              throw new Error(`Could not find size column for ${sku} and size ${size} in section ${item.section}`)
             }
 
             const sizeCellLocation = column + row
@@ -79,8 +78,7 @@ module.exports = function (items) {
     }
 
     if (!found) {
-      // throw new Error(`Missing sku ${sku}`)
-      console.error(`!!! Missing sku ${sku}`)
+      throw new Error(`Missing sku ${sku}`)
     }
   }
 
@@ -92,7 +90,8 @@ module.exports = function (items) {
       year: 'numeric'
     })}.xlsx`,
     content: XLSX.write(workbook, {
-      type: 'buffer'
+      type: 'buffer',
+      bookType: 'xlsx'
     })
   }
 }

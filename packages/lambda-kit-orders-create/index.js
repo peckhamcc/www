@@ -146,11 +146,7 @@ async function kitOrdersCreateHandler () {
     })
 
     // filter out any non made-to-order items
-    order.items = order.items.filter(item => {
-      console.info('wat', item)
-
-      return item.productMetadata.type === 'made-to-order'
-    })
+    order.items = order.items.filter(item => item.productMetadata.type === 'made-to-order')
 
     // ignore any orders with no made-to-order items
     if (order.items.length) {
@@ -244,7 +240,7 @@ const htmlTemplateSupplierNotification = (name, items) => `
         if (items[sku].sizes) {
           item += '<br/>Sizes:'
           Object.keys(items[sku].sizes).forEach(key => {
-            item += `<br/>${key}: ${items[sku].sizes[key]}`
+            item += `<br/>${key}: ${items[sku].sizes[key]}x`
           })
         }
 
@@ -284,7 +280,7 @@ ${
     if (items[sku].sizes) {
       item += '\r\nSizes:'
       Object.keys(items[sku].sizes).forEach(key => {
-        item += `\r\n${key}: ${items[sku].sizes[key]}`
+        item += `\r\n${key}: ${items[sku].sizes[key]}x`
       })
     }
 
@@ -296,6 +292,8 @@ ${
 ${
   Object.keys(items).reduce((acc, sku) => acc + items[sku].quantity, 0)
 } items total.
+
+Please see the attached spreadsheet and let me know if anything doesn't make sense.
 
 Thanks,
 
@@ -321,7 +319,7 @@ const htmlTemplateClubNotification = (date, orders) => `
     ${
       orders.map(order => {
         return `
-    <p>${order.name}<br/>
+    <p><b>${order.name}</b><br/>
       ${new Intl.DateTimeFormat('en', { minute: 'numeric', hour: 'numeric', day: 'numeric', month: 'short', year: 'numeric' }).format(order.date)}<br/>
       ${order.items.map(item => {
         let line = `${item.quantity}x ${item.name}`
