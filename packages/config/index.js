@@ -85,6 +85,12 @@ const OPTIONS = {
           measurements: {
             jersey: {
               U: '1'
+            },
+            bicep: {
+              U: 21
+            },
+            length: {
+              U: 39
             }
           }
         },
@@ -93,6 +99,12 @@ const OPTIONS = {
           measurements: {
             jersey: {
               U: '2-3'
+            },
+            bicep: {
+              U: 23.5
+            },
+            length: {
+              U: 43
             }
           }
         },
@@ -101,6 +113,12 @@ const OPTIONS = {
           measurements: {
             jersey: {
               U: '4-5'
+            },
+            bicep: {
+              U: 25
+            },
+            length: {
+              U: 47
             }
           }
         },
@@ -109,6 +127,12 @@ const OPTIONS = {
           measurements: {
             jersey: {
               U: '6-8'
+            },
+            bicep: {
+              U: 27
+            },
+            length: {
+              U: 48
             }
           }
         }
