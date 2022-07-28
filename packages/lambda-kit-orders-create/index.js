@@ -6,7 +6,7 @@ const {
   errorHandler
 } = require('./middleware')
 const {
-  // createOrder,
+  createOrder,
   getLastOrder
 } = require('./kit')
 const {
@@ -198,7 +198,7 @@ async function kitOrdersCreateHandler () {
         spreadsheet
       ]
     )
-    // await createOrder(orderDate, orders.map(order => order.payment))
+    await createOrder(orderDate, orders.map(order => order.payment))
 
     // uncomment when sending emails direct to suppliers..
     // await setOrderItemsStatus(orders.map(order => order.payment), 'production')
