@@ -10,6 +10,7 @@ jobs:
           name: install-apps
           working_directory: /
           command: |
+              wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
               sudo apt-get -y -qq update
               sudo apt install python-pip python-dev
               sudo pip install awscli
