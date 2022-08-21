@@ -274,6 +274,7 @@ const createCheckoutSession = async (userId, stripeCustomerId, items) => {
     payment_method_types: [
       'card'
     ],
+    allow_promotion_codes: true,
     customer: stripeCustomerId,
     line_items: lineItems,
     mode: 'payment',
