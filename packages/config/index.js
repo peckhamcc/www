@@ -34,6 +34,13 @@ const OPTIONS = {
       BLK: 'Black'
     }
   },
+  zip: {
+    name: 'Zip',
+    options: {
+      S: 'Half',
+      L: 'Full'
+    }
+  },
   pad: {
     name: 'Pad',
     options: {
@@ -56,8 +63,9 @@ const OPTIONS = {
       LP: 'Lycra',
       GOF: 'Lycra',
       REV: 'Lightweight',
-      BRI: 'Lycra'
-
+      BRI: 'Lycra',
+      DEV: 'Woven',
+      FLA: 'Insulated'
     }
   },
   back: {
@@ -294,6 +302,100 @@ const OPTIONS = {
               M: {
                 min: 120,
                 max: 128
+              }
+            }
+          }
+        }
+      }
+    },
+
+    kids: {
+      name: 'Size',
+      options: {
+        110: {
+          name: '110',
+          measurements: {
+            height: {
+              U: {
+                min: 104,
+                max: 116
+              }
+            }
+          }
+        },
+        122: {
+          name: '122',
+          measurements: {
+            height: {
+              U: {
+                min: 116,
+                max: 124
+              }
+            }
+          }
+        },
+        128: {
+          name: '128',
+          measurements: {
+            height: {
+              U: {
+                min: 124,
+                max: 130
+              }
+            }
+          }
+        },
+        134: {
+          name: '134',
+          measurements: {
+            height: {
+              U: {
+                min: 130,
+                max: 138
+              }
+            }
+          }
+        },
+        140: {
+          name: '140',
+          measurements: {
+            height: {
+              U: {
+                min: 138,
+                max: 142
+              }
+            }
+          }
+        },
+        146: {
+          name: '146',
+          measurements: {
+            height: {
+              U: {
+                min: 142,
+                max: 148
+              }
+            }
+          }
+        },
+        152: {
+          name: '152',
+          measurements: {
+            height: {
+              U: {
+                min: 148,
+                max: 154
+              }
+            }
+          }
+        },
+        158: {
+          name: '158',
+          measurements: {
+            height: {
+              U: {
+                min: 154,
+                max: 160
               }
             }
           }
@@ -870,6 +972,16 @@ const OPTIONS = {
       notes: 'small removable pocket'
     },
 
+    // kids club jersey
+    'n50016-JS06': {
+      name: 'Jersey S/S ACTIVE 06 | Devan',
+      notes: 'long zipper'
+    },
+    'n50016-JS37': {
+      name: 'Jersey S/S ACTIVE 37 | Devan',
+      notes: 'short zipper'
+    },
+
     // male pro long sleeve jersey
     'n50052-ML33': {
       name: 'Jersey L/S PRO 33 | TEMPS'
@@ -888,6 +1000,11 @@ const OPTIONS = {
     // female club long sleeve jersey
     'n50057-LL40': {
       name: 'Jersey L/S ELITE 40 | ANDORRA'
+    },
+
+    // kids long sleeve jersey
+    'n50055-JL06': {
+      name: 'Jersey L/S ACTIVE 06 | FLANDERS'
     },
 
     // male club bibs
@@ -1386,6 +1503,11 @@ const OPTIONS = {
       'F-STR-Y': 'n51072-LS54'
     },
 
+    'kids-jersey-2022': {
+      S: 'n50016-JS37',
+      L: 'n50016-JS06'
+    },
+
     'winter-pro-jersey-2022': {
       M: 'n50052-ML33',
       F: 'n50052-LL33'
@@ -1395,6 +1517,8 @@ const OPTIONS = {
       M: 'n50057-ML40',
       F: 'n50057-LL40'
     },
+
+    'winter-kids-jersey-2022': 'n50055-JL06',
 
     'club-bib-shorts-2022': {
       'M-MR-LP': 'n60069-MA49',

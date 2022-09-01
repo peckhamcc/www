@@ -72,6 +72,8 @@ import veranoFlexFabric from '../../../assets/shop/material-verano-flex.png'
 import roubaixFabric from '../../../assets/shop/material-roubaix.jpg'
 import revolutionalFabric from '../../../assets/shop/material-revolutional.jpg'
 import briosFabric from '../../../assets/shop/material-brios.jpg'
+import devanFabric from '../../../assets/shop/material-devan.png'
+import flandersFabric from '../../../assets/shop/material-flanders.png'
 
 export const ITEM_IMAGES = {
   accessories: [{
@@ -208,6 +210,16 @@ export const ITEM_IMAGES = {
     src: valuablesPouch,
     text: 'Optional valuables pouch'
   }],
+  'kids-jersey-2022': [{
+    src: ssJerseyFrontImage,
+    text: 'Jersey front'
+  }, {
+    src: ssJerseyRearImage,
+    text: 'Jersey rear'
+  }, {
+    src: devanFabric,
+    text: 'Woven fabric'
+  }],
   'lightweight-gilet-2022': [{
     src: giletFrontImage,
     text: 'Gilet front'
@@ -247,6 +259,16 @@ export const ITEM_IMAGES = {
   }, {
     src: andorraFabric,
     text: 'Warm roubaix-style jersey material'
+  }],
+  'winter-kids-jersey-2022': [{
+    src: lsJerseyFrontImage,
+    text: 'Kids winter jersey front'
+  }, {
+    src: lsJerseyRearImage,
+    text: 'Kids winter jersey rear'
+  }, {
+    src: flandersFabric,
+    text: 'Insulated fabric'
   }],
   'rain-jacket-2022': [{
     src: winterJacketFrontImage,

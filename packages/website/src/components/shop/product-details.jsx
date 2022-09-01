@@ -47,10 +47,6 @@ import {
   getPrice
 } from '../../lib/products'
 
-const preproductionWarning = (
-  <Note>Please note the graphics shown are not final, amendments will be made before the first batch goes into production.</Note>
-)
-
 const PRODUCT_DESCRIPTIONS = {
   'club-jersey-2022': (
     <>
@@ -59,7 +55,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>There are two fabrics available, a woven polyester or smooth polyester/elastane mix.</p>
       <p>All jerseys are cut from the same pattern but woven fabrics will stretch less so may feel tighter, smooth fabrics will stretch more and will fit more body shapes.</p>
       <p>Woven fabrics also tend to be slightly thicker so will be warmer.</p>
-      {preproductionWarning}
     </>
   ),
   'pro-jersey-2022': (
@@ -70,7 +65,14 @@ const PRODUCT_DESCRIPTIONS = {
       <p>The fabric options are a smooth 110g/m2 polyester/elastane mix, a so-thin-you-might-get-sunburnt-through 85g/m2 lightweight summer version or a woven 150g/m2 version made with polyester and carbon fibre.</p>
       <p>All jerseys are cut from the same pattern but woven fabrics will stretch less so may feel tighter, smooth fabrics will stretch more and will fit more body shapes.</p>
       <p>Woven fabrics also tend to be slightly thicker so will be warmer.</p>
-      {preproductionWarning}
+    </>
+  ),
+  'kids-jersey-2022': (
+    <>
+      <p>Junior sized jersey in a close-fitting cut with three rear pockets for conkers and marbles.</p>
+      <p>The fabric is a medium weight with excellent breathability.</p>
+      <p>There is an option for a full length or half length zip</p>
+      <p>Sizing is based on height, please see the size guide for details.</p>
     </>
   ),
   'winter-club-jersey-2022': (
@@ -78,7 +80,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Made from 240g/m2 insulated material with a higher neck than the club jersey to keep the elements out, the Winter Club Jersey has flatlock seams, silicone grippers, and three large rear pockets.</p>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
       <p>Some jerseys are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
-      {preproductionWarning}
     </>
   ),
   'winter-pro-jersey-2022': (
@@ -86,7 +87,13 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Made from 200g/m2 material with a higher neck than the pro jersey to keep the elements out, the Winter Pro Jersey has extra panels for a more aerodynamic fit, flatlock seams, silicone grippers, and three large rear pockets.</p>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
       <p>Some jerseys are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
-      {preproductionWarning}
+    </>
+  ),
+  'winter-kids-jersey-2022': (
+    <>
+      <p>Junior sized jersey in a close-fitting cut with a high neck to keep the weather out and three rear pockets for snacks.</p>
+      <p>The fabric is insulated to handle unpredictable weather.</p>
+      <p>Sizing is based on height, please see the size guide for details.</p>
     </>
   ),
   'lightweight-gilet-2022': (
@@ -94,7 +101,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>The Lightweight Gilet is perfect for long descents on summer rides and packs down easily to be stowed in a jersey pocket when not in use.</p>
       <p>It is made from a 77g/m2 100% polyester material, has a deep neck for increased wind protection, comes with a full-length zip and a mesh back.</p>
       <p>Some gilets are available in a "plus size" that adds 5cm to the body.</p>
-      {preproductionWarning}
     </>
   ),
   'club-gilet-2022': (
@@ -103,7 +109,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>It has a deep neck for increased wind protection, comes with a full-length zip, three rear pockets and is a great three-season option for layering and comfort.</p>
       <p>It's available with a mesh back for warmer days or a membrane back for bad weather.</p>
       <p>Some gilets are available in a "plus size" that adds 5cm to the body.</p>
-      {preproductionWarning}
     </>
   ),
   'club-bib-shorts-2022': (
@@ -113,7 +118,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>There are two pads available, a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
       <p>Some shorts are available in a "plus size" that adds 5cm to the legs.</p>
       <p>Shorts are available in regular lycra fabric or roubaix which is insulated for colder weather.</p>
-      {preproductionWarning}
     </>
   ),
   'pro-bib-shorts-2022': (
@@ -123,7 +127,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>There are two pads available, a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
       <p>Some shorts are available in a "plus size" that adds 5cm to the legs.</p>
       <p>Shorts are available in a textured lycra fabric, a lighter summer weight fabric or roubaix which is insulated for colder weather.</p>
-      {preproductionWarning}
     </>
   ),
   'club-3-4-bib-shorts-2022': (
@@ -132,7 +135,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>They are available in male and female specific versions and with a choice of pads - a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
       <p>Some shorts are available in a "plus size" that adds 5cm to the legs.</p>
       <p>Shorts are available in regular lycra fabric or roubaix which is insulated for colder weather.</p>
-      {preproductionWarning}
     </>
   ),
   'club-bib-tights-2022': (
@@ -140,7 +142,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Our bib tights are made from an insulated roubaix material and feature silicone elastic grippers to keep the legs in place, flat seams for comfort, and reflective elements for visibility.</p>
       <p>They are available in male and female specific versions and with a choice of pads - a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
       <p>Some tights are available in a "plus size" that adds 5cm to the legs.</p>
-      {preproductionWarning}
     </>
   ),
   'rain-jacket-2022': (
@@ -149,7 +150,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>The fabric has a 20k/20k waterproof/breathability rating and is a lightweight 100g/m2.</p>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
       <p>Some jackets are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
-      {preproductionWarning}
     </>
   ),
   'winter-jacket-2022': (
@@ -157,7 +157,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Our winter jacket has 10k/10k waterproof/breathability rating and is made from a lightweight three-layer 160g/m2 fabric that is wind and waterproof while remaining breathable.</p>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
       <p>Some jackets are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
-      {preproductionWarning}
     </>
   ),
   'club-skin-suit-2022': (
@@ -165,7 +164,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>All purpose skin suit with sleeve, pad, material and pocket options making it suited to all racing types or just for hanging out in at the Brick.</p>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
       <p>Some skin suits are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
-      {preproductionWarning}
     </>
   ),
   'road-skin-suit-2022': (
@@ -173,7 +171,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Skin suit with short sleeves and three rear pockets suited to road/CX or MTB racing.</p>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
       <p>Some skin suits are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
-      {preproductionWarning}
     </>
   ),
   'track-skin-suit-2022': (
@@ -181,7 +178,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Based on the track skin suits worn by Team GB, this skin suit has number pockets so you don't need to use pins.</p>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
       <p>Some skin suits are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
-      {preproductionWarning}
     </>
   ),
   'musette-2019': (
