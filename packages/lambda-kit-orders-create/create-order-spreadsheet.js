@@ -41,7 +41,7 @@ module.exports = function (items) {
 
     for (const [name, sheet] of Object.entries(workbook.Sheets)) {
       for (const [cell, content] of Object.entries(sheet)) {
-        if (content && content.v.toString().toLowerCase() === sku.toLowerCase()) {
+        if (content && content.v && content.v.toString().toLowerCase() === sku.toLowerCase()) {
           console.info('Found', name, cell)
           found = true
 
