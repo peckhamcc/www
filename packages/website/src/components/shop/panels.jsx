@@ -212,10 +212,10 @@ export const ITEM_IMAGES = {
   }],
   'youth-jersey-2022': [{
     src: ssJerseyFrontImage,
-    text: 'Jersey front'
+    text: 'Youth jersey front'
   }, {
     src: ssJerseyRearImage,
-    text: 'Jersey rear'
+    text: 'Youth jersey rear'
   }, {
     src: devanFabric,
     text: 'Woven fabric'
@@ -262,10 +262,10 @@ export const ITEM_IMAGES = {
   }],
   'winter-youth-jersey-2022': [{
     src: lsJerseyFrontImage,
-    text: 'Kids winter jersey front'
+    text: 'Youth winter jersey front'
   }, {
     src: lsJerseyRearImage,
-    text: 'Kids winter jersey rear'
+    text: 'Youth winter jersey rear'
   }, {
     src: flandersFabric,
     text: 'Insulated fabric'
