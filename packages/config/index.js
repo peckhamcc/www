@@ -1503,7 +1503,7 @@ const OPTIONS = {
       'F-STR-Y': 'n51072-LS54'
     },
 
-    'kids-jersey-2022': {
+    'youth-jersey-2022': {
       S: 'n50016-JS37',
       L: 'n50016-JS06'
     },
@@ -1518,7 +1518,7 @@ const OPTIONS = {
       F: 'n50057-LL40'
     },
 
-    'winter-kids-jersey-2022': 'n50055-JL06',
+    'winter-youth-jersey-2022': 'n50055-JL06',
 
     'club-bib-shorts-2022': {
       'M-MR-LP': 'n60069-MA49',

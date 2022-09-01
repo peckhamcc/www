@@ -210,7 +210,7 @@ export const ITEM_IMAGES = {
     src: valuablesPouch,
     text: 'Optional valuables pouch'
   }],
-  'kids-jersey-2022': [{
+  'youth-jersey-2022': [{
     src: ssJerseyFrontImage,
     text: 'Jersey front'
   }, {
@@ -260,7 +260,7 @@ export const ITEM_IMAGES = {
     src: andorraFabric,
     text: 'Warm roubaix-style jersey material'
   }],
-  'winter-kids-jersey-2022': [{
+  'winter-youth-jersey-2022': [{
     src: lsJerseyFrontImage,
     text: 'Kids winter jersey front'
   }, {

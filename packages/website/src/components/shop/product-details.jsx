@@ -67,7 +67,7 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Woven fabrics also tend to be slightly thicker so will be warmer.</p>
     </>
   ),
-  'kids-jersey-2022': (
+  'youth-jersey-2022': (
     <>
       <p>Junior sized jersey in a close-fitting cut with three rear pockets for conkers and marbles.</p>
       <p>The fabric is a medium weight with excellent breathability.</p>
@@ -90,7 +90,7 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Some jerseys are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
     </>
   ),
-  'winter-kids-jersey-2022': (
+  'winter-youth-jersey-2022': (
     <>
       <p>Junior sized jersey in a close-fitting cut with a high neck to keep the weather out and three rear pockets for snacks.</p>
       <p>The fabric is insulated to handle unpredictable weather.</p>
