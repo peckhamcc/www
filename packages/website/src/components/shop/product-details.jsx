@@ -73,6 +73,7 @@ const PRODUCT_DESCRIPTIONS = {
       <p>The fabric is a medium weight with excellent breathability.</p>
       <p>There is an option for a full length or half length zip</p>
       <p>Sizing is based on height, please see the size guide for details.</p>
+      <p>If between two sizes, choose the larger size.</p>
     </>
   ),
   'winter-club-jersey-2022': (
@@ -94,6 +95,7 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Junior sized jersey in a close-fitting cut with a high neck to keep the weather out and three rear pockets for snacks.</p>
       <p>The fabric is insulated to handle unpredictable weather.</p>
       <p>Sizing is based on height, please see the size guide for details.</p>
+      <p>If between two sizes, choose the larger size.</p>
     </>
   ),
   'lightweight-gilet-2022': (
