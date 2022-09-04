@@ -56,6 +56,9 @@ import bdayTshirtWhiBackImage from '../../../assets/shop/bday-t-shirt-2021-whi-b
 import bdayTshirtBlkFrontImage from '../../../assets/shop/bday-t-shirt-2021-blk-front.png'
 import bdayTshirtBlkBackImage from '../../../assets/shop/bday-t-shirt-2021-blk-back.png'
 import valuablesPouch from '../../../assets/shop/valuables-pouch.png'
+import pitJacketFront from '../../../assets/shop/pit-jacket-front.png'
+import pitJacketRear from '../../../assets/shop/pit-jacket-rear.png'
+import pitTights from '../../../assets/shop/pit-tights.png'
 import spinnFabric from '../../../assets/shop/material-spinn.jpg'
 import stripesFabric from '../../../assets/shop/material-stripes.jpg'
 import razorFabric from '../../../assets/shop/material-razor.jpg'
@@ -72,8 +75,9 @@ import veranoFlexFabric from '../../../assets/shop/material-verano-flex.png'
 import roubaixFabric from '../../../assets/shop/material-roubaix.jpg'
 import revolutionalFabric from '../../../assets/shop/material-revolutional.jpg'
 import briosFabric from '../../../assets/shop/material-brios.jpg'
-import devanFabric from '../../../assets/shop/material-devan.png'
-import flandersFabric from '../../../assets/shop/material-flanders.png'
+import devanFabric from '../../../assets/shop/material-devan.jpg'
+import flandersFabric from '../../../assets/shop/material-flanders.jpg'
+import bellFabric from '../../../assets/shop/material-bell.jpg'
 
 export const ITEM_IMAGES = {
   accessories: [{
@@ -322,6 +326,23 @@ export const ITEM_IMAGES = {
   }, {
     src: speedSuitRearImage,
     text: 'Skin suit rear'
+  }],
+  'pit-jacket-2022': [{
+    src: pitJacketFront,
+    text: 'Pit Jacket front'
+  }, {
+    src: pitJacketRear,
+    text: 'Pit Jacket rear'
+  }, {
+    src: bellFabric,
+    text: 'Insulated jacket fabric'
+  }],
+  'pit-tights-2022': [{
+    src: pitTights,
+    text: 'Pit Tights'
+  }, {
+    src: roubaixFabric,
+    text: 'Insulated roubaix fabric'
   }],
   'bidon-2019': [{
     src: bidonImage

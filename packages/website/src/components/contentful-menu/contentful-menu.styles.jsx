@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { pccRed } from '../../colours'
 
 export const NavLink = styled.div`
   list-style: none;
@@ -12,7 +13,7 @@ export const NavLink = styled.div`
   }
   a:hover {
     text-decoration: underline;
-    color: #f10;
+    color: ${pccRed};
   }
 `
 
@@ -30,7 +31,7 @@ export const NavMenu = styled.div`
   }
   a:hover {
     text-decoration: underline;
-    color: #f10;
+    color: ${pccRed};
   }
 
   ul {

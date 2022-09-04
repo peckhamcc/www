@@ -182,6 +182,17 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Some skin suits are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
     </>
   ),
+  'pit-jacket-2022': (
+    <>
+      <p>A warm, insulated jacket to wear in before/after your races to keep you warm.</p>
+    </>
+  ),
+  'pit-tights-2022': (
+    <>
+      <p>Insulated tights without a pad to wear over your bibs while you're rolling round the inner track/on the rollers waiting for your race to start, or after the races while you are having a beer.</p>
+      <p>The tights have ankle zips for easy and quick removal without having to take your shoes off.</p>
+    </>
+  ),
   'musette-2019': (
     <>
       <p>Black cotton musette with screen printed club logo.</p>

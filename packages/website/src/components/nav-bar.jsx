@@ -11,18 +11,19 @@ import {
   ModalBlocker,
   Break
 } from './panels'
-import pccAvatar from '../../assets/pcc-logo-round.png'
+import pccAvatar from '../../assets/pcc-logo.png'
 import { spacing } from '../units'
 import onscrolling from 'onscrolling'
 import { Flag } from '../lib/flags'
 import { config } from '@peckhamcc/config'
 import { ContentfulMenu } from './contentful-menu'
+import { pccRed } from '../colours'
 
 const HAMBUGER_BREAK = 800
 
 const CartContentsCount = styled.div`
   color: #fff;
-  background-color: #f10;
+  background-color: ${pccRed};
   border-radius: ${spacing(1)};
   font-size: ${spacing(1)};
   font-weight: bold;
@@ -71,18 +72,27 @@ const NavLink = styled.li`
   }
   a:hover {
     text-decoration: underline;
-    color: #f10;
+    color: ${pccRed};
   }
 `
 
 const CartLink = styled(NavLink)`
   font-size: 24px;
   margin-right: 0;
+
+  a {
+    color: #000;
+  }
 `
 
 const ProfileLink = styled(NavLink)`
   font-size: 24px;
   margin-right: ${spacing(1)};
+
+  svg:hover {
+    color: ${pccRed};
+    cursor: pointer;
+  }
 `
 
 const SiteNav = styled(FlexContentLeft)`
@@ -120,10 +130,10 @@ const UserNav = styled.ul`
 const SiteIcon = styled.div`
   padding: 5px 0 0 0;
   position: absolute;
-  top: 2;
+  top: 2px;
   left: 50vw;
-  margin-left: -55px;
-  svg{width: 110px;}
+  margin-left: -85px;
+  svg{width: 197px;}
 `
 
 const AccountNav = styled.div`
@@ -209,7 +219,7 @@ class NavBarWrapper extends Component {
       <NavBar>
         <SiteIcon>
           <Link to='/'>
-            <img src={pccAvatar} height='50' width='50' />
+            <img src={pccAvatar} height='44' width='169' />
           </Link>
         </SiteIcon>
 

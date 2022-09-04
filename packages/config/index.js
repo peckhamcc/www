@@ -1249,6 +1249,21 @@ const OPTIONS = {
       name: 'Jacket ELITE 06 | W&W Mission Flow'
     },
 
+    // male pit jacket
+    'n80134-ML14': {
+      name: 'Jacket TRACK 14 | W&W Bell'
+    },
+
+    // female pit jacket
+    'n80134-LL14': {
+      name: 'Jacket TRACK 14 | W&W Bell'
+    },
+
+    // pit tights
+    'n70271-UP18': {
+      name: 'Pants START-FINISH 18 | ROUBAIX'
+    },
+
     // arm warmers
     'n70012-UF04': {
       name: 'ARM warmers ACTIVE 04 | ROUBAIX'
@@ -1596,6 +1611,16 @@ const OPTIONS = {
     'winter-jacket-2022': {
       M: 'n50248-ML06',
       F: 'n50248-LL06'
+    },
+
+    'pit-jacket-2022': {
+      M: 'n80134-ML14',
+      F: 'n80134-LL14'
+    },
+
+    'pit-tights-2022': {
+      M: 'n70271-UP18',
+      F: 'n70271-UP18'
     },
 
     'club-skin-suit-2022': {

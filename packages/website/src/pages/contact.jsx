@@ -17,6 +17,7 @@ import {
 import {
   config
 } from '@peckhamcc/config'
+import { pccRed } from '../colours'
 
 const Label = styled.label`
   display: block;
@@ -39,7 +40,7 @@ const TextArea = styled.textarea`
 `
 
 const Warning = styled.p`
-  color: #F10;
+  color: ${pccRed};
 `
 
 const STATE = {
