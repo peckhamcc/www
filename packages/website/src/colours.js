@@ -61,7 +61,16 @@ export const panelLevel3HoverBackground = adjustColour(panelLevel3Background, -8
 
 export const errorText = '#ff6459'
 export const errorBackground = '#EC9590'
-export const pccLightBlue = '#45C4D7'
-export const pccDarkBlue = '#2E6DCA'
-export const pccRed = '#CC2B36'
-export const pccYellow = '#FBE104'
+
+// Light blue: PMS 630 C / CMYK: 50.0.8.0
+// https://icolorpalette.com/color/pantone-630-c
+export const pccLightBlue = '#77C5D5'
+// Dark blue: PMS 300 C / K519 / CMYK: 89.56.0.0
+// https://icolorpalette.com/color/pantone-300-c
+export const pccDarkBlue = '#005eb8'
+// Red: PMS 1795 C / K315 / CMYK: 0.82.77.18
+// https://icolorpalette.com/color/pantone-199-c
+export const pccRed = '#d22630'
+// Yellow: PMS Yellow C / K101 / CMYK: 5.2.95.3
+// https://icolorpalette.com/color/pantone-yellow-c
+export const pccYellow = '#fedd00'
