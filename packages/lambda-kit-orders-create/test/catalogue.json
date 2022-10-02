@@ -1,0 +1,1936 @@
+[
+  {
+    "name": "Jerseys",
+    "items": [
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfN1ZlSTlaM0hvNW5pWHUxck5wM3RrR1ZL00eOrdpYqd"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "kids",
+        "variations": "size",
+        "name": "Youth Winter Jersey",
+        "options": {
+          "size": [
+            "110",
+            "122",
+            "128",
+            "134",
+            "140",
+            "146",
+            "152",
+            "158"
+          ]
+        },
+        "description": null,
+        "section": "jerseys",
+        "id": "prod_MM0zEWdaA6PG04",
+        "prices": {
+          "n50055-JL06": {
+            "type": "one_time",
+            "amount": 5500,
+            "id": "price_1LdIx82cnIK2AWWQoPP43Gdo"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "winter-youth-jersey-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfSFdmaDdYeW1ybmFiNWtlMDg3TnZNRkQz00BCgPCn7h"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "kids",
+        "variations": "size-zip",
+        "name": "Youth Jersey",
+        "options": {
+          "size": [
+            "110",
+            "122",
+            "128",
+            "134",
+            "140",
+            "146",
+            "152",
+            "158"
+          ],
+          "zip": [
+            "S",
+            "L"
+          ]
+        },
+        "description": null,
+        "section": "jerseys",
+        "id": "prod_MM0z9KvBpbYIk6",
+        "prices": {
+          "n50016-JS37": {
+            "type": "one_time",
+            "amount": 3600,
+            "id": "price_1LdIx22cnIK2AWWQ0qtzta07"
+          },
+          "n50016-JS06": {
+            "type": "one_time",
+            "amount": 4000,
+            "id": "price_1LdIx22cnIK2AWWQVJD59ktT"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "youth-jersey-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfQW5POFlmbHhpYVpyUW1BTXVnMXpuNzR000GTkLUuoL"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "jerseys",
+        "variations": "gender-size-material-valuables",
+        "name": "Club Jersey",
+        "options": {
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          },
+          "material": [
+            "SPI",
+            "STR"
+          ],
+          "valuables": [
+            "N",
+            "Y"
+          ]
+        },
+        "description": "Short sleeved club jersey",
+        "section": "jerseys",
+        "id": "prod_LmKykGwdSGQpSz",
+        "prices": {
+          "n51072-LS53": {
+            "type": "one_time",
+            "amount": 6200,
+            "id": "price_1L4mId2cnIK2AWWQvM0DjXqI"
+          },
+          "n51072-MS53": {
+            "type": "one_time",
+            "amount": 6200,
+            "id": "price_1L4mId2cnIK2AWWQ2t431wal"
+          },
+          "n50078-LS51": {
+            "type": "one_time",
+            "amount": 6000,
+            "id": "price_1L4mId2cnIK2AWWQbIqbveAn"
+          },
+          "n51072-MS54": {
+            "type": "one_time",
+            "amount": 6800,
+            "id": "price_1L4mId2cnIK2AWWQ2S9PxR0V"
+          },
+          "n51072-LS54": {
+            "type": "one_time",
+            "amount": 6800,
+            "id": "price_1L4mId2cnIK2AWWQVJZohMKG"
+          },
+          "n50078-MS50": {
+            "type": "one_time",
+            "amount": 5400,
+            "id": "price_1L4mId2cnIK2AWWQrwudNlXN"
+          },
+          "n50078-MS51": {
+            "type": "one_time",
+            "amount": 6000,
+            "id": "price_1L4mId2cnIK2AWWQbmJyHxzT"
+          },
+          "n50078-LS50": {
+            "type": "one_time",
+            "amount": 5400,
+            "id": "price_1L4mId2cnIK2AWWQlKTB7ox4"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "club-jersey-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfUTdkdTdmTXpZSE5RVjJLQm0xVmNNR3Nq00bZAhgubA"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "jerseys",
+        "variations": "gender-size-material-valuables",
+        "name": "Pro Jersey",
+        "options": {
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          },
+          "material": [
+            "RAZ",
+            "VER",
+            "CAR"
+          ],
+          "valuables": [
+            "N",
+            "Y"
+          ]
+        },
+        "description": "Short sleeved jersey",
+        "section": "jerseys",
+        "id": "prod_LmKyhV5EzPBWOB",
+        "prices": {
+          "n50076-MS62": {
+            "type": "one_time",
+            "amount": 9700,
+            "id": "price_1L4mIa2cnIK2AWWQo7Lomuk9"
+          },
+          "n51079-LS65": {
+            "type": "one_time",
+            "amount": 9100,
+            "id": "price_1L4mIZ2cnIK2AWWQei9dPsMG"
+          },
+          "n50076-MS61": {
+            "type": "one_time",
+            "amount": 9100,
+            "id": "price_1L4mIa2cnIK2AWWQEZldetBG"
+          },
+          "n50076-LS61": {
+            "type": "one_time",
+            "amount": 9100,
+            "id": "price_1L4mIZ2cnIK2AWWQMxygjJNI"
+          },
+          "n50076-LS62": {
+            "type": "one_time",
+            "amount": 9700,
+            "id": "price_1L4mIZ2cnIK2AWWQLt0QJiYx"
+          },
+          "n50074-LS62": {
+            "type": "one_time",
+            "amount": 9700,
+            "id": "price_1L4mIZ2cnIK2AWWQN5HkYkST"
+          },
+          "n50074-MS62": {
+            "type": "one_time",
+            "amount": 9700,
+            "id": "price_1L4mIZ2cnIK2AWWQAdRtlZhn"
+          },
+          "n50074-LS61": {
+            "type": "one_time",
+            "amount": 9100,
+            "id": "price_1L4mIZ2cnIK2AWWQm5cYJb9x"
+          },
+          "n50074-MS61": {
+            "type": "one_time",
+            "amount": 9100,
+            "id": "price_1L4mIZ2cnIK2AWWQzmWwhkFB"
+          },
+          "n51079-MS65": {
+            "type": "one_time",
+            "amount": 9100,
+            "id": "price_1L4mIZ2cnIK2AWWQ6uCjLvZf"
+          },
+          "n51079-MS66": {
+            "type": "one_time",
+            "amount": 9700,
+            "id": "price_1L4mIZ2cnIK2AWWQ5RRTnHlN"
+          },
+          "n51079-LS66": {
+            "type": "one_time",
+            "amount": 9700,
+            "id": "price_1L4mIZ2cnIK2AWWQWI9GSQev"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "pro-jersey-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3Rfc2dnWnZlVWwyVW1HTFJyZmNuUXpuemRC00n0H4LJ3b"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "jerseys",
+        "variations": "gender-size",
+        "name": "Winter Club Jersey",
+        "options": {
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          }
+        },
+        "description": "Long sleeve jersey in insulated material",
+        "section": "jerseys",
+        "id": "prod_LmKxa0LBLDNRgB",
+        "prices": {
+          "n50057-LL40": {
+            "type": "one_time",
+            "amount": 6500,
+            "id": "price_1L4mI02cnIK2AWWQsWIHZhZD"
+          },
+          "n50057-ML40": {
+            "type": "one_time",
+            "amount": 6500,
+            "id": "price_1L4mI02cnIK2AWWQexVLhLCA"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "winter-club-jersey-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfR1NCU2dFaU4wYVB5U0J5MnlHenlhSWZz00vWD4hdAI"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "jerseys",
+        "variations": "gender-size",
+        "name": "Winter Pro Jersey",
+        "options": {
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          }
+        },
+        "description": "Long sleeved aero jersey in an insulated material",
+        "section": "jerseys",
+        "id": "prod_LmKx484ZB36tvI",
+        "prices": {
+          "n50052-LL33": {
+            "type": "one_time",
+            "amount": 10200,
+            "id": "price_1L4mHy2cnIK2AWWQt9UHvL8Y"
+          },
+          "n50052-ML33": {
+            "type": "one_time",
+            "amount": 10200,
+            "id": "price_1L4mHy2cnIK2AWWQFo36ZE4K"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "winter-pro-jersey-2022"
+      }
+    ],
+    "slug": "jerseys"
+  },
+  {
+    "name": "Outerwear",
+    "items": [
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfeXVMaWRxUXNmUzNrYWRsQUttOUozS3E300sxe937mr"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "jerseys",
+        "variations": "gender-size",
+        "name": "Lightweight Gilet",
+        "options": {
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          }
+        },
+        "description": "Lightweight packable club gilet with a mesh back",
+        "section": "outerwear",
+        "id": "prod_LmKyZcNVt9vqhr",
+        "prices": {
+          "n50113-LN19": {
+            "type": "one_time",
+            "amount": 5100,
+            "id": "price_1L4mIU2cnIK2AWWQ6R42HRSk"
+          },
+          "n50113-MN19": {
+            "type": "one_time",
+            "amount": 5100,
+            "id": "price_1L4mIU2cnIK2AWWQqQUM7zvA"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "lightweight-gilet-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfUjBiZTlmT0wwelZWOHo0eWRRdlpkbWdy009mlk0sWG"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "jerseys",
+        "variations": "gender-size-back",
+        "name": "Club Gilet",
+        "options": {
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          },
+          "back": [
+            "ME",
+            "MB"
+          ]
+        },
+        "description": "Club gilet with pockets and a choice of back",
+        "section": "outerwear",
+        "id": "prod_LmKyt7GoQ0AHMJ",
+        "prices": {
+          "n50128-MN05": {
+            "type": "one_time",
+            "amount": 7600,
+            "id": "price_1L4mIQ2cnIK2AWWQaE5t3Cu6"
+          },
+          "n50128-LN05": {
+            "type": "one_time",
+            "amount": 7600,
+            "id": "price_1L4mIQ2cnIK2AWWQRP5qYvFM"
+          },
+          "n50126-LN03": {
+            "type": "one_time",
+            "amount": 6500,
+            "id": "price_1L4mIQ2cnIK2AWWQM1siTsKx"
+          },
+          "n50126-MN03": {
+            "type": "one_time",
+            "amount": 6500,
+            "id": "price_1L4mIQ2cnIK2AWWQEpjLIXsn"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "club-gilet-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfQmRZWjRlUVFLalpKTWZZZ2lHTFJNb0ZM007cWX5tEZ"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "jerseys",
+        "variations": "gender-size",
+        "name": "Winter Jacket",
+        "options": {
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          }
+        },
+        "description": "Club Winter Jacket",
+        "section": "outerwear",
+        "id": "prod_LmKyomLE0v6Jpu",
+        "prices": {
+          "n50248-LL06": {
+            "type": "one_time",
+            "amount": 10500,
+            "id": "price_1L4mI72cnIK2AWWQ0fi31dGJ"
+          },
+          "n50248-ML06": {
+            "type": "one_time",
+            "amount": 10500,
+            "id": "price_1L4mI72cnIK2AWWQ2fN4uSvn"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "winter-jacket-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfT0d5Qnl2V1VFMmwxQWFIUFhGV3ptQ21k00OeGrw1zq"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "jerseys",
+        "variations": "gender-size",
+        "name": "Rain Jacket",
+        "options": {
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          }
+        },
+        "description": "Waterproof jacket with taped seams and breathable material that keeps the weather out",
+        "section": "outerwear",
+        "id": "prod_LmKyIxFCvteKho",
+        "prices": {
+          "n50219-ML09": {
+            "type": "one_time",
+            "amount": 16000,
+            "id": "price_1L4mI42cnIK2AWWQlYxuSfln"
+          },
+          "n50219-LL09": {
+            "type": "one_time",
+            "amount": 16000,
+            "id": "price_1L4mI42cnIK2AWWQD44nszQw"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "rain-jacket-2022"
+      }
+    ],
+    "slug": "outerwear"
+  },
+  {
+    "name": "Bib shorts & tights",
+    "items": [
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfRldoYkZTQ0ZndDZyYmlHbU9KQURpTU9n00lJV0OwSQ"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "shorts",
+        "variations": "gender-size-pad-material",
+        "name": "Club Bib Shorts",
+        "options": {
+          "pad": {
+            "M": [
+              "MR",
+              "ME",
+              "FR",
+              "FE"
+            ],
+            "F": [
+              "FR",
+              "FE"
+            ]
+          },
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          },
+          "material": [
+            "LP",
+            "ROU"
+          ]
+        },
+        "description": "Black club bib shorts with choice of pad, length and fit",
+        "section": "bib-shorts-and-tights",
+        "id": "prod_LmKyQIC5gLUm1p",
+        "prices": {
+          "n60069-LA50": {
+            "type": "one_time",
+            "amount": 6800,
+            "id": "price_1L4mIL2cnIK2AWWQTFyhYclX"
+          },
+          "n60064-UA51": {
+            "type": "one_time",
+            "amount": 7300,
+            "id": "price_1L4mIL2cnIK2AWWQr5RTdpBn"
+          },
+          "n60064-LA51": {
+            "type": "one_time",
+            "amount": 7300,
+            "id": "price_1L4mIL2cnIK2AWWQh2gAauqT"
+          },
+          "n60064-LA52": {
+            "type": "one_time",
+            "amount": 10200,
+            "id": "price_1L4mIL2cnIK2AWWQIYgAFx55"
+          },
+          "n60069-MA89": {
+            "type": "one_time",
+            "amount": 9700,
+            "id": "price_1L4mIM2cnIK2AWWQ0K7TGN5z"
+          },
+          "n60064-MA24": {
+            "type": "one_time",
+            "amount": 7300,
+            "id": "price_1L4mIM2cnIK2AWWQkW11d5W3"
+          },
+          "n60064-MA07": {
+            "type": "one_time",
+            "amount": 10200,
+            "id": "price_1L4mIM2cnIK2AWWQ561onEtx"
+          },
+          "n60069-MA49": {
+            "type": "one_time",
+            "amount": 6800,
+            "id": "price_1L4mIM2cnIK2AWWQrwomkJAa"
+          },
+          "n60069-UA89": {
+            "type": "one_time",
+            "amount": 9700,
+            "id": "price_1L4mIL2cnIK2AWWQcncuaLnB"
+          },
+          "n60069-LA89": {
+            "type": "one_time",
+            "amount": 9700,
+            "id": "price_1L4mIM2cnIK2AWWQNmteK3He"
+          },
+          "n60064-UA52": {
+            "type": "one_time",
+            "amount": 10200,
+            "id": "price_1L4mIL2cnIK2AWWQ5ffo2Yha"
+          },
+          "n60069-UA50": {
+            "type": "one_time",
+            "amount": 6800,
+            "id": "price_1L4mIL2cnIK2AWWQ4bBFJ2wV"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "club-bib-shorts-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfNUZNb2tSQm10cm9CYnJZUEg0S3JmUDJG00cJkJ35oV"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "shorts",
+        "variations": "gender-size-pad-material",
+        "name": "Pro Bib Shorts",
+        "options": {
+          "pad": {
+            "M": [
+              "MR",
+              "ME",
+              "FR",
+              "FE"
+            ],
+            "F": [
+              "FR",
+              "FE"
+            ]
+          },
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          },
+          "material": [
+            "GOF",
+            "VER",
+            "ROU"
+          ]
+        },
+        "description": "Black bib shorts with choice of pad, length and fit",
+        "section": "bib-shorts-and-tights",
+        "id": "prod_LmKyakHU1WomXX",
+        "prices": {
+          "n61064-MA13": {
+            "type": "one_time",
+            "amount": 13600,
+            "id": "price_1L4mII2cnIK2AWWQTXu16TRU"
+          },
+          "n61065-UA04": {
+            "type": "one_time",
+            "amount": 10800,
+            "id": "price_1L4mII2cnIK2AWWQBqvn2p5d"
+          },
+          "n61064-LA02": {
+            "type": "one_time",
+            "amount": 13600,
+            "id": "price_1L4mII2cnIK2AWWQ457zgWLh"
+          },
+          "n61065-UA02": {
+            "type": "one_time",
+            "amount": 13600,
+            "id": "price_1L4mII2cnIK2AWWQAtS61fTg"
+          },
+          "n61064-MA12": {
+            "type": "one_time",
+            "amount": 10800,
+            "id": "price_1L4mII2cnIK2AWWQ4rYqJrSI"
+          },
+          "n61065-LA02": {
+            "type": "one_time",
+            "amount": 13600,
+            "id": "price_1L4mII2cnIK2AWWQNFjCzs1X"
+          },
+          "n61065-MA13": {
+            "type": "one_time",
+            "amount": 13600,
+            "id": "price_1L4mII2cnIK2AWWQjzH6otzu"
+          },
+          "n61065-MA12": {
+            "type": "one_time",
+            "amount": 10800,
+            "id": "price_1L4mII2cnIK2AWWQUIhsgRqw"
+          },
+          "n61066-MA12": {
+            "type": "one_time",
+            "amount": 10800,
+            "id": "price_1L4mII2cnIK2AWWQ71I5QC1z"
+          },
+          "n61065-LA04": {
+            "type": "one_time",
+            "amount": 10800,
+            "id": "price_1L4mII2cnIK2AWWQGmDFEERo"
+          },
+          "n61066-MA13": {
+            "type": "one_time",
+            "amount": 13600,
+            "id": "price_1L4mII2cnIK2AWWQy3aR8vy1"
+          },
+          "n61064-UA02": {
+            "type": "one_time",
+            "amount": 13600,
+            "id": "price_1L4mII2cnIK2AWWQwU4nXGY4"
+          },
+          "n61066-LA02": {
+            "type": "one_time",
+            "amount": 13600,
+            "id": "price_1L4mII2cnIK2AWWQvgstVkuR"
+          },
+          "n61066-LA04": {
+            "type": "one_time",
+            "amount": 10800,
+            "id": "price_1L4mII2cnIK2AWWQ1QEEft1d"
+          },
+          "n61066-UA02": {
+            "type": "one_time",
+            "amount": 13600,
+            "id": "price_1L4mII2cnIK2AWWQBIea5hoF"
+          },
+          "n61066-UA04": {
+            "type": "one_time",
+            "amount": 10800,
+            "id": "price_1L4mII2cnIK2AWWQJbeGEIQl"
+          },
+          "n61064-UA04": {
+            "type": "one_time",
+            "amount": 10800,
+            "id": "price_1L4mII2cnIK2AWWQhXXLP7vI"
+          },
+          "n61064-LA04": {
+            "type": "one_time",
+            "amount": 10800,
+            "id": "price_1L4mII2cnIK2AWWQXJrKu2FK"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "pro-bib-shorts-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfZ2JKR0NjWk9lOHhkd29sWkpQQzNEYmty00ERsYEykO"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "shorts",
+        "variations": "gender-size-pad-material",
+        "name": "3/4 Club Bibs",
+        "options": {
+          "pad": {
+            "M": [
+              "MR",
+              "ME"
+            ],
+            "F": [
+              "FR",
+              "FE"
+            ]
+          },
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          },
+          "material": [
+            "LP",
+            "ROU"
+          ]
+        },
+        "description": "Club Bibs in a 3/4 length made from roubaix material",
+        "section": "bib-shorts-and-tights",
+        "id": "prod_LmKxBRxJbo2Kdx",
+        "prices": {
+          "n60169-LA52": {
+            "type": "one_time",
+            "amount": 10500,
+            "id": "price_1L4mHt2cnIK2AWWQ6glRfZgb"
+          },
+          "n60169-LA51": {
+            "type": "one_time",
+            "amount": 7700,
+            "id": "price_1L4mHt2cnIK2AWWQLW19QfIu"
+          },
+          "n60164-LA52": {
+            "type": "one_time",
+            "amount": 10900,
+            "id": "price_1L4mHt2cnIK2AWWQR5oIQ1Gg"
+          },
+          "n60169-MA24": {
+            "type": "one_time",
+            "amount": 7700,
+            "id": "price_1L4mHt2cnIK2AWWQCO75G6tG"
+          },
+          "n60164-MA24": {
+            "type": "one_time",
+            "amount": 8100,
+            "id": "price_1L4mHt2cnIK2AWWQz9u9MtSl"
+          },
+          "n60164-MA07": {
+            "type": "one_time",
+            "amount": 10900,
+            "id": "price_1L4mHt2cnIK2AWWQw5eqoaUc"
+          },
+          "n60164-LA51": {
+            "type": "one_time",
+            "amount": 8100,
+            "id": "price_1L4mHt2cnIK2AWWQQGs2UMyz"
+          },
+          "n60169-MA07": {
+            "type": "one_time",
+            "amount": 10500,
+            "id": "price_1L4mHt2cnIK2AWWQ0Ctbt1Df"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "club-3-4-bib-shorts-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfcDJZYnpqSFVsVUsyQTh6QUtjU3RzRUxF00ldDAUmPu"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "shorts",
+        "variations": "gender-size-pad",
+        "name": "Club Bib Tights",
+        "options": {
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          },
+          "pad": {
+            "M": [
+              "NP",
+              "MR",
+              "ME"
+            ],
+            "F": [
+              "NP",
+              "FR",
+              "FE"
+            ]
+          }
+        },
+        "description": "Club Bib Tights in roubaix material",
+        "section": "bib-shorts-and-tights",
+        "id": "prod_LmKxX2zsliNQFd",
+        "prices": {
+          "n60266-MA90": {
+            "type": "one_time",
+            "amount": 7300,
+            "id": "price_1L4mHq2cnIK2AWWQoDejrYW1"
+          },
+          "n60266-LA53": {
+            "type": "one_time",
+            "amount": 9100,
+            "id": "price_1L4mHq2cnIK2AWWQC846YrGa"
+          },
+          "n60266-LA90": {
+            "type": "one_time",
+            "amount": 7300,
+            "id": "price_1L4mHq2cnIK2AWWQoCyfI1cp"
+          },
+          "n60266-MA25": {
+            "type": "one_time",
+            "amount": 11900,
+            "id": "price_1L4mHq2cnIK2AWWQO2vsIB3P"
+          },
+          "n60266-MA48": {
+            "type": "one_time",
+            "amount": 9100,
+            "id": "price_1L4mHq2cnIK2AWWQSyJn4JJf"
+          },
+          "n60266-LA88": {
+            "type": "one_time",
+            "amount": 11900,
+            "id": "price_1L4mHq2cnIK2AWWQ5Aza4Zf2"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "club-bib-tights-2022"
+      }
+    ],
+    "slug": "bib-shorts-and-tights"
+  },
+  {
+    "name": "Accessories",
+    "items": [
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfQmFadVJzUnpVaFFjaXZOdGp2dzAwWXhV00Aqf3w5Yg"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "arm-warmers",
+        "variations": "size",
+        "name": "Winter Arm Warmers",
+        "options": {
+          "size": [
+            "1",
+            "2/3",
+            "4/5",
+            "6/8"
+          ]
+        },
+        "description": "Arm warmers in a roubaix fabric",
+        "section": "accessories",
+        "id": "prod_LmKyfVIsyCFBfj",
+        "prices": {
+          "n70012-UF04": {
+            "type": "one_time",
+            "amount": 2100,
+            "id": "price_1L4mIE2cnIK2AWWQNCSK8HwG"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "winter-arm-warmers-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3Rfdm1WbnNhSGFVZUxvOXlET0NjU0xUck9B00p15fW5WQ"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "arm-warmers",
+        "variations": "size",
+        "name": "Summer Sleeves",
+        "options": {
+          "size": [
+            "1",
+            "2/3",
+            "4/5",
+            "6/8"
+          ]
+        },
+        "description": "Lightweight lycra sun screen sleeves",
+        "section": "accessories",
+        "id": "prod_LmKyWZyF2Dx6AQ",
+        "prices": {
+          "n70011-UF04": {
+            "type": "one_time",
+            "amount": 1800,
+            "id": "price_1L4mIA2cnIK2AWWQ2Hl6ppn3"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "summer-sleeves-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX2xpdmVfUGVBN1d3SUQyV21QVElzdDRLdlpETloy00OSd9uvrZ"
+        ],
+        "shippingWeight": 0,
+        "name": "Neck Warmer",
+        "options": {},
+        "description": "Multifunctional tube in club colours",
+        "section": "accessories",
+        "id": "prod_LmKxgmuocK43H3",
+        "prices": {
+          "n70161-UF01": {
+            "type": "one_time",
+            "amount": 1100,
+            "id": "price_1L4mHm2cnIK2AWWQzGHMMjiu"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "neck-warmer-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/fl_test_egN1CeavFDD7WXhXUQQWrA1a"
+        ],
+        "shippingWeight": 0,
+        "name": "Black Casquette",
+        "options": {},
+        "description": "Black cotton cap with stitched ribbon",
+        "section": "accessories",
+        "id": "prod_IcKAtQydvMCjqu",
+        "prices": {
+          "black-cap-2019": {
+            "type": "one_time",
+            "amount": 1500,
+            "id": "price_1I15Vx2cnIK2AWWQi8R8tdwJ"
+          }
+        },
+        "type": "premade",
+        "slug": "black-cap-2019"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/fl_test_nDPO1ebvq9xGhw52jeQWfisM"
+        ],
+        "shippingWeight": 0,
+        "name": "White Casquette",
+        "options": {},
+        "description": "White cotton cap with stitched ribbon",
+        "section": "accessories",
+        "id": "prod_IcKAb3nfgS36Bs",
+        "prices": {
+          "white-cap-2019": {
+            "type": "one_time",
+            "amount": 1500,
+            "id": "price_1I15Vi2cnIK2AWWQ5VLUYuRi"
+          }
+        },
+        "type": "premade",
+        "slug": "white-cap-2019"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/fl_test_mZKjCcoES4uo0WtbYncVrRn1"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "socks",
+        "variations": "size",
+        "name": "Black Club Socks",
+        "options": {
+          "size": [
+            "S/M",
+            "L/XL"
+          ]
+        },
+        "description": "CoolMax foot & nylon leg",
+        "section": "accessories",
+        "id": "prod_IcK9MqvVFN0gBx",
+        "prices": {
+          "black-socks-2019": {
+            "type": "one_time",
+            "amount": 1100,
+            "id": "price_1I15VS2cnIK2AWWQxT87XbHZ"
+          }
+        },
+        "type": "premade",
+        "slug": "black-socks-2019"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/fl_test_ZHLc34byjV32gztuIK56GDsl"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "socks",
+        "variations": "size",
+        "name": "White Club Socks",
+        "options": {
+          "size": [
+            "S/M",
+            "L/XL"
+          ]
+        },
+        "description": "CoolMax foot & nylon leg",
+        "section": "accessories",
+        "id": "prod_IcK9BfJbJEx20U",
+        "prices": {
+          "white-socks-2019": {
+            "type": "one_time",
+            "amount": 1100,
+            "id": "price_1I15VH2cnIK2AWWQF1tRKMEF"
+          }
+        },
+        "type": "premade",
+        "slug": "white-socks-2019"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/fl_test_ZOjYTNv7i2DA37YWtD7mwsV0"
+        ],
+        "shippingWeight": 0,
+        "name": "Club Bidon",
+        "options": {},
+        "description": "500ml biodegradable water bottle",
+        "section": "accessories",
+        "id": "prod_IcK94wxv130ar5",
+        "prices": {
+          "bidon-2019": {
+            "type": "one_time",
+            "amount": 800,
+            "id": "price_1I15VA2cnIK2AWWQnEnQm9dQ"
+          }
+        },
+        "type": "premade",
+        "slug": "bidon-2019"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/fl_test_7dSc5bgiXSCh0vFShWjlXS40"
+        ],
+        "shippingWeight": 0,
+        "name": "Musette",
+        "options": {},
+        "description": "Black cotton musette with screen printed club logo",
+        "section": "accessories",
+        "id": "prod_IcK9tDaGDLO4Us",
+        "prices": {
+          "musette-2019": {
+            "type": "one_time",
+            "amount": 1000,
+            "id": "price_1I15Ui2cnIK2AWWQBK6VkHVt"
+          }
+        },
+        "type": "premade",
+        "slug": "musette-2019"
+      }
+    ],
+    "slug": "accessories"
+  },
+  {
+    "name": "Skin suits",
+    "items": [
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfeEk5ZWFPTWxpRkZIZkljNHFvSGdxY0JY00XqrffCCk"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "jerseys",
+        "variations": "gender-size-pad-material-sleeves-pockets",
+        "name": "Club Skin Suit",
+        "options": {
+          "pad": {
+            "M": [
+              "MR",
+              "ME"
+            ],
+            "F": [
+              "FR",
+              "FE"
+            ]
+          },
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          },
+          "material": [
+            "LP",
+            "REV"
+          ],
+          "pockets": [
+            "P0",
+            "P1"
+          ],
+          "sleeves": [
+            "S",
+            "L"
+          ]
+        },
+        "description": "Club Skin Suit with options for sleeves, material and pockets",
+        "section": "skin-suits",
+        "id": "prod_LmKxp9ukaoxrle",
+        "prices": {
+          "n56026-MA02": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHi2cnIK2AWWQmscEG3qf"
+          },
+          "n56018-MA03": {
+            "type": "one_time",
+            "amount": 17000,
+            "id": "price_1L4mHj2cnIK2AWWQox31F4w5"
+          },
+          "n56026-MA03": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHi2cnIK2AWWQpSdszyXm"
+          },
+          "n56018-MA02": {
+            "type": "one_time",
+            "amount": 17000,
+            "id": "price_1L4mHj2cnIK2AWWQlgCGbiuY"
+          },
+          "n56016-MA37": {
+            "type": "one_time",
+            "amount": 14200,
+            "id": "price_1L4mHi2cnIK2AWWQseBEd4Z6"
+          },
+          "n56016-UA33": {
+            "type": "one_time",
+            "amount": 17000,
+            "id": "price_1L4mHi2cnIK2AWWQKRU14OrK"
+          },
+          "n56016-UA32": {
+            "type": "one_time",
+            "amount": 14200,
+            "id": "price_1L4mHi2cnIK2AWWQk8swz7Ej"
+          },
+          "n56016-UA35": {
+            "type": "one_time",
+            "amount": 17000,
+            "id": "price_1L4mHi2cnIK2AWWQRETfg8YQ"
+          },
+          "n56016-UA34": {
+            "type": "one_time",
+            "amount": 14200,
+            "id": "price_1L4mHi2cnIK2AWWQbxFFvdQi"
+          },
+          "n56018-UA35": {
+            "type": "one_time",
+            "amount": 17000,
+            "id": "price_1L4mHi2cnIK2AWWQgOXqFRmr"
+          },
+          "n56018-UA34": {
+            "type": "one_time",
+            "amount": 14200,
+            "id": "price_1L4mHi2cnIK2AWWQNS631sGh"
+          },
+          "n56018-UA33": {
+            "type": "one_time",
+            "amount": 17000,
+            "id": "price_1L4mHi2cnIK2AWWQSfs8UrfP"
+          },
+          "n56018-UA32": {
+            "type": "one_time",
+            "amount": 14200,
+            "id": "price_1L4mHi2cnIK2AWWQIhvYeypq"
+          },
+          "n56026-UA32": {
+            "type": "one_time",
+            "amount": 14800,
+            "id": "price_1L4mHh2cnIK2AWWQJjRspVIf"
+          },
+          "n56026-UA33": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHh2cnIK2AWWQq3hIxLf5"
+          },
+          "n56026-UA34": {
+            "type": "one_time",
+            "amount": 14800,
+            "id": "price_1L4mHh2cnIK2AWWQ0f6FcdLu"
+          },
+          "n56026-UA35": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHi2cnIK2AWWQuasUWm6X"
+          },
+          "n56028-MA02": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHi2cnIK2AWWQ9KeZcdbi"
+          },
+          "n56028-MA03": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHi2cnIK2AWWQQnHmB1Tj"
+          },
+          "n56026-MA37": {
+            "type": "one_time",
+            "amount": 14800,
+            "id": "price_1L4mHi2cnIK2AWWQX3ZEMpLe"
+          },
+          "n56026-MA38": {
+            "type": "one_time",
+            "amount": 14800,
+            "id": "price_1L4mHi2cnIK2AWWQWh005E5q"
+          },
+          "n56018-MA38": {
+            "type": "one_time",
+            "amount": 14200,
+            "id": "price_1L4mHj2cnIK2AWWQ8UpJVkKE"
+          },
+          "n56018-MA37": {
+            "type": "one_time",
+            "amount": 14200,
+            "id": "price_1L4mHi2cnIK2AWWQReROfOQM"
+          },
+          "n56016-MA03": {
+            "type": "one_time",
+            "amount": 17000,
+            "id": "price_1L4mHi2cnIK2AWWQvDUohukc"
+          },
+          "n56016-MA02": {
+            "type": "one_time",
+            "amount": 17000,
+            "id": "price_1L4mHi2cnIK2AWWQWhDj0PCx"
+          },
+          "n56016-MA38": {
+            "type": "one_time",
+            "amount": 14200,
+            "id": "price_1L4mHi2cnIK2AWWQbOgGHS5p"
+          },
+          "n56028-MA37": {
+            "type": "one_time",
+            "amount": 14800,
+            "id": "price_1L4mHi2cnIK2AWWQVRSCCQCk"
+          },
+          "n56028-UA32": {
+            "type": "one_time",
+            "amount": 14800,
+            "id": "price_1L4mHi2cnIK2AWWQiwtBu1aA"
+          },
+          "n56028-MA38": {
+            "type": "one_time",
+            "amount": 14200,
+            "id": "price_1L4mHi2cnIK2AWWQrSY5Mdv6"
+          },
+          "n56028-UA34": {
+            "type": "one_time",
+            "amount": 14800,
+            "id": "price_1L4mHi2cnIK2AWWQizJpAqs4"
+          },
+          "n56028-UA33": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHi2cnIK2AWWQttEU9iTR"
+          },
+          "n56028-UA35": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHi2cnIK2AWWQ3rq7fhMY"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "club-skin-suit-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfVG5Na1ZsYWRzRmJDVFRQNEFxOEF1NHpZ00aQSN8Ful"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "jerseys",
+        "variations": "gender-size-pad-material",
+        "name": "Road Skin Suit",
+        "options": {
+          "pad": {
+            "M": [
+              "MR",
+              "ME"
+            ],
+            "F": [
+              "FR",
+              "FE"
+            ]
+          },
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          },
+          "material": [
+            "BRI",
+            "VER"
+          ]
+        },
+        "description": "Skin Suit with pockets, suited to Road, CX or MTB races",
+        "section": "skin-suits",
+        "id": "prod_LmKxs91McSh71F",
+        "prices": {
+          "n56069-UA31": {
+            "type": "one_time",
+            "amount": 20500,
+            "id": "price_1L4mHA2cnIK2AWWQd41X89V5"
+          },
+          "n56069-MA09": {
+            "type": "one_time",
+            "amount": 20500,
+            "id": "price_1L4mHA2cnIK2AWWQBB9S7O1T"
+          },
+          "n56069-UA30": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHA2cnIK2AWWQQQYsHcyr"
+          },
+          "n56069-MA18": {
+            "type": "one_time",
+            "amount": 20500,
+            "id": "price_1L4mHA2cnIK2AWWQxLHopOdw"
+          },
+          "n56063-MA20": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHA2cnIK2AWWQeV2HhXcK"
+          },
+          "n56069-MA20": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHA2cnIK2AWWQ7FRbau0C"
+          },
+          "n56063-UA29": {
+            "type": "one_time",
+            "amount": 20500,
+            "id": "price_1L4mHA2cnIK2AWWQ3qRebkkr"
+          },
+          "n56063-MA09": {
+            "type": "one_time",
+            "amount": 20500,
+            "id": "price_1L4mHA2cnIK2AWWQjZ8ojyhb"
+          },
+          "n56069-UA29": {
+            "type": "one_time",
+            "amount": 20500,
+            "id": "price_1L4mHA2cnIK2AWWQiQPJaHXs"
+          },
+          "n56063-UA28": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHA2cnIK2AWWQx5ClIS7U"
+          },
+          "n56069-UA28": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHA2cnIK2AWWQBYfMWopD"
+          },
+          "n56069-MA21": {
+            "type": "one_time",
+            "amount": 17600,
+            "id": "price_1L4mHA2cnIK2AWWQw5AOzbYn"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "road-skin-suit-2022"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX3Rlc3RfSkltMGpHRkZJV29IOXFLalFBQ1FVVUFj00DyRGvFit"
+        ],
+        "shippingWeight": 0,
+        "sizeChart": "jerseys",
+        "variations": "gender-size-pockets",
+        "name": "Track Skin Suit",
+        "options": {
+          "gender": [
+            "M",
+            "F"
+          ],
+          "size": {
+            "M": [
+              "1",
+              "1+",
+              "2",
+              "2+",
+              "3",
+              "3+",
+              "4",
+              "4+",
+              "5",
+              "6"
+            ],
+            "F": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          },
+          "pockets": [
+            "N2",
+            "N1",
+            "NR"
+          ]
+        },
+        "description": "Long sleeved skin suit suitable for track or time trials",
+        "section": "skin-suits",
+        "id": "prod_LmKvVsfhU344ws",
+        "prices": {
+          "n50542-UT24": {
+            "type": "one_time",
+            "amount": 25000,
+            "id": "price_1L4mFp2cnIK2AWWQkNyZUpqo"
+          },
+          "n50542-UT14": {
+            "type": "one_time",
+            "amount": 25000,
+            "id": "price_1L4mFq2cnIK2AWWQnn4AOxyi"
+          },
+          "n50542-UT25": {
+            "type": "one_time",
+            "amount": 25000,
+            "id": "price_1L4mFp2cnIK2AWWQivgL6YVa"
+          },
+          "n50542-UT15": {
+            "type": "one_time",
+            "amount": 25000,
+            "id": "price_1L4mFp2cnIK2AWWQ91gg9eqm"
+          },
+          "n50542-UT18": {
+            "type": "one_time",
+            "amount": 25000,
+            "id": "price_1L4mFp2cnIK2AWWQoK0sXKYG"
+          },
+          "n50542-UT19": {
+            "type": "one_time",
+            "amount": 25000,
+            "id": "price_1L4mFp2cnIK2AWWQONkxRukq"
+          }
+        },
+        "type": "made-to-order",
+        "slug": "track-skin-suit-2022"
+      }
+    ],
+    "slug": "skin-suits"
+  },
+  {
+    "name": "Casualwear",
+    "items": [
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX2xpdmVfanBLVTVXV3F0WmdVNW00QkYxcFNQd09j00bTkbsuPk"
+        ],
+        "shippingWeight": 100,
+        "sizeChart": "ls-t-shirts",
+        "variations": "size-colour",
+        "name": "PCC Long-sleeved T-shirt",
+        "options": {
+          "size": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL"
+          ],
+          "colour": [
+            "BLK",
+            "WHI"
+          ]
+        },
+        "description": "Long-sleeved t-shirt with printed club graphics on front and back",
+        "section": "casualwear",
+        "id": "prod_IrQlAizs72Vcas",
+        "prices": {
+          "ls-t-shirt-2021": {
+            "type": "one_time",
+            "amount": 2200,
+            "id": "price_1Ioo5Z2cnIK2AWWQsqINjqIu"
+          }
+        },
+        "type": "dropship",
+        "slug": "ls-t-shirt-2021"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX2xpdmVfaUp2aFo0Nm8ybmRzbWNBMDBUcElmaXZR00WtQ6OdQV"
+        ],
+        "shippingWeight": 100,
+        "sizeChart": "t-shirts",
+        "variations": "size-colour",
+        "name": "PCC T-shirt",
+        "options": {
+          "size": [
+            "XXS",
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL"
+          ],
+          "colour": [
+            "BLK",
+            "WHI"
+          ]
+        },
+        "description": "Short sleeved t-shirt with printed club graphics on front and back",
+        "section": "casualwear",
+        "id": "prod_IrQlurCN1yzsXt",
+        "prices": {
+          "t-shirt-2021": {
+            "type": "one_time",
+            "amount": 1900,
+            "id": "price_1Ioo4L2cnIK2AWWQxRueuZsy"
+          }
+        },
+        "type": "dropship",
+        "slug": "t-shirt-2021"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX2xpdmVfZXFBWWlyYVNJeHNZbFhuSTh5UU10UEhN00V86WDQaf"
+        ],
+        "shippingWeight": 200,
+        "sizeChart": "zip-hoodies",
+        "variations": "size-colour",
+        "name": "PCC Zip Hoodie",
+        "options": {
+          "size": [
+            "XXS",
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL"
+          ],
+          "colour": [
+            "BLK"
+          ]
+        },
+        "description": "Zip hoodie with printed club graphics on front and back",
+        "section": "casualwear",
+        "id": "prod_IrQlB5hXQHXsFW",
+        "prices": {
+          "zip-hoodie-2021": {
+            "type": "one_time",
+            "amount": 3400,
+            "id": "price_1Ioo6v2cnIK2AWWQpPEjedOx"
+          }
+        },
+        "type": "dropship",
+        "slug": "zip-hoodie-2021"
+      },
+      {
+        "images": [
+          "https://files.stripe.com/links/MDB8YWNjdF8xMDNlSHcyY25JSzJBV1dRfGZsX2xpdmVfT0Nwd2hnQ0ViNXp6N2FpMGVkZloxSmJ600BlLRaz8f"
+        ],
+        "shippingWeight": 200,
+        "sizeChart": "hoodies",
+        "variations": "size-colour",
+        "name": "PCC Hoodie",
+        "options": {
+          "size": [
+            "XXS",
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "2XL"
+          ],
+          "colour": [
+            "BLK"
+          ]
+        },
+        "description": "Hoodie with printed club graphics on front and back",
+        "section": "casualwear",
+        "id": "prod_IrQlyJOQ5Ax1WZ",
+        "prices": {
+          "hoodie-2021": {
+            "type": "one_time",
+            "amount": 3800,
+            "id": "price_1Ioo8J2cnIK2AWWQIf7ZgyfC"
+          }
+        },
+        "type": "dropship",
+        "slug": "hoodie-2021"
+      }
+    ],
+    "slug": "casualwear"
+  },
+  {
+    "name": "Unknown",
+    "items": [
+      {
+        "images": [
+          "https://files.stripe.com/links/fl_test_thOSrvlLQV0VMWETNs65EJsq"
+        ],
+        "shippingWeight": 0,
+        "name": "Friends of PCC",
+        "options": {},
+        "description": "Voluntary membership fee",
+        "section": "unknown",
+        "id": "prod_IfKatzTiF67zGa",
+        "prices": {
+          "null": {
+            "type": "recurring",
+            "amount": 2500,
+            "id": "price_1I3zvP2cnIK2AWWQsAfK7mzi"
+          }
+        },
+        "type": "subscription",
+        "slug": "fopcc"
+      }
+    ],
+    "slug": "unknown"
+  }
+]

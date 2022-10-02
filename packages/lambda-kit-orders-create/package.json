@@ -14,7 +14,7 @@
     "url": "https://github.com/peckhamcc/www/issues"
   },
   "scripts": {
-    "test": "echo 0",
+    "test": "npm run build && ava test/*.spec.js",
     "clean": "rm -rf build",
     "build": "cp ../config/index.js config.js && cp ../lambda-lib/stripe-client.js stripe-client.js && cp ../lambda-lib/account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/cache.js cache.js && cp ../lambda-lib/email.js email.js && cp ../lambda-lib/kit.js kit.js && cp ../lambda-lib/db.js db.js",
     "build:dev": "cp ../config/index.js config.js && cp ../lambda-lib/stripe-client.js stripe-client.js && cp ../lambda-lib/dev-account.js account.js && cp ../lambda-lib/middleware.js middleware.js && cp ../lambda-lib/dev-cache.js cache.js && cp ../lambda-lib/dev-email.js email.js && cp ../lambda-lib/dev-kit.js kit.js",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "aws-sdk": "^2.211.0",
+    "ava": "^2.4.0",
     "node-lambda": "^0.22.0",
     "npm-run-all": "^4.1.5",
     "standard": "^16.0.3"
