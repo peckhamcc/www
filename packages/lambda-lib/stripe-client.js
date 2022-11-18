@@ -545,6 +545,15 @@ async function updateFopccPaymentMethod (customerId, existingSubscriptionId, set
     throw new httpErrors.BadRequest('Subscription ID was incorrect')
   }
 
+  // get payment method
+  const method = await client.paymentMethods.retrieve(paymentMethod)
+
+  if (!method || !method.card || !method.card.last4) {
+    console.info('could not extract last4 from payment method', JSON.stringify(method, null, 2))
+
+    throw new httpErrors.BadGateway('No last4 found for payment method')
+  }
+
   // update payment method for customer
   await client.customers.update(customerId, {
     invoice_settings: {
@@ -556,6 +565,9 @@ async function updateFopccPaymentMethod (customerId, existingSubscriptionId, set
   await client.subscriptions.update(subscriptionId, {
     default_payment_method: paymentMethod
   })
+
+  // allow updating fopcc payment details
+  return method.card.last4
 }
 
 async function updateCustomer (user, details) {

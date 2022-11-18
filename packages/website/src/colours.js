@@ -69,7 +69,7 @@ export const pccLightBlue = '#77C5D5'
 // https://icolorpalette.com/color/pantone-300-c
 export const pccDarkBlue = '#005eb8'
 // Red: PMS 1795 C / K315 / CMYK: 0.82.77.18
-// https://icolorpalette.com/color/pantone-199-c
+// https://icolorpalette.com/color/pantone-1795-c
 export const pccRed = '#d22630'
 // Yellow: PMS Yellow C / K101 / CMYK: 5.2.95.3
 // https://icolorpalette.com/color/pantone-yellow-c

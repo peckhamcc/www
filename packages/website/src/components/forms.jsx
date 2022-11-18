@@ -276,11 +276,11 @@ export const BlueButton = styled(Button)`
   border: 1px solid ${adjustColour(pccDarkBlue, -20)};
 
   &:hover {
-    background-color: ${adjustColour(pccDarkBlue, -20)};
+    background-color: ${adjustColour(pccDarkBlue, 20)};
   }
 
   &:active {
-    background-color: ${adjustColour(pccDarkBlue, 20)};
+    background-color: ${adjustColour(pccDarkBlue, 60)};
   }
 
   &:disabled {

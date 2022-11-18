@@ -94,11 +94,20 @@ async function updateFoPCCSubscription ({ userId, user }, { data: { object } }) 
 
   console.info('Updating payment information for subscription', user.fopcc.subscriptionId, 'for user', userId)
 
-  await updateFopccPaymentMethod(
+  const last4 = await updateFopccPaymentMethod(
     user.stripeCustomerId,
     user.fopcc.subscriptionId,
     setupIntent
   )
+
+  console.info('Updating user information for subscription', user.fopcc.subscriptionId, 'for user', userId)
+
+  await updateUser(userId, {
+    fopcc: {
+      ...user.fopcc,
+      last4
+    }
+  })
 
   await sendEmail(user.email, config.email.from, 'Friend of PCC payment details updated', fopccUpdatedSubscriptionEmail.html(user.name), fopccUpdatedSubscriptionEmail.text(user.name))
 }

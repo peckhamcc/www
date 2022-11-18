@@ -13,7 +13,8 @@ import {
 } from '../panels'
 import {
   GreenButton,
-  RedButton
+  RedButton,
+  BlueButton
 } from '../forms'
 import {
   expiredToken,
@@ -83,6 +84,62 @@ class Fopcc extends Component {
   }
 
   handleJoinFoPCC = async (event) => {
+    event.preventDefault()
+
+    const scriptId = 'stripe.js'
+
+    if (!document.getElementById(scriptId)) {
+      await new Promise(resolve => {
+        const script = document.createElement('script')
+        script.id = scriptId
+        script.src = 'https://js.stripe.com/v3/'
+        script.type = 'text/javascript'
+        script.async = false
+        script.onload = () => {
+          resolve()
+        }
+        document.getElementsByTagName('head')[0].appendChild(script)
+      })
+    }
+
+    try {
+      this.setState({
+        loading: true
+      })
+
+      const response = await globalThis.fetch(config.lambda.fopccJoin, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.props.token
+        },
+        body: JSON.stringify({})
+      })
+
+      if (response.status === 200) {
+        const stripe = new window.Stripe(config.stripe.publishableKey)
+        await stripe.redirectToCheckout(await response.json())
+
+        return
+      }
+
+      if (response.status === 401) {
+        this.props.expiredToken()
+
+        return
+      }
+
+      throw new Error(response.statusText)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      this.setState({
+        loading: false
+      })
+    }
+  }
+
+  handleUpdateFoPCC = async (event) => {
     event.preventDefault()
 
     const scriptId = 'stripe.js'
@@ -250,6 +307,7 @@ class Fopcc extends Component {
       active: (
         <>
           <p>You are a Friend of PCC, your membership will renew on {formatDate(fopcc.renews)} using the card ending in {fopcc.last4}.</p>
+          <BlueButton onClick={this.handleUpdateFoPCC}>Update your payment details</BlueButton>
           <RedButton onClick={this.handleShowModal}>Cancel your membership</RedButton>
         </>
       ),
