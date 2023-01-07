@@ -35,6 +35,15 @@ const RIDEWITHGPS_IDS = [
   'https://ridewithgps.com/routes/35034777', // PCC Every London Bridge
   'https://ridewithgps.com/routes/35012502', // PCC South London Alpine
   'https://ridewithgps.com/routes/35012501', // PCC Hills of South East London
+
+  'https://ridewithgps.com/routes/41733455', // Social+ Chelsfield Loop
+  'https://ridewithgps.com/routes/41733447', // L2B2L
+  'https://ridewithgps.com/routes/41733435', // Social Cold Weather
+  'https://ridewithgps.com/routes/34823107', // Social Bear No Beddlestead
+  'https://ridewithgps.com/routes/33741370', // PCC Reverse Beddlestead
+  'https://ridewithgps.com/routes/30493729', // Social School Featherbed Return
+  'https://ridewithgps.com/routes/31847012', // Social via Shire Lane
+  'https://ridewithgps.com/routes/41733468', // Social+ Pilgrims and Star
 ]
 
 const hashify = (name) => {
