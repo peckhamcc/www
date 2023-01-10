@@ -44,6 +44,7 @@ const RIDEWITHGPS_IDS = [
   'https://ridewithgps.com/routes/30493729', // Social School Featherbed Return
   'https://ridewithgps.com/routes/31847012', // Social via Shire Lane
   'https://ridewithgps.com/routes/41733468', // Social+ Pilgrims and Star
+  'https://ridewithgps.com/routes/41750518', // Social+ Goathurst
 ]
 
 const hashify = (name) => {
