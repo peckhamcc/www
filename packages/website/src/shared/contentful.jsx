@@ -1,5 +1,5 @@
 import React from 'react'
-import contentful from 'contentful'
+import * as contentful from 'contentful'
 import { BLOCKS } from '@contentful/rich-text-types'
 import {
   Button
