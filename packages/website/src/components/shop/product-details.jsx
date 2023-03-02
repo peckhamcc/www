@@ -113,6 +113,14 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Some gilets are available in a "plus size" that adds 5cm to the body.</p>
     </>
   ),
+  'pro-gilet-2022': (
+    <>
+      <p>The Pro Gilet has a waterproof rating of 8k/10k, and is made of a lightweight 110g/m2 high stretch 95% polyester/5% polyurethane material.</p>
+      <p>It has a deep neck for increased wind protection, comes with a full-length zip, and is a great three-season option for layering and comfort.</p>
+      <p>It's available with a mesh back for warmer days or a membrane back for bad weather.</p>
+      <p>Some gilets are available in a "plus size" that adds 5cm to the body.</p>
+    </>
+  ),
   'club-bib-shorts-2022': (
     <>
       <p>Our Club Bib Short has a wicking upper mesh and flat-lock stitching with overlocked seams throughout for comfort and the legs have raw edge silicone hem grips to make sure the legs stay put.</p>

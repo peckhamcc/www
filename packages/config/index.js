@@ -1229,6 +1229,26 @@ const OPTIONS = {
       notes: '3 back pockets, membrane back'
     },
 
+    // male pro gilet
+    'n50111-MN01': {
+      name: 'Gilet PRO 01 | W&W STRATOS',
+      notes: 'mesh back'
+    },
+    'n50118-MN20': {
+      name: 'Gilet PRO 20 | W&W STRATOS',
+      notes: 'membrane back'
+    },
+
+    // female pro gilet
+    'n50111-LN01': {
+      name: 'Gilet PRO 01 | W&W STRATOS',
+      notes: 'mesh back'
+    },
+    'n50118-LN20': {
+      name: 'Gilet PRO 20 | W&W STRATOS ',
+      notes: 'membrane back'
+    },
+
     // male rain jacket
     'n50219-ML09': {
       name: 'Jacket PRO 09 | W&W eVent '
@@ -1601,6 +1621,13 @@ const OPTIONS = {
       'M-MB': 'n50128-MN05',
       'F-ME': 'n50126-LN03',
       'F-MB': 'n50128-LN05'
+    },
+
+    'pro-gilet-2022': {
+      'M-ME': 'n50111-MN01',
+      'M-MB': 'n50118-MN20',
+      'F-ME': 'n50111-LN01',
+      'F-MB': 'n50118-LN20'
     },
 
     'rain-jacket-2022': {

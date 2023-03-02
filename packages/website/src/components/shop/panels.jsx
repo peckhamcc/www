@@ -78,6 +78,7 @@ import briosFabric from '../../../assets/shop/material-brios.jpg'
 import devanFabric from '../../../assets/shop/material-devan.jpg'
 import flandersFabric from '../../../assets/shop/material-flanders.jpg'
 import bellFabric from '../../../assets/shop/material-bell.jpg'
+import stratosFabric from '../../../assets/shop/material-stratos.jpg'
 
 export const ITEM_IMAGES = {
   accessories: [{
@@ -243,6 +244,16 @@ export const ITEM_IMAGES = {
   }, {
     src: missionFlowFabric,
     text: 'Three-layer wind/waterproof membrane fabric'
+  }],
+  'pro-gilet-2022': [{
+    src: giletFrontImage,
+    text: 'Gilet front'
+  }, {
+    src: giletRearImage,
+    text: 'Gilet rear'
+  }, {
+    src: stratosFabric,
+    text: 'Ultralight waterproof membrane fabric'
   }],
   'winter-pro-jersey-2022': [{
     src: lsJerseyFrontImage,
