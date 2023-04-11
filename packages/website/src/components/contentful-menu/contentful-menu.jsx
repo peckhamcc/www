@@ -31,15 +31,20 @@ export const ContentfulMenu = ({ mobile = false }) => {
                       <>
                         <Link to={topItem.fields.url}>{topItem.fields.title}</Link>
                         <ul>
-                          {topItem?.fields?.items.map((subItem, subKey) => (
-                            <NavItem key={subKey}>
-                              <NavLink>
-                                <Link to={subItem.fields.url}>
-                                  {subItem.fields.title}
-                                </Link>
-                              </NavLink>
-                            </NavItem>
-                          ))}
+                          {
+                          topItem?.fields?.items
+                            // deleted items have missing fields
+                            .filter(subItem => Boolean(subItem.fields?.url))
+                            .map((subItem, subKey) => (
+                              <NavItem key={subKey}>
+                                <NavLink>
+                                  <Link to={subItem.fields.url}>
+                                    {subItem.fields.title}
+                                  </Link>
+                                </NavLink>
+                              </NavItem>
+                            ))
+                          }
                         </ul>
                       </>
                       )
