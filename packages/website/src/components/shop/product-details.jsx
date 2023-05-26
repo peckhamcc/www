@@ -551,6 +551,43 @@ class ProductDetails extends Component {
     }
 
     const price = getPrice(product, options)
+    let optionsArea
+
+    if (product.type === 'premade') {
+      optionsArea = (
+        <OptionsArea>
+          <h4>Pre-made item</h4>
+          <p>This item is not available buy online, it is (almost certainly) in stock at <a href='https://ratracecycles.com'>Rat Race Cycles</a> for immediate purchase.</p>
+          <p>Please pop down to the shop at your earliest convenience!</p>
+        </OptionsArea>
+      )
+    } else {
+      optionsArea = (
+        <OptionsArea>
+          {productOptions}
+          <h4>Quantity</h4>
+          <QuantityButton
+            onClick={this.handleDecreaseQuantity}
+            data-button='decrease-quantity'
+            disabled={this.state.quantity === 1}
+          ><FaMinus />
+          </QuantityButton>
+          <Quantity>{this.state.quantity}</Quantity>
+          <QuantityButton
+            onClick={this.handleIncreaseQuantity}
+            data-button='increase-quantity'
+          ><FaPlus />
+          </QuantityButton>
+          <ButtonWrapper>
+            <Button
+              onClick={this.handleAddToCart}
+              data-button='add-to-cart'
+            ><FaCartPlus /> Add to basket
+            </Button>
+          </ButtonWrapper>
+        </OptionsArea>
+      )
+    }
 
     return (
       <ProductDetailsPanel>
@@ -580,29 +617,7 @@ class ProductDetails extends Component {
         <h2>{product.name}</h2>
         <h3><Price price={price.amount} /></h3>
         {productDescription(product.slug)}
-        <OptionsArea>
-          {productOptions}
-          <h4>Quantity</h4>
-          <QuantityButton
-            onClick={this.handleDecreaseQuantity}
-            data-button='decrease-quantity'
-            disabled={this.state.quantity === 1}
-          ><FaMinus />
-          </QuantityButton>
-          <Quantity>{this.state.quantity}</Quantity>
-          <QuantityButton
-            onClick={this.handleIncreaseQuantity}
-            data-button='increase-quantity'
-          ><FaPlus />
-          </QuantityButton>
-          <ButtonWrapper>
-            <Button
-              onClick={this.handleAddToCart}
-              data-button='add-to-cart'
-            ><FaCartPlus /> Add to basket
-            </Button>
-          </ButtonWrapper>
-        </OptionsArea>
+        {optionsArea}
       </ProductDetailsPanel>
     )
   }

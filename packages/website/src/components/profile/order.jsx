@@ -172,7 +172,7 @@ class Order extends Component {
 
       trackingInfo = (
         <>
-          <p>Your order has shipped via {shipping.shippingMethod} on {formatDate(shipping.shiped_at || shipping.shipped_at)}- the tracking number is <a href={trackingLink}>{shipping.trackingNumber}</a></p>
+          <p>Your order has shipped via {shipping.shippingMethod} on {formatDate(shipping.shiped_at || shipping.shipped_at)} - the tracking number is <a href={trackingLink}>{shipping.trackingNumber}</a></p>
         </>
       )
     }
