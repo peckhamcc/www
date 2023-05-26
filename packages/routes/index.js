@@ -21,6 +21,7 @@ const RIDEWITHGPS_IDS = [
   'https://ridewithgps.com/routes/34684027', // PCC Social+ Knatts Valley
   'https://ridewithgps.com/routes/34683922', // PCC Early Morning Loop
   'https://ridewithgps.com/routes/34684072', // PCC to Kingdom
+  'https://ridewithgps.com/routes/43042217', // PCC to the Archive
   'https://ridewithgps.com/routes/34684012', // PCC Social+ Crowhurst
   'https://ridewithgps.com/routes/34683876', // PCC Social
   'https://ridewithgps.com/routes/31804969', // PCC Hell of the Ashdown
