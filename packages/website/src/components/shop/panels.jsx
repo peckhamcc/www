@@ -59,6 +59,9 @@ import valuablesPouch from '../../../assets/shop/valuables-pouch.png'
 import pitJacketFront from '../../../assets/shop/pit-jacket-front.png'
 import pitJacketRear from '../../../assets/shop/pit-jacket-rear.png'
 import pitTights from '../../../assets/shop/pit-tights.png'
+import trackTopFront from '../../../assets/shop/track-top-front.png'
+import trackTopRear from '../../../assets/shop/track-top-back.png'
+import barBag from '../../../assets/shop/bar-bag.png'
 import spinnFabric from '../../../assets/shop/material-spinn.jpg'
 import stripesFabric from '../../../assets/shop/material-stripes.jpg'
 import razorFabric from '../../../assets/shop/material-razor.jpg'
@@ -354,6 +357,17 @@ export const ITEM_IMAGES = {
   }, {
     src: roubaixFabric,
     text: 'Insulated roubaix fabric'
+  }],
+  'track-top-2023': [{
+    src: trackTopFront,
+    text: 'Track top'
+  }, {
+    src: trackTopRear,
+    text: 'Track top'
+  }],
+  'bar-bag-2022': [{
+    src: barBag,
+    text: 'Bar bag'
   }],
   'bidon-2019': [{
     src: bidonImage

@@ -890,6 +890,67 @@ const OPTIONS = {
           }
         }
       }
+    },
+
+    'track-tops': {
+      name: 'Size',
+      options: {
+        S: {
+          name: 'S',
+          measurements: {
+            chest: {
+              min: 85,
+              max: 92
+            },
+            sleeve: 60,
+            back: 64
+          }
+        },
+        M: {
+          name: 'M',
+          measurements: {
+            chest: {
+              min: 92,
+              max: 97
+            },
+            sleeve: 62,
+            back: 66
+          }
+        },
+        L: {
+          name: 'L',
+          measurements: {
+            chest: {
+              min: 98,
+              max: 104
+            },
+            sleeve: 64,
+            back: 70
+          }
+        },
+        XL: {
+          name: 'XL',
+          measurements: {
+            chest: {
+              min: 104,
+              max: 110
+            },
+            sleeve: 66,
+            back: 74
+          }
+        },
+        '2XL': {
+          name: 'XXL',
+          measurements: {
+            chest: {
+              min: 110,
+              max: 118
+            },
+            sleeve: 69,
+            back: 78
+          }
+        }
+      }
     }
   },
 
@@ -1716,6 +1777,8 @@ const OPTIONS = {
     'white-socks-2019': 'white-socks-2019',
     'bidon-2019': 'bidon-2019',
     'musette-2019': 'musette-2019',
+    'track-top-2023': 'track-top-2023',
+    'bar-bag-2022': 'bar-bag-2022',
 
     // dropship items
     'bday-t-shirt-2021': {

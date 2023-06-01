@@ -204,14 +204,12 @@ const PRODUCT_DESCRIPTIONS = {
   'musette-2019': (
     <>
       <p>Black cotton musette with screen printed club logo.</p>
-      <p>N.b. there is stock of this item available to buy at <a href='https://ratracecycles.com'>Rat Race Cycles</a></p>
     </>
   ),
   'bidon-2019': (
     <>
       <p>The club bidon has a <a href='https://www.velominati.com/#52'>500ml capacity</a>, features a lockable lid with a leak-proof membrane cap and is dishwasher safe.</p>
       <p>It's made from 20% post-industrial recycled plastics and is recyclable and biodegradable itself so once retired should not murder anything in the ocean.</p>
-      <p>N.b. there is stock of this item available to buy at <a href='https://ratracecycles.com'>Rat Race Cycles</a></p>
     </>
   ),
   'white-socks-2019': (
@@ -219,7 +217,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>White Club Socks in CoolMax foot &amp; nylon leg culminating in the club stripes at the top.</p>
       <p>Cuff size is a <a href='https://www.velominati.com/#27'>Rule #27</a> friendly 7.5-inches for large, 6.5-inches for medium.</p>
       <p>The Instagram-friendly orientation of the club motto on the top of the socks will remind you we roll united!</p>
-      <p>N.b. there is stock of this item available to buy at <a href='https://ratracecycles.com'>Rat Race Cycles</a></p>
     </>
   ),
   'black-socks-2019': (
@@ -227,7 +224,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Black Club Socks in CoolMax foot &amp; nylon leg culminating in the club stripes at the top.</p>
       <p>Cuff size is a <a href='https://www.velominati.com/#27'>Rule #27</a> friendly 7.5-inches for large, 6.5-inches for medium.</p>
       <p>The Instagram-friendly orientation of the club motto on the top of the socks will remind you we roll united!</p>
-      <p>N.b. there is stock of this item available to buy at <a href='https://ratracecycles.com'>Rat Race Cycles</a></p>
     </>
   ),
   'white-cap-2019': (
@@ -237,7 +233,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>An essential piece of kit, don't leave home without one. Unless you are going to the pub, in which case observe <a href='https://www.velominati.com/#22'>Rule #22</a> and leave it at home.</p>
       <p>Our caps are made in Italy from white cotton with a stiff peak and the Peckham logos are screen printed in black. A stitched ribbon in club colours runs over the top.</p>
       <p>Hand wash only. We mean it.</p>
-      <p>N.b. there is stock of this item available to buy at <a href='https://ratracecycles.com'>Rat Race Cycles</a></p>
     </>
   ),
   'black-cap-2019': (
@@ -247,7 +242,6 @@ const PRODUCT_DESCRIPTIONS = {
       <p>An essential piece of kit, don't leave home without one. Unless you are going to the pub, in which case observe <a href='https://www.velominati.com/#22'>Rule #22</a> and leave it at home.</p>
       <p>Our caps are made in Italy from white cotton with a stiff peak and the Peckham logos are screen printed in black. A stitched ribbon in club colours runs over the top.</p>
       <p>Hand wash only. We mean it.</p>
-      <p>N.b. there is stock of this item available to buy at <a href='https://ratracecycles.com'>Rat Race Cycles</a></p>
     </>
   ),
   'winter-arm-warmers-2022': (
@@ -301,6 +295,22 @@ const PRODUCT_DESCRIPTIONS = {
     <>
       <p>Celebrate our <del>10th</del> 11th birthday with this limited-edition short-sleeved t-shirt in 180gsm 100% organic ringspun cotton with front and rear designs.</p>
       <p>N.b our casualwear line is printed on-demand and shipped directly to you in 1-2 weeks so a postage cost will be calculated at checkout.</p>
+    </>
+  ),
+  'track-top-2023': (
+    <>
+      <p>Casual track top made from 100% merino wool.</p>
+      <p>Made for us by that stylish lot over at <a href='https://magliamo.be'>Magliamo</a>, our track tops harks back to the golden age of cycling - they are made from thick wool with a full length zip and will keep you warm while watching Track League or hanging out at the Brick.</p>
+      <p>This is a high-quality knitted garment with the club logo woven front and back and the club stripes on the cuffs, collar and sleeves.</p>
+      <p>Hand wash only.</p>
+    </>
+  ),
+  'bar-bag-2022': (
+    <>
+      <p>For when you are on an Audax and need somewhere to stash your pork pies, some tools or an extra layer or two, look no further than our very own bar bag in our very own club colours.</p>
+      <p>Made for us by the most excellent <a href='https://aravisbagworks.com'>Aravis Bagworks</a>, our handlebar bag is water resistant and made from 1000d cordura with a 6oz nylon lining.</p>
+      <p>It also features a removable plastic insert to ensure it keeps its shape, and has attachment points in case you wish to add a shoulder strap.</p>
+      <p>It comes with straps to mount the bag to your handlebars quickly and securely.</p>
     </>
   )
 }

@@ -118,9 +118,12 @@ class Sizing extends Component {
         return Object.values(size.measurements).every(measurement => Boolean(measurement[gender]))
       })
 
-      sizeTable = sizeTable.sort((a, b) => {
-        return a.name.localeCompare(b.name)
-      })
+      // only sort jersey/bib sizes, everything is S/M/L etc and should not be sorted
+      if (sizeTable[0].code === '1') {
+        sizeTable = sizeTable.sort((a, b) => {
+          return a.name.localeCompare(b.name)
+        })
+      }
 
       const size = sizeTable[0]
       const measurement = Object.keys(size.measurements).pop()
