@@ -31,9 +31,13 @@ const Thumbnail = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  max-width: 600px;
+  min-width: 550px;
   margin: auto;
   display: block;
+
+  @media (max-width: 940px) {
+    min-width: auto;
+  }
 `
 
 const ImageWrapper = styled.div`

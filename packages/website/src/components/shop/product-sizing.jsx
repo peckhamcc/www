@@ -179,6 +179,14 @@ class Sizing extends Component {
       }
     }
 
+    let sizingHelp
+
+    if (product.type === 'made-to-order') {
+      sizingHelp = (
+        <Note>For help please email <a href='mailto:info@kalas.co.uk'>info@kalas.co.uk</a> with your measurements.</Note>
+      )
+    }
+
     return (
       <SizingContainer>
         <h3>Sizing</h3>
@@ -240,6 +248,7 @@ class Sizing extends Component {
                 </tbody>
               </Table>
               <Note>Garment sizes are approximate and for guidance only.</Note>
+              {sizingHelp}
             </>
             )
           : (
