@@ -59,7 +59,14 @@ module.exports = function (items) {
           console.info('Column', column, 'Row', cell.replace(column, ''))
 
           for (const size of Object.keys(item.sizes)) {
-            const column = sizeLookup[item.section][size]
+            let column
+
+            if (size === 'undefined') {
+              // one size fits all item - just use the "total" column
+              column = 'P'
+            } else {
+              column = sizeLookup[item.section][size]
+            }
 
             if (column == null) {
               throw new Error(`Could not find size column for ${sku} and size ${size} in section ${item.section}`)
