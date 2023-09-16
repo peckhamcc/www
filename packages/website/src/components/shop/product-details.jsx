@@ -65,7 +65,7 @@ const PRODUCT_DESCRIPTIONS = {
       <ul>
         <li>Smooth: this is the one most people will want. A 110g/m2 polyester/elastane mix which fits the most body shapes</li>
         <li>Woven: A 150g/m2 polyester/carbon fibre, this does not stretch much so for mere mortals the fit could be described as aspirational</li>
-        <li>Lightweight: at 85g/m2 this jersey is for very hot weather only and is so thin that you should consider putting on sun cream on underneath it, unless you think <a href="https://www.velominati.com/">rule #7</a> also applies to bib straps</li>
+        <li>Lightweight: at 85g/m2 this jersey is for very hot weather only and is so thin that you should consider putting on sun cream on underneath it, unless you think <a href='https://www.velominati.com/'>rule #7</a> also applies to bib straps</li>
       </ul>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
     </>
