@@ -35,6 +35,9 @@ const {
 const {
   createOrder: createInkThreadableOrder
 } = require('./inkthreadable-client')
+const {
+  createOrder: createVistaPrintOrder
+} = require('./vistaprint-client')
 
 async function handleCheckoutComplete (context, event) {
   const { data: { object: { mode } } } = event
@@ -138,7 +141,8 @@ async function handleShopOrder ({ userId, user }, { data: { object } }) {
     hasMtoKit: false,
     hasDropShipKit: false,
     hasPremadeKit: false,
-    hasSubscription: false
+    hasSubscription: false,
+    hasVistaPrint: false
   }
 
   order.items.forEach((item, index) => {
@@ -155,6 +159,9 @@ async function handleShopOrder ({ userId, user }, { data: { object } }) {
     } else if (item.productMetadata.type === 'dropship') {
       metadata[`item-${index}`] = 'production'
       lineItemTypes.hasDropShipKit = lineItemTypes.hasDropShipKit || true
+    } else if (item.productMetadata.type === 'vistaprint') {
+      metadata[`item-${index}`] = 'production'
+      lineItemTypes.hasVistaPrint = lineItemTypes.hasVistaPrint || true
     } else if (item.productMetadata.type === 'subscription') {
       metadata[`item-${index}`] = 'n/a'
       lineItemTypes.hasSubscription = lineItemTypes.hasSubscription || true
@@ -163,6 +170,10 @@ async function handleShopOrder ({ userId, user }, { data: { object } }) {
 
   if (lineItemTypes.hasDropShipKit) {
     await createInkThreadableOrder(user, object, order.items.filter(item => item.productMetadata.type === 'dropship'))
+  }
+
+  if (lineItemTypes.hasVistaPrint) {
+    await createVistaPrintOrder(user, object, order.items.filter(item => item.productMetadata.type === 'vistaprint'))
   }
 
   await setPaymentMetadata(paymentIntent, metadata)

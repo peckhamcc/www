@@ -31,7 +31,8 @@ const OPTIONS = {
     name: 'Colour',
     options: {
       WHI: 'White',
-      BLK: 'Black'
+      BLK: 'Black',
+      'BK/WH': 'Black/White'
     }
   },
   zip: {
@@ -951,6 +952,114 @@ const OPTIONS = {
           }
         }
       }
+    },
+
+    'vistaprint-jacket': {
+      name: 'Size',
+      options: {
+        XS: {
+          name: 'XS',
+          measurements: {
+            length: {
+              M: 67,
+              F: 64
+            },
+            chest: {
+              M: 50 * 2,
+              F: 46 * 2
+            },
+            sleeve: {
+              M: 65,
+              F: 61
+            }
+          }
+        },
+        S: {
+          name: 'S',
+          measurements: {
+            length: {
+              M: 68,
+              F: 66
+            },
+            chest: {
+              M: 52.5 * 2,
+              F: 49 * 2
+            },
+            sleeve: {
+              M: 66,
+              F: 62.5
+            }
+          }
+        },
+        M: {
+          name: 'M',
+          measurements: {
+            length: {
+              M: 69,
+              F: 66
+            },
+            chest: {
+              M: 55 * 2,
+              F: 52 * 2
+            },
+            sleeve: {
+              M: 67,
+              F: 64
+            }
+          }
+        },
+        L: {
+          name: 'L',
+          measurements: {
+            length: {
+              M: 71,
+              F: 67
+            },
+            chest: {
+              M: 57.5 * 2,
+              F: 55 * 2
+            },
+            sleeve: {
+              M: 68,
+              F: 65.5
+            }
+          }
+        },
+        XL: {
+          name: 'XL',
+          measurements: {
+            length: {
+              M: 73,
+              F: 68
+            },
+            chest: {
+              M: 60 * 2,
+              F: 58 * 2
+            },
+            sleeve: {
+              M: 69,
+              F: 67
+            }
+          }
+        },
+        '2XL': {
+          name: '2XL',
+          measurements: {
+            length: {
+              M: 75,
+              F: 69
+            },
+            chest: {
+              M: 62.5 * 2,
+              F: 61 * 2
+            },
+            sleeve: {
+              M: 70,
+              F: 68.5
+            }
+          }
+        }
+      }
     }
   },
 
@@ -1798,6 +1907,13 @@ const OPTIONS = {
     },
     'hoodie-2021': {
       BLK: 'hoodie-2021'
+    },
+    'trucker-cap-2023': {
+      'BK/WH': 'trucker-cap-2023'
+    },
+    'down-jacket-2023': {
+      M: 'down-jacket-2023',
+      F: 'down-jacket-2023'
     }
   }
 }

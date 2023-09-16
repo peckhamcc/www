@@ -10,7 +10,8 @@ const {
 // print 'light' variants on 'dark' colours and vice versa
 const COLOUR_MODIFIER = {
   WHI: 'dark',
-  BLK: 'light'
+  BLK: 'light',
+  'BK/WH': 'dark'
 }
 
 const PCC_ASSETS = 'http://cc.peckham.assets.s3-website.eu-west-2.amazonaws.com'
@@ -84,8 +85,18 @@ function createClient (appId, secretKey) {
           )
         },
         items: lineItems.map(item => {
+          const pnParts = [item.productMetadata.code, item.metadata.colour]
+
+          if (item.metadata.colour) {
+            pnParts.push(item.metadata.colour)
+          }
+
+          if (item.metadata.size) {
+            pnParts.push(item.metadata.size)
+          }
+
           const orderItem = {
-            pn: [item.productMetadata.code, item.metadata.colour, item.metadata.size].join('-'),
+            pn: pnParts.join('-'),
             quantity: item.quantity,
             retailPrice: (item.price / 100).toFixed(2)
           }
@@ -101,7 +112,13 @@ function createClient (appId, secretKey) {
             orderItem.designs = {}
 
             Object.keys(item.productMetadata.designs).forEach(key => {
-              orderItem.designs[key] = `${PCC_ASSETS}/${item.productMetadata.designs[key]}-${COLOUR_MODIFIER[item.metadata.colour]}.png`
+              let design = item.productMetadata.designs[key]
+
+              if (item.metadata.colour) {
+                design = `${key}-${COLOUR_MODIFIER[item.metadata.colour]}`
+              }
+
+              orderItem.designs[key] = `${PCC_ASSETS}/${design}.png`
             })
           }
 
@@ -109,7 +126,7 @@ function createClient (appId, secretKey) {
             orderItem.mockups = {}
 
             item.productMetadata.mockups.forEach(key => {
-              orderItem.mockups[key] = `${PCC_ASSETS}/${item.slug}-${item.metadata.colour.toLowerCase()}-${key}.png`
+              orderItem.mockups[key] = `${PCC_ASSETS}/${item.slug}-${item.metadata.colour.toLowerCase().replaceAll('/', '-')}-${key}.png`
             })
           }
 

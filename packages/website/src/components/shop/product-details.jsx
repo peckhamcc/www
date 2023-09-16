@@ -59,12 +59,15 @@ const PRODUCT_DESCRIPTIONS = {
   ),
   'pro-jersey-2022': (
     <>
-      <p>The aero jersey has a similar shape to the club jersey but is made from a lighter weight material and has more panels for a closer fit.</p>
-      <p>The Race Jersey has flatlock seams, silicone grippers, and three large rear pockets including one with a hook to secure your valuables.</p>
+      <p>The pro jersey has a similar shape to the club jersey but is made from more advanced materials and has a closer fit around the shoulders and waist.</p>
+      <p>It has flatlock seams, silicone grippers, and three large rear pockets including one with a hook to secure your valuables.</p>
+      <p>There are three fabric options:</p>
+      <ul>
+        <li>Smooth: this is the one most people will want. A 110g/m2 polyester/elastane mix which fits the most body shapes</li>
+        <li>Woven: A 150g/m2 polyester/carbon fibre, this does not stretch much so for mere mortals the fit could be described as aspirational</li>
+        <li>Lightweight: at 85g/m2 this jersey is for very hot weather only and is so thin that you should consider putting on sun cream on underneath it, unless you think <a href="https://www.velominati.com/">rule #7</a> also applies to bib straps</li>
+      </ul>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
-      <p>The fabric options are a smooth 110g/m2 polyester/elastane mix, a so-thin-you-might-get-sunburnt-through 85g/m2 lightweight summer version or a woven 150g/m2 version made with polyester and carbon fibre.</p>
-      <p>All jerseys are cut from the same pattern but woven fabrics will stretch less so may feel tighter, smooth fabrics will stretch more and will fit more body shapes.</p>
-      <p>Woven fabrics also tend to be slightly thicker so will be warmer.</p>
     </>
   ),
   'youth-jersey-2022': (
@@ -312,6 +315,27 @@ const PRODUCT_DESCRIPTIONS = {
       <p>It also features a removable plastic insert to ensure it keeps its shape, and has attachment points in case you wish to add a shoulder strap.</p>
       <p>It comes with straps to mount the bag to your handlebars quickly and securely.</p>
     </>
+  ),
+  'trucker-cap-2023': (
+    <>
+      <p>Snapback trucker cap with embroidered club logo.</p>
+      <p>Perfect for hanging out at the Brick or in the stands at Herne Hill.</p>
+      <p>One size fits all with solid front, mesh back and adjustable strap at rear.</p>
+    </>
+  ),
+  'down-jacket-2023': (
+    <>
+      <p>Packable down jacket in black with embroidered club logo on the breast.</p>
+      <p>Perfect for evenings round the camp fire on bike packing trips, hanging out in the pits between races or just being in SE15 during the colder months of the year.</p>
+      <p>It packs down into a small storage bag which is supplied with the jacket.</p>
+      <p>Construction:</p>
+      <ul>
+        <li>Outer shell: 100% polyester</li>
+        <li>Lining: 100% nylon</li>
+        <li>Filling: 90% down/10% feathers</li>
+      </ul>
+      <p>The jacket filling complies with the <a href='https://icea.bio/en/certifications/non-food/biological-and-sustainable-textile-products/responsible-down-standard/'>Responsible Down Standard</a> for animal welfare.</p>
+    </>
   )
 }
 
@@ -505,7 +529,7 @@ class ProductDetails extends Component {
                   }
 
                   if (!name) {
-                    throw new Error(`No option name ${option} for option ${key}`)
+                    throw new Error(`No option name ${option} for option ${key} - had ${JSON.stringify(optionDetails.options)}`)
                   }
 
                   return (

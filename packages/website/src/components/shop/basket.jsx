@@ -53,7 +53,8 @@ const PRODUCT_TYPES = {
   'made-to-order': 'Made to order',
   dropship: 'Made on demand',
   premade: 'Pre-made',
-  subscription: 'Subscription'
+  subscription: 'Subscription',
+  vistaprint: 'Made on demand',
 }
 
 const BasketWrapper = styled.div`

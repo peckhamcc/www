@@ -260,6 +260,26 @@ We're sorry to see you go!
 ${textFooter}
 `
 
+const htmlTemplateVistaPrintOrder = (order) => `
+<html>
+  <head>
+  </head>
+  <body>
+    <p>VisaPrint order created</p>
+    <pre>${order}</pre>
+    ${htmlFooter}
+  </body>
+</html>
+`
+
+const textTemplateVistaPrintOrder = (order) => `
+VisaPrint order created
+
+${order}
+
+${textFooter}
+`
+
 module.exports = {
   fopccNewSubscriptionEmail: {
     html: htmlTemplateNewFoPCC,
@@ -284,5 +304,9 @@ module.exports = {
   shopOrderEmail: {
     html: htmlTemplateShopOrder,
     text: textTemplateShopOrder
+  },
+  vistaPrintOrderEmail: {
+    html: htmlTemplateVistaPrintOrder,
+    text: textTemplateVistaPrintOrder
   }
 }

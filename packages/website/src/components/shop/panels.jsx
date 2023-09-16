@@ -62,6 +62,9 @@ import pitTights from '../../../assets/shop/pit-tights.png'
 import trackTopFront from '../../../assets/shop/track-top-front.png'
 import trackTopRear from '../../../assets/shop/track-top-back.png'
 import barBag from '../../../assets/shop/bar-bag.png'
+import truckerCap from '../../../assets/shop/trucker-cap.png'
+import downJacketFront from '../../../assets/shop/down-jacket-front.png'
+import downJacketBag from '../../../assets/shop/down-jacket-bag.png'
 import spinnFabric from '../../../assets/shop/material-spinn.jpg'
 import stripesFabric from '../../../assets/shop/material-stripes.jpg'
 import razorFabric from '../../../assets/shop/material-razor.jpg'
@@ -368,6 +371,19 @@ export const ITEM_IMAGES = {
   'bar-bag-2022': [{
     src: barBag,
     text: 'Bar bag'
+  }],
+  'trucker-cap-2023': {
+    'BK/WH': [{
+      src: truckerCap,
+      text: 'Trucker cap'
+    }]
+  },
+  'down-jacket-2023': [{
+    src: downJacketFront,
+    text: 'Packable down jacket'
+  }, {
+    src: downJacketBag,
+    text: 'Complete with bag'
   }],
   'bidon-2019': [{
     src: bidonImage
