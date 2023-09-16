@@ -115,7 +115,7 @@ function createClient (appId, secretKey) {
               let design = item.productMetadata.designs[key]
 
               if (item.metadata.colour) {
-                design = `${key}-${COLOUR_MODIFIER[item.metadata.colour]}`
+                design = `${design}-${COLOUR_MODIFIER[item.metadata.colour]}`
               }
 
               orderItem.designs[key] = `${PCC_ASSETS}/${design}.png`
