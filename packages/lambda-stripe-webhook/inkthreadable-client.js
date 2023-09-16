@@ -85,7 +85,7 @@ function createClient (appId, secretKey) {
           )
         },
         items: lineItems.map(item => {
-          const pnParts = [item.productMetadata.code, item.metadata.colour]
+          const pnParts = [item.productMetadata.code]
 
           if (item.metadata.colour) {
             pnParts.push(item.metadata.colour)
@@ -145,7 +145,7 @@ function createClient (appId, secretKey) {
         const request = https.request(url, {
           method: 'POST'
         }, response => {
-          if (response.statusCode !== 200) {
+          if (!response.statusCode.toString().startsWith('2')) {
             return reject(new Error(`Received status code ${response.statusCode}`))
           }
 
