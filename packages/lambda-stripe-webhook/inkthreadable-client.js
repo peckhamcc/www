@@ -154,14 +154,14 @@ function createClient (appId, secretKey) {
           response.on('data', (buf) => {
             data += buf.toString('utf8')
           })
-
           response.on('error', (err) => {
             reject(err)
           })
           response.on('end', () => {
-            console.info('response', data)
             try {
               const result = JSON.parse(data)
+
+              console.info('response', JSON.stringify(data, null, 2))
 
               if (result.error) {
                 reject(new Error(`InkThreadable error: ${result.error}`))
@@ -171,6 +171,7 @@ function createClient (appId, secretKey) {
               console.info('ok!')
               resolve()
             } catch (err) {
+              console.info('response', data)
               reject(new Error('Could not parse InkThreadable response'))
             }
           })
