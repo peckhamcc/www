@@ -185,6 +185,7 @@ const createCheckoutSession = async (userId, stripeCustomerId, items) => {
 
   const metadata = {}
 
+  let needsShipping = false
   let shippingWeight = 0
 
   const lineItems = items.map((item, index) => {
@@ -193,6 +194,10 @@ const createCheckoutSession = async (userId, stripeCustomerId, items) => {
 
     if (!product) {
       throw new Error('Could not find product for slug ' + item.slug)
+    }
+
+    if (product.type === 'vistaprint' ?? product.shippingWeight > 0) {
+      needsShipping = true
     }
 
     const chosen = []
@@ -253,12 +258,14 @@ const createCheckoutSession = async (userId, stripeCustomerId, items) => {
 
   let shippingAddressCollection
 
-  if (shippingWeight) {
+  if (needsShipping) {
     // tell stripe to collect shipping information
     shippingAddressCollection = {
       allowed_countries: ['GB']
     }
+  }
 
+  if (shippingWeight) {
     const { price } = SHIPPING_LIMITS
       .filter(method => shippingWeight < method.max)
       .shift()
