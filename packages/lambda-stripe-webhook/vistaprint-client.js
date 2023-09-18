@@ -18,21 +18,17 @@ function createClient () {
         shipping
       } = checkoutSession
 
-      if (!shipping.address || shipping.address.country !== 'GB') {
-        throw new Error('Invalid country provided, expected \'GB\'')
-      }
-
       const order = {
         external_id: paymentIntentId,
         brandName: 'Peckham Cycle Club',
         shipping_address: {
-          firstName: shipping.name.split(' ')[0],
-          lastName: shipping.name.split(' ').slice(1).join(' '),
-          address1: shipping.address.line1,
-          address2: shipping.address.line2,
-          city: shipping.address.city,
-          county: shipping.address.state,
-          postcode: shipping.address.postal_code,
+          firstName: shipping?.name?.split(' ')[0],
+          lastName: shipping?.name?.split(' ').slice(1).join(' '),
+          address1: shipping?.address?.line1,
+          address2: shipping?.address?.line2,
+          city: shipping?.address?.city,
+          county: shipping?.address?.state,
+          postcode: shipping?.address?.postal_code,
           country: 'United Kingdom',
           phone1: user.phone
         },
