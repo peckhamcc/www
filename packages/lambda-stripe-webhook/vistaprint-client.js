@@ -44,7 +44,7 @@ function createClient () {
       console.info(JSON.stringify(order, null, 2))
 
       // TODO: for now, just email the club details
-      await sendEmail(config.email.to, user.email, 'VistaPrint order created', vistaPrintOrderEmail.html(JSON.stringify(order, null, 2)), vistaPrintOrderEmail.text(JSON.stringify(order, null, 2)))
+      await sendEmail(config.email.to, config.email.from, 'VistaPrint order created', vistaPrintOrderEmail.html(JSON.stringify(order, null, 2)), vistaPrintOrderEmail.text(JSON.stringify(order, null, 2)))
     }
   }
 }
