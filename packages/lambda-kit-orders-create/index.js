@@ -21,7 +21,7 @@ const {
   config,
   OPTIONS
 } = require('./config')
-const createOrderSpreadsheet = require('./create-order-spreadsheet')
+// const createOrderSpreadsheet = require('./create-order-spreadsheet')
 
 const ORDER_ITEMS_MINIMUM = 5
 
@@ -176,7 +176,7 @@ async function kitOrdersCreateHandler () {
     const supplierTitle = `Peckham Cycle Club kit order - ${date}`
     const clubTitle = `Kit orders - ${date}`
 
-    const spreadsheet = createOrderSpreadsheet(items)
+    // const spreadsheet = createOrderSpreadsheet(items)
 
     await sendEmail(
       config.email.from,
@@ -184,7 +184,7 @@ async function kitOrdersCreateHandler () {
       clubTitle,
       htmlTemplateClubNotification(date, orders),
       textTemplateClubNotification(date, orders), [
-        spreadsheet
+        // spreadsheet
       ]
     )
     await sendEmail(
@@ -195,7 +195,7 @@ async function kitOrdersCreateHandler () {
       supplierTitle,
       htmlTemplateSupplierNotification(config.kit.name, items),
       textTemplateSupplierNotification(config.kit.name, items), [
-        spreadsheet
+        // spreadsheet
       ]
     )
     await createOrder(orderDate, orders.map(order => order.payment))
@@ -293,8 +293,6 @@ ${
 ${
   Object.keys(items).reduce((acc, sku) => acc + items[sku].quantity, 0)
 } items total.
-
-Please see the attached spreadsheet and let me know if anything doesn't make sense.
 
 Thanks,
 

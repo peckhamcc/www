@@ -7,3 +7,4 @@ roulette.js
 stripe-client.js
 cache.js
 rrc.js
+db.js

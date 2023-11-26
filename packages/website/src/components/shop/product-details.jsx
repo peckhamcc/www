@@ -101,7 +101,7 @@ const PRODUCT_DESCRIPTIONS = {
       <p>If between two sizes, choose the larger size.</p>
     </>
   ),
-  'lightweight-gilet-2022': (
+  'club-lightweight-gilet-2022': (
     <>
       <p>The Lightweight Gilet is perfect for long descents on summer rides and packs down easily to be stowed in a jersey pocket when not in use.</p>
       <p>It is made from a 77g/m2 100% polyester material, has a deep neck for increased wind protection, comes with a full-length zip and a mesh back.</p>
@@ -157,7 +157,7 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Some tights are available in a "plus size" that adds 5cm to the legs.</p>
     </>
   ),
-  'rain-jacket-2022': (
+  'pro-rain-jacket-2022': (
     <>
       <p>Our rain jacket is designed for bad weather. With a high neck, fully taped seams, an elongated tail and a waterproof zipper it will protect you against the worst the sky can chuck at you.</p>
       <p>The fabric has a 20k/20k waterproof/breathability rating and is a lightweight 100g/m2.</p>
@@ -165,9 +165,31 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Some jackets are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
     </>
   ),
-  'winter-jacket-2022': (
+  'club-winter-jacket-2022': (
     <>
-      <p>Our winter jacket has 10k/10k waterproof/breathability rating and is made from a lightweight three-layer 160g/m2 fabric that is wind and waterproof while remaining breathable.</p>
+      <p>Our club winter jacket has 10k/10k waterproof/breathability rating and is made from a lightweight three-layer 160g/m2 fabric that is wind and waterproof while remaining breathable.</p>
+      <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <p>Some jackets are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+    </>
+  ),
+  'pro-deep-winter-jacket-2022': (
+    <>
+      <p>For deep winter riding, our pro winter jacket has a 10k waterproof rating and is made from a thermally insulated 285g/m2 fabric to keep you toasty while out in the lanes.</p>
+      <p>It also features a long tail to keep road spray at bay to help keep you dry.</p>
+      <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <p>Some jackets are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+    </>
+  ),
+  'pro-winter-jacket-2022': (
+    <>
+      <p>A heavier version of our spring jacket it features 8k waterproofing, three rear pockets and a high collar and cuffs to keep the elements out.</p>
+      <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <p>Some jackets are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
+    </>
+  ),
+  'pro-spring-jacket-2022': (
+    <>
+      <p>A mid-season jacket perfect for the spring and autumn, it features 8k waterproofing, three rear pockets and a high collar and cuffs to keep the elements out.</p>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
       <p>Some jackets are available in a "plus size" that adds 5cm to the sleeves &amp; body.</p>
     </>

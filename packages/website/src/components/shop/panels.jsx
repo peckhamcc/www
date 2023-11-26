@@ -85,6 +85,9 @@ import devanFabric from '../../../assets/shop/material-devan.jpg'
 import flandersFabric from '../../../assets/shop/material-flanders.jpg'
 import bellFabric from '../../../assets/shop/material-bell.jpg'
 import stratosFabric from '../../../assets/shop/material-stratos.jpg'
+import diamondFabric from '../../../assets/shop/material-ww-diamond.jpg'
+import ventPlusFabric from '../../../assets/shop/material-vent-plus.jpg'
+import ventThermoTech from '../../../assets/shop/material-vent-thermotech.jpg'
 
 export const ITEM_IMAGES = {
   accessories: [{
@@ -231,7 +234,7 @@ export const ITEM_IMAGES = {
     src: devanFabric,
     text: 'Woven fabric'
   }],
-  'lightweight-gilet-2022': [{
+  'club-lightweight-gilet-2022': [{
     src: giletFrontImage,
     text: 'Gilet front'
   }, {
@@ -291,7 +294,7 @@ export const ITEM_IMAGES = {
     src: flandersFabric,
     text: 'Insulated fabric'
   }],
-  'rain-jacket-2022': [{
+  'pro-rain-jacket-2022': [{
     src: winterJacketFrontImage,
     text: 'Rain jacket front'
   }, {
@@ -301,7 +304,7 @@ export const ITEM_IMAGES = {
     src: eventFabric,
     text: 'Wind and waterproof fabric'
   }],
-  'winter-jacket-2022': [{
+  'club-winter-jacket-2022': [{
     src: winterJacketFrontImage,
     text: 'Winter jacket front'
   }, {
@@ -310,6 +313,36 @@ export const ITEM_IMAGES = {
   }, {
     src: missionFlowFabric,
     text: 'Three-layer wind/waterproof membrane fabric'
+  }],
+  'pro-deep-winter-jacket-2022': [{
+    src: winterJacketFrontImage,
+    text: 'Deep Winter jacket front'
+  }, {
+    src: winterJacketRearImage,
+    text: 'Deep Winter jacket rear'
+  }, {
+    src: diamondFabric,
+    text: 'Thermally insulated fabric with a membrane'
+  }],
+  'pro-winter-jacket-2022': [{
+    src: winterJacketFrontImage,
+    text: 'Winter jacket front'
+  }, {
+    src: winterJacketRearImage,
+    text: 'Winter jacket rear'
+  }, {
+    src: ventThermoTech,
+    text: 'Four-way stretch membrane fabric with heavily brushed interior'
+  }],
+  'pro-spring-jacket-2022': [{
+    src: winterJacketFrontImage,
+    text: 'Spring jacket front'
+  }, {
+    src: winterJacketRearImage,
+    text: 'Spring jacket rear'
+  }, {
+    src: ventPlusFabric,
+    text: 'Four-way stretch membrane fabric with lightly brushed interior'
   }],
   'club-skin-suit-2022': [{
     src: speedSuitFrontImage,

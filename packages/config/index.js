@@ -1781,7 +1781,7 @@ const OPTIONS = {
       'F-FE': 'n60266-LA88'
     },
 
-    'lightweight-gilet-2022': {
+    'club-lightweight-gilet-2022': {
       M: 'n50113-MN19',
       F: 'n50113-LN19'
     },
@@ -1800,14 +1800,29 @@ const OPTIONS = {
       'F-MB': 'n50118-LN20'
     },
 
-    'rain-jacket-2022': {
+    'pro-rain-jacket-2022': {
       M: 'n50219-ML09',
       F: 'n50219-LL09'
     },
 
-    'winter-jacket-2022': {
+    'club-winter-jacket-2022': {
       M: 'n50248-ML06',
       F: 'n50248-LL06'
+    },
+
+    'pro-deep-winter-jacket-2022': {
+      M: 'n50072-ML23',
+      F: 'n50072-LL23'
+    },
+
+    'pro-winter-jacket-2022': {
+      M: 'n50253-ML24',
+      F: 'n50253-LL24'
+    },
+
+    'pro-spring-jacket-2022': {
+      M: 'n50252-ML22',
+      F: 'n50252-LL22'
     },
 
     'pit-jacket-2022': {

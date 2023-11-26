@@ -75,7 +75,7 @@ const items = {
   }
 }
 */
-test('should create order with all products', t => {
+test.skip('should create order with all products', t => {
   // create an order with one of every item in every size with every option
   const items = {}
 

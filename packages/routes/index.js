@@ -102,7 +102,18 @@ async function main () {
     existingRoutes = JSON.parse(content)
   }
 
-  const browser = await puppeteer.launch({ headless: true, devtools: true })
+  let browser
+
+  async function getBrowser () {
+    if (browser != null) {
+      return browser
+    }
+
+    browser = await puppeteer.launch({
+      headless: 'new',
+      devtools: true
+    })
+  }
 
   try {
     for (let i = 0; i < RIDEWITHGPS_IDS.length; i++) {
@@ -145,7 +156,8 @@ async function main () {
       }
 
       const gpx = createGpx(route_url, json)
-      const page = await browser.newPage()
+      const b = await getBrowser()
+      const page = await b.newPage()
       await page.goto(MAP_GEN_URL)
 
       const png = await page.evaluate((gpx) => {
@@ -165,9 +177,9 @@ async function main () {
 export default ${JSON.stringify(routes, null, 2)}
   `)
   } finally {
-    await browser.close()
+    await browser?.close()
 
-    if (browser && browser.process() != null) {
+    if (browser?.process() != null) {
       console.info('Browser process still alive, sending SIGKILL')
       browser.process().kill('SIGKILL')
     }
