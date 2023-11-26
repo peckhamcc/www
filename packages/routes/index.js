@@ -113,6 +113,8 @@ async function main () {
       headless: 'new',
       devtools: true
     })
+
+    return browser
   }
 
   try {
