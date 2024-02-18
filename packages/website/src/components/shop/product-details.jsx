@@ -51,23 +51,25 @@ const PRODUCT_DESCRIPTIONS = {
   'club-jersey-2022': (
     <>
       <p>The Club Jersey has flatlock seams, silicone grippers, and three large rear pockets including one with a hook to secure your valuables.</p>
+      <p>The fit is similar to casual, core or endurance-style jerseys from other brands.</p>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
-      <p>There are two fabrics available, a woven polyester or smooth polyester/elastane mix.</p>
-      <p>All jerseys are cut from the same pattern but woven fabrics will stretch less so may feel tighter, smooth fabrics will stretch more and will fit more body shapes.</p>
-      <p>Woven fabrics also tend to be slightly thicker so will be warmer.</p>
     </>
   ),
   'pro-jersey-2022': (
     <>
-      <p>The pro jersey has a similar shape to the club jersey but is made from more advanced materials and has a closer fit around the shoulders and waist.</p>
+      <p>The pro jersey has a slimmer fit than the club jersey. It is made from more advanced materials and has a closer fit around the shoulders and waist.</p>
+      <p>The fit is similar to "Pro Team" or race-style jerseys from other brands.</p>
+      <p>If you normally wear a more casual fit jersey, please consider the <Link to='/shop/club-jersey-2022'>Club Jersey</Link> instead.</p>
       <p>It has flatlock seams, silicone grippers, and three large rear pockets including one with a hook to secure your valuables.</p>
-      <p>There are three fabric options:</p>
-      <ul>
-        <li>Smooth: this is the one most people will want. A 110g/m2 polyester/elastane mix which fits the most body shapes</li>
-        <li>Woven: A 150g/m2 polyester/carbon fibre, this does not stretch much so for mere mortals the fit could be described as aspirational</li>
-        <li>Lightweight: at 85g/m2 this jersey is for very hot weather only and is so thin that you should consider putting on sun cream on underneath it, unless you think <a href='https://www.velominati.com/'>rule #7</a> also applies to bib straps</li>
-      </ul>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+    </>
+  ),
+  'pro-summer-jersey-2022': (
+    <>
+      <p>The pro summer jersey has a similar fit to the pro jersey but is made from a very thin material that is only really suited to baking hot days on the continent - it will see very little use in the UK.</p>
+      <p>If you will wear this on our regular club rides, please consider the <Link to='/shop/pro-jersey-2022'>Pro Jersey</Link> instead.</p>
+      <p>It has flatlock seams, silicone grippers, and three large rear pockets including one with a hook to secure your valuables.</p>
+      <p>You should consider putting on sun cream on underneath it, unless you think <a href='https://www.velominati.com/'>rule #7</a> also applies to bib straps.</p>
     </>
   ),
   'youth-jersey-2022': (

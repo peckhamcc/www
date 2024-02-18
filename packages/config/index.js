@@ -1068,78 +1068,30 @@ const OPTIONS = {
     'n50076-MS61': {
       name: 'Jersey S/S PRO 61 | Razor'
     },
-    'n50076-MS62': {
-      name: 'Jersey S/S PRO 62 | Razor',
-      notes: 'small removable pocket'
-    },
-    'n51079-MS65': {
-      name: 'Jersey S/S PRO 65 | Carbon Z1'
-    },
-    'n51079-MS66': {
-      name: 'Jersey S/S PRO 66 | Carbon Z1',
-      notes: 'small removable pocket'
-    },
+
+    // male pro summer jersey
     'n50074-MS61': {
       name: 'Jersey S/S PRO 61 | VeranoUltra'
-    },
-    'n50074-MS62': {
-      name: 'Jersey S/S PRO 62 | VeranoUltra',
-      notes: 'small removable pocket'
     },
 
     // female pro jersey
     'n50076-LS61': {
       name: 'Jersey S/S PRO 61 | Razor'
     },
-    'n50076-LS62': {
-      name: 'Jersey S/S PRO 62 | Razor',
-      notes: 'small removable pocket'
-    },
-    'n51079-LS65': {
-      name: 'Jersey S/S PRO 65 | Carbon Z1'
-    },
-    'n51079-LS66': {
-      name: 'Jersey S/S PRO 66 | Carbon Z1',
-      notes: 'small removable pocket'
-    },
+
+    // female pro summer jersey
     'n50074-LS61': {
       name: 'Jersey S/S PRO 61 | VeranoUltra'
     },
-    'n50074-LS62': {
-      name: 'Jersey S/S PRO 62 | VeranoUltra',
-      notes: 'small removable pocket'
-    },
 
     // male club jersey
-    'n50078-MS50': {
-      name: 'Jersey S/S ELITE 50 | Spinn'
-    },
-    'n50078-MS51': {
-      name: 'Jersey S/S ELITE 51 | Spinn',
-      notes: 'small removable pocket'
-    },
     'n51072-MS53': {
       name: 'Jersey S/S ELITE 53 | Stripes'
     },
-    'n51072-MS54': {
-      name: 'Jersey S/S ELITE 54 | Stripes',
-      notes: 'small removable pocket'
-    },
 
     // female club jersey
-    'n50078-LS50': {
-      name: 'Jersey S/S ELITE 50 | Spinn'
-    },
-    'n50078-LS51': {
-      name: 'Jersey S/S ELITE 51 | Spinn',
-      notes: 'small removable pocket'
-    },
     'n51072-LS53': {
       name: 'Jersey S/S ELITE 53 | Stripes'
-    },
-    'n51072-LS54': {
-      name: 'Jersey S/S ELITE 54 | Stripes',
-      notes: 'small removable pocket'
     },
 
     // kids club jersey
@@ -1682,30 +1634,18 @@ const OPTIONS = {
 
   productPrices: {
     'pro-jersey-2022': {
-      'M-RAZ-N': 'n50076-MS61',
-      'M-RAZ-Y': 'n50076-MS62',
-      'M-CAR-N': 'n51079-MS65',
-      'M-CAR-Y': 'n51079-MS66',
-      'M-VER-N': 'n50074-MS61',
-      'M-VER-Y': 'n50074-MS62',
+      M: 'n50076-MS61',
+      F: 'n50076-LS61'
+    },
 
-      'F-RAZ-N': 'n50076-LS61',
-      'F-RAZ-Y': 'n50076-LS62',
-      'F-CAR-N': 'n51079-LS65',
-      'F-CAR-Y': 'n51079-LS66',
-      'F-VER-N': 'n50074-LS61',
-      'F-VER-Y': 'n50074-LS62'
+    'pro-summer-jersey-2022': {
+      M: 'n50074-MS61',
+      F: 'n50074-LS61'
     },
 
     'club-jersey-2022': {
-      'M-SPI-N': 'n50078-MS50',
-      'M-SPI-Y': 'n50078-MS51',
-      'M-STR-N': 'n51072-MS53',
-      'M-STR-Y': 'n51072-MS54',
-      'F-SPI-N': 'n50078-LS50',
-      'F-SPI-Y': 'n50078-LS51',
-      'F-STR-N': 'n51072-LS53',
-      'F-STR-Y': 'n51072-LS54'
+      M: 'n51072-MS53',
+      F: 'n51072-LS53'
     },
 
     'youth-jersey-2022': {

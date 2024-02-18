@@ -55,21 +55,15 @@ import bdayTshirtWhiFrontImage from '../../../assets/shop/bday-t-shirt-2021-whi-
 import bdayTshirtWhiBackImage from '../../../assets/shop/bday-t-shirt-2021-whi-back.png'
 import bdayTshirtBlkFrontImage from '../../../assets/shop/bday-t-shirt-2021-blk-front.png'
 import bdayTshirtBlkBackImage from '../../../assets/shop/bday-t-shirt-2021-blk-back.png'
-import valuablesPouch from '../../../assets/shop/valuables-pouch.png'
-import pitJacketFront from '../../../assets/shop/pit-jacket-front.png'
-import pitJacketRear from '../../../assets/shop/pit-jacket-rear.png'
-import pitTights from '../../../assets/shop/pit-tights.png'
 import trackTopFront from '../../../assets/shop/track-top-front.png'
 import trackTopRear from '../../../assets/shop/track-top-back.png'
 import barBag from '../../../assets/shop/bar-bag.png'
 import truckerCap from '../../../assets/shop/trucker-cap.png'
 import downJacketFront from '../../../assets/shop/down-jacket-front.png'
 import downJacketBag from '../../../assets/shop/down-jacket-bag.png'
-import spinnFabric from '../../../assets/shop/material-spinn.jpg'
 import stripesFabric from '../../../assets/shop/material-stripes.jpg'
 import razorFabric from '../../../assets/shop/material-razor.jpg'
 import veranoFabric from '../../../assets/shop/material-verano.jpg'
-import carbonFabric from '../../../assets/shop/material-carbon.jpg'
 import andorraFabric from '../../../assets/shop/material-andorra.jpg'
 import tempsFabric from '../../../assets/shop/material-temps.jpg'
 import microfibreFabric from '../../../assets/shop/material-microfibre.jpg'
@@ -83,7 +77,6 @@ import revolutionalFabric from '../../../assets/shop/material-revolutional.jpg'
 import briosFabric from '../../../assets/shop/material-brios.jpg'
 import devanFabric from '../../../assets/shop/material-devan.jpg'
 import flandersFabric from '../../../assets/shop/material-flanders.jpg'
-import bellFabric from '../../../assets/shop/material-bell.jpg'
 import stratosFabric from '../../../assets/shop/material-stratos.jpg'
 import diamondFabric from '../../../assets/shop/material-ww-diamond.jpg'
 import ventPlusFabric from '../../../assets/shop/material-vent-plus.jpg'
@@ -193,17 +186,11 @@ export const ITEM_IMAGES = {
     src: ssJerseyRearImage,
     text: 'Jersey rear'
   }, {
-    src: spinnFabric,
-    text: 'Woven fabric option'
-  }, {
     src: razorFabric,
-    text: 'Smooth fabric option (on body)'
+    text: 'Body fabric'
   }, {
     src: stripesFabric,
-    text: 'Smooth fabric option (on arms)'
-  }, {
-    src: valuablesPouch,
-    text: 'Optional valuables pouch'
+    text: 'Arm fabric'
   }],
   'pro-jersey-2022': [{
     src: ssJerseyFrontImage,
@@ -213,16 +200,17 @@ export const ITEM_IMAGES = {
     text: 'Jersey rear'
   }, {
     src: razorFabric,
-    text: 'Smooth fabric option'
+    text: 'Jersey fabric'
+  }],
+  'pro-summer-jersey-2022': [{
+    src: ssJerseyFrontImage,
+    text: 'Jersey front'
+  }, {
+    src: ssJerseyRearImage,
+    text: 'Jersey rear'
   }, {
     src: veranoFabric,
-    text: 'Lightweight fabric option'
-  }, {
-    src: carbonFabric,
-    text: 'Woven fabric option'
-  }, {
-    src: valuablesPouch,
-    text: 'Optional valuables pouch'
+    text: 'Jersey fabric'
   }],
   'youth-jersey-2022': [{
     src: ssJerseyFrontImage,
@@ -376,23 +364,6 @@ export const ITEM_IMAGES = {
   }, {
     src: speedSuitRearImage,
     text: 'Skin suit rear'
-  }],
-  'pit-jacket-2022': [{
-    src: pitJacketFront,
-    text: 'Pit Jacket front'
-  }, {
-    src: pitJacketRear,
-    text: 'Pit Jacket rear'
-  }, {
-    src: bellFabric,
-    text: 'Insulated jacket fabric'
-  }],
-  'pit-tights-2022': [{
-    src: pitTights,
-    text: 'Pit Tights'
-  }, {
-    src: roubaixFabric,
-    text: 'Insulated roubaix fabric'
   }],
   'track-top-2023': [{
     src: trackTopFront,
