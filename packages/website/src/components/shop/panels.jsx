@@ -12,7 +12,10 @@ import {
 } from '../../units'
 
 import clubLogo from '../../../assets/pcc-avatar.png'
-import armWarmersImage from '../../../assets/shop/arm-warmers.png'
+import summerSleevesImage from '../../../assets/shop/summer-sleeves.png'
+import summerSleevesInsideImage from '../../../assets/shop/summer-sleeves-inside.png'
+import armWarmersImage from '../../../assets/shop/winter-arm-warmers.png'
+import armWarmersInsideImage from '../../../assets/shop/winter-arm-warmers-inside.png'
 import bibsFrontImage from '../../../assets/shop/bibs-front.png'
 import bibs34FrontImage from '../../../assets/shop/34-bibs-front.png'
 import bibsTightsFrontImage from '../../../assets/shop/winter-tights-front.png'
@@ -29,9 +32,7 @@ import ssJerseyRearImage from '../../../assets/shop/ss-jersey-rear.png'
 import winterJacketFrontImage from '../../../assets/shop/winter-jacket-front.png'
 import winterJacketRearImage from '../../../assets/shop/winter-jacket-rear.png'
 import socksSummerSideImage from '../../../assets/shop/socks-summer-side.png'
-import socksSummerTopImage from '../../../assets/shop/socks-summer-top.png'
 import socksWinterSideImage from '../../../assets/shop/socks-winter-side.png'
-import socksWinterTopImage from '../../../assets/shop/socks-winter-top.png'
 import multiTubeImage from '../../../assets/shop/multi-tube.png'
 import bidonImage from '../../../assets/shop/bidon.png'
 import tshirtBlkFrontImage from '../../../assets/shop/t-shirt-2021-blk-front.png'
@@ -107,13 +108,9 @@ export const ITEM_IMAGES = {
   }],
   'white-socks-2019': [{
     src: socksSummerSideImage
-  }, {
-    src: socksSummerTopImage
   }],
   'black-socks-2019': [{
     src: socksWinterSideImage
-  }, {
-    src: socksWinterTopImage
   }],
   'white-cap-2019': [{
     src: capWhiteFrontImage
@@ -126,17 +123,17 @@ export const ITEM_IMAGES = {
     src: capSidesImage
   }],
   'summer-sleeves-2022': [{
-    src: armWarmersImage,
+    src: summerSleevesImage,
     text: 'Summer sleeves'
   }, {
-    src: lycraPowerFabric,
-    text: 'Lightweight lycra fabric'
+    src: summerSleevesInsideImage,
+    text: 'Lycra fabric detail'
   }],
   'winter-arm-warmers-2022': [{
     src: armWarmersImage,
     text: 'Winter arm warmers'
   }, {
-    src: roubaixFabric,
+    src: armWarmersInsideImage,
     text: 'Insulated roubaix fabric'
   }],
   'neck-warmer-2022': [{

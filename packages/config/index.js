@@ -570,19 +570,27 @@ const OPTIONS = {
     socks: {
       name: 'Size',
       options: {
-        'S/M': {
-          name: 'S/M',
+        S: {
+          name: 'Small',
           measurements: {
             shoe: {
-              U: 'UK 3-6'
+              U: 'UK 4-7'
             }
           }
         },
-        'L/XL': {
-          name: 'L/XL',
+        M: {
+          name: 'Medium',
           measurements: {
             shoe: {
-              U: 'UK 7-11+'
+              U: 'UK 8-10'
+            }
+          }
+        },
+        L: {
+          name: 'Large',
+          measurements: {
+            shoe: {
+              U: 'UK 11-13'
             }
           }
         }

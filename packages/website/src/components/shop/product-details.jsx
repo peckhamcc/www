@@ -235,22 +235,25 @@ const PRODUCT_DESCRIPTIONS = {
   ),
   'bidon-2019': (
     <>
-      <p>The club bidon has a <a href='https://www.velominati.com/#52'>500ml capacity</a>, features a lockable lid with a leak-proof membrane cap and is dishwasher safe.</p>
-      <p>It's made from 20% post-industrial recycled plastics and is recyclable and biodegradable itself so once retired should not murder anything in the ocean.</p>
+      <p>The club bidon has a <a href='https://www.velominati.com/#52'>rule #52</a>-friendly 600ml capacity, features a lockable lid with a leak-proof membrane cap and is dishwasher safe.</p>
+      <p>It's made from polyethylene derived from sugar cane and is recyclable and biodegradable itself so once retired should not murder anything in the ocean.</p>
+      <p>It's dishwasher safe up to 30 degrees and can be recycled as #4 LDPE, so anywhere that accepts plastic bags/film such as <a href='https://www.southwark.gov.uk/bins-and-recycling/recycling/recycling-centres/reuse-and-recycling-centre?chapter=3'>Southwark Recycling Centre</a>.</p>
     </>
   ),
   'white-socks-2019': (
     <>
-      <p>White Club Socks in CoolMax foot &amp; nylon leg culminating in the club stripes at the top.</p>
-      <p>Cuff size is a <a href='https://www.velominati.com/#27'>Rule #27</a> friendly 7.5-inches for large, 6.5-inches for medium.</p>
+      <p>White Summer Socks with club stripes at the top.</p>
+      <p>These socks have a single layer leg for comfort on warmer days and pair nicely with white gloves and shoes.</p>
       <p>The Instagram-friendly orientation of the club motto on the top of the socks will remind you we roll united!</p>
+      <p>The previous design is still available at RRC, now with a steep discount.</p>
     </>
   ),
   'black-socks-2019': (
     <>
-      <p>Black Club Socks in CoolMax foot &amp; nylon leg culminating in the club stripes at the top.</p>
-      <p>Cuff size is a <a href='https://www.velominati.com/#27'>Rule #27</a> friendly 7.5-inches for large, 6.5-inches for medium.</p>
+      <p>Black Winter Socks with club stripes at the top.</p>
+      <p>These socks have a double layer leg for extra warmth in cooler months.</p>
       <p>The Instagram-friendly orientation of the club motto on the top of the socks will remind you we roll united!</p>
+      <p>The previous design is still available at RRC, now with a steep discount.</p>
     </>
   ),
   'white-cap-2019': (
@@ -280,7 +283,7 @@ const PRODUCT_DESCRIPTIONS = {
   ),
   'summer-sleeves-2022': (
     <>
-      <p>Lightweight lycra sleeves designed to keep the sun off your skin.</p>
+      <p>Lightweight lycra sleeves designed to keep the sun off your skin, or for summer alpine descents where you want to remove wind chill but not get any hotter.</p>
       <p>They have minimal seams for comfort and have silicone grippers at the bicep to ensure they stay in place.</p>
       <p>For sizing you should match them to your jersey size.</p>
     </>

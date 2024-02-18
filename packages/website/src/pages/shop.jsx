@@ -29,17 +29,9 @@ class ShopPage extends Component {
       <PageWrapper>
         <ShortHero background={shopBackground} />
         <Panel>
-          <p>
-            Our kit is made to order, and is only available to <Link to='/membership'>Friends of Peckham CC</Link>, our
-            voluntary membership scheme.
-          </p>
-          <p>
-            However, everyone is welcome to buy our musettes (tote bags), bidons (bottles) or casquettes (bike caps)
-            from <a href='https://ratracecycles.com/'>Rat Race Cycles</a>.
-          </p>
-        </Panel>
-        <Panel>
           <h2>Shop</h2>
+          <p>Our cycling kit is made to order, and is only available to <Link to='/membership'>Friends of Peckham CC</Link>, our voluntary membership scheme. </p>
+          <p>If you are unsure on sizing or have questions, please email <a href='mailto:info@kalas.co.uk'>info@kalas.co.uk</a> with your measurements for advice.</p>
           <WithProducts>
             <Items>
               {

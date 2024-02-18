@@ -15,6 +15,34 @@ const Items = styled.div`
   text-align: center;
 `
 
+const SECTION_DESCRIPTIONS = {
+  jerseys: (
+    <>
+      <p>Jerseys are available in a regular Club fit or a slimmer Pro version.</p>
+      <p>If you are unsure on sizing or have questions, please email <a href='mailto:info@kalas.co.uk'>info@kalas.co.uk</a> with your measurements for advice.</p>
+    </>
+  ),
+  outerwear: (
+    <>
+      <p>Outerwear is available in a regular Club fit or a slimmer Pro version.</p>
+      <p>If you are unsure on sizing or have questions, please email <a href='mailto:info@kalas.co.uk'>info@kalas.co.uk</a> with your measurements for advice.</p>
+    </>
+  ),
+  'skin-suits': (
+    <>
+      <p>Please email <a href='mailto:info@kalas.co.uk'>info@kalas.co.uk</a> with your measurements for sizing advice.</p>
+    </>
+  )
+}
+
+const sectionDescription = (slug) => {
+  if (SECTION_DESCRIPTIONS[slug]) {
+    return SECTION_DESCRIPTIONS[slug]
+  }
+
+  return null
+}
+
 const Section = ({ section }) => {
   const products = section.items
 
@@ -22,6 +50,7 @@ const Section = ({ section }) => {
     <>
       <Breadcrumb section={section} />
       <h2>{section.name}</h2>
+      {sectionDescription(section.slug)}
       <Items>
         {
           products.length ? products.map(product => <ShopItemPanel item={product} key={product.slug} />) : <p>Sorry this section does not have any products at the moment, please check back soon!</p>
