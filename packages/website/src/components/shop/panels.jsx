@@ -83,6 +83,8 @@ import diamondFabric from '../../../assets/shop/material-ww-diamond.jpg'
 import ventPlusFabric from '../../../assets/shop/material-vent-plus.jpg'
 import ventThermoTech from '../../../assets/shop/material-vent-thermotech.jpg'
 
+import proJersey from '../../../assets/shop/pro-jersey-1.jpg'
+
 export const ITEM_IMAGES = {
   accessories: [{
     src: capFrontImage
@@ -106,10 +108,10 @@ export const ITEM_IMAGES = {
   'musette-2019': [{
     src: musetteImage
   }],
-  'white-socks-2019': [{
+  'white-socks-2023': [{
     src: socksSummerSideImage
   }],
-  'black-socks-2019': [{
+  'black-socks-2023': [{
     src: socksWinterSideImage
   }],
   'white-cap-2019': [{
@@ -190,6 +192,9 @@ export const ITEM_IMAGES = {
     text: 'Arm fabric'
   }],
   'pro-jersey-2022': [{
+    src: proJersey,
+    text: 'Pro Jersey'
+  }, {
     src: ssJerseyFrontImage,
     text: 'Jersey front'
   }, {
@@ -386,7 +391,7 @@ export const ITEM_IMAGES = {
     src: downJacketBag,
     text: 'Complete with bag'
   }],
-  'bidon-2019': [{
+  'bidon-2023': [{
     src: bidonImage
   }],
   'hoodie-2021': {

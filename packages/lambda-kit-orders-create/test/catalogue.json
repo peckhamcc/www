@@ -1253,14 +1253,14 @@
         "section": "accessories",
         "id": "prod_IcK9MqvVFN0gBx",
         "prices": {
-          "black-socks-2019": {
+          "black-socks-2023": {
             "type": "one_time",
             "amount": 1100,
             "id": "price_1I15VS2cnIK2AWWQxT87XbHZ"
           }
         },
         "type": "premade",
-        "slug": "black-socks-2019"
+        "slug": "black-socks-2023"
       },
       {
         "images": [
@@ -1280,14 +1280,14 @@
         "section": "accessories",
         "id": "prod_IcK9BfJbJEx20U",
         "prices": {
-          "white-socks-2019": {
+          "white-socks-2023": {
             "type": "one_time",
             "amount": 1100,
             "id": "price_1I15VH2cnIK2AWWQF1tRKMEF"
           }
         },
         "type": "premade",
-        "slug": "white-socks-2019"
+        "slug": "white-socks-2023"
       },
       {
         "images": [
@@ -1300,14 +1300,14 @@
         "section": "accessories",
         "id": "prod_IcK94wxv130ar5",
         "prices": {
-          "bidon-2019": {
+          "bidon-2023": {
             "type": "one_time",
             "amount": 800,
             "id": "price_1I15VA2cnIK2AWWQnEnQm9dQ"
           }
         },
         "type": "premade",
-        "slug": "bidon-2019"
+        "slug": "bidon-2023"
       },
       {
         "images": [

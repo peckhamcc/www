@@ -233,14 +233,14 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Black cotton musette with screen printed club logo.</p>
     </>
   ),
-  'bidon-2019': (
+  'bidon-2023': (
     <>
       <p>The club bidon has a <a href='https://www.velominati.com/#52'>rule #52</a>-friendly 600ml capacity, features a lockable lid with a leak-proof membrane cap and is dishwasher safe.</p>
       <p>It's made from polyethylene derived from sugar cane and is recyclable and biodegradable itself so once retired should not murder anything in the ocean.</p>
       <p>It's dishwasher safe up to 30 degrees and can be recycled as #4 LDPE, so anywhere that accepts plastic bags/film such as <a href='https://www.southwark.gov.uk/bins-and-recycling/recycling/recycling-centres/reuse-and-recycling-centre?chapter=3'>Southwark Recycling Centre</a>.</p>
     </>
   ),
-  'white-socks-2019': (
+  'white-socks-2023': (
     <>
       <p>White Summer Socks with club stripes at the top.</p>
       <p>These socks have a single layer leg for comfort on warmer days and pair nicely with white gloves and shoes.</p>
@@ -248,7 +248,7 @@ const PRODUCT_DESCRIPTIONS = {
       <p>The previous design is still available at RRC, now with a steep discount.</p>
     </>
   ),
-  'black-socks-2019': (
+  'black-socks-2023': (
     <>
       <p>Black Winter Socks with club stripes at the top.</p>
       <p>These socks have a double layer leg for extra warmth in cooler months.</p>
