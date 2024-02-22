@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:16-browsers
+      - image: cimg/node:21.6.1-browsers
     working_directory: ~/repo
     steps:
       - checkout
@@ -25,7 +25,7 @@ jobs:
           command: npm run test
   deploy:
     docker:
-      - image: circleci/node:16-browsers
+      - image: cimg/node:21.6.1-browsers
     working_directory: ~/repo
     steps:
       - checkout
