@@ -113,16 +113,15 @@ const PRODUCT_DESCRIPTIONS = {
   'club-gilet-2022': (
     <>
       <p>The Club Gilet has a waterproof rating of 10k/10k, and is made of a 160g/m2 high stretch 90% polyester/10% polyurethane material.</p>
-      <p>It has a deep neck for increased wind protection, comes with a full-length zip, three rear pockets and is a great three-season option for layering and comfort.</p>
-      <p>It's available with a mesh back for warmer days or a membrane back for bad weather.</p>
+      <p>It has a deep neck for increased wind protection, comes with a full-length zip, a mesh back, three rear pockets and is a great three-season option for layering and comfort.</p>
       <p>Some gilets are available in a "plus size" that adds 5cm to the body.</p>
     </>
   ),
   'pro-gilet-2022': (
     <>
       <p>The Pro Gilet has a waterproof rating of 8k/10k, and is made of a lightweight 110g/m2 high stretch 95% polyester/5% polyurethane material.</p>
-      <p>It has a deep neck for increased wind protection, comes with a full-length zip, and is a great three-season option for layering and comfort.</p>
-      <p>It's available with a mesh back for warmer days or a membrane back for bad weather.</p>
+      <p>It has a deep neck for increased wind protection, comes with a full-length zip, a mesh back, and is a great three-season option for layering and comfort.</p>
+      <p>This gilet has no rear pockets but the zip opens from the bottom as well as the top to give easy access to your jersey pockets.</p>
       <p>Some gilets are available in a "plus size" that adds 5cm to the body.</p>
     </>
   ),

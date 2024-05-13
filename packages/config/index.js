@@ -1735,17 +1735,13 @@ const OPTIONS = {
     },
 
     'club-gilet-2022': {
-      'M-ME': 'n50126-MN03',
-      'M-MB': 'n50128-MN05',
-      'F-ME': 'n50126-LN03',
-      'F-MB': 'n50128-LN05'
+      M: 'n50126-MN03',
+      F: 'n50126-LN03'
     },
 
     'pro-gilet-2022': {
-      'M-ME': 'n50111-MN01',
-      'M-MB': 'n50118-MN20',
-      'F-ME': 'n50111-LN01',
-      'F-MB': 'n50118-LN20'
+      M: 'n50111-MN01',
+      F: 'n50111-LN01'
     },
 
     'pro-rain-jacket-2022': {

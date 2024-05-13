@@ -31,7 +31,8 @@ jobs:
       - run:
           name: test
           command: npm run test
-      - deploy:
+      - run:
+          name: deploy
           command: npm run deploy
           environment:
             NODE_OPTIONS: --max_old_space_size=4096
