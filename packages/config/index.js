@@ -1074,6 +1074,7 @@ const OPTIONS = {
   productCodes: {
     // male pro jersey
     'n50076-MS61': {
+    // N50076-MS35
       name: 'Jersey S/S PRO 61 | Razor'
     },
 
@@ -1674,39 +1675,21 @@ const OPTIONS = {
     'winter-youth-jersey-2022': 'n50055-JL06',
 
     'club-bib-shorts-2022': {
-      'M-MR-LP': 'n60069-MA49',
-      'M-ME-LP': 'n60069-MA89',
-      'M-MR-ROU': 'n60064-MA24',
-      'M-ME-ROU': 'n60064-MA07',
-      'M-FR-LP': 'n60069-UA50',
-      'M-FE-LP': 'n60069-UA89',
-      'M-FR-ROU': 'n60064-UA51',
-      'M-FE-ROU': 'n60064-UA52',
-      'F-FR-LP': 'n60069-LA50',
-      'F-FE-LP': 'n60069-LA89',
-      'F-FR-ROU': 'n60064-LA51',
-      'F-FE-ROU': 'n60064-LA52'
+      'M-MR': 'n60069-MA49',
+      'M-ME': 'n60069-MA89',
+      'M-FR': 'n60069-UA50',
+      'M-FE': 'n60069-UA89',
+      'F-FR': 'n60069-LA50',
+      'F-FE': 'n60069-LA89'
     },
 
     'pro-bib-shorts-2022': {
-      'M-MR-GOF': 'n61065-MA12',
-      'M-ME-GOF': 'n61065-MA13',
-      'M-MR-VER': 'n61066-MA12',
-      'M-ME-VER': 'n61066-MA13',
-      'M-MR-ROU': 'n61064-MA12',
-      'M-ME-ROU': 'n61064-MA13',
-      'M-FR-GOF': 'n61065-UA04',
-      'M-FE-GOF': 'n61065-UA02',
-      'M-FR-VER': 'n61066-UA04',
-      'M-FE-VER': 'n61066-UA02',
-      'M-FR-ROU': 'n61064-UA04',
-      'M-FE-ROU': 'n61064-UA02',
-      'F-FR-GOF': 'n61065-LA04',
-      'F-FE-GOF': 'n61065-LA02',
-      'F-FR-VER': 'n61066-LA04',
-      'F-FE-VER': 'n61066-LA02',
-      'F-FR-ROU': 'n61064-LA04',
-      'F-FE-ROU': 'n61064-LA02'
+      'M-MR': 'n61065-MA12',
+      'M-ME': 'n61065-MA13',
+      'M-FR': 'n61065-UA04',
+      'M-FE': 'n61065-UA02',
+      'F-FR': 'n61065-LA04',
+      'F-FE': 'n61065-LA02'
     },
 
     'club-3-4-bib-shorts-2022': {
