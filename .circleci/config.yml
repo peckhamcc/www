@@ -36,6 +36,8 @@ jobs:
           command: npm run deploy
           environment:
             NODE_OPTIONS: --max_old_space_size=4096
+    # The resource_class feature allows configuring CPU and RAM resources for each job. Different resource classes are available for different executors. https://circleci.com/docs/2.0/configuration-reference/#resourceclass
+    resource_class: large
 
 workflows:
   version: 2
