@@ -105,7 +105,7 @@ const PRODUCT_DESCRIPTIONS = {
   ),
   'club-lightweight-gilet-2022': (
     <>
-      <p>The Lightweight Gilet is perfect for long descents on summer rides and packs down easily to be stowed in a jersey pocket when not in use.</p>
+      <p>The Packable Gilet is perfect for long descents on summer rides and packs down easily to be stowed in a jersey pocket when not in use.</p>
       <p>It is made from a 77g/m2 100% polyester material, has a deep neck for increased wind protection, comes with a full-length zip and a mesh back.</p>
       <p>Some gilets are available in a "plus size" that adds 5cm to the body.</p>
     </>
