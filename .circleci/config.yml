@@ -15,6 +15,7 @@ jobs:
       - run:
           name: test
           command: npm run test
+    resource_class: large
   deploy:
     docker:
       - image: cimg/node:21.6.1-browsers
@@ -36,7 +37,6 @@ jobs:
           command: npm run deploy
           environment:
             NODE_OPTIONS: --max_old_space_size=4096
-    # The resource_class feature allows configuring CPU and RAM resources for each job. Different resource classes are available for different executors. https://circleci.com/docs/2.0/configuration-reference/#resourceclass
     resource_class: large
 
 workflows:
