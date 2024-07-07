@@ -59,7 +59,7 @@
     "babel-eslint": "^10.0.1",
     "babel-plugin-istanbul": "^5.1.0",
     "copy": "^0.3.2",
-    "esbuild": "^0.23.0",
+    "esbuild": "^0.8.52",
     "imagemin": "^7.0.1",
     "imagemin-jpegtran": "^7.0.0",
     "imagemin-pngquant": "^9.0.1",

@@ -58,7 +58,8 @@ async function bundle () {
       '.gif': 'file',
       '.pdf': 'file'
     },
-    outdir: 'dist'
+    outdir: 'dist',
+    watch: process.env.NODE_ENV === 'development'
   })
 
   // if NODE_ENV === 'development' the previous command will never return due to the `watch`
