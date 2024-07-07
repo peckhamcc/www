@@ -443,6 +443,13 @@ const getCachedOrder = async (paymentIntentId) => {
   }
 
   const paymentIntent = await getCachedPayment(paymentIntentId)
+
+  if (!session.customer) {
+    console.info('stripe-client[getCachedOrder] session for paymentIntent', paymentIntentId, 'had no customer')
+
+    return
+  }
+
   const customer = await client.customers.retrieve(session.customer)
 
   /** @type {Order} */
@@ -700,7 +707,7 @@ async function getNewOrders (fromDate) {
 
       if (!paymentIntent.charges.total_count) {
         // no charges on this payment intent, nothing to see here
-        console.info('stripe-client[getNewOrders]', paymentIntent.id, 'had no charges')
+        console.info('stripe-client[getNewOrders] paymentIntent', paymentIntent.id, 'had no charges')
         continue
       }
 
@@ -710,13 +717,13 @@ async function getNewOrders (fromDate) {
       if (order) {
         // ignore deleted customers
         if (!order.deleted) {
-          console.info('stripe-client[getNewOrders]', paymentIntent.id, 'had order')
+          console.info('stripe-client[getNewOrders] paymentIntent', paymentIntent.id, 'had order')
           orders.push(order)
         } else {
-          console.info('stripe-client[getNewOrders]', paymentIntent.id, 'had deleted order')
+          console.info('stripe-client[getNewOrders] paymentIntent', paymentIntent.id, 'had deleted order')
         }
       } else {
-        console.info('stripe-client[getNewOrders]', paymentIntent.id, 'had no order')
+        console.info('stripe-client[getNewOrders] paymentIntent', paymentIntent.id, 'had no order')
       }
     }
 
