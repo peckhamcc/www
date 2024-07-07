@@ -28,7 +28,7 @@ async function bundle () {
     sourcemap: true,
     publicPath: '/',
     target: [
-      'chrome58', 'firefox57', 'safari11', 'edge16'
+      'es2020'
     ],
     define: {
       global: 'globalThis',
@@ -58,8 +58,7 @@ async function bundle () {
       '.gif': 'file',
       '.pdf': 'file'
     },
-    outdir: 'dist',
-    watch: process.env.NODE_ENV === 'development'
+    outdir: 'dist'
   })
 
   // if NODE_ENV === 'development' the previous command will never return due to the `watch`
