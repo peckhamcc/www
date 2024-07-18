@@ -23,7 +23,7 @@ const {
 } = require('./config')
 // const createOrderSpreadsheet = require('./create-order-spreadsheet')
 
-const ORDER_ITEMS_MINIMUM = 5
+const ORDER_ITEMS_MINIMUM = 1
 
 async function kitOrdersCreateHandler () {
   const lastOrder = await getLastOrder()
