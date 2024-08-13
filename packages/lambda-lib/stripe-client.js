@@ -555,7 +555,7 @@ async function updateFopccPaymentMethod (customerId, existingSubscriptionId, set
   }
 
   if (subscriptionId !== existingSubscriptionId) {
-    console.info('Subscription ID was incorrect - new subscription', subscriptionId, 'did not match existing subscription', existingSubscriptionId)
+    console.info('Subscription ID was incorrect - updated subscription', subscriptionId, 'did not match existing subscription', existingSubscriptionId)
     throw new httpErrors.BadRequest('Subscription ID was incorrect')
   }
 
