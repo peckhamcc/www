@@ -55,7 +55,7 @@ async function handleCheckoutComplete (context, event) {
   }
 }
 
-async function handleNewFoPCCSubscription ({ userId, user }, { data: { object } }) {
+async function handleNewFoPCCSubscription ({ userId, user }, { created, data: { object } }) {
   console.info('Handling new FoPCC subscription', object.subscription)
 
   const subscriptionId = object.subscription
@@ -68,11 +68,16 @@ async function handleNewFoPCCSubscription ({ userId, user }, { data: { object } 
     throw new httpErrors.BadRequest('User already has a subscription')
   }
 
+  if (user.fopcc && user.fopcc.updated > created) {
+    throw new httpErrors.BadRequest('A more recent FoPCC update event has already been received')
+  }
+
   console.info('Marking subscription', subscriptionId, 'for user', userId, 'pending-payment')
 
   // we are awaiting first payment
   await updateUser(userId, {
     fopcc: {
+      updated: created,
       subscriptionId,
       status: 'pending-payment'
     }
@@ -81,11 +86,15 @@ async function handleNewFoPCCSubscription ({ userId, user }, { data: { object } 
   await sendEmail(user.email, config.email.from, 'You are now a Friend of PCC', fopccNewSubscriptionEmail.html(user.name), fopccNewSubscriptionEmail.text(user.name))
 }
 
-async function updateFoPCCSubscription ({ userId, user }, { data: { object } }) {
+async function updateFoPCCSubscription ({ userId, user }, { created, data: { object } }) {
   console.info('Handling updated FoPCC subscription with setup intent', object.setup_intent)
 
   if (!user.fopcc || !user.fopcc.subscriptionId) {
     throw new httpErrors.BadRequest('User had no existing subscription')
+  }
+
+  if (user.fopcc && user.fopcc.updated > created) {
+    throw new httpErrors.BadRequest('A more recent FoPCC update event has already been received')
   }
 
   // already had a membership, update the payment method
@@ -108,6 +117,7 @@ async function updateFoPCCSubscription ({ userId, user }, { data: { object } }) 
   await updateUser(userId, {
     fopcc: {
       ...user.fopcc,
+      updated: created,
       last4
     }
   })
@@ -189,10 +199,14 @@ async function handleInvoicePaid (context, event) {
   }
 }
 
-async function handleFoPCCPayment ({ userId, user }, { data: { object } }) {
+async function handleFoPCCPayment ({ userId, user }, { created, data: { object } }) {
   if (user.fopcc && object.subscription !== user.fopcc.subscriptionId) {
     console.info('Subscription ID was incorrect - new subscription', object.subscription, 'did not match existing subscription', user.fopcc.subscriptionId)
     throw new httpErrors.BadRequest('Subscription ID was incorrect')
+  }
+
+  if (user.fopcc && user.fopcc.updated > created) {
+    throw new httpErrors.BadRequest('A more recent FoPCC update event has already been received')
   }
 
   const lineItems = object.lines && object.lines.data
@@ -249,6 +263,7 @@ async function handleFoPCCPayment ({ userId, user }, { data: { object } }) {
   await updateUser(userId, {
     fopcc: {
       ...user.fopcc,
+      updated: created,
       status: 'active',
       renews: renews * 1000,
       last4,
@@ -267,10 +282,14 @@ async function handleInvoicePaymentFailure (context, event) {
   }
 }
 
-async function handleFoPCCPaymentFailure ({ userId, user }, { data: { object } }) {
+async function handleFoPCCPaymentFailure ({ userId, user }, { created, data: { object } }) {
   if (user.fopcc && object.subscription !== user.fopcc.subscriptionId) {
     console.info('Subscription ID was incorrect - new subscription', object.subscription, 'did not match existing subscription', user.fopcc.subscriptionId)
     throw new httpErrors.BadRequest('Subscription ID was incorrect')
+  }
+
+  if (user.fopcc && user.fopcc.updated > created) {
+    throw new httpErrors.BadRequest('A more recent FoPCC update event has already been received')
   }
 
   console.info('Marking subscription', object.subscription, 'for user', userId, 'payment-failed')
@@ -278,6 +297,7 @@ async function handleFoPCCPaymentFailure ({ userId, user }, { data: { object } }
   await updateUser(userId, {
     fopcc: {
       ...user.fopcc,
+      updated: created,
       status: 'payment-failed'
     }
   })
@@ -285,10 +305,14 @@ async function handleFoPCCPaymentFailure ({ userId, user }, { data: { object } }
   await sendEmail(user.email, config.email.from, 'Friend of PCC payment failed', fopccPaymentFailureEmail.html(user.name), fopccPaymentFailureEmail.text(user.name))
 }
 
-async function handleFoPCCCancellation ({ userId, user }, { data: { object } }) {
+async function handleFoPCCCancellation ({ userId, user }, { created, data: { object } }) {
   if (user.fopcc && object.id !== user.fopcc.subscriptionId) {
     console.info('Subscription ID was incorrect - new subscription', object.id, 'did not match existing subscription', user.fopcc.subscriptionId)
     throw new httpErrors.BadRequest('Subscription ID was incorrect')
+  }
+
+  if (user.fopcc && user.fopcc.updated > created) {
+    throw new httpErrors.BadRequest('A more recent FoPCC update event has already been received')
   }
 
   console.info('Marking subscription', object.id, 'for user', userId, 'cancelled')
@@ -296,6 +320,7 @@ async function handleFoPCCCancellation ({ userId, user }, { data: { object } }) 
   await updateUser(userId, {
     fopcc: {
       ...user.fopcc,
+      updated: created,
       status: 'cancelled',
       subscriptionId: undefined
     }
