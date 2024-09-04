@@ -250,7 +250,6 @@ const htmlTemplateSupplierNotification = (name, items) => `
     <p>${
       Object.keys(items).reduce((acc, sku) => acc + items[sku].quantity, 0)
     } items total.</p>
-    <p>Please see the attached spreadsheet and let me know if anything doesn't make sense.</p>
     <p>Thanks,</p>
     <p>Alex</p>
     <p>Peckham Cycle Club</p>
