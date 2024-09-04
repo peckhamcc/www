@@ -1400,6 +1400,16 @@ const OPTIONS = {
       name: 'Jacket ELITE 06 | W&W Mission Flow'
     },
 
+    // male pro winter jacket
+    'n50253-ML24': {
+      name: 'Jacket PRO 24 | W&W ThermoTech'
+    },
+
+    // female pro winter jacket
+    'n50253-LL24': {
+      name: 'Jacket PRO 24 | W&W ThermoTech | WOMEN'
+    },
+
     // male pit jacket
     'n80134-ML14': {
       name: 'Jacket TRACK 14 | W&W Bell'
