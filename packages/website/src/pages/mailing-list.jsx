@@ -4,18 +4,28 @@ import React, {
 import {
   PageWrapper,
   Panel,
-  Hero
+  Hero,
+  Button
 } from '../components/panels'
 import background from '../../assets/mailing-list-bg.jpg'
 
 class MailingListPage extends Component {
+  componentDidMount () {
+
+  }
+
+  handleSubscribe () {
+    window.ml('show', 'rltD5e', true)
+  }
+
   render () {
     return (
       <PageWrapper>
         <Hero background={background} />
         <Panel>
           <h2>Mailing list</h2>
-          <div className='ml-embedded' data-form='bRGP4R' />
+          <p>Sign up to our mailing list for club updates, including rides, trips, training, kit, etc</p>
+          <Button onClick={this.handleSubscribe}>Subscribe</Button>
         </Panel>
       </PageWrapper>
     )
