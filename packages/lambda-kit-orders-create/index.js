@@ -80,6 +80,13 @@ async function kitOrdersCreateHandler () {
         metadata = JSON.parse(payment.metadata[`item-${index}-metadata`])
       }
 
+      // made-to-order items with no metadata can include ad-hoc payments made
+      // for stock kit items
+      if (Object.keys(metadata).length === 0) {
+        console.info('made-to-order item', item, 'had no metadata')
+        return
+      }
+
       if (sku == null && Boolean(Object.keys(item.metadata).length)) {
         const choices = []
 
