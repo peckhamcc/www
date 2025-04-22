@@ -131,16 +131,15 @@ const PRODUCT_DESCRIPTIONS = {
       <p>They are available in male and female specific versions and the male fit can also be made with female pads.</p>
       <p>There are two pads available, a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
       <p>Some shorts are available in a "plus size" that adds 5cm to the legs.</p>
-      <p>Shorts are available in regular lycra fabric or roubaix which is insulated for colder weather.</p>
     </>
   ),
   'pro-bib-shorts-2022': (
     <>
-      <p>Our Pro Bib Shorts have more panels than the Club version for a closer fit.</p>
+      <p>Our Pro Bib Shorts have more panels than the Club version for a closer fit are made from a textured lycra fabric that increases aerodynamic efficiency.</p>
+      <p>They feature flat-lock stitching with overlocked seams throughout for comfort and the legs have raw edge silicone hem grips to make sure the legs stay put.</p>
       <p>They are available in male and female specific versions and the male fit can also be made with female pads.</p>
       <p>There are two pads available, a regular pad and an endurance pad that some may find more comfortable on longer rides.</p>
       <p>Some shorts are available in a "plus size" that adds 5cm to the legs.</p>
-      <p>Shorts are available in a textured lycra fabric, a lighter summer weight fabric or roubaix which is insulated for colder weather.</p>
     </>
   ),
   'club-3-4-bib-shorts-2022': (
