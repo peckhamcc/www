@@ -69,7 +69,14 @@ async function handleNewFoPCCSubscription ({ userId, user }, { created, data: { 
   }
 
   if (user.fopcc && user.fopcc.updated > created) {
-    throw new httpErrors.BadRequest('A more recent FoPCC update event has already been received')
+    console.info(
+      'Not marking subscription', user.fopcc.subscriptionId, 'for user', userId,
+      'pending-payment because a more recent FoPCC update event has been received -',
+      new Date(created * 1000), 'vs', new Date(user.fopcc.updated * 1000),
+      'status is left as', user.fopcc.status
+    )
+
+    return
   }
 
   console.info('Marking subscription', subscriptionId, 'for user', userId, 'pending-payment')
@@ -91,10 +98,6 @@ async function updateFoPCCSubscription ({ userId, user }, { created, data: { obj
 
   if (!user.fopcc || !user.fopcc.subscriptionId) {
     throw new httpErrors.BadRequest('User had no existing subscription')
-  }
-
-  if (user.fopcc && user.fopcc.updated > created) {
-    throw new httpErrors.BadRequest('A more recent FoPCC update event has already been received')
   }
 
   // already had a membership, update the payment method
@@ -206,7 +209,14 @@ async function handleFoPCCPayment ({ userId, user }, { created, data: { object }
   }
 
   if (user.fopcc && user.fopcc.updated > created) {
-    throw new httpErrors.BadRequest('A more recent FoPCC update event has already been received')
+    console.info(
+      'Not marking subscription', user.fopcc.subscriptionId, 'for user', userId,
+      'active because a more recent FoPCC update event has been received -',
+      new Date(created * 1000), 'vs', new Date(user.fopcc.updated * 1000),
+      'status is left as', user.fopcc.status
+    )
+
+    return
   }
 
   const lineItems = object.lines && object.lines.data
@@ -289,7 +299,14 @@ async function handleFoPCCPaymentFailure ({ userId, user }, { created, data: { o
   }
 
   if (user.fopcc && user.fopcc.updated > created) {
-    throw new httpErrors.BadRequest('A more recent FoPCC update event has already been received')
+    console.info(
+      'Not marking subscription', user.fopcc.subscriptionId, 'for user', userId,
+      'payment-failed because a more recent FoPCC update event has been received -',
+      new Date(created * 1000), 'vs', new Date(user.fopcc.updated * 1000),
+      'status is left as', user.fopcc.status
+    )
+
+    return
   }
 
   console.info('Marking subscription', object.subscription, 'for user', userId, 'payment-failed')
@@ -312,7 +329,14 @@ async function handleFoPCCCancellation ({ userId, user }, { created, data: { obj
   }
 
   if (user.fopcc && user.fopcc.updated > created) {
-    throw new httpErrors.BadRequest('A more recent FoPCC update event has already been received')
+    console.info(
+      'Not marking subscription', user.fopcc.subscriptionId, 'for user', userId,
+      'cancelled because a more recent FoPCC update event has been received -',
+      new Date(created * 1000), 'vs', new Date(user.fopcc.updated * 1000),
+      'status is left as', user.fopcc.status
+    )
+
+    return
   }
 
   console.info('Marking subscription', object.id, 'for user', userId, 'cancelled')
