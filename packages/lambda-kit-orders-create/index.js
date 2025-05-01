@@ -72,12 +72,18 @@ async function kitOrdersCreateHandler () {
 
       let metadata = item.metadata
       let description = item.description
+      let clubNotes = ''
 
       // if metadata has been set on the payment, use that to derive the SKU,
       // otherwise use the immutable metadata from the checkout
       if (payment.metadata[`item-${index}-metadata`] != null) {
         console.info('Payment', order.payment, 'has overridden metadata')
         metadata = JSON.parse(payment.metadata[`item-${index}-metadata`])
+      }
+
+      if (payment.metadata[`item-${index}-notes`] != null) {
+        console.info('Item', index, 'from payment', order.payment, 'has a note')
+        clubNotes = payment.metadata[`item-${index}-notes`]
       }
 
       // made-to-order items with no metadata can include ad-hoc payments made
@@ -150,6 +156,7 @@ async function kitOrdersCreateHandler () {
       item.supplierNotes = details.notes
       item.supplierSku = sku
       item.description = description
+      item.clubNotes = clubNotes
     })
 
     // filter out any non made-to-order items
@@ -169,17 +176,20 @@ async function kitOrdersCreateHandler () {
 
   // make sure we have more than 5x items (not including accessories)
   let itemCount = 0
+  let allItemsCount = 0
 
   Object.values(items).forEach(item => {
     if (item.section !== 'accessories') {
-      itemCount++
+      itemCount += item.quantity
     }
+
+    allItemsCount += item.quantity
   })
 
-  if (itemCount >= ORDER_ITEMS_MINIMUM) {
-    const orderDate = new Date()
-    const date = `${new Intl.DateTimeFormat('en', { month: 'long' }).format(orderDate)} ${new Intl.DateTimeFormat('en', { year: 'numeric' }).format(orderDate)}`
+  const orderDate = new Date()
+  const date = `${new Intl.DateTimeFormat('en', { month: 'long' }).format(orderDate)} ${new Intl.DateTimeFormat('en', { year: 'numeric' }).format(orderDate)}`
 
+  if (itemCount >= ORDER_ITEMS_MINIMUM) {
     const supplierTitle = `Peckham Cycle Club kit order - ${date}`
     const clubTitle = `Kit orders - ${date}`
 
@@ -210,7 +220,15 @@ async function kitOrdersCreateHandler () {
     // uncomment when sending emails direct to suppliers..
     // await setOrderItemsStatus(orders.map(order => order.payment), 'production')
   } else {
-    console.info(`Only ${itemCount} items ordered this month, ${Object.keys(items).length} including accessories`)
+    console.info(`Only ${itemCount} outstanding items, ${allItemsCount} including accessories`)
+
+    await sendEmail(
+      config.email.from,
+      config.email.from,
+      `Kit order minimums not reached - ${date}`,
+      htmlTemplateInsufficientOrdersNotification(date, orders),
+      textTemplateInsufficientOrdersNotification(date, orders)
+    )
   }
 
   return {
@@ -338,7 +356,11 @@ const htmlTemplateClubNotification = (date, orders) => `
           }
 
           if (item.supplierNotes) {
-            line += `<br/>Notes: ${item.supplierNotes}`
+            line += `<br/>Variant: ${item.supplierNotes}`
+          }
+
+          if (item.clubNotes) {
+            line += `<br/>Notes: ${item.clubNotes}`
           }
 
           if (Object.keys(item.metadata).length) {
@@ -380,7 +402,111 @@ ${order.items.map(item => {
   }
 
   if (item.supplierNotes) {
-    line += `\r\nNotes: ${item.supplierNotes}`
+    line += `\r\nVariant: ${item.supplierNotes}`
+  }
+
+  if (item.clubNotes) {
+    line += `\r\nNotes: ${item.clubNotes}`
+  }
+
+  if (Object.keys(item.metadata).length) {
+    line += `\r\n${item.description}`
+  }
+
+  return line
+}).join('\r\n')}`
+  }).join('\r\n')
+}
+
+--
+
+Peckham Cycle Club
+
+peckhamcc@gmail.com
+https://peckham.cc
+https://facebook.com/PeckhamCC
+https://twitter.com/PeckhamCC
+https://instagram.com/PeckhamCC
+`
+
+const htmlTemplateInsufficientOrdersNotification = (date, orders) => `
+<html>
+  <head>
+  </head>
+  <body>
+    <p><strong>Order minimums have not been met this month!</strong></p>
+    <p>The outstanding orders are as follows (this is informational only):</p>
+    ${
+      orders.map(order => {
+        return `
+    <p><b>${order.name}</b><br/>
+        ${new Intl.DateTimeFormat('en', { minute: 'numeric', hour: 'numeric', day: 'numeric', month: 'short', year: 'numeric' }).format(order.date)}<br/>
+        ${order.items.map(item => {
+          let line = `${item.quantity}x ${item.name}`
+
+          if (item.supplierSku) {
+            line += ` - ${item.supplierSku}`
+          }
+
+          if (item.supplierName) {
+            line += ` "${item.supplierName}"`
+          }
+
+          if (item.supplierNotes) {
+            line += `<br/>Variant: ${item.supplierNotes}`
+          }
+
+          if (item.clubNotes) {
+            line += `<br/>Notes: ${item.clubNotes}`
+          }
+
+          if (Object.keys(item.metadata).length) {
+            line += `<br/>${item.description}`
+          }
+
+          return line
+        }).join('<br/><br/>')}</p>`
+      }).join('')
+    }
+    <p>Peckham Cycle Club</p>
+    <p>
+      <a href="mailto:peckhamcc@gmail.com">peckhamcc@gmail.com</a><br />
+      <a href="https://peckham.cc">https://peckham.cc</a><br />
+      <a href="https://facebook.com/PeckhamCC">https://facebook.com/PeckhamCC</a><br />
+      <a href="https://twitter.com/PeckhamCC">https://twitter.com/PeckhamCC</a><br />
+      <a href="https://instagram.com/PeckhamCC">https://instagram.com/PeckhamCC</a>
+    </p>
+  </body>
+</html>
+`
+
+const textTemplateInsufficientOrdersNotification = (date, orders) => `
+Order minimums have not been met this month!
+
+The outstanding orders are as follows (this is informational only):
+
+${
+  orders.map(order => {
+  return `
+${order.name}
+${new Intl.DateTimeFormat('en', { minute: 'numeric', hour: 'numeric', day: 'numeric', month: 'short', year: 'numeric' }).format(order.date)}
+${order.items.map(item => {
+  let line = `${item.quantity}x ${item.name}`
+
+  if (item.supplierSku) {
+    line += ` - ${item.supplierSku}`
+  }
+
+  if (item.supplierName) {
+    line += ` "${item.supplierName}"`
+  }
+
+  if (item.supplierNotes) {
+    line += `\r\nVariant: ${item.supplierNotes}`
+  }
+
+  if (item.clubNotes) {
+    line += `\r\nNotes: ${item.clubNotes}`
   }
 
   if (Object.keys(item.metadata).length) {
