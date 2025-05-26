@@ -53,6 +53,11 @@ const PRODUCT_DESCRIPTIONS = {
       <p>The Club Jersey has flatlock seams, silicone grippers, and three large rear pockets including one with a hook to secure your valuables.</p>
       <p>The fit is similar to casual, core or endurance-style jerseys from other brands.</p>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <h4>Stock</h4>
+      <p>We hold some sizes of this item in stock available for immediate collection.</p>
+      <p>Please <Link to='/contact'>contact the club</Link> for details.</p>
+      <h4>Exchanges</h4>
+      <p>Regular length versions of this item can be exchanged for alternative sizes where stock is available and the original garment is still in a saleable condition (e.g. it has not been worn or laundered, and the tags are still attached).</p>
     </>
   ),
   'pro-jersey-2022': (
@@ -62,6 +67,11 @@ const PRODUCT_DESCRIPTIONS = {
       <p>If you normally wear a more casual fit jersey, please consider the <Link to='/shop/club-jersey-2022'>Club Jersey</Link> instead.</p>
       <p>It has flatlock seams, silicone grippers, and three large rear pockets including one with a hook to secure your valuables.</p>
       <p>It is available in male and female specific versions and has an athletic fit, please see the size guide for details.</p>
+      <h4>Stock</h4>
+      <p>We hold some sizes of this item in stock available for immediate collection.</p>
+      <p>Please <Link to='/contact'>contact the club</Link> for details.</p>
+      <h4>Exchanges</h4>
+      <p>Regular length versions of this item can be exchanged for alternative sizes where stock is available and the original garment is still in a saleable condition (e.g. it has not been worn or laundered, and the tags are still attached).</p>
     </>
   ),
   'pro-summer-jersey-2022': (

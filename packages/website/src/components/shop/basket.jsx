@@ -293,9 +293,9 @@ class Basket extends Component {
       terms.push((
         <>
           <h5>Made to order</h5>
-          <p>Your basket contains kit that is made to order.</p>
-          <p>Orders cannot be cancelled, exchanged, or refunded once your order has been placed.</p>
-          <p>We aim to send kit orders to the factory on the first of every month, then it will take approximately 6 weeks to be made &amp; shipped.</p>
+          <p>Your basket contains items that are made to order.</p>
+          <p>Orders cannot be cancelled, exchanged (except where noted on the item description page), or refunded once your order has been placed.</p>
+          <p>If the club as a whole has 5+ outstanding items (excluding accessories) on the first of the month the order will be placed with the factory, then it will take approximately 6 weeks to be made &amp; shipped.</p>
           <p>When items are available, your order will be available to be picked up from <a href='https://ratracecycles.com/'>Rat Race Cycles</a> at 118 Evelina Road, SE15 3HL.</p>
         </>
       ))
