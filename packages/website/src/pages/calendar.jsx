@@ -16,10 +16,10 @@ class CalendarPage extends Component {
       ctz: 'Europe/London',
       hl: 'en_GB',
       src: [
-        'ZTE1dXBkZ2p0aTEzbDJobmxya3ZuM2JyczRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ',
-        'N3A4MWhsMzFldmpvMnVwNjlmMmFtNmdqMW9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ',
-        'bmQ4MjYxNjlldGFvdnV2Z2F1djczNmJodjBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ',
-        'cGczYzY3YTdlOHViNWdxbG8xNmVzN2lrMmNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ'
+        'ZTE1dXBkZ2p0aTEzbDJobmxya3ZuM2JyczRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', // Races
+        'N3A4MWhsMzFldmpvMnVwNjlmMmFtNmdqMW9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', // Peckham Cycle Club
+        'bmQ4MjYxNjlldGFvdnV2Z2F1djczNmJodjBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ', // Social
+        'cGczYzY3YTdlOHViNWdxbG8xNmVzN2lrMmNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ'  // Sportives
       ],
       color: [
         '#d7db3c',

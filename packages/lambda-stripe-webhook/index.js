@@ -208,7 +208,9 @@ async function handleFoPCCPayment ({ userId, user }, { created, data: { object }
     throw new httpErrors.BadRequest('Subscription ID was incorrect')
   }
 
-  if (user.fopcc && user.fopcc.updated > created) {
+  // sometimes stripe sends us "checkout.session.completed" with a later date
+  // than "invoice.paid"
+  if (type !== 'invoice.paid' && user.fopcc && user.fopcc.updated > created) {
     console.info(
       'Not marking subscription', user.fopcc.subscriptionId, 'for user', userId,
       'active because a more recent FoPCC update event has been received -',
