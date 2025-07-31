@@ -202,7 +202,7 @@ async function handleInvoicePaid (context, event) {
   }
 }
 
-async function handleFoPCCPayment ({ userId, user }, { created, data: { object } }) {
+async function handleFoPCCPayment ({ userId, user }, { created, data: { object }, type }) {
   if (user.fopcc && user.fopcc.subscriptionId && object.subscription !== user.fopcc.subscriptionId) {
     console.info('Subscription ID was incorrect - new subscription', object.subscription, 'did not match existing subscription', user.fopcc.subscriptionId)
     throw new httpErrors.BadRequest('Subscription ID was incorrect')
