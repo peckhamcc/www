@@ -282,6 +282,24 @@ const PRODUCT_DESCRIPTIONS = {
       <p>Hand wash only. We mean it.</p>
     </>
   ),
+  'white-cap-2025': (
+    <>
+      <p>White cotton cap with stitched ribbon and white screen print.</p>
+      <p>Cycling caps keep the sun out of your eyes when it's sunny and the rain out of your eyes when it's wet.</p>
+      <p>An essential piece of kit, don't leave home without one. Unless you are going to the pub, in which case observe <a href='https://www.velominati.com/#22'>Rule #22</a> and leave it at home.</p>
+      <p>Our caps are made in Italy from white cotton with a stiff peak and the Peckham logos are screen printed in black. A stitched ribbon in club colours runs over the top.</p>
+      <p>Hand wash only. We mean it.</p>
+    </>
+  ),
+  'black-cap-2025': (
+    <>
+      <p>Black cotton cap with stitched ribbon and white screen print.</p>
+      <p>Cycling caps keep the sun out of your eyes when it's sunny and the rain out of your eyes when it's wet.</p>
+      <p>An essential piece of kit, don't leave home without one. Unless you are going to the pub, in which case observe <a href='https://www.velominati.com/#22'>Rule #22</a> and leave it at home.</p>
+      <p>Our caps are made in Italy from white cotton with a stiff peak and the Peckham logos are screen printed in black. A stitched ribbon in club colours runs over the top.</p>
+      <p>Hand wash only. We mean it.</p>
+    </>
+  ),
   'winter-arm-warmers-2022': (
     <>
       <p>Our Winter Arm Warmers are made from roubaix fabric -nylon/lycra construction with a brushed inner to retain heat.</p>

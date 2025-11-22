@@ -19,10 +19,14 @@ import armWarmersInsideImage from '../../../assets/shop/winter-arm-warmers-insid
 import bibsFrontImage from '../../../assets/shop/bibs-front.png'
 import bibs34FrontImage from '../../../assets/shop/34-bibs-front.png'
 import bibsTightsFrontImage from '../../../assets/shop/winter-tights-front.png'
-import capFrontImage from '../../../assets/shop/cap-front.png'
-import capSidesImage from '../../../assets/shop/cap-sides.png'
-import capWhiteFrontImage from '../../../assets/shop/cap-white-front.png'
-import capWhiteSidesImage from '../../../assets/shop/cap-white-sides.png'
+import cap2019FrontImage from '../../../assets/shop/cap-2019-front.png'
+import cap2019SidesImage from '../../../assets/shop/cap-2019-sides.png'
+import cap2019WhiteFrontImage from '../../../assets/shop/cap-white-2019-front.png'
+import cap2019WhiteSidesImage from '../../../assets/shop/cap-white-2019-sides.png'
+import cap2025FrontImage from '../../../assets/shop/cap-2025-front.png'
+import cap2025SidesImage from '../../../assets/shop/cap-2025-sides.png'
+import cap2025WhiteFrontImage from '../../../assets/shop/cap-white-2025-front.png'
+import cap2025WhiteSidesImage from '../../../assets/shop/cap-white-2025-sides.png'
 import giletFrontImage from '../../../assets/shop/gilet-front.png'
 import giletRearImage from '../../../assets/shop/gilet-rear.png'
 import lsJerseyFrontImage from '../../../assets/shop/ls-jersey-front.png'
@@ -87,7 +91,7 @@ import proJersey from '../../../assets/shop/pro-jersey-1.jpg'
 
 export const ITEM_IMAGES = {
   accessories: [{
-    src: capFrontImage
+    src: cap2025FrontImage
   }],
   'bib-shorts-and-tights': [{
     src: bibsFrontImage
@@ -115,14 +119,24 @@ export const ITEM_IMAGES = {
     src: socksWinterSideImage
   }],
   'white-cap-2019': [{
-    src: capWhiteFrontImage
+    src: cap2019WhiteFrontImage
   }, {
-    src: capWhiteSidesImage
+    src: cap2019WhiteSidesImage
   }],
   'black-cap-2019': [{
-    src: capFrontImage
+    src: cap2019FrontImage
   }, {
-    src: capSidesImage
+    src: cap2019SidesImage
+  }],
+  'white-cap-2025': [{
+    src: cap2025WhiteFrontImage
+  }, {
+    src: cap2025WhiteSidesImage
+  }],
+  'black-cap-2025': [{
+    src: cap2025FrontImage
+  }, {
+    src: cap2025SidesImage
   }],
   'summer-sleeves-2022': [{
     src: summerSleevesImage,

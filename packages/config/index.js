@@ -1834,6 +1834,8 @@ const OPTIONS = {
     // premade items
     'black-cap-2019': 'black-cap-2019',
     'white-cap-2019': 'white-cap-2019',
+    'black-cap-2025': 'black-cap-2025',
+    'white-cap-2025': 'white-cap-2025',
     'black-socks-2023': 'black-socks-2023',
     'white-socks-2023': 'white-socks-2023',
     'bidon-2023': 'bidon-2023',
