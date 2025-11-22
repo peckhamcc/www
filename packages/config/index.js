@@ -151,6 +151,21 @@ const OPTIONS = {
       name: 'Size',
       notes: 'L sizes add 5cm length to the arms & body',
       options: {
+        0: {
+          name: '0',
+          measurements: {
+            chest: {
+              M: {
+                min: 80,
+                max: 84
+              },
+              F: {
+                min: 78,
+                max: 82
+              }
+            }
+          }
+        },
         1: {
           name: '1',
           measurements: {
@@ -408,6 +423,21 @@ const OPTIONS = {
       name: 'Size',
       notes: 'L sizes add 5cm length to the legs',
       options: {
+        0: {
+          name: '0',
+          measurements: {
+            hips: {
+              M: {
+                min: 81,
+                max: 85
+              },
+              F: {
+                min: 82,
+                max: 86
+              }
+            }
+          }
+        },
         1: {
           name: '1',
           measurements: {
